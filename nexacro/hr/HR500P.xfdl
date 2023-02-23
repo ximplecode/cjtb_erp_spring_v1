@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR500P" width="1250" height="625" titletext="New Form" onload="HR500P_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="부서별 인원 변동현황" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta_gb00" taborder="1" text="년월" left="2" top="50" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="2" left="102" top="50" height="30" border="1px solid #10aea9" background="#9ee0de" right="2"/>
+        <Combo id="cb_yy" taborder="3" text="Combo00" left="sta_gb00:2" top="55" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_yy" codecolumn="CODE" datacolumn="NAME" width="96"/>
+        <Combo id="cb_mm" taborder="4" text="Combo00" left="cb_yy:3" top="55" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_mm" codecolumn="CODE" datacolumn="NAME" width="67"/>
+        <CheckBox id="ckb_gb" taborder="5" text="당일 퇴사자 포함" left="cb_mm:2" top="55" width="123" height="20" value="false" onchanged="ckb_gb_onchanged"/>
+        <Static id="sta_gb" taborder="6" text="구분" left="ckb_gb:2" top="50" width="99" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Radio id="rd_select" taborder="7" left="sta_gb:0" top="50" height="30" right="2" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" columncount="4" padding="0px 50px" value="01" text="부서별 인원 현황" index="0" onitemchanged="rd_select_onitemchanged"/>
+        <Grid id="grd_list" taborder="8" left="2" top="sta_gb00:0" right="2" bottom="2" binddataset="ds_list" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="164"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="97"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="부서코드"/>
+                <Cell col="1" rowspan="2" text="부서명"/>
+                <Cell col="2" colspan="3"/>
+                <Cell col="5" colspan="3" text="N_INQTY"/>
+                <Cell col="8" rowspan="2" text="전월대비"/>
+                <Cell col="9" colspan="2" text="IN_TOTAL"/>
+                <Cell row="1" col="2" text="입 사"/>
+                <Cell row="1" col="3" text="퇴 사"/>
+                <Cell row="1" col="4" text="총인원"/>
+                <Cell row="1" col="5" text="입 사"/>
+                <Cell row="1" col="6" text="퇴 사"/>
+                <Cell row="1" col="7" text="총인원"/>
+                <Cell row="1" col="9" text="입사"/>
+                <Cell row="1" col="10" text="퇴사"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSECD"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:J_INQTY" displaytype="number" textAlign="right"/>
+                <Cell col="3" text="bind:J_OUTQTY" displaytype="number" textAlign="right"/>
+                <Cell col="4" text="bind:J_TQTY" displaytype="number" textAlign="right"/>
+                <Cell col="5" text="bind:N_INQTY" displaytype="number" textAlign="right"/>
+                <Cell col="6" text="bind:N_OUTQTY" displaytype="number" textAlign="right"/>
+                <Cell col="7" text="bind:N_TQTY" displaytype="number" textAlign="right"/>
+                <Cell col="8" text="bind:M_QTY" displaytype="number" textAlign="right"/>
+                <Cell col="9" text="bind:IN_TOTAL" displaytype="number" textAlign="right"/>
+                <Cell col="10" text="bind:OUT_TOTAL" displaytype="number" textAlign="right"/>
+              </Band>
+              <Band id="summary">
+                <Cell/>
+                <Cell col="1" text="합 계"/>
+                <Cell col="2" text="expr:comp.parent.fn_setSum(&quot;J_INQTY&quot;)" displaytype="number"/>
+                <Cell col="3" displaytype="number" text="expr:comp.parent.fn_setSum(&quot;J_OUTQTY&quot;)"/>
+                <Cell col="4" displaytype="number" text="expr:comp.parent.fn_setSum(&quot;J_TQTY&quot;)"/>
+                <Cell col="5" displaytype="number" text="expr:comp.parent.fn_setSum(&quot;N_INQTY&quot;)"/>
+                <Cell col="6" displaytype="number" text="expr:comp.parent.fn_setSum(&quot;N_OUTQTY&quot;)"/>
+                <Cell col="7" displaytype="number" text="expr:comp.parent.fn_setSum(&quot;N_TQTY&quot;)"/>
+                <Cell col="8" displaytype="number" text="expr:comp.parent.fn_setSum(&quot;M_QTY&quot;)"/>
+                <Cell col="9" text="expr:comp.parent.fn_setSum(&quot;IN_TOTAL&quot;)"/>
+                <Cell col="10" text="expr:comp.parent.fn_setSum(&quot;OUT_TOTAL&quot;)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="9" text="조회" top="16" width="120" height="22" right="140" onclick="btn_search_onclick"/>
+        <Button id="btn_print" taborder="10" text="출력" top="16" width="120" height="22" right="10" onclick="btn_print_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_yy">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mm">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">1 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">2 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">3 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">4 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">05</Col>
+            <Col id="NAME">5 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">06</Col>
+            <Col id="NAME">6 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">07</Col>
+            <Col id="NAME">7 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">08</Col>
+            <Col id="NAME">8 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">09</Col>
+            <Col id="NAME">9 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">10</Col>
+            <Col id="NAME">10 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">11</Col>
+            <Col id="NAME">11 월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">12</Col>
+            <Col id="NAME">12 월</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">천재교육</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">월말퇴사자이월</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">인사발령기준</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">월말퇴사자이월,인사발령</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="J_TQTY" type="INT" size="256"/>
+          <Column id="J_INQTY" type="INT" size="256"/>
+          <Column id="J_OUTQTY" type="INT" size="256"/>
+          <Column id="N_TQTY" type="INT" size="256"/>
+          <Column id="N_INQTY" type="INT" size="256"/>
+          <Column id="N_OUTQTY" type="INT" size="256"/>
+          <Column id="IN_TOTAL" type="INT" size="256"/>
+          <Column id="OUT_TOTAL" type="INT" size="256"/>
+          <Column id="M_QTY" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="cb_yy" propid="value" datasetid="ds_insa" columnid="SA_GB1"/>
+      <BindItem id="item1" compid="cb_mm" propid="value" datasetid="ds_insa" columnid="SA_GB1"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+this.HR500P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var dt = new Date();
+	
+	this.cb_mm.set_value(Eco.date.getMaskFormatString(dt,"MM"));
+	this.cb_yy.set_value(this.lfn_setYY(this.ds_yy, "2011"));
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	var ym = new Date();
+	var ymd1, ymd2, ymd3, gb;
+	var dt = new Date();
+	
+	ym = Eco.date.strToDate(this.cb_yy.value + this.cb_mm.value + "01");
+	
+	ymd1 = Eco.date.getMaskFormatString(Eco.date.addMonth(ym, -1),"yyyyMM");
+	ymd2 = Eco.date.getMaskFormatString(ym,"yyyyMM");
+	ymd3 = Eco.date.getMaskFormatString(Eco.date.addMonth(ym, 1),"yyyyMM");
+	
+	this.grd_list.setCellProperty("head",2,"text",Eco.date.getMaskFormatString(Eco.date.addMonth(ym, -1),"yyyy년 MM월"));
+	this.grd_list.setCellProperty("head",3,"text",Eco.date.getMaskFormatString(ym,"yyyy년 MM월"));
+	this.grd_list.setCellProperty("head",5,"text",Eco.date.getMaskFormatString(Eco.date.addMonth(ym, -1),"yyyy년 MM월") + "~" + Eco.date.getMaskFormatString(ym,"yyyy년 MM월"));
+	
+	
+	str_url = this.fn_selectJsp(this.rd_select.value);
+	in_ds = "ds_list=ds_list";
+	out_ds = "ds_list=ds_list";
+	str_arg = " GB='" + this.lfn_CheckBox_Return(this.ckb_gb) + "'"+
+	          " YMD1='" + ymd1 + "'" +
+			  " YMD2='" + ymd2 + "'" +
+			  " YMD3='" + ymd3 + "'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+	
+	
+};
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+}
+
+this.fn_selectJsp = function(val)
+{
+	var rt;
+	switch (val)
+	{
+		case "01" :
+			rt = "JSP/hr/getData_hr500_01.jsp";
+			break;
+		case "02" :
+			rt = "JSP/hr/getData_hr500_02.jsp";
+			break;
+		case "03" :
+			rt = "JSP/hr/getData_hr500_03.jsp";
+			break;
+		case "04" :
+			rt = "JSP/hr/getData_hr500_04.jsp";
+			break;
+	}
+	
+	return rt;
+}
+
+this.fn_setSum = function(colName)
+{
+	var rt;
+	
+	rt = this.ds_list.getSum(colName);
+	return rt;
+}
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ym = new Date();
+	var ymd1, ymd2, ymd3, gb;
+	var dt = new Date();
+	
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	ym = Eco.date.strToDate(this.cb_yy.value + this.cb_mm.value + "01");
+	
+	ymd1 = Eco.date.getMaskFormatString(Eco.date.addMonth(ym, -1),"yyyyMM");
+	ymd2 = Eco.date.getMaskFormatString(ym,"yyyyMM");
+	ymd3 = Eco.date.getMaskFormatString(Eco.date.addMonth(ym, 1),"yyyyMM");
+	gb = this.lfn_CheckBox_Return_var(this.ckb_gb,"Y","");
+	
+	var rdUrl = gv_svcUrl + this.fn_setMrd(this.rd_select.value);	
+    var rdParam = "/rp [" + ymd1 + "][" + ymd2 + "][" + ymd3 + "][" + gb +"]";
+	
+	trace(rdParam);
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("인원 변동 현황");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(true);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+};
+
+this.fn_setMrd = function(val)
+{
+	var rt;
+	switch (val)
+	{
+		case "01" :
+			rt = "rpt/hr/HR500P_01.mrd";
+			break;
+		case "02" :
+			rt = "rpt/hr/HR500P_02.mrd";
+			break;
+		case "03" :
+			rt = "rpt/hr/HR500P_03.mrd";
+			break;
+		case "04" :
+			rt = "rpt/hr/HR500P_04.mrd";
+			break;
+	}
+	
+	return rt;
+}
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+}
+]]></Script>
+  </Form>
+</FDL>

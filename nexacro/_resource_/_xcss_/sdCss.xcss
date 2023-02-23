@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[
+
+/* 소계 1 */
+.Grid .body .row .cell.sdcss_jp_total
+{
+	 background : #d8efff; 
+	/* background : #cbd3bd; */
+}.Grid .body .row .cell.sdcss_jp_total[status=mouseover]
+{
+	 background : #d8e8ff; 
+}
+.Grid .body .row .cell.sdcss_jp_total[userstatus=selected]
+{
+	background : #d8d8ff; 
+}
+
+/* 소계 2 */
+.Grid .body .row .cell.sdcss_daily_total
+{
+	 background : #d8efcf; 
+	/* background : #cbd3bd; */
+}.Grid .body .row .cell.sdcss_daily_total[status=mouseover]
+{
+	 background : #d8e8cf; 
+}
+.Grid .body .row .cell.sdcss_daily_total[userstatus=selected]
+{
+	background : #d8d8cf; 
+}
+
+/* 소계 3 */
+.Grid .body .row .cell.sdcss_total
+{
+	 background : #f3cda0; 
+	/* background : #cbd3bd; */
+}.Grid .body .row .cell.sdcss_total[status=mouseover]
+{
+	 background : #f3cda0; 
+}
+.Grid .body .row .cell.sdcss_total[userstatus=selected]
+{
+	background : #f3cda0; 
+}
+
+/* 전표오류 */
+.Grid .body .row .cell.sdcss_error
+{
+	 background : #EFC8C8; 
+	/* background : #cbd3bd; */
+}.Grid .body .row .cell.sdcss_error[status=mouseover]
+{
+	 background : #EFC8C8; 
+}
+.Grid .body .row .cell.sdcss_error[userstatus=selected]
+{
+	background : #EFC8C8; 
+}
+
+/* 월별 소계 */
+.Grid .body .row .cell.sdcss_monthly_total
+{
+	 background : #facda2; 
+	/* background : #cbd3bd; */
+}.Grid .body .row .cell.sdcss_monthly_total[status=mouseover]
+{
+	 background : #facda2; 
+}
+.Grid .body .row .cell.sdcss_monthly_total[userstatus=selected]
+{
+	background : #facda2; 
+}
+
+/* 월별 소계 */
+.Grid .body .row .cell.cornsilk
+{
+	 background : #fff8dc; 
+	/* background : #cbd3bd; */
+}.Grid .body .row .cell.cornsilk[status=mouseover]
+{
+	 background : #fff8dc; 
+}
+.Grid .body .row .cell.cornsilk[userstatus=selected]
+{
+	background : #fff8dc; 
+}
+
+
+/* SD3180 GRID7 폰트 취소선 및 배경색1 */
+.Grid .body .row .cell.sdcss_line_through1
+{
+	background : #dbdade; 
+	-nexa-text-decoration : line-through;
+}
+.Grid .body .row .cell.sdcss_line_through1[status=mouseover]
+{
+	background : #d4d3d8; 
+	-nexa-text-decoration : line-through;
+}
+.Grid .body .row .cell.sdcss_line_through1[userstatus=selected]
+{
+	background : #d4d3d8; 
+	-nexa-text-decoration : line-through;
+}
+
+/* SD3180 GRID7 폰트 취소선 및 배경색2 */
+.Grid .body .row .cell.sdcss_line_through2
+{
+	-nexa-text-decoration : line-through;
+}
+.Grid .body .row .cell.sdcss_line_through2[status=mouseover]
+{
+	-nexa-text-decoration : line-through;
+}
+.Grid .body .row .cell.sdcss_line_through2[userstatus=selected]
+{
+	-nexa-text-decoration : line-through;
+}
+
+/* SD3180 GRID7 폰트 취소선 및 배경색3 */
+.Grid .body .row .cell.sdcss_line_through3
+{
+	background : #dbdade; 
+	-nexa-text-decoration : underline overline;
+}
+.Grid .body .row .cell.sdcss_line_through3[status=mouseover]
+{
+	background : #d4d3d8; 
+	-nexa-text-decoration : underline overline;
+}
+.Grid .body .row .cell.sdcss_line_through3[userstatus=selected]
+{
+	background : #d4d3d8; 
+	-nexa-text-decoration : underline overline;
+}
+
+/* SD3180 GRID7 폰트 취소선 및 배경색4 */
+.Grid .body .row .cell.sdcss_line_through4
+{
+	-nexa-text-decoration : underline overline;
+}
+.Grid .body .row .cell.sdcss_line_through4[status=mouseover]
+{
+	-nexa-text-decoration : underline overline;
+}
+.Grid .body .row .cell.sdcss_line_through4[userstatus=selected]
+{
+	-nexa-text-decoration : underline overline;
+}]]></XCSS>

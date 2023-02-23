@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR101F_SUB04" width="1244" height="242" titletext="New Form">
+    <Layouts>
+      <Layout height="242" width="1244">
+        <Grid id="grd_career" taborder="0" left="2" top="2" right="100" bottom="2" binddataset="ds_career" autofittype="col" autoenter="select" onenterdown="grd_career_onenterdown">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="96"/>
+                <Column size="66"/>
+                <Column size="68"/>
+                <Column size="72"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="96"/>
+                <Column size="71"/>
+                <Column size="139"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="2" text="근무기간"/>
+                <Cell col="2" text="직장명"/>
+                <Cell col="3" text="직위"/>
+                <Cell col="4" text="근무연수"/>
+                <Cell col="5" text="정산률(%)"/>
+                <Cell col="6" text="대상일수"/>
+                <Cell col="7" text="정산연수"/>
+                <Cell col="8" text="담당업무"/>
+                <Cell col="9" text="연봉"/>
+                <Cell col="10" text="퇴사사유"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:YMD1" displaytype="date" edittype="date" textAlign="center"/>
+                <Cell col="1" text="bind:YMD2" displaytype="date" edittype="date" textAlign="center"/>
+                <Cell col="2" text="bind:JIKJANG" edittype="text"/>
+                <Cell col="3" text="bind:JIKWI" displaytype="normal" edittype="text"/>
+                <Cell col="4" text="bind:YEAR" textAlign="right" displaytype="normal" edittype="text"/>
+                <Cell col="5" text="bind:DEST_PER" textAlign="right" displaytype="normal" edittype="text"/>
+                <Cell col="6" text="bind:WORK_DAY" textAlign="right" displaytype="normal" edittype="text"/>
+                <Cell col="7" text="bind:WORK_YEAR" textAlign="right" displaytype="normal" edittype="text"/>
+                <Cell col="8" text="bind:UPMU" displaytype="normal" edittype="text"/>
+                <Cell col="9" text="bind:YPAY" textAlign="right" displaytype="normal" edittype="text"/>
+                <Cell col="10" text="bind:TSAYOO" displaytype="normal" edittype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_add" taborder="1" text="추가" top="8" width="90" height="22" right="4" onclick="btn_add_onclick"/>
+        <Button id="btn_del" taborder="2" text="삭제" top="38" width="90" height="22" right="4" onclick="btn_del_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.ds_career.addRow();
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.parent.parent.ds_career.rowposition;
+	if (this.confirm("선택한 정보를 삭제하시겠습니까?","경력사항 삭제","warning") )
+	{
+		this.parent.parent.ds_career.deleteRow(nRow);
+	}
+};
+
+this.grd_career_onenterdown = function(obj:nexacro.Grid,e:nexacro.GridEditEventInfo)
+{
+	if (e.col == this.grd_career.getCellCount("body") - 1)
+	{
+		if (e.row == this.grd_career.rowcount - 1 )
+		{
+			this.btn_add_onclick(null, null);
+		}
+		this.grd_career.moveToNextCell();
+		this.grd_career.setCellPos(0);
+	}
+	else
+	{
+		this.grd_career.moveToNextCell();
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

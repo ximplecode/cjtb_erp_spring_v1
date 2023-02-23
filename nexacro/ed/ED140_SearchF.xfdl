@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED140_SearchF" width="400" height="390" titletext="New Form" onload="ED140_SearchF_onload">
+    <Layouts>
+      <Layout height="390" width="400">
+        <Button id="btn_close" taborder="0" text="닫기" left="155" top="351" height="29" right="1055" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Static id="Static00_00" taborder="1" text="조회일자" left="13" top="27" width="87" height="29" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_01" taborder="2" text="관련부서" left="13" top="58" width="87" height="29" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="3" left="104" top="27" width="110" height="29"/>
+        <Calendar id="cal_Edate" taborder="4" left="222" top="27" width="110" height="29"/>
+        <Combo id="cb_section" taborder="5" text="Combo00" left="104" top="58" width="229" height="29" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME"/>
+        <Button id="btn_search" taborder="6" top="50" width="40" height="38" right="898" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Grid id="Grid00" taborder="7" left="17" top="95" width="369" height="246" binddataset="dsWithHoldMst" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="190"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="관리카드 번호"/>
+                <Cell col="1" text="도서명"/>
+                <Cell col="2" text="담당자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:WITHHOLD_NO"/>
+                <Cell col="1" text="bind:WITHHOLDMST_BOOKNAME"/>
+                <Cell col="2" text="bind:EMPLOYEE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search00" taborder="8" top="34" width="40" height="38" right="17" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Button id="btn_close00" taborder="9" text="닫기" left="155" top="351" height="29" right="175" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var iI_flow_id, sSabun, sSelect, mstKind;
+
+this.ED140_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.dsWithHoldMst.copyData(this.parent.dsParam1);
+	this.dsWithHoldDtl.copyData(this.parent.dsParam2);
+	this.dsSection.copyData(this.parent.dsParam3);
+	this.dsFormpath.copyData(this.parent.dsParam4);
+	
+	sSabun = this.parent.pSabun;
+	sSelect = this.parent.pSelect;
+	mstKind = this.parent.pMstKind;
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var inds = "dsWithHoldMst=dsWithHoldMst";
+	var outds = "dsWithHoldMst=dsWithHoldMst";
+	var strArg = "WITHHOLDMST_SDATE=" + this.cal_Sdate.value
+				+ " WITHHOLDMST_EDATE=" + this.cal_Edate.value
+				+ " WITHHOLDMST_KIND=" + mstKind
+				+ " SECTION_CODE=" + this.cb_section.value
+				+ " EMPLOYEE_ID=" + sSabun
+				+ " COMPETENCE=" + sSelect
+				+ " SET_OPTION=1"
+				+ " I_FLOW_ID= ";
+				
+	this.gfn_TransactionP("search","JSP/ed/ed141f_withhold_mst.jsp", inds, outds, strArg, "fnMstCallback", false, "P", false, this);	
+};
+
+this.fnMstCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else if(this.dsWithHoldMst.rowcount == 0)
+		alert("조회된 자료가 없습니다.");
+}
+
+//세부내역찾기
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//this.parent.dsParam1.copyData(this.dsWithHoldMst);
+	var mstId = this.dsWithHoldMst.getColumn(e.row, "WITHHOLDMST_ID");
+	iI_flow_id = this.dsWithHoldMst.getColumn(e.row, "I_FLOW_ID");
+	
+	this.dsWithHoldMst.filter("WITHHOLDMST_ID ==" + mstId);
+	this.parent.dsParam1.copyData(this.dsWithHoldMst, true);
+	
+	if(this.dsWithHoldMst.rowcount != 0)
+	{	
+		this.lfn_I_FLOW_FOMPAHT2_LOAD(this.dsWithHoldMst.getColumn(0, "EMPLOYEE_ID"), this.dsFormpath);	//저장된 결재라인 가져오기
+		
+		var inds = "dsWithHoldDtl=dsWithHoldDtl";
+		var outds = "dsWithHoldDtl=dsWithHoldDtl";
+		var strArg = "WITHHOLDMST_ID=" + mstId
+					+" COMPETENCE=S"  //+ sSelect;
+
+		this.gfn_TransactionP("search","JSP/ed/ed141f_withhold_dtl.jsp", inds, outds, strArg, "fnDtlCallback", false, "P", false, this);	
+	}else
+		this.dsWithHoldDtl.clearData();
+				
+};
+
+this.fnDtlCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else
+	{
+		//trace(this.dsWithHoldDtl.saveXML());
+		this.parent.dsParam2.copyData(this.dsWithHoldDtl);
+		this.parent.dsParam4.copyData(this.dsFormpath);
+		
+		if(this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND") == "0")
+			this.opener.btn_pay.text = "정기지급";
+		else
+			this.opener.btn_pay.text = "수시지급";
+			
+		this.close(iI_flow_id);
+	}
+}
+
+//총수량, 총금액 구하기
+this.dsWithHoldDtl_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{
+	this.opener.medt_totAmount.set_value(this.dsWithHoldDtl.getSum("WITHHOLDDTL_AMOUNT"));
+	this.opener.medt_totQty.set_value(this.dsWithHoldDtl.getSum("WITHHOLDDTL_QTY"));
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsWithHoldMst"/>
+      <Dataset id="dsSection"/>
+      <Dataset id="dsWithHoldDtl" onload="dsWithHoldDtl_onload"/>
+      <Dataset id="dsFormpath"/>
+    </Objects>
+  </Form>
+</FDL>

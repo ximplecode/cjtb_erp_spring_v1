@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR620P" width="1250" height="625" titletext="New Form" onload="HR620P_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="장기 근태자 현황" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta00_01_00" taborder="1" text="기간" left="2" top="60" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="2" left="82" top="60" height="30" border="1px solid #10aea9" background="#9ee0de" right="2"/>
+        <Calendar id="cald_s_sym" taborder="3" left="sta00_01_00:2" top="65" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="10%" dateformat="yyyy-MM    부터" editformat="yyyy-MM"/>
+        <Calendar id="cald_s_eym" taborder="4" left="cald_s_sym:30" top="65" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="10%" dateformat="yyyy-MM    까지" editformat="yyyy-MM"/>
+        <Static id="sta00_01_00_00" taborder="5" text="근태사유" left="cald_s_eym:30" top="60" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_s_gb" taborder="6" text="전체" left="sta00_01_00_00:2" top="65" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_usecd" codecolumn="CODE" datacolumn="NAME" width="180" index="0" value=""/>
+        <CheckBox id="ckb_s_toisagb" taborder="7" text="퇴사자 포함" left="cb_s_gb:5" top="65" width="150" height="20" visible="true" value="false"/>
+        <Grid id="grd_list" taborder="8" left="2" top="Static01_00:0" right="2" bottom="2" binddataset="ds_list" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="211"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서"/>
+                <Cell col="1" text="사번"/>
+                <Cell col="2" text="직책"/>
+                <Cell col="3" text="성명"/>
+                <Cell col="4" text="퇴사일자"/>
+                <Cell col="5" text="사유"/>
+                <Cell col="6" colspan="2" text="기간"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSE" textAlign="center"/>
+                <Cell col="1" text="bind:SABUN" textAlign="center"/>
+                <Cell col="2" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="3" text="bind:NAME" textAlign="center"/>
+                <Cell col="4" text="bind:TOISADT" displaytype="expr:comp.parent.fn_setDisplaytype(currow)" textAlign="center"/>
+                <Cell col="5" text="bind:TMSNM" textAlign="center"/>
+                <Cell col="6" text="bind:TODATE" displaytype="date" textAlign="center"/>
+                <Cell col="7" text="bind:FRDATE" displaytype="date" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="9" text="조회" top="27" width="120" height="22" right="2" onclick="btn_search_onclick"/>
+        <Button id="btn_print" taborder="10" text="출력" top="27" width="120" height="22" onclick="btn_save_onclick" right="130"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_usecd">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE"></Col>
+            <Col id="NAME">전체</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">07</Col>
+            <Col id="NAME">병가</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">출산휴가</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">31</Col>
+            <Col id="NAME">육아휴직</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">30</Col>
+            <Col id="NAME">휴직(일반)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">11</Col>
+            <Col id="NAME">휴직(기존)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">12</Col>
+            <Col id="NAME">출산휴가</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="TODATE" type="STRING" size="256"/>
+          <Column id="FRDATE" type="STRING" size="256"/>
+          <Column id="TMSCD" type="STRING" size="256"/>
+          <Column id="TMSNM" type="STRING" size="256"/>
+          <Column id="TOISADT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDate, eDate, toisagb;	
+	var str_url, in_ds, out_ds, str_arg;
+	
+	sDate = Eco.date.getMaskFormatString(Eco.date.strToDate(this.cald_s_sym.value),"yyyyMM");
+	eDate = Eco.date.getMaskFormatString(Eco.date.strToDate(this.cald_s_eym.value),"yyyyMM");
+	str_url = "JSP/hr/getData_hr620.jsp";
+	in_ds = "ds_list=ds_list";
+	out_ds = "ds_list=ds_list";
+	str_arg = " SYM='" + sDate + "'" +
+			  " EYM='" + eDate + "'" +
+			  " TMSCD='" + this.cb_s_gb.value + "'" +
+			  " TOISAGB='" + this.lfn_CheckBox_Return_var( this.ckb_s_toisagb, "1","") + "'";			 
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+};
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.fn_setDisplaytype = function(nRow)
+{
+	if ( Eco.isEmpty( this.ds_list.getColumn(nRow,"TOISADT")) == true)
+	{
+		this.grd_list.setCellProperty("body",nRow,"displaytype","normal");
+	}
+	else
+	{
+		this.grd_list.setCellProperty("body",nRow,"displaytype","date");
+	}
+	
+}
+
+this.HR620P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var dt = new Date();
+	
+	this.cald_s_sym.set_value(dt);
+	this.cald_s_eym.set_value(dt);
+};
+
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDate, eDate;
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	sDate = Eco.date.getMaskFormatString(Eco.date.strToDate(this.cald_s_sym.value),"yyyyMM");
+	eDate = Eco.date.getMaskFormatString(Eco.date.strToDate(this.cald_s_eym.value),"yyyyMM");
+	
+	var rdUrl = gv_svcUrl + "rpt/hr/HR620P_01.mrd";	
+	var rdParam = "/rp [" + sDate + "][" + eDate + "][" + this.cb_s_gb.value + "][" + this.lfn_CheckBox_Return_var( this.ckb_s_toisagb, "Y","") + "]";
+	
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("장기근태");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(false);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+};
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+}
+]]></Script>
+  </Form>
+</FDL>

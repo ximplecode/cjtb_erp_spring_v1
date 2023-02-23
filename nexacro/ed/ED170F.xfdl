@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED170F" width="190" height="300" titletext="New Form">
+    <Layouts>
+      <Layout height="300" width="190">
+        <Button id="btn_close" taborder="0" text="닫기" top="267" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="63"/>
+        <Button id="Button" taborder="1" text="표준계약서(매절)" left="25" top="10" width="141" height="30" color="#10aea9" background="#ffffff" border="2px solid #10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" onsetfocus="Button00_onsetfocus" onclick="Button_onclick" initvalueid="171"/>
+        <Button id="Button1" taborder="2" text="표준계약서(인세)" left="25" top="46" width="141" height="30" color="#10aea9" background="#ffffff" border="2px solid #10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" initvalueid="172" onclick="Button_onclick"/>
+        <Button id="Button2" taborder="3" text="편집외주약정서" left="25" top="82" width="141" height="30" color="#10aea9" background="#ffffff" border="2px solid #10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" initvalueid="173" onclick="Button_onclick"/>
+        <Button id="Button3" taborder="4" text="원고료지급규정" left="25" top="118" width="141" height="30" color="#10aea9" background="#ffffff" border="2px solid #10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" initvalueid="174" onclick="Button_onclick"/>
+        <Button id="Button4" taborder="5" text="교과 지도서 계약서" left="25" top="154" width="141" height="30" color="#10aea9" background="#ffffff" border="2px solid #10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" initvalueid="175" onclick="Button_onclick"/>
+        <Button id="Button5" taborder="6" text="교과 디자인 약정서" left="25" top="190" width="141" height="30" color="#10aea9" background="#ffffff" border="2px solid #10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" initvalueid="176" onclick="Button_onclick"/>
+        <Button id="Button6" taborder="7" text="교과 삽화 약정서" left="25" top="226" width="141" height="30" color="#10aea9" background="#ffffff" border="2px solid #10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" initvalueid="177" onclick="Button_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+this.Button_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	rdUrl = gv_urlMrd + "/ed/ED" + obj.initvalueid  + ".mrd";
+		
+	rdParam  = "/ragentpath ["+ gv_urlRdDataServer +"]" +
+			   " /rp";
+				
+	this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+};
+
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+]]></Script>
+  </Form>
+</FDL>

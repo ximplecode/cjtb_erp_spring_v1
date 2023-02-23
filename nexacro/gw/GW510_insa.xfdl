@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GW510_insa" width="460" height="430" titletext="New Form" onload="GW510_insa_onload">
+    <Layouts>
+      <Layout height="430" width="460">
+        <Static id="Static02" taborder="0" text="사용자 선택" left="15" top="12" width="145" height="40" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btn_search" taborder="1" text="조회" top="95" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="40" onclick="btn_clear_onclick"/>
+        <Button id="btn_close" taborder="2" text="닫기" top="20" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="11" onclick="btn_close_onclick"/>
+        <Radio id="Radio00" taborder="3" left="15" top="59" width="429" height="29" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" padding="5px" index="0" text="직원검색" value="" onitemchanged="Radio00_onitemchanged">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="datacolumn">직원검색</Col>
+                <Col id="codecolumn"/>
+              </Row>
+              <Row>
+                <Col id="datacolumn">입사예정자</Col>
+                <Col id="codecolumn">999998</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">공용</Col>
+                <Col id="codecolumn">999999</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Static00_07" taborder="4" text="성명" top="95" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="25" width="12.83%"/>
+        <Edit id="edt_name" taborder="5" left="77" top="95" width="275" height="25" onkeydown="edt_name_onkeydown"/>
+        <Grid id="Grid00" taborder="6" left="16" top="132" width="433" height="283" binddataset="ds_insa" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="180"/>
+                <Column size="120"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서"/>
+                <Cell col="1" text="직위"/>
+                <Cell col="2" text="성명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSE"/>
+                <Cell col="1" text="bind:JIKWI"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_insa">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var sRow, formId;
+
+this.GW510_insa_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	sRow = this.parent.p_nRow;
+	formId = this.parent.p_Id;
+};
+
+this.btn_clear_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.edt_name.text.length == 0)
+	{
+		alert("검색할 직원 성명을 입력하세요.");
+		this.edt_name.setFocus();
+		return false;
+	}
+	
+	var strUrl = "JSP/gw/SQL_GW510_INSA.jsp";
+	var inds = "ds_insa=ds_insa";
+	var outds = "ds_insa=ds_insa";
+	var strArg = "nm=" + nexacro.wrapQuote(this.edt_name.text);
+	
+	this.gfn_TransactionP("select", strUrl, inds, outds, strArg, "fnSelectCallback", false, "P", false, this);
+};
+
+this.edt_name_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+		this.btn_clear_onclick();
+};
+
+this.Radio00_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	if(formId == "GW510" || formId == "GW511")
+	{
+		this.opener.ds_dtl.setColumn(sRow, "SABUN", e.postvalue);
+		this.opener.ds_dtl.setColumn(sRow, "NAME", e.posttext);
+		
+		if(formId == "GW510")
+			this.opener.grd_dtl.setCellPos(1);
+		
+		this.close();
+	}
+	else if(formId == "GW540" || formId == "GW560")
+	{
+		this.opener.ds_mst.setColumn(sRow, "SABUN", e.postvalue);
+		this.opener.ds_mst.setColumn(sRow, "NAME", e.posttext);
+		
+		this.close();
+	}
+
+};
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(formId == "GW510" || formId == "GW511")
+	{
+		this.opener.ds_dtl.setColumn(sRow, "SABUN", this.ds_insa.getColumn(e.row,"SABUN"));
+		this.opener.ds_dtl.setColumn(sRow, "NAME", this.ds_insa.getColumn(e.row,"NAME"));
+		
+		if(formId == "GW510")
+			this.opener.grd_dtl.setCellPos(8);
+		
+		this.close();
+	}
+	else if(formId == "GW540" || formId == "GW560")
+	{
+		this.opener.ds_mst.setColumn(sRow, "SABUN", this.ds_insa.getColumn(e.row,"SABUN"));
+		this.opener.ds_mst.setColumn(sRow, "NAME", this.ds_insa.getColumn(e.row,"NAME"));
+		
+		this.close();
+	}
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6280P" width="434" height="160" titletext="New Form" onload="SD6280P_onload">
+    <Layouts>
+      <Layout height="160" width="434">
+        <Static id="Static00" taborder="0" text="반품규제(시리즈)도서 출력" left="10" top="5" color="#7fb39d" font="bold 24px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="310" height="30"/>
+        <Button id="btn_close" taborder="1" text="닫기" top="10" width="45" height="22" right="12" font="8pt/normal &quot;Arial&quot;" onclick="btn_close_onclick"/>
+        <Static id="Static01_06" taborder="2" text="리스트 검색" left="12" top="53" height="30" background="#3cbcb8" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="342" color="white"/>
+        <Button id="btn_print" taborder="3" text="출력" top="85" width="55" height="22" font="bold 9pt/normal &quot;Arial&quot;" onclick="btn_print_onclick" onkeydown="btn_print_onkeydown" left="Static01_06:13"/>
+        <Button id="btn_printview" taborder="4" text="미리보기" top="57" width="55" height="22" font="bold 9pt/normal &quot;Arial&quot;" left="Static01_06:13" onclick="btn_printview_onclick"/>
+        <Grid id="grd_view" taborder="5" left="0" top="150" visible="false" right="0" bottom="0" binddataset="ds_data" autofittype="col" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="200"/>
+                <Column size="60"/>
+                <Column size="70"/>
+                <Column size="90"/>
+                <Column size="80"/>
+                <Column size="250"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="시리즈코드"/>
+                <Cell col="1" text="시리즈명"/>
+                <Cell col="2" text="종수"/>
+                <Cell col="3" text="반품율"/>
+                <Cell col="4" text="도서코드"/>
+                <Cell col="5" text="년판"/>
+                <Cell col="6" text="도서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:BOOK_NM"/>
+                <Cell col="2" text="bind:JONG"/>
+                <Cell col="3" text="bind:BYUL"/>
+                <Cell col="4" text="bind:BOOK_CD"/>
+                <Cell col="5" text="bind:BYY"/>
+                <Cell col="6" text="bind:BOOK_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01_01_00" taborder="6" left="12" top="81" height="58" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="202"/>
+        <Static id="Static01_01" taborder="7" text="도서코드구간" left="12" top="81" height="30" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" width="202"/>
+        <Static id="Static01_00_00" taborder="8" text="~" left="104" top="115" height="18" textAlign="center" width="14"/>
+        <MaskEdit id="ed_values1" taborder="9" left="19" top="114" width="80" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" type="string" textAlign="center" onkeydown="common_onkeydown" format="@@@@@@@@@@"/>
+        <MaskEdit id="ed_values2" taborder="10" left="126" top="114" width="80" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@@@@@@@" type="string" textAlign="center" onkeydown="common_onkeydown"/>
+        <Static id="Static01_01_00_00" taborder="11" left="212" top="81" height="58" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="142"/>
+        <Static id="Static01_01_01" taborder="12" text="도서년판" left="212" top="81" height="30" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" width="142"/>
+        <Static id="Static01_00_00_00" taborder="13" text="~" left="274" top="115" height="18" textAlign="center" width="14"/>
+        <MaskEdit id="ed_values3" taborder="14" left="219" top="114" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" type="string" textAlign="center" onkeydown="common_onkeydown" format="####"/>
+        <MaskEdit id="ed_values4" taborder="15" left="296" top="114" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" textAlign="center" onkeydown="common_onkeydown"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.btn_printview_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.grd_view.visible == false)
+	{
+		if(system.navigatorname == 'nexacro')
+		{
+			this.getOwnerFrame().set_width(860);
+			this.getOwnerFrame().set_height(800);
+		}
+		else
+			window.resizeTo(900,840);
+		this.grd_view.set_visible(true);
+		this.btn_printview.set_text("미리보기 닫기");
+		this.btn_printview.set_width(80);
+		this.fnPreview();
+	}
+	else
+	{
+		this.grd_view.set_visible(false);
+		this.ds_data.clearData();
+		this.btn_printview.set_text("미리보기");
+		this.btn_printview.set_width(55);
+		if(system.navigatorname == 'nexacro')
+		{
+			this.getOwnerFrame().set_width(445);
+			this.getOwnerFrame().set_height(170);
+		}
+		else
+			window.resizeTo(485,210);
+	}
+};
+
+this.fnPreview = function()
+{
+	var strUrl = "JSP/sd/SD6280P_SELECT.jsp";
+	var strDs = "ds_data=ds_data";
+	var strArg = " Values1="+nexacro.wrapQuote(nexacro.trim(this.ed_values1.value))+
+				 " Values2="+nexacro.wrapQuote(nexacro.trim(this.ed_values2.value))+
+				 " Values3="+nexacro.wrapQuote(nexacro.trim(this.ed_values3.value))+
+				 " Values4="+nexacro.wrapQuote(nexacro.trim(this.ed_values4.value));
+	this.gfn_TransactionP("search", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+}
+
+this.fnCallback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if(nErrorCode != 0)
+	{
+		alert(strErrorMag);
+		return;
+	}
+}
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var rdUrl = gv_urlMrd+"/sd/sd6280r.mrd";
+	var rdParam  = "/rp ["+this.ed_values1.value+"]"+
+					   "["+this.ed_values2.value+"]"+
+					   "["+this.ed_values3.value+"]"+
+					   "["+this.ed_values4.value+"]";
+						 
+	var rect;
+	if(system.navigatorname = 'nexacro')
+	{
+		if(system.monitorcount > 1)
+		{
+			var monitor_index = system.getMonitorIndex(system.clientToScreenX(this,0), system.clientToScreenY(this,0));
+			rect = system.getScreenRect(monitor_index);
+		}
+		else
+			rect = system.getScreenRect(1);
+	}
+	else
+		rect = system.getScreenRect(1);
+
+	var objParam = {rdUrl:rdUrl, rdParam:rdParam};
+	var sOpenStyle = "topmost=true autosize=false dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false resizable=true";
+	
+	nexacro.open("search", "sd::SDRDF.xfdl", this.getOwnerFrame(), objParam, sOpenStyle, rect.left, rect.top, rect.width, rect.height, this);
+};
+
+this.SD6280P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyy");
+	this.ed_values1.set_value("0000000000");
+	this.ed_values2.set_value("9999999999");
+	this.ed_values3.set_value(f_date);
+	this.ed_values4.set_value(f_date);
+	this.ed_values1.setFocus();
+};
+
+this.common_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	//Enter Key를 눌렀을 경우 처리
+	if (e.keycode == 13) 
+	{
+		if (obj.name == "ed_values1") this.ed_values2.setFocus();
+		else if (obj.name == "ed_values2") this.ed_values3.setFocus();
+		else if (obj.name == "ed_values3") this.ed_values4.setFocus();	
+	}//ESC 키처리	
+	else if (e.keycode == 27)
+	{
+		if (obj.name == "ed_values2") this.ed_values1.setFocus();
+		else if (obj.name == "ed_values3") this.ed_values2.setFocus();
+		else if (obj.name == "ed_values4") this.ed_values3.setFocus();
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_data">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="BOOK_NM" type="STRING" size="256"/>
+          <Column id="JONG" type="STRING" size="256"/>
+          <Column id="BYUL" type="STRING" size="256"/>
+          <Column id="BOOK_CD" type="STRING" size="256"/>
+          <Column id="BYY" type="STRING" size="256"/>
+          <Column id="BOOK_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

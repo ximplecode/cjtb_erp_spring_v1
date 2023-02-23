@@ -1,0 +1,1204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD110F" width="1600" height="720" titletext="New Form" onload="PD110F_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1600">
+        <Div id="Div00" taborder="0" left="8" top="15" border="1px solid lightgray" tooltiptype="default" visible="true" formscrollbartype="none" height="40" width="98.88%" text="">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="일반경비 지급결의서" left="9" top="-4" width="222" height="42" font="bold 15pt/normal &quot;Arial&quot;"/>
+              <CheckBox id="ckb_open" taborder="1" text="부서 공유" left="260" top="6" width="82" height="26" font="bold 9pt/normal &quot;Arial&quot;"/>
+              <Button id="Btn_tempsave" taborder="10" text="임시저장" left="51.90%" top="7" height="25" maxwidth="" width="5.00%" letterSpacing="1px"/>
+              <Button id="Btn_tempchk" taborder="9" text="결재라인설정" left="Btn_tempsave:6.33%" top="7" width="6.90%" height="25" maxwidth="" letterSpacing="1px" onclick="Btn_tempchk_OnClick"/>
+              <Button id="btnNew" taborder="8" text="신규카드" left="Btn_tempchk:4.59%" top="7" width="5.00%" height="25" maxwidth="" letterSpacing="1px" onclick="Div00_btnNew_onclick"/>
+              <Button id="btnDtlNew" taborder="7" text="내용추가" left="btnNew:6.33%" top="7" width="5.00%" height="25" maxwidth="" letterSpacing="1px"/>
+              <Button id="btnSearch" taborder="6" text="조회" left="btnDtlNew:6.33%" top="7" width="3.99%" height="25" maxwidth="" letterSpacing="1px" onclick="btnSearch_OnClick"/>
+              <Button id="btnSave" taborder="5" text="발송" left="btnSearch:7.94%" top="7" width="3.99%" height="25" maxwidth="" onclick="Div00_Button03_onclick" letterSpacing="1px"/>
+              <Button id="btnDel" taborder="4" text="삭제" left="btnSave:7.94%" top="7" width="3.99%" height="25" maxwidth="" letterSpacing="1px"/>
+              <Button id="btnPrint" taborder="3" text="출력" left="btnDel:7.94%" top="7" width="3.99%" height="25" maxwidth="" letterSpacing="1px"/>
+              <Button id="btnClose" taborder="2" text="닫기" left="95.57%" top="7" width="3.99%" height="25" maxwidth="" letterSpacing="1px"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="1" left="8" top="52" width="98.88%" height="648" border="1px solid lightgray" color="#cfffcf" text="" formscrollbartype="none">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" left="2" top="1" width="125" height="35" border="2px solid #10aea9" text="결의서번호" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" background="#ffffff" letterSpacing="1px"/>
+              <Static id="Static01" taborder="1" text="결의서제목" left="2" top="38" width="125" height="35" border="2px solid #10aea9" color="#10aea9" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" background="#ffffff" letterSpacing="1px"/>
+              <Static id="Static02" taborder="2" text="총금액" left="2" top="75" width="125" height="35" border="2px solid #10aea9" color="#10aea9" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" background="#ffffff" letterSpacing="5px"/>
+              <Static id="Static03" taborder="3" text="지급방법" left="2" top="112" width="125" height="35" border="2px solid #10aea9" color="#10aea9" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" background="#ffffff" letterSpacing="1px"/>
+              <Static id="Static04" taborder="4" text="사용일자" left="2" top="149" width="125" height="35" border="2px solid #10aea9" color="#10aea9" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" background="#ffffff" letterSpacing="1px"/>
+              <Static id="Static05" taborder="5" text="적요" left="2" top="290" width="125" height="35" border="2px solid #10aea9" color="#10aea9" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" background="#ffffff" letterSpacing="1px"/>
+              <Static id="Static06" taborder="6" text="지출근거" left="2" top="327" width="125" height="110" border="2px solid #10aea9" color="#10aea9" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" background="#ffffff" letterSpacing="1px"/>
+              <Static id="Static07" taborder="7" text="첨부파일" left="2" top="439" width="125" height="90" border="2px solid #10aea9" color="#10aea9" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" background="#ffffff" letterSpacing="1px"/>
+              <Button id="btnpay" taborder="8" text="귀속대상" left="2" top="186" width="125" height="102" textAlign="center" font="normal bold 10pt/normal &quot;Arial&quot;" letterSpacing="1px"/>
+              <Grid id="Grd_Dtl" taborder="9" left="2" top="531" height="110" width="99.56%"/>
+              <Grid id="Grd_FileA" taborder="56" left="Static07:1.60%" top="439" height="90" right="8.04%" binddataset="ds_File" autofittype="none">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:f_name"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="img_file" taborder="10" text="파일선택" left="Grd_FileA:0.23%" top="442" height="32" letterSpacing="1px" font="normal bold 10pt/normal &quot;Arial&quot;" right="0.38%"/>
+              <Button id="Button0" taborder="11" text="파일저장" left="Grd_FileA:0.23%" top="477" height="49" letterSpacing="1px" font="normal bold 10pt/normal &quot;Arial&quot;" right="0.38%"/>
+              <Edit id="Edt_OutOrder_No" taborder="12" left="Static00:1.6%" top="2" height="35" right="72.85%"/>
+              <Static id="Static08" taborder="13" text="1차승인" left="Edt_OutOrder_No:0.33%" top="2" height="35" background="#ffffff" border="2px solid #10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9" letterSpacing="1px" right="64.81%"/>
+              <CheckBox id="cb_Permite0" taborder="14" text="승인" left="Static08:0.00%" top="2" height="35" background="#ffffff" border="1px solid lightgray" letterSpacing="3px" textAlign="center" verticalAlign="middle" font="bold 9pt/normal &quot;Arial&quot;" right="59.68%" onclick="cb_Permite0_OnClick"/>
+              <Calendar id="Calendar2" taborder="15" left="cb_Permite0:-2.47%" top="2" height="35" right="48.86%"/>
+              <Static id="Static09" taborder="16" text="감사실승인" left="Calendar2:-0.58%" top="2" height="35" background="#ffffff" color="#10aea9" border="2px solid #10aea9" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" letterSpacing="1px" right="40.63%"/>
+              <CheckBox id="cb_Permite1" taborder="17" text="승인" left="Static09:0.77%" top="2" height="35" background="#ffffff" border="1px solid lightgray" letterSpacing="3px" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" right="35.44%"/>
+              <Calendar id="Calendar0" taborder="18" left="cb_Permite1:0.00%" top="2" height="35" right="24.62%"/>
+              <Static id="Static10" taborder="19" text="재경부승인" top="2" height="35" background="#ffffff" color="#10aea9" border="2px solid #10aea9" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" letterSpacing="1px" left="Calendar0:0.00%" right="16.46%"/>
+              <CheckBox id="cb_Permite2" taborder="20" text="승인" left="Static10:0.00%" top="2" height="35" background="#ffffff" border="1px solid lightgray" letterSpacing="3px" cursor="none" textAlign="center" font="bold 9pt/normal &quot;Arial&quot;" right="11.27%"/>
+              <Calendar id="Calendar1" taborder="21" left="cb_Permite2:0.00%" top="2" height="35" right="0.32%"/>
+              <Edit id="edt_title" taborder="22" left="Static01:2" top="39" height="35" right="0.32%"/>
+              <Edit id="MEdt_TotalAmount" taborder="23" left="Static02:1.60%" top="76" height="35" right="73.04%"/>
+              <Static id="Static11" taborder="24" text="작성부서" left="MEdt_TotalAmount:0.00%" top="76" height="35" background="#ffffff" border="2px solid #10aea9" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" letterSpacing="1px" right="64.81%"/>
+              <Combo id="Combo0" taborder="25" left="Static11:3.05%" top="76" height="35" right="48.86%" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME"/>
+              <Static id="Static12" taborder="26" text="담당자" left="Combo0:-0.40%" top="76" height="35" background="#ffffff" border="2px solid #10aea9" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" letterSpacing="1px" right="40.57%"/>
+              <Edit id="Edt_EmployeeName" taborder="27" left="Static12:0.00%" top="76" height="35" right="24.62%"/>
+              <Static id="Static13" taborder="28" text="작성일자" left="Edt_EmployeeName:0.00%" top="76" height="35" background="#ffffff" border="2px solid #10aea9" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" letterSpacing="1px" right="16.46%"/>
+              <Calendar id="Cal_AcntMstDate" taborder="29" left="Static13:0.00%" top="76" height="35" right="0.32%"/>
+              <Combo id="Cb_Proof" taborder="30" left="Static03:1.60%" top="113" height="35" right="73.04%" innerdataset="dsProof" codecolumn="PRF_CODE" datacolumn="PRF_NAME" index="-1" text="" tooltiptext="지급 방법을 선택해주세요." tooltiptype="default" value="6"/>
+              <Static id="Static14" taborder="31" text="금액" left="51.14%" top="113" background="#ffffff" border="2px solid #10aea9" font="bold 9pt/normal &quot;Arial&quot;" letterSpacing="1px" color="#10aea9" textAlign="center" height="35" right="40.57%"/>
+              <Edit id="MEdt_UnitCost" taborder="32" left="Static14:0.00%" top="113" height="35" right="24.62%"/>
+              <Static id="Static15" taborder="33" text="부가세" left="MEdt_UnitCost:0.00%" top="113" height="35" background="#ffffff" border="2px solid #10aea9" font="bold 9pt/normal &quot;Arial&quot;" letterSpacing="1px" color="#10aea9" textAlign="center" right="16.46%"/>
+              <Edit id="MEdt_Vat" taborder="34" left="Static15:0.00%" top="113" height="35" right="0.32%"/>
+              <Combo id="Cal_UseDate" taborder="35" left="Static04:1.60%" top="149" height="35" right="73.10%" text=""/>
+              <Static id="Static17" taborder="36" text="사용부서" left="Cal_UseDate:-0.33%" top="149" height="35" background="#ffffff" border="2px solid #10aea9" color="#10aea9" textAlign="center" letterSpacing="1px" font="bold 9pt/normal &quot;Arial&quot;" right="64.87%"/>
+              <Combo id="Cb_Section" taborder="37" left="Static17:3.08%" top="149" height="35" right="48.86%" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME"/>
+              <Grid id="Grd_TEAM_DIVIDE" taborder="38" left="btnpay:1.60%" top="186" height="102" right="48.86%" binddataset="dsAccountDtlTeam" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="팀 명"/>
+                      <Cell col="1" text="업무 항목"/>
+                      <Cell col="2" text="금 액"/>
+                      <Cell col="3" text="vat"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:TEAMNAME"/>
+                      <Cell col="1" text="bind:WORKNAME"/>
+                      <Cell col="2" text="bind:ACNTDTL_AMOUNT"/>
+                      <Cell col="3" text="bind:ACNTDTL_VAT"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static18" taborder="39" text="업체" left="Grd_TEAM_DIVIDE:0.45%" top="187" height="33" background="#ffffff" border="2px solid #10aea9" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" letterSpacing="1px" textAlign="center" right="40.76%"/>
+              <Static id="Static19" taborder="40" text="계정" left="Grd_TEAM_DIVIDE:0.45%" top="221" height="33" background="#ffffff" border="2px solid #10aea9" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" letterSpacing="1px" textAlign="center" right="40.76%"/>
+              <Static id="Static20" taborder="41" text="지급일자" left="Grd_TEAM_DIVIDE:0.45%" top="255" height="33" background="#ffffff" border="2px solid #10aea9" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" letterSpacing="1px" textAlign="center" right="40.76%"/>
+              <Edit id="MEdt_Cust_Code" taborder="42" left="Static18:1.54%" top="187" height="33" right="34.56%"/>
+              <Edit id="Edt_Cust_Name" taborder="43" left="MEdt_Cust_Code:0.00%" top="187" height="33" right="16.46%"/>
+              <Edit id="Edt_AcntTitName" taborder="44" left="Static19:1.54%" top="221" height="33" right="16.58%"/>
+              <Calendar id="Cal_PayDate" taborder="45" left="Static20:1.61%" top="255" height="33" right="24.56%"/>
+              <Button id="Button03" taborder="46" text="예산 확인" left="Edt_AcntTitName:0.79%" top="221" height="33" letterSpacing="1px" right="0.38%"/>
+              <Edit id="Edt_Remark" taborder="47" left="Static05:1.60%" top="291" height="35" right="48.86%"/>
+              <Button id="btnBankInfo" taborder="48" text="입금계좌정보" top="291" height="35" left="Edt_Remark:0.45%" right="40.76%"/>
+              <Combo id="cb_BankInfo" taborder="49" left="btnBankInfo:0.00%" top="291" height="35" right="16.52%" innerdataset="dsEBA" codecolumn="BANKCODE_ACCOUNT" datacolumn="BANKNAME_ACCOUNT"/>
+              <TextArea id="Txa_Remark" taborder="50" left="Static06:1.60%" top="327" height="110" right="48.86%"/>
+              <Button id="btndivide01" taborder="51" text="직과(도서)" left="Txa_Remark:0.45%" top="329" height="52" right="40.76%"/>
+              <Button id="btndivide02" taborder="52" text="직과&#13;&#10;(채널/고객)" left="Txa_Remark:0.45%" top="384" height="52" right="40.76%"/>
+              <Static id="Static21" taborder="53" text="참조문서" left="btndivide01:1.53%" top="329" height="108" background="#ffffff" border="2px solid #10aea9" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" letterSpacing="1px" textAlign="center" right="34.94%"/>
+              <Grid id="Grid0" taborder="54" left="Static21:0.00%" top="329" height="108" right="6.33%" binddataset="ds_s_flow" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="제목"/>
+                      <Cell col="1" text="작성자"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:TITLE"/>
+                      <Cell col="1" text="bind:NAME"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btn_reference" taborder="55" text="문서선택" top="329" height="108" left="Grid0:0.00%" right="0.38%"/>
+              <Radio id="Rd_BillKind" taborder="57" left="27.03%" top="113" height="35" background="#ffffff" border="1px solid silver" right="48.86%"/>
+              <Static id="Static16" taborder="58" text="계산서&#13;&#10;발행일자" left="Cal_PayDate:0.39%" top="255" height="33" background="#ffffff" border="2px solid #10aea9" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" letterSpacing="1px" textAlign="center" right="16.46%"/>
+              <Calendar id="Cal_BillDate" taborder="59" left="Static16:0%" top="255" height="33" right="0.44%"/>
+              <Edit id="Ed_BillNo" taborder="60" left="Cb_Section:0%" top="149" height="35" right="24.56%"/>
+              <Static id="Static23" taborder="61" text="예산 구분" left="Ed_BillNo:0%" top="149" height="35" background="#ffffff" border="2px solid #10aea9" font="bold 9pt/normal &quot;Arial&quot;" color="#10aea9" letterSpacing="1px" textAlign="center" right="16.46%"/>
+              <Combo id="cb_edt" taborder="62" left="Static23:0%" top="149" height="35" right="0.32%" innerdataset="ds_edt" codecolumn="SABUN" datacolumn="NAME"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var str_SvrRptUrl = gv_urlMrd + "/pd/";
+var str_mrd_name = "PD110";
+var str_docmrd_name = "PD_ACNTDOC";
+var str_file_path = "C:\\Temp\\";
+var aQryReturn 	= Array();  // 저자조회 리턴 변수
+var sSection_Code = nexacro.wrapQuote(nexacro.getApplication().gds_userinfo.getColumn(0,"BUSECD"));	
+var sSection_Name = nexacro.wrapQuote(nexacro.getApplication().gds_userinfo.getColumn(0,"BUSENM"));	
+var sEmployee_Name = nexacro.wrapQuote(nexacro.getApplication().gds_userinfo.getColumn(0,"NAME"));	
+var sSection_ShortCode = nexacro.wrapQuote(nexacro.getApplication().gds_userinfo.getColumn(0,"SHORTCODE"));	
+var gv_SABUN = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");	
+var sUserCompetence;
+var sUserCompetence1 = "1";   // 일반사용자
+var sUserCompetence2 = "2";   // 부서승인권자
+var sUserCompetence3 = "3";   // 부서장
+var sUserCompetence4 = "4";   // 일반승인권자
+var sUserCompetence5 = "5";   // 승인1차권한
+var sUserCompetence6 = "6";   // 승인2차권한1
+var sSetAmountCode = "";     
+var temp_chk = "";  //발송시 Y
+var rtnACNTMST_ID, rtnACNTMST_NO, sReturnColSeq, rtnI_FLOW_ID;  // 마스터 저장시 ID, NO 가져오는 변수
+var iI_Flow_id; // 전자결재 ID
+var v_check;
+var rt_approval;
+var rt_order2;
+var rt_value;
+var iif_pvalue = "P"
+var iif_avalue = "A"
+var nDate = new Date(); 
+var today = Eco.date.getMaskFormatString(nDate, "yyyyMMdd");
+
+// 폼 로드시 코드테이블 불러오기
+this.PD110F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	g_f_name = "";		
+	nexacro.getApplication().dsFormpath.clearData();	
+	temp_chk = "";
+	
+	//this.lfn_showModal("zipPopup", '', "pd::PD_INFO.xfdl", '', this, '', '', 632, 624);			
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", "et_05_101");
+	sUserCompetence = nexacro.getApplication().gds_menu.getColumn(nRow, "UM_PER_SELECT");					
+	sUserCompetence = Eco.decode(sUserCompetence, null, sUserCompetence1, sUserCompetence, sUserCompetence, sUserCompetence);	
+	
+	if ((gv_SABUN == nexacro.getApplication().gds_userinfo.getColumn(0, "DEPARTMENT_MANAGER")) ||
+	 (gv_SABUN == nexacro.getApplication().gds_userinfo.getColumn(0, "TEAM_MANAGER")) )
+  	{				
+		if ( sUserCompetence >= sUserCompetence4 )
+		{
+			// 기본 권한은 상위 등급으로
+			var nRow =  dsComp.AddRow();
+			dsComp.SetColumn(nRow, "CODE", sUserCompetence2);
+			dsComp.SetColumn(nRow, "NAME", "부서승인권자");
+			
+			nRow =  dsComp.AddRow();
+			dsComp.SetColumn(nRow, "CODE", sUserCompetence);
+			
+			switch (sUserCompetence)
+			{
+				case (sUserCompetence4) :
+					dsComp.SetColumn(nRow, "NAME", "일반관리자");
+					return false;
+				case (sUserCompetence5) :
+					dsComp.SetColumn(nRow, "NAME", "1차 승인권자");
+					return false;
+				case (sUserCompetence6) :
+					dsComp.SetColumn(nRow, "NAME", "2차 승인권자");
+					return false;
+			}
+			
+			//var x = (GetDeviceInfo("CXScreen") / 2) - (PopDiv_Comp.Width / 2) ;
+			//var y = (GetDeviceInfo("CYScreen") / 2) - (PopDiv_Comp.Height / 2);
+		
+			//PopDiv_Comp.TrackPopup(x , y );
+		}
+	    else
+			sUserCompetence = sUserCompetence2;	    
+
+	}
+	
+	if (gv_SABUN == "C20078"){
+		alert("이 아이디로는 지급결의서를 작성할 수  없습니다.");
+		Close();
+	}
+	
+	var str_arg	= "SECTION_CODE=" + sSection_Code +
+				  " COMPETENCE=" + nexacro.wrapQuote(Eco.decode(sUserCompetence, sUserCompetence1, "P", sUserCompetence2, "P", "A") );
+	
+	this.gfn_TransactionP("Select", "JSP/pd/section_select2.jsp", "dsSection=dsSection", "dsSection=dsSection", str_arg, "fnSectionCallback", false, "P", false, this);
+	this.gfn_TransactionP("Select", "JSP/pd/proof_select.jsp", "dsProof=dsProof", "dsProof=dsProof", "", "fnProofCallback", false, "P", false, this);			
+	this.gfn_TransactionP("Select", "JSP/pd/bank_select.jsp", "dsBank=dsBank", "dsBank=dsBank", "", "fnBankCallback", false, "P", false, this);
+	this.gfn_TransactionP("Select", "JSP/pd/acnt_develop_select.jsp", "dsAcntDevelop=dsAcntDevelop", "dsAcntDevelop=dsAcntDevelop", "", "fnDevelopCallback", false, "P", false, this);
+	this.gfn_TransactionP("Select", "JSP/pd/acnt_sale_channel_select.jsp", "dsAcntSaleCnl=dsAcntSaleCnl", "dsAcntSaleCnl=dsAcntSaleCnl", "", "fnCannelCallback", false, "P", false, this);	
+	
+	str_arg = "ACNTTIT_KIND=" + nexacro.wrapQuote( "0" ) +
+		  " COMPETENCE=" + nexacro.wrapQuote( "4" );		
+		  
+	this.gfn_TransactionP("Select", "JSP/pd/accounttitile_select1.jsp", "dsAccountTitle=dsAccountTitle", "dsAccountTitle=dsAccountTitle", str_arg, "fnAccountTitleCallback", false, "P", false, this);		
+	
+	var str_arg	= "EMPLOYEE_ID=" + nexacro.wrapQuote( gv_SABUN );
+	this.gfn_TransactionP("Select", "JSP/pd/bankacntinfo_select.jsp", "dsEBA=dsEBA", "dsEBA=dsEBA", str_arg, "fnBankInfoCallback", false, "P", false, this);			
+		
+	this.gfn_TransactionP("Select", "JSP/pd/personalbankinfo_select.jsp", "dsPersonalBank=dsPersonalBank", "dsPersonalBank=dsPersonalBank", "", "fnCallback", false, "P", false, this);		
+	
+	if( !(sUserCompetence < sUserCompetence6) ){	
+		this.Div01.form.Cal_PayDate.set_enable(true)		
+	}else{
+		this.Div01.form.Cal_PayDate.set_enable(false)		
+	}
+		
+	//전자결재에서 불러오는지 확인
+	//신규작성 또는 수정 체크
+	if (iI_Flow_id == null) {
+		// 신규작성으로 적용		
+		this.dsAccountMst.addRow();	
+		
+	}else{
+		var str_arg  = "";	
+		str_arg	= "ACNTMST_CLASS=" + nexacro.wrapQuote( "0" ) +
+				  " ACNTMST_SDATE=" + nexacro.wrapQuote( ) +
+				  " ACNTMST_EDATE=" + nexacro.wrapQuote( ) +
+				  " SECTION_CODE=" + nexacro.wrapQuote( ) +
+				  " EMPLOYEE_ID=" + nexacro.wrapQuote( ) +
+				  " SET_OPTION=" + nexacro.wrapQuote( "0" ) +
+				  " I_FLOW_ID=" + nexacro.wrapQuote( iI_Flow_id ) +	          
+				  " COMPETENCE=" + nexacro.wrapQuote( sUserCompetence ) + 
+				  " TITLE=" + nexacro.wrapQuote("");
+		this.gfn_TransactionP("Select", "JSP/pd/pd110f_account_mst_v2.jsp", "dsAccountMst=dsAccountMst", "dsAccountMst=dsAccountMst", str_arg, "fnAcntMstSelectCallback", false, "P", false, this);
+	}		
+	
+	this.Div01.form.Cb_Proof.setFocus();	
+	
+	this.getdata_budget_personal();
+	
+	this.dsPersonalBank.filter("SABUN=='" + nexacro.wrapQuote(gv_SABUN) +"'");			
+	
+
+
+};
+
+
+
+
+//트랜잭션 콜백 시작
+
+//신규작성 또는 수정 체크 콜백
+this.fnAcntMstSelectCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(Trid == "Select")
+	{
+		if(ErrorCode != 0 )
+			trace("[PD110F.fnAcntMstSelectCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+		else
+			// 결재라인 가져오기
+			I_FLOW_FORMPATH2_Load( this.dsAccountMst.GetColumn(this.dsAccountMst.row, "EMPLOYEE_ID") );			
+	}
+}
+
+//	부서조회 콜백
+this.fnSectionCallback = function(Trid, ErrorCode, ErrorMsg)
+{	
+	if(Trid == "Select")
+	{
+		if(ErrorCode != 0 )
+			trace("[PD110F.fnSectionCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+		else
+			this.dsSection.rowposition = this.dsSection.findRow("SECTION_CODE",  sSection_Code);			
+	}
+}
+
+//	지급방법 조회 콜백
+this.fnProofCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(Trid == "Select")
+	{
+		if(ErrorCode != 0 )
+			trace("[PD110F.fnProofCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+	}
+}
+
+//	은행리스트 콜백
+this.fnBankCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(Trid == "Select")
+	{
+		if(ErrorCode != 0 )
+			trace("[PD110F.fnBankCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+	}
+}
+
+//	개발부  조회 콜백
+this.fnDevelopCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(Trid == "Select")
+	{
+		if(ErrorCode != 0 )
+			trace("[PD110F.fnDevelopCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+	}
+}
+
+//	채널 조회 콜백
+this.fnCannelCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(Trid == "Select")
+	{
+		if(ErrorCode != 0 )
+			trace("[PD110F.fnCannelCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+	}
+}
+
+//	계정과목 조회 콜백
+this.fnAccountTitleCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(Trid == "Select")
+	{
+		if(ErrorCode != 0 )
+			trace("[PD110F.fnAccountTitleCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+	}
+}
+
+//	조회 콜백
+this.fnCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(Trid == "Select")
+	{
+		if(ErrorCode != 0 )
+			trace("[PD110F.fnCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+	}
+	else if(Trid == "save")
+	{
+		if(ErrorCode != 0 )
+		{
+			trace("[PD110F.fnCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );		
+			alert( "전산실로 문의 바랍니다." + "   " +  Trid +"::"+ ErrorMsg );
+		}
+	}
+}
+
+//	직원계좌정보 콜백
+this.fnBankInfoCallback = function(Trid, errCode, errMsg)
+{
+	if(Trid == "Select")
+	{
+		if(errCode != 0 )
+			trace("[PD110F.fnBankInfoCallback(" + today + ")] " + Trid +"::"+ errMsg );
+	}
+}
+
+
+//트랜잭션 콜백 끝
+
+
+//함수 콜백 시작
+
+//폼 온로드 콜백
+this.getdata_budget_personal =function()
+{
+	//this.Div01.form.Cal_UseDate.set_value('20220610');
+	//this.Div01.form.Cal_BillDate.set_value('20220610');
+   
+	var str_arg, use_date;
+	var CalUseDate = this.Div01.form.Cal_UseDate.value;
+	var CalBillDate = this.Div01.form.Cal_BillDate.value;
+	var yyToday = today.substr(0,4);	
+	//var CalUseDate = this.Div01.form.Cal_UseDate.value.substr(0,4);      	
+	//var CalBillDate = this.Div01.form.Cal_BillDate.value.substr(0,4);      
+	
+	if (CalUseDate == null || "undefined" )
+	{
+	   if (CalBillDate == null || "undefined"){
+			use_date = yyToday;		
+		}else{
+			use_date = Cal_BillDate.substr(0,4);
+		}
+	}
+	else
+	{
+	   use_date = CalUseDate;
+	}
+
+	str_arg = "edt_sabun="+ "C16220"//nexacro.wrapQuote(dsAccountMst.GetColumn(this.dsAccountMst.row,"EMPLOYEE_ID")) +
+			 " use_date="+nexacro.wrapQuote(use_date);
+	  
+	this.gfn_TransactionP("budget_personal", "JSP/pd/PD110_budget_personal.jsp", "ds_edt=ds_edt", "ds_edt=ds_edt", str_arg, "Callback_budget_personal", false, "P", false, this);
+}
+
+//함수 콜백 끝
+
+
+//트랜잭션 콜백 시작
+// 
+// this.Callback_budget_personal = function(Trid, ErrorCode, ErrorMsg)
+// 
+// {
+//    var nRow;
+//    if (ErrorCode != 0)
+//    {
+//       alert(ErrorMsg);
+//       break;
+//    }  
+//    nRow = ds_edt.AddRow();   
+//    ds_edt.SetColumn(nRow,"NAME","부서예산");
+//    ds_edt.SetColumn(nRow,"SABUN","000000");
+//    
+//    nRow = ds_edt.SearchRow("SABUN="+quote(dsAccountMst.GetColumn(dsAccountMst.row,"EMPLOYEE_ID")));
+//    
+//    if (nRow >= 0)
+//    {     
+//       cb_edt.Value = dsAccountMst.GetColumn(dsAccountMst.row,"EMPLOYEE_ID");
+//    }
+//    else
+//    {      
+//       cb_edt.Index = ds_edt.rowcount - 1;
+//    }
+//      
+//    if (ds_edt.rowcount == 1)
+//    {
+//       Static32.Visible = false;
+//       cb_edt.Visible = false;
+//    }
+//    else if (ds_edt.rowcount > 1)
+//    {
+//       Static32.Visible = true;
+//       cb_edt.Visible = true;
+//    }
+// }
+
+
+
+//트랜잭션 콜백 끝.
+
+
+
+
+
+
+
+
+
+// decode가 안되어 삼항연산으로 처리한 함수 리스트 -- 현재 사용 안함.
+this.fn_iif_strArg = function()
+{
+    var arrArgument = this.fn_iif_strArg.arguments;
+	trace(arrArgument[0]);
+    if (arrArgument[0]) 
+    {					
+        return iif_pvalue;		
+    } 
+    else 		
+    {					
+        return iif_avalue;
+    }
+};
+
+this.fn_iif = function()
+{
+    var arrArgument = this.fn_iif.arguments;
+    if (arrArgument[0]) 
+    {					
+        return sUserCompetence1;		
+    } 
+    else 		
+    {	
+        return sUserCompetence;
+    }
+};
+
+
+//신규카드
+this.Div00_btnNew_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	dsAccountMst.clearData();
+	dsAccountMst.addRow();
+	
+	ds_File.clearData();
+	Ds_flow_order2.clearData();	 
+
+	dsAcntAddProduct.clearData();
+	dsDivideProduct.clearData();
+	dsAccountDtlTeam.clearData();
+	dsDivideCust.clearData();
+	dsAccountTitle_Dtl.clearData();
+	Edt_AcntTitName.setFocus();
+	dsCorpCardUseList.clearData();	
+	ds_s_flow.clearData();
+	this.dsPersonalBank.filter(""); //넥사에서 언필터가 없기에 대체 방법을 찾아봐야함.
+
+	temp_chk = "";
+};
+
+this.btnSearch_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsCorpCardUseList.clearData();		
+	
+	var objParam = {OutDataSet :  nexacro.wrapQuote("dsAccountMst=dsAccountMst"),
+					dsParam: this.dsSection,					
+					JSPFileName : "JSP/pd/pd110f_account_mst_v2.jsp",
+					AcntMst_Class : "0",
+					PDCompetence : sUserCompetence,
+					ImgTitleName : " 일반경비 지급결의서" ,
+					FormId : "PD110F"}; 
+
+	
+	this.lfn_showModal("popupTemp", objParam, "pd::PD110_SearchF.xfdl", "", this, '', '', 696, 400);
+};
+
+//부서 승인
+this.cb_Permite0_OnClick = function(obj:nexacro.CheckBox,e:nexacro.ClickEventInfo)
+{	
+	var chkValue = this.Div01.form.cb_Permite0.value;
+	
+	if (chkValue == true)
+	{
+		this.dsAccountMst.setColumn(this.dsAccountMst.row, "ACNTMST_PERMITEDATE0", null);
+		this.dsAccountMst.setColumn(this.dsAccountMst.row, "ACNTMST_PERMITEUSER0", null);
+	} 
+	else if (sUserCompetence == sUserCompetence2)
+	{
+		this.dsAccountMst.setColumn(this.dsAccountMst.row, "ACNTMST_PERMITEDATE0", today);
+		this.dsAccountMst.setColumn(this.dsAccountMst.row, "ACNTMST_PERMITEUSER0", gv_SABUN);
+	}	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="LVL" type="INT" size="1"/>
+          <Column id="SHORTCODE" type="STRING" size="3"/>
+          <Column id="SECTION_SHORTNAME" type="STRING" size="10"/>
+          <Column id="BU_UPCODE" type="STRING" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPDClass">
+        <ColumnInfo>
+          <Column id="no" type="STRING" size="1"/>
+          <Column id="name" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="no">0</Col>
+            <Col id="name">일반경비</Col>
+          </Row>
+          <Row>
+            <Col id="no">1</Col>
+            <Col id="name">정기지불</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAccountMst">
+        <ColumnInfo>
+          <Column id="ACNTMST_CLASS" summ="default" size="1"/>
+          <Column id="ACNTMST_DATE" summ="default" size="8"/>
+          <Column id="ACNTMST_NO" summ="default" size="3"/>
+          <Column id="ACNTMST_ID" summ="default" size="20"/>
+          <Column id="ACCOUNT_NO" summ="default" size="12"/>
+          <Column id="ACNTMST_YM" summ="default" size="8"/>
+          <Column id="SECTION_CODE" summ="default" size="5"/>
+          <Column id="SECTION_NAME" summ="default" size="30"/>
+          <Column id="EMPLOYEE_ID" summ="default" size="6"/>
+          <Column id="EMPLOYEE_NAME" summ="default" size="10"/>
+          <Column id="DK_CODE" summ="default" size="2"/>
+          <Column id="ACNTMST_DELETE" summ="default" size="1"/>
+          <Column id="ACNTMST_PERMITEDATE0" summ="default" size="8"/>
+          <Column id="ACNTMST_PERMITEUSER0" summ="default" size="6"/>
+          <Column id="ACNTMST_PERMITE0" summ="default" size="1"/>
+          <Column id="ACNTMST_PERMITEDATE1" summ="default" size="8"/>
+          <Column id="ACNTMST_PERMITEUSER1" summ="default" size="6"/>
+          <Column id="ACNTMST_PERMITE1" summ="default" size="1"/>
+          <Column id="ACNTMST_PERMITEDATE2" summ="default" size="8"/>
+          <Column id="ACNTMST_PERMITEUSER2" summ="default" size="6"/>
+          <Column id="ACNTMST_PERMITE2" summ="default" size="1"/>
+          <Column id="ACNTMST_REMARK" summ="default" size="1000"/>
+          <Column id="ACNT_SECTIONKIND" summ="default" size="1"/>
+          <Column id="I_FLOW_ID" summ="default" size="20"/>
+          <Column id="ACNTMST_TITLE" summ="default" size="256"/>
+          <Column id="OPEN_CHECK" summ="default" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAccountDtl">
+        <ColumnInfo>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="5"/>
+          <Column id="ACNTMST_ID" type="INT" size="20"/>
+          <Column id="ACNTTIT_NO" type="INT" size="20"/>
+          <Column id="ACNTTIT_CODE" type="STRING" size="4"/>
+          <Column id="ACNTTIT_NAME" type="STRING" size="25"/>
+          <Column id="PL_CODE" type="INT" size="3"/>
+          <Column id="ACNTDTL_AMOUNT" type="CURRENCY" size="13"/>
+          <Column id="PRF_CODE" type="INT" size="3"/>
+          <Column id="PRF_NAME" type="STRING" size="25"/>
+          <Column id="ACNTDTL_CUSTNAME" type="STRING" size="35"/>
+          <Column id="ACNTDTL_INVOICE_YM" type="STRING" size="6"/>
+          <Column id="ACNTDTL_DELETE" type="STRING" size="1"/>
+          <Column id="ACNTDTL_SLIPNO" type="STRING" size="17"/>
+          <Column id="ACNTDTL_REMARK" type="STRING" size="200"/>
+          <Column id="CCUL_ID" type="STRING" size="50"/>
+          <Column id="BANKCODE_ACCOUNT" type="STRING" size="32"/>
+          <Column id="BANK_CODE" type="STRING" size="2"/>
+          <Column id="EBA_BANK_ACCOUNT" type="STRING" size="20"/>
+          <Column id="ACNTDTL_ACNTHOLDER" type="STRING" size="35"/>
+          <Column id="ACNTDTL_PAYDATE" type="STRING" size="8"/>
+          <Column id="ACNTDTL_BILL_DATE" type="STRING" size="8"/>
+          <Column id="ACNTDTL_BILL_NO" type="STRING" size="24"/>
+          <Column id="ACNTDTL_VAT" type="INT" size="12"/>
+          <Column id="ACNTDTL_EBILL" type="STRING" size="1"/>
+          <Column id="ACNTDTL_USEDATE" type="STRING" size="8"/>
+          <Column id="CCUL_USEDATE" type="STRING" size="8"/>
+          <Column id="ACNTTIT_TREENAME" type="STRING" size="80"/>
+          <Column id="CREDITCARD_NAME" type="STRING" size="20"/>
+          <Column id="ACNTDVL_CODE" type="STRING" size="2"/>
+          <Column id="ACNT_SALECNL_CODE" type="STRING" size="2"/>
+          <Column id="ACNTTIT_DEVELOP" type="STRING" size="1"/>
+          <Column id="ACNTTIT_PRODUCT" type="STRING" size="1"/>
+          <Column id="ACNTDTL_AD_NAME" type="STRING" size="8"/>
+          <Column id="ACNTDTL_TEAMCODE" type="STRING" size="5"/>
+          <Column id="ACNTDTL_TEAMNAME" type="STRING" size="50"/>
+          <Column id="ACNTDTL_CARDGB" type="STRING" size="2"/>
+          <Column id="CCUL_SECTIONMANAGECOST" type="STRING" size="1"/>
+          <Column id="OLD_ACNTDTL_AMOUNT" type="STRING" size="256"/>
+          <Column id="OLD_ACNTDTL_VAT" type="STRING" size="256"/>
+          <Column id="OLD_ACNTTIT_NO" type="STRING" size="256"/>
+          <Column id="BUDGET_SABUN" type="STRING" size="256"/>
+          <Column id="WEEK_CHECK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsProof">
+        <ColumnInfo>
+          <Column id="PRF_CODE" type="INT" size="3"/>
+          <Column id="PRF_NAME" type="STRING" size="25"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAccountTitle">
+        <ColumnInfo>
+          <Column id="ACNTTIT_RN" type="INT" size="5"/>
+          <Column id="ACNTTIT_NO" type="INT" size="20"/>
+          <Column id="ACNTTIT_NAME" type="STRING" size="40"/>
+          <Column id="ACNTTIT_LVL" type="INT" size="2"/>
+          <Column id="ACNTTIT_PNO" type="INT" size="20"/>
+          <Column id="ACNTTIT_CODE" type="STRING" size="4"/>
+          <Column id="ACNTTIT_REMARK" type="STRING" size="100"/>
+          <Column id="ACNTTIT_ENABLED" type="STRING" size="1"/>
+          <Column id="ACNTTIT_VISIBLE" type="STRING" size="1"/>
+          <Column id="ACNTTIT_DEVELOP" type="STRING" size="1"/>
+          <Column id="ACNTTIT_PRODUCT" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEBA">
+        <ColumnInfo>
+          <Column id="EBA_ID" type="INT" size="20"/>
+          <Column id="BANK_CODE" type="STRING" size="2"/>
+          <Column id="BANK_NAME" type="STRING" size="30"/>
+          <Column id="EBA_BANK_ACCOUNT" type="STRING" size="16"/>
+          <Column id="EBA_ACCOUNT_HOLDER" type="STRING" size="40"/>
+          <Column id="EBA_REMARK" type="STRING" size="50"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EBA_DEFAULT" type="STRING" size="1"/>
+          <Column id="BANKCODE_ACCOUNT" type="STRING" size="32"/>
+          <Column id="BANKNAME_ACCOUNT" type="STRING" size="50"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBank">
+        <ColumnInfo>
+          <Column id="BANK_CODE" type="STRING" size="2"/>
+          <Column id="BANK_NAME" type="STRING" size="30"/>
+          <Column id="BANK_DISABLED" type="STRING" size="1"/>
+          <Column id="BANK_REMARK" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBillKind">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="1"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">전자계산서</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">수기계산서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAcntDocDtl">
+        <ColumnInfo>
+          <Column id="ACNT_NAME" type="STRING" size="35"/>
+          <Column id="AD_DEBTOR_AMOUNT" type="INT" size="20"/>
+          <Column id="AD_CREDIT_AMOUNT" type="INT" size="20"/>
+          <Column id="AD_REMARK" type="STRING" size="200"/>
+          <Column id="AD_CUST_NAME" type="STRING" size="35"/>
+          <Column id="AD_VOUCHERS" type="STRING" size="50"/>
+          <Column id="AD_USEDATE" type="STRING" size="8"/>
+          <Column id="AD_MANAGEMENT_ITEM" type="STRING" size="200"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntDocMst">
+        <ColumnInfo>
+          <Column id="AD_DATENO" type="STRING" size="12"/>
+          <Column id="AD_TYPE" type="STRING" size="30"/>
+          <Column id="AD_WRITEDATE" type="STRING" size="8"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntDoc">
+        <ColumnInfo>
+          <Column id="ACNT_NAME" type="STRING" size="35"/>
+          <Column id="AD_KIND" type="STRING" size="2"/>
+          <Column id="AD_ACNT_KIND" type="STRING" size="1"/>
+          <Column id="AD_SEQ" type="STRING" size="3"/>
+          <Column id="AD_NO" type="STRING" size="1"/>
+          <Column id="AD_ACNT_CODE" type="STRING" size="5"/>
+          <Column id="AD_USEDATE" type="STRING" size="8"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="AD_CUST_NAME" type="STRING" size="35"/>
+          <Column id="AD_ID" type="INT" size="20"/>
+          <Column id="AD_DEBTOR_AMOUNT" type="INT" size="20"/>
+          <Column id="AD_CREDIT_AMOUNT" type="INT" size="20"/>
+          <Column id="AD_VOUCHERS" type="STRING" size="50"/>
+          <Column id="AD_MANAGEMENT_ITEM" type="STRING" size="200"/>
+          <Column id="AD_REMARK" type="STRING" size="200"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAccountMstPrt">
+        <ColumnInfo>
+          <Column id="ACNTMST_CLASS" type="STRING" size="1"/>
+          <Column id="ACNTMST_DATE" type="STRING" size="8"/>
+          <Column id="ACNTMST_NO" type="STRING" size="3"/>
+          <Column id="ACNTMST_ID" type="INT" size="20"/>
+          <Column id="ACCOUNT_NO" type="STRING" size="12"/>
+          <Column id="ACNTMST_YM" type="STRING" size="8"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="DK_CODE" type="INT" size="2"/>
+          <Column id="ACNTMST_DELETE" type="STRING" size="1"/>
+          <Column id="ACNTMST_PERMITEDATE0" type="STRING" size="8"/>
+          <Column id="ACNTMST_PERMITEUSER0" type="STRING" size="6"/>
+          <Column id="ACNTMST_PERMITE0" type="STRING" size="1"/>
+          <Column id="ACNTMST_PERMITEDATE1" type="STRING" size="8"/>
+          <Column id="ACNTMST_PERMITEUSER1" type="STRING" size="6"/>
+          <Column id="ACNTMST_PERMITE1" type="STRING" size="1"/>
+          <Column id="ACNTMST_PERMITEDATE2" type="STRING" size="8"/>
+          <Column id="ACNTMST_PERMITEUSER2" type="STRING" size="6"/>
+          <Column id="ACNTMST_PERMITE2" type="STRING" size="1"/>
+          <Column id="ACNTMST_REMARK" type="STRING" size="1000"/>
+          <Column id="ACNT_SECTIONKIND" type="STRING" size="1"/>
+          <Column id="I_FLOW_ID" type="INT" size="20"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAccountDtlPrt">
+        <ColumnInfo>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="5"/>
+          <Column id="ACNTMST_ID" type="INT" size="20"/>
+          <Column id="ACNTTIT_NO" type="INT" size="20"/>
+          <Column id="ACNTTIT_CODE" type="STRING" size="4"/>
+          <Column id="ACNTTIT_NAME" type="STRING" size="25"/>
+          <Column id="PL_CODE" type="INT" size="3"/>
+          <Column id="ACNTDTL_AMOUNT" type="CURRENCY" size="13"/>
+          <Column id="PRF_CODE" type="INT" size="3"/>
+          <Column id="PRF_NAME" type="STRING" size="25"/>
+          <Column id="ACNTDTL_CUSTNAME" type="STRING" size="35"/>
+          <Column id="ACNTDTL_INVOICE_YM" type="STRING" size="6"/>
+          <Column id="ACNTDTL_DELETE" type="STRING" size="1"/>
+          <Column id="ACNTDTL_SLIPNO" type="STRING" size="17"/>
+          <Column id="ACNTDTL_REMARK" type="STRING" size="200"/>
+          <Column id="CCUL_ID" type="INT" size="20"/>
+          <Column id="BANKCODE_ACCOUNT" type="STRING" size="32"/>
+          <Column id="BANK_CODE" type="STRING" size="2"/>
+          <Column id="EBA_BANK_ACCOUNT" type="STRING" size="20"/>
+          <Column id="ACNTDTL_ACNTHOLDER" type="STRING" size="35"/>
+          <Column id="ACNTDTL_PAYDATE" type="STRING" size="8"/>
+          <Column id="ACNTDTL_BILL_DATE" type="STRING" size="8"/>
+          <Column id="ACNTDTL_BILL_NO" type="STRING" size="24"/>
+          <Column id="ACNTDTL_VAT" type="INT" size="12"/>
+          <Column id="ACNTDTL_EBILL" type="STRING" size="1"/>
+          <Column id="ACNTDTL_USEDATE" type="STRING" size="8"/>
+          <Column id="CCUL_USEDATE" type="STRING" size="8"/>
+          <Column id="ACNTTIT_TREENAME" type="STRING" size="80"/>
+          <Column id="CREDITCARD_NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsComp">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="1"/>
+          <Column id="NAME" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntDevelop">
+        <ColumnInfo>
+          <Column id="ACNTDVL_CODE" type="STRING" size="2"/>
+          <Column id="ACNTDVL_NAME" type="STRING" size="30"/>
+          <Column id="ACNTDVL_ENABLED" type="STRING" size="1"/>
+          <Column id="ACNTDVL_VISIBLE" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntSaleCnl">
+        <ColumnInfo>
+          <Column id="ACNT_SALECNL_CODE" type="STRING" size="2"/>
+          <Column id="ACNT_SALECNL_NAME" type="STRING" size="30"/>
+          <Column id="ACNT_SALECNL_ENABLED" type="STRING" size="1"/>
+          <Column id="ACNT_SALECNL_VISIBLE" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntAdProduct">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="INT" size="20"/>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTeamCode">
+        <ColumnInfo>
+          <Column id="BUSECODE" type="STRING" size="5"/>
+          <Column id="BUSENAME" type="STRING" size="30"/>
+          <Column id="TEAMCODE" type="STRING" size="4"/>
+          <Column id="TEAMNAME" type="STRING" size="50"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntAddProduct">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="INT" size="20"/>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="ATTRIBUTE_CODE" type="STRING" size="10"/>
+          <Column id="ATTRIBUTE_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDivideProduct">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="INT" size="20"/>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="ACNTDTL_GRADE" type="STRING" size="2"/>
+          <Column id="ACNTDTL_TERM" type="STRING" size="2"/>
+          <Column id="ACNTDTL_SUBJECT" type="STRING" size="2"/>
+          <Column id="ACNTDTL_DEPTH" type="STRING" size="2"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsWorkTeam">
+        <ColumnInfo>
+          <Column id="BUSECODE" type="STRING" size="5"/>
+          <Column id="BUSENAME" type="STRING" size="30"/>
+          <Column id="WORKCODE" type="STRING" size="4"/>
+          <Column id="WORKNAME" type="STRING" size="50"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDivideCust">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="INT" size="20"/>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="H_CODE" type="STRING" size="2"/>
+          <Column id="M_CODE" type="STRING" size="2"/>
+          <Column id="L_CODE" type="STRING" size="2"/>
+          <Column id="GRADE_CODE" type="STRING" size="4"/>
+          <Column id="AREA_CODE" type="STRING" size="2"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntCust">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="INT" size="20"/>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="CUST_GB" type="STRING" size="2"/>
+          <Column id="CUST_CD" type="STRING" size="4"/>
+          <Column id="CUST_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAccountDtlTeam">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="STRING" size="20"/>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="ACNTTEAM_SEQ" type="STRING" size="3"/>
+          <Column id="TEAMCODE" type="STRING" size="5"/>
+          <Column id="TEAMNAME" type="STRING" size="50"/>
+          <Column id="ACNTDTL_AMOUNT" type="STRING" size="13"/>
+          <Column id="ACNTDTL_VAT" type="STRING" size="12"/>
+          <Column id="WORKCODE" type="STRING" size="256"/>
+          <Column id="WORKNAME" type="STRING" size="256"/>
+          <Column id="ACNTTIT_NO" type="STRING" size="256"/>
+          <Column id="ORDMST_TITNO" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAccountTitle_Dtl">
+        <ColumnInfo>
+          <Column id="ACNTTIT_KIND" type="STRING" size="1"/>
+          <Column id="ACNTTIT_NO" type="INT" size="20"/>
+          <Column id="ACNTTIT_NAME" type="STRING" size="40"/>
+          <Column id="ACNTTIT_LINKCODE" type="STRING" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_s_flow">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="STRING" size="256"/>
+          <Column id="SEQNO" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="F_NUM" type="STRING" size="256"/>
+          <Column id="F_FNUM" type="STRING" size="256"/>
+          <Column id="F_XML" type="STRING" size="256"/>
+          <Column id="F_TYPE" type="STRING" size="256"/>
+          <Column id="F_CONTENT" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_File">
+        <ColumnInfo>
+          <Column id="f_id" type="STRING" size="1"/>
+          <Column id="f_name" type="STRING" size="100"/>
+          <Column id="f_size" type="STRING" size="4"/>
+          <Column id="file_name" type="STRING" size="256"/>
+          <Column id="r_name" type="STRING" size="256"/>
+          <Column id="f_path" type="STRING" size="256"/>
+          <Column id="l_fname" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_File_delete">
+        <ColumnInfo>
+          <Column id="f_id" type="STRING" size="1"/>
+          <Column id="f_name" type="STRING" size="100"/>
+          <Column id="f_size" type="STRING" size="4"/>
+          <Column id="file_name" type="STRING" size="256"/>
+          <Column id="r_name" type="STRING" size="256"/>
+          <Column id="f_path" type="STRING" size="256"/>
+          <Column id="l_fname" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCorpCardUseList">
+        <ColumnInfo>
+          <Column id="CCUL_ID" type="STRING" size="100"/>
+          <Column id="CCUL_USEDATE" type="STRING" size="8"/>
+          <Column id="CREDITCARD_CODE" type="STRING" size="2"/>
+          <Column id="CREDITCARD_NAME" type="STRING" size="20"/>
+          <Column id="CCUL_AMOUNT" type="INT" size="10"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CCUL_CUST_NAME" type="STRING" size="35"/>
+          <Column id="CCUL_GETBACK_DATE" type="STRING" size="8"/>
+          <Column id="CCUL_GETBACK_USER" type="STRING" size="6"/>
+          <Column id="CCUL_REMARK" type="STRING" size="200"/>
+          <Column id="CCUL_SECTIONMANAGECOST" type="STRING" size="1"/>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="WEEK_CHECK" type="STRING" size="256"/>
+          <Column id="CCUL_USETIME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAccountDtlTeam_tmp">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="STRING" size="20"/>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="ACNTTEAM_SEQ" type="STRING" size="3"/>
+          <Column id="TEAMCODE" type="STRING" size="5"/>
+          <Column id="TEAMNAME" type="STRING" size="50"/>
+          <Column id="ACNTDTL_AMOUNT" type="STRING" size="13"/>
+          <Column id="ACNTDTL_VAT" type="STRING" size="12"/>
+          <Column id="WORKCODE" type="STRING" size="256"/>
+          <Column id="WORKNAME" type="STRING" size="256"/>
+          <Column id="ACNTTIT_NO" type="STRING" size="256"/>
+          <Column id="ORDMST_TITNO" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_budget">
+        <ColumnInfo>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_budget_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">10</Col>
+            <Col id="NAME">부서운영비</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">32</Col>
+            <Col id="NAME">부서운영비</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">8</Col>
+            <Col id="NAME">업무시식비</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">30</Col>
+            <Col id="NAME">업무시식비</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">311</Col>
+            <Col id="NAME">일반접대비</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">380</Col>
+            <Col id="NAME">일반접대비</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_edt">
+        <ColumnInfo>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="EDT_SABUN" type="STRING" size="256"/>
+          <Column id="EDT_NAME" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_check">
+        <ColumnInfo>
+          <Column id="BUDGET_CHECK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_team_check">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="INT" size="256"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="DTL_AMOUNT" type="STRING" size="256"/>
+          <Column id="DTL_VAT" type="STRING" size="256"/>
+          <Column id="TEAM_AMOUNT" type="STRING" size="256"/>
+          <Column id="TEAM_VAT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_week_check">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">평일</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">주말 및 공휴일</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsPersonalBank">
+        <ColumnInfo>
+          <Column id="BANK_NAME" type="STRING" size="30"/>
+          <Column id="BANK_ACCOUNT" type="STRING" size="30"/>
+          <Column id="BANK_NAME_ALL" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="CARDNUM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_K">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_H">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_C">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_D">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Div01.form.edt_title" propid="value" datasetid="dsAccountMst" columnid="ACNTMST_TITLE"/>
+      <BindItem id="item1" compid="Div01.form.Edt_OutOrder_No" propid="value" datasetid="dsAccountMst" columnid="ACCOUNT_NO"/>
+      <BindItem id="item2" compid="Div01.form.Combo0" propid="value" datasetid="dsAccountMst" columnid="SECTION_CODE"/>
+      <BindItem id="item3" compid="Div01.form.cb_Permite0" propid="value" datasetid="dsAccountMst" columnid="SECTION_CODE"/>
+      <BindItem id="item4" compid="Div01.form.Calendar2" propid="value" datasetid="dsAccountMst" columnid="ACNTMST_PERMITEDATE0"/>
+      <BindItem id="item5" compid="Div01.form.cb_Permite1" propid="value" datasetid="dsAccountMst" columnid="ACNTMST_PERMITE1"/>
+      <BindItem id="item6" compid="Div01.form.Calendar0" propid="value" datasetid="dsAccountMst" columnid="ACNTMST_PERMITEDATE1"/>
+      <BindItem id="item7" compid="Div01.form.cb_Permite2" propid="value" datasetid="dsAccountMst" columnid="ACNTMST_PERMITE2"/>
+      <BindItem id="item8" compid="Div01.form.Calendar1" propid="value" datasetid="dsAccountMst" columnid="ACNTMST_PERMITEDATE2"/>
+      <BindItem id="item9" compid="Div01.form.edt_title" propid="accessibilityaction" datasetid="dsAccountMst" columnid="ACNTMST_TITLE"/>
+      <BindItem id="item10" compid="Div01.form.Combo0" propid="text" datasetid="dsAccountDtl" columnid="ACNTDTL_EBILL"/>
+      <BindItem id="item11" compid="Div01.form.Edt_EmployeeName" propid="value" datasetid="dsAccountMst" columnid="EMPLOYEE_NAME"/>
+      <BindItem id="item12" compid="Div01.form.Cal_AcntMstDate" propid="value" datasetid="dsAccountMst" columnid="ACNTMST_DATE"/>
+      <BindItem id="item13" compid="Div01.form.Rd_BillKind" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_EBILL"/>
+      <BindItem id="item14" compid="Div01.form.MEdt_UnitCost" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_AMOUNT"/>
+      <BindItem id="item15" compid="Div01.form.MEdt_Vat" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_VAT"/>
+      <BindItem id="item16" compid="Div01.form.Cb_Proof" propid="value" datasetid="dsAccountDtl" columnid="PRF_NAME"/>
+      <BindItem id="item17" compid="Div01.form.Cal_UseDate" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_USEDATE"/>
+      <BindItem id="item18" compid="Div01.form.Cb_Section" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_TEAMCODE"/>
+      <BindItem id="item19" compid="Div01.form.Ed_BillNo" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_BILL_NO"/>
+      <BindItem id="item20" compid="Div01.form.cb_edt" propid="value" datasetid="dsAccountDtl" columnid="BUDGET_SABUN"/>
+      <BindItem id="item21" compid="Div01.form.MEdt_Cust_Code" propid="value" datasetid="dsAccountDtl" columnid="CUST_CODE"/>
+      <BindItem id="item22" compid="Div01.form.Edt_Cust_Name" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_CUSTNAME"/>
+      <BindItem id="item23" compid="Div01.form.Edt_AcntTitName" propid="value" datasetid="dsAccountDtl" columnid="ACNTTIT_NAME"/>
+      <BindItem id="item24" compid="Div01.form.Cal_PayDate" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_PAYDATE"/>
+      <BindItem id="item25" compid="Div01.form.Cal_BillDate" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_BILL_DATE"/>
+      <BindItem id="item26" compid="Div01.form.Edt_Remark" propid="value" datasetid="dsAccountDtl" columnid="ACNTDTL_REMARK"/>
+      <BindItem id="item27" compid="Div01.form.cb_BankInfo" propid="value" datasetid="dsAccountDtl" columnid="BANKCODE_ACCOUNT"/>
+      <BindItem id="item28" compid="Div01.form.Txa_Remark" propid="value" datasetid="dsAccountMst" columnid="ACNTMST_REMARK"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED158F" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00_00" taborder="0" text="지급일자(기준년도)" left="23" top="27" width="130" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="1" left="156" top="27" width="130" height="30"/>
+        <Calendar id="cal_Edate" taborder="2" left="433" top="28" width="130" height="30"/>
+        <Static id="Static00_00_00" taborder="3" text="지급일자(과거년도)" left="300" top="28" width="130" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Button id="btn_search" taborder="4" text="조회" top="28" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="115" onclick="Div00_btn_search_onclick"/>
+        <Button id="btn_print" taborder="5" text="출력" top="28" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="43"/>
+        <Radio id="rdo_gubun" taborder="6" left="666" top="27" width="129" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" index="0" text="개인" value="1">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">개인</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">업체</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Static00_00_00_00" taborder="7" text="구분" left="580" top="27" width="70" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00_00_01" taborder="8" text="출력물" left="800" top="28" width="70" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Combo id="cb_kind" taborder="9" text="본부합계" left="873" top="27" width="178" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" value="0">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">0</Col>
+                <Col id="datacolumn">본부합계</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">부서합계</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">도서별합계</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Div id="div_grid" taborder="10" left="26" top="72" width="97.19%" height="630">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var rdUrl,rdParam;
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.chkValue())
+	{
+		this.getData();
+	}
+};
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.chkValue())
+	{
+		if(this.rdo_gubun.value == "1")
+			rdUrl = gv_urlMrd + "/ed/ED158A_1.mrd";
+		else
+			rdUrl = gv_urlMrd + "/ed/ED158B_1.mrd";
+			
+		var d = new Date(); 
+		var today = Eco.date.getMaskFormatString(d, "yyyy-MM-dd");
+		
+		var now_sDate = this.cal_Sdate.value.substr(0,4) + "0101";
+		var post_sDate = this.cal_Edate.value.substr(0,4) + "0101";
+		
+		rdParam  = "/ragentpath ["+ gv_urlRdDataServer +"]" +
+				   " /rp ["+ this.cal_Sdate.value + "]["+ now_sDate +"]["+ post_sDate +"]["+ this.cal_Edate.value +"]["+ today +"]";
+				
+		this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+	}
+};
+
+//입력값 확인
+this.chkValue = function()
+{
+	if(this.cal_Sdate.value == null)
+	{
+		alert("지급일자(기준년도)를 입력해주세요.");
+		this.cal_Sdate.dropdown();
+		return false;
+	}
+	
+	if(this.cal_Edate.value == null)
+	{
+		alert("지급일자(과거년도)를 입력해주세요.");
+		this.cal_Edate.dropdown();
+		return false;
+	}
+	
+	if(this.cal_Sdate.value.substr(0,4) < "2017")
+	{
+		alert("2017년도(기준년도) 이전 데이터는 조회할 수 없습니다.");
+		return false;
+	}
+	
+	if(this.cal_Edate.value.substr(0,4) < "2017")
+	{
+		alert("2016년도(과거년도) 이전 데이터는 조회할 수 없습니다.");
+		return false;
+	}
+	
+	return true;
+}
+
+//데이터 가져오기
+this.getData = function()
+{
+	var now_sDate = this.cal_Sdate.value.substr(0,4) + "0101";
+	var post_sDate = this.cal_Edate.value.substr(0,4) + "0101";
+	
+	var outds, inds;
+	
+	var strArg = "now_eDate="  + nexacro.wrapQuote(this.cal_Sdate.value) 
+			   + " now_sDate="  + nexacro.wrapQuote(now_sDate) 
+			   + " post_sDate=" + nexacro.wrapQuote(post_sDate)
+			   + " post_eDate=" + nexacro.wrapQuote(this.cal_Edate.value);
+		
+	switch(this.cb_kind.value) {
+	case "0":
+		this.div_grid.set_url("ed::ED158F_GRID1.xfdl");
+						 
+	    outds = "ds_1=ds_1";
+		inds = "ds_1=ds_1";
+			
+		if(this.rdo_gubun.value == "1") 
+			strArg += " kind=" + nexacro.wrapQuote("P1");
+		else
+			strArg += " kind=" + nexacro.wrapQuote("C1");
+		break;
+			
+	case "1":
+		this.div_grid.set_url("ed::ED158F_GRID2.xfdl");
+			
+		outds = "ds_2=ds_2";
+		inds = "ds_2=ds_2";
+		
+		if(this.rdo_gubun.value == "1") 
+			strArg += " kind=P2"; 
+		else
+			strArg += " kind=C2";
+		break;
+			
+	case "2":
+		this.div_grid.set_url("ed::ED158F_GRID3.xfdl");
+			
+		outds = "ds_3=ds_3";
+		inds = "ds_3=ds_3";
+		
+		if(this.rdo_gubun.value == "1") 
+			strArg += " kind=P3"; 
+		else
+			strArg += " kind=C3";
+		break;
+		
+	default:
+	}		
+	this.gfn_TransactionP("dsC1_select","JSP/ed/ED158F_RPT_SELECT.jsp", inds, outds, strArg, "fnSearchCallback", true, "P", false, this);	
+}
+
+this.fnSearchCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else if(this.ds_list.rowcount < 1)
+		alert("조회된 데이터가 없습니다.");
+}
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_1">
+        <ColumnInfo>
+          <Column id="NOW_CD" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="100"/>
+          <Column id="MONTH_AMT" type="INT" size="256"/>
+          <Column id="THIS_AMT" type="INT" size="256"/>
+          <Column id="POST_AMT" type="INT" size="256"/>
+          <Column id="POST_THIS_AMT" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_2" keystring="BU_GRCODE">
+        <ColumnInfo>
+          <Column id="BU_GRCODE" type="STRING" size="256"/>
+          <Column id="NOW_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="MONTH_AMT" type="INT" size="256"/>
+          <Column id="THIS_AMT" type="INT" size="256"/>
+          <Column id="POST_AMT" type="INT" size="256"/>
+          <Column id="POST_THIS_AMT" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_3" keystring="BU_GRCODE, NAME">
+        <ColumnInfo>
+          <Column id="BU_GRCODE" type="STRING" size="256"/>
+          <Column id="NOW_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="MONTH_AMT" type="INT" size="256"/>
+          <Column id="THIS_AMT" type="INT" size="256"/>
+          <Column id="POST_AMT" type="INT" size="256"/>
+          <Column id="BOOK_NO" type="STRING" size="256"/>
+          <Column id="POST_THIS_AMT" type="INT" size="256"/>
+          <Column id="BOOK_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

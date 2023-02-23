@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR902F" width="330" height="610" titletext="New Form">
+    <Layouts>
+      <Layout height="610" width="330">
+        <Grid id="grd_tree" taborder="0" left="10" top="10" width="310" height="550" binddataset="DS_DEPT_TREE" oncelldblclick="grd_tree_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+              </Band>
+              <Band id="body">
+                <Cell/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_close" taborder="1" text="닫 기" left="127" top="568" width="77" height="32" background="#f0f0f0" color="black" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="DS_DEPT_TREE">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="5"/>
+          <Column id="BU_LEVEL" type="STRING" size="1"/>
+          <Column id="BU_GRCODE" type="STRING" size="5"/>
+          <Column id="BU_SEQ" type="STRING" size="2"/>
+          <Column id="BU_NAME" type="STRING" size="50"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">21000</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">22000</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">23000</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">25000</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">26000</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">27000</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+
+this.grd_tree_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var strArg;
+	strArg = this.DS_DEPT_TREE.getColumn(e.row,'CODE');
+	strArg += '^' + this.DS_DEPT_TREE.getColumn(e.row,'BU_NAME');
+	strArg += '^' + this.DS_DEPT_TREE.getColumn(e.row,'BU_GRCODE');
+	this.close(strArg);
+	// nexacro는 close로 string형만 보내기 가능. 구분자'^'
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};]]></Script>
+  </Form>
+</FDL>

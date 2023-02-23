@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED126F" width="1300" height="750" titletext="외주자 증명서 발급 등록" onload="ED126F_onload" onsize="ED126F_onsize" ontimer="ED126F_ontimer">
+    <Layouts>
+      <Layout height="750" width="1300">
+        <Div id="Div00" taborder="0" left="15" top="10" height="40" border="1px solid lightgray" text="" width="98%">
+          <Layouts>
+            <Layout>
+              <Button id="btn_new" taborder="0" text="신규" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_new_onclick" width="63" right="241"/>
+              <Button id="btn_delete" taborder="1" text="삭제" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_search_onclick" width="63" right="35"/>
+              <Button id="btn_save" taborder="2" text="저장" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_save_onclick" width="63" right="104"/>
+              <Button id="btn_print" taborder="3" text="출력" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="172"/>
+              <Radio id="Radio00" taborder="4" top="9" height="22" innerdataset="dsContract" codecolumn="CONTRACT_CD" datacolumn="CONTRACT_NM" direction="vertical" width="222" right="313"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static01" taborder="1" text="신청일자" top="75" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="25" width="90"/>
+        <Static id="Static04" taborder="2" text="발급사유" top="110" width="90" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="25"/>
+        <Calendar id="cal_regDate" taborder="3" top="75" height="30" left="Static01:3" width="16.15%" innerdataset="dsAthrCert" datecolumn="REG_DATE" textcolorcolumn="REG_DATE"/>
+        <Static id="Static02" taborder="4" text="신청구분" top="76" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cal_regDate:23" width="6.92%"/>
+        <Combo id="cb_kind" taborder="6" text="Combo00" top="76" height="30" innerdataset="dsRegKind" codecolumn="REG_KIND_CD" datacolumn="REG_KIND_NM" left="Static02:5" width="21.23%"/>
+        <Static id="Static03" taborder="5" text="발급번호" top="75" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cb_kind:27" width="6.92%"/>
+        <Edit id="ed_regKey" taborder="7" top="75" height="30" left="Static03:5" width="21%" enable="false"/>
+        <Combo id="cb_reason" taborder="10" text="Combo01" top="110" width="16.15%" height="30" innerdataset="dsRegReason" codecolumn="REG_REASON_CD" datacolumn="REG_REASON_NM" left="Static04:2"/>
+        <Static id="Static05" taborder="8" text="외주자명" top="110" width="6.92%" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cb_reason:24"/>
+        <Edit id="edt_athrIdentity" taborder="11" top="110" width="6.92%" height="30" left="Static05:5" enable="false"/>
+        <Edit id="edt_athrName" taborder="12" top="110" width="11.08%" height="30" left="edt_athrIdentity:8" enable="false"/>
+        <Button id="btn_search1" taborder="13" top="110" width="2.62%" height="29" background="url('Img::loupe.png') no-repeat center center #ffffff" onclick="btn_search_onclick" border="0px none" left="edt_athrName:1"/>
+        <Static id="Static06" taborder="9" text="용역기간" top="110" width="6.92%" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="btn_search1:26"/>
+        <Calendar id="cal_worksDate1" taborder="14" top="110" width="9.62%" height="30" left="Static06:4" innerdataset="dsAthrCert" datecolumn="WORK_SDATE"/>
+        <Static id="Static00" taborder="15" text="~" top="113" width="0.77%" height="27" left="cal_worksDate1:5"/>
+        <Calendar id="cal_workeDate1" taborder="16" top="110" width="9.62%" height="30" left="Static00:7" innerdataset="dsAthrCert" datecolumn="WORK_EDATE"/>
+        <Tab id="Tab00" taborder="17" tabindex="0" left="14" top="164" height="100" onchanged="Tab00_onchanged" border="1px none lightgray" width="98%">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="리스트검색" border="1px solid lightgray" formscrollbartype="none">
+              <Layouts>
+                <Layout>
+                  <Static id="Static00" taborder="0" text="신청일자" left="38" top="18" height="33" width="80"/>
+                  <Calendar id="cal_worksDate2" taborder="1" left="Static00:-10" top="19" height="30" width="10.22%"/>
+                  <Static id="Static01" taborder="3" text="~" left="cal_worksDate2:25" top="23" height="25" width="1.89%"/>
+                  <Calendar id="cal_workeDate2" taborder="2" left="Static01:3" top="18" height="30" width="10.22%"/>
+                  <Static id="Static02" taborder="4" text="외주자" left="cal_workeDate2:72" top="18" height="31" width="3.07%"/>
+                  <Edit id="edt_athrIdentity2" taborder="5" left="Static02:10" top="18" height="30" enable="false" width="7.08%"/>
+                  <Edit id="edt_athrName2" taborder="6" left="edt_athrIdentity2:4" top="18" height="30" enable="false" width="11.01%"/>
+                  <Button id="btn_search2" taborder="8" top="17" height="29" background="url('Img::loupe.png') no-repeat center center #ffffff" border="0px none" onclick="btn_search2_onclick" text="" left="edt_athrName2:14" width="2.52%"/>
+                  <Button id="btn_search" taborder="7" text="조회하기" left="btn_search2:93" top="21" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Tab00_Tabpage1_btn_search_onclick" width="7.08%"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Grid id="Grid00" taborder="18" left="14" top="280" height="450" binddataset="dsAthrCert" oncellclick="Grid00_oncellclick" width="98.00%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="135"/>
+                <Column size="130"/>
+                <Column size="145"/>
+                <Column size="145"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="발급번호"/>
+                <Cell col="1" text="신청일자"/>
+                <Cell col="2" text="신청구분"/>
+                <Cell col="3" text="발급사유"/>
+                <Cell col="4" colspan="2" text="용역기간"/>
+                <Cell col="6" text="저자코드"/>
+                <Cell col="7" text="저자명"/>
+                <Cell col="8" text="승인여부"/>
+                <Cell col="9" text="승인일시"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:REG_KEY"/>
+                <Cell col="1" text="bind:REG_DATE" displaytype="date"/>
+                <Cell col="2" text="bind:REG_KIND" displaytype="combotext" edittype="combo" combodataset="dsRegKind" combocodecol="REG_KIND_CD" combodatacol="REG_KIND_NM"/>
+                <Cell col="3" text="bind:REG_REASON" edittype="combo" displaytype="combotext" combodataset="dsRegReason" combodatacol="REG_REASON_NM" combocodecol="REG_REASON_CD"/>
+                <Cell col="4" text="bind:WORK_SDATE"/>
+                <Cell col="5" text="bind:WORK_EDATE"/>
+                <Cell col="6" text="bind:ATHR_IDENTITY"/>
+                <Cell col="7" text="bind:ATHR_NAME"/>
+                <Cell col="8" text="bind:CERT_YN" displaytype="combotext" edittype="combo"/>
+                <Cell col="9" text="bind:CERT_PERMITE_DATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsContract">
+        <ColumnInfo>
+          <Column id="CONTRACT_CD" type="STRING" size="256"/>
+          <Column id="CONTRACT_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CONTRACT_CD">0</Col>
+            <Col id="CONTRACT_NM">거래 종료</Col>
+          </Row>
+          <Row>
+            <Col id="CONTRACT_CD">1</Col>
+            <Col id="CONTRACT_NM">거래 진행중</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRegKind">
+        <ColumnInfo>
+          <Column id="REG_KIND_CD" type="STRING" size="256"/>
+          <Column id="REG_KIND_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="REG_KIND_CD">1</Col>
+            <Col id="REG_KIND_NM">용역 거래 확인서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRegReason">
+        <ColumnInfo>
+          <Column id="REG_REASON_CD" type="STRING" size="256"/>
+          <Column id="REG_REASON_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="REG_REASON_CD">1</Col>
+            <Col id="REG_REASON_NM">관공서 제출용</Col>
+          </Row>
+          <Row>
+            <Col id="REG_REASON_CD">2</Col>
+            <Col id="REG_REASON_NM">금융기관 제출용</Col>
+          </Row>
+          <Row>
+            <Col id="REG_REASON_CD">3</Col>
+            <Col id="REG_REASON_NM">기타 제출용</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAthrCert">
+        <ColumnInfo>
+          <Column id="REG_DATE" type="STRING" size="256"/>
+          <Column id="REG_KIND" type="STRING" size="256"/>
+          <Column id="REG_NO" type="STRING" size="256"/>
+          <Column id="REG_REASON" type="STRING" size="256"/>
+          <Column id="ATHR_IDENTITY" type="STRING" size="256"/>
+          <Column id="WORK_SDATE" type="STRING" size="256"/>
+          <Column id="WORK_EDATE" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="256"/>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="CERT_PERMITE_DATE" type="STRING" size="256"/>
+          <Column id="CERT_PERMITE_EMPLOYEE" type="STRING" size="256"/>
+          <Column id="REG_DELETE" type="STRING" size="256"/>
+          <Column id="CERT_YN" type="STRING" size="256"/>
+          <Column id="ATHR_NAME" type="STRING" size="256"/>
+          <Column id="REG_KEY" type="STRING" size="256"/>
+          <Column id="ATHR_AUTHORGB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsApproval">
+        <ColumnInfo>
+          <Column id="APPROVAL_CD" type="STRING" size="256"/>
+          <Column id="APPROVAL_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="APPROVAL_CD">0</Col>
+            <Col id="APPROVAL_NM">승인</Col>
+          </Row>
+          <Row>
+            <Col id="APPROVAL_CD">1</Col>
+            <Col id="APPROVAL_NM">기각</Col>
+          </Row>
+          <Row>
+            <Col id="APPROVAL_CD">2</Col>
+            <Col id="APPROVAL_NM">대기</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var sSection_Code = nexacro.getApplication().gds_userinfo.getColumn(0, "BUSECD");
+var sSabun = nexacro.getApplication().gds_userinfo.getColumn(0, "SABUN");
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var flag = "nomal";
+
+var sUserCompetence;
+var sUserCompetence1 = "1";   // 일반사용자
+var sUserCompetence2 = "2";   // 부서승인권자
+var sUserCompetence3 = "3";   // 부서장
+var sUserCompetence4 = "4";   // 일반승인권자
+var sUserCompetence5 = "5";   // 승인1차권한
+var sUserCompetence6 = "6";   // 승인2차권한
+
+//닫기
+this.Div00_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+//권한체크
+this.ED126F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", "ed_01_106");
+	sSelect = nexacro.getApplication().gds_menu.getColumn(nRow, "UM_SELECT");
+	sSelect = Eco.decode(sSelect, null, "1", sSelect);
+};
+
+
+//등록시 저자찾기
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {param:"ED126_1"}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popuppUniversity", objParam, "ed::EDAuthor_SearchF.xfdl", "popupCallBack", this, 10, 58, 500, 550);
+};
+
+//조회 시 저자찾기
+this.btn_search2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {param:"ED126_2"}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popuppUniversity", objParam, "ed::EDAuthor_SearchF.xfdl", "popupCallBack", this, 10, 58, 500, 550);
+};
+
+//신규
+this.Div00_btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	switch(this.dsAthrCert.rowposition) 
+	{
+		//데이터가 없을 경우 -1
+		case -1 : this.athrcert_Init(this.dsAthrCert.addRow());
+			break;
+		default: 
+			if(this.fctn_checkRecord(this.dsAthrCert.rowposition, true))
+			{
+					this.athrcert_Init(this.dsAthrCert.addRow());
+					break;
+			}
+	}
+	
+	this.cb_kind.setFocus();
+};
+
+//초기화
+this.athrcert_Init = function(nRow)
+{
+	var currDate = new Date();
+	var year = currDate.getFullYear().toString().padLeft(4, "0");
+	var month = (currDate.getMonth()+1).toString().padLeft(2, "0");
+	var day = currDate.getDate().toString().padLeft(2, "0");
+	var now = year + month + day;
+	
+	this.dsAthrCert.setColumn(nRow, "REG_KIND", "1");
+	this.dsAthrCert.setColumn(nRow, "REG_REASON", "1");
+	this.dsAthrCert.setColumn(nRow, "EMPLOYEE_ID", sSabun); 					
+	this.dsAthrCert.setColumn(nRow, "SECTION_CODE", sSection_Code); 	
+	this.dsAthrCert.setColumn(nRow, "CERT_YN", "2");
+	this.dsAthrCert.setColumn(nRow, "REG_DATE", now);
+};
+
+//입력값 확인 
+this.fctn_checkRecord = function(nRow, msgView)
+{
+	if( this.fnisNull(this.dsAthrCert.getColumn(nRow, "REG_DATE")) )
+	{
+		if(msgView)
+		{
+			alert("신청일자를 선택해 주십시오.");
+			this.cal_regDate.setFocus();
+			return false;
+		}
+	}
+	
+	if( this.fnisNull(this.dsAthrCert.getColumn(nRow, "REG_KIND")) )
+	{
+		if(msgView)
+		{
+			alert("신청구분을 선택해 주십시오.");
+			this.cb_kind.setFocus();
+			return false;
+		}
+	}
+	
+	if(this.fnisNull(this.dsAthrCert.getColumn(nRow, "ATHR_NAME")))
+	{
+		if(msgView)
+		{
+			alert("외주자를 선택해 주십시오.");
+			this.edt_athrName.setFocus();
+			return false;
+		}
+	}
+	
+	if(this.fnisNull(this.dsAthrCert.getColumn(nRow, "REG_REASON")))
+	{
+		if(msgView)
+		{
+			alert("발급사유를 선택해 주십시오.");
+			this.cb_reason.setFocus();
+			return false;
+		}
+	}
+	
+	if(this.fnisNull(this.dsAthrCert.getColumn(nRow, "WORK_SDATE")))
+	{
+		if(msgView)
+		{
+			alert("용역기간을 선택해 주십시오.");
+			this.cal_worksDate1.setFocus();
+			return false;
+		}
+	}
+	
+	if(this.fnisNull(this.dsAthrCert.getColumn(nRow, "WORK_EDATE")))
+	{
+		if(msgView)
+		{
+			alert("용역기간을 선택해 주십시오.");
+			this.cal_workeDate1.setFocus();
+			return false;
+		}
+	}
+	
+	return true;
+
+}
+
+//조회
+this.Tab00_Tabpage1_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var outds = "dsAthrCert=dsAthrCert";
+	var inds =  "dsAthrCert=dsAthrCert";
+	var strArg = "ATHR_IDENTITY=" + this.Tab00.Tabpage1.form.edt_athrIdentity2.value +
+				 " REG_SDATE=" + this.Tab00.Tabpage1.form.cal_worksDate2.value +
+				 " REG_EDATE=" + this.Tab00.Tabpage1.form.cal_workeDate2.value +
+				 " SECTION_CODE=" + sSection_Code +	
+				 " COMPETENCE=" + sUserCompetence  +	
+				 " SABUN=" + sSabun;
+				
+				 
+	this.gfn_TransactionP("search","JSP/ed/ed126f_athrCert.jsp", outds, inds, strArg, "fnCallback", true, "P", false, this);
+};
+
+// 저장
+this.Div00_btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsAthrCert.getColumn(this.dsAthrCert.rowposition, "CERT_YN" != "2"))
+	{
+		alert("이미 승인, 기각된 신청서는 수정할 수 없습니다");
+		this.Tab00_Tabpage1_btn_search_onclick();
+		return;
+	}
+	
+	if(flag != "delete")
+	{
+		if(this.fctn_checkRecord(this.dsAthrCert.rowposition, true) == false)
+			return;
+	}else
+	{
+		this.dsAthrCert.setRowType(this.dsAthrCert.rowposition, "delete");
+		this.dsAthrCert.deleteRow(this.dsAthrCert.rowposition);
+	}	
+	
+	var inds = "dsAthrCert=dsAthrCert:u";
+	this.gfn_TransactionP(this.dsAthrCert.getRowType(this.dsAthrCert.rowposition),"JSP/ed/ed126f_athrCert_dml.jsp", inds, "", "", "fnCallback", true, "P", false, this);
+	
+};
+
+//삭제
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	if(this.dsAthrCert.getColumn(this.dsAthrCert.rowposition, "CERT_YN") == "2" && this.dsAthrCert.getColumn(this.dsAthrCert.rowposition,"CERT_PERMITE_DATE") == null)
+	{
+		if(this.confirm("삭제하시겠습니까?"))
+		{
+			this.dsAthrCert.setColumn(this.dsAthrCert.rowposition, "REG_DELETE", "D");
+			flag = "delete";
+			this.Div00_btn_save_onclick();
+		}
+	}else
+	{
+		alert("이미 승인된 신청서는 삭제할 수 없습니다.");
+		return;
+	}
+};
+
+
+this.fnCallback = function(svcId, errCode, errMsg)
+{	
+	if(errCode != 0)
+	{
+		alert(errMsg);
+		trace(this.dsAthrCert.saveXML());
+	}
+    else if( svcId == "search|fnCallback|P")
+	{
+		if(this.dsAthrCert.rowcount < 1 )
+			alert("조회결과가 없습니다.");
+	}
+	else if( svcId == "2|fnCallback|P" || svcId == "4|fnCallback|P") //insert,update
+	{
+		alert("저장이 완료되었습니다");
+		this.Tab00_Tabpage1_btn_search_onclick();
+		flag = "normal";
+	}
+	else 
+	{
+		flag = "normal";
+	}
+}
+
+//null check
+this.fnisNull = function (Val)
+{
+	if (new String(Val).valueOf() == "undefined") return true;
+	if (Val == null) return true;
+	if (("x" + Val == "xNaN") && (new String(Val.length).valueOf() == "undefined")) return true;
+	if (Val.length == 0) return true;
+
+	return false;
+}
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var nRow = this.dsAthrCert.rowposition;
+	
+	var vCert_permiteDate = this.dsAthrCert.getColumn(nRow, "CERT_PERMITE_DATE");
+	var vCert_YN = this.dsAthrCert.getColumn(nRow, "CERT_YN");
+
+	if(vCert_YN == 0)
+	{
+		var today = objDate.toString().substr(0,8);
+		var permiteDate = new Date(vCert_permiteDate.substr(0,4), vCert_permiteDate.substr(4,2) -1 , vCert_permiteDate.substr(6,2));
+		permiteDate.addDate(1);
+		
+		var month = (permiteDate.getMonth()+1).toString().padLeft(2,"0");
+		var day = permiteDate.getDate().toString().padLeft(2, "0");
+		
+		var vCert_print_date = permiteDate.getYear().toString() + month + day; 
+	
+		if(vCert_print_date < today && sUserCompetence != "S")
+			alert("증명서는 승인일 다음날까지만 출력 가능합니다. \n재경팀에 재승인요청 부탁 드립니다.");
+	}
+	
+	if(vCert_YN != 0 && sUserCompetence != "S")
+		alert("미승인 또는 기각된 증명서는 출력할 수 없습니다. \n재경팀에 확인요청 부탁 드립니다.");
+	else
+	{
+		var rdUrl, rdParam; 
+		var vAthr_Identity = this.dsAthrCert.getColumn(nRow, "ATHR_IDENTITY");
+		var vReg_Date = this.dsAthrCert.getColumn(nRow, "REG_DATE");
+		var vReg_No =this.dsAthrCert.getColumn(nRow, "REG_NO");
+		var vWork_sDste = this.dsAthrCert.getColumn(nRow, "WORK_SDATE");
+		var vWork_eDate = this.dsAthrCert.getColumn(nRow, "WORK_EDATE");
+		var to_date = Eco.date.getMaskFormatString(objDate, "yyyy")+"."+Eco.date.getMaskFormatString(objDate, "MM")+"."+Eco.date.getMaskFormatString(objDate, "dd");
+		var to_work_sDate = vWork_sDste.substr(0,4) +"년 "+ vWork_sDste.substr(4,2) +"월 "+ vWork_sDste.substr(6,2)+"일";
+		var to_work_eDate = vWork_eDate.substr(0,4) +"년 "+ vWork_eDate.substr(4,2) +"월 "+ vWork_eDate.substr(6,2)+"일";
+		var vAuthorGb = this.dsAthrCert.getColumn(nRow, "ATHR_AUTHORGB_NM");
+		var vAuthorGb_Nm = "";
+		
+		if(vAuthorGb =="0")
+			vAuthorGb_Nm = "저자";
+		else
+			vAuthorGb_Nm = "외주자";
+		
+		if(this.Div00.form.Radio00 == 0)
+			rdUrl = gv_urlMrd + "/ed/ED126.mrd";
+		else
+			rdUrl = gv_urlMrd + "/ed/ED126_1.mrd";
+	
+		rdParam  = "/rp [" + vAthr_Identity + "] [" + to_work_sDate + "] [" + to_work_eDate + "] [" + to_date + "] [" + vReg_Date + "] [" + vReg_No + "] [" + vAuthorGb_Nm + "]";
+	
+		this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1024, 770);
+			
+	}
+};
+
+this.ED126F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.ED126F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.Grid00);
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="cb_kind" propid="value" datasetid="dsAthrCert" columnid="REG_KIND"/>
+      <BindItem id="item1" compid="cb_reason" propid="value" datasetid="dsAthrCert" columnid="REG_REASON"/>
+      <BindItem id="item2" compid="cal_regDate" propid="value" datasetid="dsAthrCert" columnid="REG_DATE"/>
+      <BindItem id="item3" compid="edt_athrIdentity" propid="value" datasetid="dsAthrCert" columnid="ATHR_IDENTITY"/>
+      <BindItem id="item4" compid="edt_athrName" propid="value" datasetid="dsAthrCert" columnid="ATHR_NAME"/>
+      <BindItem id="item5" compid="cal_worksDate1" propid="value" datasetid="dsAthrCert" columnid="WORK_SDATE"/>
+      <BindItem id="item6" compid="cal_workeDate1" propid="value" datasetid="dsAthrCert" columnid="WORK_EDATE"/>
+      <BindItem id="item7" compid="ed_regKey" propid="value" datasetid="dsAthrCert" columnid="REG_KEY"/>
+    </Bind>
+  </Form>
+</FDL>

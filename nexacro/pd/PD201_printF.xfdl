@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD201_printF" width="350" height="120" titletext="New Form" onload="PD201_printF_onload">
+    <Layouts>
+      <Layout height="120" mobileorientation="landscape" width="350">
+        <Button id="btn_close" taborder="0" text="닫기" top="10" width="45" height="22" right="10" font="8pt/normal &quot;Arial&quot;" onclick="btn_close_onclick"/>
+        <Static id="Static02" taborder="1" text="구       분" left="9" top="55" width="90" height="24" textAlign="center" background="#c3e4cd" font="bold 10pt/normal &quot;Arial&quot;" color="#01656f"/>
+        <Combo id="cbo_gb" taborder="2" left="99" top="55" width="160" height="24" border="1px groove #c3e4cd" innerdataset="dsGB" codecolumn="CODE" datacolumn="NAME" index="0" text="전체" value=""/>
+        <Combo id="cbo_cardym" taborder="3" left="99" top="83" width="160" height="24" border="1px groove #c3e4cd" innerdataset="dsCardYM" codecolumn="CODE" datacolumn="NAME" index="0" text="전체" value=""/>
+        <Static id="Static02_00" taborder="4" text="유효기간" left="9" top="83" width="90" height="24" textAlign="center" background="#c3e4cd" font="bold 10pt/normal &quot;Arial&quot;" color="#01656f"/>
+        <Button id="btn_print" taborder="5" text="출력하기" top="63" width="65" height="37" right="10" font="8pt/normal &quot;Arial&quot;" onclick="btn_print_onclick"/>
+        <Static id="Static_SP2" taborder="6" left="9" top="52" width="250" height="2" background="#368b65"/>
+        <Static id="Static_SP2_00" taborder="7" left="9" top="80" width="250" height="2" background="#368b65"/>
+        <Static id="Static_SP2_00_00" taborder="8" left="9" top="108" width="250" height="2" background="#368b65"/>
+        <Static id="Static00" taborder="9" text="업무추진비 예산 확인" left="10" top="5" color="#7fb39d" font="bold 24px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="280" height="40"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsGB">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NAME">전체</Col>
+            <Col id="CODE"/>
+          </Row>
+          <Row>
+            <Col id="NAME">사용중</Col>
+            <Col id="CODE">01</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">미사용</Col>
+            <Col id="CODE">02</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">분실</Col>
+            <Col id="CODE">03</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCardYM">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NAME">전체</Col>
+            <Col id="CODE"/>
+          </Row>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">유효</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">만료</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var rdUrl = "";
+	var rdParam = "";
+	rdUrl = gv_urlMrd + "/pd/PD201.mrd";
+	
+	rdParam = "/rp [" + nexacro.trim(this.cbo_gb.value) + "][" + nexacro.trim(this.cbo_cardym.value) + "]";
+	
+	var objParam = {rdUrl:rdUrl, rdParam:rdParam};
+	var sOpenStyle = "topmost=true autosize=false dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false";
+	
+	var rect;
+	if(system.navigatorname = 'nexacro')
+	{
+		if(system.monitorcount > 1)
+		{
+			var monitor_index = system.getMonitorIndex(system.clientToScreenX(this,0), system.clientToScreenY(this,0));
+			rect = system.getScreenRect(monitor_index);
+		}
+		else
+			rect = system.getScreenRect(1);
+	}
+	else
+		rect = system.getScreenRect(1);
+
+	var sOpenStyle = "topmost=true autosize=false dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false resizable=true";
+
+	nexacro.open("print_mrd", "mk::MKRDF.xfdl", this.getOwnerFrame(), objParam, sOpenStyle, rect.left, rect.top, rect.width, rect.height, this);
+};
+
+this.PD201_printF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.cbo_cardym.set_index(0);
+	this.cbo_gb.set_index(0);
+};
+]]></Script>
+  </Form>
+</FDL>

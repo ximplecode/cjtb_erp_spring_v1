@@ -1,0 +1,833 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED121F" width="1350" height="750" titletext="저자소득자 관리" onload="ED121F_onload" onsize="ED121F_onsize" ontimer="ED121F_ontimer">
+    <Layouts>
+      <Layout height="750" mobileorientation="landscape" width="1350">
+        <Static id="Static10" taborder="25" text="회사" left="295" top="272" width="7.41%" height="85" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Button id="btn_address2" taborder="2" text="주소찾기" left="Static10:5" top="315" width="7.41%" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_address_onclick"/>
+        <Edit id="edt_comZip" taborder="0" left="btn_address2:4" top="315" width="14%" height="40" enable="true"/>
+        <Edit id="edt_comAddr" taborder="1" left="edt_comZip:3" top="315" width="47.41%" height="40" onchanged="edtAddress1_onchanged"/>
+        <Div id="Div00" taborder="3" left="15" top="10" height="40" border="1px solid lightgray" text="" width="97%">
+          <Layouts>
+            <Layout>
+              <Button id="btn_new" taborder="0" text="신규" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_new_onclick" right="241"/>
+              <Button id="btn_search" taborder="1" text="조회" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_search_onclick" right="172"/>
+              <Button id="btn_save" taborder="2" text="저장" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_save_onclick" right="104"/>
+              <Button id="btn_print" taborder="3" text="출력" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" right="36"/>
+              <Button id="btn_attend" taborder="4" text="계약관리" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="79" right="320" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_attend_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="4" left="16" top="53" height="667" binddataset="dsAuthor" width="269">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="103"/>
+                <Column size="143"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="성명"/>
+                <Cell col="1" text="주민번호"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ATHR_NAME"/>
+                <Cell col="1" text="bind:ATHR_JUMINNO2"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_univ" taborder="5" text="졸업학교" left="Grid00:10" top="361" width="7.41%" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_search_onclick"/>
+        <Edit id="edt_univ" taborder="6" left="btn_univ:4" top="360" width="29.70%" height="40" onchanged="edt_univ_onchanged" text="테스트"/>
+        <Static id="Static00" taborder="7" text="저자/&#13;&#10;작업구분" top="55" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="Grid00:10" height="40" width="7.41%"/>
+        <Combo id="Cb_AUTHORGB" taborder="8" top="55" innerdataset="dsAuthorKind" codecolumn="No" datacolumn="Name" left="Static00:5" height="40" width="13%"/>
+        <Combo id="Cb_JOBKIND" taborder="9" top="55" height="40" innerdataset="dsJobKind" codecolumn="No" datacolumn="Name" left="Cb_AUTHORGB:2" width="12.96%" text=""/>
+        <Static id="Static15" taborder="10" text="직종" left="Grid00:10" top="406" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Static id="Static18" taborder="11" text="관련부서" left="Grid00:10" top="449" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Combo id="Cb_Job" taborder="12" text="Combo00" left="Static15:5" top="404" width="15%" height="40" innerdataset="dsJob" codecolumn="JOB_CODE" datacolumn="JOB_NAME"/>
+        <Combo id="Cb_Section" taborder="13" text="Combo00" left="Static18:5" top="449" width="15%" height="40" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME"/>
+        <Static id="Static14" taborder="14" text="전공" left="edt_univ:6" top="360" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_subject" taborder="15" left="Static14:5" top="360" width="31.63%" height="40" onchanged="edt_univ_onchanged" text="테스트"/>
+        <Static id="Static01" taborder="16" text="학년구분" top="54" height="40" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="Cb_JOBKIND:3" width="7.41%"/>
+        <CheckBox id="chk_1" taborder="17" text="유치" top="60" height="31" width="6.15%" left="Static01:87" onclick="CheckBox_onclick"/>
+        <CheckBox id="chk_2" taborder="18" text="초등" top="60" height="31" width="6.52%" left="chk_1:8" onclick="CheckBox_onclick"/>
+        <CheckBox id="chk_3" taborder="19" text="중고등" top="58" height="31" width="6.52%" left="chk_2:5"/>
+        <Static id="Static16" taborder="20" text="은행명" left="Cb_Job:3" top="404" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Combo id="Cb_Bank" taborder="21" text="Combo00" left="Static16:3" top="404" width="15%" height="40" innerdataset="dsBank" codecolumn="BANK_CODE" datacolumn="BANK_NAME"/>
+        <Div id="Div01" taborder="22" top="55" height="40" border="1px solid lightgray" left="Static01:3" text="" width="35.56%"/>
+        <Static id="Static02" taborder="23" text="내/외국인" left="Grid00:10" top="99" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Static id="Static06" taborder="24" text="자택" left="Grid00:10" top="183" width="7.41%" height="85" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Static id="Static11" taborder="26" text="직장명" left="Static10:5" top="272" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Static id="Static07" taborder="27" text="전화" left="Static06:5" top="185" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Button id="btn_address1" taborder="30" text="주소찾기" left="Static06:5" top="227" width="7.41%" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_address1_onclick"/>
+        <Edit id="edt_homeZip" taborder="28" left="btn_address1:4" top="227" width="14%" height="40" enable="true"/>
+        <Edit id="edt_homeAddr" taborder="29" left="edt_homeZip:3" top="227" width="47.41%" height="40"/>
+        <Edit id="edt_homeTel" taborder="31" left="Static07:4" top="185" width="18.4%" height="40"/>
+        <Static id="Static08" taborder="32" text="핸드폰" left="edt_homeTel:3" top="185" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_hp" taborder="33" left="Static08:6" top="185" width="13.48%" height="40"/>
+        <Static id="Static09" taborder="34" text="이메일" left="edt_hp:4" top="184" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_email" taborder="35" left="Static09:4" top="183" width="13.85%" height="40"/>
+        <Edit id="edt_comName" taborder="38" left="Static11:3" top="271" width="18.52%" height="40"/>
+        <Static id="Static12" taborder="36" text="전화" left="edt_comName:2" top="271" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_comTel" taborder="39" left="Static12:4" top="271" width="13.48%" height="40"/>
+        <Static id="Static13" taborder="37" text="팩스" left="edt_comTel:6" top="271" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_comFax" taborder="40" left="Static13:2" top="271" width="13.93%" height="40"/>
+        <Div id="Div01_00" taborder="41" left="Static02:5" top="99" width="26.00%" height="40" border="1px solid lightgray" formscrollbartype="none">
+          <Layouts>
+            <Layout>
+              <Radio id="Radio00" taborder="0" left="51" top="9" width="217" height="20" innerdataset="dsNative" codecolumn="No" datacolumn="Name" direction="vertical" onitemchanged="Div01_00_Radio00_onitemchanged"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static03" taborder="42" text="거주구분" left="Div01_00:4" top="99" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Div id="Div01_00_00" taborder="43" left="Static03:4" top="99" width="35.41%" height="40" border="1px solid lightgray" formscrollbartype="none">
+          <Layouts>
+            <Layout>
+              <Radio id="Radio00" taborder="0" left="92" top="9" width="234" height="20" innerdataset="dsABODE" codecolumn="No" datacolumn="Name" direction="vertical"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static17" taborder="44" text="계좌번호" left="Cb_Bank:4" top="404" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_acntNo" taborder="45" left="Static17:4" top="404" width="23.63%" height="40"/>
+        <Static id="Static19" taborder="46" text="추천인" left="Cb_Section:3" top="449" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_recommander" taborder="48" left="Static19:2" top="449" width="15%" height="40"/>
+        <Static id="Static20" taborder="47" text="추천사유" left="edt_recommander:5" top="450" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_recommand" taborder="49" left="Static20:5" top="449" width="23.63%" height="40"/>
+        <Static id="Static04" taborder="50" text="성명" left="Grid00:10" top="141" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_name" taborder="51" left="Static04:5" top="141" width="26.00%" height="40" text="bind:" readonly="false" onchanged="edt_name_onchanged"/>
+        <Static id="Static05" taborder="52" text="주민번호" left="edt_name:4" top="141" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <MaskEdit id="medt_juminNo" taborder="55" left="Static05:4" top="141" width="13.48%" height="40" format="###### - #######" type="string" trimtype="both" textAlign="center"/>
+        <Static id="Static00_00_03_03_00_00" taborder="53" text="저자코드" left="medt_juminNo:5" top="141" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_code" taborder="54" left="Static00_00_03_03_00_00:3" top="141" width="14.00%" height="40"/>
+        <CheckBox id="ck_permite" taborder="63" text="승인" left="Grid00:13" top="495" width="7.11%" height="35" visible="false" textAlign="center"/>
+        <Static id="st_register" taborder="59" text="승인부서" left="ck_permite:8" top="491" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_register" taborder="62" left="st_register:3" top="492" width="14.96%" height="40"/>
+        <Static id="st_permiter" taborder="60" text="승인자" left="edt_register:3" top="491" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_permiter" taborder="61" left="st_permiter:3" top="492" width="14.96%" height="40"/>
+        <Static id="Static20_00" taborder="56" text="약정만료일" left="edt_permiter:3" top="492" width="7.41%" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Calendar id="cal_closeDate" taborder="57" left="Static20_00:4" top="491" width="16.22%" height="40"/>
+        <Tab id="Tab00" taborder="58" tabindex="0" left="Grid00:20" top="540" width="76.30%" height="180" onchanged="Tab00_onchanged">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="1.원고료 현황">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="0" left="0" top="1" width="100.10%" height="150" binddataset="dsAthrWithHold">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="100"/>
+                          <Column size="130"/>
+                          <Column size="200"/>
+                          <Column size="100"/>
+                          <Column size="100"/>
+                          <Column size="100"/>
+                          <Column size="150"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="지급일자"/>
+                          <Cell col="1" text="관리카드번호"/>
+                          <Cell col="2" text="소득사항"/>
+                          <Cell col="3" text="수량"/>
+                          <Cell col="4" text="단가"/>
+                          <Cell col="5" text="금액"/>
+                          <Cell col="6" text="부서"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:PAYDATE"/>
+                          <Cell col="1" text="bind:WORK_NO"/>
+                          <Cell col="2" text="bind:WITHHOLDDTL_BOOKNAME"/>
+                          <Cell col="3" text="bind:WITHHOLDDTL_QTY" textAlign="right"/>
+                          <Cell col="4" text="bind:WITHHOLDDTL_UNITCOST" displaytype="currency" textAlign="right"/>
+                          <Cell col="5" text="bind:WITHHOLDDTL_AMOUNT" displaytype="currency" textAlign="right"/>
+                          <Cell col="6" text="bind:SECTION_NAME"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="2.경력사항">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="0" left="1" top="1" width="99.9%" height="160" binddataset="dsAthrJobHis">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="101"/>
+                          <Column size="102"/>
+                          <Column size="198"/>
+                          <Column size="254"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="20" band="head"/>
+                          <Row size="20" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell colspan="2" text="근무기간"/>
+                          <Cell col="2" rowspan="2" text="근무처"/>
+                          <Cell col="3" rowspan="2" text="비고"/>
+                          <Cell row="1" text="입사월"/>
+                          <Cell row="1" col="1" text="퇴사월"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:ATHR_IDENTITY"/>
+                          <Cell col="1" text="bind:ATHRJOBHIS_SEQ"/>
+                          <Cell col="2" text="bind:ATHRJOBHIS_SDATE"/>
+                          <Cell col="3" text="bind:ATHRJOBHIS_EDATE"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage3" text="3.저서현황">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="0" left="1" top="0" width="99.9%" height="160" binddataset="dsAthrWrtHis">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="631"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="도서명"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:ATHRWRTHIS_BOOKNAME"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage5" text="4.계약현황">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="0" left="2" top="0" width="99.8%" height="160" binddataset="dsAuthorAttend">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="102"/>
+                          <Column size="115"/>
+                          <Column size="119"/>
+                          <Column size="129"/>
+                          <Column size="124"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="소속"/>
+                          <Cell col="1" text="부서"/>
+                          <Cell col="2" text="등록자"/>
+                          <Cell col="3" colspan="2" text="계약기간"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:COMPANY_NM" combodataset="dsCompany" combocodecol="COMPANY_CODE" combodatacol="COMPANY_NAME"/>
+                          <Cell col="1" text="bind:SECTION_NM"/>
+                          <Cell col="2" text="bind:EMPLOYEE_NM"/>
+                          <Cell col="3" text="bind:WORK_SDATE"/>
+                          <Cell col="4" text="bind:WORK_EDATE"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+var sUserCompetence1 = "1";   // 일반사용자
+var sUserCompetence2 = "2";   // 부서승인권자
+var sUserCompetence3 = "3";   // 부서장
+var sUserCompetence4 = "4";   // 일반승인권자
+var sUserCompetence5 = "5";   // 승인1차권한
+var sUserCompetence6 = "6";   // 승인2차권한
+
+var sSelect;
+
+this.Div00_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.ED121F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", "ed_01_101");
+	sSelect = nexacro.getApplication().gds_menu.getColumn(nRow, "UM_PER_SELECT");
+	sSelect = Eco.decode(sSelect, null, "1", sSelect);
+	
+	//일반 사용자일 경우 안보이게
+	var value = sSelect > sUserCompetence1;
+	this.ck_permite.set_visible(value);
+	this.st_permiter.set_visible(value);
+	this.edt_permiter.set_visible(value);
+	this.st_register.set_visible(value);
+	this.edt_register.set_visible(value);
+	
+	this.gfn_TransactionP("select","JSP/ed/section_select.jsp", "dsSection=dsSection", "dsSection=dsSection", "", "", false, "P", false, this);	//부서
+	this.gfn_TransactionP("select","JSP/ed/job_select.jsp", "dsJob=dsJob", "dsJob=dsJob", "", "", false, "P", false, this);	//직종
+	this.gfn_TransactionP("select","JSP/ed/bank_select.jsp", "dsBank=dsBank", "dsBank=dsBank", "", "", false, "P", false, this);	//은행
+	this.gfn_TransactionP("select","JSP/ed/univ_select.jsp", "dsUniversity=dsUniversity", "dsUniversity=dsUniversity", "", "", true, "P", false, this);	//대학교
+	
+};
+
+//주소찾기 (자택)
+this.btn_address1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("popupAddress", "", "common::Address.xfdl", "popupAddress1CallBack", this, 10, 58, 500, 550);
+};
+
+this.popupAddress1CallBack = function (svcId, rtValue)
+{
+	var addData = rtValue.split(":");
+	this.edt_homeZip.set_value(addData[0]);
+    this.edt_homeAddr.set_value(addData[1] + addData[2]);
+};
+
+//주소찾기 (회사)
+this.btn_address_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("popupAddress", "", "common::Address.xfdl", "popupAddress2CallBack", this, 10, 58, 500, 550);
+};
+
+this.popupAddress2CallBack = function (svcId, rtValue)
+{
+	var addData = rtValue.split(":");
+	this.edt_comZip.set_value(addData[0]);
+    this.edt_comAddr.set_value(addData[1] + addData[2]);
+};
+
+//저자 조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.dsSection,
+					dsParam2:this.dsAuthor}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupSearch", objParam, "ed::ED121_SearchF.xfdl", "popupCallBack", this, 10, 58, 350, 250);
+};
+
+//학교찾기 
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.dsUniversity}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popuppUniversity", objParam, "ed::EDUniv_SearchF.xfdl", "popupCallBack", this, 10, 58, 450, 550);
+};
+
+this.fnisNull = function (Val)
+{
+	if (new String(Val).valueOf() == "undefined") return true;
+	if (Val == null) return true;
+	if (("x" + Val == "xNaN") && (new String(Val.length).valueOf() == "undefined")) return true;
+	if (Val.length == 0) return true;
+
+	return false;
+}
+
+//신규
+this.Div00_btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsAuthor.rowcount > 0)
+		this.Div00_btn_save_onclick(obj);
+	this.dsAuthor.addRow();
+};
+
+//tab page data
+this.dsAuthor_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	if(this.dsAuthor.getRowType(e.row) != 2 && this.dsAuthor.rowcount != 0) // rowtype = 2 : insert
+	{
+		this.chk_1.set_value((this.dsAuthor.getColumn(e.row, "ATHR_CLASSGB")).substring(0, 1));
+		this.chk_2.set_value((this.dsAuthor.getColumn(e.row, "ATHR_CLASSGB")).substring(1, 1));
+		this.chk_3.set_value((this.dsAuthor.getColumn(e.row, "ATHR_CLASSGB")).substring(2, 1));
+		
+		var strArg = "ATHR_IDENTITY=" + this.dsAuthor.getColumn(e.row,"ATHR_IDENTITY");
+		var inds = "";
+		var outds="";
+		
+		//원고료현황
+		inds = "dsAthrWithHold=dsAthrWithHold";
+		outds = "dsAthrWithHold=dsAthrWithHold";
+		this.gfn_TransactionP("search","JSP/ed/athrwithhold_select.jsp", inds, outds, strArg, "Callback_search", false, "P", false, this);
+		
+		//경력사항
+		inds = "dsAthrJobHis=dsAthrJobHis";
+		outds = "dsAthrJobHis=dsAthrJobHis";
+		this.gfn_TransactionP("search","JSP/ed/athrjobhis_select.jsp", inds, outds, strArg, "Callback_search", false, "P", false, this);
+		
+		//저서현황
+		inds = "dsAthrWrtHis=dsAthrWrtHis";
+		outds = "dsAthrWrtHis=dsAthrWrtHis";
+		this.gfn_TransactionP("search","JSP/ed/athrwrthis_select.jsp", inds, outds, strArg, "Callback_search", false, "P", false, this);
+		
+		//계약현황 
+		var strArg2 = "ATHR_JUMINNO=" + this.dsAuthor.getColumn(e.row,"ATHR_JUMINNO");
+		inds = "dsAuthorAttend=dsAuthorAttend";
+		outds = "dsAuthorAttend=dsAuthorAttend";
+		this.gfn_TransactionP("search","JSP/ed/ed121f_athrattend.jsp", inds, outds, strArg2, "Callback_search", false, "P", false, this);
+	}else
+	{
+		this.dsAthrWithHold.clearData();
+		this.dsAthrJobHis.clearData();
+		this.dsAthrWithHold.clearData();
+		this.dsAthrFile.clearData();
+		this.dsAuthorAttend.clearData();
+	
+	}
+};
+
+//저장
+this.Div00_btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.fn_chkRecord(this.dsAuthor.row))
+	{
+		inds = "dsAuthor=dsAuthor:U";
+		this.gfn_TransactionP("search","JSP/ed/ed121f_author_dml.jsp", inds, "", "", "Callback_search", false, "P", false, this);
+	}
+};
+
+//입력값 확인
+this.fn_chkRecord = function(nRow)
+{
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "ATHR_AUTHORGB")))
+	{
+		this.alert("저자구분을 선택하세요");
+		this.Cb_AUTHORGB.setFocus();
+		return false;
+	}
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "ATHR_JOBKIND")))
+	{
+		this.alert("직업구분을 선택하세요");
+		this.Cb_JOBKIND.setFocus();
+		return false;
+	}
+	
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "ATHR_NAME")))
+	{
+		this.alert("성명을 정확히 입력하세요.");
+		this.edt_name.setFocus();
+		return false;
+	}
+	
+	if((this.dsAuthor.getColumn(nRow, "ATHR_JUMINNO")).length < 13)
+	{
+		this.alert("주민등록번호를 정확히 입력해주세요.");
+		this.medt_juminNo.setFocus();
+		return false;
+	}
+	
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "ATHR_HP")))
+	{
+		this.alert("핸드폰번호를 입력해주세요.");
+		this.edt_hp.setFocus();
+		return false;
+	}
+	
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "ATHR_EMAIL")))
+	{
+		this.alert("이메일 주소를 입력해주세요.");
+		this.edt_email.setFocus();
+		return false;
+	}
+	
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "ATHR_HOMEADDR")))
+	{
+		this.alert("자택주소를 입력해주세요.");
+		this.edt_homeZip.setFocus();
+		return false;
+	}
+	
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "ATHR_COMNAME")))
+	{
+		this.alert("직장명을 입력해주세요.");
+		this.edt_comName.setFocus();
+		return false;
+	}
+
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "UNIV_NAME")))
+	{
+		this.alert("졸업학교를 선택해주세요.");
+		this.edt_comName.setFocus();
+		return false;
+	}
+	
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "ATHR_UNIVSTUDY")))
+	{
+		this.alert("전공을 입력해주세요.");
+		this.edt_subject.setFocus();
+		return false;
+	}
+	
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "JOB_CODE")))
+	{
+		this.alert("직종을 선택해주세요.");
+		this.edt_comName.setFocus();
+		return false;
+	}
+		
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "BANK_CODE")))
+	{
+		this.alert("은행명을 선택해주세요.");
+		this.Cb_Bank.setFocus();
+		return false;
+	}
+	
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "ATHR_ACNTNO")))
+	{
+		this.alert("계좌번호를 입력해주세요.");
+		this.edt_acntNo.setFocus();
+		return false;
+	}
+	
+	if(this.fnisNull(this.dsAuthor.getColumn(nRow, "SECTION_CODE")))
+	{
+		this.alert("관련부서를 선택해주세요.");
+		this.Cb_Section.setFocus();
+		return false;
+	}
+	
+	return true;
+}
+
+this.Div00_btn_attend_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var varIdentity = this.dsAuthor.getColumn(this.dsAuthor.row, "ATHR_IDENTITY");
+	var varJuminNo = this.medt_juminNo.value;
+	var objParam = {identity:varIdentity,
+					juminNo:varJuminNo, 
+					param1:this.dsAuthorAttend,
+					param2:this.dsSection,
+					param3:this.dsCompany }; //popup 화면으로 전달할 값
+					
+	if( varIdentity == null || varJuminNo == null )
+	{
+		alert("저자 조회 및 선택 후 사용 가능합니다.");
+	}else
+	{
+		this.lfn_showModal("popupSearch", objParam, "ed::EDAuthor_Attendance.xfdl", "popupCallBack", this, 10, 58, 600, 500);
+	}
+};
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsAuthor.rowposition;
+	var iAthr_Identity = this.dsAuthor.getColumn(nRow, "ATHR_IDENTITY"); 
+	
+	if(iAthr_Identity != null)
+	{
+		this.Div00_btn_save_onclick(obj);
+		
+		var rdUrl, rdParam; 
+	
+		rdUrl = gv_urlMrd + "/ed/ED121.mrd";
+		
+		rdParam  = "/rp [" + iAthr_Identity + "]";
+		
+		this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1024, 770);
+
+	}else
+	{
+		alert("조회된 항목이 없습니다");
+	}
+	
+};
+
+
+this.ED121F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.ED121F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+		var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.Tab00.Tabpage1.form.Grid00);
+	this.lfn_grdAutofit(this.Tab00.Tabpage2.form.Grid00);
+	this.lfn_grdAutofit(this.Tab00.Tabpage3.form.Grid00);
+	this.lfn_grdAutofit(this.Tab00.Tabpage5.form.Grid00);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="LVL" type="STRING" size="1"/>
+          <Column id="SHORTCODE" type="STRING" size="3"/>
+          <Column id="SECTION_SHORTNAME" type="STRING" size="10"/>
+          <Column id="BU_UPCODE" type="STRING" size="5"/>
+          <Column id="BU_GRCODE" type="STRING" size="2"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAuthor" onrowposchanged="dsAuthor_onrowposchanged">
+        <ColumnInfo>
+          <Column id="ATHR_IDENTITY" type="INT" size="20"/>
+          <Column id="ATHR_JUMINNO" type="STRING" size="13"/>
+          <Column id="ATHR_JUMINNO2" type="STRING" size="13"/>
+          <Column id="ATHR_NAME" type="STRING" size="30"/>
+          <Column id="ATHR_AUTHORGB" type="STRING" size="1"/>
+          <Column id="ATHR_JOBKIND" type="STRING" size="1"/>
+          <Column id="ATHR_ABODEGB" type="STRING" size="1"/>
+          <Column id="ATHR_NATIVEGB" type="STRING" size="1"/>
+          <Column id="ATHR_CLASSGB" type="STRING" size="3"/>
+          <Column id="ATHR_HOMETEL" type="STRING" size="20"/>
+          <Column id="ATHR_HP" type="STRING" size="20"/>
+          <Column id="ATHR_EMAIL" type="STRING" size="50"/>
+          <Column id="ATHR_HOMEZIP" type="STRING" size="6"/>
+          <Column id="ATHR_HOMEADDR" type="STRING" size="100"/>
+          <Column id="ATHR_COMNAME" type="STRING" size="30"/>
+          <Column id="ATHR_COMTEL" type="STRING" size="20"/>
+          <Column id="ATHR_COMFAX" type="STRING" size="20"/>
+          <Column id="ATHR_COMZIP" type="STRING" size="6"/>
+          <Column id="ATHR_COMADDR" type="STRING" size="100"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="UNIV_CODE" type="STRING" size="4"/>
+          <Column id="UNIV_NAME" type="STRING" size="30"/>
+          <Column id="ATHR_UNIVSTUDY" type="STRING" size="30"/>
+          <Column id="BANK_CODE" type="STRING" size="2"/>
+          <Column id="BANK_NAME" type="STRING" size="30"/>
+          <Column id="JOB_CODE" type="STRING" size="6"/>
+          <Column id="ATHR_ACNTNO" type="STRING" size="20"/>
+          <Column id="ATHR_RECOMMANDER" type="STRING" size="20"/>
+          <Column id="ATHR_RECOMMAND" type="STRING" size="40"/>
+          <Column id="ATHR_CLOSEDATE" type="STRING" size="8"/>
+          <Column id="ATHRPRMT_REGISTER" type="STRING" size="20"/>
+          <Column id="ATHRPRMT_PERMITER" type="STRING" size="20"/>
+          <Column id="ATHRPRMT_PERMITE" type="STRING" size="1"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="ATHR_PERMITE_DATE" type="STRING" size="8"/>
+          <Column id="ATHR_PERMITE_SECTION" type="STRING" size="5"/>
+          <Column id="ATHR_PERMITE_EMPLOYEE" type="STRING" size="6"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUniversity">
+        <ColumnInfo>
+          <Column id="UNIV_CODE" type="STRING" size="4"/>
+          <Column id="UNIV_NAME" type="STRING" size="30"/>
+          <Column id="UNIV_REMARK" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAuthorKind">
+        <ColumnInfo>
+          <Column id="No" type="STRING" size="1"/>
+          <Column id="Name" type="STRING" size="6"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="No">0</Col>
+            <Col id="Name">저자</Col>
+          </Row>
+          <Row>
+            <Col id="No">1</Col>
+            <Col id="Name">외주자</Col>
+          </Row>
+          <Row>
+            <Col id="No">2</Col>
+            <Col id="Name">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsJobKind">
+        <ColumnInfo>
+          <Column id="No" type="STRING" size="1"/>
+          <Column id="Name" type="STRING" size="6"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="No">0</Col>
+            <Col id="Name">교사</Col>
+          </Row>
+          <Row>
+            <Col id="No">1</Col>
+            <Col id="Name">강사</Col>
+          </Row>
+          <Row>
+            <Col id="No">2</Col>
+            <Col id="Name">프리랜서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsJob">
+        <ColumnInfo>
+          <Column id="JOB_CODE" type="STRING" size="6"/>
+          <Column id="JOB_NAME" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBank">
+        <ColumnInfo>
+          <Column id="BANK_CODE" type="STRING" size="6"/>
+          <Column id="BANK_NAME" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsNative">
+        <ColumnInfo>
+          <Column id="No" type="STRING" size="1"/>
+          <Column id="Name" type="STRING" size="6"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="No">1</Col>
+            <Col id="Name">내국인</Col>
+          </Row>
+          <Row>
+            <Col id="No">9</Col>
+            <Col id="Name">외국인</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsABODE">
+        <ColumnInfo>
+          <Column id="No" type="STRING" size="1"/>
+          <Column id="Name" type="STRING" size="6"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="No">0</Col>
+            <Col id="Name">거주자</Col>
+          </Row>
+          <Row>
+            <Col id="No">1</Col>
+            <Col id="Name">비거주자</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAthrWithHold">
+        <ColumnInfo>
+          <Column id="ATHR_IDENTITY" type="INT" size="20"/>
+          <Column id="PAYDATE" type="STRING" size="8"/>
+          <Column id="WITHHOLDDTL_WORKCONTENT" type="STRING" size="30"/>
+          <Column id="WITHHOLDDTL_BOOKNAME" type="STRING" size="50"/>
+          <Column id="WITHHOLDDTL_QTY" type="INT" size="6"/>
+          <Column id="WITHHOLDDTL_UNITCOST" type="STRING" size="9"/>
+          <Column id="WITHHOLDDTL_AMOUNT" type="INT" size="10"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="WORK_NO" type="STRING" size="17"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAthrJobHis">
+        <ColumnInfo>
+          <Column id="ATHR_IDENTITY" type="INT" size="20"/>
+          <Column id="ATHRJOBHIS_SEQ" type="STRING" size="2"/>
+          <Column id="ATHRJOBHIS_SDATE" type="STRING" size="6"/>
+          <Column id="ATHRJOBHIS_EDATE" type="STRING" size="6"/>
+          <Column id="ATHRJOBHIS_COMNAME" type="STRING" size="20"/>
+          <Column id="ATHRJOBHIS_REMARK" type="STRING" size="40"/>
+          <Column id="DATACHK" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAthrWrtHis">
+        <ColumnInfo>
+          <Column id="ATHR_IDENTITY" type="INT" size="20"/>
+          <Column id="ATHRWRTHIS_SEQ" type="STRING" size="2"/>
+          <Column id="ATHRWRTHIS_BOOKNAME" type="STRING" size="60"/>
+          <Column id="DATACHK" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAuthorAttend">
+        <ColumnInfo>
+          <Column id="COMPANY_KIND" type="STRING" size="256"/>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="256"/>
+          <Column id="WORK_SDATE" type="STRING" size="256"/>
+          <Column id="WORK_EDATE" type="STRING" size="256"/>
+          <Column id="ATHR_IDENTITY" type="STRING" size="256"/>
+          <Column id="ATHRATTEND_DELETE" type="STRING" size="256"/>
+          <Column id="ATHRATTEND_SEQ" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_NM" type="STRING" size="256"/>
+          <Column id="ATHR_JUMINNO" type="STRING" size="256"/>
+          <Column id="COMPANY_NM" type="STRING" size="256"/>
+          <Column id="SECTION_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCompany">
+        <ColumnInfo>
+          <Column id="COMPANY_CODE" type="STRING" size="1"/>
+          <Column id="COMPANY_NAME" type="STRING" size="30"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="COMPANY_CODE">C</Col>
+            <Col id="COMPANY_NAME">천재교육</Col>
+          </Row>
+          <Row>
+            <Col id="COMPANY_CODE">T</Col>
+            <Col id="COMPANY_NAME">천재교과서</Col>
+          </Row>
+          <Row>
+            <Col id="COMPANY_CODE">H</Col>
+            <Col id="COMPANY_NAME">해법에듀</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edt_name" propid="value" datasetid="dsAuthor" columnid="ATHR_NAME"/>
+      <BindItem id="item2" compid="edt_code" propid="value" datasetid="dsAuthor" columnid="ATHR_IDENTITY"/>
+      <BindItem id="item3" compid="edt_homeTel" propid="value" datasetid="dsAuthor" columnid="ATHR_HOMETEL"/>
+      <BindItem id="item4" compid="edt_hp" propid="value" datasetid="dsAuthor" columnid="ATHR_HP"/>
+      <BindItem id="item5" compid="edt_email" propid="value" datasetid="dsAuthor" columnid="ATHR_EMAIL"/>
+      <BindItem id="item6" compid="edt_homeZip" propid="value" datasetid="dsAuthor" columnid="ATHR_HOMEZIP"/>
+      <BindItem id="item7" compid="edt_homeAddr" propid="value" datasetid="dsAuthor" columnid="ATHR_HOMEADDR"/>
+      <BindItem id="item8" compid="edt_comName" propid="value" datasetid="dsAuthor" columnid="ATHR_COMNAME"/>
+      <BindItem id="item9" compid="edt_comTel" propid="value" datasetid="dsAuthor" columnid="ATHR_COMTEL"/>
+      <BindItem id="item10" compid="edt_comFax" propid="value" datasetid="dsAuthor" columnid="ATHR_COMFAX"/>
+      <BindItem id="item11" compid="edt_comZip" propid="value" datasetid="dsAuthor" columnid="ATHR_COMZIP"/>
+      <BindItem id="item12" compid="edt_comAddr" propid="value" datasetid="dsAuthor" columnid="ATHR_COMADDR"/>
+      <BindItem id="item13" compid="edt_univ" propid="value" datasetid="dsAuthor" columnid="UNIV_NAME"/>
+      <BindItem id="item14" compid="edt_subject" propid="value" datasetid="dsAuthor" columnid="ATHR_UNIVSTUDY"/>
+      <BindItem id="item15" compid="Cb_Job" propid="value" datasetid="dsAuthor" columnid="JOB_CODE"/>
+      <BindItem id="item16" compid="Cb_Bank" propid="value" datasetid="dsAuthor" columnid="BANK_CODE"/>
+      <BindItem id="item17" compid="edt_acntNo" propid="value" datasetid="dsAuthor" columnid="ATHR_ACNTNO"/>
+      <BindItem id="item18" compid="Cb_Section" propid="value" datasetid="dsAuthor" columnid="SECTION_CODE"/>
+      <BindItem id="item19" compid="edt_recommander" propid="value" datasetid="dsAuthor" columnid="ATHR_RECOMMANDER"/>
+      <BindItem id="item20" compid="edt_recommand" propid="value" datasetid="dsAuthor" columnid="ATHR_RECOMMAND"/>
+      <BindItem id="item21" compid="Cb_AUTHORGB" propid="value" datasetid="dsAuthor" columnid="ATHR_AUTHORGB"/>
+      <BindItem id="item22" compid="Cb_JOBKIND" propid="value" datasetid="dsAuthor" columnid="ATHR_JOBKIND"/>
+      <BindItem id="item1" compid="medt_juminNo" propid="value" datasetid="dsAuthor" columnid="ATHR_JUMINNO"/>
+      <BindItem id="item23" compid="Div01_00.form.Radio00" propid="value" datasetid="dsAuthor" columnid="ATHR_NATIVEGB"/>
+      <BindItem id="item24" compid="Div01_00_00.form.Radio00" propid="value" datasetid="dsAuthor" columnid="ATHR_ABODEGB"/>
+      <BindItem id="item25" compid="cal_closeDate" propid="value" datasetid="dsAuthor" columnid="ATHR_CLOSEDATE"/>
+      <BindItem id="item26" compid="edt_permiter" propid="value" datasetid="dsAuthor" columnid="ATHRPRMT_PERMITER"/>
+      <BindItem id="item27" compid="edt_register" propid="value" datasetid="dsAuthor" columnid="ATHRPRMT_REGISTER"/>
+      <BindItem id="item28" compid="ck_permite" propid="value" datasetid="dsAuthor" columnid="ATHRPRMT_PERMITE"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GW801" width="1620" height="830" titletext="New Form" onload="GW801_onload" onsize="GW801_onsize">
+    <Layouts>
+      <Layout height="830" mobileorientation="landscape" width="1620">
+        <Grid id="grd_dst" taborder="0" left="1.23%" top="28.43%" binddataset="dsPostDst" onheadclick="grd_dst_onheadclick" cellsizingtype="col" right="1.85%" bottom="1.81%" autosizingtype="col" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="36"/>
+                <Column size="90"/>
+                <Column size="60"/>
+                <Column size="75"/>
+                <Column size="400"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="150"/>
+                <Column size="260"/>
+                <Column size="80"/>
+                <Column size="70"/>
+                <Column size="60"/>
+                <Column size="110"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="26"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="0" edittype="checkbox" displaytype="checkboxcontrol"/>
+                <Cell col="1" text="문서번호" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="2" text="우편번호" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="3" text="수취인" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="4" text="주소" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="5" text="수취인 번호" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="6" text="품명" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="7" text="부서명/발신인" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="8" text="발신인 주소" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="9" text="발신인 번호" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="10" text="결재상태" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="11" text="출력" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+                <Cell col="12" text="위치" font="normal 700 13px/normal &quot;Gulim&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox" suppress="bind:POST_NO"/>
+                <Cell col="1" text="bind:POST_NO" textAlign="center" suppress="1"/>
+                <Cell col="2" text="bind:POST_NUMBER" textAlign="center"/>
+                <Cell col="3" text="bind:PAYEE_NAME" textAlign="center"/>
+                <Cell col="4" text="bind:ADDR"/>
+                <Cell col="5" text="bind:PHONE_NUMBER" textAlign="center"/>
+                <Cell col="6" text="bind:GOODS_CODE" combodataset="dsGoods" combodatacol="NAME" edittype="combo" displaytype="combocontrol" combocodecol="CODE"/>
+                <Cell col="7" text="bind:DEPT_NAME_NUMBER" textAlign="center"/>
+                <Cell col="8" text="bind:FROM_ADDR"/>
+                <Cell col="9" text="bind:FROM_PHONE_NUMBER" textAlign="center"/>
+                <Cell col="10" text="bind:STATUS" textAlign="center"/>
+                <Cell col="11" text="bind:LABEL_STATUS" textAlign="center"/>
+                <Cell col="12" text="bind:LOCATION" displaytype="combocontrol" edittype="combo" combodataset="dsLoc" combodatacol="NAME" combocodecol="CODE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="1" text="우편번호" left="2.1%" top="11.22%" font="bold 14px/normal &quot;굴림&quot;" bottom="85.16%" right="92.35%"/>
+        <Static id="Static02" taborder="2" text="상태처리" left="2.1%" top="17.01%" font="bold 14px/normal &quot;굴림&quot;" right="92.35%" bottom="79.38%"/>
+        <Static id="Static04" taborder="3" text="신청 리스트" left="2.04%" top="24.22%" font="bold 14px/normal &quot;굴림&quot;" right="90.19%" bottom="72.29%"/>
+        <Calendar id="cald_begin_date" taborder="4" left="8.09%" top="11.22%" font="14px/normal &quot;Arial&quot;" bottom="85.16%" right="83.02%"/>
+        <Calendar id="cald_end_date" taborder="5" left="21.6%" top="11.22%" font="14px/normal &quot;Arial&quot;" right="69.51%" bottom="85.16%"/>
+        <Static id="Static01_01" taborder="6" text="~" left="18.09%" top="11.22%" font="bold 14px/normal &quot;굴림&quot;" textAlign="center" right="79.38%" bottom="85.16%"/>
+        <Combo id="cbo_search" taborder="7" left="31.98%" top="11.22%" innerdataset="dsStatusSearch" codecolumn="CODE" datacolumn="NAME" index="0" text="결재완료" value="1" font="14px/normal &quot;Arial&quot;" right="59.81%" bottom="85.16%"/>
+        <Button id="btn_search" taborder="8" text="조회" left="41.42%" top="11.22%" onclick="btn_search_onclick" font="14px/normal &quot;Arial&quot;" right="54.94%" bottom="85.16%"/>
+        <Combo id="cbo_status" taborder="9" left="8.09%" top="17.01%" innerdataset="dsStatus" codecolumn="CODE" datacolumn="NAME" index="0" text="작성상태" value="0" font="14px/normal &quot;Arial&quot;" right="83.7%" bottom="79.38%"/>
+        <Button id="btn_status_save" taborder="10" text="저장" left="17.9%" top="17.01%" onclick="btn_status_save_onclick" font="14px/normal &quot;Arial&quot;" right="78.46%" bottom="79.38%"/>
+        <Static id="Static03" taborder="11" text="출력상태처리" left="24.26%" top="17.01%" font="bold 14px/normal &quot;굴림&quot;" bottom="79.38%" right="68.21%"/>
+        <Combo id="cbo_print" taborder="12" left="31.98%" top="17.01%" innerdataset="dsPrintGubun" codecolumn="CODE" datacolumn="NAME" index="0" text="대기" value="0" font="14px/normal &quot;Arial&quot;" bottom="79.38%" right="59.81%"/>
+        <Button id="btn_print_save" taborder="13" text="저장" left="41.42%" top="17.01%" onclick="btn_print_save_onclick" font="14px/normal &quot;Arial&quot;" right="54.94%" bottom="79.38%"/>
+        <Combo id="cbo_loc" taborder="14" left="85.62%" top="24.34%" innerdataset="dsLoc" codecolumn="CODE" datacolumn="NAME" enable="false" font="14px/normal &quot;Arial&quot;" right="1.85%" bottom="72.17%"/>
+        <Static id="Static05" taborder="15" text="위치구분" left="79.32%" top="24.34%" font="bold 14px/normal &quot;굴림&quot;" right="14.75%" bottom="72.17%"/>
+        <Button id="btn_exlup" taborder="16" text="송장번호 업로드" left="89.32%" top="17.71%" visible="false" font="14px/normal &quot;Arial&quot;" right="1.85%" bottom="78.8%"/>
+        <Static id="Static99" taborder="17" left="1.23%" background="#cfddea" top="22.41%" right="1.85%" bottom="77.35%"/>
+        <Static id="Static99_00" taborder="18" left="1.17%" background="#cfddea" top="9.04%" right="1.79%" bottom="90.8%"/>
+        <Button id="btn_save" taborder="21" text="저장" top="4.73%" onclick="btn_save_onclick" font="14px/normal &quot;Arial&quot;" right="1.8%" bottom="91.77%" width="3.95%"/>
+        <Button id="btn_del" taborder="20" text="삭제" top="4.73%" onclick="btn_del_onclick" font="14px/normal &quot;Arial&quot;" right="btn_save:5%" bottom="91.77%" width="3.95%"/>
+        <Button id="btn_exceldown" taborder="19" text="엑셀변환" top="4.73%" onclick="btn_exceldown_onclick" font="14px/normal &quot;Arial&quot;" right="btn_del:50%" bottom="91.77%" width="5.43%"/>
+        <Grid id="grd_dst_excel" taborder="22" left="1650" top="256" width="1182" height="599" binddataset="dsPostDst_excel" onheadclick="grd_dst_onheadclick" cellsizingtype="col" visible="false">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="100"/>
+                <Column size="400"/>
+                <Column size="80"/>
+                <Column size="150"/>
+                <Column size="100"/>
+                <Column size="270"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="28"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="받는분" background="#f0f0f0" color="black"/>
+                <Cell col="1" text="연락처" background="#f0f0f0" color="black"/>
+                <Cell col="2" text="주소(도로명)" background="#f0f0f0" color="black"/>
+                <Cell col="3" text="상품명" background="#f0f0f0" color="black"/>
+                <Cell col="4" text="보내는분(팀/이름)" background="#f0f0f0" color="black"/>
+                <Cell col="5" text="연락처" background="#f0f0f0" color="black"/>
+                <Cell col="6" text="주소(도로명)" background="#f0f0f0" color="black"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PAYEE_NAME" textAlign="center"/>
+                <Cell col="1" text="bind:PHONE_NUMBER" textAlign="center"/>
+                <Cell col="2" text="bind:ADDR"/>
+                <Cell col="3" text="bind:GOODS_NAME" textAlign="center"/>
+                <Cell col="4" text="bind:DEPT_NAME_NUMBER" textAlign="center"/>
+                <Cell col="5" textAlign="center" text="bind:FROM_PHONE_NUMBER"/>
+                <Cell col="6" text="bind:FROM_ADDR"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="23" text="택배 업무 관리" left="4.20%" top="1.08%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" right="70.56%" bottom="89.64%" verticalAlign="top"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsPostDst">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="POST_MST_ID" type="STRING" size="256"/>
+          <Column id="POST_DST_ID" type="STRING" size="256"/>
+          <Column id="POST_NUMBER" type="STRING" size="256"/>
+          <Column id="PAYEE_NAME" type="STRING" size="256"/>
+          <Column id="ADDR" type="STRING" size="256"/>
+          <Column id="PHONE_NUMBER" type="STRING" size="256"/>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="GOODS_ETC" type="STRING" size="256"/>
+          <Column id="BELONGING_DEPT_CODE" type="STRING" size="256"/>
+          <Column id="BELONGING_DEPT_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_NAME" type="STRING" size="256"/>
+          <Column id="POST_NO" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="LABEL_STATUS" type="STRING" size="256"/>
+          <Column id="INVOICE_NUMBER" type="STRING" size="256"/>
+          <Column id="APP_NAME" type="STRING" size="256"/>
+          <Column id="DEPT_NAME_NUMBER" type="STRING" size="256"/>
+          <Column id="PRINT_GUBUN" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="LOCATION" type="STRING" size="256"/>
+          <Column id="FROM_ADDR" type="STRING" size="256"/>
+          <Column id="FROM_PHONE_NUMBER" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsStatusSearch">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">결재완료</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">9</Col>
+            <Col id="NAME">미결</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">전체</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsPostDst_excel">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="POST_MST_ID" type="STRING" size="256"/>
+          <Column id="POST_DST_ID" type="STRING" size="256"/>
+          <Column id="POST_NUMBER" type="STRING" size="256"/>
+          <Column id="PAYEE_NAME" type="STRING" size="256"/>
+          <Column id="ADDR" type="STRING" size="256"/>
+          <Column id="PHONE_NUMBER" type="STRING" size="256"/>
+          <Column id="GOODS_CODE" type="STRING" size="256"/>
+          <Column id="GOODS_ETC" type="STRING" size="256"/>
+          <Column id="BELONGING_DEPT_CODE" type="STRING" size="256"/>
+          <Column id="BELONGING_DEPT_NAME" type="STRING" size="256"/>
+          <Column id="GOODS_NAME" type="STRING" size="256"/>
+          <Column id="POST_NO" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="LABEL_STATUS" type="STRING" size="256"/>
+          <Column id="INVOICE_NUMBER" type="STRING" size="256"/>
+          <Column id="APP_NAME" type="STRING" size="256"/>
+          <Column id="DEPT_NAME_NUMBER" type="STRING" size="256"/>
+          <Column id="PRINT_GUBUN" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="LOCATION" type="STRING" size="256"/>
+          <Column id="FROM_ADDR" type="STRING" size="256"/>
+          <Column id="FROM_PHONE_NUMBER" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPrintSearch">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">전체</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">대기</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">완료</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGoods">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">도서</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">서류</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsFeeGubun">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">선불</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">착불</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsStatus">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">작성상태</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsLoc">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">매거진부</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">회원사업부</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">영업부 - 본사</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">자료실 - 본사</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="NAME">쇼핑몰팀</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsPrintGubun">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">대기</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">완료</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsPostExcel">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+          <Column id="Column7" type="STRING" size="256"/>
+          <Column id="Column8" type="STRING" size="256"/>
+          <Column id="Column9" type="STRING" size="256"/>
+          <Column id="Column10" type="STRING" size="256"/>
+          <Column id="Column11" type="STRING" size="256"/>
+          <Column id="Column12" type="STRING" size="256"/>
+          <Column id="Column13" type="STRING" size="256"/>
+          <Column id="Column14" type="STRING" size="256"/>
+          <Column id="Column15" type="STRING" size="256"/>
+          <Column id="Column16" type="STRING" size="256"/>
+          <Column id="Column17" type="STRING" size="256"/>
+          <Column id="Column18" type="STRING" size="256"/>
+          <Column id="Column19" type="STRING" size="256"/>
+          <Column id="Column20" type="STRING" size="256"/>
+          <Column id="Column21" type="STRING" size="256"/>
+          <Column id="Column22" type="STRING" size="256"/>
+          <Column id="Column23" type="STRING" size="256"/>
+          <Column id="Column24" type="STRING" size="256"/>
+          <Column id="Column25" type="STRING" size="256"/>
+          <Column id="Column26" type="STRING" size="256"/>
+          <Column id="Column27" type="STRING" size="256"/>
+          <Column id="Column28" type="STRING" size="256"/>
+          <Column id="Column29" type="STRING" size="256"/>
+          <Column id="Column30" type="STRING" size="256"/>
+          <Column id="Column31" type="STRING" size="256"/>
+          <Column id="Column32" type="STRING" size="256"/>
+          <Column id="Column33" type="STRING" size="256"/>
+          <Column id="Column34" type="STRING" size="256"/>
+          <Column id="Column35" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPostExcel_temp">
+        <ColumnInfo>
+          <Column id="INVOICE_NUMBER" type="STRING" size="256"/>
+          <Column id="DST_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var sResult, strSABUN, strSEQ = "", out_var, row_status, target_row;
+var i_flow_id,NEW_I_FLOW_ID, str_url, str_outds, str_arg, return_str;
+var Fv_HeadChk=0;
+var savecount, savecounttemp;
+var rowcount; // 송장번호 업데이트 개수
+var gds_userinfo = nexacro.getApplication().gds_userinfo;
+var gv_svraddr = nexacro.getApplication().gfn_getUrl("svcUrl");
+var gv_sabun = gds_userinfo.getColumn(0,"SABUN");
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+
+this.GW801_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var strUrl = "JSP/gw/SQL_GW801_ADMIN_CHECK.jsp";
+	var strDs = "";
+	var strArg = " SABUN =" + nexacro.wrapQuote(gv_sabun);
+
+	this.gfn_TransactionP("ADMINCK", strUrl, strDs, strDs, strArg, "callback_admin_check", false, "P", false, this);
+};
+
+this.callback_admin_check = function(trid, ErrorCode, ErrorMsg)
+{
+    if (ErrorCode != 0)
+      {alert(ErrorMsg);
+       return;}
+    
+    if (trid == "ADMINCK")
+    {
+		if (nexacro.toNumber(ErrorMsg) < 1 )
+		{
+			alert("관리자만 접근 가능 합니다.");
+			if(this.parent.parent.name == "WorkDetail"){
+				var nRow = this.parent.parent.ds_selectMenu.findRow("selectMenu_Div_id",this.parent.name);
+				var bClose_id = this.parent.parent.ds_selectMenu.getColumn(nRow,"selectButton_Div_id");
+				this.parent.parent.div_selectMenu.form.all[bClose_id].form.CloseButton.click();
+			}
+			else
+				this.close();
+		}
+		var objDate = new nexacro.Date();
+		var today = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+		this.cald_begin_date.set_value(today);	
+		this.cald_end_date.set_value(today);
+		
+		this.fnGetLocValue();
+		this.btn_search.click();		
+    }
+}
+// 자신의 위치 얻어오기
+this.fnGetLocValue = function()
+{
+	if ( gds_userinfo.getColumn(0,"BUSECD") == '6G000' || gds_userinfo.getColumn(0,"BUSECD") == '58000' || gds_userinfo.getColumn(0,"BUSECD") == '9A660') // 매거진부
+	 {
+		this.cbo_loc.set_value('1');
+	 }else if ( gds_userinfo.getColumn(0,"BUSECD") == '9A400' ) // 회원사업부
+	 {
+		this.cbo_loc.set_value('2');
+	 }else if ( gds_userinfo.getColumn(0,"BUSECD") != null && (gds_userinfo.getColumn(0,"BUSECD").substr(0,2) == 'DJ' || gds_userinfo.getColumn(0,"BUSECD").substr(0,2) == 'DK') ) // 영업부
+	 {
+		this.cbo_loc.set_value('3');
+	 }else if ( gds_userinfo.getColumn(0,"BUSECD") == 'EA300' || gds_userinfo.getColumn(0,"BUSECD") == 'DH400' )  // T셀파쇼핑몰팀
+	 {
+		this.cbo_loc.set_value('5');
+	 }
+	 else // 자료실
+	 {
+		this.cbo_loc.set_value('4');
+	 }
+}
+// 조회버튼 클릭
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/gw/SQL_GW801_SELECT.jsp";	
+	var strDs = "dsPostDst=dsPostDst";    
+	 
+	var strArg = " BEGIN_DATE =" + nexacro.wrapQuote(this.cald_begin_date.value);		
+	strArg += " END_DATE =" + nexacro.wrapQuote(this.cald_end_date.value);	
+	strArg += " STATUS =" + nexacro.wrapQuote(this.cbo_search.value);	
+	strArg += " LOCATION =" + nexacro.wrapQuote(this.cbo_loc.value);
+	 
+	this.gfn_TransactionP("SelectIsDst", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+}
+
+this.grd_dst_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		if(Fv_HeadChk == 0)
+			Fv_HeadChk = 1;
+		else
+			Fv_HeadChk = 0;
+		this.grd_dst.setCellProperty("head",0,"text",Fv_HeadChk);
+		for(var i = 0; i < this.dsPostDst.rowcount; i++)
+		{
+			this.dsPostDst.setColumn(i, "CHK", Fv_HeadChk);
+		}
+	}
+};
+
+this.fnCallback = function(trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+      {alert(ErrorMsg);
+       return;}
+	else if (trid != null)
+	{
+		trid = trid.split("|");
+		trid = trid[0] 
+	}
+	if ( trid == "DeleteMst") // 삭제 완료 시
+    {
+		this.btn_search.click();
+		alert("삭제 되었습니다.");
+    }
+    if ( trid == "PrintMst")
+    {
+		this.btn_search.click();
+    }
+    if ( trid == "UpdateStatusMst")
+    {
+		savecounttemp++;
+		if ( savecount == savecounttemp ) // 체크된 개수 업데이트 후 다시 조회
+			this.btn_search.click();
+    }
+    if ( trid == "UpdatePrintStatusMst")
+    {
+		savecounttemp++;
+		if ( savecount == savecounttemp ) // 체크된 개수 업데이트 후 다시 조회
+			this.btn_search.click();
+    }
+    if ( trid == "UpdateInvoiceDst")
+    {
+		savecounttemp++;
+		if ( rowcount == savecounttemp ) // 체크된 개수 업데이트 후 다시 조회
+		{
+			alert("송장번호 " +rowcount+"(개)가 갱신 되었습니다.");
+			this.btn_search.click();
+		}
+    }
+}
+// 삭제 버튼 클릭
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsPostDst.rowcount <= 0)
+	{
+		alert("삭제 가능한 결제문서가 없습니다.");
+		return;
+	}
+	else{
+		if(this.confirm("삭제하시겠습니까?\r\n" + "삭제된 문서는 복수할 수 없습니다."))
+		{
+			for (var i = 0; i < this.dsPostDst.rowcount; i++)
+			{
+				if(this.dsPostDst.getColumn(i, "CHK") == 1)
+					this.fnMstDeleteTran(i);
+			}
+		}
+	}	
+};
+// 마스터 삭제 함수
+this.fnMstDeleteTran = function(i)
+{
+	var strUrl = "JSP/gw/SQL_GW801_M_DELETE.jsp";	
+	var strDs = "";    
+	var strArg = " MST_ID =" + nexacro.wrapQuote(this.dsPostDst.getColumn(i,"POST_MST_ID"));
+	
+	this.gfn_TransactionP("DeleteMst", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+}
+// 엑셀변환 시 출력 완료로 변경 
+this.fnUpdatePrintGubunTran = function(i)
+{
+	var strUrl = "JSP/gw/SQL_GW801_M_PRINTYN.jsp";	
+	var strDs = ""; 
+	var strArg = " MST_ID =" + nexacro.wrapQuote(this.dsPostDst.getColumn(i,"POST_MST_ID"));		  
+	
+	this.gfn_TransactionP("PrintMst", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+}
+// MST 상태변경 트랜잭션
+this.fnMstUpdateStatusTran = function(i)
+{
+	var strUrl = "JSP/gw/SQL_GW801_M_UPDATE_STATUS.jsp";	
+	var strDs = "";   
+	var strArg = " MST_ID =" + nexacro.wrapQuote(this.dsPostDst.getColumn(i,"POST_MST_ID"));	
+    strArg += " STATUS =" + nexacro.wrapQuote(this.cbo_status.value);
+    strArg += " I_FLOW_ID =" + nexacro.wrapQuote(this.dsPostDst.getColumn(i,"I_FLOW_ID"));
+	  
+	this.gfn_TransactionP("UpdateStatusMst", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+}
+// MST 출력 구분 상태변경 트랜잭션
+this.fnMstUpdatePrintStatusTran = function(i)
+{
+	var strUrl = "JSP/gw/SQL_GW801_M_UPDATE_PRINT_STATUS.jsp";	
+	var strDs = "";
+	var strArg = " MST_ID =" + nexacro.wrapQuote(this.dsPostDst.getColumn(i,"POST_MST_ID"));	
+    strArg += " PRINT_GUBUN =" + nexacro.wrapQuote(this.cbo_print.value);
+	
+	this.gfn_TransactionP("UpdatePrintStatusMst", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+}
+// 작성상태로 변경 및 I_FLOW_ID 삭제
+this.btn_status_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	savecount = 0; // 체크 개수
+	savecounttemp = 0; // 콜백 체크 개수
+	var chktemp = 0;
+	if(this.dsPostDst.rowcount <= 0 )
+	{
+		alert("변경가능한 결재문서가 없습니다. 문서를 체크 후 클릭 하세요.");
+		return;
+	}
+	for(var i=0; i< this.dsPostDst.rowcount; i++)
+	{
+		if( this.dsPostDst.getColumn(i,"CHK") == 1 ){
+			chktemp = 1;
+			savecount++;
+		}
+	}
+	if ( chktemp == 0 ) 
+	{
+		alert("체크된 문서가 없습니다. 문서를 체크 후 클릭 하세요.");
+		return;
+	}
+	
+	if(this.confirm("상태를 ("+this.cbo_status.text+")로 변경 하시겠습니까?\r\n 전자결재 이전의 작성상태로 돌아갑니다."))   
+	{
+		for(var i=0; i< this.dsPostDst.rowcount; i++)
+		{
+			if( this.dsPostDst.getColumn(i,"CHK") == 1 )
+				this.fnMstUpdateStatusTran(i);
+		}
+	}
+};
+// 문서 저장 버튼 클릭
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if ( this.dsPostDst.rowcount <= 0 ) 
+	{
+			alert("저장 가능한 리스트가 없습니다.");
+			return;
+	}
+	for( i=0; i< this.dsPostDst.rowcount; i++ )
+	{
+		if ( this.dsPostDst.getRowType(i) == '4' ) // 수정 처리
+		{
+			trace( i+ " " + this.dsPostDst.getRowType(i) );
+			this.fnDstSaveTran(i);
+		}
+	}
+	this.btn_search.click();
+};
+
+this.fnDstSaveTran = function(i)
+{
+	var strUrl   = "JSP/gw/SQL_GW800_D_UPDATE.jsp";	
+	var strDs = "";    
+	
+	var strArg  = " DST_ID="      		+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"POST_DST_ID")); 
+    strArg += " POST_NUMBER="       	+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"POST_NUMBER"));  
+	strArg += " PAYEE_NAME="   			+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"PAYEE_NAME"));
+	strArg += " ADDR="       			+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"ADDR"));
+	strArg += " PHONE_NUMBER="    		+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"PHONE_NUMBER")); 
+	strArg += " GOODS_CODE="     		+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"GOODS_CODE")); 
+	strArg += " GOODS_ETC=" 			+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"GOODS_ETC")); 
+	strArg += " BELONGING_DEPT_CODE="   + nexacro.wrapQuote(this.dsPostDst.getColumn(i,"BELONGING_DEPT_CODE"));
+	strArg += " SEND_NAME="       		+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"DEPT_NAME_NUMBER"));
+	strArg += " LOCATION="       		+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"LOCATION"));
+	strArg += " FROM_ADDR="       		+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"FROM_ADDR"));	
+	strArg += " FROM_PHONE_NUMBER="    	+ nexacro.wrapQuote(this.dsPostDst.getColumn(i,"FROM_PHONE_NUMBER"));	
+
+	this.gfn_TransactionP("UpdateDst", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+}
+// 프린트 상태 변경
+this.btn_print_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	savecount = 0; // 체크 개수
+	savecounttemp = 0; // 콜백 체크 개수
+	var chktemp = 0;
+	if(this.dsPostDst.rowcount <= 0 )
+	{
+		alert("변경가능한 결재문서가 없습니다. 문서를 체크 후 클릭 하세요.");
+		return;
+	}
+	for(var i=0; i< this.dsPostDst.rowcount; i++)
+	{
+		if( this.dsPostDst.getColumn(i,"CHK") == 1 ){
+			chktemp = 1;
+			savecount++;
+		}
+	}
+	if ( chktemp == 0 ) 
+	{
+		alert("체크된 문서가 없습니다. 문서를 체크 후 클릭 하세요.");
+		return;
+	}
+	
+	if(this.confirm("출력상태를 ("+this.cbo_print.text+")로 변경 하시겠습니까?\r\n"))
+	{
+		for(var i=0; i< this.dsPostDst.rowcount; i++)
+		{
+			if( this.dsPostDst.getColumn(i,"CHK") == 1 )
+				this.fnMstUpdatePrintStatusTran(i);
+		}
+	}
+};
+this.btn_exceldown_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var k = 0; // 엑셀 데이터셋에 복사위치
+    if ( this.dsPostDst.rowcount <= 0){
+		alert("변환가능한 신청리스트가 없습니다.");
+		return;
+	}
+	this.dsPostDst_excel.clearData();
+	for(var i=0; i< this.dsPostDst.rowcount; i++)
+	{
+		if( this.dsPostDst.getColumn(i,"CHK") == 1 ) 
+		{
+			trace(k);
+			this.dsPostDst_excel.addRow();
+			this.dsPostDst_excel.setColumn(k,"POST_NUMBER", this.dsPostDst.getColumn(i,"POST_NUMBER"));
+			this.dsPostDst_excel.setColumn(k,"PAYEE_NAME", this.dsPostDst.getColumn(i,"PAYEE_NAME"));
+			this.dsPostDst_excel.setColumn(k,"ADDR", this.dsPostDst.getColumn(i,"ADDR"));
+			this.dsPostDst_excel.setColumn(k,"TEL_NUMBER", this.dsPostDst.getColumn(i,"TEL_NUMBER"));
+			this.dsPostDst_excel.setColumn(k,"PHONE_NUMBER", this.dsPostDst.getColumn(i,"PHONE_NUMBER"));
+			this.dsPostDst_excel.setColumn(k,"GOODS_NAME", this.dsPostDst.getColumn(i,"GOODS_NAME"));
+			this.dsPostDst_excel.setColumn(k,"DEPT_NAME_NUMBER", this.dsPostDst.getColumn(i,"DEPT_NAME_NUMBER"));
+			this.dsPostDst_excel.setColumn(k,"FEE_NAME", this.dsPostDst.getColumn(i,"FEE_NAME"));
+			this.dsPostDst_excel.setColumn(k,"POST_DST_ID", this.dsPostDst.getColumn(i,"POST_DST_ID"));
+			this.dsPostDst_excel.setColumn(k,"WEIGHT", this.dsPostDst.getColumn(i,"WEIGHT"));
+			this.dsPostDst_excel.setColumn(k,"DELIVER_MSG", this.dsPostDst.getColumn(i,"DELIVER_MSG"));
+			this.dsPostDst_excel.setColumn(k,"FROM_ADDR", this.dsPostDst.getColumn(i,"FROM_ADDR"));
+			this.dsPostDst_excel.setColumn(k,"FROM_PHONE_NUMBER", this.dsPostDst.getColumn(i,"FROM_PHONE_NUMBER"));			
+			k++;	
+		}
+	}
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.grd_dst_excel, "배송리스트!A1");
+	this.exportObj.set_exportfilename( this.cald_end_date.value+"(Post_Label).xls" );
+	this.exportObj.set_exporturl(gv_urlXeni);   
+    this.exportObj.exportData();
+	
+	for(var i=0; i< this.dsPostDst.rowcount; i++)
+	{
+		if( this.dsPostDst.getColumn(i,"CHK") == 1 ) 
+			this.fnUpdatePrintGubunTran(i);
+	}
+};
+/* // 닫기 버튼 클릭 시
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.parent.parent.name == "WorkDetail"){
+		var nRow = this.parent.parent.ds_selectMenu.findRow("selectMenu_Div_id",this.parent.name);
+		var bClose_id = this.parent.parent.ds_selectMenu.getColumn(nRow,"selectButton_Div_id");
+		this.parent.parent.div_selectMenu.form.all[bClose_id].form.CloseButton.click();
+	}
+	else
+		this.close();
+};
+*/
+this.GW801_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if (this.width <= 1000 || this.height < 410)
+	{
+		this.Static00.set_font('bold 24px/normal "함초롬바탕 확장B"');
+		this.Static01.set_font('bold 10px/normal "굴림"');
+		this.Static02.set_font('bold 10px/normal "굴림"');
+		this.Static03.set_font('bold 10px/normal "굴림"');
+		this.Static04.set_font('bold 10px/normal "굴림"');
+		this.Static05.set_font('bold 10px/normal "굴림"');
+		
+		this.cald_begin_date.set_font('normal 10px/normal "Arial"');
+		this.cald_end_date.set_font('normal 10px/normal "Arial"');
+		this.cbo_search.set_font('normal 10px/normal "Arial"');
+		this.cbo_status.set_font('normal 10px/normal "Arial"');
+		this.cbo_print.set_font('normal 10px/normal "Arial"');
+		this.cbo_loc.set_font('normal 10px/normal "Arial"');
+		this.btn_search.set_font('normal 10px/normal "Arial"');
+		this.btn_status_save.set_font('normal 10px/normal "Arial"');
+		this.btn_print_save.set_font('normal 10px/normal "Arial"');
+		this.btn_exlup.set_font('normal 10px/normal "Arial"');
+		this.btn_exceldown.set_font('normal 10px/normal "Arial"');
+		this.btn_del.set_font('normal 10px/normal "Arial"');
+		this.btn_save.set_font('normal 10px/normal "Arial"');
+		this.btn_close.set_font('normal 10px/normal "Arial"');
+	}
+	else if ((this.width < 1260 || this.height < 580) && (this.width > 1000 || this.height > 410) )
+	{
+		this.Static00.set_font('bold 30px/normal "함초롬바탕 확장B"');
+		this.Static01.set_font('bold 12px/normal "굴림"');
+		this.Static02.set_font('bold 12px/normal "굴림"');
+		this.Static03.set_font('bold 12px/normal "굴림"');
+		this.Static04.set_font('bold 12px/normal "굴림"');
+		this.Static05.set_font('bold 12px/normal "굴림"');
+		
+		this.cald_begin_date.set_font('normal 12px/normal "Arial"');
+		this.cald_end_date.set_font('normal 12px/normal "Arial"');
+		this.cbo_search.set_font('normal 12px/normal "Arial"');
+		this.cbo_status.set_font('normal 12px/normal "Arial"');
+		this.cbo_print.set_font('normal 12px/normal "Arial"');
+		this.cbo_loc.set_font('normal 12px/normal "Arial"');
+		this.btn_search.set_font('normal 12px/normal "Arial"');
+		this.btn_status_save.set_font('normal 12px/normal "Arial"');
+		this.btn_print_save.set_font('normal 12px/normal "Arial"');
+		this.btn_exlup.set_font('normal 12px/normal "Arial"');
+		this.btn_exceldown.set_font('normal 12px/normal "Arial"');
+		this.btn_del.set_font('normal 12px/normal "Arial"');
+		this.btn_save.set_font('normal 12px/normal "Arial"');
+		this.btn_close.set_font('normal 12px/normal "Arial"');
+	}
+	else
+	{
+		this.Static00.set_font('bold 40px/normal "함초롬바탕 확장B"');
+		this.Static01.set_font('bold 14px/normal "굴림"');
+		this.Static02.set_font('bold 14px/normal "굴림"');
+		this.Static03.set_font('bold 14px/normal "굴림"');
+		this.Static04.set_font('bold 14px/normal "굴림"');
+		this.Static05.set_font('bold 14px/normal "굴림"');
+		
+		this.cald_begin_date.set_font('normal 14px/normal "Arial"');
+		this.cald_end_date.set_font('normal 14px/normal "Arial"');
+		this.cbo_search.set_font('normal 14px/normal "Arial"');
+		this.cbo_status.set_font('normal 14px/normal "Arial"');
+		this.cbo_print.set_font('normal 14px/normal "Arial"');
+		this.cbo_loc.set_font('normal 14px/normal "Arial"');
+		this.btn_search.set_font('normal 14px/normal "Arial"');
+		this.btn_status_save.set_font('normal 14px/normal "Arial"');
+		this.btn_print_save.set_font('normal 14px/normal "Arial"');
+		this.btn_exlup.set_font('normal 14px/normal "Arial"');
+		this.btn_exceldown.set_font('normal 14px/normal "Arial"');
+		this.btn_del.set_font('normal 14px/normal "Arial"');
+		this.btn_save.set_font('normal 14px/normal "Arial"');
+		this.btn_close.set_font('normal 14px/normal "Arial"');
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

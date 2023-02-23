@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="필름 입/출고 관리" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Static id="Static02" taborder="0" text="필름 입/출고 관리" left="8" top="10" width="346" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnSave" taborder="3" text="저장" top="29" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" onclick="btnSave_onclick" right="1.54%"/>
+        <Button id="btnSearch" taborder="4" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="29" onclick="btnSearch_onclick" right="btnSave:7" width="80"/>
+        <Radio id="rdGubun" taborder="7" top="34" height="35" innerdataset="dsGubun" codecolumn="CODE" datacolumn="NAME" direction="vertical" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" fittocontents="none" columncount="-1" rowcount="-1" background="lightsteelblue" color="white" index="0" text="단가 '0'인 건  " value="1" padding="0px 0px 0px 15px" onitemchanged="rdGubun_onitemchanged" right="btnSearch:18" width="283"/>
+        <Static id="st1" taborder="6" text="조회방법" top="34" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" right="rdGubun:3"/>
+        <Edit id="edEBookCd" taborder="12" top="34" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" textAlign="center" autoselect="true" right="st1:23" width="120"/>
+        <Calendar id="calEDate" taborder="2" top="73" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" width="140" onkeydown="LocalFctn_OnKeyDown" right="btnSearch:18" autoselect="true"/>
+        <Calendar id="calSDate" taborder="1" top="73" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" onkeyup="LocalFctn_OnKeyDown" right="calEDate:3" width="140" autoselect="true"/>
+        <Static id="stSCustCd" taborder="5" text="조회일자" top="73" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="calSDate:3" width="85"/>
+        <Edit id="edt_bookYear" taborder="14" top="73" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" textAlign="center" autoselect="true" right="stSCustCd:178" width="88"/>
+        <Static id="stCust1_00" taborder="13" text="도서년판" top="73" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="edt_bookYear:3" width="85"/>
+        <Edit id="edt_bookCode" taborder="11" top="34" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" textAlign="center" autoselect="true" right="edEBookCd:3" width="120"/>
+        <Button id="btnBook_Search" taborder="10" text="도서번호" top="34" height="35" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" right="edt_bookCode:3" width="85" onclick="btnBook_Search_onclick"/>
+        <Grid id="grdList" taborder="9" left="8" top="157" width="98.85%" binddataset="dsFilm" bottom="10" autofittype="none" onenterdown="grdList_onenterdown" oncellclick="grdList_oncellclick">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="102"/>
+                <Column size="226"/>
+                <Column size="99"/>
+                <Column size="62"/>
+                <Column size="63"/>
+                <Column size="111"/>
+                <Column size="169"/>
+                <Column size="140"/>
+                <Column size="28"/>
+                <Column size="102"/>
+                <Column size="28"/>
+                <Column size="102"/>
+                <Column size="53"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="발주일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="판형" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="색도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" text="쪽수" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="용도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="비고" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="발주처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="8" colspan="2" text="출고일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="10" colspan="2" text="입고일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="12" text="CTP" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ORDMST_DATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="1" text="bind:BOOKMST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal"/>
+                <Cell col="2" text="bind:PLT_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal"/>
+                <Cell col="3" text="bind:ORDDTL_TONE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal"/>
+                <Cell col="4" text="bind:ORDDTL_PAGE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="normal" editinputtype="number" maskeditformat="#,###" displaytype="number" editautoselect="true"/>
+                <Cell col="5" text="bind:USE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal"/>
+                <Cell col="6" text="bind:PPR_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal"/>
+                <Cell col="7" text="bind:CUST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" displaytype="normal"/>
+                <Cell col="8" text="bind:CHOUTDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="checkbox" editinputtype="normal" displaytype="checkboxcontrol"/>
+                <Cell col="9" text="bind:ORDDTL_FILMOUTDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="mask" maskeditformat="####-##-##" editinputtype="normal" maskedittype="string" displaytype="date" calendardateformat="yyyy-MM-dd" calendarautoselect="true" calendardisplaynulltype="none" calendardisplayinvalidtype="default" maskeditautoselect="true" maskedittrimtype="both"/>
+                <Cell col="10" text="bind:CHINDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="checkbox" editinputtype="normal" displaytype="checkboxcontrol"/>
+                <Cell col="11" text="bind:ORDDTL_FILMINDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="mask" maskeditformat="####-##-##" editinputtype="normal" maskedittype="string" displaytype="date" calendardateformat="yyyy-MM-dd" calendarautoselect="true" calendardisplaynulltype="none" calendardisplayinvalidtype="none" maskeditautoselect="true" maskedittrimtype="both"/>
+                <Cell col="12" text="bind:CTP" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Radio id="rdGubun1" taborder="18" top="112" height="35" innerdataset="dsGubun1" codecolumn="CODE" datacolumn="NAME" direction="vertical" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" background="lightsteelblue" color="white" index="0" text="발주번호별" value="1" fittocontents="none" wordSpacing="0px" padding="0px 0px 0px 30px" columncount="0" rowcount="0" right="btnSearch:18" width="283"/>
+        <Static id="stCust1_00_00_00" taborder="17" text="정렬방법" top="112" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="rdGubun1:3" width="85"/>
+        <Edit id="edBookNm" taborder="16" top="112" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" textAlign="center" autoselect="true" right="stCust1_00_00_00:23" width="243"/>
+        <Static id="stCust1_00_00" taborder="15" text="도서명" top="112" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="edBookNm:3" width="85"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerDML, vPerDel;
+var vStr;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerDML = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_DML");
+	
+	//DML권한 체크 및 컴포넌트 ENABLE처리
+	if(vPerDML != "1")
+		this.fctn_User_Enabled(this, false);
+	
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" || Eco.isUndefined(this.calSDate.value) == true )
+	{
+		alert("조회일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+
+	if (this.calEDate.value == "" || Eco.isUndefined(this.calEDate.value) == true )
+	{
+		alert("조회일자를 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	in_ds 	= "dsFilm=dsFilm";
+	out_ds 	= "dsFilm=dsFilm";
+	str_url = "JSP/mk/mk13bf_film_list.jsp";
+	str_arg = "sBOOKMST_CODE=" + nexacro.wrapQuote( this.edt_bookCode.text ) +
+	          " eBOOKMST_CODE=" + nexacro.wrapQuote( this.edEBookCd.text ) +
+	          " BOOKMST_YEAR=" + nexacro.wrapQuote( this.edt_bookYear.text ) +
+	          " BOOKMST_NAME=" + nexacro.wrapQuote( this.edBookNm.text ) +
+	          " Date_Set=" + nexacro.wrapQuote( this.rdGubun.index ) +
+	          " sDate=" + nexacro.wrapQuote( this.calSDate.value ) +
+	          " eDate=" + nexacro.wrapQuote( this.calEDate.value ) +
+	          " ORDER=" + nexacro.wrapQuote( this.rdGubun1.index ) ;
+	 
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+
+};
+
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		if(this.dsFilm.rowcount == 0)
+			alert("조회된 자료가 없습니다.");
+		else
+		{
+			this.dsFilmPre.deleteAll();
+			this.dsFilmPre.copyData(this.dsFilm);
+			this.dsFilm.set_rowposition(0);
+			this.grdList.setCellPos(9);			//출고일자
+			this.grdList.showEditor();
+		}
+	}
+};
+
+//저장버튼이벤트
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	in_ds = "input=dsFilm:U";
+	vStr = vPerDML;
+	this.gfn_TransactionP("save", "JSP/mk/mk13bf_film_dml.jsp", in_ds, "", "", "fnSaveCallback", false, vStr, false, this);
+};
+
+this.fnSaveCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}else{
+		this.btnSearch_onclick();
+	}
+	
+};
+
+this.grdList_onenterdown = function(obj:nexacro.Grid,e:nexacro.GridEditEventInfo)
+{
+	if(this.dsFilm.rowposition != this.dsFilm.getRowCount()-1)
+	{
+		if(e.cell == 9)			//출고일자
+		{
+			var vFilmOutDate = this.dsFilm.getColumn(this.dsFilm.rowposition, "ORDDTL_FILMOUTDATE");
+			
+			if(vFilmOutDate.length == 8 && Eco.isUndefined(vFilmOutDate) == false){
+				this.grdList.setCellPos(11);  //입고일자
+				this.grdList.showEditor();
+				
+			}else{
+				alert("일자의 형식을 확인하여 주십시요.", "날짜 체크 오류");
+				this.grdList.setCellPos(9);		//출고일자
+				this.grdList.showEditor();
+			}
+		}else{
+			
+			var vFilmInDate = this.dsFilm.getColumn(this.dsFilm.rowposition, "ORDDTL_FILMINDATE");
+			
+			if(vFilmInDate.length == 8 && Eco.isUndefined(vFilmInDate) == false){
+				this.dsFilm.set_rowposition(e.row+1);
+				this.grdList.setCellPos(9);		//출고일자
+				this.grdList.showEditor();
+			}else{
+				alert("일자의 형식을 확인하여 주십시요.", "날짜 체크 오류");
+				this.grdList.setCellPos(11);  //입고일자
+				this.grdList.showEditor();
+			}
+		}
+	}
+}
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+//#######################################################
+// 사용권한에 따른 컴포넌트 Enable 여부
+// formObj : 폼 ID 변수
+// _set : Enable 변수 (True, False)
+//#######################################################
+this.fctn_User_Enabled = function(formObj, _set)
+{
+	var comObj;
+	// 마스터 폼 컴포넌트 Enabled 여부
+	for(var i = 0; i < formObj.components.length;  i++)
+	{
+		comObj = formObj.components[i];
+		
+		if (comObj == "[object Edit]" || comObj == "[object Combo]"
+		   || comObj == "[object Calendar]" || comObj == "[object MaskEdit]" 
+		   || comObj == "[object TextArea]")
+		{
+			comObj.set_enable(_set);
+		}
+	}
+	
+	if(vPerSel != 1)
+		this.btnSearch.set_enable(_set);
+		
+	if(vPerDML != 1)
+		this.btnSave.set_enable(_set);
+
+}
+this.dsFilm_cancolumnchange = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if(e.columnid == "ORDDTL_FILMOUTDATE" || e.columnid == "ORDDTL_FILMINDATE"){
+		
+		if(e.newvalue.length != 8)
+			e.newvalue = "";
+	}
+};
+
+this.grdList_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 8 || e.cell == 10)
+	{
+		
+		var d = new Date(); 
+		var strtoDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");		
+		
+		if(this.grdList.getCellValue(e.row, e.cell) == "1"){
+			if(e.cell == 8)
+				this.dsFilm.setColumn(this.dsFilm.rowposition, "ORDDTL_FILMOUTDATE", strtoDay);
+			else if(e.cell == 10)
+				this.dsFilm.setColumn(this.dsFilm.rowposition, "ORDDTL_FILMINDATE", strtoDay);
+		}else{
+			if(e.cell == 8){
+				var strPreOutDate = this.dsFilmPre.getColumn(this.dsFilm.rowposition, "ORDDTL_FILMOUTDATE");
+				this.dsFilm.setColumn(this.dsFilm.rowposition, "ORDDTL_FILMOUTDATE", strPreOutDate);
+			}else if(e.cell == 10){
+				var strPreInDate = this.dsFilmPre.getColumn(this.dsFilm.rowposition, "ORDDTL_FILMINDATE");
+				this.dsFilm.setColumn(this.dsFilm.rowposition, "ORDDTL_FILMINDATE", strPreInDate);
+			}
+		}
+	}
+};
+
+this.btnBook_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.dsBookMst}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBook", objParam, "mk::MKBook_SearchF.xfdl", "popupCallback", this, 10, 58, 450, 400);
+};
+
+this.popupCallback = function(){
+	
+	this.edt_bookCode.set_value(this.dsBookMst.getColumn(0, "BOOKMST_CODE"));
+	this.edEBookCd.set_value(this.dsBookMst.getColumn(0, "BOOKMST_CODE"));
+	this.edt_bookYear.set_value(this.dsBookMst.getColumn(0, "BOOKMST_YEAR"));
+	this.edBookNm.set_value(this.dsBookMst.getColumn(0, "BOOKMST_NAME"));
+}
+]]></Script>
+    <Objects>
+      <Dataset id="dsFilm" cancolumnchange="dsFilm_cancolumnchange">
+        <ColumnInfo>
+          <Column id="ORDMST_DATE" type="STRING" size="8"/>
+          <Column id="ORDMST_NO" type="STRING" size="4"/>
+          <Column id="ORDDTL_SEQ" type="STRING" size="2"/>
+          <Column id="ORDMST_ID" type="INT" size="20"/>
+          <Column id="PLT_CODE" type="STRING" size="2"/>
+          <Column id="PLT_NAME" type="STRING" size="15"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="ORDMST_QTY" type="INT" size="6"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_NAME" type="STRING" size="35"/>
+          <Column id="ORDDTL_PAGE" type="INT" size="3"/>
+          <Column id="USE_CODE" type="STRING" size="2"/>
+          <Column id="USE_NAME" type="STRING" size="20"/>
+          <Column id="ORDDTL_TONE" type="STRING" size="3"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="CHOUTDATE" type="INT" size="1"/>
+          <Column id="CHINDATE" type="INT" size="1"/>
+          <Column id="ORDDTL_FILMOUTDATE" type="STRING" size="8"/>
+          <Column id="ORDDTL_FILMINDATE" type="STRING" size="8"/>
+          <Column id="CTP" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGubun">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">출고일자  </Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">입고일자  </Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">발주일자</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGubun1">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">발주번호별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">도서코드별</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsFilmPre">
+        <ColumnInfo>
+          <Column id="ORDMST_DATE" type="STRING" size="8"/>
+          <Column id="ORDMST_NO" type="STRING" size="4"/>
+          <Column id="ORDDTL_SEQ" type="STRING" size="2"/>
+          <Column id="ORDMST_ID" type="INT" size="20"/>
+          <Column id="PLT_CODE" type="STRING" size="2"/>
+          <Column id="PLT_NAME" type="STRING" size="15"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="ORDMST_QTY" type="INT" size="6"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_NAME" type="STRING" size="35"/>
+          <Column id="ORDDTL_PAGE" type="INT" size="3"/>
+          <Column id="USE_CODE" type="STRING" size="2"/>
+          <Column id="USE_NAME" type="STRING" size="20"/>
+          <Column id="ORDDTL_TONE" type="STRING" size="3"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="CHOUTDATE" type="INT" size="1"/>
+          <Column id="CHINDATE" type="INT" size="1"/>
+          <Column id="ORDDTL_FILMOUTDATE" type="STRING" size="8"/>
+          <Column id="ORDDTL_FILMINDATE" type="STRING" size="8"/>
+          <Column id="CTP" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

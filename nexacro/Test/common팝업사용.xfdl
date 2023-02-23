@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="common팝업사용" width="1280" height="720" titletext="New Form" onload="common팝업사용_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Button id="Button00" taborder="0" text="부서(부서코드, 부서명)" left="11" top="15" width="239" height="53" onclick="Button00_onclick"/>
+        <Edit id="edt_buse_cd" taborder="1" left="254" top="15" width="160" height="53" value="부서코드" text="부서코드"/>
+        <Edit id="edt_buse_nm" taborder="2" left="424" top="15" width="220" height="53" value="부서명" text="부서명"/>
+        <Button id="Button00_00" taborder="3" text="인사(사번, 이름)" left="11" top="78" width="239" height="53" onclick="Button00_00_onclick"/>
+        <Edit id="edt_sabun" taborder="4" left="254" top="78" width="160" height="53" value="사번" text="사번"/>
+        <Edit id="edt_name" taborder="5" left="424" top="78" width="220" height="53" value="이름" text="이름"/>
+        <Button id="Button00_00_00" taborder="6" text="거래처(구분,코드,명,사용명,사업자번호)" left="11" top="137" width="239" height="53" onclick="Button00_00_00_onclick"/>
+        <Edit id="edt_cust_gb" taborder="7" left="254" top="137" width="160" height="53" value="거래처구분" text="거래처구분"/>
+        <Edit id="edt_cust_nm" taborder="8" left="650" top="137" width="160" height="53" value="거래처명" text="거래처명"/>
+        <Edit id="edt_cust_cd" taborder="9" left="424" top="137" width="220" height="53" value="거래처코드" text="거래처코드"/>
+        <Edit id="edt_cust_f_nm" taborder="10" left="820" top="137" width="160" height="53" value="내부거래처명" text="내부거래처명"/>
+        <Edit id="edt_saupno" taborder="11" left="990" top="137" width="160" height="53" value="사업자번호" text="사업자번호"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[var arr_rt;
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sBuse",0,0,237,440,null,null,"common::Buse.xfdl");
+		this.addChild("sBuse",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sBuse",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback);
+};
+
+this.fn_Callback = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_buse_cd.set_value(arr_rt[0]);
+		this.edt_buse_nm.set_value(arr_rt[1]);
+	}
+	
+	this.removeChild("sBuse");
+};
+
+this.common팝업사용_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+};
+
+
+
+this.Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sInsa",0,0,474,440,null,null,"common::Insa.xfdl");
+		this.addChild("sInsa",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_InsaCallback);
+};
+
+this.fn_InsaCallback = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_sabun.set_value(arr_rt[0]);
+		this.edt_name.set_value(arr_rt[1]);
+	}
+	
+	this.removeChild("sInsa");
+};
+
+this.Button00_00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sCust",0,0,560,380,null,null,"common::Cust.xfdl");
+		this.addChild("sCust",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sCust",this.getOwnerFrame(),{arr_s:arr_rt, pCust_gb:"21", pUse_gb:true},this,this.fn_CustCallback);
+};
+
+this.fn_CustCallback = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_cust_gb.set_value(arr_rt[0]);
+		this.edt_cust_cd.set_value(arr_rt[1]);
+		this.edt_cust_nm.set_value(arr_rt[2]);
+		this.edt_cust_f_nm.set_value(arr_rt[3]);
+		this.edt_saupno.set_value(arr_rt[4]);
+	}
+	
+	this.removeChild("sCust");
+};
+]]></Script>
+  </Form>
+</FDL>

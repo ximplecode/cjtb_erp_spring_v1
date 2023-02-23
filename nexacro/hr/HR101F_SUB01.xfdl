@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR101F_SUB01" width="1244" height="242" titletext="New Form">
+    <Layouts>
+      <Layout height="242" width="1244">
+        <Static id="Static00" taborder="6" left="10" top="50%" height="16" right="3"/>
+        <Static id="sta_sabun" taborder="0" text="본관" left="9" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" bottom="Static00:67" height="30"/>
+        <Edit id="edt_bon" taborder="1" left="sta_sabun:5" width="139" bottom="Static00:67" height="30"/>
+        <Static id="sta_sabun00" taborder="2" text="취미" left="9" top="sta_sabun:1" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_sabun00_00" taborder="3" text="혈액형" left="9" top="sta_sabun00:1" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_sabun00_00_00" taborder="4" text="군별" left="9" top="sta_sabun:93" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_sabun00_00_00_00" taborder="5" text="병과" left="9" top="sta_sabun:124" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_chuimi" taborder="7" left="sta_sabun00:5" width="139" height="30" top="edt_bon:1"/>
+        <Combo id="cb_blood" taborder="8" text="Combo00" left="sta_sabun00_00:5" top="edt_chuimi:1" width="139" height="30" innerdataset="ds_blood" codecolumn="CODE" datacolumn="NAME"/>
+        <Combo id="cb_army" taborder="9" text="Combo00" left="sta_sabun00_00_00:5" top="edt_bon:93" width="139" height="30" innerdataset="ds_army" codecolumn="CODE" datacolumn="NAME"/>
+        <Edit id="edt_army" taborder="10" left="sta_sabun00_00_00_00:5" width="139" height="30" top="cb_army:1"/>
+        <Static id="sta_sabun01" taborder="11" text="특기" left="edt_bon:56" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" bottom="Static00:67" height="30"/>
+        <Static id="sta_sabun01_00" taborder="12" text="종교" left="edt_chuimi:56" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" height="30" top="sta_sabun01:1"/>
+        <Static id="sta_sabun01_00_00" taborder="13" text="지병" left="cb_blood:56" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" height="30" top="sta_sabun01_00:1"/>
+        <Static id="sta_sabun01_00_00_00" taborder="14" text="계급" left="cb_army:56" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" height="30" top="sta_sabun01_00_00:30"/>
+        <Static id="sta_sabun01_00_00_00_00" taborder="15" text="전역사유" left="edt_army:56" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" height="30" top="sta_sabun01_00_00_00:1"/>
+        <Edit id="edt_tukgi" taborder="16" left="sta_sabun01:5" width="129" bottom="Static00:67" height="30"/>
+        <Combo id="cb_jong" taborder="17" text="Combo00" left="sta_sabun01_00:5" top="edt_tukgi:1" width="129" height="30" innerdataset="ds_jong" codecolumn="CODE" datacolumn="NAME"/>
+        <Edit id="edt_jibyung" taborder="18" left="sta_sabun01_00_00:5" width="129" height="30" top="cb_jong:1"/>
+        <Combo id="cb_geagub" taborder="19" text="Combo00" left="sta_sabun01_00_00_00:5" top="edt_jibyung:30" width="129" height="30" innerdataset="ds_gyekub" codecolumn="CODE" datacolumn="NAME"/>
+        <Edit id="edt_jsayu" taborder="20" left="454" width="129" height="30" top="cb_geagub:1"/>
+        <Static id="sta_sabun01_01" taborder="21" text="신장" left="sta_sabun01:190" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" bottom="Static00:67" height="30"/>
+        <Static id="sta_sabun01_00_01" taborder="22" text="체중" left="cb_jong:56" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" height="30" top="sta_sabun01_01:1"/>
+        <Static id="sta_sabun01_00_00_01" taborder="23" text="주거" left="edt_jibyung:56" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" height="30" top="sta_sabun01_00_01:1"/>
+        <Static id="sta_sabun01_00_00_00_01" taborder="24" text="복무기간" left="cb_geagub:56" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" height="30" top="sta_sabun01_00_00_01:30"/>
+        <Static id="sta_sabun01_00_00_00_00_00" taborder="25" text="미필사유" left="edt_jsayu:56" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" height="30" top="sta_sabun01_00_00_00_01:1"/>
+        <Edit id="edt_height" taborder="26" left="sta_sabun01_01:5" width="66" bottom="Static00:67" height="30"/>
+        <Static id="Static01" taborder="27" text="Cm" left="edt_height:0" width="41" textAlign="left" verticalAlign="bottom" bottom="Static00:67" height="30"/>
+        <Edit id="edt_weight" taborder="28" left="sta_sabun01_00_01:5" width="66" height="30" top="edt_height:1"/>
+        <Static id="Static01_00" taborder="29" text="Kg" left="edt_weight:0" width="41" textAlign="left" verticalAlign="bottom" height="30" top="Static01:1"/>
+        <Combo id="cb_jugb" taborder="30" text="Combo00" left="sta_sabun01_00_00_01:5" top="edt_weight:1" width="376" height="30" innerdataset="ds_jugb" datacolumn="NAME" codecolumn="CODE"/>
+        <Static id="sta_sabun01_01_00" taborder="31" text="시력(좌)" left="sta_sabun01_01:190" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" bottom="Static00:67" height="30"/>
+        <Static id="sta_sabun01_00_01_00" taborder="32" text="시력(우)" left="sta_sabun01_00_01:190" width="120" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" height="30" top="sta_sabun01_01_00:1"/>
+        <Edit id="edt_eye1" taborder="33" left="sta_sabun01_01_00:5" width="66" bottom="Static00:67" height="30"/>
+        <Edit id="edt_eye2" taborder="34" left="sta_sabun01_00_01_00:5" width="66" height="30" top="edt_eye1:1"/>
+        <Calendar id="cald_bokmudt1" taborder="35" left="sta_sabun01_00_00_00_01:5" top="cb_jugb:30" width="150" height="30"/>
+        <Static id="Static01_01" taborder="36" text="~" left="cald_bokmudt1:16" width="41" textAlign="center" verticalAlign="middle" height="30" top="cb_jugb:30"/>
+        <Calendar id="cald_bokmudt2" taborder="37" left="cald_bokmudt1:76" top="cb_jugb:30" width="150" height="30"/>
+        <Edit id="edt_msau" taborder="38" left="sta_sabun01_00_00_00_00_00:5" width="376" height="30" top="Static01_01:1"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_blood">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">A</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">B</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">AB</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">O</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="NAME">RH- A</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">6</Col>
+            <Col id="NAME">RH- B</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">7</Col>
+            <Col id="NAME">RH- AB</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">8</Col>
+            <Col id="NAME">RH- O</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_army">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">육군</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">해군</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">공군</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">해병대</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="NAME">보충역</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">6</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_jong">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">불교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">기독교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">천주교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">천도교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="NAME">이슬람교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">6</Col>
+            <Col id="NAME">무교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">9</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gyekub">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">이병</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">일병</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">상병</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">병장</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">11</Col>
+            <Col id="NAME">하사</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">12</Col>
+            <Col id="NAME">중사</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">14</Col>
+            <Col id="NAME">상사</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">15</Col>
+            <Col id="NAME">준위</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">16</Col>
+            <Col id="NAME">원사</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">21</Col>
+            <Col id="NAME">소위</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">22</Col>
+            <Col id="NAME">중위</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">23</Col>
+            <Col id="NAME">대위</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">31</Col>
+            <Col id="NAME">소령</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">32</Col>
+            <Col id="NAME">중령</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">33</Col>
+            <Col id="NAME">대령</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">41</Col>
+            <Col id="NAME">준장</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">42</Col>
+            <Col id="NAME">소장</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">43</Col>
+            <Col id="NAME">중장</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">44</Col>
+            <Col id="NAME">대장</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_jugb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">자택</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">전세</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">월세</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">하숙</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">9</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edt_bon" propid="value" datasetid="ds_insa" columnid="BONGUAN"/>
+      <BindItem id="item1" compid="edt_chuimi" propid="value" datasetid="ds_insa" columnid="CHUIMI"/>
+      <BindItem id="item2" compid="cb_blood" propid="value" datasetid="ds_insa" columnid="HYUL"/>
+      <BindItem id="item3" compid="cb_army" propid="value" datasetid="ds_insa" columnid="GUNBYUL"/>
+      <BindItem id="item4" compid="edt_army" propid="value" datasetid="ds_insa" columnid="BYUNGKWA"/>
+      <BindItem id="item5" compid="edt_tukgi" propid="value" datasetid="ds_insa" columnid="TUKGI"/>
+      <BindItem id="item6" compid="cb_jong" propid="value" datasetid="ds_insa" columnid="JONGGYO"/>
+      <BindItem id="item7" compid="edt_jibyung" propid="value" datasetid="ds_insa" columnid="JIBYUNG"/>
+      <BindItem id="item8" compid="cb_geagub" propid="value" datasetid="ds_insa" columnid="GEAGUB"/>
+      <BindItem id="item9" compid="edt_jsayu" propid="value" datasetid="ds_insa" columnid="JSAU"/>
+      <BindItem id="item10" compid="edt_height" propid="value" datasetid="ds_insa" columnid="HEIGHT"/>
+      <BindItem id="item11" compid="edt_weight" propid="value" datasetid="ds_insa" columnid="WEIGHT"/>
+      <BindItem id="item12" compid="cb_jugb" propid="value" datasetid="ds_insa" columnid="JUGB"/>
+      <BindItem id="item13" compid="cald_bokmudt1" propid="value" datasetid="ds_insa" columnid="BOKMUDT1"/>
+      <BindItem id="item14" compid="cald_bokmudt2" propid="value" datasetid="ds_insa" columnid="BOKMUDT2"/>
+      <BindItem id="item15" compid="edt_msau" propid="value" datasetid="ds_insa" columnid="MSAU"/>
+      <BindItem id="item16" compid="edt_eye1" propid="value" datasetid="ds_insa" columnid="EYE1"/>
+      <BindItem id="item17" compid="edt_eye2" propid="value" datasetid="ds_insa" columnid="EYE2"/>
+    </Bind>
+  </Form>
+</FDL>

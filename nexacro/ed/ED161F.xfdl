@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED161F" width="1280" height="720" titletext="New Form" onload="ED161F_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Div id="Div00" taborder="0" left="15" top="10" height="40" border="1px solid lightgray" text="" width="97.27%">
+          <Layouts>
+            <Layout>
+              <Button id="btn_search" taborder="0" text="조회" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="231" onclick="Div00_btn_search_onclick"/>
+              <Button id="btn_delete" taborder="1" text="삭제" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="92" onclick="Div00_btn_delete_onclick"/>
+              <Button id="btn_save" taborder="2" text="저장" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_save_onclick" width="63" right="162"/>
+              <Button id="btn_print" taborder="3" text="출력" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="25"/>
+              <Button id="btn_new" taborder="4" text="신규카드" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="761" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_new_onclick"/>
+              <Button id="btn_tempchk" taborder="5" text="가져오기" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="601" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_tempchk_onclick"/>
+              <Button id="btn_help" taborder="6" text="도움말" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="864" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_tempSave_onclick"/>
+              <Button id="btn_add" taborder="7" text="내용추가" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="681" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_add_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00_02" taborder="1" text="관리카드번호" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="40" width="100"/>
+        <Edit id="edt_mstNo" taborder="2" left="Static00_02:2" top="60" width="11.72%" height="40" enable="false" onkeydown="fn_localKeyDown"/>
+        <Static id="Static00_01" taborder="3" text="작성일자" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="edt_mstNo:3" height="40" width="7.66%"/>
+        <Calendar id="cal_mstDate" taborder="4" left="Static00_01:3" top="60" width="11.72%" height="40" enable="false" onkeydown="fn_localKeyDown"/>
+        <Static id="Static00" taborder="5" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cal_mstDate:2" height="40" width="7.66%" text="관련부서"/>
+        <Combo id="cb_section" taborder="6" text="Combo00" left="Static00:2" top="60" width="11.72%" height="40" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME" onkeydown="fn_localKeyDown"/>
+        <Static id="Static00_02_00" taborder="21" text="도서명" top="102" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="40" width="100"/>
+        <Edit id="edt_bookName" taborder="11" left="Static00_02_00:2" top="102" width="26.56%" height="40" enable="true" onkeydown="fn_localKeyDown"/>
+        <Button id="btn_book" taborder="8" text="도서코드" left="edt_bookName:3" top="102" width="7.66%" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_book_onclick"/>
+        <Edit id="edt_bookCode" taborder="9" left="btn_book:2" top="102" width="10.16%" height="40" maxlength="10" onkeydown="fn_localKeyDown"/>
+        <Edit id="edt_bookYear" taborder="10" left="edt_bookCode:3" top="102" width="3.44%" height="40" onkeydown="edt_bookYear_onkeydown" maxlength="4"/>
+        <Static id="Static00_07" taborder="7" text="계약일자" top="101" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="edt_bookYear:3" height="40" width="7.66%"/>
+        <Static id="st_taxRate" taborder="12" text="인세율(%)" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cb_section:2" height="40" width="7.66%" visible="true"/>
+        <Calendar id="cal_contractDate" taborder="13" left="Static00_07:2" top="101" width="11.72%" height="40" enable="true" onkeydown="fn_localKeyDown"/>
+        <MaskEdit id="medt_royaltyRate" taborder="16" left="st_taxRate:2" top="60" width="8.91%" height="40" format="#.###" onkeydown="fn_localKeyDown" onchanged="fn_amountCalculate"/>
+        <Static id="Static00_13" taborder="14" text="승인여부" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="medt_royaltyRate:3" height="40" width="7.66%"/>
+        <CheckBox id="chk_permite" taborder="15" text="승인" left="Static00_13:10" top="60" width="6.72%" height="40" value="true" enable="false"/>
+        <Static id="Static00_14" taborder="17" text="비고" top="143" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="60" width="100" visible="true"/>
+        <TextArea id="txa_remark" taborder="18" left="Static00_14:1" top="143" width="88.05%" height="60" onkeydown="fn_localKeyDown"/>
+        <Static id="Static00_07_00" taborder="19" text="출간예정일" top="101" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cal_contractDate:3" height="40" width="7.66%"/>
+        <Calendar id="cal_publicationDate" taborder="20" left="Static00_07_00:2" top="101" width="11.72%" height="40" enable="true" onkeydown="fn_localKeyDown"/>
+        <Grid id="grd_dtl1" taborder="22" left="17" top="208" width="95.78%" height="240" binddataset="dsRoyalty_Dtl1" onsetfocus="grd_dtl1_onsetfocus">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="120"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="5" text="   1. 계약금 지급내역" textAlign="left" background="#7fb39d"/>
+                <Cell row="1" text="작성일자"/>
+                <Cell row="1" col="1" text="저자명"/>
+                <Cell row="1" col="2" text="주민등록번호"/>
+                <Cell row="1" col="3" text="계약금"/>
+                <Cell row="1" col="4" text="지급일자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:RCDTL_DATE" textAlign="center" displaytype="date" calendardisplaynulltype="none"/>
+                <Cell col="1" text="bind:ATHR_NAME" textAlign="center"/>
+                <Cell col="2" text="bind:ATHR_JUMINNO2" textAlign="center" displaytype="mask" maskeditformat="###### - #@@@@@#" edittype="none" maskedittype="string"/>
+                <Cell col="3" text="bind:RCDTL_AMOUNT" textAlign="right" displaytype="currency"/>
+                <Cell col="4" text="bind:RCDTL_PAYDATE" textAlign="center" displaytype="date" calendardisplaynulltype="none"/>
+              </Band>
+              <Band id="summary">
+                <Cell/>
+                <Cell col="1" text="합계"/>
+                <Cell col="2"/>
+                <Cell col="3" expr="dataset.getSum('RCDTL_AMOUNT')" textAlign="right"/>
+                <Cell col="4"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_dtl2" taborder="23" left="17" top="458" width="95.78%" height="240" binddataset="dsRoyalty_Dtl2" onsetfocus="grd_dtl1_onsetfocus">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="120"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="5" text="   2. 선인세 지급내역" textAlign="left" background="#7fb39d"/>
+                <Cell row="1" text="작성일자"/>
+                <Cell row="1" col="1" text="저자명"/>
+                <Cell row="1" col="2" text="주민등록번호"/>
+                <Cell row="1" col="3" text="계약금"/>
+                <Cell row="1" col="4" text="지급일자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:RCDTL_DATE" textAlign="center" displaytype="date" calendardisplaynulltype="none"/>
+                <Cell col="1" text="bind:ATHR_NAME" textAlign="center"/>
+                <Cell col="2" text="bind:ATHR_JUMINNO2" textAlign="center" displaytype="mask" maskeditformat="###### - #@@@@@#" maskedittype="string"/>
+                <Cell col="3" text="bind:RCDTL_AMOUNT" textAlign="right" displaytype="number"/>
+                <Cell col="4" text="bind:RCDTL_PAYDATE" textAlign="center" displaytype="date" calendardisplaynulltype="none"/>
+              </Band>
+              <Band id="summary">
+                <Cell/>
+                <Cell col="1" text="합계"/>
+                <Cell col="2"/>
+                <Cell col="3" expr="dataset.getSum('RCDTL_AMOUNT')" textAlign="right"/>
+                <Cell col="4"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item1" compid="edt_mstNo" propid="value" datasetid="dsRoyalty_Mst" columnid="RCMST_DATENO"/>
+      <BindItem id="item2" compid="cal_mstDate" propid="value" datasetid="dsRoyalty_Mst" columnid="RCMST_DATE"/>
+      <BindItem id="item4" compid="cb_section" propid="value" datasetid="dsBookMst" columnid="SECTION_CODE"/>
+      <BindItem id="item7" compid="edt_bookCode" propid="value" datasetid="dsRoyalty_Mst" columnid="BOOKMST_YEAR"/>
+      <BindItem id="item8" compid="edt_bookYear" propid="value" datasetid="dsRoyalty_Mst" columnid="BOOKMST_YEAR"/>
+      <BindItem id="item9" compid="edt_bookName" propid="value" datasetid="dsRoyalty_Mst" columnid="RCMST_BOOKNAME"/>
+      <BindItem id="item10" compid="cal_contractDate" propid="value" datasetid="dsRoyalty_Mst" columnid="RCMST_CONTRACTDATE"/>
+      <BindItem id="item11" compid="chk_permite" propid="value" datasetid="dsRoyalty_Mst" columnid="RCMST_PERMITE"/>
+      <BindItem id="item13" compid="medt_royaltyRate" propid="value" datasetid="dsRoyalty_Mst" columnid="RCMST_ROYALTYRATE"/>
+      <BindItem id="item26" compid="txa_remark" propid="value" datasetid="dsRoyalty_Mst" columnid="RCMST_REMARK"/>
+      <BindItem id="item3" compid="cal_publicationDate" propid="value" datasetid="dsRoyalty_Mst" columnid="RCMST_PUBLICATIONDATE"/>
+    </Bind>
+    <Objects>
+      <Dataset id="dsRoyalty_Mst" onrowsetchanged="dsRoyalty_Mst_onrowsetchanged" onrowposchanged="dsRoyalty_Mst_onrowposchanged">
+        <ColumnInfo>
+          <Column id="RCMST_DATENO" type="STRING" size="12"/>
+          <Column id="RCMST_DATE" type="STRING" size="8"/>
+          <Column id="RCMST_NO" type="STRING" size="3"/>
+          <Column id="RCMST_CONTRACTDATE" type="STRING" size="8"/>
+          <Column id="RCMST_PUBLICATIONDATE" type="STRING" size="8"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="RCMST_ID" type="INT" size="20"/>
+          <Column id="RCMST_ROYALTYRATE" type="DECIMAL" size="6"/>
+          <Column id="RCMST_BOOKNAME" type="STRING" size="60"/>
+          <Column id="RCMST_DELETE" type="STRING" size="1"/>
+          <Column id="RCMST_PERMITEDATE" type="STRING" size="8"/>
+          <Column id="RCMST_PERMITEUSER" type="STRING" size="6"/>
+          <Column id="RCMST_REMARK" type="STRING" size="1000"/>
+          <Column id="RCMST_PERMITE" type="STRING" size="1"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="UI_CODE" type="STRING" size="6"/>
+          <Column id="UI_NAME" type="STRING" size="10"/>
+          <Column id="RMAMST_ID" type="INT" size="20"/>
+          <Column id="SCMST_ID" type="INT" size="20"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRoyalty_Dtl1">
+        <ColumnInfo>
+          <Column id="RCDTL_KIND" type="STRING" size="1"/>
+          <Column id="RCDTL_SEQ" type="STRING" size="2"/>
+          <Column id="RCDTL_DATE" type="STRING" size="8"/>
+          <Column id="ATHR_IDENTITY" type="INT" size="20"/>
+          <Column id="ATHR_NAME" type="STRING" size="10"/>
+          <Column id="ATHR_JUMINNO2" type="STRING" size="13"/>
+          <Column id="UI_CODE" type="STRING" size="6"/>
+          <Column id="RCMST_ID" type="INT" size="20"/>
+          <Column id="RCDTL_DELETE" type="STRING" size="1"/>
+          <Column id="RCDTL_AMOUNT" type="INT" size="10"/>
+          <Column id="RCDTL_PAYDATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRoyalty_Dtl2">
+        <ColumnInfo>
+          <Column id="RCDTL_KIND" type="STRING" size="1"/>
+          <Column id="RCDTL_SEQ" type="STRING" size="2"/>
+          <Column id="RCDTL_DATE" type="STRING" size="8"/>
+          <Column id="ATHR_IDENTITY" type="INT" size="20"/>
+          <Column id="ATHR_NAME" type="STRING" size="10"/>
+          <Column id="ATHR_JUMINNO2" type="STRING" size="13"/>
+          <Column id="UI_CODE" type="STRING" size="6"/>
+          <Column id="RCMST_ID" type="INT" size="20"/>
+          <Column id="RCDTL_DELETE" type="STRING" size="1"/>
+          <Column id="RCDTL_AMOUNT" type="INT" size="10"/>
+          <Column id="RCDTL_PAYDATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRoyalty_Mst_Search">
+        <ColumnInfo>
+          <Column id="RCMST_DATENO" type="STRING" size="12"/>
+          <Column id="RCMST_DATE" type="STRING" size="8"/>
+          <Column id="RCMST_NO" type="STRING" size="3"/>
+          <Column id="RCMST_CONTRACTDATE" type="STRING" size="8"/>
+          <Column id="RCMST_PUBLICATIONDATE" type="STRING" size="8"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="RCMST_ID" type="INT" size="20"/>
+          <Column id="RCMST_ROYALTYRATE" type="DECIMAL" size="4"/>
+          <Column id="RCMST_BOOKNAME" type="STRING" size="60"/>
+          <Column id="RCMST_DELETE" type="STRING" size="1"/>
+          <Column id="RCMST_PERMITEDATE" type="STRING" size="8"/>
+          <Column id="RCMST_PERMITEUSER" type="STRING" size="6"/>
+          <Column id="RCMST_REMARK" type="STRING" size="1000"/>
+          <Column id="RCMST_PERMITE" type="STRING" size="1"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="UI_CODE" type="STRING" size="6"/>
+          <Column id="UI_NAME" type="STRING" size="10"/>
+          <Column id="RMAMST_ID" type="INT" size="20"/>
+          <Column id="SCMST_ID" type="INT" size="20"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="LVL" type="INT" size="1"/>
+          <Column id="SHORTCODE" type="STRING" size="3"/>
+          <Column id="SECTION_SHORTNAME" type="STRING" size="10"/>
+          <Column id="BU_UPCODE" type="STRING" size="5"/>
+          <Column id="BU_GRCODE" type="STRING" size="2"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var gv_urlFile = nexacro.getApplication().gv_urlNext;
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+var gds_userinfo = nexacro.getApplication().gds_userinfo;
+var sSection_Code = nexacro.getApplication().gds_userinfo.getColumn(0, "BUSECD");
+var sSection_Name = nexacro.getApplication().gds_userinfo.getColumn(0, "BUSENM");
+var sSection_ShortCode = nexacro.getApplication().gds_userinfo.getColumn(0, "SHORTCODE");
+var sSection_ShortName = nexacro.getApplication().gds_userinfo.getColumn(0, "SHORTNAME");
+var sSabun = nexacro.getApplication().gds_userinfo.getColumn(0, "SABUN");
+var sName = nexacro.getApplication().gds_userinfo.getColumn(0, "NAME");
+
+var sSelect, objGrid, nSelectCell, sGridFocus;
+var bBookRowChange = false; // 도서조회 후 onchanged 이벤트 set 설정
+
+this.ED161F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", "ed_04_104");
+	sSelect = nexacro.getApplication().gds_menu.getColumn(nRow, "UM_PER_SELECT");
+	//sSelect = Eco.decode(sSelect, null, "1", sSelect);
+	sSelect = 6;
+	//권한별 그리드 셀 수정여부
+	//this.grd_dtl1.setCellProperty("body", 4, "edit", Eco.decode(sSelect, 1, "none", "expend"));
+	//this.grd_dtl2.setCellProperty("body", 4, "edit", Eco.decode(sSelect, 1, "none", "expend"));
+	
+	strArg = "SECTION_CODE=" + sSection_Code 
+		   + " COMPETENCE=" + Eco.decode(sSelect, "1", "P", "2", "P", "A");
+	this.gfn_TransactionP("search","JSP/ed/section_select2.jsp", "dsSection=dsSection", "dsSection=dsSection", strArg, "fnSectionCallback", false, "P", false, this);	//부서
+	
+	this.dsRoyalty_Mst.addRow();
+	
+	this.edt_bookName.setFocus();
+};
+
+this.fnSectionCallback = function(svcid, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(svcid + "::" + errMsg);
+	else
+		this.dsSection.rowposition = this.dsSection.findRow("SECTION_CODE", sSection_Code);
+};
+
+//	dsRoyalty_Mst RowInserted
+this.dsRoyalty_Mst_onrowsetchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowsetChangeEventInfo)
+{
+	var d = new Date(); 
+	var today = Eco.date.getMaskFormatString(d, "yyyyMMdd");
+	
+	if(e.reason == 12 ) //dataset이 추가되었을 때
+	{
+		this.dsRoyalty_Mst.setColumn(e.row, "RCMST_DATE" ,today);
+		this.dsRoyalty_Mst.setColumn(e.row, "SECTION_CODE", sSection_Code);
+		this.dsRoyalty_Mst.setColumn(e.row, "UI_CODE", sSabun);
+		this.dsRoyalty_Mst.setColumn(e.row, "UI_NMAE", sName);
+		this.dsRoyalty_Mst.setColumn(e.row, "RCMST_PERMITE", "0");
+		this.dsRoyalty_Mst.setColumn(e.row, "SCMST_ID", -1);
+		
+		this.edt_mstNo.text = this.dsRoyalty_Mst.getColumn(e.row, "RCMST_DATE") 
+							+ "-" + this.dsRoyalty_Mst.getColumn(e.row, "RCMST_NO");
+		
+		this.dsRoyalty_Dtl1.clearData();
+		this.dsRoyalty_Dtl2.clearData();
+		
+		this.dsRoyalty_Dtl1.addRow();
+		
+		bBookRowChange = true;
+	}
+};
+
+//세부내역 찾기, 관리자모드 체크
+this.dsRoyalty_Mst_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	
+};
+
+//신규카드
+this.Div00_btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsRoyalty_Mst.rowcount > 0)
+		this.Div00_btn_save_onclick();
+		
+	this.dsRoyalty_Mst.clearData();
+	this.dsRoyalty_Mst.addRow();
+	this.edt_bookName.setFocus();
+};
+
+//내용추가
+this.Div00_btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objGrid, objDataset;
+	
+	if(sGridFocus == "grd_dtl2")
+	{
+		objGrid = this.objects["grid_dtl2"];
+		objDataset = this.objects["dsRoyalty_Dtl2"];
+	}
+	else
+	{
+		objGrid = this.objects["grd_dtl1"];
+		objDataset = this.objects["dsRoyalty_Dtl1"];
+	}
+	
+	if(fn_dtl_save(objGrid, "") == true)
+	{
+		objDataset.addRow();
+	}
+};
+
+//가져오기 (인세계약서 찾기)
+this.Div00_btn_tempchk_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.confirm("기존 작성문서가 있을 경우 먼저 저장하시겠습니까?"))
+		this.Div00_btn_save_onclick();
+	else
+	{
+		this.dsRoyalty_Mst.clearData();
+		
+		var objParam = {p_dsSection:this.dsSection,
+						p_Select:sSelect,
+						p_sectionCode:sSection_Code}; 
+						
+		this.lfn_showModal("popup", objParam, "ed::ED161_Contract_SearchF.xfdl", "popupContractCallBack", this, 10, 58, 500, 390);
+	}
+};
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {p_dsSection:this.dsSection,
+					p_ : this.dsRoyalty_Mst,
+					p_Select:sSelect,
+					p_sectionCode:sSection_Code}; 
+	this.lfn_showModal("popup", objParam, "ed::ED161_SearchF.xfdl", "popupSearchCallBack", this, 10, 58, 400, 390);
+};
+
+//저장
+this.Div00_btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+//삭제
+this.Div00_btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+//현재 Focuse 된 grid
+this.grd_dtl1_onsetfocus = function(obj:nexacro.Grid,e:nexacro.SetFocusEventInfo)
+{
+	sGridFocus = obj.name;
+};
+
+//도서코드 찾기
+this.btn_book_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.dsBookMst}; 
+	this.lfn_showModal("popupAddress", objParam, "mk::MKBook_SearchF.xfdl", "popupBookCallBack", this, 10, 58, 450, 400);
+};
+
+this.popupBookCallBack = function(svcId)
+{
+	var bRow = this.dsBookMst.rowposition;
+	
+	this.edt_bookCode.set_value(this.dsBookMst.getColumn(bRow, "BOOKMST_CODE"));
+	this.edt_bookYear.set_value(this.dsBookMst.getColumn(bRow, "BOOKMST_YEAR"));
+	this.edt_bookName.set_value(this.dsBookMst.getColumn(bRow, "BOOKMST_NAME"));
+	this.dsRoyalty_Mst.setColumn(this.dsRoyalty_Mst.rowposition, "BOOKMST_ID", this.dsBookMst.getColumn(bRow, "BOOKMST_ID"));
+	
+	this.cal_contractDate.dropdown();
+};]]></Script>
+  </Form>
+</FDL>

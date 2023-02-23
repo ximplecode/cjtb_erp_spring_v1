@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkDtlMain" width="1266" height="490" titletext="필름관리 세부사양" scrolltype="none" onload="MkDtlMain_onload" ontimer="MkDtlMain_ontimer" onsize="MkDtlMain_onsize">
+    <Layouts>
+      <Layout height="490" width="1266">
+        <ImageViewer id="ImgClose01" taborder="0" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Div id="DivDtl" taborder="1" top="0" background="#e8e7e3" left="0" visible="true" width="100.00%" height="100.00%" text="">
+          <Layouts>
+            <Layout>
+              <Static id="stType" taborder="0" text="용도" top="34" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" left="9" width="85"/>
+              <Edit id="edType" taborder="1" top="34" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="3.95%" left="stType:3" maxlength="2" autoselect="true" onkeydown="LocalFctn_OnKeyDown" enable="false"/>
+              <Combo id="cbType" taborder="2" top="34" height="35" innerdataset="ds_mk_use" codecolumn="USE_CODE" datacolumn="USE_NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" width="9.48%" left="edType:3" onitemchanged="DivDtl_cbType_onitemchanged" onkeydown="LocalFctn_OnKeyDown" enable="false"/>
+              <Grid id="grdDtl" taborder="12" left="9" binddataset="dsOrdDtl" top="261" width="98.74%" bottom="9" onkeydown="DivDtl_grdDtl_onkeydown">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="116"/>
+                      <Column size="215"/>
+                      <Column size="127"/>
+                      <Column size="177"/>
+                      <Column size="65"/>
+                      <Column size="101"/>
+                      <Column size="101"/>
+                      <Column size="164"/>
+                      <Column size="101"/>
+                      <Column size="37"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell rowspan="2" text="용도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="1" rowspan="2" text="용지" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="2" rowspan="2" text="코팅" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="3" rowspan="2" text="세부사항" font="bold 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell col="4" rowspan="2" text="색도" font="bold 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell col="5" colspan="2" text="진행일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="7" rowspan="2" text="외주처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="8" rowspan="2" text="진행일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="9" rowspan="2" text="CTP" font="bold 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell row="1" col="5" text="출고일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell row="1" col="6" font="bold 12px/normal &quot;함초롬돋움&quot;" text="입고일자"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:USE_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="combotext" combodataset="ds_mk_use" combocodecol="USE_CODE" combodatacol="USE_NAME" textAlign="left"/>
+                      <Cell col="1" text="bind:PPR_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="combotext" combodataset="ds_mk_Paper" combocodecol="PPR_CODE" combodatacol="PPR_NAME" textAlign="left"/>
+                      <Cell col="2" text="bind:COAT_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="combotext" combodataset="ds_mk_coating" combocodecol="COAT_CODE" combodatacol="COAT_NAME" textAlign="left"/>
+                      <Cell col="3" text="bind:ORDDTL_DETAIL" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" displaytype="normal" maskeditformat="#,0.000"/>
+                      <Cell col="4" text="bind:ORDDTL_TONE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" displaytype="normal" maskeditformat="#,0.000"/>
+                      <Cell col="5" text="bind:ORDDTL_FILMOUTDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="mask" maskeditformat="####-##-##" maskedittype="string" textAlign="center"/>
+                      <Cell col="6" text="bind:ORDDTL_FILMINDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="mask" maskeditformat="####-##-##" maskedittype="string" textAlign="center"/>
+                      <Cell col="7" text="bind:CUST" font="normal 12px/normal &quot;함초롬돋움&quot;" combodataset="ds_mk_Cust" combocodecol="CUST" combodatacol="CUST_NAME" displaytype="combotext"/>
+                      <Cell col="8" text="bind:ORDDTL_RUNDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="mask" maskeditformat="####-##-##" maskedittype="string" textAlign="center"/>
+                      <Cell col="9" text="bind:CTP" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" displaytype="checkboxcontrol" maskeditformat="#,0.000"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="stDtlNm" taborder="21" text="▣필름관리 세부사항▣" left="12" top="-5" width="185" height="46" font="bold 16px/normal &quot;함초롬바탕 확장&quot;"/>
+              <Static id="stType00" taborder="3" text="제본순서" top="34" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" left="cbType:3" width="85"/>
+              <Edit id="edBndSeq" taborder="4" left="stType00:3" top="34" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" autoselect="true" width="8.93%" enable="false"/>
+              <Static id="stPprCd" taborder="5" text="용지코드" top="34" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" left="edBndSeq:3" width="85"/>
+              <Edit id="edPprCd" taborder="6" top="34" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="6.32%" left="stPprCd:3" maxlength="4" autoselect="true" enable="false"/>
+              <Combo id="cbPprCd" taborder="7" top="34" height="35" innerdataset="ds_mk_Paper" codecolumn="PPR_CODE" datacolumn="PPR_NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" width="31.12%" left="edPprCd:3" onkeydown="LocalFctn_OnKeyDown" enable="false"/>
+              <Static id="stCoat" taborder="8" text="코팅" top="72" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" left="9" width="85"/>
+              <Edit id="edCoat" taborder="9" top="72" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="3.95%" left="stCoat:3" maxlength="2" autoselect="true" enable="false"/>
+              <Combo id="cbCoat" taborder="10" top="72" height="35" innerdataset="ds_mk_coating" codecolumn="TYPE_CODE" datacolumn="TYPE_NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" width="9.48%" left="edCoat:3" enable="false"/>
+              <Static id="stPage" taborder="11" text="쪽수" top="72" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="cbCoat:3"/>
+              <MaskEdit id="medtPage" taborder="30" top="72" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" autoselect="true" left="stPage:3" enable="false" width="8.93%"/>
+              <Static id="stBul" taborder="13" text="벌" left="medtPage:3" top="72" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85"/>
+              <Edit id="edBul" taborder="14" left="stBul:3" top="72" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="6.32%" enable="false"/>
+              <Static id="stGanged" taborder="15" text="돈뎅" left="edBul:3" top="72" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85"/>
+              <Edit id="edGanged" taborder="16" left="stGanged:3" top="72" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="6.32%" enable="false"/>
+              <Static id="stTone" taborder="17" top="72" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="색도" width="85" left="edGanged:3"/>
+              <Edit id="edTone1" taborder="18" top="72" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="58" left="stTone:3" enable="false"/>
+              <Static id="Static00_00" taborder="19" text="/" top="68" height="38" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" width="12" left="edTone1:7"/>
+              <Edit id="edTone2" taborder="20" top="72" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="58" left="Static00_00:-1" enable="false"/>
+              <Static id="stJmi" taborder="31" text="정미" top="110" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="9"/>
+              <MaskEdit id="medtJmi" taborder="32" top="110" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" autoselect="true" left="stJmi:3" enable="false" width="13.60%"/>
+              <Static id="stMrgn" taborder="33" text="여분" top="110" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="medtJmi:4"/>
+              <MaskEdit id="medtMrgn" taborder="34" top="110" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" autoselect="true" left="stMrgn:3" enable="false" width="17.85%" onkeydown="DivDtl_medtMrgn_onkeydown"/>
+              <Button id="btnCust_Search" taborder="36" text="외주처" top="110" height="35" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" width="85" left="medtMrgn:3" onclick="DivDtl_btnCust_Search_onclick" enable="false"/>
+              <Edit id="edCustCd" taborder="22" top="110" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="5.85%" left="btnCust_Search:3" maxlength="4" autoselect="true" onkeydown="DivDtl_edCustCd_onkeydown" enable="false"/>
+              <Combo id="cbCustNm" taborder="23" top="110" height="35" innerdataset="ds_mk_Cust" codecolumn="CUST" datacolumn="CUST_NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" width="22.67%" left="edCustCd:3" enable="false"/>
+              <Static id="stRunDate" taborder="24" text="진행일자" top="110" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" left="cbCustNm:3" width="85"/>
+              <Calendar id="calRunDate" taborder="25" left="stRunDate:3" top="110" height="35" dateformat="yyyy-MM-dd" autoselect="true" font="12px/normal &quot;함초롬바탕 확장&quot;" width="9.72%" onchanged="DivDtl_calRunDate_onchanged" enable="false"/>
+              <Static id="stComment" taborder="26" top="147" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="특이사항" width="85" left="9"/>
+              <Edit id="edCommt" taborder="27" left="stComment:3" top="147" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="74.57%" enable="false"/>
+              <Static id="stRemark" taborder="28" left="9" top="186" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="비고" width="85"/>
+              <Edit id="edRemark" taborder="29" left="stRemark:3" top="186" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="74.57%" onkeydown="DivDtl_edRemark_onkeydown" enable="false"/>
+              <ImageViewer id="ImgClose" taborder="35" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="93.47%" right="0.39%" text="" background="#e8e7e3" onclick="DivDtl_ImgClose_onclick"/>
+              <Static id="stFOutDate" taborder="37" text="필름출고일자" top="147" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" left="edCommt:3" width="85"/>
+              <Calendar id="calFilmOutDate" taborder="38" left="stFOutDate:3" top="147" height="35" dateformat="yyyy-MM-dd" autoselect="true" font="12px/normal &quot;함초롬바탕 확장&quot;" width="9.72%" onkeydown="DivDtl_calFilmOutDate_onkeydown"/>
+              <Static id="stFInDate" taborder="39" text="필름입고일자" top="186" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" left="edRemark:3" width="85"/>
+              <Calendar id="calFilmInDate" taborder="40" left="stFInDate:3" top="186" height="35" dateformat="yyyy-MM-dd" autoselect="true" font="12px/normal &quot;함초롬바탕 확장&quot;" width="9.72%" onkeydown="DivDtl_calFilmInDate_onkeydown"/>
+              <Static id="stFilmRemark" taborder="41" left="9" top="224" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="필름비고" width="85"/>
+              <Edit id="edFilmRemark" taborder="42" left="97" top="223" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="91.79%" onkeydown="DivDtl_edFilmRemark_onkeydown"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var nOrdMst_Id, strVisibleD, vPerDML;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var sCust_Gubn = "41";
+
+this.MkDtlMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	nOrdMst_Id = this.parent.parent.dsOrdMst.getColumn(this.parent.parent.dsOrdMst.rowposition, "ORDMST_ID");
+	
+	this.gfn_TransactionP("select", "JSP/mk/getData_use.jsp", "ds_mk_use=ds_mk_use", "ds_mk_use=ds_mk_use", "", "", false, "S", false, this); 						//용도코드
+	this.gfn_TransactionP("select", "JSP/mk/getData_coat.jsp", "ds_mk_coating=ds_mk_coating", "ds_mk_coating=ds_mk_coating", "", "", false, "S", false, this); 		//코팅코드
+	this.gfn_TransactionP("select", "JSP/mk/getData_paper.jsp", "ds_mk_Paper=ds_mk_Paper", "ds_mk_Paper=ds_mk_Paper", "", "", false, "S", false, this); 			//용지코드
+	this.gfn_TransactionP("select", "JSP/mk/Cust_Select.jsp", "ds_mk_Cust=ds_mk_Cust", "ds_mk_Cust=ds_mk_Cust", "", "", false, "S", false, this);   				 //업체코드
+	
+};
+
+// 용지발주 상세내역 가져오기
+this.getData_Dtl = function(nOrdMst_Id, vPerDML)
+{
+	str_url = "JSP/mk/mk13cf_order_dtl.jsp";
+	in_ds ="dsOrdDtl=dsOrdDtl";
+	out_ds ="dsOrdDtl=dsOrdDtl";
+	str_arg ="ORDMST_ID=" +nexacro.wrapQuote(nOrdMst_Id);
+	
+	this.gfn_TransactionP("selectDtl", str_url, in_ds, out_ds, str_arg, "Callback_Search", false, "S", false, this);
+};
+
+this.Callback_Search = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}else{
+		this.DivDtl.form.calFilmOutDate.setFocus();
+	}
+};
+
+//#######################################################
+// 세부사양 저장
+//#######################################################
+this.fctn_Dtl_save = function(vStr)
+{
+	in_ds 	= "input=dsOrdDtl:u";	
+	str_url = "JSP/mk/mk13bf_film_dml.jsp";
+	
+	for(nRow=0 ; nRow < this.dsOrdDtl.getRowCount(); nRow++)
+	{
+		// 필름 입/출고일자가 null일경우 인덱스를 타기 위해 빈 공백을 넣어줌
+		if (this.dsOrdDtl.getColumn(nRow, "ORDDTL_FILEOUTDATE") == "" || Eco.isUndefined(this.dsOrdDtl.getColumn(nRow, "ORDDTL_FILEOUTDATE")) == true)
+			this.dsOrdDtl.setColumn(nRow, "ORDDTL_FILEOUTDATE", " ");
+		
+		if (this.dsOrdDtl.getColumn(nRow, "ORDDTL_FILEINDATE") == "" || Eco.isUndefined(this.dsOrdDtl.getColumn(nRow, "ORDDTL_FILEINDATE")) == true)
+			this.dsOrdDtl.setColumn(nRow, "ORDDTL_FILEINDATE", " ");
+	}
+	
+	this.gfn_TransactionP("insert", str_url, in_ds, "", "", "", false, vStr, false, this);
+	this.DivDtl.form.grdDtl.setFocus();
+}
+
+this.DivDtl_grdDtl_onkeydown = function(obj:nexacro.Grid,e:nexacro.KeyEventInfo)
+{
+	//DML권한 없을 경우
+	if(vPerDML != 1)
+	{
+		if(e.keycode == 27)   //ESC -> 세부내역 DIV 닫기
+			this.DivDtl_ImgClose_onclick();
+	}else
+	{
+		if(e.keycode == 13)		//Enter키 입력
+		{
+			this.DivDtl.form.calFilmOutDate.setFocus();
+			this.DivDtl.form.calFilmOutDate.setSelect(0, -1);
+		
+		}else if(e.keycode == 27)		// ESC버튼 -> 세부내역DIV 닫기
+				this.DivDtl_ImgClose_onclick();
+	}
+};
+
+//#######################################################
+// 세부사양 DIV 닫기
+//#######################################################
+this.DivDtl_ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.DivDtl.set_visible("false");
+	
+	if(this.parent.parent.dsOrdMst.rowposition < this.parent.parent.dsOrdMst.getRowCount()-1)
+		this.parent.parent.dsOrdMst.set_rowposition(this.parent.parent.dsOrdMst.rowposition+1);
+		
+	this.parent.parent.grdMst.setFocus();
+};
+
+
+this.DivDtl_edFilmRemark_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		if(this.dsOrdDtl.rowposition != this.dsOrdDtl.getRowCount()-1)
+		{
+			//다음 row로 이동
+			this.dsOrdDtl.set_rowposition(this.dsOrdDtl.rowposition+1);
+			this.DivDtl.form.calFilmOutDate.setFocus();
+		}else{
+			this.DivDtl.form.grdDtl.setFocus();
+		}
+	}
+};
+
+this.DivDtl_calFilmOutDate_onkeydown = function(obj:nexacro.Calendar,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13){
+		this.DivDtl.form.calFilmInDate.setFocus();
+		
+		if(this.DivDtl.form.calFilmInDate.value.trim() == "")
+			this.DivDtl.form.calFilmInDate.setSelect(0, 0);
+		else
+			this.DivDtl.form.calFilmInDate.setSelect(0, -1);
+	}else if(e.keycode == 27)
+		this.DivDtl.form.grdDtl.setFocus();
+	
+};
+
+this.DivDtl_calFilmInDate_onkeydown = function(obj:nexacro.Calendar,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+		this.DivDtl.form.edFilmRemark.setFocus();
+	else if(e.keycode == 27)
+		this.DivDtl.form.grdDtl.setFocus();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_mk_Paper">
+        <ColumnInfo>
+          <Column id="PPR_CODE" type="STRING" size="256"/>
+          <Column id="PPR_UNIT" type="STRING" size="256"/>
+          <Column id="PPR_STND" type="STRING" size="256"/>
+          <Column id="PPR_REGDATE" type="STRING" size="256"/>
+          <Column id="PPR_WEIGHT" type="STRING" size="256"/>
+          <Column id="PPR_WIDTH" type="STRING" size="256"/>
+          <Column id="PPR_LENGTH" type="STRING" size="256"/>
+          <Column id="PPR_CONVERSION" type="STRING" size="256"/>
+          <Column id="PPR_DANGA" type="STRING" size="256"/>
+          <Column id="PPR_NAME" type="STRING" size="256"/>
+          <Column id="PPR_FEQUENT" type="STRING" size="256"/>
+          <Column id="PPR_DISABLED" type="STRING" size="256"/>
+          <Column id="PPR_STNDNAME" type="STRING" size="256"/>
+          <Column id="PPRKND_CLASS" type="STRING" size="256"/>
+          <Column id="PPRKND_KIND" type="STRING" size="256"/>
+          <Column id="PPRKND_NAME" type="STRING" size="256"/>
+          <Column id="PPRKND_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_Cust">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="REPRESENTATIVE" type="STRING" size="256"/>
+          <Column id="BUSINESSNO" type="STRING" size="256"/>
+          <Column id="BUSINESS_STARTDATE" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="OFFICE_TEL" type="STRING" size="256"/>
+          <Column id="OFFICE_FAX" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+          <Column id="CUST_STOPPAGE" type="STRING" size="256"/>
+          <Column id="BANK_CODE" type="STRING" size="256"/>
+          <Column id="CUST_ACNTNO" type="STRING" size="256"/>
+          <Column id="CUSTDTL_SALEAMOUNT" type="STRING" size="256"/>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsOrdDtl">
+        <ColumnInfo>
+          <Column id="ORDMST_ID" type="INT" size="20"/>
+          <Column id="ORDDTL_SEQ" type="STRING" size="2"/>
+          <Column id="ORDDTL_PSEQ" type="STRING" size="2"/>
+          <Column id="USE_CODE" type="STRING" size="2"/>
+          <Column id="USE_NAME" type="STRING" size="20"/>
+          <Column id="PPR_CODE" type="STRING" size="4"/>
+          <Column id="COAT_CODE" type="STRING" size="2"/>
+          <Column id="ORDDTL_PAGE" type="INT" size="3"/>
+          <Column id="ORDDTL_BUL" type="INT" size="3"/>
+          <Column id="ORDDTL_GANGED" type="INT" size="1"/>
+          <Column id="ORDDTL_DETAIL" type="STRING" size="20"/>
+          <Column id="ORDDTL_TONE1" type="INT" size="1"/>
+          <Column id="ORDDTL_TONE2" type="INT" size="1"/>
+          <Column id="ORDDTL_TONE" type="STRING" size="3"/>
+          <Column id="ORDDTL_JMI" type="DECIMAL" size="10"/>
+          <Column id="ORDDTL_MRGN" type="DECIMAL" size="8"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="ORDDTL_RUNDATE" type="STRING" size="8"/>
+          <Column id="ORDDTL_REALWORKQTY" type="INT" size="6"/>
+          <Column id="ORDDTL_TONQTY" type="DECIMAL" size="10"/>
+          <Column id="ORDDTL_UNITCOST" type="DECIMAL" size="9"/>
+          <Column id="ORDDTL_AMOUNT" type="INT" size="9"/>
+          <Column id="ORDDTL_VAT" type="INT" size="8"/>
+          <Column id="ORDDTL_PANQTY" type="INT" size="3"/>
+          <Column id="ORDDTL_PANUNITCOST" type="INT" size="5"/>
+          <Column id="ORDDTL_PANAMOUNT" type="INT" size="9"/>
+          <Column id="ORDDTL_PANVAT" type="INT" size="8"/>
+          <Column id="PRCS_CODE" type="STRING" size="2"/>
+          <Column id="ORDDTL_COMMENT" type="STRING" size="30"/>
+          <Column id="ORDDTL_REMARK" type="STRING" size="60"/>
+          <Column id="USE_PROCESSTYPE" type="STRING" size="2"/>
+          <Column id="USE_PAGECNT" type="STRING" size="1"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="ORDDTL_BNDSEQ" type="INT" size="2"/>
+          <Column id="ORDDTL_FILMOUTDATE" type="STRING" size="8"/>
+          <Column id="ORDDTL_FILMINDATE" type="STRING" size="8"/>
+          <Column id="ORDDTL_FILMREMARK" type="STRING" size="60"/>
+          <Column id="CTP" type="STRING" size="3"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_use">
+        <ColumnInfo>
+          <Column id="USE_CODE" type="STRING" size="256"/>
+          <Column id="USE_NAME" type="STRING" size="256"/>
+          <Column id="USE_PROCESSTYPE" type="STRING" size="256"/>
+          <Column id="USE_PUSE_CODE" type="STRING" size="256"/>
+          <Column id="USE_SHEETPRNCLASS" type="STRING" size="256"/>
+          <Column id="USE_PAGECNT" type="STRING" size="256"/>
+          <Column id="USE_DISABLED" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_coating">
+        <ColumnInfo>
+          <Column id="COAT_CODE" type="STRING" size="256"/>
+          <Column id="COAT_NAME" type="STRING" size="256"/>
+          <Column id="COAT_DISABLED" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="DivDtl.form.edType" propid="value" datasetid="dsOrdDtl" columnid="USE_CODE"/>
+      <BindItem id="item1" compid="DivDtl.form.cbType" propid="value" datasetid="dsOrdDtl" columnid="USE_CODE"/>
+      <BindItem id="item2" compid="DivDtl.form.edPprCd" propid="value" datasetid="dsOrdDtl" columnid="PPR_CODE"/>
+      <BindItem id="item3" compid="DivDtl.form.cbPprCd" propid="value" datasetid="dsOrdDtl" columnid="PPR_CODE"/>
+      <BindItem id="item5" compid="DivDtl.form.edBul" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_BUL"/>
+      <BindItem id="item7" compid="DivDtl.form.edCoat" propid="value" datasetid="dsOrdDtl" columnid="COAT_CODE"/>
+      <BindItem id="item8" compid="DivDtl.form.cbCoat" propid="value" datasetid="dsOrdDtl" columnid="COAT_CODE"/>
+      <BindItem id="item6" compid="DivDtl.form.edGanged" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_GANGED"/>
+      <BindItem id="item9" compid="DivDtl.form.edTone1" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_TONE1"/>
+      <BindItem id="item10" compid="DivDtl.form.edTone2" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_TONE2"/>
+      <BindItem id="item14" compid="DivDtl.form.edCustCd" propid="value" datasetid="dsOrdDtl" columnid="CUST_CODE"/>
+      <BindItem id="item15" compid="DivDtl.form.cbCustNm" propid="value" datasetid="dsOrdDtl" columnid="CUST"/>
+      <BindItem id="item21" compid="DivDtl.form.calRunDate" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_RUNDATE"/>
+      <BindItem id="item22" compid="DivDtl.form.edCommt" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_COMMENT"/>
+      <BindItem id="item23" compid="DivDtl.form.edRemark" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_REMARK"/>
+      <BindItem id="item4" compid="DivDtl.form.medtPage" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_PAGE"/>
+      <BindItem id="item24" compid="DivDtl.form.medtJmi" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_JMI"/>
+      <BindItem id="item12" compid="DivDtl.form.medtMrgn" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_MRGN"/>
+      <BindItem id="item13" compid="DivDtl.form.edBndSeq" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_BNDSEQ"/>
+      <BindItem id="item11" compid="DivDtl.form.calFilmOutDate" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_FILMOUTDATE"/>
+      <BindItem id="item16" compid="DivDtl.form.calFilmInDate" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_FILMINDATE"/>
+      <BindItem id="item17" compid="DivDtl.form.edFilmRemark" propid="value" datasetid="dsOrdDtl" columnid="ORDDTL_FILMREMARK"/>
+    </Bind>
+  </Form>
+</FDL>

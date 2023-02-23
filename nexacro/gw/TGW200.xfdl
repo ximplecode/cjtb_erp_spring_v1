@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TGW200" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Button id="btn_1" taborder="0" text="1. 일반공용양식" top="70" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_close_onclick" width="170" right="1080"/>
+        <Button id="btn_2" taborder="1" text="2. 인사관련양식" top="70" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_close_onclick" width="170" right="900"/>
+        <Grid id="grd_gw" taborder="2" left="30" top="105" width="716" height="370">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="300"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="문서명"/>
+                <Cell col="1" text="보존연한"/>
+                <Cell col="2"/>
+                <Cell col="3" text="회사문서함"/>
+                <Cell col="4" text="결재선"/>
+              </Band>
+              <Band id="body">
+                <Cell/>
+                <Cell col="1"/>
+                <Cell col="2"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_Search">
+        <ColumnInfo>
+          <Column id="GUBUN" type="STRING" size="256"/>
+          <Column id="F_FNUM" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gwList">
+        <ColumnInfo>
+          <Column id="GUBUN" type="STRING" size="256"/>
+          <Column id="F_NUM" type="STRING" size="256"/>
+          <Column id="F_FNUM" type="STRING" size="256"/>
+          <Column id="F_NAME" type="STRING" size="256"/>
+          <Column id="F_PRIOR" type="STRING" size="256"/>
+          <Column id="F_DATE" type="STRING" size="256"/>
+          <Column id="F_DURING" type="STRING" size="256"/>
+          <Column id="F_IDNO" type="STRING" size="256"/>
+          <Column id="AP" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Div00_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	this.ds_Search.setColumn(0, "GUBUN" , "01");
+	this.ds_Search.setColumn(0, "F_FNUM", "1");
+	this.ds_Search.setColumn(0, "SABUN", "T23050");
+	trace(this.ds_Search.saveXML());
+	
+	//AS-IS ("select", "Svcjsp_gw::TSQL_GW170_01S.jsp", "", "DS_FLIST=DS_FLIST", str_arg, "Empty_visi");
+	var option = {
+		  svcId    	: "TSQL_GW170_01S"
+		, svcUrl   	: "testURL::TSQLGW17001S"
+		, argument 	: ""
+		, inDs	 	: "ds_Search=ds_Search"
+		, outDs    	: "ds_gwList=ds_Multi"
+		, callback 	: "fn_Callback"
+		, async    	: true
+	};
+	
+	this.gfn_Transaction(this, option);
+};
+
+this.fn_Callback = function(svcId, eCode, eMsg)
+{
+	if(eCode != 0) this.alert(eCode + " : " + eMsg);
+	
+	switch (svcId)
+	{
+		case "TSQL_GW170_01S" :
+		 trace(this.ds_gwList.saveXML());
+		break;
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

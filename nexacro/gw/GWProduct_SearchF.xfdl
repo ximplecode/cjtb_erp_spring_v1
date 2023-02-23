@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GWProduct_SearchF" width="820" height="550" titletext="New Form" onload="GWProduct_SearchF_onload">
+    <Layouts>
+      <Layout height="550" mobileorientation="landscape" width="820">
+        <Button id="btn_close" taborder="0" text="확인" left="750" top="25" width="51" height="25" onclick="btn_close_onclick"/>
+        <Radio id="rdo_kind" taborder="1" left="130" top="67" width="227" height="30" innerdataset="dsKind" codecolumn="CODE" datacolumn="NAME" columncount="2" rowcount="0" onitemchanged="rdo_kind_onitemchanged" background="#c3e4cd"/>
+        <Edit id="edt_bookname" taborder="2" left="73" top="110" width="144" height="30" onkeydown="edt_onkeydown"/>
+        <Edit id="edt_bookcode" taborder="3" left="73" top="140" width="144" height="30" onkeydown="edt_onkeydown"/>
+        <Edit id="edt_bookyear" taborder="4" left="73" top="170" width="144" height="30" onkeydown="edt_onkeydown"/>
+        <Edit id="edt_attname" taborder="5" left="73" top="120" width="144" height="30" visible="false" onkeydown="edt_onkeydown"/>
+        <Edit id="edt_attcode" taborder="6" left="73" top="160" width="144" height="30" visible="false" onkeydown="edt_onkeydown"/>
+        <Grid id="grd_dtl" taborder="7" left="15" top="218" width="368" height="302" binddataset="dsBookMst" onheadclick="grd_dtl_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="26"/>
+                <Column size="80"/>
+                <Column size="30"/>
+                <Column size="46"/>
+                <Column size="250"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell edittype="checkbox" displaytype="checkboxcontrol" text="0"/>
+                <Cell col="1" text="도서코드"/>
+                <Cell col="2" text="순번"/>
+                <Cell col="3" text="년판"/>
+                <Cell col="4" text="도서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:BOOKMST_CODE"/>
+                <Cell col="2" text="bind:BOOKMST_SEQ"/>
+                <Cell col="3" text="bind:BOOKMST_YEAR"/>
+                <Cell col="4" text="bind:BOOKMST_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_add_book" taborder="8" top="220" height="302" width="368" left="437" binddataset="dsCProduct" oncelldblclick="btn_book_del_onclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="30"/>
+                <Column size="40"/>
+                <Column size="250"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="도서코드"/>
+                <Cell col="1" text="순번"/>
+                <Cell col="2" text="년판"/>
+                <Cell col="3" text="도서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BOOK_CD"/>
+                <Cell col="1" text="bind:BOOKMST_SEQ"/>
+                <Cell col="2" text="bind:YY"/>
+                <Cell col="3" text="bind:BOOK_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="9" text="적용항목" left="437" top="191" width="368" height="30" textAlign="center" background="#c3e4cd" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Button id="btn_book_search" taborder="10" text="조회하기" left="240" top="120" width="80" height="55" onclick="btn_book_search_onclick"/>
+        <CheckBox id="cb_bookresearch" taborder="11" text="결과내재검색" left="230" top="182" width="100" height="26"/>
+        <CheckBox id="cb_attresearch" taborder="12" text="결과내재검색" left="230" top="182" width="100" height="26" visible="false"/>
+        <Button id="btn_att_search" taborder="13" text="조회하기" left="240" top="120" width="80" height="55" visible="false" onclick="btn_att_search_onclick"/>
+        <Button id="btn_book_add" taborder="14" text="추가" left="388" top="343" width="44" height="22" onclick="btn_book_add_onclick"/>
+        <Button id="btn_book_del" taborder="15" text="삭제" left="388" top="373" width="44" height="22" onclick="btn_book_del_onclick"/>
+        <Grid id="grd_att" taborder="16" left="15" top="218" width="368" height="302" visible="false" binddataset="dsAttribute">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="26"/>
+                <Column size="68"/>
+                <Column size="250"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="0" edittype="checkbox" displaytype="checkboxcontrol"/>
+                <Cell col="1" text="속성코드"/>
+                <Cell col="2" text="도서속성명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:ATTRIBUTE_CODE"/>
+                <Cell col="2" text="bind:ATTRIBUTE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_add_att" taborder="17" top="220" height="302" width="368" left="437" visible="false" binddataset="dsCProductAtt" oncelldblclick="btn_att_del_onclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="84"/>
+                <Column size="250"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="도서코드"/>
+                <Cell col="1" text="도서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ATT_CD"/>
+                <Cell col="1" text="bind:ATT_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_att_add" taborder="18" text="추가" left="388" top="343" width="44" height="22" visible="false" onclick="btn_att_add_onclick"/>
+        <Button id="btn_att_del" taborder="19" text="삭제" left="388" top="373" width="44" height="22" visible="false" onclick="btn_att_del_onclick"/>
+        <Static id="stt_bookname" taborder="20" text="도서명" left="12" top="110" width="55" height="30" textAlign="center" background="#c3e4cd"/>
+        <Static id="stt_bookcode" taborder="21" text="도서코드" left="12" top="140" width="55" height="30" textAlign="center" background="#c3e4cd"/>
+        <Static id="stt_bookyear" taborder="22" text="도서연판" left="12" top="170" width="55" height="30" textAlign="center" background="#c3e4cd"/>
+        <Static id="Static00" taborder="23" text="도서 직과 기준" left="25" top="67" width="95" height="30" textAlign="center" background="#c3e4cd"/>
+        <Static id="stt_attname" taborder="24" text="속성명" left="12" top="120" width="55" height="30" textAlign="center" visible="false" background="#c3e4cd"/>
+        <Static id="stt_attcode" taborder="25" text="속성코드" left="12" top="160" width="55" height="30" textAlign="center" visible="false" background="#c3e4cd"/>
+        <Static id="Static02" taborder="26" text="도서정보" left="26" top="8" width="462" height="45" color="#7fb39d" font="bold 32px/normal &quot;함초롬바탕 확장B&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var Fv_HeadChk = 0;
+
+this.GWProduct_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.rdo_kind.set_index(0);
+	this.dsCProduct.copyData(this.opener.dsProduct);
+	this.dsCProductAtt.copyData(this.opener.dsProductAtt);
+	this.btn_book_search.set_enable(true);
+};
+
+this.rdo_kind_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	if ( this.rdo_kind.index == 0 )
+	{
+		this.dsCProductAtt.clearData();
+		// 도서코드 보이기
+		this.stt_bookcode.set_visible(true);
+		this.stt_bookname.set_visible(true);
+		this.stt_bookyear.set_visible(true);
+		this.edt_bookname.set_visible(true);
+		this.edt_bookcode.set_visible(true);
+		this.edt_bookyear.set_visible(true);
+		this.cb_bookresearch.set_visible(true);
+		this.btn_book_search.set_visible(true);
+		this.grd_dtl.set_visible(true);
+		this.btn_book_add.set_visible(true);
+		this.btn_book_del.set_visible(true);
+		this.grd_add_book.set_visible(true);
+	
+		// 속성정보 숨기기
+		this.stt_attcode.set_visible(false);
+		this.stt_attname.set_visible(false);
+		this.edt_attname.set_visible(false);
+		this.edt_attcode.set_visible(false);
+		this.cb_attresearch.set_visible(false);
+		this.btn_att_search.set_visible(false);
+		this.grd_att.set_visible(false);
+		this.grd_add_att.set_visible(false);
+		this.btn_att_add.set_visible(false);
+		this.btn_att_del.set_visible(false);
+	}
+	else if ( this.rdo_kind.index == 1 )
+	{
+		this.dsCProduct.clearData();
+		// 속성 정보 보이기
+		this.stt_attcode.set_visible(true);
+		this.stt_attname.set_visible(true);
+		this.edt_attname.set_visible(true);
+		this.edt_attcode.set_visible(true);
+		this.cb_attresearch.set_visible(true);
+		this.btn_att_search.set_visible(true);
+		this.grd_att.set_visible(true);
+		this.grd_add_att.set_visible(true);
+		this.btn_att_add.set_visible(true);
+		this.btn_att_del.set_visible(true);
+		
+		// 도서코드 숨기기
+		this.stt_bookcode.set_visible(false);
+		this.stt_bookname.set_visible(false);
+		this.stt_bookyear.set_visible(false);
+		this.edt_bookname.set_visible(false);
+		this.edt_bookcode.set_visible(false);
+		this.edt_bookyear.set_visible(false);
+		this.cb_bookresearch.set_visible(false);
+		this.btn_book_search.set_visible(false);
+		this.grd_dtl.set_visible(false);
+		this.btn_book_add.set_visible(false);
+		this.btn_book_del.set_visible(false);
+		this.grd_add_book.set_visible(false);
+	}
+};
+// 도서 조회
+this.btn_book_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var bSearch_Set = true;
+	
+	if ( (nexacro.trim(this.edt_bookname.text).length) == 0 && (nexacro.trim(this.edt_bookcode.text).length) == 0 )
+	{
+	   alert("도서명 또는 도서코드를 입력해 주세요");
+	   bSearch_Set = false;
+	}
+	 
+	if ((nexacro.trim(this.edt_bookyear.text).length) != 4)
+	{
+	   alert("년판을 입력해 주세요");
+	   bSearch_Set = false;
+	}
+	
+	if (bSearch_Set)
+	{
+		if (this.cb_bookresearch.value == false)
+		{
+			var strUrl = "JSP/pd/pd_BookcodeSerch.jsp";
+			var strArg  = "";
+			var strDs 	= "dsBookMst=dsBookMst";
+			strArg 	= "sBOOKMST_CODE=" + nexacro.wrapQuote( this.edt_bookcode.text ) +
+					  " sBOOKMST_YEAR=" + nexacro.wrapQuote( this.edt_bookyear.text ) +
+					  " eBOOKMST_CODE=" + nexacro.wrapQuote( ) +
+					  " eBOOKMST_YEAR=" + nexacro.wrapQuote( ) +
+					  " sBOOKMST_NAME=" + nexacro.wrapQuote( this.edt_bookname.text ) ;
+			
+			this.gfn_TransactionP("search", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+			this.grd_dtl.setFocus();
+		} else
+		{
+			this.dsBookMst.filter("BOOKMST_NAME.indexOf('" + this.edt_bookname.text + "') >= 0");
+		}
+	}
+};
+// 도서코드 등록
+this.btn_book_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = 0;
+	for( var j = 0 ; j <= this.dsBookMst.rowcount ; j++)  
+	{
+		if (this.dsBookMst.getColumn(j,"CHK") == "1" )
+		{			
+			var i = this.dsCProduct.findRow("BOOKMST_ID", this.dsBookMst.getColumn(j, "BOOKMST_ID"));
+			trace(this.dsCProduct.getColumn(i, "BOOKMST_ID"));
+			if (i = -1)
+			{
+				nRow = this.dsCProduct.addRow();
+				
+				this.dsCProduct.setColumn(nRow, "BOOKMST_ID", this.dsBookMst.getColumn(j, "BOOKMST_ID"));
+				this.dsCProduct.setColumn(nRow, "BOOK_CD", this.dsBookMst.getColumn(j, "BOOKMST_CODE"));
+				this.dsCProduct.setColumn(nRow, "YY", this.dsBookMst.getColumn(j, "BOOKMST_YEAR"));
+				this.dsCProduct.setColumn(nRow, "BOOKMST_SEQ", this.dsBookMst.getColumn(j, "BOOKMST_SEQ"));
+				this.dsCProduct.setColumn(nRow, "BOOK_NAME", this.dsBookMst.getColumn(j, "BOOKMST_NAME"));
+		
+			} else
+			{
+				alert(this.dsBookMst.getColumn(j, "BOOKMST_NAME") + "해당도서는 등록되어 있습니다.");
+			}
+			nRow = nRow + 1;
+		} 
+	}
+	this.opener.dsProduct.copyData(this.dsCProduct);
+};
+// 도서 삭제
+this.btn_book_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsCProduct.deleteRow(this.dsCProduct.rowposition);
+	this.opener.dsProduct.copyData(this.dsCProduct);
+};
+// 조회된 도서 전체 체크
+this.grd_dtl_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		if(Fv_HeadChk == 0)
+			Fv_HeadChk = 1;
+		else
+			Fv_HeadChk = 0;
+		
+		this.grd_dtl.setCellProperty("head", 0, "text", Fv_HeadChk);
+		
+		for(var i = 0; i < this.dsBookMst.rowcount; i++)
+		{
+			this.dsBookMst.setColumn(i, "CHK", Fv_HeadChk);	
+		}
+	}
+};
+// 속성 조회
+this.btn_att_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var bSearch_Set = true;
+	
+	if ( (nexacro.trim(this.edt_attname.text)).length == 0 && (nexacro.trim(this.edt_attcode.text)).length == 0 )
+	{
+	   alert("도서명 또는 도서코드를 입력해 주세요");
+	   bSearch_Set = false;
+	}
+	
+	if (bSearch_Set)
+	{
+		if (this.cb_attresearch.value == false)
+		{
+			var strUrl = "JSP/pd/pd_AttributeSerch.jsp";
+			var strDs 	= "dsAttribute=dsAttribute";
+			var strDs 	= "dsAttribute=dsAttribute";
+			var grade_list, term_list, subject_list;
+			var strArg  = "";
+
+			strArg 	= "sATTRIBUTE_CODE=" + nexacro.wrapQuote( this.edt_attcode.text ) +
+					  " sATTRIBUTE_NAME=" + nexacro.wrapQuote( this.edt_attname.text );
+			this.gfn_TransactionP("search", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+			this.grd_att.setFocus();
+		} else
+		{
+			this.dsAttribute.filter("ATTRIBUTE_NAME.indexOf('" + this.edt_attname.text + "') >= 0");
+		}
+	}
+};
+// 속성코드 등록
+this.btn_att_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = 0;
+	for( var j = 0 ; j <= this.dsAttribute.rowcount ; j++)  
+	{		
+		if (this.dsAttribute.getColumn(j,"CHK") == "1" )
+		{
+			var i = this.dsCProductAtt.findRow("ATT_CD", this.dsAttribute.getColumn(j, "ATTRIBUTE_CODE"));
+			if (i = -1)
+			{
+				nRow = this.dsCProductAtt.addRow();
+				this.dsCProductAtt.setColumn(nRow, "POST_DST_ID", 0);
+				this.dsCProductAtt.setColumn(nRow, "ATT_CD", this.dsAttribute.getColumn(j, "ATTRIBUTE_CODE"));
+				this.dsCProductAtt.setColumn(nRow, "ATT_NAME", this.dsAttribute.getColumn(j, "ATTRIBUTE_NAME"));
+			} else
+			{
+				alert(this.dsAttribute.getColumn(j, "ATTRIBUTE_NAME") + "해당도서는 등록되어 있습니다.");
+			}
+			nRow = nRow + 1;
+		} 
+	}
+	this.opener.dsProductAtt.copyData(this.dsCProductAtt);
+};
+// 속성코드 삭제
+this.btn_att_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsCProductAtt.deleteRow(this.dsCProductAtt.rowposition);
+	this.opener.dsProductAtt.copyData(this.dsCProductAtt);
+};
+// edt key down처리
+this.edt_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		switch(obj.name)
+		{
+			case 'edt_bookname':
+			case 'edt_bookcode':
+				this.edt_bookyear.setFocus();
+				break;
+			case 'edt_bookyear':
+				this.btn_book_search.click();
+				break;
+			case 'edt_attname':
+			case 'edt_attcode':
+				this.btn_att_search.click();
+				break;
+		}
+	}
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.opener.dsProduct.copyData(this.dsCProduct);
+	this.opener.dsProductAtt.copyData(this.dsCProductAtt);
+	if(this.rdo_kind.index == 0)
+	{
+		this.opener.dsProductAtt.clearData();
+		if( this.opener.dsPostDst.getRowType(this.opener.dsPostDst.rowposition) == '1' || this.opener.dsPostDst.getRowType(this.opener.dsPostDst.rowposition) == '4' ) // nomal or update
+		{
+			this.opener.fnAttlistDeleteTran();
+			this.opener.fnBooklistDeleteTran();
+			this.opener.fnBookListInsertTran(this.opener.dsPostDst.getColumn(this.opener.dsPostDst.rowposition, "POST_DST_ID"));
+			this.opener.fnSelectBookListMstTran();
+		}
+	}
+	else if(this.rdo_kind.index == 1) 
+	{
+		this.opener.dsProduct.clearData();
+		if( this.opener.dsPostDst.getRowType(this.opener.dsPostDst.rowposition) == '1' || this.opener.dsPostDst.getRowType(this.opener.dsPostDst.rowposition) == '4' ) // nomal or update
+		{
+			this.opener.fnAttlistDeleteTran();
+			this.opener.fnBooklistDeleteTran();
+			this.opener.fnAttListInsertTran(this.opener.dsPostDst.getColumn(this.opener.dsPostDst.rowposition, "POST_DST_ID"));
+			this.opener.fnSelectAttListMstTran();
+		}
+	}
+	this.close();
+};
+
+this.fnCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+    if (ErrorCode != 0) 
+		{alert(ErrorMsg);
+		return;}
+	else if (Trid != null)
+	{
+		Trid = Trid.split("|");
+		Trid = Trid[0] 
+	}
+	if (Trid == "search")
+	{
+		trace("[PDProduct_SearchF.fnCallBack] " + Trid +"::"+ ErrorMsg );
+	}
+}
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_PID" type="INT" size="20"/>
+          <Column id="BOOKMST_ORDID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_TYPE" type="STRING" size="2"/>
+          <Column id="BOOKMST_SALE" type="STRING" size="1"/>
+          <Column id="PLT_CODE" type="STRING" size="2"/>
+          <Column id="BND_CODE" type="STRING" size="2"/>
+          <Column id="BOOKMST_SIGNATURE" type="FLOAT" size="7"/>
+          <Column id="BOOKMST_BODYPAGE" type="INT" size="3"/>
+          <Column id="BOOKMST_REMARK" type="STRING" size="400"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="BOOKMST_REGDATE" type="STRING" size="12"/>
+          <Column id="BOOKMST_MODIDATE" type="STRING" size="12"/>
+          <Column id="BOOKTBKIND_NAME" type="STRING" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSubject">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="50"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAttribute">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="ATTRIBUTE_CODE" type="STRING" size="10"/>
+          <Column id="ATTRIBUTE_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsKind">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="1"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">10</Col>
+            <Col id="NAME">도서코드 정보</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">20</Col>
+            <Col id="NAME">속성코드 정보</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCProduct">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="STRING" size="256"/>
+          <Column id="BOOK_CD" type="STRING" size="10"/>
+          <Column id="YY" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOK_NAME" type="STRING" size="100"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCProductAtt">
+        <ColumnInfo>
+          <Column id="POST_DST_ID" type="INT" size="20"/>
+          <Column id="ATT_CD" type="STRING" size="10"/>
+          <Column id="ATT_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

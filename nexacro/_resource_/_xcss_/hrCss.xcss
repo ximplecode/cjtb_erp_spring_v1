@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[.Grid .body .row .cell.hr_CssBG_level2
+{
+	background : #d6d6d6;	
+}
+.Grid .body .row .cell.hr_CssBG_level2[userstatus=selected]
+{
+	background : #d6d6d6;
+}
+.Grid .body .row .cell.hr_CssBG_level2[status=mouseover]
+{
+	background : #d6d6d6;
+}
+
+.Grid .body .row .cell.hr_CssBG_level2[status=focused]
+{
+	background : #d6d6d6;
+}
+
+.Grid .body .row .cell.hr_CssBGI_loupe
+{
+	background : url('./Images/loupe.png') no-repeat center center darkseagreen;
+}
+.Grid .body .row .cell.hr_CssBGI_loupe[status=focused]
+{
+	background : url('./Images/loupe.png') no-repeat center center;	
+}
+.Grid .body .row .cell.hr_CssBGI_loupe[status=mouseover]
+{
+	background : url('./Images/loupe.png') no-repeat center center;	
+}
+.Grid .body .row .cell.CssBG_yellow
+{
+	background : yellow;
+	font : normal bold 10pt/normal "Arial";
+}.Grid .body .row .cell.CssBG_darkseagreen[status=mouseover]
+{
+	color : #666666;
+	font : ;
+}
+.Grid .body .row .cell.CssBG_darkseagreen[status=focused]
+{
+	color : #666666;
+	font : ;
+}
+.Grid .body .row .cell.CssBGI_BC_none_loupe
+{
+	background : url('./Images/loupe.png') no-repeat center center;
+}
+.Grid .body .row .cell.CssBGI_BC_none_loupe[status=focused]
+{
+	background : url('./Images/loupe.png') no-repeat center center #f2f9ff;
+}
+.Grid .body .row .cell.CssBGI_BC_none_loupe[status=mouseover]
+{
+	background : url('./Images/loupe.png') no-repeat center center #f6f6f6;
+}
+.Grid .body .row .cell.CssBGI_BC_none_loupe[userstatus=selected]
+{
+	background : url('./Images/loupe.png') no-repeat center center #f2f9ff;
+}
+.Grid .body .row .cell.CssBG_red[status=mouseover]
+{
+	background : red;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_red[userstatus=selected][status=focused]
+{
+		background : red;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_yellow[status=focused]
+{
+	background : yellow;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_red
+{
+	background : red;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_yellow[status=mouseover]
+{
+	background : yellow;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_deepskyblue
+{
+	background : deepskyblue;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_deepskyblue[status=mouseover]
+{
+	background : deepskyblue;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_deepskyblue[userstatus=selected]
+{
+	background : deepskyblue;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_gainsboro
+{
+	background : gainsboro;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_gainsboro[status=mouseover]
+{
+	background : gainsboro;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_gainsboro[userstatus=selected]
+{
+	background : gainsboro;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_yellow[userstatus=selected]
+{
+	background : yellow;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_deepskyblue[status=focused]
+{
+	background : deepskyblue;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBG_gainsboro[status=focused]
+{
+	background : gainsboro;
+	color : white;
+	font : normal bold 10pt/normal "Arial";
+}
+.Grid .body .row .cell.hr_CssBG_level3
+{
+	background : lightskyblue;
+}
+
+.Grid .body .row .cell.hr_CssBG_level3[status=focused]
+{
+	background : lightskyblue;
+}
+
+.Grid .body .row .cell.hr_CssBG_level3[status=mouseover]
+{
+	background : lightskyblue;
+}
+
+.Grid .body .row .cell.hr_CssBG_level3[userstatus=selected]
+{
+	background : lightskyblue;
+}
+
+.Grid .body .row .cell.hr_CssBG_level4
+{
+	background : peachpuff;
+}
+
+.Grid .body .row .cell.hr_CssBG_level4[status=focused]
+{
+	background : peachpuff;
+}
+
+.Grid .body .row .cell.hr_CssBG_level4[userstatus=selected]
+{
+	background : peachpuff;
+}
+
+.Grid .body .row .cell.hr_CssBG_level4[status=mouseover]
+{
+	background : peachpuff;
+}
+
+/* 휴일 red */
+.Grid .body .row .cell.hr_CssFont_Red
+{
+	color : red;
+}
+
+/* 연차 blue */
+.Grid .body .row .cell.hr_CssFont_blue
+{
+	color : blue;
+}
+
+/* 지각 gray */
+.Grid .body .row .cell.hr_CssFont_gray
+{
+	color : gray;
+}
+
+
+
+]]></XCSS>

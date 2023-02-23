@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[.Grid .body .row .cell.BgChange1
+{
+    background : #d2e7d6;
+}
+
+.Grid .body .row .cell.mk_subtotal
+{
+	background : #d2e7d6;
+}
+
+.Grid .body .row .cell.mk_daytotal
+{
+	background : #f6d3d7;
+	
+}
+
+.Grid .body .row .cell.mk_return
+{
+	color : #e64b79;
+}
+
+
+.Grid .body .row .cell.BgChange2
+{
+    background : #f6d3d7;
+}
+
+.Grid .body .row .cell.BgChange3
+{
+    background : #afc5db;
+}
+
+.Grid .body .row .cell.BgChange4
+{
+    background : #fbce78;
+}
+
+.Grid .body .row .cell.MK14C_Bg
+{
+    background : #c8c8c8;
+}
+
+.Grid .body .row .cell.MK14C_Color1
+{
+    color : #000000;
+}
+
+.Grid .body .row .cell.MK14C_Color2
+{
+    color : #8B4513;
+}
+
+.Grid .body .row .cell.MK14C_Color3
+{
+    color : #0000FF;
+}
+
+.Grid .body .row .cell.PRODUCT_ERROR_Color
+{
+    color : crimson;
+}
+
+.Grid .body .row .cell.PRODUCT_HYPERLINK
+{
+    color : dodgerblue;
+    -nexa-text-decoration : underline;
+}
+]]></XCSS>

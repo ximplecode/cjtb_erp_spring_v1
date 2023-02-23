@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Address" width="500" height="550" titletext="New Form" onload="Address_onload">
+    <Layouts>
+      <Layout height="550" width="500">
+        <WebBrowser id="WebBrowser00" taborder="0" left="5" top="10" width="485" height="534" onusernotify="WebBrowser00_onusernotify"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Address_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    var strPostUrl = "https://cj-erp.chunjae.co.kr/erp-next/JSP/common/getdata_address.jsp";
+    this.WebBrowser00.set_url(strPostUrl);
+};
+
+this.WebBrowser00_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{
+	var addData = e.userdata.split(":");
+
+    if(addData[0] != "about" && addData[0] != "https" && addData.length > 2)
+    {
+		this.close(e.userdata);
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

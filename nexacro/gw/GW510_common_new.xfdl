@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GW510_common_new" width="770" height="430" titletext="New Form" onload="GW510_common_new_onload">
+    <Layouts>
+      <Layout height="430" width="770">
+        <Static id="Static02" taborder="0" text="품목선택" left="15" top="12" width="125" height="40" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btn_close" taborder="1" text="닫기" top="25" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="14" onclick="btn_close_onclick"/>
+        <Button id="btn_clear" taborder="2" text="취소" top="25" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="80" onclick="btn_clear_onclick"/>
+        <Static id="Static00_07" taborder="3" text="대분류" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="12" height="25" width="7.56%"/>
+        <Static id="Static00_07_00" taborder="4" text="품명" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="491" height="25" width="7.44%"/>
+        <Static id="Static00_07_01" taborder="5" text="중분류" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="250" height="25" width="7.56%"/>
+        <Combo id="cb_h" taborder="6" left="76" top="60" width="170" height="25" canitemchange="cb_h_canitemchange" innerdataset="ds_h" codecolumn="HIGHLEVEL_CODE" datacolumn="HIGHLEVEL_NAME" onitemchanged="cb_h_onitemchanged"/>
+        <Combo id="cb_m" taborder="7" left="315" top="60" width="170" height="25" canitemchange="cb_m_canitemchange" innerdataset="ds_m" codecolumn="MIDDLELEVEL_CODE" datacolumn="MIDDLELEVEL_NAME" onitemchanged="cb_m_onitemchanged"/>
+        <Combo id="cb_l" taborder="8" left="556" top="60" width="200" height="25" canitemchange="cb_l_canitemchange" innerdataset="ds_l" codecolumn="LOWLEVEL_CODE" datacolumn="LOWLEVEL_NAME" onitemchanged="cb_l_onitemchanged"/>
+        <CheckBox id="chk_add" taborder="9" text="연속추가" left="27" top="95" width="128" height="18"/>
+        <Static id="Static00" taborder="10" text="※단가 없는 품목은 인사관리팀 별도 요청바람※" left="463" top="95" width="287" height="21" font="bold 12px/normal &quot;Gulim&quot;" color="#f35373"/>
+        <Grid id="Grid00" taborder="11" left="6" top="123" width="750" height="292" binddataset="ds_common" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="100"/>
+                <Column size="230"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="대분류"/>
+                <Cell col="1" text="중분류"/>
+                <Cell col="2" text="코드"/>
+                <Cell col="3" text="품명"/>
+                <Cell col="4" text="단가"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:HIGHLEVEL_NAME"/>
+                <Cell col="1" text="bind:MIDDLELEVEL_NAME"/>
+                <Cell col="2" text="bind:LOWLEVEL_CODE"/>
+                <Cell col="3" text="bind:LOWLEVEL_NAME"/>
+                <Cell col="4" text="bind:DAN" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_common" onrowposchanged="ds_common_onrowposchanged">
+        <ColumnInfo>
+          <Column id="COMMON_ID" type="STRING" size="256"/>
+          <Column id="HIGHLEVEL_CODE" type="STRING" size="256"/>
+          <Column id="HIGHLEVEL_NAME" type="STRING" size="256"/>
+          <Column id="MIDDLELEVEL_CODE" type="STRING" size="256"/>
+          <Column id="MIDDLELEVEL_NAME" type="STRING" size="256"/>
+          <Column id="LOWLEVEL_CODE" type="STRING" size="256"/>
+          <Column id="LOWLEVEL_NAME" type="STRING" size="256"/>
+          <Column id="DAN" type="STRING" size="256"/>
+          <Column id="IMAGE_PATH" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_h">
+        <ColumnInfo>
+          <Column id="HIGHLEVEL_CODE" type="STRING" size="256"/>
+          <Column id="HIGHLEVEL_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_m">
+        <ColumnInfo>
+          <Column id="HIGHLEVEL_CODE" type="STRING" size="256"/>
+          <Column id="HIGHLEVEL_NAME" type="STRING" size="256"/>
+          <Column id="MIDDLELEVEL_CODE" type="STRING" size="256"/>
+          <Column id="MIDDLELEVEL_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_l">
+        <ColumnInfo>
+          <Column id="COMMON_ID" type="STRING" size="256"/>
+          <Column id="HIGHLEVEL_CODE" type="STRING" size="256"/>
+          <Column id="HIGHLEVEL_NAME" type="STRING" size="256"/>
+          <Column id="MIDDLELEVEL_CODE" type="STRING" size="256"/>
+          <Column id="MIDDLELEVEL_NAME" type="STRING" size="256"/>
+          <Column id="LOWLEVEL_CODE" type="STRING" size="256"/>
+          <Column id="LOWLEVEL_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var sRow, formId;
+
+this.GW510_common_new_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	sRow = this.parent.p_nRow;
+	formId = this.parent.p_Id;
+	
+	var strUrl = "JSP/gw/SQL_GW510_COMMON_SELECT.jsp";
+	var inds = "ds_h=ds_h ds_m=ds_m ds_common=ds_common";
+	var outds = "ds_h=ds_h ds_m=ds_m ds_common=ds_common";
+	
+	this.gfn_TransactionP("select", strUrl, inds, outds, "", "fnSelectCallback", false, "P", false, this);
+};
+
+this.fnSelectCallback = function (svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else
+		this.ds_l.copyData(this.ds_common);
+};
+
+this.cb_h_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if(this.cb_h.text == "")
+	{
+		this.ds_m.filter("");
+		this.ds_common.filter("");
+		this.ds_l.filter("");
+	}
+	else
+	{
+		this.ds_m.filter("HIGHLEVEL_CODE==" + nexacro.wrapQuote(this.cb_h.value) + " || MIDDLELEVEL_CODE==''");
+		this.ds_common.filter("HIGHLEVEL_CODE==" + nexacro.wrapQuote(this.cb_h.value));
+		this.ds_l.filter("HIGHLEVEL_CODE=="+nexacro.wrapQuote(this.cb_h.value)+ " || MIDDLELEVEL_CODE==''");
+	}
+	this.cb_m.set_text("");
+	this.fn_dataFilter();
+};
+
+this.cb_m_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if(this.cb_m.value == "")
+		this.ds_l.filter("HIGHLEVEL_CODE==" + nexacro.wrapQuote(this.cb_h.value) + "|| MIDDLELEVEL_CODE==''");
+	else
+	{
+		this.cb_h.set_value(this.ds_m.getColumn(this.cb_m.index, "HIGHLEVEL_CODE"));
+		this.ds_l.filter("HIGHLEVEL_CODE==" + nexacro.wrapQuote(this.cb_h.value) + "|| MIDDLELEVEL_CODE==" + nexacro.wrapQuote(this.cb_h.value));
+	}
+	this.fn_dataFilter();
+};
+
+this.cb_l_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_dataFilter();
+};
+
+this.fn_dataFilter = function()
+{	
+	var check = 0;
+	var str;
+	
+	if(this.cb_h.text != "")
+	{
+		str = "HIGHLEVEL_CODE==" + nexacro.wrapQuote(this.cb_h.value);
+		check = 1;
+	}
+	
+	if (this.cb_m.text != "")
+	{
+		if (check == 1)
+			 str += " && ";     
+	
+		str += " MIDDLELEVEL_CODE=="+ nexacro.wrapQuote(this.cb_m.value);         
+		check = 1;
+	}
+   
+	if (this.cb_l.text != "")
+	{
+		if (check == 1)
+			str += " && ";         
+			
+		str = " LOWLEVEL_NAME=="+ nexacro.wrapQuote(this.cb_l.text);
+   }
+
+   if (str == "") this.ds_common.filter("");
+   else this.ds_common.filter(str);
+}
+
+this.btn_clear_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.cb_h.set_value("");
+	this.cb_m.set_value("");
+	this.cb_l.set_text("");
+	this.ds_common.filter("");
+};
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(formId == "GW510")
+	{
+		this.opener.ds_dtl.setColumn(sRow, "COMMON_ID", this.ds_common.getColumn(e.row,"COMMON_ID"));	
+		this.opener.ds_dtl.setColumn(sRow, "LOWLEVEL_NAME", this.ds_common.getColumn(e.row,"LOWLEVEL_NAME"));	
+		this.opener.ds_dtl.setColumn(sRow, "BUY_COST", this.ds_common.getColumn(e.row,"DAN"));
+		
+		if(this.chk_add.value == false)
+		{
+			this.opener.grd_dtl.setCellPos(2);
+			this.opener.ds_dtl.rowposition = sRow-1;
+			this.close();
+		}
+		else
+		{
+			if(sRow == this.opener.ds_dtl.rowcount -1 ) 
+				sRow = this.opener.ds_dtl.addRow();
+		}
+	}
+	else if(formId == "GW540")
+	{
+		this.opener.ds_mst.setColumn(sRow, "COMMON_ID", this.ds_common.getColumn(e.row, "COMMON_ID"));
+		this.opener.ds_mst.setColumn(sRow, "LOWLEVEL_NAME", this.ds_common.getColumn(e.row, "LOWLEVEL_NAME"));
+		this.close();
+	}
+};
+
+//이미지 추가
+this.ds_common_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	
+};
+
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

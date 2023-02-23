@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="EDAuthor_SearchF" width="500" height="550" titletext="New Form" onload="EDAuthor_SearchF_onload" onbeforeclose="EDAuthor_SearchF_onbeforeclose">
+    <Layouts>
+      <Layout height="550" mobileorientation="landscape" width="500">
+        <Static id="Static00" taborder="0" text="성명" left="16" top="26" width="77" height="29" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Edit id="edt_name" taborder="1" left="97" top="26" width="304" height="29" onkeyup="edt_univ_onkeyup" text="홍길동"/>
+        <Static id="Static01" taborder="2" text="찾고자 하는 저자의 이름을 입력하세요.  저자 확인 후 더블클릭하여 적용하세요." left="36" top="46" width="444" height="60" onclick="Static01_onclick"/>
+        <Button id="btn_close" taborder="3" text="닫기" left="183" top="510" height="29" right="193" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Grid id="Grid00" taborder="4" left="13" top="100" width="477" height="400" oncelldblclick="Grid00_oncelldblclick" onenterdown="Grid00_oncelldblclick" binddataset="dsAuthor">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="105"/>
+                <Column size="111"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="성명"/>
+                <Cell col="1" text="주민번호"/>
+                <Cell col="2" text="핸드폰"/>
+                <Cell col="3" text="승인여부"/>
+                <Cell col="4" text="약정만료일"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ATHR_NAME"/>
+                <Cell col="1" text="bind:ATHR_JUMINNO"/>
+                <Cell col="2" text="bind:ATHR_HP"/>
+                <Cell col="3" text="bind:PERMITE_NAME" displaytype="normal" combodataset="dsPermite" combocodecol="CODE" combodatacol="NAME"/>
+                <Cell col="4" text="bind:ATHR_CLOSEDATE" displaytype="date"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="5" text="조회" left="409" top="26" width="70" height="29" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_search_onclick" defaultbutton="true"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsAuthor">
+        <ColumnInfo>
+          <Column id="ATHR_NAME" type="STRING" size="256"/>
+          <Column id="ATHR_JUMINNO" type="STRING" size="256"/>
+          <Column id="ATHR_JUMINNO2" type="STRING" size="256"/>
+          <Column id="ATHR_HP" type="STRING" size="256"/>
+          <Column id="ATHR_HP2" type="STRING" size="256"/>
+          <Column id="ATHR_CLOSEDATE" type="STRING" size="256"/>
+          <Column id="PERMITE_NAME" type="STRING" size="256"/>
+          <Column id="PERMITE" type="STRING" size="256"/>
+          <Column id="ATHR_COMNAME" type="STRING" size="256"/>
+          <Column id="ATHR_UNIVSTUDY" type="STRING" size="256"/>
+          <Column id="UNIV_CODE" type="STRING" size="256"/>
+          <Column id="UNIV_NAME" type="STRING" size="256"/>
+          <Column id="BANK_CODE" type="STRING" size="256"/>
+          <Column id="ATHR_ACNTNO" type="STRING" size="256"/>
+          <Column id="ATHR_ABODEGB" type="STRING" size="256"/>
+          <Column id="ATHR_IDENTITY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPermite">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">승인</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">미승인</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var chk_btn;
+var aReturn = new Array();
+
+var param, athr_close, athr_permite;
+
+this.EDAuthor_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.edt_name.setFocus();
+	param = this.parent.param;
+	athr_close = this.parent.athr_close;
+    athr_permite = this.parent.athr_permite;
+}
+
+//닫기
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var strArg = "ATHR_NAME=" + this.edt_name.value;
+	var outds = "dsAuthor=dsAuthor";
+	var inds = "dsAuthor=dsAuthor";
+	
+	this.gfn_TransactionP("select","JSP/ed/author_select.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+};
+
+this.fnCallback = function(svcId, ErrorCode, ErrorMsg)
+{
+	if(ErrorCode != 0)  
+	{
+		this.alert(ErrorMsg);
+		return;
+	}else
+	{
+		if(this.dsAuthor.rowcount == 0)
+			alert("찾고자하는 저자가 없습니다");
+		else
+			this.Grid00.set_binddataset("dsAuthor");
+	}
+};
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var d = new Date(); 
+	var today = Eco.date.getMaskFormatString(d, "yyyyMMdd");
+	var openRow;
+	
+	if((athr_permite == "Permite") && (this.dsAuthor.getColumn(this.dsAuthor.rowposition, "PERMITE") == "0"))
+	{
+		alert("미승인 저자 입니다. 경리부에 문의하여 승인을 받으시기 바랍니다.");
+		this.edt_name.value = "";
+		return false;
+	}
+	
+	if(athr_close == "Close")
+	{
+		var sCloseDate = this.dsAuthor.getColumn(this.dsAuthor.rowposition, "ATHR_CLOSEDATE");
+		
+		if(this.dsAuthor.rowcount > 0 && ((sCloseDate == null) || (sCloseDate < today) ))
+		{
+			alert("약정만료일이 지정되지 않거나, 종료 되어 저자를 선택할 수 없습니다. \n" +
+				 "외주작업관리카드 등을 작성하실때 약정만료일이 지정되지 않거나 약정만료일이 종료된 저자는 저자등록을 하신 경우에도 나타나지 않는 경우가 있습니다.\n" +
+				 "계약 등 품의(편집외주약정서)사본을 재경팀 담당자에게 메일 보내셔서 약정일 지정 승인 요청하시기바랍니다. ");
+			this.edt_name.value = "";
+			return false;
+		}
+	}
+	
+	if(param == "ED126_1")
+	{	
+		this.opener.edt_athrIdentity.set_value(this.dsAuthor.getColumn(e.row, "ATHR_IDENTITY"));
+		this.opener.edt_athrName.set_value(this.dsAuthor.getColumn(e.row, "ATHR_NAME"));
+	}
+	else if (param == "ED126_2")
+	{
+		this.opener.Tab00.Tabpage1.form.edt_athrIdentity2.set_value(this.dsAuthor.getColumn(e.row, "ATHR_IDENTITY"));
+		this.opener.Tab00.Tabpage1.form.edt_athrName2.set_value(this.dsAuthor.getColumn(e.row, "ATHR_NAME"));
+	}
+	
+	aReturn.push(this.dsAuthor.getColumn(e.row, "ATHR_NAME"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "ATHR_JUMINNO"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "ATHR_COMNAME"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "ATHR_UNIVSTUDY"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "UNIV_CODE"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "UNIV_NAME"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "ATHR_JUMINNO2"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "BANK_CODE"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "ATHR_ACNTNO"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "ATHR_ABODEGB"));
+	aReturn.push(this.dsAuthor.getColumn(e.row, "ATHR_IDENTITY"));
+	
+	this.close();
+};
+
+this.EDAuthor_SearchF_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{	
+	if( (param != "ED126_1") && (param != "ED126_2") )
+		this.opener.fn_setAuthorValue(aReturn);
+};
+]]></Script>
+  </Form>
+</FDL>

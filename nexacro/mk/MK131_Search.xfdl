@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="530" height="320" titletext="발주서 조회 POPUP" scrolltype="none" onload="MkMain_onload">
+    <Layouts>
+      <Layout height="320" width="530">
+        <Static id="Static02" taborder="0" text="작업발주서 조회" left="12" top="10" width="308" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Edit id="edSOrdNo" taborder="3" top="113" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="4" textAlign="center" autoselect="true" left="98" onkeydown="LocalFctn_OnKeyDown"/>
+        <Static id="stCust" taborder="13" text="발주번호" top="113" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="edSOrdNo:3" width="85"/>
+        <Calendar id="calEDate" taborder="2" top="73" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" onkeydown="LocalFctn_OnKeyDown" autoselect="true" left="261"/>
+        <Calendar id="calSDate" taborder="1" top="73" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="calEDate:3" width="160" autoselect="true" onkeydown="LocalFctn_OnKeyDown"/>
+        <Static id="stDate" taborder="11" text="발주일자" top="73" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" left="10" right="calSDate:3"/>
+        <ImageViewer id="ImgClose01" taborder="12" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Radio id="rdGubun1" taborder="9" top="273" height="35" innerdataset="dsGubun1" codecolumn="CODE" datacolumn="NAME" direction="vertical" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" background="lightsteelblue" color="white" index="0" text="발주번호별" value="1" width="323" fittocontents="none" wordSpacing="0px" padding="0px 0px 0px 30px" columncount="0" rowcount="0" left="98"/>
+        <ImageViewer id="ImgClose" taborder="14" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="82.81%" right="3.40%" text="" onclick="ImgClose_onclick"/>
+        <Edit id="edEOrdNo" taborder="4" top="113" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="4" textAlign="center" autoselect="true" left="261" onkeydown="LocalFctn_OnKeyDown"/>
+        <Static id="stCust1_00" taborder="15" text="도서년판" top="193" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="10"/>
+        <Edit id="edt_bookYear" taborder="7" top="193" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="88" maxlength="4" textAlign="center" autoselect="true" left="98" onkeydown="LocalFctn_OnKeyDown"/>
+        <Static id="stCust1_00_00" taborder="16" text="도서명" top="233" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="10"/>
+        <Edit id="edBookNm" taborder="8" top="233" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="323" maxlength="4" textAlign="center" autoselect="true" left="98" onkeydown="LocalFctn_OnKeyDown"/>
+        <Static id="stCust1_00_00_00" taborder="17" text="정렬방법" top="273" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="9"/>
+        <Edit id="edt_bookCode" taborder="5" top="153" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="4" textAlign="center" autoselect="true" left="98" onkeydown="LocalFctn_OnKeyDown"/>
+        <Edit id="edEBookCd" taborder="6" top="153" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="4" textAlign="center" autoselect="true" left="261" onkeydown="LocalFctn_OnKeyDown"/>
+        <Button id="btnBook_Search" taborder="18" text="도서번호" left="10" top="153" width="85" height="35" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" onclick="btnBook_Search_onclick"/>
+        <Button id="btn_search" taborder="10" top="74" width="67" height="59" right="21" background="url('Img::loupe.png') no-repeat center center #3cbcb8" defaultbutton="false" onclick="btnSearch_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vStr, rdUrl, rdParam;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.dsOrdMst.copyData(this.parent.dsParam1);
+	
+	var d = new Date(); 
+	var strtoDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");							//오늘날짜 setting
+	//var strPreDay = Eco.date.getMaskFormatString(Eco.date.getFirstDate(d), "yyyyMMdd"); //이번달 1일 setting
+	var strPreDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");	
+	
+	this.calSDate.set_value(strPreDay);
+	this.calEDate.set_value(strtoDay);
+	this.calSDate.setFocus();
+	
+};
+
+//조회버튼 이벤트
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if( (Eco.isUndefined(this.calSDate.value) == true || this.calSDate.value == "") &&
+		(Eco.isUndefined(this.calEDate.value) == true || this.calEDate.value == "") &&
+		(Eco.isUndefined(this.edSOrdNo.value) == true || this.edSOrdNo.value == "") &&
+		(Eco.isUndefined(this.edEOrdNo.value) == true || this.edEOrdNo.value == "") &&
+		(Eco.isUndefined(this.edt_bookCode.value) == true || this.edt_bookCode.value == "") &&
+		(Eco.isUndefined(this.edEBookCd.value) == true || this.edEBookCd.value == "") &&
+		(Eco.isUndefined(this.edt_bookYear.value) == true || this.edt_bookYear.value == "") &&
+		(Eco.isUndefined(this.edBookNm.value) == true || this.edBookNm.value == "")
+	  ){
+		
+		alert("조회할 조건을 입력해 주십시요.");
+		this.calSDate.setFocus();
+		return false;
+	  }
+	  
+	str_url = "JSP/mk/mk131f_order_mst.jsp";
+	in_ds = "dsOrdMst=dsOrdMst";
+	out_ds = "dsOrdMst=dsOrdMst";
+	str_arg ="sORDMST_DATE=" +nexacro.wrapQuote(this.calSDate.value);
+	str_arg +=" eORDMST_DATE=" +nexacro.wrapQuote(this.calEDate.value);
+	str_arg +=" sORDMST_DATENO=" +nexacro.wrapQuote(this.edSOrdNo.value);
+	str_arg +=" eORDMST_DATENO=" +nexacro.wrapQuote(this.edEOrdNo.value);
+	str_arg +=" sBOOKMST_CODE=" +nexacro.wrapQuote(this.edt_bookCode.value);
+	str_arg +=" eBOOKMST_CODE=" +nexacro.wrapQuote(this.edEBookCd.value);
+	str_arg +=" BOOKMST_YEAR=" +nexacro.wrapQuote(this.edt_bookYear.value);
+	str_arg +=" BOOKMST_NAME=" +nexacro.wrapQuote(this.edBookNm.value);
+	str_arg +=" ORDER=" +nexacro.wrapQuote(this.rdGubun1.value);
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_Select", false, "S", false, this);
+};
+
+this.Callback_Select = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}
+	
+	if(this.dsOrdMst.rowcount == 0)
+	{
+		alert("조회된 자료가 없습니다.");
+		return false;
+	}
+	
+	this.opener.dsOrdMst.copyData(this.dsOrdMst);
+	this.close();
+};
+
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+this.btnBook_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.dsBookMst}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBook", objParam, "mk::MKBook_SearchF.xfdl", "popupCallback", this, 10, 58, 450, 400);
+};
+
+this.popupCallback = function(){
+	
+	this.edt_bookCode.set_value(this.dsBookMst.getColumn(0, "BOOKMST_CODE"));
+	this.edt_bookYear.set_value(this.dsBookMst.getColumn(0, "BOOKMST_YEAR"));
+}
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Calendar,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+			else
+				this.LocalFctn_OnKeyDown(obj, e.keycode);
+		}else if(curObj == "[object Edit]" || curObj == "[object MaskEdit]")
+			curObj.setSelect(0, -1);
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsGubun1">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">발주번호별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">도서코드별</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsOrdMst">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="ORDMST_DATENO" type="STRING" size="15"/>
+          <Column id="ORDMST_DATE" type="STRING" size="8"/>
+          <Column id="ORDMST_NO" type="STRING" size="4"/>
+          <Column id="ORDMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="ORDMST_QTY" type="INT" size="6"/>
+          <Column id="ORDER_TOTAL" type="INT" size="6"/>
+          <Column id="ORDMST_REVIVAL" type="STRING" size="1"/>
+          <Column id="REVIVAL" type="STRING" size="4"/>
+          <Column id="PLT_CODE" type="STRING" size="2"/>
+          <Column id="PLT_NAME" type="STRING" size="15"/>
+          <Column id="PLT_PAGE" type="INT" size="3"/>
+          <Column id="PLT_PRNSIGNATURE" type="INT" size="3"/>
+          <Column id="BOOKMST_BODYPAGE" type="INT" size="5"/>
+          <Column id="BOOKMST_SIGNATURE" type="DECIMAL" size="6"/>
+          <Column id="BND_CODE" type="STRING" size="2"/>
+          <Column id="BND_NAME" type="STRING" size="20"/>
+          <Column id="ORDMST_REMARK" type="STRING" size="70"/>
+          <Column id="BOOKMST_REMARK" type="STRING" size="70"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="PDTDTL_DATE" type="STRING" size="8"/>
+          <Column id="PDTDTL_NUMBER" type="STRING" size="4"/>
+          <Column id="PDTDTL_DTLNUMBER" type="STRING" size="3"/>
+          <Column id="PDTDTL_PDT_QTY" type="INT" size="6"/>
+          <Column id="PDTDTL_WANT_INDATE" type="CHAR" size="8"/>
+          <Column id="TONG_QTY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED188F" width="350" height="200" titletext="New Form">
+    <Layouts>
+      <Layout height="200" width="350">
+        <Static id="Static00_00" taborder="0" text="조회일자" left="15" top="14" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="1" left="100" top="14" width="110" height="30"/>
+        <Calendar id="cal_Edate" taborder="2" left="215" top="14" width="110" height="30"/>
+        <Static id="Static05" taborder="3" text="주민번호" left="15" top="49" width="80" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <MaskEdit id="medt_juminNo" taborder="4" left="100" top="49" width="225" height="30" format="###### - #######" type="string" trimtype="both" textAlign="center"/>
+        <Static id="Static05_00" taborder="5" text="성명" left="15" top="84" width="80" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Edit id="edt_name" taborder="6" left="100" top="83" width="225" height="30"/>
+        <Static id="Static05_00_00" taborder="7" text="발행구분" left="15" top="120" width="80" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Radio id="rdo_kind" taborder="8" left="103" top="121" width="220" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" index="0" text="소득자보관용" value="1">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">소득자보관용</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">발행자보관용</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Button id="btn_search" taborder="9" text="조회" top="161" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="179" onclick="Div00_btn_search_onclick"/>
+        <Button id="btn_print" taborder="10" text="닫기" top="161" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="110"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="medt_juminNo" propid="value" datasetid="dsAuthor" columnid="ATHR_JUMINNO"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var rdUrl,rdParam,sSelect;
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+//출력
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	if(this.cal_Sdate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Sdate.dropdown();
+		return false;
+	}	
+	
+	if(this.cal_Edate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Edate.dropdown();
+		return false;
+	}	
+	
+	var juminNo = '';
+	
+	if(this.medt_juminNo.value != null)
+		juminNo = this.medt_juminNo.value;
+	
+	rdUrl = gv_urlMrd + "/ed/ED188.mrd";
+		
+	rdParam  = "/ragentpath ["+ gv_urlRdDataServer +"]" +
+			   " /rp ["+ this.cal_Sdate.value + "]["+ this.cal_Edate.value +"]"
+			   + "[" + juminNo + "][" + this.edt_name.text + "][" + this.rdo_kind.value + "]";
+			
+	this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+	
+};
+
+//닫기
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

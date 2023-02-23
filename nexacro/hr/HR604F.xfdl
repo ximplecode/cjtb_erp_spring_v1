@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR604F" width="1250" height="625" titletext="New Form" onload="HR604F_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="근태 일마감" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta00_01" taborder="1" text="마감일자" left="4" top="50" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="2" left="84" top="50" height="30" border="1px solid #10aea9" background="#9ee0de" width="406"/>
+        <Calendar id="cald_ymd" taborder="3" left="90" top="55" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="135"/>
+        <Static id="sta00_01_00" taborder="4" text="사 번" left="4" top="80" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00" taborder="5" left="84" top="80" height="30" border="1px solid #10aea9" background="#9ee0de" width="406"/>
+        <Edit id="edt_s_sabun" taborder="6" left="89" top="85" height="20" border="0px none transparent" width="58" text="C17011" textAlign="center" readonly="false"/>
+        <Edit id="edt_s_name" taborder="7" left="149" top="85" height="20" border="0px none transparent" textAlign="center" width="88" readonly="false"/>
+        <Button id="btn_S" taborder="8" top="85" height="20" icon="url('Img::loupe.png')" width="21" left="239" onclick="btn_S_onclick"/>
+        <Edit id="edt_e_sabun" taborder="9" left="312" top="85" height="20" border="0px none transparent" width="58" text="C17011" textAlign="center" readonly="false"/>
+        <Edit id="edt_e_name" taborder="10" left="372" top="85" height="20" border="0px none transparent" textAlign="center" width="88" readonly="false"/>
+        <Button id="btn_E" taborder="11" top="85" height="20" icon="url('Img::loupe.png')" width="21" left="462" onclick="btn_E_onclick"/>
+        <Button id="btn_save" taborder="12" text="마감" top="16" width="120" height="22" onclick="btn_save_onclick" left="370"/>
+        <Static id="Static00" taborder="13" text="~" left="269" top="85" width="33" height="20" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+this.HR604F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var dt = new Date();
+	this.cald_ymd.set_value(Eco.date.addDate(dt, -1));
+	this.edt_s_sabun.set_value("C00000");
+	this.edt_e_sabun.set_value("CZZZZZ");
+	
+	this.btn_save.setFocus();
+};
+
+this.btn_S_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+	objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+	this.addChild("sInsa",objNew);
+	objNew.set_openalign("center middle");		
+	objNew.set_showtitlebar(false);
+	objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_insa_S);
+};
+
+
+this.fn_Callback_insa_S = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_s_sabun.set_value(arr_rt[0]);
+		this.edt_s_name.set_value(arr_rt[1]);
+	}
+	
+	this.removeChild("sInsa");
+	
+};
+
+this.btn_E_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+	objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+	this.addChild("sInsa",objNew);
+	objNew.set_openalign("center middle");		
+	objNew.set_showtitlebar(false);
+	objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_insa_E);
+};
+
+this.fn_Callback_insa_E = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_e_sabun.set_value(arr_rt[0]);
+		this.edt_e_name.set_value(arr_rt[1]);
+	}
+	
+	this.removeChild("sInsa");
+	
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr604.jsp";
+	in_ds = "ds_co=ds_co";
+	out_ds = "ds_co=ds_co";
+	str_arg = " YMD='" + this.cald_ymd.value + "'"+			  
+	          " S_SABUN='" + this.edt_s_sabun.value + "'" +
+			  " E_SABUN='" + this.edt_e_sabun.value + "'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_co", true, "S", false,this);
+};
+
+this.Callback_co = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	if ( this.ds_co.getColumn(0,"CO") > 0)
+	{
+	
+		var objApp = nexacro.getApplication();
+	
+		var confirm_result = objApp.confirm("이미 마감된 자료입니다.\n 다시 마감하시겠습니까?","근태마감","warning");
+	
+		if (confirm_result != true)
+		{
+			return false;
+		}
+	}
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_hr604.jsp";
+	in_ds = "";
+	out_ds = "";
+	str_arg = " YMD='" + this.cald_ymd.value + "'"+			  
+	          " S_SABUN='" + this.edt_s_sabun.value + "'" +
+			  " E_SABUN='" + this.edt_e_sabun.value + "'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "U", false,this);
+};
+
+this.Callback_co = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.alert("마감되었습니다.");
+}
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="cald_ymd" propid="value" datasetid="ds_insa" columnid="IPSADT"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_co">
+        <ColumnInfo>
+          <Column id="CO" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

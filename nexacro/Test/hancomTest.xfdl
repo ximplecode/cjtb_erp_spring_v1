@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="hancomTest" width="1280" height="840" titletext="New Form">
+    <Layouts>
+      <Layout height="840" width="1280">
+        <WebBrowser id="WebBrowser00" taborder="0" left="0" top="0" right="0" url="https://cj-erp.chunjae.co.kr:8000/erp-next/hancom/index_test.jsp" bottom="260"/>
+        <Button id="Button00" taborder="1" text="ActID" left="2" width="120" height="50" onclick="Button00_onclick" bottom="205"/>
+        <Button id="Button01" taborder="2" text="SetID" left="130" width="120" height="50" bottom="205" onclick="Button01_onclick"/>
+        <Button id="Button01_00" taborder="3" text="CreateSet" left="260" width="120" height="50" bottom="205" onclick="Button01_00_onclick"/>
+        <Button id="Button01_00_00" taborder="4" text="PopupDialog" left="390" width="120" height="50" bottom="205" onclick="Button01_00_00_onclick"/>
+        <Button id="Button00_00" taborder="5" text="Clear" left="2" width="120" height="50" bottom="145" onclick="Button00_00_onclick"/>
+        <Button id="Button00_00_00" taborder="6" text="Open" left="2" width="120" height="50" bottom="85" onclick="Button00_00_00_onclick"/>
+        <Edit id="Edit00" taborder="7" left="132" width="552" height="50" value="https://webkian.chunjae.co.kr:8443/attachedfile/chunjae_file/1.hwp" text="https://webkian.chunjae.co.kr:8443/attachedfile/chunjae_file/1.hwp" bottom="85"/>
+        <Combo id="Combo00" taborder="8" text="Combo00" left="62" top="50" width="110" height="57"/>
+        <Edit id="Edit01" taborder="9" left="113" top="Combo00:33" width="135" height="81"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("fn_ActID");
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("fn_SetID");
+};
+
+this.Button01_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("fn_CreateSet");
+};
+
+this.Button01_00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("fn_PopupDialog");
+};
+
+this.Button00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("fn_Clear");
+};
+
+this.Button00_00_00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser00.callMethod("fn_Open",this.Edit00.value);
+	//this.WebBrowser00.callMethod("fn_Open");
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="650" titletext="가공비 내역" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="650" width="1300">
+        <Static id="Static02" taborder="0" text="가공비 내역" left="8" top="10" width="442" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <ImageViewer id="ImgClose" taborder="1" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" text="" top="30" left="1254" onclick="ImgClose_onclick"/>
+        <Grid id="grdList" taborder="2" left="8" top="78" width="98.33%" binddataset="dsList" bottom="20" autofittype="none" autoenter="none" onheadclick="grdList_onheadclick" onenterdown="grdList_onenterdown">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="123"/>
+                <Column size="281"/>
+                <Column size="83"/>
+                <Column size="60"/>
+                <Column size="137"/>
+                <Column size="65"/>
+                <Column size="48"/>
+                <Column size="68"/>
+                <Column size="90"/>
+                <Column size="80"/>
+                <Column size="147"/>
+                <Column size="84"/>
+                <Column size="168"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell font="bold 12px/normal &quot;함초롬돋움&quot;" text="발주일자"/>
+                <Cell col="1" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="판형" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="부수" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" text="용도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="규격" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="단가" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="8" text="공급가액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="9" text="세액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="10" font="bold 12px/normal &quot;함초롬돋움&quot;" text="지종"/>
+                <Cell col="11" font="bold 12px/normal &quot;함초롬돋움&quot;" text="진행일자"/>
+                <Cell col="12" text="거래처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" displaytype="normal" calendardateformat="yyyy-MM-dd" expr="dataset.getColumn(currow, &quot;ORDMST_DATE&quot;)+'-'+dataset.getColumn(currow, &quot;ORDMST_NO&quot;)+'-'+dataset.getColumn(currow, &quot;ORDDTL_SEQ&quot;);"/>
+                <Cell col="1" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" wordWrap="char" text="bind:BOOKNAME_YEAR"/>
+                <Cell col="2" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" text="bind:PLT_NAME"/>
+                <Cell col="3" text="bind:ORDMST_QTY" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###"/>
+                <Cell col="4" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" text="bind:USE_NAMECOAT" wordWrap="char"/>
+                <Cell col="5" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" text="bind:PPR_STNDNAME"/>
+                <Cell col="6" text="bind:ORDDTL_JMI" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,##0.000"/>
+                <Cell col="7" text="bind:ORDDTL_UNITCOST" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" maskeditformat="#,##0" displaytype="mask" maskeditautoselect="true"/>
+                <Cell col="8" text="bind:ORDDTL_AMOUNT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" maskeditformat="#,##0" displaytype="mask" maskeditautoselect="true"/>
+                <Cell col="9" text="bind:ORDDTL_VAT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" maskeditformat="#,##0" displaytype="mask" maskeditautoselect="true"/>
+                <Cell col="10" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" displaytype="normal" calendardateformat="yyyy-MM-dd" text="bind:PPR_NAME" wordWrap="char"/>
+                <Cell col="11" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" displaytype="date" calendardateformat="yyyy-MM-dd" text="bind:ORDDTL_RUNDATE"/>
+                <Cell col="12" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" expr="'('+dataset.getColumn(currow, &quot;CUST_CODE&quot;)+') '+dataset.getColumn(currow, &quot;CUST_NAME&quot;);"/>
+              </Band>
+              <Band id="summary">
+                <Cell background="#fbce78"/>
+                <Cell col="1" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" text="합 계"/>
+                <Cell col="2" background="#fbce78"/>
+                <Cell col="3" background="#fbce78"/>
+                <Cell col="4" background="#fbce78"/>
+                <Cell col="5" background="#fbce78"/>
+                <Cell col="6" background="#fbce78"/>
+                <Cell col="7" background="#fbce78"/>
+                <Cell col="8" background="#fbce78" expr="dataset.getSum('ORDDTL_AMOUNT');" displaytype="mask" textAlign="right" maskeditformat="#,###" font="bold 14px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="9" background="#fbce78" expr="dataset.getSum('ORDDTL_VAT');" displaytype="mask" textAlign="right" maskeditformat="#,###" font="bold 14px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="10" background="#fbce78"/>
+                <Cell col="11" background="#fbce78"/>
+                <Cell col="12" background="#fbce78"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vGB, vOrdMstId, vBookMstId;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	vGB = this.parent.dsParam1;
+	vOrdMstId = this.parent.dsParam2;
+	vBookMstId = this.parent.dsParam3;
+	this.btnSearch_onclick();
+	
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+	
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	in_ds 	= "dsList=dsList";
+	out_ds 	= "dsList=dsList";
+	str_url = "JSP/mk/mk14G_3_Select.jsp";
+	str_arg = "GB=" + nexacro.wrapQuote(vGB) +
+	          " ORDMST_ID=" + nexacro.wrapQuote(vOrdMstId) +
+			  " BOOKMST_ID=" + nexacro.wrapQuote(vBookMstId);
+		 
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+};
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		if(this.dsList.rowcount == 0)
+			alert("조회된 자료가 없습니다.");
+	}
+};
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="WORKCASE" type="STRING" size="256"/>
+          <Column id="BOOKMSTTYPE" type="STRING" size="256"/>
+          <Column id="BOOKMSTTYPENAME" type="STRING" size="256"/>
+          <Column id="ORDMST_DATE" type="STRING" size="256"/>
+          <Column id="ORDMST_NO" type="STRING" size="256"/>
+          <Column id="ORDDTL_SEQ" type="STRING" size="256"/>
+          <Column id="ORDDTL_RUNDATE" type="STRING" size="256"/>
+          <Column id="CUST_GUBN" type="STRING" size="256"/>
+          <Column id="CUST_CODE" type="STRING" size="256"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="256"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="256"/>
+          <Column id="PPR_NAME" type="STRING" size="256"/>
+          <Column id="BOOKNAME_YEAR" type="STRING" size="256"/>
+          <Column id="PPR_STNDNAME" type="STRING" size="256"/>
+          <Column id="PLT_NAME" type="STRING" size="256"/>
+          <Column id="ORDMST_QTY" type="STRING" size="256"/>
+          <Column id="USE_NAMECOAT" type="STRING" size="256"/>
+          <Column id="ORDDTL_JMI" type="STRING" size="256"/>
+          <Column id="ORDDTL_UNITCOST" type="STRING" size="256"/>
+          <Column id="CUC_UNITCOST" type="STRING" size="256"/>
+          <Column id="ORDDTL_AMOUNT" type="INT" size="256"/>
+          <Column id="CALAMNT" type="STRING" size="256"/>
+          <Column id="ORDDTL_VAT" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

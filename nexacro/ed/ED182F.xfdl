@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED182F" width="1280" height="720" titletext="New Form" onload="ED182F_onload" onsize="ED182F_onsize" ontimer="ED182F_ontimer">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00_00" taborder="0" text="조회일자" left="27" top="27" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="1" left="112" top="27" width="130" height="30"/>
+        <Calendar id="cal_Edate" taborder="2" left="276" top="27" width="130" height="30"/>
+        <Static id="Static00" taborder="3" text="~" left="254" top="29" width="22" height="29"/>
+        <Button id="btn_search" taborder="4" text="조회" top="26" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="107" onclick="Div00_btn_search_onclick"/>
+        <Button id="btn_print" taborder="5" text="출력" top="26" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="35"/>
+        <MaskEdit id="medt_juminNo" taborder="6" left="773" top="27" width="120" height="30" format="###### - #@@@@@#" type="string" trimtype="both" enable="true" onkeydown="fn_localKeyDown" oneditclick="btn_name_onclick"/>
+        <CheckBox id="chk_taxCalculater" taborder="7" text="세금재계산" left="1000" top="27" width="109" height="30"/>
+        <Button id="btn_name" taborder="8" text="주민번호" left="690" top="27" width="80" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_name_onclick"/>
+        <Static id="Static00_00_00" taborder="9" text="조회옵션" left="420" top="26" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Radio id="rdo_kind" taborder="10" left="509" top="25" width="181" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" index="0" text="지급조회" value="0">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">0</Col>
+                <Col id="datacolumn">지급조회</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">원가조회</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Grid id="Grid00" taborder="11" left="20" top="72" width="1240" height="638" binddataset="ds_list">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="50"/>
+                <Column size="120"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="순번"/>
+                <Cell col="1" text="성명"/>
+                <Cell col="2" text="주민등록번호"/>
+                <Cell col="3" text="지급액"/>
+                <Cell col="4" text="소득세"/>
+                <Cell col="5" text="주민세"/>
+                <Cell col="6" text="지급총액"/>
+                <Cell col="7" text="지급일자"/>
+                <Cell col="8" text="완료일자"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="currow+1"/>
+                <Cell col="1" text="bind:ATHR_NAME" textAlign="center"/>
+                <Cell col="2" text="bind:ATHR_JUMINNO" textAlign="center"/>
+                <Cell col="3" text="bind:PAYAMOUNT" displaytype="currency"/>
+                <Cell col="4" text="bind:INCOMETAX" displaytype="currency"/>
+                <Cell col="5" text="bind:RESIDENTTAX" displaytype="currency"/>
+                <Cell col="6" text="bind:IC_TOTOUTAMNT" displaytype="currency"/>
+                <Cell col="7" text="bind:PAYDATE" textAlign="center"/>
+                <Cell col="8" text="bind:FINISHDATE" textAlign="center"/>
+              </Band>
+              <Band id="summary">
+                <Cell/>
+                <Cell col="1" text="지급합계"/>
+                <Cell col="2"/>
+                <Cell col="3" expr="dataset.getSum('PAYAMOUNT')" displaytype="currency" textAlign="right"/>
+                <Cell col="4" displaytype="currency" expr="dataset.getSum('INCOMETAX')" textAlign="right"/>
+                <Cell col="5" displaytype="currency" expr="dataset.getSum('RESIDENTTAX')" textAlign="right"/>
+                <Cell col="6" displaytype="currency" expr="dataset.getSum('IC_TOTOUTAMNT')" textAlign="right"/>
+                <Cell col="7"/>
+                <Cell col="8"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00_00_00_00_00" taborder="12" text="재계산여부" left="910" top="26" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="medt_juminNo" propid="value" datasetid="dsOutOrdDtl" columnid="ATHR_JUMINNO2"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="BANK_NAME" type="STRING" size="30"/>
+          <Column id="ATHR_ACNTNO" type="STRING" size="20"/>
+          <Column id="TOTOUTAMNT" type="STRING" size="11"/>
+          <Column id="ATHR_NAME" type="STRING" size="30"/>
+          <Column id="PAYAMOUNT" type="INT" size="10"/>
+          <Column id="INCOMETAX" type="INT" size="8"/>
+          <Column id="RESIDENTTAX" type="INT" size="7"/>
+          <Column id="IC_TOTOUTAMNT" type="INT" size="10"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="ATHR_JUMINNO" type="STRING" size="13"/>
+          <Column id="PAYDATE" type="STRING" size="8"/>
+          <Column id="FINISHDATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var rdUrl,rdParam,sSelect;
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+this.ED182F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+//주민번호 찾기
+this.btn_name_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("popuppAuthor", "", "ed::EDAuthor_SearchF.xfdl", "", this, 10, 58, 500, 550);
+};
+
+//찾은 저자 데이터 넣어주기
+this.fn_setAuthorValue = function(rtArray)
+{
+	this.medt_juminNo.set_value(rtArray[1]);
+}
+
+this.chk_value = function()
+{
+	if(this.cal_Sdate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Sdate.dropdown();
+		return false;
+	}	
+	
+	if(this.cal_Edate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Edate.dropdown();
+		return false;
+	}	
+	
+	return true;
+}
+
+//세금재계산
+this.taxCalculater = function()
+{
+	var strArg = "SDATE=" + nexacro.wrapQuote(this.cal_Sdate.value)
+			  + " EDATE=" + nexacro.wrapQuote(this.cal_Edate.value);
+				   
+	this.gfn_TransactionP("calculater","JSP/ed/ed180f_taxcalculater.jsp", "", "", strArg, "fnCallback", false, "P", false, this);	
+}
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.rdo_kind.index == 0)
+		this.Grid00.setFormatColProperty(8, "size", 0);
+	else
+		this.Grid00.setFormatColProperty(8, "size", 150);
+	
+	if(this.chk_taxCalculater.value == true)
+		this.taxCalculater();
+		
+	if(this.chk_value())
+	{
+		var inds = "ds_list=ds_list";
+		var outds = "ds_list=ds_list";
+		var strArg = "OPTION=" + nexacro.wrapQuote(this.rdo_kind.index)
+				   + " SDATE=" + nexacro.wrapQuote(this.cal_Sdate.value)
+				   + " EDATE=" + nexacro.wrapQuote(this.cal_Edate.value)
+				   + " JUMINNO=" + nexacro.wrapQuote(this.medt_juminNo.value);
+					   
+		this.gfn_TransactionP("select","JSP/ed/ed182f_list.jsp", inds, outds, strArg, "fnSearchCallback", true, "P", false, this);
+	}
+};
+
+this.fnSearchCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else if(this.ds_list.rowcount < 1)
+		alert("조회된 데이터가 없습니다.");
+}
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.chk_value())
+	{
+		if(this.chk_taxCalculater.value == true)
+			this.taxCalculater();
+		
+		var juminNo = '';
+	
+		if(this.medt_juminNo.value != null)
+			juminNo = this.medt_juminNo.value;
+		
+		rdUrl = gv_urlMrd + "/ed/ED182" + Eco.decode(this.rdo_kind.index, 1 , "UNPAY.mrd", ".mrd");
+		
+		rdParam  = "/ragentpath ["+ gv_urlRdDataServer +"]" +
+				   " /rp ["+ this.cal_Sdate.value + "]["+ this.cal_Edate.value +"][" + juminNo + "][" + this.rdo_kind.value + "]";
+		
+		trace(rdParam);
+		this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+	}
+	
+};
+
+this.ED182F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.ED182F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.Grid00);
+};
+]]></Script>
+  </Form>
+</FDL>

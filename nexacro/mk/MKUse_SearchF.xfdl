@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MKUse_SearchF" width="450" height="400" titletext="용도코드 조회(제작) POPUP" onload="MKUse_SearchF_onload">
+    <Layouts>
+      <Layout height="400" width="450">
+        <Button id="btn_close" taborder="0" text="닫기" left="155" top="351" height="29" right="1055" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Static id="Static00" taborder="1" text="용도명" left="15" top="54" width="87" height="29" background="#fffff" color="#10aea9" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00" taborder="2" text="용도코드" left="15" top="20" width="87" height="29" background="#fffff" color="#10aea9" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Button id="btn_search" taborder="3" top="50" width="40" height="38" right="898" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Grid id="Grid00" taborder="4" left="15" top="93" width="420" height="247" binddataset="ds_mk_use" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="102"/>
+                <Column size="298"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="용도코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="용도명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:USE_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                <Cell col="1" text="bind:USE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search00" taborder="5" top="28" width="46" height="44" right="27" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Button id="btn_close00" taborder="6" text="닫기" left="174" top="353" height="29" right="190" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Edit id="edUseNm" taborder="7" left="106" top="54" width="255" height="29" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Edit id="edUseCd" taborder="8" left="106" top="20" width="45" height="29" maxlength="4" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_mk_use">
+        <ColumnInfo>
+          <Column id="USE_CODE" type="STRING" size="256"/>
+          <Column id="USE_NAME" type="STRING" size="256"/>
+          <Column id="USE_PROCESSTYPE" type="STRING" size="256"/>
+          <Column id="USE_PUSE_CODE" type="STRING" size="256"/>
+          <Column id="USE_SHEETPRNCLASS" type="STRING" size="256"/>
+          <Column id="USE_PAGECNT" type="STRING" size="256"/>
+          <Column id="USE_DISABLED" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var vFormId;
+
+
+this.MKUse_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+	this.ds_mk_use.copyData(this.parent.dsParam1);
+	vFormId = this.parent.dsParam4;
+	
+	this.edUseCd.setFocus();
+	this.btn_search_onclick();
+	
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_mk_use.set_rowposition(this.fctn_UseChangeSet(this.edUseCd.text, this.edUseNm.text));
+};
+
+
+//#######################################################
+// 용도 변경시 변경값 설정
+//#######################################################
+this.fctn_UseChangeSet = function(Use_Code, Use_Name)
+{
+	var iuse_idx;
+	var sCmpExpr;
+
+	// 용도코드 인덱스 찾기
+	if((Use_Code.length == 2) && (Use_Name.length != 0))
+	{
+		sCmpExpr = "USE_CODE=='" + Use_Code + "'&&USE_NAME='" + Use_Name + "'";
+		
+	    iuse_idx  = this.ds_mk_use.findRowExpr(sCmpExpr);
+	    return iuse_idx;
+	}
+	else if(Use_Code.length == 2)
+	{
+		sCmpExpr = "USE_CODE=='" + Use_Code + "'";
+		iuse_idx  = this.ds_mk_use.findRowExpr(sCmpExpr);
+	    return iuse_idx;	
+	}
+	else if(Use_Name.length != 0)
+	{
+	    iuse_idx  = this.ds_mk_use.findRow("USE_NAME", Use_Name);
+	    return iuse_idx;	
+	} 
+	else
+	    return -1;
+}
+
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//기타외주비 관리
+	if(vFormId == "MK139"){
+		this.opener.dsEtcCostDtl.setColumn(this.opener.dsEtcCostDtl.rowposition, "USE_CODE"
+										  ,this.ds_mk_use.getColumn(this.ds_mk_use.rowposition, "USE_CODE"));
+	}
+	else{
+		this.opener.edUseCd.set_value(this.ds_mk_use.getColumn(this.ds_mk_use.rowposition, "USE_CODE"));
+		this.opener.cbUseNm.set_value(this.ds_mk_use.getColumn(this.ds_mk_use.rowposition, "USE_CODE"));
+	}
+	
+	this.close();
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

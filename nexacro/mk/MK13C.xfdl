@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="필름 관리" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer" onkeydown="LocalFctn_OnKeyDown">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Static id="Static02" taborder="0" text="필름관리" left="18" top="10" width="312" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <ImageViewer id="ImgClose01" taborder="31" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Static id="stBigo00" taborder="35" text="도서관리&#13;&#10;&#13;&#10;비 고" top="187" height="116" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="17"/>
+        <TextArea id="txaBookRemark" taborder="36" top="187" height="116" width="90.54%" left="stBigo00:3" font="12px/normal &quot;함초롬바탕 확장&quot;" enable="false"/>
+        <Grid id="grdMst" taborder="32" top="txaBookRemark:3" binddataset="dsOrdMst" autofittype="none" height="56.25%" width="97.31%" left="17" oncelldblclick="grdMst_oncelldblclick" onenterdown="grdMst_onenterdown">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="105"/>
+                <Column size="89"/>
+                <Column size="42"/>
+                <Column size="47"/>
+                <Column size="242"/>
+                <Column size="72"/>
+                <Column size="155"/>
+                <Column size="154"/>
+                <Column size="63"/>
+                <Column size="67"/>
+                <Column size="73"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="발주번호" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" rowspan="2" text="도서코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" rowspan="2" text="순번" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" rowspan="2" text="연판" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" rowspan="2" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" rowspan="2" text="발주수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" rowspan="2" text="판형" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" rowspan="2" text="제본" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="8" colspan="2" text="본문" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="10" rowspan="2" text="재생" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell row="1" col="8" text="쪽수" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell row="1" col="9" text="대수" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ORDMST_DATENO" displaytype="normal" combodataset="ds_mk_UseType" combocodecol="USE_TYPE_CODE" combodatacol="USE_TYPE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="1" text="bind:BOOKMST_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" edittype="none" editmaxlength="20" displaytype="normal" combodataset="ds_mk_Cust" combodatacol="CUST_NAME" combocodecol="CUST" textAlign="center" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="2" text="bind:BOOKMST_SEQ" font="normal 12px/normal &quot;함초롬돋움&quot;" edittype="none" editmaxlength="20" displaytype="normal" combodataset="ds_mk_Cust" combodatacol="CUST_NAME" combocodecol="CUST" textAlign="center" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="3" text="bind:BOOKMST_YEAR" font="normal 12px/normal &quot;함초롬돋움&quot;" edittype="none" editmaxlength="20" displaytype="normal" combodataset="ds_mk_Cust" combodatacol="CUST_NAME" combocodecol="CUST" textAlign="center" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="4" font="normal 12px/normal &quot;함초롬돋움&quot;" text="bind:BOOKMST_NAME" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="5" font="normal 12px/normal &quot;함초롬돋움&quot;" text="bind:ORDMST_QTY" textAlign="right" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="6" font="normal 12px/normal &quot;함초롬돋움&quot;" text="bind:PLT_NAME" displaytype="normal" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="7" font="normal 12px/normal &quot;함초롬돋움&quot;" text="bind:BND_NAME" displaytype="normal" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="8" font="normal 12px/normal &quot;함초롬돋움&quot;" text="bind:BOOKMST_BODYPAGE" displaytype="normal" textAlign="right" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="9" font="normal 12px/normal &quot;함초롬돋움&quot;" text="bind:BOOKMST_SIGNATURE" displaytype="mask" textAlign="right" maskeditformat="0.00" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+                <Cell col="10" font="normal 12px/normal &quot;함초롬돋움&quot;" text="bind:REVIVAL" displaytype="normal" textAlign="center" cssclass="expr:REVIVAL=='재생'?&quot;BgChange3&quot;:&quot;&quot; "/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stOrdDate" taborder="1" text="발주일자" top="76" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="17"/>
+        <Calendar id="calOrdMstDate" taborder="2" top="76" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" autoselect="true" onkeydown="LocalFctn_OnKeyDown" width="9.08%" left="stOrdDate:3" enable="false"/>
+        <MaskEdit id="medtOrdMstNo" taborder="3" top="75" width="4.31%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" format="####" type="string" enable="false" left="calOrdMstDate:3" textAlign="center"/>
+        <Static id="stBook" taborder="4" text="도서코드" top="75" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="medtOrdMstNo:3"/>
+        <Edit id="edBookCd" taborder="5" top="75" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="10" autoselect="true" width="7.62%" left="stBook:3" textAlign="center" onkeydown="LocalFctn_OnKeyDown" enable="false"/>
+        <Edit id="edBookSeq" taborder="6" top="75" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="3" autoselect="true" width="3.31%" left="edBookCd:3" textAlign="center" enable="false"/>
+        <Edit id="edBookYear" taborder="7" top="75" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" autoselect="true" width="4.31%" left="edBookSeq:3" textAlign="center" enable="false"/>
+        <Static id="stBookNm" taborder="8" text="도서명" top="75" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="edBookYear:3"/>
+        <Edit id="edBookNm" taborder="9" top="75" width="22.08%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" autoselect="true" left="stBookNm:3" readonly="true"/>
+        <Static id="stReqNo" taborder="10" text="생산의뢰번호" top="75" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="edBookNm:3"/>
+        <Edit id="edPdtDtlDate" taborder="11" top="75" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" autoselect="true" width="7.31%" left="stReqNo:3" textAlign="center" enable="false"/>
+        <Static id="Static00" taborder="12" text="-" top="72" height="40" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" width="10" left="edPdtDtlDate:6"/>
+        <Edit id="edPdtDtlYear" taborder="13" top="75" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" autoselect="true" width="4.31%" left="Static00:5" textAlign="center" enable="false"/>
+        <Static id="Static00_00" taborder="14" text="-" top="72" height="40" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" width="14" left="edPdtDtlYear:6"/>
+        <Edit id="edPdtDtlSeq" taborder="15" top="75" width="3.31%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" autoselect="true" left="Static00_00:1" textAlign="center" enable="false"/>
+        <Static id="stBodyPage" taborder="24" text="본문쪽수" top="150" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="17"/>
+        <MaskEdit id="medtBodyPage" taborder="25" top="150" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" autoselect="true" width="9.08%" left="stBodyPage:3" enable="false"/>
+        <Static id="stSignature" taborder="26" text="본문대수" top="150" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="medtBodyPage:3"/>
+        <MaskEdit id="medtSignature" taborder="27" top="150" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" autoselect="true" width="9.08%" left="stSignature:3" enable="false" format="#,###.##"/>
+        <Static id="stRevival" taborder="28" text="재생여부" top="150" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="medtSignature:3"/>
+        <CheckBox id="cbRevival" taborder="29" text=" 재생" top="152" height="36" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" width="65" left="stRevival:16" enable="false"/>
+        <Static id="stBigo" taborder="33" text="비고" top="150" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="cbRevival:7"/>
+        <Edit id="edMstRemark" taborder="30" top="150" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" autoselect="true" width="45.15%" left="stBigo:3" onkeydown="edMstRemark_onkeydown" enable="false"/>
+        <Button id="btnSearch" taborder="37" text="조회" top="11" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" onclick="btnSearch_onclick" right="8.38%"/>
+        <Button id="btnSave" taborder="34" text="저장" top="11" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" onclick="btnSave_onclick" width="80" left="btnSearch:10"/>
+        <Static id="stOrdTotal" taborder="16" text="발주누계" top="113" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="17"/>
+        <MaskEdit id="medtTotal" taborder="17" top="113" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" autoselect="true" width="9.08%" left="stOrdTotal:3" textAlign="right" format="#,###" enable="false"/>
+        <Static id="stOrdQty" taborder="18" text="수량" top="113" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="medtTotal:3"/>
+        <MaskEdit id="medtQty" taborder="19" top="113" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" autoselect="true" width="9.08%" left="stOrdQty:3" textAlign="right" format="#,###" enable="false"/>
+        <Static id="stPlt" taborder="20" text="판형" top="113" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="medtQty:3"/>
+        <Edit id="edPlate" taborder="21" top="113" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" autoselect="true" width="26.15%" left="stPlt:3" enable="false"/>
+        <Static id="stBind" taborder="22" text="제본" top="113" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="edPlate:3"/>
+        <Edit id="edBind" taborder="23" top="113" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" autoselect="true" width="25.31%" left="stBind:3" enable="false"/>
+        <Div id="DivDtl" taborder="38" left="16" top="186" width="98.00%" height="73.06%" visible="false" text="" url="mk::MK13C_DTL.xfdl"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var nRow, nOrdMst_Id, strVisible, rdUrl, rdParam;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerDML, vPerDel, vPerPrt;
+var vStr = "U";
+var nSaveRow = -1;
+var sSetDate = "";
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+
+//필름 관리 화면은 발주서 등록내역 중 USE_PROCESSTYPE = 'P'인 항목들만 가져와서
+//필름출고일자, 필름입고일자, 필름비고만 관리하기 때문에 세부내역 저장기능(UPDATE)만 가능
+
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerDML = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_DML");
+	vPerDel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_DELETE");
+	vPerPrt = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_PRINT");
+	
+	if(vPerSel == "1"){
+		
+		str_arg = "MKCLS_YM=" + nexacro.wrapQuote( ) + " MKCLS_STARTDATE=" +nexacro.wrapQuote( );
+		this.gfn_TransactionP("select", "JSP/mk/make_closing.jsp", "dsMakeClose=dsMakeClose", "dsMakeClose=dsMakeClose", str_arg, "", false, "S", false, this); 	//마감여부
+	}
+	
+	//DML권한 체크 및 컴포넌트 ENABLE처리
+	if(vPerDML != "1" || vPerDel != "1"  || vPerPrt != "1")
+		this.fctn_User_Enabled(this, false);
+		
+		
+	this.grdMst.setFocus();
+	
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdMst);
+};
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsOrdMstS.deleteAll();
+	var objParam = {dsParam1:this.dsOrdMst}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupSearch", objParam, "mk::MK131_Search.xfdl", "popupCallback", this, 10, 58, 530, 320);
+};
+
+//데이터 수정시 마감여부 확인
+this.dsOrdMst_cancolumnchange = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	var nRow, mkcls_close, mkcls_modify;
+	
+	if(e.columnid == "ORDMST_DATE"){
+		
+		if(Eco.isUndefined(e.newvalue) == false || e.newvalue != ""){
+		
+			if(e.newvalue.length == 0){
+				return true;
+				this.break;
+			}
+			
+			nRow = this.dsMakeClose.findRow("MKCLS_YM", e.newvalue.substr(0, 6));
+			
+			if(nRow < 0)
+			{
+				mkcls_close = "1";
+				mkcls_modify = "0";
+			}else{
+			
+				 mkcls_close = this.dsMakeClose.getColumn(nRow,"MKCLS_CLOSE");
+				 mkcls_modify = this.dsMakeClose.getColumn(nRow,"MKCLS_MODIFY");
+			}
+			
+			
+			if(mkcls_close == "1" || mkcls_modify == "0"){
+				alert("선택하신 발주일자는 마감 완료 되었거나 수정불가 상태입니다.");
+				return false;
+			}
+		}
+	}
+};
+
+//#######################################################
+// 사용권한에 따른 컴포넌트 Enable 여부
+// formObj : 폼 ID 변수
+// _set : Enable 변수 (True, False)
+//#######################################################
+this.fctn_User_Enabled = function(formObj, _set)
+{
+	var comObj;
+	// 마스터 폼 컴포넌트 Enabled 여부
+	for(var i = 0; i < formObj.components.length;  i++)
+	{
+		comObj = formObj.components[i];
+		
+		if (comObj == "[object Edit]" || comObj == "[object Combo]"
+		   || comObj == "[object Calendar]" || comObj == "[object MaskEdit]" 
+		   || comObj == "[object TextArea]")
+		{
+			comObj.set_enable(_set);
+		}
+	}
+	
+	if(vPerSel != 1)
+		this.btnSearch.set_enable(_set);
+		
+	if(vPerDML != 1)
+		this.btnSave.set_enable(_set);
+
+}
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.DivDtl.visible == true)
+		this.DivDtl.form.fctn_Dtl_save(vPerDML);
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.form,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == "27")   //ESC키
+	{
+		if(this.DivDtl.visible == false)
+			this.grdMst.setFocus();
+	}else if(e.keycode == "112")   //F1 키  ->  조회
+	{
+		this.btnSearch_onclick();
+	}else if(e.keycode == "114")   //F3 키  -> 저장
+	{
+		if(this.btnSave.enable == true)
+		this.btnSave_onclick();
+	}
+};
+
+this.edMstRemark_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13){
+		this.grdMst.setFocus();
+		this.grdMst_oncelldblclick();
+	}
+};
+
+this.grdMst_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	nOrdMst_Id = this.dsOrdMst.getColumn(this.dsOrdMst.rowposition, "ORDMST_ID");
+	
+	if(this.dsOrdMst.rowcount > 0 && ( nOrdMst_Id !="" || Eco.isUndefined(nOrdMst_Id) == false))
+	{
+		this.DivDtl.set_visible(true);
+		this.DivDtl.form.getData_Dtl(nOrdMst_Id, vPerDML);
+	}else{
+		alert("발주내역을 먼저 불러와 주십시요.");
+	}
+};
+
+this.grdMst_onenterdown = function(obj:nexacro.Grid,e:nexacro.GridEditEventInfo)
+{
+	this.grdMst_oncelldblclick();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsOrdMst">
+        <ColumnInfo>
+          <Column id="ORDMST_DATENO" type="STRING" size="15"/>
+          <Column id="ORDMST_DATE" type="STRING" size="8"/>
+          <Column id="ORDMST_NO" type="STRING" size="4"/>
+          <Column id="ORDMST_ID" type="STRING" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="ORDMST_QTY" type="INT" size="6"/>
+          <Column id="ORDER_TOTAL" type="INT" size="6"/>
+          <Column id="ORDMST_REVIVAL" type="STRING" size="1"/>
+          <Column id="REVIVAL" type="STRING" size="4"/>
+          <Column id="PLT_CODE" type="STRING" size="2"/>
+          <Column id="PLT_NAME" type="STRING" size="15"/>
+          <Column id="PLT_PAGE" type="INT" size="3"/>
+          <Column id="PLT_PRNSIGNATURE" type="INT" size="3"/>
+          <Column id="BOOKMST_BODYPAGE" type="INT" size="4"/>
+          <Column id="BOOKMST_SIGNATURE" type="DECIMAL" size="6"/>
+          <Column id="BND_CODE" type="STRING" size="2"/>
+          <Column id="BND_NAME" type="STRING" size="20"/>
+          <Column id="ORDMST_REMARK" type="STRING" size="70"/>
+          <Column id="BOOKMST_REMARK" type="STRING" size="70"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="PDTDTL_DATE" type="STRING" size="8"/>
+          <Column id="PDTDTL_NUMBER" type="STRING" size="4"/>
+          <Column id="PDTDTL_DTLNUMBER" type="STRING" size="2"/>
+          <Column id="PDTDTL_PDT_QTY" type="INT" size="6"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMakeClose">
+        <ColumnInfo>
+          <Column id="MKCLS_YM" type="STRING" size="6"/>
+          <Column id="MKCLS_STARTDATE" type="STRING" size="8"/>
+          <Column id="MKCLS_ENDDATE" type="STRING" size="8"/>
+          <Column id="MKCLS_CLOSE" type="STRING" size="1"/>
+          <Column id="MKCLS_MODIFY" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBookOrd">
+        <ColumnInfo>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="BOOKMST_SIGNATURE" type="FLOAT" size="6"/>
+          <Column id="PLT_CODE" type="STRING" size="2"/>
+          <Column id="PLT_NAME" type="STRING" size="15"/>
+          <Column id="PLT_PAGE" type="INT" size="3"/>
+          <Column id="PLT_PRNSIGNATURE" type="INT" size="3"/>
+          <Column id="BND_CODE" type="STRING" size="2"/>
+          <Column id="BND_NAME" type="STRING" size="20"/>
+          <Column id="BOOKMST_BODYPAGE" type="INT" size="6"/>
+          <Column id="BOOKMST_REMARK" type="STRING" size="70"/>
+          <Column id="ORDER_TOTAL" type="STRING" size="256"/>
+          <Column id="ORDMST_NO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsOrdBook">
+        <ColumnInfo>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="ORDMST_NO" type="STRING" size="4"/>
+          <Column id="ORDMST_DATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsOrdMstS">
+        <ColumnInfo>
+          <Column id="ORDMST_SDATE" type="STRING" size="10"/>
+          <Column id="ORDMST_EDATE" type="STRING" size="10"/>
+          <Column id="ORDMST_SNO" type="STRING" size="10"/>
+          <Column id="ORDMST_ENO" type="STRING" size="10"/>
+          <Column id="BOOKMST_SCD" type="STRING" size="10"/>
+          <Column id="BOOKMST_ECD" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="100"/>
+          <Column id="ORDERBY" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="calOrdMstDate" propid="value" datasetid="dsOrdMst" columnid="ORDMST_DATE"/>
+      <BindItem id="item1" compid="medtOrdMstNo" propid="value" datasetid="dsOrdMst" columnid="ORDMST_NO"/>
+      <BindItem id="item2" compid="edBookCd" propid="value" datasetid="dsOrdMst" columnid="BOOKMST_CODE"/>
+      <BindItem id="item4" compid="edMstRemark" propid="value" datasetid="dsOrdMst" columnid="ORDMST_REMARK"/>
+      <BindItem id="item3" compid="edBookSeq" propid="value" datasetid="dsOrdMst" columnid="BOOKMST_SEQ"/>
+      <BindItem id="item5" compid="edBookYear" propid="value" datasetid="dsOrdMst" columnid="BOOKMST_YEAR"/>
+      <BindItem id="item6" compid="edBookNm" propid="value" datasetid="dsOrdMst" columnid="BOOKMST_NAME"/>
+      <BindItem id="item7" compid="edPdtDtlDate" propid="value" datasetid="dsOrdMst" columnid="PDTDTL_DATE"/>
+      <BindItem id="item8" compid="edPdtDtlYear" propid="value" datasetid="dsOrdMst" columnid="PDTDTL_NUMBER"/>
+      <BindItem id="item9" compid="edPdtDtlSeq" propid="value" datasetid="dsOrdMst" columnid="PDTDTL_DTLNUMBER"/>
+      <BindItem id="item10" compid="medtTotal" propid="value" datasetid="dsOrdMst" columnid="ORDER_TOTAL"/>
+      <BindItem id="item11" compid="medtQty" propid="value" datasetid="dsOrdMst" columnid="ORDMST_QTY"/>
+      <BindItem id="item12" compid="edPlate" propid="value" datasetid="dsOrdMst" columnid="PLT_NAME"/>
+      <BindItem id="item16" compid="edBind" propid="value" datasetid="dsOrdMst" columnid="BND_NAME"/>
+      <BindItem id="item17" compid="medtBodyPage" propid="value" datasetid="dsOrdMst" columnid="BOOKMST_BODYPAGE"/>
+      <BindItem id="item18" compid="medtSignature" propid="value" datasetid="dsOrdMst" columnid="BOOKMST_SIGNATURE"/>
+      <BindItem id="item19" compid="cbRevival" propid="value" datasetid="dsOrdMst" columnid="ORDMST_REVIVAL"/>
+      <BindItem id="item20" compid="txaBookRemark" propid="value" datasetid="dsOrdMst" columnid="BOOKMST_REMARK"/>
+    </Bind>
+  </Form>
+</FDL>

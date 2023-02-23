@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR101F_SUB06" width="1244" height="242" titletext="New Form">
+    <Layouts>
+      <Layout height="242" width="1244">
+        <Grid id="grd_Edu" taborder="0" left="2" top="2" right="100" bottom="2" binddataset="ds_edu" autofittype="col" autoenter="select">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="160"/>
+                <Column size="190"/>
+                <Column size="121"/>
+                <Column size="245"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="2" text="기간"/>
+                <Cell col="2" text="교육기간"/>
+                <Cell col="3" text="교육내용"/>
+                <Cell col="4" text="자격취득"/>
+                <Cell col="5" text="비고"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:YMD1" displaytype="date" edittype="date" textAlign="center"/>
+                <Cell col="1" text="bind:YMD2" textAlign="center" displaytype="date" edittype="date"/>
+                <Cell col="2" text="bind:GIGUAN" edittype="normal"/>
+                <Cell col="3" text="bind:NAEYONG" edittype="normal"/>
+                <Cell col="4" text="bind:CHUI" edittype="normal"/>
+                <Cell col="5" text="bind:BIGO" edittype="normal"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_add" taborder="1" text="추가" top="8" width="90" height="22" right="4" onclick="btn_add_onclick"/>
+        <Button id="btn_del" taborder="2" text="삭제" top="38" width="90" height="22" right="4" onclick="btn_del_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.ds_edu.addRow();
+};
+]]></Script>
+  </Form>
+</FDL>

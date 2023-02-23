@@ -1,0 +1,795 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD1140F" width="1400" height="1200" titletext="New Form" onload="SD1140F_onload">
+    <Layouts>
+      <Layout height="1200" mobileorientation="landscape" width="1400">
+        <Static id="Static00_01_00_00" taborder="18" left="10.64%" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" right="67.14%"/>
+        <Calendar id="ed_sdate" taborder="0" left="11.21%" top="17" height="30" right="80.71%"/>
+        <Static id="Static00_01_00_00_01" taborder="21" left="10.57%" top="88" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" right="67.07%"/>
+        <Static id="Static00_01_00_00_01_00_00" taborder="24" left="74.50%" top="12" height="154" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" right="1.00%"/>
+        <Calendar id="ed_edate" taborder="1" left="23.71%" top="17" height="30" right="68.57%"/>
+        <Static id="Static01" taborder="25" text="~" left="21.07%" top="17" height="30" right="77.07%"/>
+        <MaskEdit id="ed_sgb" taborder="2" left="11.14%" top="93" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" right="85.86%"/>
+        <MaskEdit id="ed_scode" taborder="3" left="14.14%" top="93" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" value="0000" right="82%"/>
+        <Button id="btn_scust" taborder="4" left="18.07%" top="99" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" onclick="btn_scust_onclick" right="80.36%"/>
+        <MaskEdit id="ed_egb" taborder="5" left="23.64%" top="93" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" right="73.36%"/>
+        <MaskEdit id="ed_ecode" taborder="6" left="26.64%" top="93" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" value="0000" right="69.43%"/>
+        <Button id="btn_ecust" taborder="7" left="30.64%" top="99" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" onclick="btn_ecust_onclick" right="67.71%"/>
+        <Static id="Static01_01" taborder="26" text="~" left="21.00%" top="93" height="30" right="77.79%"/>
+        <Div id="Div00" taborder="27" left="1.79%" top="210" height="81.50%" right="1.00%">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Button id="btn_excel" taborder="17" text="엑셀변환" left="92.50%" height="25" onclick="btn_excel_onclick" font="normal bold 10pt/normal &quot;Arial&quot;" right="1.00%" top="171"/>
+        <Static id="Static00_01_00_00_01_00_01" taborder="29" left="10.57%" top="126" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" right="67.00%"/>
+        <MaskEdit id="ed_adduser" taborder="8" left="11.14%" top="130" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="######" type="string" right="84.36%"/>
+        <Static id="Static04_00" taborder="30" text="반품전표구분" left="19.29%" top="135" height="21" right="75.07%"/>
+        <MaskEdit id="Mk_jpgb" taborder="10" left="24.93%" top="131" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="#" type="string" right="72.93%"/>
+        <Button id="btn_s_saleuser" taborder="9" left="15.71%" top="136" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" text="" onclick="btn_s_saleuser_onclick" right="82.64%"/>
+        <Static id="Static00_01_00_00_00_00_01" taborder="32" left="10.57%" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" right="67.00%"/>
+        <Static id="Static01_01_01" taborder="33" text="~" left="21.00%" top="55" height="30" right="77.64%"/>
+        <MaskEdit id="ed_sjpno" taborder="11" left="11.14%" top="55" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@@@@@@@@@" type="string" value="20220101H001" limitbymask="both" right="80.64%"/>
+        <MaskEdit id="ed_ejpno" taborder="12" left="23.64%" top="55" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@@@@@@@@@" type="string" value="20220101HzzZ" limitbymask="both" right="68.5%"/>
+        <Grid id="grd_code" taborder="13" left="42.00%" top="12" height="154" binddataset="ds_ccode1" autofittype="col" onheadclick="grd_code_onheadclick" right="34.29%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="코드"/>
+                <Cell col="2" text="코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:chk" edittype="checkbox" displaytype="checkboxcontrol"/>
+                <Cell col="1" text="bind:code"/>
+                <Cell col="2" text="bind:name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="print_select" taborder="14" text="일자별 출고현황" left="75.64%" top="20" height="30" innerdataset="ds_radio" datacolumn="name" codecolumn="value" index="0" value="0" right="2.21%"/>
+        <Button id="btn_printview" taborder="15" text="미리보기" top="130" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" visible="true" left="86.36%" onclick="btn_printview_onclick" right="7.14%"/>
+        <Button id="btn_print" taborder="16" text="출력" top="130" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" visible="true" left="93.29%" onclick="btn_printview_onclick" right="2.14%"/>
+        <Static id="Static00_00_01_00_00" taborder="22" text="출력물" left="65.64%" top="12" height="154" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" right="25.29%"/>
+        <Static id="Static00_00_01_00_00_00" taborder="23" text="거래처구분" left="32.79%" top="12" height="154" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" right="58.00%"/>
+        <Static id="Static00_00" taborder="19" text="일자구간" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="1.79%" right="89.07%"/>
+        <Static id="Static00_00_01" taborder="20" text="업체구간" left="1.79%" top="88" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" right="89.07%"/>
+        <Static id="Static00_00_00_00_01" taborder="31" text="전표구간" left="1.79%" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" right="89.07%"/>
+        <Static id="Static00_00_01_00_01" taborder="28" text="관리담당" left="1.79%" top="126" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" right="89.00%"/>
+        <CheckBox id="C_i" taborder="34" text="이체전표제외" left="76%" top="67" height="20" right="13.29%"/>
+        <CheckBox id="C_i1" taborder="35" text="이체전표만" left="76%" top="99" height="20" right="13.29%"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_radio">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="value">1</Col>
+            <Col id="name">매출일보(출고)</Col>
+          </Row>
+          <Row>
+            <Col id="value">2</Col>
+            <Col id="name">매출일보(반품)</Col>
+          </Row>
+          <Row>
+            <Col id="value">3</Col>
+            <Col id="name">매출일보(출고+반품)</Col>
+          </Row>
+          <Row>
+            <Col id="value">4</Col>
+            <Col id="name">매출일보(업체구분)</Col>
+          </Row>
+          <Row>
+            <Col id="value">5</Col>
+            <Col id="name">매출일보(관리자)</Col>
+          </Row>
+          <Row>
+            <Col id="value">6</Col>
+            <Col id="name">매출일보(배송)</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_cmd_combo">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">판매용</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">교사용</Col>
+          </Row>
+          <Row>
+            <Col id="code">2</Col>
+            <Col id="data">타계정</Col>
+          </Row>
+          <Row>
+            <Col id="code">3</Col>
+            <Col id="data">전체</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_ccode1">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="1"/>
+          <Column id="code" type="STRING" size="2"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_1" keystring="BJP">
+        <ColumnInfo>
+          <Column id="BJP" type="STRING" size="256"/>
+          <Column id="JP_GB" type="STRING" size="256"/>
+          <Column id="JPNO" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NM" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="CSU1" type="INT" size="256"/>
+          <Column id="BSU1" type="INT" size="256"/>
+          <Column id="CCOST" type="FLOAT" size="256"/>
+          <Column id="BCOST" type="FLOAT" size="256"/>
+          <Column id="SSU" type="FLOAT" size="256"/>
+          <Column id="SCOST" type="FLOAT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_2" keystring="BJP">
+        <ColumnInfo>
+          <Column id="BJP" type="STRING" size="256"/>
+          <Column id="JP_GB" type="STRING" size="256"/>
+          <Column id="JPNO" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NM" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="CSU1" type="INT" size="256"/>
+          <Column id="BSU1" type="INT" size="256"/>
+          <Column id="CCOST" type="FLOAT" size="256"/>
+          <Column id="BCOST" type="FLOAT" size="256"/>
+          <Column id="SSU" type="FLOAT" size="256"/>
+          <Column id="SCOST" type="FLOAT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_3" keystring="BJP">
+        <ColumnInfo>
+          <Column id="BJP" type="STRING" size="256"/>
+          <Column id="JP_GB" type="STRING" size="256"/>
+          <Column id="JPNO" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NM" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="CSU1" type="INT" size="256"/>
+          <Column id="BSU1" type="INT" size="256"/>
+          <Column id="CCOST" type="FLOAT" size="256"/>
+          <Column id="BCOST" type="FLOAT" size="256"/>
+          <Column id="SSU" type="FLOAT" size="256"/>
+          <Column id="SCOST" type="FLOAT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_4" keystring="BJP">
+        <ColumnInfo>
+          <Column id="BJP" type="STRING" size="256"/>
+          <Column id="JP_GB" type="STRING" size="256"/>
+          <Column id="JPNO" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NM" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="IOYH" type="STRING" size="256"/>
+          <Column id="CSU1" type="INT" size="256"/>
+          <Column id="BSU1" type="INT" size="256"/>
+          <Column id="CCOST" type="FLOAT" size="256"/>
+          <Column id="BCOST" type="FLOAT" size="256"/>
+          <Column id="SSU" type="FLOAT" size="256"/>
+          <Column id="SCOST" type="FLOAT" size="256"/>
+          <Column id="CSU11" type="FLOAT" size="256"/>
+          <Column id="CSU12" type="FLOAT" size="256"/>
+          <Column id="CSU13" type="FLOAT" size="256"/>
+          <Column id="BSU11" type="FLOAT" size="256"/>
+          <Column id="BSU12" type="FLOAT" size="256"/>
+          <Column id="BSU13" type="FLOAT" size="256"/>
+          <Column id="CCOST11" type="FLOAT" size="256"/>
+          <Column id="CCOST12" type="FLOAT" size="256"/>
+          <Column id="CCOST13" type="FLOAT" size="256"/>
+          <Column id="BCOST11" type="FLOAT" size="256"/>
+          <Column id="BCOST12" type="FLOAT" size="256"/>
+          <Column id="BCOST13" type="FLOAT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_5" keystring="BJP">
+        <ColumnInfo>
+          <Column id="KWAN_CD" type="STRING" size="256"/>
+          <Column id="USER_NM" type="STRING" size="256"/>
+          <Column id="BJP" type="STRING" size="256"/>
+          <Column id="JP_GB" type="STRING" size="256"/>
+          <Column id="JPNO" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NM" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="CSU1" type="INT" size="256"/>
+          <Column id="BSU1" type="INT" size="256"/>
+          <Column id="CCOST" type="FLOAT" size="256"/>
+          <Column id="BCOST" type="FLOAT" size="256"/>
+          <Column id="SSU" type="FLOAT" size="256"/>
+          <Column id="SCOST" type="FLOAT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_6" keystring="BYMD">
+        <ColumnInfo>
+          <Column id="BYMD" type="STRING" size="256"/>
+          <Column id="JPNO" type="STRING" size="256"/>
+          <Column id="JP_GB" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="CQTY1" type="INT" size="256"/>
+          <Column id="CAMT1" type="FLOAT" size="256"/>
+          <Column id="TRCD_CD" type="STRING" size="256"/>
+          <Column id="BOX" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_sd.xjs";
+
+//--------------------------------------------------------------
+// 폼 전역변수 선언
+//--------------------------------------------------------------
+var F_ScreenName    = "";					// 화면명
+var	lovflag = true;
+var qryStr ="";								//쿼리
+var printqry_1 = "";						//쿼리 유형.
+var printqry_2 = "";						//쿼리 유형.
+var Fv_HeadChk1 = 0;                         //체크박스1. 
+var Fv_HeadChk2 = 0;                         //체크박스1.
+var Fv_HeadChk3 = 0;                         //체크박스1.
+var Fv_HeadChk4 = 0;                         //체크박스1.
+var Find1_sw  = "N";
+var Find2_sw  = "N";
+var Find3_sw  = "N";
+var Find4_sw  = "N";
+var Find5_sw  = "N";
+var Gv_BookYear = this.lfn_sd_getBookYear(); // 영업관리 년판 세팅 얻어오기
+var bgbrnm;
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+//----------------------------------------------------------------------------------------
+//
+//  사용자정의 함수..
+//
+//----------------------------------------------------------------------------------------
+
+this.sqlCreate = function(event_id)
+{
+	//	 도서코드/도서코드 /기간 /기간 / 업체구간 /업체구간 /등급/학기/판매용구분/주/초/중/고/등록자/부수체크/ioyh/bgbr/custgb/속성코드/판매유형/도서구분
+	//rp [0000000000][9999999999][20061220][20061222][200000][299999][00,01][00,01][0][][][][][][busu][][][][][출고,증정][시험지,답안]
+	var s_cust, e_cust, p_yh;   
+	var s_sql1, s_sql2, s_sql3, s_sql4, Hak_g;   
+    var Line_sw, rdopt;
+	bgbrnm    = "";
+    Find1_sw  = "N";
+    Find2_sw  = "N";
+    Find3_sw  = "N";   
+    Find4_sw  = "N";   
+    Find5_sw  = "N";   
+	
+	var custcode  = this.Gridcheck("dsCode");	
+	var rdfile = this.selectfile(this.print_select.value);
+    s_cust     =  this.ed_sgb.value + this.ed_scode.value;
+    e_cust     =  this.ed_egb.value + this.ed_ecode.value; 
+    s_sql1     = "";
+    s_sql2     = "";
+    s_sql3     = "";
+    s_sql4     = "";
+	bgbrnm  = bgbrnm.substr(0,bgbrnm.length-1);
+	
+    if ((this.print_select.value == 1) || (this.print_select.value == 2) || (this.print_select.value == 3) || (this.print_select.value == 4) || (this.print_select.value == 5))
+	{
+		if ((this.print_select.value != 2) && (this.print_select.value != 4))
+		{
+			s_sql1     = "  SELECT A.JP_GB,A.JPNO, A.cust_gb, A.cust_cd, ";       
+			s_sql1     = s_sql1 + "    sum(B.QTY) cqty1, sum(B.AMT) camt1, ";             
+			s_sql1     = s_sql1 + "     0   b_qty1, 0 b_amt1 ";             
+			s_sql1     = s_sql1 + "FROM SALE.MEIO_M A, SALE.MEIO_D B ";           
+			s_sql1     = s_sql1 + " WHERE  A.bymd >=  '" + this.ed_sdate.value +"'";
+			s_sql1     = s_sql1 + "    AND A.bymd <=  '" + this.ed_edate.value +"'";
+			s_sql1     = s_sql1 + "    and ( A.cust_gb || A.CUST_CD ) >= '" + s_cust +"'";
+			s_sql1     = s_sql1 + "    and ( A.cust_gb || A.CUST_CD ) <= '" + e_cust +"'";
+			s_sql1     = s_sql1 + "    and A.jp_gb =  '3' ";
+			if ( this.C_i.value == true )
+			{
+				s_sql1     = s_sql1 + "    AND substr(A.jpno,9,1) <>  '5' ";
+			}
+			if ( this.C_i1.value == true )
+			{
+				s_sql1     = s_sql1 + "    AND substr(A.jpno,9,1) =  '5' ";
+			}
+			s_sql1     = s_sql1 + "    AND A.jpno >=  '" + this.ed_sjpno.value +"'";
+			s_sql1     = s_sql1 + "    AND A.jpno <=  '" + this.ed_ejpno.value +"'";
+			if ( this.ed_sjpno.value.substr(8,1) == this.ed_ejpno.value.substr(8,1) )
+			{
+				s_sql1     = s_sql1 + "    AND substr(A.jpno,9,1) =  '" + this.ed_sjpno.value.substr(8,1) +"'";
+				s_sql1     = s_sql1 + "    AND substr(A.jpno,10,3) >=  '" + this.ed_sjpno.value.substr(9,3) +"'";
+				s_sql1     = s_sql1 + "    AND substr(A.jpno,10,3) <=  '" + this.ed_ejpno.value.substr(9,3) +"'";
+			}
+			s_sql1     = s_sql1 + "    and A.JPNO    = B.JPNO ";      
+			s_sql1     = s_sql1 + "    AND A.JP_GB   = B.JP_GB ";     
+			s_sql1     = s_sql1 + " group by A.JP_GB,A.JPNO,a.cust_gb, a.cust_cd  ";
+		}      
+		if (this.print_select.value == 4)
+		{
+			s_sql1     = "  SELECT A.JP_GB,A.JPNO, A.cust_gb, A.cust_cd,b.ioyh_cd, ";       
+			s_sql1     = s_sql1 + "    sum(B.QTY) cqty1, sum(B.AMT) camt1, ";             
+			s_sql1     = s_sql1 + "     0   b_qty1, 0 b_amt1 ";             
+			s_sql1     = s_sql1 + "FROM SALE.MEIO_M A, SALE.MEIO_D B ";           
+			s_sql1     = s_sql1 + " WHERE  A.bymd >=  '" + this.ed_sdate.value +"'";
+			s_sql1     = s_sql1 + "    AND A.bymd <=  '" + this.ed_edate.value +"'";
+			s_sql1     = s_sql1 + "    and ( A.cust_gb || A.CUST_CD ) >= '" + s_cust +"'";
+			s_sql1     = s_sql1 + "    and ( A.cust_gb || A.CUST_CD ) <= '" + e_cust +"'";
+			s_sql1     = s_sql1 + "    and A.jp_gb =  '3' ";
+			s_sql1     = s_sql1 + "    AND A.jpno >=  '" + this.ed_sjpno.value +"'";
+			s_sql1     = s_sql1 + "    AND A.jpno <=  '" + this.ed_ejpno.value +"'";
+			if ( this.ed_sjpno.value.substr(8,1) == this.ed_ejpno.value.substr(8,1) )
+			{
+				s_sql1     = s_sql1 + "    AND substr(A.jpno,9,1) =  '" + this.ed_sjpno.value.substr(8,1) +"'";
+				s_sql1     = s_sql1 + "    AND substr(A.jpno,10,3) >=  '" + this.ed_sjpno.value.substr(9,3) +"'";
+				s_sql1     = s_sql1 + "    AND substr(A.jpno,10,3) <=  '" + this.ed_ejpno.value.substr(9,3) +"'";
+			}
+			s_sql1     = s_sql1 + "    and A.JPNO    = B.JPNO ";      
+			s_sql1     = s_sql1 + "    AND A.JP_GB   = B.JP_GB ";     
+			s_sql1     = s_sql1 + " group by A.JP_GB,A.JPNO,a.cust_gb, a.cust_cd, b.ioyh_cd ";
+		}      
+		if ((this.print_select.value != 1) && (this.print_select.value != 2))
+		{
+			s_sql1     = s_sql1 + "    union all ";             
+		}      
+		if ((this.print_select.value != 1) && (this.print_select.value != 4))
+		{
+			s_sql2     = "  SELECT A.JP_GB,A.JPNO, A.cust_gb, A.cust_cd, ";       
+			s_sql2     = s_sql2 + "     0 cqty1, 0 camt1, ";             
+			s_sql2     = s_sql2 + "     sum(B.QTY) b_qty1, sum(B.AMT) b_amt1 ";             
+			s_sql2     = s_sql2 + "FROM SALE.MEIB_M A, SALE.MEIB_D B ";           
+			s_sql2     = s_sql2 + " WHERE A.bymd >=  '" + this.ed_sdate.value +"'";
+			s_sql2     = s_sql2 + " AND A.bymd <=  '" + this.ed_edate.value +"'";
+			s_sql2     = s_sql2 + "    and  ( A.cust_gb || A.CUST_CD ) >= '" + s_cust +"'";
+			s_sql2     = s_sql2 + "    and  ( A.cust_gb || A.CUST_CD ) <= '" + e_cust +"'";
+			s_sql2     = s_sql2 + "    and A.jp_gb =  '4' ";
+			s_sql2     = s_sql2 + "    AND A.jpno >=  '" + this.ed_sjpno.value +"'";
+			s_sql2     = s_sql2 + "    AND A.jpno <=  '" + this.ed_ejpno.value +"'";
+			if ( this.Mk_jpgb.value != undefined )
+			{
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,9,1) =  '" + this.Mk_jpgb.value +"'";
+			}
+			if ( this.C_i.value == true )
+			{
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,9,1) <>  '5' ";
+			}
+			if ( this.C_i1.value == true )
+			{
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,9,1) =  '5' ";
+			}
+			if (( this.ed_sjpno.value.substr(8,1) == "5" ) && ( this.ed_sjpno.value.substr(8,1) == this.ed_ejpno.value.substr(8,1) ))
+			{
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,9,1) =  '" + this.ed_sjpno.value.substr(8,1) +"'";
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,10,3) >=  '" + this.ed_sjpno.value.substr(9,3) +"'";
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,10,3) <=  '" + this.ed_ejpno.value.substr(9,3) +"'";
+			}
+			s_sql2     = s_sql2 + " and A.JPNO    = B.JPNO ";      
+			s_sql2     = s_sql2 + " AND A.JP_GB   = B.JP_GB ";     
+			s_sql2     = s_sql2 + " group by A.JP_GB,A.JPNO,a.cust_gb, a.cust_cd "; 
+		}      
+		if (this.print_select.value == 4)
+		{
+			s_sql2     = "  SELECT A.JP_GB,A.JPNO, A.cust_gb, A.cust_cd,b.ioyh_cd, ";       
+			s_sql2     = s_sql2 + "     0 cqty1, 0 camt1, ";             
+			s_sql2     = s_sql2 + "     sum(B.QTY) b_qty1, sum(B.AMT) b_amt1 ";             
+			s_sql2     = s_sql2 + "FROM SALE.MEIB_M A, SALE.MEIB_D B ";           
+			s_sql2     = s_sql2 + " WHERE A.bymd >=  '" + this.ed_sdate.value +"'";
+			s_sql2     = s_sql2 + " AND A.bymd <=  '" + this.ed_edate.value +"'";
+			s_sql2     = s_sql2 + "    and  ( A.cust_gb || A.CUST_CD ) >= '" + s_cust +"'";
+			s_sql2     = s_sql2 + "    and  ( A.cust_gb || A.CUST_CD ) <= '" + e_cust +"'";
+			s_sql2     = s_sql2 + "    and A.jp_gb =  '4' ";
+			if ( this.Mk_jpgb.value != undefined )
+			{
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,9,1) =  '" + this.Mk_jpgb.value +"'";
+			}
+			s_sql2     = s_sql2 + "    AND A.jpno >=  '" + this.ed_sjpno.value +"'";
+			s_sql2     = s_sql2 + "    AND A.jpno <=  '" + this.ed_ejpno.value +"'";
+			if (( this.ed_sjpno.value.substr(8,1) == "5" ) && ( this.ed_sjpno.value.substr(8,1) == this.ed_ejpno.value.substr(8,1) ))
+			{
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,9,1) =  '" + this.ed_sjpno.value.substr(8,1) +"'";
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,10,3) >=  '" + this.ed_sjpno.value.substr(9,3) +"'";
+				s_sql2     = s_sql2 + "    AND substr(A.jpno,10,3) <=  '" + this.ed_ejpno.value.substr(9,3) +"'";
+			}
+			s_sql2     = s_sql2 + " and A.JPNO    = B.JPNO ";      
+			s_sql2     = s_sql2 + " AND A.JP_GB   = B.JP_GB ";     
+			s_sql2     = s_sql2 + " group by A.JP_GB,A.JPNO,a.cust_gb, a.cust_cd,b.ioyh_cd "; 
+		}      
+
+		if (( this.ed_adduser.value != undefined ) && ( this.ed_adduser.value != "100517" ) && ( this.ed_adduser.value.trim() != "" ) )
+		{
+			s_sql3    =   " and b.kwan_cd  = '" + this.ed_adduser.value +"'";
+		}
+		if (( this.ed_adduser.value != undefined ) && ( this.ed_adduser.value == "100517" ) && ( this.ed_adduser.value.trim() != "" ) )
+		{
+			s_sql3    =   " and b.kwan_cd in ( '100517','200517' ) ";
+		}
+		//======s_sql2
+		Line_sw    =   "Y";
+		if ( Find3_sw == "Y" )
+		{
+			s_sql3    = s_sql3 + "    and  b.cgb  in ( " + custcode +" ) ";
+		}
+		
+		var rdopt  = "/ragentpath ["+ gv_urlRdDataServer +"]" + " /rp ["+this.ed_sdate.value+"]"+ // 1
+		"["+this.ed_edate.value+"]"+ // 2
+		"["+this.ed_sgb.value + this.ed_scode.value+"]"+ // 3
+		"["+this.ed_egb.value + this.ed_ecode.value+"]"+ // 4				 
+		"["+s_sql1+"]"+ // 5
+		"["+s_sql2+"]"+ // 6
+		"["+s_sql3+"]"; // 7
+		
+	}
+    else if (this.print_select.value == 6)
+	{
+        s_sql1     = " WHERE  A.bymd >=  '" + this.ed_sdate.value +"'";
+        s_sql1     = s_sql1 + "    AND A.bymd <=  '" + this.ed_edate.value +"'";
+        s_sql1     = s_sql1 + "    and ( A.cust_gb || A.CUST_CD ) >= '" + s_cust +"'";
+        s_sql1     = s_sql1 + "    and ( A.cust_gb || A.CUST_CD ) <= '" + e_cust +"'";
+        s_sql1     = s_sql1 + "    and A.jp_gb =  '3' ";
+        s_sql1     = s_sql1 + "    AND substr(A.jpno,9,1) <>  '5' ";
+        s_sql1     = s_sql1 + "    AND A.jpno >=  '" + this.ed_sjpno.value +"'";
+        s_sql1     = s_sql1 + "    AND A.jpno <=  '" + this.ed_ejpno.value +"'";
+		
+		if (( this.ed_adduser.value != "" ) && ( this.ed_adduser.value != "100517" ) && ( this.ed_adduser.value.trim() != "" ) )
+		{
+			s_sql3    =   " and c.kwan_cd  = '" + this.ed_adduser.value +"'";
+		}
+		if (( this.ed_adduser.value != "" ) && ( this.ed_adduser.value == "100517" ) && ( this.ed_adduser.value.trim() != "" ) )
+		{
+			s_sql3    =   " and c.kwan_cd in ( '100517','200517' ) ";
+		}
+		//======s_sql2
+		Line_sw    =   "Y";
+		if ( Find3_sw == "Y" )
+		{
+			s_sql3    = s_sql3 + "    and  c.cgb  in ( " + custcode +" ) ";
+		}
+		
+		var rdopt  = "/ragentpath ["+ gv_urlRdDataServer +"]" + " /rp ["+this.ed_sdate.value+"]"+ // 1
+		"["+this.ed_edate.value+"]"+ // 2
+		"["+this.ed_sgb.value + this.ed_scode.value+"]"+ // 3
+		"["+this.ed_egb.value + this.ed_ecode.value+"]"+ // 4				 
+		"["+s_sql1+"]"+ // 5
+		"["+s_sql2+"]"+ // 6
+		"["+s_sql3+"]"; // 7
+		
+	}
+	
+	/* 미리 보기 OR 출력 버튼이벤트 시작 */
+	if(event_id == "btn_printview" ) // 미리보기 일때
+	{
+		trace(this.print_select.value);
+		switch(this.print_select.value)
+		{
+		case '1' : // 일자별 출고현황
+			this.Div00.set_url("sd::SD1140F_GRID1.xfdl");
+			
+			var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+ 
+			"s_sql2="+nexacro.wrapQuote(s_sql2)+
+			"s_sql3="+nexacro.wrapQuote(s_sql3);
+			var outds = "ds_1=ds_1";
+			var inds = "ds_1=ds_1";
+			trace(strArg);
+			
+			this.gfn_TransactionP("ds1_select","JSP/sd/SD1140F_DS1_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+
+			break;
+		case '2' : // 거래처별 출고현황
+			this.Div00.set_url("sd::SD1140F_GRID2.xfdl");
+			
+			var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+ 
+			"s_sql2="+nexacro.wrapQuote(s_sql2)+
+			"s_sql3="+nexacro.wrapQuote(s_sql3);
+			var outds = "ds_2=ds_2";
+			var inds = "ds_2=ds_2";
+			trace(strArg);
+			
+			this.gfn_TransactionP("ds2_select","JSP/sd/SD1140F_DS2_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+			
+			break;
+		case '3' : // 도서별 출고현황
+			this.Div00.set_url("sd::SD1140F_GRID3.xfdl");
+			
+			var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+ 
+			"s_sql2="+nexacro.wrapQuote(s_sql2)+
+			"s_sql3="+nexacro.wrapQuote(s_sql3);
+			var outds = "ds_3=ds_3";
+			var inds = "ds_3=ds_3";
+			trace(strArg);
+			
+			this.gfn_TransactionP("ds3_select","JSP/sd/SD1140F_DS3_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+			
+			break;
+		case '4' : // 등록자별 출고현황
+			this.Div00.set_url("sd::SD1140F_GRID4.xfdl");
+			
+			var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+ 
+			"s_sql2="+nexacro.wrapQuote(s_sql2)+
+			"s_sql3="+nexacro.wrapQuote(s_sql3);
+			var outds = "ds_4=ds_4";
+			var inds = "ds_4=ds_4";
+			trace(strArg);
+			
+			this.gfn_TransactionP("ds4_select","JSP/sd/SD1140F_DS4_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+			break;
+		case '5' : // 도서 출고 집계
+			this.Div00.set_url("sd::SD1140F_GRID5.xfdl");
+			
+			var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+ 
+			"s_sql2="+nexacro.wrapQuote(s_sql2)+
+			"s_sql3="+nexacro.wrapQuote(s_sql3);
+			var outds = "ds_5=ds_5";
+			var inds = "ds_5=ds_5";
+			trace(strArg);
+			
+			this.gfn_TransactionP("ds5_select","JSP/sd/SD1140F_DS5_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+			break;
+		case '6' : // 총판도서 출고집계
+			this.Div00.set_url("sd::SD1140F_GRID6.xfdl");
+			
+			var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+ 
+			"s_sql2="+nexacro.wrapQuote(s_sql2)+
+			"s_sql3="+nexacro.wrapQuote(s_sql3);
+			var outds = "ds_6=ds_6";
+			var inds = "ds_6=ds_6";
+			trace(strArg);
+			
+			this.gfn_TransactionP("ds6_select","JSP/sd/SD1140F_DS6_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+			break;
+		}
+	}
+	else if ( event_id  == "btn_print" ) // 출력일때
+	{
+		this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "mk::MKRDF.xfdl", "", this, 0, 0, 1024, 770);
+	}
+}
+
+this.btn_scust_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {Param1:""}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupCustCode_scode", objParam, "common::Cust_2.xfdl", "popupCallBack", this, 10, 58, 590, 550);
+};
+
+this.btn_ecust_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {Param1:""}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupCustCode_ecode", objParam, "common::Cust_2.xfdl", "popupCallBack", this, 10, 58, 590, 550);
+};
+
+
+this.popupCallBack = function(sFormId, sArg)
+{
+	if(!this.lfn_sd_fnisNull(sArg)) // 리턴값이 널이 아니면 수행
+	{
+		if(sFormId=="popupBookCode_sbook") // 도서시작 코드
+		{
+			var arry = sArg.split(":");
+			this.ed_sbook.set_value(arry[0]);
+		}
+		else if(sFormId=="popupBookCode_ebook") // 도서 끝 코드
+		{
+			var arry = sArg.split(":");
+			this.ed_ebook.set_value(arry[0]);
+		}
+		else if(sFormId=="popupCustCode_scode") // 거래처 시작 코드
+		{
+			var arry = sArg.split(":");
+			this.ed_sgb.set_value(arry[0]);
+			this.ed_scode.set_value(arry[1]);
+		}
+		else if(sFormId=="popupCustCode_ecode") // 거래처 끝 코드
+		{
+			var arry = sArg.split(":");
+			this.ed_egb.set_value(arry[0]);
+			this.ed_ecode.set_value(arry[1]);
+		}
+		else if(sFormId=="popupBookCode_user") // 영업자 코드
+		{
+			var arry = sArg.split(":");
+			this.ed_ju.set_value(arry[0]);
+		}
+		else if(sFormId=="popupBookCode_maker") // 등록자 코드
+		{
+			var arry = sArg.split(":");
+			this.ed_adduser.set_value(arry[0]);
+		}
+	}
+};
+
+this.btn_sbookcode_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {Param1:""}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBookCode_sbook", objParam, "common::BookCode.xfdl", "popupCallBack", this, 10, 58, 450, 550);
+};
+
+this.btn_ebookcode_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {Param1:""}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBookCode_ebook", objParam, "common::BookCode.xfdl", "popupCallBack", this, 10, 58, 450, 550);
+};
+
+this.btn_s_saleuser_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {Param1:""}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBookCode_user", objParam, "sd::frmSaleUser.xfdl", "popupCallBack", this, 10, 58, 450, 550);
+};
+
+this.SD1140F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	if(system.navigatorname.indexOf("nexacro")==-1)
+	{
+		// 현재 hash 에 해당하는 data 를 얻어온다.
+		var hash = MyHistory.getLocationHash();
+		//var data = MyHistory.getData(hash);
+		//trace(hash);
+	}
+	//디폴드 div 셋팅
+	//this.Div00.set_url("sd::SD1140F_GRID1.xfdl")
+	
+	//디폴트 오늘날자.
+	var today = new Date(); 
+	var strtoDay = Eco.date.getMaskFormatString(today, "yyyyMMdd");
+	//nexacro.getApplication().Gv_BookYear = this.lfn_sd_getBookYear();
+
+	this.ed_sdate.set_value(strtoDay);
+	this.ed_edate.set_value(strtoDay);
+	this.print_select.set_value(1);
+	
+	this.ed_sgb.set_value("20");
+	this.ed_scode.set_value("0000");
+	this.ed_egb.set_value("39");
+	this.ed_ecode.set_value("9999");
+	this.ed_sjpno.set_value(strtoDay+"0000");
+	this.ed_ejpno.set_value(strtoDay+"zzzz");
+	
+	
+	// 거래처구분 가져오기
+	var strArg = "";
+	var inds 	   = "ds_ccode1=ds_ccode1";
+	var outds 	   = "ds_ccode1=ds_ccode1"; 
+	
+	this.gfn_TransactionP("custgb_select","JSP/sd/sel_ccode1.jsp", inds, outds, strArg, "fnCallback", false, "P", false, this);	
+
+	this.ed_sdate.setFocus();
+};
+
+this.btn_printview_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	trace(obj.id);
+	this.sqlCreate(obj.id);
+};
+
+
+this.Gridcheck = function(strdsname)
+{
+	// 그리드 데이터 중에 체크된 데이터를 선별하여 리턴.
+	var strReturn="";
+	var loop = 0;
+	//trace("in Gridcheck" +this.dsIoyh.rowcount);
+	
+	if(strdsname=="dsCode")
+	{
+		for (loop=0; loop< this.ds_ccode1.rowcount; loop++)
+		{
+			if ( this.ds_ccode1.getColumn(loop,"chk")==1 )
+			{
+				//trace(this.ds_bgbr.getColumn(loop,"chk") + "        loop: " + loop);
+			    Find3_sw  = "Y";
+				strReturn = strReturn +"'"+this.ds_ccode1.getColumn(loop,"code")+"',";
+			}
+		}
+	}
+	
+	//마지막 쉼표 삭제.
+	return strReturn.substr(0,strReturn.length-1);
+};
+
+
+this.selectfile = function(num)
+{
+	if (num == 1) return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD1140_1r.mrd"; // 매출일보(출고)
+	else if (num == 2) return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD1140_2r.mrd"; // 매출일보(반품)
+	else if (num == 3) return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD1140r.mrd"; // 매출일보(출고+반품)
+	else if (num == 4) return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD1141r.mrd"; // 매출일보(업체구분)
+	else if (num == 5) return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD1142r.mrd"; // 매출일보(관리자)
+	else if (num == 6) return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD1143r.mrd"; // 매출일보(배송)
+};
+
+this.btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var filename;
+	
+	this.exportObj = new ExcelExportObject();
+	if ( this.Div00.url == "sd::SD1140F_GRID1.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD1140F_GRID1, "Sheet1!A1");
+		filename = "1"; }
+	else if ( this.Div00.url == "sd::SD1140F_GRID2.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD1140F_GRID2, "Sheet1!A1");
+		filename = "2"; }
+	else if ( this.Div00.url == "sd::SD1140F_GRID3.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD1140F_GRID3, "Sheet1!A1");
+		filename = "3"; }
+	else if ( this.Div00.url == "sd::SD1140F_GRID4.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD1140F_GRID4, "Sheet1!A1");
+		filename = "4"; }
+	else if ( this.Div00.url == "sd::SD1140F_GRID5.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD1140F_GRID5, "Sheet1!A1");
+		filename = "5"; }
+	else if ( this.Div00.url == "sd::SD1140F_GRID6.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD1140F_GRID6, "Sheet1!A1");
+		filename = "6"; }
+	
+	
+	this.exportObj.set_exporturl(gv_urlXeni); 
+	this.exportObj.set_exportfilename(filename);
+    this.exportObj.exportData(); 
+};
+
+this.grd_code_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		if(Fv_HeadChk2 == 0)
+			Fv_HeadChk2 = 1;
+		else
+			Fv_HeadChk2 = 0;
+			
+		this.grd_code.setCellProperty("head", 0, "text", Fv_HeadChk2);
+		for(var i = 0; i < this.ds_ccode1.rowcount; i++)
+		{
+			this.ds_ccode1.setColumn(i, "chk", Fv_HeadChk2);	
+			
+		}
+	}
+};
+
+
+this.fnCallback = function(svcId, ErrorCode, ErrorMsg)
+{
+	if(ErrorCode != 0)  
+		this.alert(ErrorMsg);
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

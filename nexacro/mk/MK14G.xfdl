@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="발주별 생산금액 현황" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Static id="Static02" taborder="0" text="발주별 생산금액 현황" left="12" top="10" width="528" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnExcel" taborder="14" top="49" width="43" height="39" icon="url('Img::ico_excel_O.png')" right="0.69%" onclick="btnExcel_onclick"/>
+        <Button id="btnPrt" taborder="4" text="출력" top="49" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="btnExcel:7" onclick="btnPrt_onclick"/>
+        <Button id="btnSearch" taborder="3" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="49" onclick="btnSearch_onclick" right="btnPrt:7" width="80"/>
+        <Calendar id="calEDate" taborder="2" top="13" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" onkeydown="LocalFctn_OnKeyDown" right="btnSearch:25" width="160" autoselect="true"/>
+        <Calendar id="calSDate" taborder="1" top="13" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" onkeyup="LocalFctn_OnKeyDown" right="calEDate:3" width="160" autoselect="true"/>
+        <Static id="stDate" taborder="5" text="발주일자" top="13" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="calSDate:3" width="85"/>
+        <ImageViewer id="ImgClose01" taborder="6" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Edit id="edEBookYear" taborder="13" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="4" textAlign="center" autoselect="true" right="btnSearch:25" top="91"/>
+        <Edit id="edt_bookYear" taborder="12" top="91" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" textAlign="center" autoselect="true" right="edEBookYear:3" width="160"/>
+        <Static id="stYear" taborder="7" text="도서년판" top="91" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="edt_bookYear:3" width="85"/>
+        <Grid id="grdList" taborder="8" left="8" top="130" width="98.85%" binddataset="dsList" bottom="10" autofittype="none" selecttype="cell" oncellclick="grdList_oncellclick">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="90"/>
+                <Column size="50"/>
+                <Column size="35"/>
+                <Column size="252"/>
+                <Column size="100"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="80"/>
+                <Column size="55"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="90"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="30"/>
+                <Row size="30" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="도서코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" rowspan="2" text="년판" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" rowspan="2" text="순번" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" rowspan="2" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" rowspan="2" text="발주일자번호" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" rowspan="2" text="수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" colspan="4" text="인쇄판" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="10" rowspan="2" text="인쇄비" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="11" rowspan="2" text="제본비" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="12" rowspan="2" text="가공비" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="13" rowspan="2" text="후가공비" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="14" rowspan="2" text="뜯기비용" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="15" rowspan="2" text="재료비" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="16" rowspan="2" text="합계" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell row="1" col="6" text="필름수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell row="1" col="7" text="필름금액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell row="1" col="8" text="CTP수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell row="1" col="9" text="CTP금액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BOOKMST_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" suppress="0" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="1" text="bind:BOOKMST_YEAR" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" suppress="0" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="2" text="bind:BOOKMST_SEQ" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" suppress="0" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="3" text="bind:BOOKMST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" displaytype="normal" maskeditformat="#.###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" wordWrap="char"/>
+                <Cell col="4" text="bind:ORD_NO" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" displaytype="normal" maskeditformat="#.###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="5" text="bind:ORDMST_QTY" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="6" text="bind:ORDDTL_PANQTY_F" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" calendardateformat="yyyy-MM-dd" color="#666666"/>
+                <Cell col="7" text="bind:ORDDTL_PANAMOUNT_F" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" calendardateformat="yyyy-MM-dd" color="#666666"/>
+                <Cell col="8" text="bind:ORDDTL_PANQTY_CTP" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="9" text="bind:ORDDTL_CTP_AMOUNT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:ORDDTL_CTP_AMOUNT&gt;'0'?'PRODUCT_HYPERLINK':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="10" text="bind:ORDDTL_AMOUNT_P" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:ORDDTL_AMOUNT_P&gt;'0'?'PRODUCT_HYPERLINK':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="11" text="bind:ORDDTL_AMOUNT_B" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:ORDDTL_AMOUNT_B&gt;'0'?'PRODUCT_HYPERLINK':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="12" text="bind:ORDDTL_AMOUNT_C" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:ORDDTL_AMOUNT_C&gt;'0'?'PRODUCT_HYPERLINK':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="13" text="bind:ORDDTL_AMOUNT_A" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:ORDDTL_AMOUNT_A&gt;'0'?'PRODUCT_HYPERLINK':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="14" text="bind:ORDDTL_AMOUNT_PICK" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:ORDDTL_AMOUNT_PICK&gt;'0'?'PRODUCT_HYPERLINK':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="15" text="bind:ORDDTLPPRCOST_AMOUNT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:ORDDTLPPRCOST_AMOUNT&gt;'0'?'PRODUCT_HYPERLINK':''" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="16" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" calendardateformat="yyyy-MM-dd" text="bind:ORD_AMT"/>
+              </Band>
+              <Band id="summary">
+                <Cell background="#fbce78"/>
+                <Cell col="1" background="#fbce78"/>
+                <Cell col="2" background="#fbce78"/>
+                <Cell col="3" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" text="합 계"/>
+                <Cell col="4" background="#fbce78"/>
+                <Cell col="5" background="#fbce78"/>
+                <Cell col="6" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTL_PANQTY_F');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="7" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTL_PANAMOUNT_F');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="8" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTL_PANQTY_CTP');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="9" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTL_CTP_AMOUNT');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="10" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTL_AMOUNT_P');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="11" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTL_AMOUNT_B');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="12" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTL_AMOUNT_C');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="13" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTL_AMOUNT_A');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="14" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTL_AMOUNT_PICK');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="15" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORDDTLPPRCOST_AMOUNT');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+                <Cell col="16" background="#fbce78" font="bold 14px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('ORD_AMT');" displaytype="mask" textAlign="right" maskeditformat="#,###"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="edEBookCd" taborder="10" top="52" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="10" textAlign="center" autoselect="true" right="btnSearch:25"/>
+        <Edit id="edt_bookCode" taborder="9" top="52" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="10" textAlign="center" autoselect="true" right="edEBookCd:3" width="160"/>
+        <Button id="btnBook_Search" taborder="11" text="도서번호" top="52" height="35" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" right="edt_bookCode:3" width="85" onclick="btnBookSearch_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerPrt;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var urlExcel = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerPrt = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_PRINT");
+	
+	//권한 체크 및 컴포넌트 ENABLE처리
+	if(vPerSel != "1" || vPerPrt != "1")
+		this.fctn_User_Enabled(this, false);
+	
+	if(vPerSel = "1"){
+		this.calSDate.setFocus();
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" || Eco.isUndefined(this.calSDate.value) == true )
+	{
+		alert("시작일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value == "" || Eco.isUndefined(this.calEDate.value) == true )
+	{
+		alert("종료일자를 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	in_ds 	= "dsList=dsList";
+	out_ds 	= "dsList=dsList";
+	
+	var vSBookCd, vEBookCd, vSBookYear, vEBookYear;
+	
+	if(Eco.isUndefined(this.edt_bookCode.value) == true || this.edt_bookCode.value == ""){
+		vSBookCd = "";
+	}else {
+		vSBookCd = this.edt_bookCode.value;
+	}
+	
+	if(Eco.isUndefined(this.edEBookCd.value) == true || this.edEBookCd.value == ""){
+		vEBookCd = vSBookCd;
+	}else {
+		vEBookCd = this.edEBookCd.value;
+	}
+	
+	if(Eco.isUndefined(this.edt_bookYear.value) == true || this.edt_bookYear.value == ""){
+		vSBookYear = "";
+	}else {
+		vSBookYear = this.edt_bookYear.value;
+	}
+	
+	if(Eco.isUndefined(this.edEBookYear.value) == true || this.edEBookYear.value == ""){
+		vEBookYear = vSBookYear;
+	}else {
+		vEBookYear = this.edEBookYear.value;
+	}
+	
+	str_url = "JSP/mk/mk14G_Select.jsp";
+	str_arg = "GB=" + nexacro.wrapQuote(1) +
+			  " SDATE=" + nexacro.wrapQuote(this.calSDate.value) +
+	          " EDATE=" + nexacro.wrapQuote(this.calEDate.value) + 
+	          " SBOOKCODE=" +nexacro.wrapQuote(vSBookCd) +
+			  " EBOOKCODE=" +nexacro.wrapQuote(vEBookCd) +
+			  " SBOOKYEAR=" +nexacro.wrapQuote(vSBookYear) +
+			  " EBOOKYEAR=" +nexacro.wrapQuote(vEBookYear);
+	 
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+};
+
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		
+		if(this.dsList.rowcount == 0){
+			alert("조회된 자료가 없습니다.");
+			return false;
+		}
+	}
+};
+
+//레포트 출력 이벤트
+this.btnPrt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" || Eco.isUndefined(this.calSDate.value) == true )
+	{
+		alert("시작일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value == "" || Eco.isUndefined(this.calEDate.value) == true )
+	{
+		alert("종료일자를 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	var vSBookCd, vEBookCd, vSBookYear, vEBookYear;
+	if(Eco.isUndefined(this.edt_bookCode.value) == true || this.edt_bookCode.value == ""){
+		vSBookCd = "";
+	}else {
+		vSBookCd = this.edt_bookCode.value;
+	}
+	
+	if(Eco.isUndefined(this.edEBookCd.value) == true || this.edEBookCd.value == ""){
+		vEBookCd = vSBookCd;
+	}else {
+		vEBookCd = this.edEBookCd.value;
+	}
+	
+	if(Eco.isUndefined(this.edt_bookYear.value) == true || this.edt_bookYear.value == ""){
+		vSBookYear = "";
+	}else {
+		vSBookYear = this.edt_bookYear.value;
+	}
+	
+	if(Eco.isUndefined(this.edEBookYear.value) == true || this.edEBookYear.value == ""){
+		vEBookYear = vSBookYear;
+	}else {
+		vEBookYear = this.edEBookYear.value;
+	}
+	
+	var rdUrl = gv_svcUrl + "rpt/mk/MK14G.mrd";
+    var rdParam = "/ragentpath ["+ gv_urlRdDataServer +"]"+ " /rp [1] [" + this.calSDate.value + "] [" +  this.calSDate.value + "] [" +  vSBookCd + "] [" +  vEBookCd + "] [" +  vSBookYear + "] [" +  vEBookYear + "]";  
+	
+	var vScreenWidth = system.getScreenWidth();
+	
+	if(vScreenWidth >= 1920)
+		vScreenWidth = vScreenWidth/2
+	
+	nexacro.open("popupPrt", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, "autosize=false", 0, 0, vScreenWidth, system.getScreenHeight(), this);
+
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+//#######################################################
+// 사용권한에 따른 컴포넌트 Enable 여부
+// formObj : 폼 ID 변수
+// _set : Enable 변수 (True, False)
+//#######################################################
+this.fctn_User_Enabled = function(formObj, _set)
+{
+	var comObj;
+	// 마스터 폼 컴포넌트 Enabled 여부
+	for(var i = 0; i < formObj.components.length;  i++)
+	{
+		comObj = formObj.components[i];
+		
+		if (comObj == "[object Edit]" || comObj == "[object Combo]"
+		   || comObj == "[object Calendar]" || comObj == "[object MaskEdit]" 
+		   || comObj == "[object TextArea]")
+		{
+			comObj.set_enable(_set);
+		}
+	}
+	
+	if(vPerSel != 1)
+		this.btnSearch.set_enable(_set);
+		
+	if(vPerPrt != 1){
+		this.btnPrt.set_enable(_set);
+		this.btnExcel.set_enable(_set);
+	}
+}
+
+this.grdList_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var vGB = this.dsList.getColumn(e.row, "GB");
+	var vOrdMstId = this.dsList.getColumn(e.row, "ORDMST_ID");
+	var vBookMstId = this.dsList.getColumn(e.row, "BOOKMST_ID");
+	var objUrl = "";
+	var objParam = {dsParam1:vGB
+				   ,dsParam2:vOrdMstId
+				   ,dsParam3:vBookMstId}; //popup 화면으로 전달할 값
+	
+	if(e.col == 10)//인쇄비
+		objUrl = "mk::MK14G_1.xfdl";
+	else if(e.col == 11) //제본비
+		objUrl = "mk::MK14G_2.xfdl";
+	else if(e.col == 12) //외주가공비
+		objUrl = "mk::MK14G_3.xfdl";
+	else if(e.col == 13) //후가공비
+		objUrl = "mk::MK14G_4.xfdl";
+	else if(e.col == 14) //뜯기비용
+		objUrl = "mk::MK14G_5.xfdl";
+	else if(e.col == 15) //재료비
+		objUrl = "mk::MK14G_6.xfdl";
+	else if(e.col == 9) //CTP
+		objUrl = "mk::MK14G_7.xfdl";
+	
+	if(objUrl != "")
+		this.lfn_showModal("popupDetailList", objParam, objUrl, "popupCallback", this, 10, 58, 1300, 650);
+};
+
+this.btnBookSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var vBookCd, vBookYear;
+	vBookCd = this.edt_bookCode.value;
+	vBookYear = this.edt_bookYear.value;
+	this.dsBookMst.clearData();
+	var objParam = {dsParam1:this.dsBookMst
+				   ,dsParam2:"MK14B"
+				   ,dsParam3:vBookCd
+				   ,dsParam4:vBookYear}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBook", objParam, "mk::MKBook_SearchF.xfdl", "popupCallback", this, 10, 58, 450, 400);
+};
+
+this.popupCallback = function(){
+	
+	if(this.dsBookMst.rowcount > 0)
+	{
+		this.edt_bookCode.set_value(this.dsBookMst.getColumn(0, "BOOKMST_CODE"));
+		this.edt_bookYear.set_value(this.dsBookMst.getColumn(0, "BOOKMST_YEAR"));
+	}
+}
+
+
+this.btnExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, 
+        this.grdList, "Sheet1!A1");
+    
+	this.exportObj.set_exporturl(urlExcel);
+	this.exportObj.exportData(); 
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="GB" type="STRING" size="256"/>
+          <Column id="ORDMST_ID" type="STRING" size="256"/>
+          <Column id="BOOKMST_ID" type="STRING" size="256"/>
+          <Column id="ORDMST_DATE" type="STRING" size="256"/>
+          <Column id="ORDMST_NO" type="STRING" size="256"/>
+          <Column id="ORD_NO" type="STRING" size="256"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="256"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="256"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="256"/>
+          <Column id="ORDDTL_PANQTY_F" type="INT" size="256"/>
+          <Column id="ORDDTL_PANAMOUNT_F" type="INT" size="256"/>
+          <Column id="ORDDTL_PANVAT_F" type="INT" size="256"/>
+          <Column id="ORDDTL_PANQTY_CTP" type="INT" size="256"/>
+          <Column id="ORDDTL_CTP_AMOUNT" type="INT" size="256"/>
+          <Column id="ORDDTL_AMOUNT_P" type="INT" size="256"/>
+          <Column id="ORDDTL_VAT_P" type="INT" size="256"/>
+          <Column id="ORDDTL_AMOUNT_B" type="INT" size="256"/>
+          <Column id="ORDDTL_VAT_B" type="INT" size="256"/>
+          <Column id="ORDDTL_AMOUNT_C" type="INT" size="256"/>
+          <Column id="ORDDTL_VAT_C" type="INT" size="256"/>
+          <Column id="ORDDTL_AMOUNT_A" type="INT" size="256"/>
+          <Column id="ORDDTL_VAT_A" type="INT" size="256"/>
+          <Column id="ORDDTL_AMOUNT_PICK" type="INT" size="256"/>
+          <Column id="ORDDTL_VAT_PICK" type="INT" size="256"/>
+          <Column id="ORDDTLPPRCOST_AMOUNT" type="INT" size="256"/>
+          <Column id="ORDMST_QTY" type="INT" size="256"/>
+          <Column id="ORD_AMT" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

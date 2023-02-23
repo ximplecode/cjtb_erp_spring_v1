@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR610F" width="1250" height="625" titletext="New Form" onload="HR610F_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="장기 근태자 관리" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <GroupBox id="GroupBox00" taborder="1" text="자료 등록/수정" left="2" top="52" right="2" height="90" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;"/>
+        <Static id="sta00_01_00" taborder="2" text="성명" left="4" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="3" left="84" top="105" height="30" border="1px solid #10aea9" background="#9ee0de" right="4"/>
+        <Edit id="edt_name" taborder="6" left="146" top="110" height="20" border="0px none transparent" background="transparent" textAlign="center" width="7.04%" readonly="true"/>
+        <Button id="btn_Search_nm" taborder="4" top="110" height="20" icon="url('Img::loupe.png')" width="21" left="edt_name:2" onclick="btn_Search_nm_onclick"/>
+        <Edit id="edt_sabun" taborder="5" left="sta00_01_00:2" top="110" height="20" border="0px none transparent" background="transparent" width="4.64%" text="C17011" textAlign="center" readonly="true"/>
+        <Static id="sta00_01_00_00" taborder="7" text="부서" left="btn_Search_nm:3" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_busenm" taborder="8" left="sta00_01_00_00:2" top="110" height="20" border="0px none transparent" background="transparent" width="11.20%" text="010-9118-8920" textAlign="center" readonly="true"/>
+        <Static id="sta00_01_00_00_00_01" taborder="40" text="직책" left="edt_busenm:2" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_jikwi" taborder="41" left="sta00_01_00_00_00_01:2" top="110" height="20" border="0px none transparent" background="transparent" width="9%" text="010-9118-8920" textAlign="center" readonly="true"/>
+        <Static id="sta00_01_00_00_00" taborder="9" text="근태사유" left="edt_jikwi:2" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_gb" taborder="10" text="Combo00" left="sta00_01_00_00_00:2" top="110" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_usecd" codecolumn="CODE" datacolumn="NAME" width="9.92%"/>
+        <Static id="sta00_01_00_00_00_00" taborder="11" text="기간" left="cb_gb:2" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Calendar id="cald_symd" taborder="12" left="sta00_01_00_00_00_00:2" top="110" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="9%"/>
+        <Static id="Static00" taborder="13" text="부터" left="cald_symd:2" top="110" width="34" height="20"/>
+        <Calendar id="cald_eymd" taborder="14" left="Static00:2" top="110" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="9%"/>
+        <GroupBox id="GroupBox00_00" taborder="15" text="자료 검색" left="2" top="142" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;" width="328" bottom="2"/>
+        <Static id="sta00_01_00_01" taborder="16" text="종료년월" left="6" top="200" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00" taborder="17" left="86" top="200" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <Static id="sta00_01_01_00" taborder="18" text="성명" left="6" top="sta00_01_00_01:0" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00" taborder="19" left="86" top="230" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <Static id="sta00_01_01_00_00" taborder="20" text="근태사유" left="6" top="260" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00_00" taborder="21" left="86" top="260" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <Static id="sta00_01_00_00_01" taborder="22" text="부서" left="6" top="290" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00_00_00" taborder="23" left="86" top="290" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <Static id="sta00_01_00_00_01_00_00" taborder="24" text="퇴사자" left="6" top="320" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00_00_00_00" taborder="25" left="86" top="320" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <Grid id="grd_list" taborder="26" left="333" top="152" bottom="2" right="2" binddataset="ds_hr610" autofittype="col" onheadclick="grd_list_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="196"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="110"/>
+                <Column size="110"/>
+                <Column size="110"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사번"/>
+                <Cell col="1" text="부서"/>
+                <Cell col="2" text="직책"/>
+                <Cell col="3" text="이름"/>
+                <Cell col="4" text="시작일"/>
+                <Cell col="5" text="종료일"/>
+                <Cell col="6" text="근태구분"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:SABUN" textAlign="center"/>
+                <Cell col="1" text="bind:BUSE" textAlign="center"/>
+                <Cell col="2" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="3" text="bind:NAME" textAlign="center"/>
+                <Cell col="4" text="bind:TODATE" textAlign="center" displaytype="date"/>
+                <Cell col="5" text="bind:FRDATE" textAlign="center" displaytype="date"/>
+                <Cell col="6" text="bind:TMSCD" textAlign="center" displaytype="combotext" combodataset="ds_usecd" combocodecol="CODE" combodatacol="NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_excel" taborder="29" text="Excel" top="170" width="80" height="22" left="82" onclick="btn_excel_onclick"/>
+        <Button id="btn_clear" taborder="28" text="초기화" top="170" width="80" height="22" onclick="btn_clear_onclick" left="btn_excel:2"/>
+        <Button id="btn_search" taborder="27" text="조회" top="170" width="80" height="22" onclick="btn_search_onclick" left="btn_clear:2"/>
+        <MaskEdit id="medt_s_ym" taborder="30" left="90" top="200" height="30" background="transparent" border="0px none transparent,0px none,0px none" type="string" color="black" format="@@@@-@@" width="6.08%" textAlign="center"/>
+        <Edit id="edt_s_name" taborder="31" left="91" top="235" height="20" border="0px none transparent" background="transparent" textAlign="center" onkeydown="edt_s_name_onkeydown" width="232"/>
+        <Button id="btn_Search_buse" taborder="32" top="295" height="20" icon="url('Img::loupe.png')" width="21" onclick="btn_Search_buse_onclick" left="300"/>
+        <Edit id="edt_s_busenm" taborder="33" left="163" top="295" height="20" border="0px none transparent" background="transparent" readonly="true" width="135"/>
+        <Edit id="edt_s_busecd" taborder="34" left="90" top="295" height="20" border="0px none transparent" background="transparent" onchanged="Edit00_00_onchanged" width="72"/>
+        <CheckBox id="ckb_s_toisadt" taborder="35" text="퇴사자 포함" left="94" top="325" width="150" height="20" visible="true" value="false" falsevalue="N" truevalue="Y"/>
+        <Combo id="cb_s_gb" taborder="36" text="Combo00" left="91" top="265" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_usecd" codecolumn="CODE" datacolumn="NAME" width="231"/>
+        <Button id="btn_new" taborder="37" text="신규" top="75" width="120" height="22" right="264" onclick="btn_new_onclick"/>
+        <Button id="btn_save" taborder="38" text="저장" top="75" width="120" height="22" right="134" onclick="btn_save_onclick"/>
+        <Button id="btn_delete" taborder="39" text="삭제" top="75" width="120" height="22" right="4" onclick="btn_delete_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_usecd">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">07</Col>
+            <Col id="NAME">병가</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">출산휴가</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">31</Col>
+            <Col id="NAME">육아휴직</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">30</Col>
+            <Col id="NAME">휴직(일반)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">11</Col>
+            <Col id="NAME">휴직(기존)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">12</Col>
+            <Col id="NAME">출산휴가</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_hr610" canrowposchange="ds_hr610_canrowposchange">
+        <ColumnInfo>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="TODATE" type="STRING" size="256"/>
+          <Column id="FRDATE" type="STRING" size="256"/>
+          <Column id="TMSCD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+var arr_rt;
+var Sort, SortColumn;
+var urlXeni = nexacro.getApplication().gv_urlXeni;
+
+this.HR610F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+	sort = "-";
+	sortColumn = "";
+	
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr610.jsp";
+	in_ds = "ds_hr610=ds_hr610";
+	out_ds = "ds_hr610=ds_hr610";
+	str_arg = " BUSE='" + this.edt_s_busecd.value + "'" +
+			  " NAME='" + this.edt_s_name.value + "'" +
+			  " YM='" + this.medt_s_ym.value + "'" +
+			  " TMSCD='" + this.cb_s_gb.value + "'" +
+			  " TOISAGB='" + this.ckb_s_toisadt.value  + "'";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+};
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.grd_list_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var newSortColumn = this.grd_list.getCellProperty("body",e.col,"text");
+	newSortColumn = newSortColumn.replace("bind:","");
+	if (newSortColumn == SortColumn)
+	{
+		if (Sort == "-")
+		{
+			Sort = "+";
+		}
+		else
+		{
+			Sort = "-";
+		}
+	}
+	else
+	{
+		Sort = "+";
+		SortColumn = newSortColumn;
+	}
+	
+	this.ds_hr610.set_keystring("S:"+Sort+newSortColumn+"+NAME");
+	this.ds_hr610.set_rowposition(0);
+};
+
+this.btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.ds_hr610.addRow();
+	var dt = new Date();
+	this.cald_symd.set_value(dt);
+	this.cald_eymd.set_value(dt);
+	this.ds_hr610.setColumn(nRow,"SEQ","");
+};
+
+this.btn_Search_nm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.ds_hr610.getRowCount() == 0)
+	{
+		return false;
+	}
+	
+	var objNew = new ChildFrame();
+	objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+	this.addChild("sInsa",objNew);
+	objNew.set_openalign("center middle");		
+	objNew.set_showtitlebar(false);
+	objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_insa);
+};
+
+this.fn_Callback_insa = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_sabun.set_value(arr_rt[0]);
+		this.edt_name.set_value(arr_rt[1]);
+		this.edt_busenm.set_value(arr_rt[3]);
+		this.edt_jikwi.set_value(arr_rt[2]);
+	}
+	
+	this.removeChild("sInsa");
+	
+};
+
+this.ds_hr610_canrowposchange = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	if (Eco.isEmpty(this.edt_sabun.value) == true)
+	{
+		this.alert("대상을 선택하세요");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.cb_gb.value) == true)
+	{
+		this.alert("근태구분을 선택하세요");
+		return false;
+	}
+};
+
+this.fn_setData_dml = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_hr610.jsp";
+	in_ds = "ds_hr610=ds_hr610:U";
+	out_ds = "ds_hr610=ds_hr610";
+	str_arg = "";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "U", false,this);
+}
+
+this.Callback_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.alert("저장되었습니다.");
+	
+};
+
+this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	var objApp = nexacro.getApplication();
+	
+	var confirm_result = objApp.confirm("삭제된 데이터는 복원하실수 없습니다.\n" + this.edt_name.value + "님의 자료를 정말 삭제하게요..?","삭제","warning");
+	
+	if (confirm_result == true)
+	{
+		this.ds_hr610.deleteRow(this.ds_hr610.rowposition);
+	
+		var str_url, in_ds, out_ds, str_arg;
+		str_url = "JSP/hr/setData_hr610.jsp";
+		in_ds = "ds_hr610=ds_hr610:U";
+		out_ds = "ds_hr610=ds_hr610";
+		str_arg = "";
+			  
+		this.gfn_TransactionP("delete", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "D", false,this);
+	}
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.edt_sabun.value) == true)
+	{
+		this.alert("대상을 선택하세요");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.cb_gb.value) == true)
+	{
+		this.alert("근태구분을 선택하세요");
+		return false;
+	}
+	
+	this.fn_setData_dml();
+	
+};
+
+this.btn_clear_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.medt_s_ym.set_value("");
+	this.edt_s_name.set_value("");
+	this.edt_s_busecd.set_value("");
+	this.edt_s_busenm.set_value("");
+};
+
+
+this.btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	var filename;
+	filename = "GridList";
+	this.exportObj = new ExcelExportObject();
+	var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.grd_list , "Sheet1!A1");
+
+	this.exportObj.set_exporturl(urlXeni); 
+	this.exportObj.set_exportfilename(filename);
+    this.exportObj.exportData(); 
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="edt_sabun" propid="value" datasetid="ds_hr610" columnid="SABUN"/>
+      <BindItem id="item1" compid="edt_name" propid="value" datasetid="ds_hr610" columnid="NAME"/>
+      <BindItem id="item2" compid="edt_busenm" propid="value" datasetid="ds_hr610" columnid="BUSE"/>
+      <BindItem id="item3" compid="cb_gb" propid="value" datasetid="ds_hr610" columnid="TMSCD"/>
+      <BindItem id="item4" compid="cald_symd" propid="value" datasetid="ds_hr610" columnid="TODATE"/>
+      <BindItem id="item5" compid="cald_eymd" propid="value" datasetid="ds_hr610" columnid="FRDATE"/>
+      <BindItem id="item6" compid="edt_jikwi" propid="value" datasetid="ds_hr610" columnid="JIKWI"/>
+    </Bind>
+  </Form>
+</FDL>

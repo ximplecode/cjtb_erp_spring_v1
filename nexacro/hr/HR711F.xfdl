@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR711F" width="928" height="744" titletext="New Form">
+    <Layouts>
+      <Layout height="744" width="928">
+        <Button id="btn_close" taborder="0" text="닫기" top="10" width="120" height="22" right="8"/>
+        <ImageViewer id="img_30" taborder="1" left="16" top="40" width="144" height="192" image="url('Img::flower30.bmp')" stretch="fit" userData="30^해피트리" onclick="img_30_onclick"/>
+        <Static id="sta_30" taborder="2" text="해피트리" left="16" top="img_30:0" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" userData="30^해피트리" onclick="img_30_onclick"/>
+        <ImageViewer id="img_31" taborder="3" left="img_30:5" top="40" width="144" height="192" image="url('Img::flower31.bmp')" stretch="fit" userData="31^금전수" onclick="img_30_onclick"/>
+        <Static id="sta_31" taborder="4" text="금전수" left="sta_30:5" top="img_31:0" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" userData="" onclick="img_30_onclick"/>
+        <ImageViewer id="img_32" taborder="5" left="img_31:5" top="40" width="144" height="192" image="url('Img::flower32.bmp')" stretch="fit" userData="32^뱅갈고무" onclick="img_30_onclick"/>
+        <Static id="sta_32" taborder="6" text="뱅갈고무" left="sta_31:5" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" bottom="484" userData="" onclick="img_30_onclick"/>
+        <ImageViewer id="img_33" taborder="7" left="img_32:5" top="40" width="144" height="192" image="url('Img::flower33.bmp')" stretch="fit" userData="33^스투키" onclick="img_30_onclick"/>
+        <Static id="sta_33" taborder="8" text="스투키" left="sta_32:5" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" bottom="484" userData="33^스투키" onclick="img_30_onclick"/>
+        <ImageViewer id="img_34" taborder="9" left="img_33:5" top="40" width="144" height="192" image="url('Img::flower34.bmp')" stretch="fit" userData="34^크로톤" onclick="img_30_onclick"/>
+        <Static id="sta_34" taborder="10" text="크로톤" left="sta_33:5" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" bottom="484" userData="34^크로톤" onclick="img_30_onclick"/>
+        <ImageViewer id="img_35" taborder="11" left="img_34:5" top="40" width="144" height="192" image="url('Img::flower35.bmp')" stretch="fit" userData="35^행운목" onclick="img_30_onclick"/>
+        <Static id="sta_35" taborder="12" text="행운목" left="sta_34:5" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" bottom="484" userData="35^행운목" onclick="img_30_onclick"/>
+        <ImageViewer id="img_42" taborder="13" left="16" top="270" width="144" height="192" image="url('Img::flower42.bmp')" stretch="fit" userData="42^고무나무" onclick="img_30_onclick"/>
+        <Static id="sta_42" taborder="14" text="고무나무" left="16" top="462" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" userData="42^고무나무" onclick="img_30_onclick"/>
+        <ImageViewer id="img_43" taborder="15" left="165" top="270" width="144" height="192" image="url('Img::flower43.bmp')" stretch="fit" userData="43^쿠르시아" onclick="img_30_onclick"/>
+        <Static id="sta_43" taborder="16" text="쿠르시아" left="165" top="462" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" userData="43^쿠르시아" onclick="img_30_onclick"/>
+        <ImageViewer id="img_44" taborder="17" left="314" top="270" width="144" height="192" image="url('Img::flower44.bmp')" stretch="fit" userData="44^안시리움" onclick="img_30_onclick"/>
+        <Static id="sta_44" taborder="18" text="안시리움" left="314" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" bottom="254" userData="44^안시리움" onclick="img_30_onclick"/>
+        <ImageViewer id="img_38" taborder="19" left="463" top="270" width="144" height="192" image="url('Img::flower38.bmp')" stretch="fit" userData="38^동양란" onclick="img_30_onclick"/>
+        <Static id="sta_38" taborder="20" text="동양란" left="463" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" bottom="254" userData="38^동양란" onclick="img_30_onclick"/>
+        <ImageViewer id="img_13" taborder="21" left="612" top="270" width="144" height="192" image="url('Img::flower13.bmp')" stretch="fit" userData="13^축하3단" onclick="img_30_onclick"/>
+        <Static id="sta_13" taborder="22" text="축하3단" left="612" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" bottom="254" userData="13^축하3단" onclick="img_30_onclick"/>
+        <ImageViewer id="img_14" taborder="23" left="761" top="270" width="144" height="192" image="url('Img::flower14.bmp')" stretch="fit" userData="14^근조3단" onclick="img_30_onclick"/>
+        <Static id="sta_14" taborder="24" text="근조3단" left="761" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" bottom="254" userData="14^근조3단" onclick="img_30_onclick"/>
+        <ImageViewer id="img_36" taborder="25" left="16" top="511" width="144" height="139" image="url('Img::flower36.bmp')" stretch="fit" userData="36^꽃바구니5" onclick="img_30_onclick"/>
+        <Static id="sta_36" taborder="26" text="꽃바구니5" left="16" top="img_36:0" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" userData="36^꽃바구니5" onclick="img_30_onclick"/>
+        <ImageViewer id="img_37" taborder="27" left="img_36:5" top="511" width="144" height="139" image="url('Img::flower37.bmp')" stretch="fit" userData="37^꽃바구니8" onclick="img_30_onclick"/>
+        <Static id="sta_37" taborder="28" text="꽃바구니8" left="sta_36:5" top="img_37:0" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" userData="37^꽃바구니8" onclick="img_30_onclick"/>
+        <ImageViewer id="img_40" taborder="29" left="img_37:5" top="511" width="144" height="139" image="url('Img::flower40.bmp')" stretch="fit" userData="40^서양난1" onclick="img_30_onclick"/>
+        <Static id="sta_40" taborder="30" text="서양난1" left="sta_37:5" top="img_40:0" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" userData="40^서양난1" onclick="img_30_onclick"/>
+        <ImageViewer id="img_41" taborder="31" left="img_40:5" top="511" width="144" height="139" image="url('Img::flower41.bmp')" stretch="fit" userData="41^서양난2" onclick="img_30_onclick"/>
+        <Static id="sta_41" taborder="32" text="서양난2" left="sta_40:5" top="img_41:0" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" userData="41^서양난2" onclick="img_30_onclick"/>
+        <ImageViewer id="img_16" taborder="33" left="img_41:5" top="511" width="144" height="139" image="url('Img::flower16.bmp')" stretch="fit" userData="16^산모미역" onclick="img_30_onclick"/>
+        <Static id="sta_16" taborder="34" text="산모미역" left="sta_41:5" width="144" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" top="img_16:0" userData="" onclick="img_30_onclick"/>
+        <Static id="sta_none" taborder="35" text="해피트리" left="img_16:5" top="510" width="144" height="139" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" userData="" onclick="img_30_onclick"/>
+        <Static id="Static00" taborder="36" text="배송지에 따라 제품의 이미지가 다를 수 있음을 양해 바랍니다." left="16" top="695" width="889" height="32" font="normal bold 10pt/normal &quot;Arial&quot;" background="#3cbcb8" color="white" padding="0px 0px 0px 20px" borderRadius="5px 5px"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.img_30_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close(obj.userData);
+};
+]]></Script>
+  </Form>
+</FDL>

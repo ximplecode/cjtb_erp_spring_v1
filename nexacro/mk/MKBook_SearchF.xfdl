@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MKBook_SearchF" width="450" height="400" titletext="도서코드 조회(제작) POPUP" onload="MKBook_SearchF_onload">
+    <Layouts>
+      <Layout height="400" width="450">
+        <Button id="btn_close" taborder="0" text="닫기" left="155" top="351" height="29" right="1055" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Static id="Static00" taborder="1" text="도서명" left="14" top="26" width="87" height="29" background="#fffff" color="#10aea9" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00" taborder="2" text="도서코드" left="14" top="60" width="87" height="29" background="#fffff" color="#10aea9" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Button id="btn_search" taborder="3" top="50" width="40" height="38" right="898" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Grid id="Grid00" taborder="4" left="14" top="100" width="420" height="240" binddataset="dsBookMst" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="85"/>
+                <Column size="40"/>
+                <Column size="55"/>
+                <Column size="230"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="도서코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="순번" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="년판" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BOOKMST_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                <Cell col="1" text="bind:BOOKMST_SEQ" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                <Cell col="2" text="bind:BOOKMST_YEAR" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                <Cell col="3" text="bind:BOOKMST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search00" taborder="5" top="25" width="46" height="44" right="10" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Button id="btn_close00" taborder="6" text="닫기" left="164" top="351" height="29" right="166" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Edit id="edt_bookName" taborder="7" left="105" top="26" width="276" height="29" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Edit id="edt_bookCode" taborder="8" left="106" top="60" width="101" height="29" maxlength="10" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Edit id="edt_bookYear" taborder="9" left="212" top="60" width="75" height="29" maxlength="4" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <CheckBox id="chk_search" taborder="10" text="결과내재검색" left="292" top="62" width="98" height="28" font="bold 12px/normal &quot;함초롬바탕 확장&quot;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsBookMst"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var bSearch_Set = false;
+var vFormId;
+
+this.MKBook_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.dsBookMst.copyData(this.parent.dsParam1);
+	vFormId = this.parent.dsParam2;
+	vBookCode = this.parent.dsParam3;
+	vBookYear = this.parent.dsParam4;
+	
+	//기타외주비 관리 -- 데이터셋에서 바로 가져올 경우
+	if(vFormId == "MK139"){
+		
+		var vBookCode = this.opener.dsEtcCostDtl.getColumn(this.opener.dsEtcCostDtl.rowposition, "BOOKMST_CODE");
+		var vBookYY = this.opener.dsEtcCostDtl.getColumn(this.opener.dsEtcCostDtl.rowposition, "BOOKMST_YEAR");
+		
+		if(Eco.isUndefined(vBookCode) == false || vBookCode != "")
+		{
+			if(String(vBookCode).length == 10)
+			{	
+				this.edt_bookCode.set_value(vBookCode);
+				bSearch_Set = true;
+			}
+		}
+		
+		if(Eco.isUndefined(vBookYY) == false || vBookYY != "")
+		{
+			if(String(vBookYY).length == 4)
+			{	
+				this.edt_bookYear.set_value(vBookYY);
+				bSearch_Set = true;
+			}
+		}
+		
+	}else if(vFormId == "MK14B") //FORM의 DIV에서 가져올 경우
+	{	
+		if(Eco.isUndefined(vBookCode) == false)
+		{	
+			if(vBookCode.length == 10)
+			{	
+				this.edt_bookCode.set_value(vBookCode);
+				bSearch_Set = true;
+			}
+		}
+	
+		if(Eco.isUndefined(vBookYear) == false)
+		{
+			if(vBookYear.length == 4)
+			{
+				this.edt_bookYear.set_value(vBookYear);
+				bSearch_Set = true;
+			}
+		}
+	
+	}else{
+		if(Eco.isUndefined(this.opener.edt_bookCode.value) == false || this.opener.edt_bookCode.value != "")
+		{	if(this.opener.edt_bookCode.text.length == 10)
+			{	
+				this.edt_bookCode.set_value(this.opener.edt_bookCode.value);
+				bSearch_Set = true;
+			}
+		}
+	
+		if(Eco.isUndefined(this.opener.edt_bookYear.value) == false || this.opener.edt_bookYear.value != "")
+		{
+	
+			if(this.opener.edt_bookYear.text.length == 4)
+			{
+				this.edt_bookYear.set_value(this.opener.edt_bookYear.value);
+				bSearch_Set = true;
+			}
+		}
+	}
+	
+	if(bSearch_Set)
+		this.btn_search_onclick(obj);
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.chk_search.value == false)
+	{
+		if ((this.edt_bookCode.value == "" || Eco.isUndefined(this.edt_bookCode.value) == true)
+			&& (this.edt_bookYear.value == "" || Eco.isUndefined(this.edt_bookYear.value) == true))
+		{
+			this.edt_bookCode.setFocus();
+			alert("도서코드나 도서연판 중 하나를 입력하여 주십시요.");
+			return false;
+		}
+		
+		var strUrl = "JSP/mk/book_select.jsp";
+		var inds = "dsBookMst=dsBookMst";
+		var outds = "dsBookMst=dsBookMst";
+		
+		var strArg = "BOOKMST_CODE=" + nexacro.wrapQuote(this.edt_bookCode.value)
+				   + " BOOKMST_YEAR=" + nexacro.wrapQuote(this.edt_bookYear.value)
+				   + " BOOKMST_NAME=" + nexacro.wrapQuote(this.edt_bookName.value);
+				   
+		this.gfn_TransactionP("select" ,strUrl, inds, outds, strArg, "fnBookMstCallback", false, "P", false, this);
+	}else
+		this.dsBookMst.filter("BOOKMST_NAME.indexOf('"+this.edt_bookName.value+"') > -1");
+};
+
+this.fnBookMstCallback = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}
+};
+
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.parent.dsParam1.addRow();
+	this.parent.dsParam1.copyRow(0, this.dsBookMst, e.row);
+	this.close();
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

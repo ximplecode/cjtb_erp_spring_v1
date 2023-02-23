@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TestForm_CJTB" width="700" height="790" titletext="New Form" onload="TestForm_CJTB_onload" onkeydown="TestForm_CJTB_onkeydown">
+    <Layouts>
+      <Layout height="790" width="700">
+        <Button id="BTN_SEARCH" taborder="0" text="조회" left="238" top="93" width="90" height="37" onclick="BTN_SEARCH_onclick"/>
+        <Grid id="Grid00" taborder="1" left="30" top="142" width="300" height="343" binddataset="test" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="SABUN"/>
+                <Cell col="1" text="NAME"/>
+                <Cell col="2" text="BIRTH_DT"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:SABUN"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:BIRTH_DT"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="Combo00" taborder="2" text="Combo00" left="30" top="100" width="86" height="27" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">SABUN</Col>
+                <Col id="datacolumn">sabun</Col>
+              </Row>
+              <Row>
+                <Col id="datacolumn">name</Col>
+                <Col id="codecolumn">NAME</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Edit id="Edit00" taborder="3" left="126" top="100" width="98" height="29"/>
+        <Button id="BTN_DELETE" taborder="4" text="삭제" left="256" top="650" width="145" height="37" onclick="BTN_DELETE_onclick"/>
+        <Button id="BTN_UPDATE" taborder="5" text="저장" left="256" top="604" width="145" height="37" onclick="BTN_UPDATE_onclick"/>
+        <Button id="BTN_INSERT" taborder="6" text="추가" left="256" top="557" width="145" height="37" onclick="BTN_INSERT_onclick"/>
+        <Button id="Button00" taborder="7" text="교육 JSP 테스트" left="427" top="93" width="146" height="37" onclick="Button00_onclick"/>
+        <Grid id="Grid01" taborder="8" left="343" top="141" width="315" height="349" binddataset="outDs" autofittype="none">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="GB"/>
+                <Cell col="1" text="BUSECD"/>
+                <Cell col="2" text="JIKWICD"/>
+                <Cell col="3" text="SABUN"/>
+                <Cell col="4" text="BUSE"/>
+                <Cell col="5" text="JIKWI"/>
+                <Cell col="6" text="NAME"/>
+                <Cell col="7" text="JIKGUN_CD"/>
+                <Cell col="8" text="JIKMU_CD"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:GB"/>
+                <Cell col="1" text="bind:BUSECD"/>
+                <Cell col="2" text="bind:JIKWICD"/>
+                <Cell col="3" text="bind:SABUN"/>
+                <Cell col="4" text="bind:BUSE"/>
+                <Cell col="5" text="bind:JIKWI"/>
+                <Cell col="6" text="bind:NAME"/>
+                <Cell col="7" text="bind:JIKGUN_CD"/>
+                <Cell col="8" text="bind:JIKMU_CD"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="testname" taborder="9" text="" left="40" top="50" width="72" height="30"/>
+        <Static id="Static00_00" taborder="10" text="님 환영합니다." left="110" top="43" width="200" height="40" onclick="Static00_onclick"/>
+        <Button id="Button01" taborder="11" text="화면 컨버전 (Mybatis)" left="238" top="27" width="152" height="38" onclick="Button01_onclick"/>
+        <Button id="Button05" taborder="12" text="화면 컨버전 (JSP)" left="403" top="27" width="152" height="38" onclick="Button05_onclick"/>
+        <Button id="Button02" taborder="13" text="교과서 JSP 테스트" left="461" top="544" width="170" height="44" onclick="Button02_onclick"/>
+        <Grid id="Grid02" taborder="14" left="442" top="610" width="217" height="60" binddataset="Ds" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="SYSDATE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:SYSDATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid02_00" taborder="15" left="26" top="610" width="217" height="60" binddataset="sys" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="test"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:test"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button02_00" taborder="16" text="교과서 JSP 테스트" left="44" top="544" width="170" height="44" onclick="Button08_onclick"/>
+        <Button id="Button03" taborder="17" text="프로시저 테스트" left="240" top="510" width="196" height="34" onclick="Button03_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.BTN_SEARCH_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_search.setColumn(0, "searchType", this.Combo00.value);
+	this.ds_search.setColumn(0, "keyword", this.Edit00.text);
+
+	this.transaction("select", "testURL::search", "input1=ds_search", "test=test", "", "callback", true);
+};
+
+// this.BTN_DELETE_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+// {
+// 	var nRow = this.test.rowposition;
+// 	this.test.deleteRow(nRow);
+// };
+
+this.callback = function(svcId, eCode, eMsg)
+{
+	if(eCode != 0) alert(eMsg);
+	
+	switch(svcId) {
+	    case "update":
+		    this.BTN_SEARCH_onclick();
+		    break;
+	    case "select":
+		    break;
+	}
+};
+
+// this.BTN_INSERT_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+// {
+// 	var nRow = this.test.addRow();
+// 	this.test.set_rowposition();
+// 	this.Grid00.setCellPos(1);
+// 	this.Grid00.showEditor(true);
+// };
+
+// this.BTN_UPDATE_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+// {	
+// 	this.transaction("update", "testURL::erp/update", "input1=test:U", "", "", "callback", true);
+// };
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url =  nexacro.getApplication().gfn_getUrl("svcUrl")+"JSP/hr/getData_jikgunList.jsp";
+	var in_ds = "outDs=outDs";
+	var out_ds = "outDs=outDs";
+	var str_arg = "";
+
+	trace(str_url);
+	
+	this.transaction("select", str_url, in_ds, out_ds, str_arg, "callback", true);
+};
+
+this.TestForm_CJTB_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.alert("hello~ Test World");
+
+	var name = nexacro.getApplication().gds_logintest.getColumn(0, "LOGIN_NAME");
+
+	this.testname.set_text(name);
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.go("Test::SelectTest_Mybatis.xfdl");
+};
+
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var urls = "https://cjtb-erp.chunjae.co.kr:8000/JSPTEST/jsptest.jsp";
+
+	this.transaction("select", urls, "", "Ds=Ds", "", "fn_test");
+};
+
+this.fn_test = function(svcId, eCode, eMsg)
+{
+	if(eCode != 0)
+	{
+		this.alert(eCode + " : " +eMsg);
+	} else {
+		this.alert("성공");
+	}
+}
+this.Button05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.go("Test::SelectTest_JSP.xfdl");
+};
+
+this.Button08_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var urls = "testURL::testsys";
+
+	this.transaction("select", urls, "", "sys=sys", "", "fn_test");
+};
+
+this.Button03_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sabun = nexacro.getApplication().gds_logintest.getColumn(0, "SABUN");
+	var sayu = "테스트요";
+	
+	var url = "testURL::updateTest";
+	
+	var arg = "SABUN="+nexacro.wrapQuote(sabun);
+	    arg += " SAYU="+nexacro.wrapQuote(sayu);
+	
+	this.transaction("test", url, "", "", arg, "");
+};
+]]></Script>
+    <Objects>
+      <Dataset id="test">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BIRTH_DT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="searchType" type="STRING" size="256"/>
+          <Column id="keyword" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="outDs">
+        <ColumnInfo>
+          <Column id="GB" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JIKGUN_CD" type="STRING" size="256"/>
+          <Column id="JIKMU_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="Ds">
+        <ColumnInfo>
+          <Column id="SYSDATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="sys">
+        <ColumnInfo>
+          <Column id="test" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="510" height="210" titletext="정기지출분 결의서" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="210" width="510">
+        <Static id="Static02" taborder="0" text="정기지출분 결의서" left="12" top="10" width="398" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnSearch" taborder="1" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="80" top="110" onclick="btnPrt_onclick" width="80" left="418"/>
+        <ImageViewer id="ImgClose01" taborder="2" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <ImageViewer id="ImgClose" taborder="3" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" text="" onclick="ImgClose_onclick" top="25" left="463"/>
+        <Calendar id="calYyMm" taborder="4" top="80" height="35" dateformat="yyyy-MM" font="12px/normal &quot;함초롬바탕 확장&quot;" editformat="yyyy-MM" width="136" left="101" autoselect="true"/>
+        <Static id="stYyyyMm" taborder="5" text="조회연월" top="80" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="13"/>
+        <Button id="btnUp" taborder="6" text="▲" left="237" top="80" width="21" height="17" background="lightsteelblue" font="bold 12px/normal &quot;함초롬바탕 확장&quot;" onclick="btnUp_onclick"/>
+        <Button id="btnDown" taborder="7" text="▼" left="237" top="98" width="21" height="17" background="lightsteelblue" font="bold 12px/normal &quot;함초롬바탕 확장&quot;" onclick="btnDown_onclick"/>
+        <Static id="stPaper00" taborder="8" text="출력구분" top="117" height="73" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="13"/>
+        <Radio id="rdGubun" taborder="9" top="117" height="73" innerdataset="dsGubun" codecolumn="CODE" datacolumn="NAME" direction="horizontal" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" background="lightsteelblue" color="white" index="0" text="비용별 업체 리스트" value="1" width="299" fittocontents="none" padding="0px 0px 0px 10px" rowcount="3" columncount="1" left="101"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel;
+var vStr, rdUrl, rdParam;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	
+	if(vPerSel != "1")
+		this.fctn_User_Enabled(this, false);
+	
+	if(vPerSel = "1"){
+		var d = new Date(); 
+		var strToDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");						//오늘날짜 
+		var strToDay  = strToDay.substr(0,6);
+		this.calYyMm.set_value(strToDay);
+		this.calYyMm.setFocus();
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	
+};
+
+//레포트 출력 이벤트
+this.btnPrt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	if(this.rdGubun.value == 3){
+		rdUrl = gv_svcUrl + "rpt/mk/MK14A_E.mrd";
+		rdParam = "/ragentpath ["+ gv_urlRdDataServer +"]"+ " /rp [" + this.calYyMm.value.substr(0, 6) + "] [0]";  
+	}else{ 
+		rdUrl = gv_svcUrl + "rpt/mk/MK14A.mrd";
+		rdParam = "/ragentpath ["+ gv_urlRdDataServer +"]"+ " /rp [" + this.calYyMm.value.substr(0, 6) + "] [" +  this.rdGubun.index + "]"; 
+	}
+	
+	var vScreenWidth = system.getScreenWidth();
+	
+	if(vScreenWidth >= 1920)
+		vScreenWidth = vScreenWidth/2
+	
+	nexacro.open("popupPrt", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, "autosize=false", 0, 0, vScreenWidth, system.getScreenHeight(), this);
+	
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+//#######################################################
+// 사용권한에 따른 컴포넌트 Enable 여부
+// formObj : 폼 ID 변수
+// _set : Enable 변수 (True, False)
+//#######################################################
+this.fctn_User_Enabled = function(formObj, _set)
+{
+	var comObj;
+	// 마스터 폼 컴포넌트 Enabled 여부
+	for(var i = 0; i < formObj.components.length;  i++)
+	{
+		comObj = formObj.components[i];
+		
+		if (comObj == "[object Edit]" || comObj == "[object Combo]"
+		   || comObj == "[object Calendar]" || comObj == "[object MaskEdit]" 
+		   || comObj == "[object TextArea]")
+		{
+			comObj.set_enable(_set);
+		}
+	}
+	
+	if(vPerSel != 1)
+		this.btnSearch.set_enable(_set);
+}
+
+this.btnUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUpDate = Eco.date.addMonth(this.calYyMm.value, +1);
+	strUpDate = strUpDate.substr(0, 6);
+	this.calYyMm.set_value(strUpDate);
+};
+
+this.btnDown_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strDownDate = Eco.date.addMonth(this.calYyMm.value, -1);
+	strDownDate = strDownDate.substr(0, 6);
+	this.calYyMm.set_value(strDownDate);
+};
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsPprInList" keystring="CUST,PPR_CUST">
+        <ColumnInfo>
+          <Column id="CUST_CODE" type="STRING" size="256"/>
+          <Column id="CUST" type="STRING" size="256"/>
+          <Column id="PPR_CUST_CODE" type="STRING" size="256"/>
+          <Column id="PPR_CUST" type="STRING" size="256"/>
+          <Column id="CUST_PPR_CUST" type="STRING" size="256"/>
+          <Column id="PPR_CODE" type="STRING" size="256"/>
+          <Column id="PAPER" type="STRING" size="256"/>
+          <Column id="PPR_UNIT" type="STRING" size="256"/>
+          <Column id="PPR_QTY" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="PPR_WEIGHT" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="PPR_AMOUNT" type="INT" size="256" prop="SUM"/>
+          <Column id="PPR_VAT" type="INT" size="256" prop="SUM"/>
+          <Column id="PPR_TOTAL_AMT" type="INT" size="256" prop="SUM"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGubun">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">비용별 업체 리스트</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">비용별 후가공 세부 리스트</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">비용별 업체 리스트(이러닝만)</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

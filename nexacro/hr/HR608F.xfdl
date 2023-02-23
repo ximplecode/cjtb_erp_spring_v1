@@ -1,0 +1,687 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR608F" width="1250" height="625" titletext="New Form" onload="HR608F_onload" onsize="HR608F_onsize">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <GroupBox id="GroupBox00" taborder="22" text="검색" left="2" top="52" height="218" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;" width="398"/>
+        <Static id="Static01_00_00_00_00" taborder="21" left="129" top="230" height="30" border="1px solid #10aea9" background="#9ee0de" width="262" text=""/>
+        <Static id="Static01_00_00_00" taborder="20" left="129" top="200" height="30" border="1px solid #10aea9" background="#9ee0de" text="" width="262"/>
+        <Static id="Static01_00_00" taborder="19" left="129" top="170" height="30" border="1px solid #10aea9" background="#9ee0de" width="262" text=""/>
+        <Static id="Static01" taborder="2" left="129" top="110" height="30" border="1px solid #10aea9" background="#9ee0de" width="262"/>
+        <Static id="sta_buse" taborder="5" text="부서" left="9" top="140" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="12" left="sta_buse:0" top="Static01:0" height="30" border="1px solid #10aea9" background="#9ee0de" width="262"/>
+        <Static id="Static02" taborder="0" text="입사지원서 조회" left="4" top="5" width="296" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta_ymd" taborder="1" text="일자" left="9" top="110" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Calendar id="cald_s_ymd" taborder="3" left="sta_ymd:0" top="sta_ymd:-25" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="182"/>
+        <CheckBox id="ckb_month" taborder="4" text="월별 검색" left="cald_s_ymd:2" top="sta_ymd:-25" width="69" height="20" falsevalue="N" truevalue="Y" value="N"/>
+        <Edit id="edt_s_busecd" taborder="6" left="sta_buse:2" top="145" height="20" border="1px solid #10aea9" background="transparent" onchanged="Edit00_00_onchanged" width="85" textAlign="center"/>
+        <Edit id="edt_s_busenm" taborder="7" left="edt_s_busecd:2" top="145" height="20" border="1px solid #10aea9" background="transparent" readonly="true" width="145" textAlign="center"/>
+        <Button id="btn_Search_buse" taborder="8" top="145" height="20" icon="url('Img::loupe.png')" width="21" onclick="btn_Search_buse_onclick" left="edt_s_busenm:1"/>
+        <Static id="sta_sabun00_00" taborder="9" text="성명" left="9" top="170" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_sabun01" taborder="11" text="근태사유" left="9" top="200" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_s_usegb" taborder="10" text="Combo00" left="sta_sabun01:2" top="205" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_usecd" codecolumn="CODE" datacolumn="NAME" width="130" type="filterlike"/>
+        <Edit id="edt_s_sabun" taborder="13" left="sta_sabun00_00:2" top="175" height="20" border="1px solid #10aea9" background="transparent" width="85" text="C17011" textAlign="center" readonly="false"/>
+        <Edit id="edt_s_name" taborder="14" left="edt_s_sabun:2" top="175" height="20" border="1px solid #10aea9" background="transparent" textAlign="center" width="145" readonly="false"/>
+        <Button id="btn_Search_nm" taborder="15" top="175" height="20" icon="url('Img::loupe.png')" width="21" left="edt_s_name:2" onclick="btn_Search_nm_onclick"/>
+        <Static id="sta_sabun01_00" taborder="16" text="필터" left="9" top="230" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <CheckBox id="ckb_01" taborder="17" text="출근자만 필터링" left="sta_sabun01_00:2" top="235" width="118" height="20" falsevalue="0" truevalue="1" onchanged="ckb_01_onchanged"/>
+        <CheckBox id="ckb_02" taborder="18" text="근태청원 필터링" left="ckb_01:17" top="235" width="118" height="20" falsevalue="0" truevalue="1" onchanged="ckb_02_onchanged"/>
+        <GroupBox id="GroupBox00_00" taborder="23" text="출력" left="2" top="272" height="58" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;" width="398"/>
+        <Button id="btn_print" taborder="24" text="출력" top="300" width="120" height="22" left="10" onclick="btn_print_onclick"/>
+        <Button id="btn_print_long" taborder="25" text="장기근태출력" top="300" width="120" height="22" left="btn_print:2" onclick="btn_print_long_onclick"/>
+        <CheckBox id="ckb_long" taborder="26" text="장기근태 퇴사자 포함" left="btn_print_long:2" top="301" width="136" height="20" truevalue="Y" falsevalue="N"/>
+        <GroupBox id="GroupBox00_00_00" taborder="27" text="장기근태자" left="2" top="340" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;" width="398" bottom="2"/>
+        <Grid id="Grid00" taborder="28" left="9" top="370" width="382" bottom="8" binddataset="ds_hr608_04" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="57"/>
+                <Column size="61"/>
+                <Column size="61"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서"/>
+                <Cell col="1" text="직위"/>
+                <Cell col="2" text="성명"/>
+                <Cell col="3" text="근태"/>
+                <Cell col="4" colspan="2" text="기간"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSE"/>
+                <Cell col="1" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="2" text="bind:NAME" textAlign="center"/>
+                <Cell col="3" text="bind:TMSNM" textAlign="center"/>
+                <Cell col="4" text="bind:TODATE" textAlign="center"/>
+                <Cell col="5" text="bind:FRDATE" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_list" taborder="29" left="407" top="62" right="2" bottom="2" binddataset="ds_hr608_01" oncelldblclick="grd_list_oncelldblclick" onheadclick="grd_list_onheadclick" oncellclick="grd_list_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="21"/>
+                <Column size="53"/>
+                <Column size="80"/>
+                <Column size="53"/>
+                <Column size="61"/>
+                <Column size="58"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="60"/>
+                <Column size="52"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="48"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="0" displaytype="checkboxcontrol" edittype="checkbox" checkboxfalsevalue="0" checkboxtruevalue="1"/>
+                <Cell col="1" rowspan="2" text="사번"/>
+                <Cell col="2" rowspan="2" text="부서"/>
+                <Cell col="3" rowspan="2" text="직위"/>
+                <Cell col="4" rowspan="2" text="성명"/>
+                <Cell col="5" rowspan="2" text="일자"/>
+                <Cell col="6" text="R출근" border="1px solid #cacaca,1px solid #cacaca,0px solid #cacaca"/>
+                <Cell col="7" text="R퇴근" border="1px solid #cacaca,1px solid #cacaca,0px solid #cacaca"/>
+                <Cell col="8" text="R출근" border="1px solid #cacaca,1px solid #cacaca,0px solid #cacaca"/>
+                <Cell col="9" text="출근" border="1px solid #cacaca,1px solid #cacaca,0px solid #cacaca"/>
+                <Cell col="10" text="퇴근" border="1px solid #cacaca,1px solid #cacaca,0px solid #cacaca" tooltiptext="시간"/>
+                <Cell col="11" text="출근" border="1px solid #cacaca,1px solid #cacaca,0px solid #cacaca"/>
+                <Cell col="12" text="반반" border="1px solid #cacaca,1px solid #cacaca,0px solid #cacaca"/>
+                <Cell col="13" colspan="2" text="연장" border="1px solid #cacaca"/>
+                <Cell col="15" colspan="3" text="승인" border="1px solid #cacaca"/>
+                <Cell col="18" rowspan="2" text="결재"/>
+                <Cell col="19" rowspan="2" text="재처리"/>
+                <Cell row="1" col="6" text="시간" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca"/>
+                <Cell row="1" col="7" text="시간" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca"/>
+                <Cell row="1" col="8" text="현황" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca"/>
+                <Cell row="1" col="9" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca" text="시간"/>
+                <Cell row="1" col="10" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca" text="시간"/>
+                <Cell row="1" col="11" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca" text="현황"/>
+                <Cell row="1" col="12" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca" text="상태"/>
+                <Cell row="1" col="13" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca" text="시간"/>
+                <Cell row="1" col="14" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca" text="수당"/>
+                <Cell row="1" col="15" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca" text="시간"/>
+                <Cell row="1" col="16" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca" text="야근"/>
+                <Cell row="1" col="17" border="0px solid #cacaca,1px solid #cacaca,1px solid #cacaca" text="교통"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:HR_CHECK" displaytype="checkboxcontrol" edittype="checkbox" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)" checkboxfalsevalue="0" checkboxtruevalue="1"/>
+                <Cell col="1" text="bind:SABUN" textAlign="center" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="2" text="bind:BUSEO" textAlign="center" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="3" text="bind:JIKWI" textAlign="center" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="4" text="bind:NAME" textAlign="center" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="5" text="bind:CARDDATE" textAlign="center" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="6" text="bind:REAL_CARDIN" textAlign="center" displaytype="mask" maskedittype="string" maskeditformat="##:##:##" maskeditmaskchar=" " maskeditclipmode="excludespace" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="7" text="bind:REAL_CARDOUT" textAlign="center" maskeditformat="##:##:##" maskedittype="string" displaytype="mask" maskeditmaskchar=" " cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="8" text="bind:REAL_TMSCD" textAlign="center" displaytype="combotext" combodataset="ds_usecd" combocodecol="CODE" combodatacol="NAME" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="9" text="bind:CARDIN" textAlign="center" maskeditformat="##:##:##" maskedittype="string" displaytype="mask" maskeditmaskchar=" " cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="10" text="bind:CARDOUT" textAlign="center" maskeditformat="##:##:##" maskedittype="string" displaytype="mask" maskeditmaskchar=" " cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="11" text="bind:SAYOO" textAlign="center" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="12" text="bind:EDIT_NM" textAlign="center" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="13" text="bind:OVERTIME" textAlign="center" maskeditformat="##:##:##" maskedittype="string" displaytype="mask" maskeditmaskchar=" " cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="14" text="bind:OVERPAY" textAlign="right" displaytype="number" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="15" text="bind:APPROVAL_OVERTIME" textAlign="center" maskeditformat="##:##" maskedittype="string" displaytype="mask" maskeditmaskchar=" " cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="16" text="bind:APPROVAL_OVERPAY" textAlign="right" displaytype="number" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="17" text="bind:APPROVAL_KYOPAY" textAlign="right" displaytype="number" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+                <Cell col="18" textAlign="center" cssclass="expr:comp.parent.fn_setCssImg(currow)"/>
+                <Cell col="19" textAlign="center" edittype="button" displaytype="buttoncontrol" text="재처리" cssclass="expr:comp.parent.fn_setCss_BGdarkgreen(currow)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="30" text="조회" top="78" width="120" height="22" left="271" onclick="btn_search_onclick"/>
+        <Button id="btn_all" taborder="31" text="근태일괄적용" top="204" width="120" height="22" left="265" onclick="btn_all_onclick"/>
+        <Button id="btn_open" taborder="32" text="근태정보오픈" top="16" width="120" height="22" right="20" onclick="btn_open_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_usecd">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_hr608_04">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="TMSNM" type="STRING" size="256"/>
+          <Column id="FRDATE" type="STRING" size="256"/>
+          <Column id="TODATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_hr608_01">
+        <ColumnInfo>
+          <Column id="HR_CHECK" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BUSEO" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="CARDIN" type="STRING" size="256"/>
+          <Column id="CARDOUT" type="STRING" size="256"/>
+          <Column id="SAYOO" type="STRING" size="256"/>
+          <Column id="TMSCD" type="STRING" size="256"/>
+          <Column id="LUNTIME" type="STRING" size="256"/>
+          <Column id="EVETIME" type="STRING" size="256"/>
+          <Column id="OVERTIME" type="STRING" size="256"/>
+          <Column id="OVERPAY" type="STRING" size="256"/>
+          <Column id="EATPAY" type="STRING" size="256"/>
+          <Column id="CARDDATE" type="STRING" size="256"/>
+          <Column id="DANGPAY" type="STRING" size="256"/>
+          <Column id="KYOPAY" type="STRING" size="256"/>
+          <Column id="MIDNIGHTOVERTIME" type="STRING" size="256"/>
+          <Column id="MIDNIGHTOVERPAY" type="STRING" size="256"/>
+          <Column id="APPROVAL_OVERTIME" type="STRING" size="256"/>
+          <Column id="APPROVAL_OVERPAY" type="STRING" size="256"/>
+          <Column id="APPROVAL_KYOPAY" type="STRING" size="256"/>
+          <Column id="TOTALOVERPAY" type="STRING" size="256"/>
+          <Column id="REAL_CARDIN" type="STRING" size="256"/>
+          <Column id="REAL_CARDOUT" type="STRING" size="256"/>
+          <Column id="REAL_TMSCD" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="OVERTIME_I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="HYEAR" type="STRING" size="256"/>
+          <Column id="EDIT_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var arr_rt;
+
+
+this.HR608F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+	var dt = new Date();
+	this.cald_s_ymd.set_value(Eco.date.addDate(dt, -1));
+	
+	this.lfn_grdAutofit(this.grd_list);
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_tmscode.jsp";
+	in_ds = "ds_usecd=ds_usecd";
+	out_ds = "ds_usecd=ds_usecd";
+	str_arg = "";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_tmscode", true, "S", false,this);
+};
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.Callback_tmscode = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.ds_usecd.insertRow(0);
+	this.ds_usecd.setColumn(0,"CODE","AL");
+	this.ds_usecd.setColumn(0,"NAME","전체");
+	this.cb_s_usegb.set_index(0);
+};
+
+
+this.btn_Search_buse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sBuse",0,0,237,440,null,null,"common::Buse.xfdl");
+		this.addChild("sBuse",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sBuse",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_buse);
+};
+
+this.fn_Callback_buse = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_s_busecd.set_value(arr_rt[0]);
+		this.edt_s_busenm.set_value(arr_rt[1]);
+	}
+	
+	this.removeChild("sBuse");
+};
+
+this.btn_Search_nm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+	objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+	this.addChild("sInsa",objNew);
+	objNew.set_openalign("center middle");		
+	objNew.set_showtitlebar(false);
+	objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_insa);
+};
+
+this.fn_Callback_insa = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_s_sabun.set_value(arr_rt[0]);
+		this.edt_s_name.set_value(arr_rt[1]);
+	}
+	
+	this.removeChild("sInsa");
+	
+};
+
+this.HR608F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.lfn_grdAutofit(this.grd_list);
+};
+
+this.fn_setCssImg = function(nRow)
+{
+	var rt;
+	if (this.ds_hr608_01.getColumn(nRow,"I_FLOW_ID") > 0)
+	{
+		rt = "hr_CssBGI_loupe";
+	}
+	else
+	{
+		rt = "";
+	}
+	
+	return rt;
+}
+
+this.fn_setCss_BGdarkgreen = function(nRow)
+{
+	var rt;
+	if (this.ds_hr608_01.getColumn(nRow,"I_FLOW_ID") > 0)
+	{
+		rt = "CssBG_darkseagreen";
+	}
+	else
+	{
+		rt = "";
+	}
+	
+	return rt;
+}
+
+this.grd_list_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if (e.col >= 1 && e.col <= 12)
+	{
+		this.fn_Popup_hr804f_01(e.row);
+	}
+	else if (e.col >= 13 && e.col <= 18)
+	{
+	}
+	else if (e.col == 19)
+	{
+	}
+	else if (e.col == 20)
+	{
+	}
+};
+
+this.fn_Popup_hr804f_01 = function(nRow)
+{
+	var ymd = this.ds_hr608_01.getColumn(nRow,"CARDDATE");
+	var sabun = this.ds_hr608_01.getColumn(nRow,"SABUN");
+	var objNew = new ChildFrame();
+	objNew.init("HR608F_01",0,0,null,null,0,0,"hr::HR608F_01.xfdl");
+	this.addChild("HR608F_01",objNew);
+	objNew.set_openalign("center middle");
+	objNew.set_autosize(true);
+	objNew.set_titletext("인원 변동 현황");
+	//objNew.set_showtitlebar(true);
+	objNew.set_resizable(false);
+	objNew.showModal("HR608F_01",this.getOwnerFrame(),{nRow:nRow, ymd:ymd, sabun:sabun, ds:this.ds_hr608_01},this,this.fn_Popup_01);
+}
+
+this.fn_Popup_01 = function(strID, variant)
+{
+	this.removeChild("HR608F_01");
+}
+
+this.ckb_01_onchanged = function(obj:nexacro.CheckBox,e:nexacro.CheckBoxChangedEventInfo)
+{
+	this.fn_setFillter(this.ckb_01.value, this.ckb_02.value);
+};
+
+this.fn_setFillter = function(var1, var2)
+{
+	var filter_txt = "";
+	if (var1 == "0" && var2 == "0")
+	{
+		this.ds_hr608_01.filter("");
+		return false;
+	}
+	
+	if (var1 == "1")
+	{
+		filter_txt = "(CARDIN >='0' || CARDOUT >= '0')";
+	}
+	
+	if (var2 == "1")	
+	{
+		if (var1 == "1")
+		{
+			filter_txt = filter_txt + " && I_FLOW_ID > '0'";
+		}
+		else
+		{
+			filter_txt = " I_FLOW_ID > '0'";
+		}
+	}
+	
+	this.ds_hr608_01.set_filterstr(filter_txt);
+}
+
+this.ckb_02_onchanged = function(obj:nexacro.CheckBox,e:nexacro.CheckBoxChangedEventInfo)
+{
+	this.fn_setFillter(this.ckb_01.value, this.ckb_02.value);
+};
+
+this.btn_all_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.cb_s_usegb.value) == true || this.cb_s_usegb.value == "AL")
+	{
+		this.alert("근태 구분을 선택하세요...!!!");
+		return false;
+	}
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_hr608_tmscd.jsp";
+	in_ds = "ds_hr608_01=ds_hr608_01";
+	out_ds = "ds_hr608_01=ds_hr608_01";
+	str_arg = " TMSCD='" + this.cb_s_usegb.value + "'";
+			  
+	this.gfn_TransactionP("dml", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "U", false,this);
+};
+
+this.Callback_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.alert("처리되었습니다.");
+	
+};
+
+this.grd_list_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var nVal, i;
+	if (e.col > 0)
+	{
+		return false;
+	}
+	
+	nVal = obj.getCellProperty("head",0,"text");
+	
+	if (nVal == "0")
+	{
+		nVal = "1";
+	}
+	else
+	{
+		nVal = "0";
+	}
+	
+	obj.setCellProperty("head",0,"text",nVal);	
+	
+	/*for ( i = 0; i < this.ds_hr608_01.rowcount - 1; i++)
+	{
+		this.ds_hr608_01.setColumn(i,"HR_CHECK",nVal);
+	}*/
+	
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr608_checkbox.jsp";
+	in_ds = "ds_hr608_01=ds_hr608_01";
+	out_ds = "ds_hr608_01=ds_hr608_01";
+	str_arg = " VAL='" + nVal+ "'";
+			  
+	this.gfn_TransactionP("change", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "U", false,this);
+	
+};
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strArg1, strArg2, strTITLE;
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	strTITLE = this.cb_s_usegb.text + " 근태 현황";
+	strArg1 = "";
+	strArg2 = "";
+	
+	if (this.ckb_month.value == "Y")
+	{
+		strArg1 = " WHERE A.CARDDATE LIKE substr('" + this.cald_s_ymd.value + "',1,6)||'%'";
+	}
+	else
+	{
+		strArg1 = " WHERE A.CARDDATE = '" + this.cald_s_ymd.value + "'";
+	}
+	
+	if (Eco.isEmpty(this.edt_s_busecd.value) == false)
+	{
+		strArg2 = " AND B.BUSECD = '" + this.edt_s_busecd.value + "'";
+	}
+	
+	if (this.cb_s_usegb.value != "AL")
+	{
+		strArg2 = strArg2 + " AND A.TMSCD = '" + this.cb_s_usegb.value + "'";
+	}
+	
+	if (Eco.isEmpty(this.edt_s_sabun.value) == false)
+	{
+		strArg2 = strArg2 + " AND B.SABUN = '" + this.edt_s_sabun.value + "'";
+	}
+	
+	
+	
+	var rdUrl = gv_svcUrl + "rpt/hr/HR608P_01.mrd";	
+    var rdParam = "/rp [" + strTITLE + "][" + strArg1 + "][" + strArg2 + "][" + this.cald_s_ymd.value +"]";
+	
+	trace(rdParam);
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext(strTITLE);
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(false);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+};
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+}
+
+this.btn_print_long_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	var sDate, eDate;
+	
+	if (this.ckb_month.value == "Y")
+	{
+		sDate = Eco.date.getMaskFormatString(Eco.date.strToDate(this.cald_s_ymd.value),"yyyyMM") + "01";
+		eDate = Eco.date.getMaskFormatString(Eco.date.strToDate(this.cald_s_ymd.value),"yyyyMM") + "31";
+	}
+	else
+	{
+		sDate = this.cald_s_ymd.value;
+		eDate = this.cald_s_ymd.value;
+	}
+	
+	
+	
+	var rdUrl = gv_svcUrl + "rpt/hr/HR620P_01.mrd";	
+	if (this.ckb_long.value == "Y")
+	{
+		var rdParam = "/rp [" + sDate + "][" + eDate + "][][Y]";
+	}
+	else
+	{
+		var rdParam = "/rp [" + sDate + "][" + eDate + "][][]";
+	}
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("장기근태");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(false);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+};
+
+this.btn_open_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_Popup_hr808_99();
+};
+
+this.fn_Popup_hr808_99 = function()
+{
+	var objNew = new ChildFrame();
+	objNew.init("HR608F_99",0,0,null,null,0,0,"hr::HR608F_99.xfdl");
+	this.addChild("HR608F_99",objNew);
+	objNew.set_openalign("center middle");
+	objNew.set_autosize(true);
+	objNew.set_titletext("근태 정보 오픈");
+	objNew.set_showtitlebar(false);
+	objNew.set_resizable(false);
+	objNew.showModal("HR608F_99",this.getOwnerFrame(),{},this,this.fn_Popup_02);
+}
+
+this.fn_Popup_02 = function(strID, variant)
+{
+	this.removeChild("HR608F_99");
+}
+
+this.grd_list_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if (e.col == 19)
+	{
+		var str_url, in_ds, out_ds, str_arg;
+		str_url = "JSP/hr/setData_hr608_person.jsp";
+		in_ds = "";
+		out_ds = "";
+		str_arg = " CARDDATE='" + this.ds_hr608_01.getColumn(e.row, "CARDDATE") + "'" +
+				  " SABUN='" + this.ds_hr608_01.getColumn(e.row, "SABUN") + "'";
+			  
+		this.gfn_TransactionP("dml", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "U", false,this);
+	}
+	else if (e.col == 18 && this.ds_hr608_01.getColumn(e.row, "SAYOO") == "경조")
+	{
+		var rdUrl = gv_svcUrl + "rpt/hr/HR710.mrd";
+		var rdParam = "/rp [1][" + this.ds_hr608_01.getColumn(e.row, "I_FLOW_ID") + "][1]";
+		
+		var objNew = new ChildFrame();
+		objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+		this.addChild("common_print",objNew);
+		//objNew.set_openalign("center middle");
+		objNew.set_autosize(false);
+		objNew.set_titletext("근태청원");
+		objNew.set_showtitlebar(true);
+		objNew.set_resizable(true);
+		objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+	}
+	else if (e.col == 18 && this.ds_hr608_01.getColumn(e.row, "I_FLOW_ID") > 0 )
+	{
+		var rdUrl = gv_svcUrl + "rpt/hr/HR700.mrd";
+		var rdParam = "/rp [1][" + this.ds_hr608_01.getColumn(e.row, "I_FLOW_ID") + "][1]";
+		
+		var objNew = new ChildFrame();
+		objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+		this.addChild("common_print",objNew);
+		//objNew.set_openalign("center middle");
+		objNew.set_autosize(false);
+		objNew.set_titletext("근태청원");
+		objNew.set_showtitlebar(true);
+		objNew.set_resizable(true);
+		objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);		
+	}
+};
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+}
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr608.jsp";
+	in_ds = "ds_hr608_01=ds_hr608_01 ds_hr608_04=ds_hr608_04";
+	out_ds = "ds_hr608_01=ds_hr608_01 ds_hr608_04=ds_hr608_04";
+	str_arg = " YMD='" + this.cald_s_ymd.value + "'"+
+	          " S_MONTH='" + this.ckb_month.value + "'" +
+			  " TMSCD='" + this.cb_s_usegb.value + "'" +
+			  " S_BUSECD='" + this.edt_s_busecd.value + "'" +
+			  " E_BUSECD='" + this.edt_s_busecd.value + "'" +
+			  " SABUN='" + this.edt_s_sabun.value + "'" +
+			  " NAME='" +  this.edt_s_name.value + "'" +
+			  " TOISAGB='" + this.ckb_long.value + "'";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+};
+]]></Script>
+  </Form>
+</FDL>

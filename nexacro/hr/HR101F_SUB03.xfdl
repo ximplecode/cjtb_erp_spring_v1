@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR101F_SUB03" width="1244" height="242" titletext="New Form">
+    <Layouts>
+      <Layout height="242" width="1244">
+        <Grid id="grd_school" taborder="0" left="2" top="2" right="100" bottom="2" binddataset="ds_school" autofittype="col" autoenter="select" onenterdown="grd_school_onenterdown">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="117"/>
+                <Column size="176"/>
+                <Column size="48"/>
+                <Column size="162"/>
+                <Column size="80"/>
+                <Column size="234"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="졸업일자"/>
+                <Cell col="1" text="줄신학교 및 전공"/>
+                <Cell col="2" text="학력"/>
+                <Cell col="3" text="학력구분"/>
+                <Cell col="4" text="성적"/>
+                <Cell col="5" text="비고"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:YMD" textAlign="center" displaytype="date" edittype="date"/>
+                <Cell col="1" text="bind:SCHOOL" edittype="text"/>
+                <Cell col="2" text="bind:SCH_GB" textAlign="center"/>
+                <Cell col="3" text="bind:SCH_GB" combodataset="ds_schGB" combocodecol="CODE" combodatacol="NAME" displaytype="combotext" edittype="combo" textAlign="left"/>
+                <Cell col="4" text="bind:SUNGJUK" edittype="text" textAlign="right"/>
+                <Cell col="5" text="bind:BIGO" edittype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_add" taborder="1" text="추가" top="8" width="90" height="22" right="4" onclick="btn_add_onclick"/>
+        <Button id="btn_del" taborder="2" text="삭제" top="38" width="90" height="22" right="4" onclick="btn_del_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.ds_school.addRow();
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.parent.parent.ds_school.rowposition;
+	if (this.confirm("선택한 정보를 삭제하시겠습니까?","학력사항 삭제","warning") )
+	{
+		
+		this.parent.parent.ds_school.deleteRow(nRow);
+	}
+};
+
+this.grd_school_onenterdown = function(obj:nexacro.Grid,e:nexacro.GridEditEventInfo)
+{
+	if (e.col == this.grd_school.getCellCount("body") - 1)
+	{
+		if (e.row == this.grd_school.rowcount - 1 )
+		{
+			this.btn_add_onclick(null, null);
+		}
+		this.grd_school.moveToNextCell();
+		this.grd_school.setCellPos(0);
+	}
+	else
+	{
+		this.grd_school.moveToNextCell();
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

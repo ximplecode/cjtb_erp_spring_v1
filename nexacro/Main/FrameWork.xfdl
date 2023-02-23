@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="FrameWork" width="1280" height="822" titletext="" onload="form_onload" onsize="form_onsize" onclose="form_onclose" scrollbartype="default default" scrolltype="both" accessibilityrole="form">
+    <Layouts>
+      <Layout width="1280" height="822" screenid="Desktop_screen">
+        <Static id="sta_Title" taborder="0" left="10" top="8" height="20" cssclass="sta_WF_title" right="924" oncontextmenu="sta_Title_oncontextmenu" text="업무명"/>
+        <Div id="div_Work" taborder="1" left="10" top="32" onsize="div_Work_onsize" minwidth="" right="0" maxheight="" minheight="790" bottom="0" text="" accessibilityrole="none">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Static id="sta_Navi" taborder="2" text="메뉴1 &gt; 메뉴2 &gt; 메뉴3 &gt; 메뉴4 &gt;" top="-2" cssclass="sta_WF_location" width="200" height="30" left="1300" visible="false"/>
+        <Div id="div_CommBtn" taborder="3" top="8" height="20" formscrollbartype="none none" formscrolltype="none" width="478" background="#ffffff" right="18"/>
+        <PopupDiv id="pdv_Title" text="pdv_00" visible="false" left="10" top="833" height="22" right="924">
+          <Layouts>
+            <Layout>
+              <Edit id="edt_Title" taborder="0" left="0" top="0" height="20" readonly="true" right="0"/>
+            </Layout>
+            <Layout name="default0"/>
+            <Layout name="default1"/>
+          </Layouts>
+        </PopupDiv>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+ * 통합정보시스템 고도화 구축
+ * @FileName    FrameWork.xfdl
+ * @Creator     UI공통
+ * @CreateDate  2023.02.08
+ * @Description 업무공통 Frame
+ ************** 소스 수정 이력 ***********************************************
+ * date                Modifier                Description
+ *******************************************************************************
+ * 2003.02.08          UI공통                  최초 생성
+ *******************************************************************************
+ */
+
+/************************************************************************************************
+ * 1. FORM 변수 선언 영역
+************************************************************************************************/
+var objApp = nexacro.getApplication();
+this.fv_WinId 			= "";
+this.fv_Prefix 			= "";
+this.fv_MenuId 			= "";
+this.fv_MenuNm			= "";
+this.fv_BtnAuth 		= ""; // 버튼권한
+this.fv_CategoryId 		= "";
+this.fv_PreCategoryId 	= "";
+this.fv_OrgRow 			= -1;
+this.fv_BaseWidth 		= 1278;
+this.fv_PThis			= "";
+this.fv_Navi			= "";
+this.fv_FormId			= "";
+this.fv_FormUrl			= "";
+this.fv_Arg				= "";
+
+
+/************************************************************************************************
+ * 2. FORM EVENT 영역(onload)
+ ************************************************************************************************/
+/**
+ * @description onload 이벤트
+ */
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_Init(obj);
+};
+
+/**
+ * @class  화면 초기화 정의 <br>
+ * @param  {Object} obj - nexacro.Form
+ * @return N/A
+ */
+this.fn_Init = function(obj)
+{	
+	var argument 			= obj.getOwnerFrame().arguments;
+	this.fv_MenuNm  		= argument["menuNm"];	
+	this.fv_WinId   		= argument["winId"];
+	this.fv_MenuId  		= argument["menuId"];
+	this.fv_CategoryId 		= argument["categoryId"];	
+	this.fv_PreCategoryId 	= argument["preCategoryId"];
+	this.fv_BtnAuth 		= argument["btnAuth"]; 
+	this.fv_OrgRow			= argument["orgRow"];
+	this.fv_Prefix  		= argument["prefix"];	
+	this.fv_Navi    		= argument["navi"];		
+	this.fv_FormId  		= argument["formId"];
+	this.fv_FormUrl 		= argument["formUrl"];
+	this.fv_Arg     		= argument["arg"];
+	var arg     		    = argument["arg"]; // 화면 전달값	
+	
+	nexacro.getApplication().gv_WinId = this.fv_WinId;
+	
+	// title
+	if(this.fv_WinId != ""){
+		this.sta_Title.set_visible(true);
+		var txt = this.gfn_ChangeMessage("{0} [ {1} ]", this.fv_MenuNm, this.fv_FormId);
+		if( nexacro.getApplication().gv_ServerType != "PROD") {
+			var strTitle = nexacro.getApplication().gv_ServerType == "DEV" ? "개발계":"로컬";
+			txt += " [ " + strTitle + " ]";
+			this.sta_Title.set_cssclass("sta_WF_title,scr_color_red");
+		}
+		
+		this.sta_Title.set_text(txt);
+		this.sta_Title.set_tooltiptext(this.fv_Navi);
+		this.sta_Title.set_fittocontents("width");
+		this.sta_Title.set_width(this.sta_Title.getOffsetWidth() + 2);
+		this.sta_Title.set_fittocontents("none");
+		
+		this.pdv_Title.set_width(nexacro.toNumber(this.sta_Title.width) + 4);
+	}else{
+		this.sta_Title.set_visible(false);
+	}
+	
+	// 업무화면 호출
+	this.div_Work.set_url(this.fv_FormUrl);
+	
+	this.resetScroll();
+		
+	// 메뉴 위치 찾기
+	this.fn_SetMenuPosition();
+};
+
+this.fn_SetInfo = function()
+{
+	this.alert(1);
+};
+
+this.form_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	var objApp = this.gfn_GetApp();
+	objApp.gv_ActiveWin = "";
+	objApp.gv_FormPrefix = "";
+};
+
+this.form_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	// 추가 (2019.08.08)
+	if (e.cx > this.fv_BaseWidth) {
+		//this.div_CommBtn.set_right(null);
+		this.div_CommBtn.set_right(this.width - this.fv_BaseWidth + 18);
+	} else {
+		this.div_CommBtn.set_left(null);
+		this.div_CommBtn.set_right(10);
+	}
+};
+
+this.child_onsyscommand = function(obj:nexacro.ChildFrame,e:nexacro.SysCommandEventInfo)
+{
+	if (e.systemcommand == "maximize") {
+		var objApp = this.gfn_GetApp();
+		var len = objApp.gv_WorkFrame.frames.length;
+		for (var i = 0; i < len; i++) {
+			var objFrame = objApp.gv_WorkFrame.frames[i];
+			objFrame.set_showtitlebar(false);
+			objFrame.set_border("0px none");
+		}
+	}
+};
+
+/************************************************************************************************
+ * FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @class  Navi 위치 이동 <br>
+ * @param  N/A
+ * @return N/A
+ */
+this.fn_MoveEtc = function()
+{
+	var top1 = this.sta_Navi.getOffsetTop();
+	var top2 = this.div_CommBtn.getOffsetTop();
+	var width = this.div_Work.getOffsetRight();
+	
+ 	var left1 = width - this.sta_Navi.getOffsetWidth() - 10;
+ 	this.sta_Navi.move(left1, top1);
+	
+	var left2 = width - this.div_CommBtn.getOffsetWidth() - 10;
+	this.div_CommBtn.move(left2, top2);
+};
+
+// 메뉴 위치 찾기
+this.fn_SetMenuPosition = function()
+{
+	// fn_SetInfo : 좌측 메뉴 데이터셋 새로 만들기
+	// fn_SetRow  : 좌측 메뉴 위치 찾기	
+	var topMenu =  	objApp.gv_TopFrame.form.fn_GetTopMenuName(this.fv_CategoryId);		
+	
+	// 일반적인 경우
+	if( objApp.gv_LeftFrame.form.ds_Menu != undefined ) {			
+		// 다른 대메뉴의 메뉴로 이동시
+		//if( this.fv_PreCategoryId != this.fv_CategoryId ) {
+			// 카테고리로 메뉴를 필터링함.
+			objApp.gv_LeftFrame.form.fn_SetInfo(this.fv_CategoryId, topMenu);
+		//}		
+		// 메뉴의 위치를 찾아서 열게 됨.
+		objApp.gv_LeftFrame.form.fn_SetRow(this.fv_OrgRow);
+	} 
+	// 탭 내부페이지에서 들어온경우.
+	else {
+		// Tab에서 들어온 경우
+		//if( this.fv_PThis.name.indexOf("_T") != -1 ) {
+			// 메뉴 새로 생성
+			//objApp.gv_LeftFrame.form.fn_SetInfo(this.fv_CategoryId, topMenu);
+		//} 
+		
+		// 줄찾기
+		objApp.gv_LeftFrame.form.fn_SetRow(this.fv_OrgRow);
+	}
+	
+	if( !this.gfn_IsNull(this.fv_CategoryId) ) {
+		nexacro.getApplication().gv_ActiveWin  = this.fv_WinId;
+		nexacro.getApplication().gv_FormPrefix = this.fv_Prefix;
+	}
+};
+/************************************************************************************************
+ * 6. 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+this.div_Work_onsize = function(obj:nexacro.Div,e:nexacro.SizeEventInfo)
+{
+//	this.fn_MoveEtc(); // 주석 처리 (2019.08.08)
+};
+
+// 타이틀 복사를 위한 기능
+this.sta_Title_oncontextmenu = function(obj:nexacro.Static,e:nexacro.ContextMenuEventInfo)
+{
+	this.pdv_Title.form.edt_Title.set_value(this.sta_Title.text);
+	this.pdv_Title.trackPopupByComponent(this.sta_Title, 0, 20);
+};]]></Script>
+  </Form>
+</FDL>

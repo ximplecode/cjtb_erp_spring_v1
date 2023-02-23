@@ -1,0 +1,974 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR720F" width="1250" height="625" titletext="New Form" onload="HR720F_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="경조/휴가 신청관리(화환발주관리)" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta00" taborder="1" text="경조사유" left="2" top="50" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="2" left="sta00:0" top="50" height="30" border="1px solid #10aea9" background="#9ee0de" width="818"/>
+        <Combo id="cb_tmscd" taborder="3" text="Combo00" left="sta00:0" top="55" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_usecd" codecolumn="CODE" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" enable="false" width="132"/>
+        <Static id="sta01" taborder="4" text="본인과의 관계" left="cb_tmscd:2" top="50" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_relation" taborder="5" text="Combo00" left="sta01:0" top="55" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_relation" codecolumn="KIND_2" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" enable="true" width="132"/>
+        <Static id="sta02" taborder="6" text="휴가일수" left="cb_relation:0" top="50" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_holiday" taborder="7" left="sta02:0" top="55" height="20" border="0px none transparent" background="transparent" width="62" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Static id="sta03" taborder="8" text="사유발생일" left="edt_holiday:0" top="50" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta04" taborder="10" text="증빙서류" left="Static01_00:0" top="50" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Calendar id="cald_ymd" taborder="9" left="sta03:0" top="55" height="20" background="transparent" border="0px none transparent,0px none,0px none" right="sta04:10" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Button id="btn_file_delete" taborder="11" text="서류삭제" top="53" width="80" height="22" right="2" onclick="btn_file_delete_onclick"/>
+        <Button id="btn_file_add" taborder="12" text="서류추가" top="53" width="80" height="22" right="btn_file_delete:5" onclick="btn_file_add_onclick"/>
+        <Static id="sta10" taborder="13" text="신청자전화번호" left="2" top="sta00:0" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00" taborder="14" left="sta10:0" top="sta02:0" height="30" border="1px solid #10aea9" background="#9ee0de" width="818"/>
+        <Edit id="edt_tel" taborder="15" left="sta10:0" top="85" height="20" border="0px none transparent" background="transparent" width="132" text="010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Static id="sta11" taborder="16" text="화환업체" left="edt_tel:2" top="sta01:0" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_cust_kind" taborder="17" text="Combo00" left="sta11:0" top="cb_relation:10" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_cust" codecolumn="CODE" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" enable="true" width="132"/>
+        <Static id="sta12" taborder="18" text="환환선택" left="cb_cust_kind:0" top="sta02:0" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_flower_code" taborder="19" left="sta12:2" top="85" height="20" border="1px solid #3cbcb8" background="transparent" width="50" text="010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Edit id="edt_flower_name" taborder="20" left="edt_flower_code:0" top="sta03:5" height="20" border="1px solid #3cbcb8" background="transparent" width="220" text="010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Button id="btn_search_flower" taborder="21" top="85" height="20" icon="url('Img::loupe.png')" width="21" onclick="btn_s_flower" left="edt_flower_name:9"/>
+        <Static id="sta20" taborder="22" text="시간(화환 도착)" left="2" top="sta10:0" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00" taborder="23" left="sta20:0" top="sta12:0" height="30" border="1px solid #10aea9" background="#9ee0de" width="818"/>
+        <MaskEdit id="medt_arriveTime" taborder="24" left="sta20:0" top="edt_tel:10" width="80" height="20" background="transparent" border="0px none transparent" type="string" format="@@:@@" textAlign="center" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Static id="sta21" taborder="25" text="화환받는분(이름,연락처)" left="medt_arriveTime:2" top="110" width="167" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_flowerInfo" taborder="26" left="sta21:0" top="cb_cust_kind:10" height="20" border="0px none transparent" background="transparent" width="309" text="이상인,010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Static id="sta22" taborder="27" text="문서번호" left="edt_flowerInfo:0" top="110" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_i_flow_id" taborder="28" left="sta22:0" top="edt_flower_name:10" height="20" border="0px none transparent" background="transparent" width="134" text="이상인,010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Static id="sta40" taborder="29" text="장소(화환 받는 주소)" left="2" top="sta20:0" width="197" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00_00" taborder="30" left="sta40:0" top="Static01_00_00_00:0" height="30" border="1px solid #10aea9" background="#9ee0de" width="736"/>
+        <Button id="btn_searchAddr" taborder="65" top="145" height="20" icon="url('Img::loupe.png')" width="21" left="sta40:2" onclick="btn_searchAddr_onclick"/>
+        <Edit id="edt_address" taborder="31" left="btn_searchAddr:2" top="145" height="20" border="0px none transparent" background="transparent" width="706" text="이상인,010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Static id="sta50" taborder="32" text="경조금(금액)" left="2" top="sta40:0" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00_01" taborder="33" left="sta50:0" top="Static01_00_00_00_00:0" height="30" border="1px solid #10aea9" background="#9ee0de" width="818"/>
+        <MaskEdit id="medt_pay1" taborder="34" left="sta50:2" top="175" width="132" height="20" format="@,@@@" type="number" background="transparent" border="0px none transparent,0px none,0px none"/>
+        <Static id="sta51" taborder="35" text="경조화환(금액)" left="medt_pay1:0" top="170" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <MaskEdit id="medt_pay2" taborder="36" left="sta51:0" top="Static01_00_00_00_00:5" width="132" height="20" format="@,@@0" background="transparent" border="0px none transparent,0px none,0px none"/>
+        <Static id="sta52" taborder="37" text="관리자 전달사항" left="medt_pay2:0" top="edt_address:5" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_bigo" taborder="38" left="sta52:0" top="175" height="20" border="0px none transparent" background="transparent" width="312" text="이상인,010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;"/>
+        <Grid id="grd_file" taborder="39" left="Static01_00_00_00:0" top="sta04:0" height="120" right="2" binddataset="dsUploadFile" autofittype="col" oncelldblclick="grd_file_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="226"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="순번"/>
+                <Cell col="1" text="파일명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:F_NO"/>
+                <Cell col="1" text="bind:F_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="40" left="3" top="204" width="305" border="1px solid #10aea9" bottom="2" text=""/>
+        <Static id="sta_s00" taborder="41" text="자료검색" left="5" top="210" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_s10" taborder="42" text="일자구간" left="5" top="sta_s00:0" width="115" height="60" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Button id="btn_print01" taborder="43" text="조회" top="214" width="80" height="22" onclick="btn_print01_onclick" left="217"/>
+        <Static id="Static01_00_00_00_01_00" taborder="44" left="sta_s10:0" top="btn_print01:4" border="1px solid #10aea9" background="#9ee0de" width="180" height="30"/>
+        <Calendar id="cald_s_bymd" taborder="45" left="sta_s10:3" top="246" height="20" background="transparent" border="0px none transparent,0px none,0px none" dateformat="yyyy-MM-dd 부터" width="177" color="white" font="normal bold 10pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01_00_00_00_01_00_00" taborder="46" left="120" top="Static01_00_00_00_01_00:0" border="1px solid #10aea9" background="#9ee0de" width="180" height="30"/>
+        <Calendar id="cald_s_eymd" taborder="47" left="sta_s10:2" top="cald_s_bymd:10" height="20" background="transparent" border="0px none transparent,0px none,0px none" dateformat="yyyy-MM-dd 까지" width="178" font="normal bold 10pt/normal &quot;Arial&quot;" color="white"/>
+        <Static id="sta_s20" taborder="48" text="진행상태" left="5" top="sta_s10:0" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00_01_00_00_00" taborder="49" left="120" top="300" border="1px solid #10aea9" background="#9ee0de" width="180" height="30"/>
+        <Combo id="cb_s_kind" taborder="50" text="Combo00" left="sta_s20:2" top="305" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_kind" codecolumn="CODE" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" color="white" enable="true" width="168"/>
+        <Static id="sta_s30" taborder="51" text="구분구간" left="5" top="330" width="115" height="60" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00_01_00_00_00_00" taborder="52" left="sta_s30:0" top="330" border="1px solid #10aea9" background="#9ee0de" width="180" height="30" text=""/>
+        <Static id="Static01_00_00_00_01_00_00_00_00_00" taborder="53" left="sta_s30:0" top="Static01_00_00_00_01_00_00_00_00:0" border="1px solid #10aea9" background="#9ee0de" width="180" height="30"/>
+        <Combo id="cb_s_usecd1" taborder="54" text="Combo00" left="sta_s30:2" top="335" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_relation" codecolumn="KIND_2" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" color="white" enable="true" width="138"/>
+        <Combo id="cb_s_usecd2" taborder="55" text="Combo00" left="sta_s30:2" top="365" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_relation" codecolumn="KIND_2" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" color="white" enable="true" width="138"/>
+        <Static id="Static01" taborder="56" text="부터" left="262" top="335" width="30" height="20"/>
+        <Static id="Static01_01" taborder="57" text="까지" left="262" top="365" width="30" height="20"/>
+        <Static id="sta_s40" taborder="58" text="이름" left="5" top="390" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00_00_01_00_00_00_00_00_00" taborder="59" left="120" top="390" border="1px solid #10aea9" background="#9ee0de" width="180" height="30"/>
+        <Edit id="edt_s_name" taborder="60" left="124" top="395" height="20" border="0px none transparent" background="transparent" width="158" text="010-9118-8920" color="white" font="normal bold 10pt/normal &quot;Arial&quot;"/>
+        <Static id="sta_s50" taborder="61" text="조회구분" left="5" top="420" width="115" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Grid id="Grid01" taborder="62" left="Static00:2" top="204" right="2" bottom="2" binddataset="ds_hr710" cellsizingtype="col" oncelldblclick="Grid01_oncelldblclick" oncellclick="Grid01_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="37"/>
+                <Column size="99"/>
+                <Column size="127"/>
+                <Column size="71"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="122"/>
+                <Column size="80"/>
+                <Column size="138"/>
+                <Column size="415"/>
+                <Column size="103"/>
+                <Column size="108"/>
+                <Column size="202"/>
+                <Column size="145"/>
+                <Column size="417"/>
+                <Column size="90"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="39"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+                <Cell col="1" text="발생일"/>
+                <Cell col="2" text="부서"/>
+                <Cell col="3" text="직위"/>
+                <Cell col="4" text="성명"/>
+                <Cell col="5" text="경조사유"/>
+                <Cell col="6" text="관계"/>
+                <Cell col="7" text="경조휴가기간"/>
+                <Cell col="8" text="진행상태"/>
+                <Cell col="9" text="받는사람"/>
+                <Cell col="10" text="장소"/>
+                <Cell col="11" text="경조금"/>
+                <Cell col="12" text="화환금액"/>
+                <Cell col="13" text="지결번호"/>
+                <Cell col="14" text="업체명"/>
+                <Cell col="15" text="사유"/>
+                <Cell col="16" text="발송명의"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="none" edittype="none" imagestretch="none" expandshow="hide" background="url('Img::loupe.png') no-repeat center center" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="1" text="bind:BYMD" displaytype="date" textAlign="center" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="2" text="bind:BUSE" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="3" text="bind:JIKWI" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="4" text="bind:NAME" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="5" text="bind:TMSCD" displaytype="combotext" combodataset="ds_usecd" combocodecol="CODE" combodatacol="NAME" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="6" text="bind:RELATIONCD" displaytype="combotext" combodataset="ds_relation" combocodecol="KIND_2" combodatacol="NAME" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="7" text="bind:BEGIN_YMD" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="8" text="bind:DELIVERY" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="9" text="bind:CELLPHONE" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="10" text="bind:DESTINATION" wordWrap="char" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="11" text="bind:PAY_1" displaytype="number" textAlign="right" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="12" text="bind:PAY_2" displaytype="number" textAlign="right" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="13" text="bind:PAYDECIDE_NO" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="14" text="bind:CUST_KIND" displaytype="combotext" combodataset="ds_cust" combocodecol="CODE" combodatacol="NAME" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="15" text="bind:CAUSE" autosizecol="limitmax" wordWrap="char" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+                <Cell col="16" text="bind:OWNER_NM" cssclass="expr:comp.parent.fn_setCssBackageground(currow)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01_00_00_00_01_00_00_00_00_00_01" taborder="63" left="120" top="420" border="1px solid #10aea9" background="#9ee0de" width="180" height="30"/>
+        <Radio id="rd_gb" taborder="64" left="120" top="420" height="30" onitemchanged="Radio00_onitemchanged" fittocontents="none" columncount="2" rowcount="0" padding="0px 0px 0px 10px" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" value="01" text="경조금조회" index="1" font="normal 300 10pt/normal &quot;Arial&quot;" color="white" width="180"/>
+        <Button id="btn_excel" taborder="68" text="엑셀변환" top="16" width="120" height="22" onclick="btn_excel_onclick" right="270"/>
+        <Button id="btn_send" taborder="66" text="발송" top="16" width="120" height="22" onclick="btn_send_onclick" right="140"/>
+        <Button id="btn_save" taborder="67" text="수정" top="16" width="120" height="22" onclick="btn_save_onclick" right="10"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_usecd">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">00</Col>
+            <Col id="NAME">경조구분을 선택하세요</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">결혼</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">사망</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">회갑</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">고희</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">05</Col>
+            <Col id="NAME">탈상</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">06</Col>
+            <Col id="NAME">출산</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">99</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_relation">
+        <ColumnInfo>
+          <Column id="KIND_1" type="STRING" size="256"/>
+          <Column id="KIND_2" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="HOLIDAY" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="KIND_1">01</Col>
+            <Col id="KIND_2">01</Col>
+            <Col id="NAME">본인</Col>
+            <Col id="HOLIDAY">7</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">01</Col>
+            <Col id="KIND_2">02</Col>
+            <Col id="NAME">자녀</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">01</Col>
+            <Col id="KIND_2">03</Col>
+            <Col id="NAME">형제자매</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">01</Col>
+            <Col id="NAME">본인</Col>
+            <Col id="HOLIDAY">0</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">04</Col>
+            <Col id="NAME">조부</Col>
+            <Col id="HOLIDAY">3</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">05</Col>
+            <Col id="NAME">조모</Col>
+            <Col id="HOLIDAY">3</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">06</Col>
+            <Col id="NAME">외조부</Col>
+            <Col id="HOLIDAY">3</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">07</Col>
+            <Col id="NAME">외조모</Col>
+            <Col id="HOLIDAY">3</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">08</Col>
+            <Col id="NAME">부</Col>
+            <Col id="HOLIDAY">7</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">09</Col>
+            <Col id="NAME">모</Col>
+            <Col id="HOLIDAY">7</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">10</Col>
+            <Col id="NAME">배우자</Col>
+            <Col id="HOLIDAY">7</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">02</Col>
+            <Col id="NAME">자녀</Col>
+            <Col id="HOLIDAY">5</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">03</Col>
+            <Col id="NAME">형제자매</Col>
+            <Col id="HOLIDAY">3</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">11</Col>
+            <Col id="NAME">백숙부</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">12</Col>
+            <Col id="NAME">백숙모</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">13</Col>
+            <Col id="NAME">고모</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">02</Col>
+            <Col id="KIND_2">14</Col>
+            <Col id="NAME">고모부</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">03</Col>
+            <Col id="KIND_2">08</Col>
+            <Col id="NAME">부</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">03</Col>
+            <Col id="KIND_2">09</Col>
+            <Col id="NAME">모</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">03</Col>
+            <Col id="KIND_2">15</Col>
+            <Col id="NAME">배우자부</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">03</Col>
+            <Col id="KIND_2">16</Col>
+            <Col id="NAME">배우자모</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">04</Col>
+            <Col id="KIND_2">08</Col>
+            <Col id="NAME">부</Col>
+            <Col id="HOLIDAY">0</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">04</Col>
+            <Col id="KIND_2">09</Col>
+            <Col id="NAME">모</Col>
+            <Col id="HOLIDAY">0</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">04</Col>
+            <Col id="KIND_2">15</Col>
+            <Col id="NAME">배우자부</Col>
+            <Col id="HOLIDAY">0</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">04</Col>
+            <Col id="KIND_2">16</Col>
+            <Col id="NAME">배우자모</Col>
+            <Col id="HOLIDAY">0</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">05</Col>
+            <Col id="KIND_2">08</Col>
+            <Col id="NAME">부</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">05</Col>
+            <Col id="KIND_2">09</Col>
+            <Col id="NAME">모</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">05</Col>
+            <Col id="KIND_2">15</Col>
+            <Col id="NAME">배우자부</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">05</Col>
+            <Col id="KIND_2">16</Col>
+            <Col id="NAME">배우자모</Col>
+            <Col id="HOLIDAY">1</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">06</Col>
+            <Col id="KIND_2">02</Col>
+            <Col id="NAME">자녀</Col>
+            <Col id="HOLIDAY">3</Col>
+          </Row>
+          <Row>
+            <Col id="KIND_1">99</Col>
+            <Col id="KIND_2">01</Col>
+            <Col id="NAME">본인</Col>
+            <Col id="HOLIDAY">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">00</Col>
+            <Col id="NAME">전체조회</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">경조금조회</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_hr710">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="TMSCD" type="STRING" size="256"/>
+          <Column id="RELATIONCD" type="STRING" size="256"/>
+          <Column id="BYMD" type="STRING" size="256"/>
+          <Column id="DELIVERY" type="STRING" size="256"/>
+          <Column id="FLOWERCD" type="STRING" size="256"/>
+          <Column id="BEGIN_YMD" type="STRING" size="256"/>
+          <Column id="END_YMD" type="STRING" size="256"/>
+          <Column id="HOLIDAY" type="STRING" size="256"/>
+          <Column id="PHONE" type="STRING" size="256"/>
+          <Column id="CELLPHONE" type="STRING" size="256"/>
+          <Column id="DESTINATION" type="STRING" size="256"/>
+          <Column id="PAY_1" type="STRING" size="256"/>
+          <Column id="PAY_2" type="STRING" size="256"/>
+          <Column id="CAUSE" type="STRING" size="256"/>
+          <Column id="RESULT_ATTACH" type="STRING" size="256"/>
+          <Column id="PAYDECIDE_NO" type="STRING" size="256"/>
+          <Column id="CUST_KIND" type="STRING" size="256"/>
+          <Column id="OWNER_NM" type="STRING" size="256"/>
+          <Column id="DELIVERY_CD" type="STRING" size="256"/>
+          <Column id="FLOWERNAME" type="STRING" size="256"/>
+          <Column id="DELIVERY_TIME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_kind">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NAME">전체</Col>
+            <Col id="CODE"> </Col>
+          </Row>
+          <Row>
+            <Col id="CODE">00</Col>
+            <Col id="NAME">내부결재중</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">내부결재완료</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">주문건</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">화환준비건</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">배송완료건</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">05</Col>
+            <Col id="NAME">기각건</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_cust">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">화란방</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">굿펠로우</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">텔레플라워</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUploadFile">
+        <ColumnInfo>
+          <Column id="F_NAME" type="STRING" size="256"/>
+          <Column id="F_LOCALNAME" type="STRING" size="256"/>
+          <Column id="F_LOCALFULLNAME" type="STRING" size="256"/>
+          <Column id="F_NO" type="STRING" size="256"/>
+          <Column id="R_NAME" type="STRING" size="256"/>
+          <Column id="F_PATH" type="STRING" size="256"/>
+          <Column id="M_PATH" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileDownTransfer id="FileDownTrans" onsuccess="fileDownTrans_onsuccess"/>
+      <FileDialog id="F_Dialog" onclose="F_Dialog_onclose"/>
+      <FileUpTransfer id="FileUpTrans" onsuccess="FileUpTrans_onsuccess" onerror="FileUpTrans_onerror"/>
+      <Dataset id="ds_smslist">
+        <ColumnInfo>
+          <Column id="DEST_PHONE" type="STRING" size="256"/>
+          <Column id="DEST_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edt_holiday" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item1" compid="cald_ymd" propid="value" datasetid="ds_insa" columnid="IPSADT"/>
+      <BindItem id="item2" compid="edt_tel" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item3" compid="edt_flower_code" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item4" compid="edt_flower_name" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item5" compid="edt_flowerInfo" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item6" compid="edt_i_flow_id" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item7" compid="edt_address" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item8" compid="edt_bigo" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item9" compid="cald_s_bymd" propid="value" datasetid="ds_insa" columnid="IPSADT"/>
+      <BindItem id="item10" compid="cald_s_eymd" propid="value" datasetid="ds_insa" columnid="IPSADT"/>
+      <BindItem id="item11" compid="edt_s_name" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item12" compid="rd_gb" propid="value" datasetid="ds_insa" columnid="IMPAIRMENT"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_gw.xjs";
+
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var arr_rt;
+var urlFile = nexacro.getApplication().gv_urlNext;
+var vFileList = new Array();
+var urlXeni = nexacro.getApplication().gv_urlXeni;
+var sSabun;
+
+this.btn_print01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	if (Eco.isEmpty(this.cald_s_bymd.value) == true || Eco.isEmpty(this.cald_s_eymd.value ) == true)
+	{
+		this.alert("날자구간을 확인하세요");
+		return false;
+	}
+	
+	str_url = "JSP/hr/getData_hr720.jsp";
+	in_ds = "ds_hr710=ds_hr710";
+	out_ds = "ds_hr710=ds_hr710";
+	str_arg = "I_FLOW_ID='' "+
+	          "BEGIN_DATE='" + this.cald_s_bymd.value +"' "+
+			  "END_DATE='" + this.cald_s_eymd.value +"' "+
+			  "BEGIN_TMSCD='" + this.cb_s_usecd1.value +"' "+
+			  "END_TMSCD='" + this.cb_s_usecd2.value +"' "+
+			  "NAME='" + this.edt_s_name.value +"' "+
+			  "DELIVERY='" + this.cb_s_kind.value +"' ";
+	if ( this.rd_gb.value == "00" )
+	{
+		str_arg += "PAY1_CHK='1' PAY2_CHK = '' ";
+	}
+	else if ( this.rd_gb.value == "01" )
+	{
+		str_arg += "PAY1_CHK='' PAY2_CHK = '1' ";
+	}
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+};
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.HR720F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+	var dt = new Date();
+	this.cald_s_bymd.set_value(Eco.date.addMonth(dt,-1));
+	this.cald_s_eymd.set_value(dt);
+	this.cb_s_kind.set_index(0);
+};
+
+this.fn_setCssBackageground = function(nRow)
+{
+	var rt_css, delivery_cd;
+	
+	delivery_cd = this.ds_hr710.getColumn(nRow,"DELIVERY_CD");	
+	
+	if (delivery_cd == "05")
+	{
+		rt_css = "CssBackground_red";
+	}	
+	else
+	{
+		rt_css = "";
+	}
+	
+	return rt_css;
+};
+
+this.Grid01_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.edt_i_flow_id.set_value(this.ds_hr710.getColumn(e.row,"I_FLOW_ID"));
+	this.cb_tmscd.set_value(this.ds_hr710.getColumn(e.row,"TMSCD"));
+	this.cb_relation.set_value(this.ds_hr710.getColumn(e.row,"RELATIONCD"));
+	this.cald_ymd.set_value(this.ds_hr710.getColumn(e.row,"BYMD"));
+	this.edt_flower_code.set_value(this.ds_hr710.getColumn(e.row,"FLOWERCD"));
+	this.edt_flower_name.set_value(this.ds_hr710.getColumn(e.row,"FLOWERNAME"));
+	this.edt_holiday.set_value(this.ds_hr710.getColumn(e.row,"HOLIDAY"));
+	this.edt_tel.set_value(this.ds_hr710.getColumn(e.row,"PHONE"));
+	this.edt_flowerInfo.set_value(this.ds_hr710.getColumn(e.row,"CELLPHONE"));
+	this.edt_address.set_value(this.ds_hr710.getColumn(e.row,"DESTINATION"));
+	this.medt_arriveTime.set_value(this.ds_hr710.getColumn(e.row,"DELIVERY_TIME"));
+	this.medt_pay1.set_value(this.ds_hr710.getColumn(e.row,"PAY_1"));
+	this.medt_pay2.set_value(this.ds_hr710.getColumn(e.row,"PAY_2"));
+	this.edt_bigo.set_value(this.ds_hr710.getColumn(e.row,"MEMO"));
+	this.cb_cust_kind.set_value(this.ds_hr710.getColumn(e.row,"CUST_KIND"));
+	
+	sSabun = this.ds_hr710.getColumn(e.row,"SABUN");
+	
+	this.getData_attachedfile(this.ds_hr710.getColumn(e.row,"I_FLOW_ID"));	
+	
+};
+
+this.btn_searchAddr_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sAddress",0,0,237,440,null,null,"common::Address.xfdl");
+		this.addChild("sAddress",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sAddress",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_Address);
+};
+
+this.fn_Callback_Address = function(strID, vArgu)
+{
+	arr_rt = vArgu.split(":");
+	this.edt_address.set_value(arr_rt[1]);
+	
+	this.removeChild("sAddress");
+};
+
+this.btn_s_flower = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sFlower",0,0,237,440,null,null,"hr::HR711F.xfdl");
+		this.addChild("sFlower",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sFlower",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_flower);
+};
+
+this.fn_Callback_flower = function(strID, vArgu)
+{
+	arr_rt = vArgu.split("^");
+	this.edt_flower_code.set_value(arr_rt[0]);
+	this.edt_flower_name.set_value(arr_rt[1]);
+	
+	this.removeChild("sFlower");
+};
+
+this.grd_file_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.lfn_FileDownload(this.FileDownTrans ,this.dsUploadFile, urlFile, e.row);
+};
+
+this.btn_file_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.F_Dialog.open('nexacro17', FileDialog.MULTILOAD);
+};
+
+this.F_Dialog_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
+{
+	this.FileUpTrans.clearFileList();
+	var filelist = e.virtualfiles;
+	var f_name, f_localname, f_loaclfullname, m_path;
+	var dt = new Date();
+	var nRow;
+	
+	for (var i = 0, len = filelist.length, vFile; i < len; i++)
+    {
+        vFile = filelist[i];
+		var extension = vFile.filename.substr((vFile.filename).lastIndexOf('.'), (vFile.filename).length);			
+		f_name = vFile.filename;
+		m_path = vFile.fullpath;
+		f_localname = Eco.date.getMaskFormatString(dt, "yyyyMMddHHmmddss")  + "C17011" + extension;
+		f_loaclfullname = "/hr/attachedfile/" + Eco.date.getMaskFormatString(dt, "yyyy/MM/") + f_localname;
+		this.alert(f_loaclfullname);
+		vFile.name = f_localname;
+		nRow = this.dsUploadFile.addRow();
+		this.dsUploadFile.setColumn(nRow,"F_NAME",f_name);
+		this.dsUploadFile.setColumn(nRow,"F_LOCALNAME",f_localname);
+		this.dsUploadFile.setColumn(nRow,"F_LOCALFULLNAME",f_loaclfullname);
+		this.dsUploadFile.setColumn(nRow,"M_PATH",m_path);
+
+		vFile.name = f_localname;
+        vFile.addEventHandler("onsuccess", this.fn_FileList_onsuccess, this);
+        vFile.addEventHandler("onerror", this.fn_FileList_onerror , this);
+        vFile.open(null, 1); 
+    }
+};
+
+this.fn_FileList_onsuccess = function(obj:nexacro.VirtualFile, e:nexacro.VirtualFileEventInfo)
+{
+	var dt = new Date();
+	switch (e.reason)
+    {
+        case 1:
+            obj.getFileSize();
+            break;
+        case 9:			
+			this.FileUpTrans.addFile(obj.name, obj);
+			this.FileUpTrans.upload(nexacro.getApplication().gv_urlNext + '/JSP/fileUpload.jsp?fileFolder=hr/attachedfile/' + Eco.date.getMaskFormatString(dt, "yyyy/MM"));
+			break;
+    }
+};
+
+this.FileUpTrans_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferEventInfo)
+{
+	this.setData_attachedfile(this.edt_i_flow_id.value);
+};
+
+this.setData_attachedfile = function(i_flow_id)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_ATTACHEDFILE.jsp";
+	in_ds = "dsUploadFile=dsUploadFile:U";
+	out_ds = "dsUploadFile=dsUploadFile";
+	str_arg = "I_FLOW_ID='" + i_flow_id + "' ";	
+	this.gfn_TransactionP("setFile", str_url, in_ds, out_ds, str_arg, "Callback_setFile", true, "U", false,this);
+};
+
+this.Callback_setFile = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+			return false;
+		}
+	}
+	
+	this.getData_attachedfile(this.edt_i_flow_id.value);		
+};
+
+this.FileUpTrans_onerror = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferErrorEventInfo)
+{
+	this.alert("파일 업로드 실패");
+	this.getData_attachedfile(this.edt_i_flow_id.value);	
+	
+};
+
+this.getData_attachedfile = function(i_flow_id)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr710_file.jsp";
+	in_ds = "dsUploadFile=dsUploadFile";
+	out_ds = "dsUploadFile=dsUploadFile";
+	str_arg = "I_FLOW_ID='" + i_flow_id + "' ";	
+	this.gfn_TransactionP("selectFile", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+};
+
+this.btn_file_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	var confirm_result = objApp.confirm("삭제된 데이터는 복원하실수 없습니다.\n" + "선택하시 첨부파일을 삭제하시겠습니까?","삭제","warning");
+	
+	if (confirm_result == true)
+	{
+		if (Eco.isEmpty(this.dsUploadFile.getColumn(this.dsUploadFile.rowposition, "F_NO" )) == false)
+		{
+			this.gfn_TransactionP("delete", "JSP/fileDelete.jsp", "", "", "fileFolder=" + this.dsUploadFile.getColumn(this.dsUploadFile.rowposition,"F_PATH") +" deleteFile="+ this.dsUploadFile.getColumn(this.dsUploadFile.rowposition,"R_NAME")  , "Callback_none", true, "P", false, this);
+		}
+		this.dsUploadFile.deleteRow(this.dsUploadFile.rowposition);
+		this.setData_attachedfile(this.edt_i_flow_id.value);
+	}
+};
+
+this.Grid01_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if (e.col > 0)
+	{
+		return false;
+	}
+	
+	var rdUrl = gv_svcUrl + "rpt/hr/HR710.mrd";
+    var rdParam = "/rp [1][" + this.ds_hr710.getColumn(e.row,"I_FLOW_ID") + "]";  
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,100,100,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("경조/휴가 신청관리(화환발주관리)");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(true);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+	
+};
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+};
+
+this.btn_send_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow;
+	
+	if (Eco.isEmpty(this.edt_i_flow_id.value) == true)
+	{
+		this.alert("조회된 데이터가 없습니다! 다시확인해보세요!");
+		return false;
+	}
+	
+	nRow = this.ds_hr710.findRow("I_FLOW_ID",this.edt_i_flow_id.value);
+	
+	if (nRow < 0)
+	{
+		this.alert("조회 후 다시 선택하여 주시기 바랍니다.");
+		return false;
+	}
+	
+	var pDelivery = this.ds_hr710.getColumn(nRow,"DELIVERY_CD");
+
+	if (pDelivery != "00" && pDelivery != "01")
+	{
+		this.alert("이미배송진행된 건이거나 기각된 건입니다. 다시확인해보세요!");
+		return false;
+	}
+	
+	this.ds_hr710.setColumn(nRow,"DELIVERY_CD","02");
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_Guntaeholiday_delivery.jsp";
+	in_ds = "ds_hr710=ds_hr710:U";
+	out_ds = "ds_hr710=ds_hr710";
+	str_arg = "I_FLOW_ID='" + this.edt_i_flow_id.value + "'";	
+	this.gfn_TransactionP("delivery_dml", str_url, in_ds, out_ds, str_arg, "Callback_delivery", true, "U", false,this);
+};
+
+this.Callback_delivery = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	if (this.cb_tmscd.value == "02")
+	{
+		this.lms_send();
+	}
+	else
+	{
+		var objApp = nexacro.getApplication();
+		var confirm_result = objApp.confirm("담당자에게 SMS발송을 하시겠습니까?","확인","question");
+		
+		if (confirm_result == true)
+		{
+			this.lms_send();
+		}
+	}
+}
+
+this.lms_send = function()
+{
+	var nRow;
+	var pMsg;
+	nRow = this.ds_hr710.findRow("I_FLOW_ID",this.edt_i_flow_id.value);
+	
+	if (nRow < 0)
+	{
+		this.alert("문자발송 실패하였습니다.");
+		return false;
+	}
+	
+	this.ds_smslist.clearData();
+	this.ds_smslist.addRow();
+	this.ds_smslist.setColumn(0,"DEST_PHONE","01088875037");
+	this.ds_smslist.setColumn(0,"DEST_NAME","경영지원부");
+	
+	this.ds_hr710.getColumn(nRow, "NAME")
+	
+	pMsg = "1.접수자명:"+ this.ds_hr710.getColumn(nRow, "NAME") +"\n";
+	pMsg += "2.연락처:"+this.edt_tel.value+"\n";
+	pMsg += "3.받는분:"+ this.edt_flowerInfo.value +"\n";
+	pMsg += "4.사유: 사망(" + this.cb_relation.text +")\n";
+	pMsg += "5.배송일시: "+ this.cald_ymd.value +"("+ this.medt_arriveTime.text +")\n";
+	pMsg += "6.배송지: "+ this.edt_address.text;
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_sms.jsp";
+	in_ds = "ds_smslist=ds_smslist:U";
+	out_ds = "ds_smslist=ds_smslist";
+	str_arg = "send_phone='0232821600' "+
+	          "MsgSubject='[천재교육]' "+
+			  "msg='"+pMsg + "'";
+	this.gfn_TransactionP("sms", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "U", false,this);
+}
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_HR720.jsp";
+	in_ds = "";
+	out_ds = "";
+	str_arg = "i_flow_id='"+ this.edt_i_flow_id.value +"' "+
+			  "memo='"+ this.edt_bigo.text +"' "+
+	          "cust_kind='"+ this.cb_cust_kind.value +"' "+
+			  "pay_1='"+ this.medt_pay1.value +"' "+
+			  "pay_2='"+ this.medt_pay2.value +"' ";
+	this.gfn_TransactionP("dml", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "U", false,this);
+};
+
+this.Callback_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;		
+	}
+	
+	this.alert("수정 완료");
+}
+
+this.btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	var filename;
+	filename = "GridList";
+	this.exportObj = new ExcelExportObject();
+	var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Grid01 , "Sheet1!A1");
+
+	this.exportObj.set_exporturl(urlXeni); 
+	this.exportObj.set_exportfilename(filename);
+    this.exportObj.exportData(); 
+};
+]]></Script>
+  </Form>
+</FDL>

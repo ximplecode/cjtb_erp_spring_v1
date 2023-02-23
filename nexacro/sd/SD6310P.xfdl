@@ -1,0 +1,1100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6310P" width="850" height="300" titletext="New Form" onload="SD6310P_onload">
+    <Layouts>
+      <Layout height="300" width="850">
+        <Static id="Static00" taborder="3" text="도서출고율 출력" left="20" top="10" color="#7fb39d" font="bold 28px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="310" height="40"/>
+        <Button id="btn_close" taborder="4" text="닫기" top="20" width="45" height="20" right="13" font="8pt/normal &quot;Arial&quot;" onclick="btn_close_onclick"/>
+        <Static id="Static01" taborder="5" text="판매구분" left="12" top="91" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01" taborder="6" left="107" top="91" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="205"/>
+        <Static id="Static01_01" taborder="7" text="도서코드" left="12" top="119" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_00" taborder="8" left="107" top="119" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="205"/>
+        <Static id="Static01_00_00" taborder="9" text="~" left="202" top="125" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_02" taborder="10" text="년판" left="12" top="147" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_01" taborder="11" left="107" top="147" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="205"/>
+        <Static id="Static01_00_01" taborder="12" text="~" left="202" top="153" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_03" taborder="13" text="속성코드" left="12" top="175" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_02" taborder="14" left="107" top="175" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="205"/>
+        <Static id="Static01_00_02" taborder="15" text="~" left="202" top="181" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_04" taborder="16" text="부가세구분" left="12" top="203" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_03" taborder="17" left="107" top="203" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="205"/>
+        <Static id="Static01_05" taborder="18" text="출력물" left="12" top="259" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_04" taborder="19" left="107" top="259" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="205"/>
+        <MaskEdit id="ed_s_values2" taborder="1" left="114" top="124" width="80" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@@@@@@@" type="string" onkillfocus="ed_jukyocd_onkillfocus" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_s_values3" taborder="2" left="224" top="124" width="80" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@@@@@@@" type="string" onkillfocus="ed_jukyocd_onkillfocus" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_s_values4" taborder="20" left="114" top="152" width="80" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" onkeydown="common_onkeydown" onkillfocus="ed_values5_onkillfocus"/>
+        <MaskEdit id="ed_s_values5" taborder="21" left="224" top="152" width="80" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" onkeydown="common_onkeydown" onkillfocus="ed_values6_onkillfocus"/>
+        <Static id="Static01_06" taborder="22" text="리스트 검색" left="12" top="63" height="30" background="#3cbcb8" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="300" color="white"/>
+        <Combo id="print_select" taborder="23" left="115" top="264" height="20" innerdataset="ds_rpt" datacolumn="DATA" codecolumn="CODE" value="5" index="5" width="189" onkeydown="common_onkeydown"/>
+        <Button id="btn_print" taborder="24" text="출력" top="20" height="20" font="bold 9pt/normal &quot;Arial&quot;" onclick="btn_print_onclick" onkeydown="btn_print_onkeydown" width="45" right="btn_close:10"/>
+        <Combo id="ed_s_values6" taborder="25" text="입금자별입금현황" left="114" top="208" height="20" innerdataset="ds_s_values6" datacolumn="DATA" codecolumn="CODE" value="5" index="5" width="80" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_ecode" taborder="26" left="224" top="180" width="80" height="20" type="string" format="@@@@@@@@@" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_scode" taborder="27" left="114" top="180" width="80" height="20" type="string" format="@@@@@@@@@" onkeydown="common_onkeydown"/>
+        <Button id="btn_preview" taborder="28" text="미리보기" top="20" width="65" height="20" font="bold 9pt/normal &quot;Arial&quot;" onclick="btn_print_onclick" onkeydown="btn_print_onkeydown" right="btn_print:10"/>
+        <Static id="Static01_04_00" taborder="29" text="학기" left="12" top="231" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_03_00" taborder="30" left="107" top="231" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="205"/>
+        <CheckBox id="chk_hak" taborder="31" text="학년용" left="115" top="236" width="60" height="20" falsevalue="0" truevalue="1"/>
+        <CheckBox id="chk_hak1" taborder="32" text="1학년" left="chk_hak:5" top="236" width="60" height="20" falsevalue="0" truevalue="1"/>
+        <CheckBox id="chk_hak2" taborder="33" text="2학기" left="chk_hak1:5" top="236" width="60" height="20" falsevalue="0" truevalue="1"/>
+        <Grid id="grd_bgbr" taborder="34" left="312" top="93" width="149" height="196" binddataset="ds_bgbr" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="23"/>
+                <Column size="34"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="코드"/>
+                <Cell col="2" text="코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center"/>
+                <Cell col="1" text="bind:CODE" textAlign="center"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="ed_s_values1" taborder="0" left="114" top="96" width="80" height="20" value="" index="-1" innerdataset="ds_s_values1" codecolumn="CODE" datacolumn="DATA" onitemchanged="ed_values5_1_onitemchanged" tabstop="true"/>
+        <Grid id="grd_mdcode" taborder="35" left="610" top="93" width="229" height="196" binddataset="ds_mdcode" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="23"/>
+                <Column size="34"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="코드"/>
+                <Cell col="2" text="대분류"/>
+                <Cell col="3" text="중분류"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:chk" textAlign="center" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:mdcode" textAlign="center"/>
+                <Cell col="2" text="bind:mnm"/>
+                <Cell col="3" text="bind:dnm"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_panh" taborder="36" left="461" top="93" width="149" height="196" binddataset="ds_panh" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="23"/>
+                <Column size="34"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="코드"/>
+                <Cell col="2" text="코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center"/>
+                <Cell col="1" text="bind:CODE" textAlign="center"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01_06_00" taborder="37" text="도서구분" left="311" top="75" height="18" background="#3cbcb8" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="150" color="white"/>
+        <Static id="Static01_06_00_00" taborder="38" text="도서유형" left="460" top="75" height="18" background="#3cbcb8" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="150" color="white"/>
+        <Static id="Static01_06_00_00_00" taborder="39" text="도서분류" left="609" top="75" height="18" background="#3cbcb8" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="230" color="white"/>
+        <Div id="Div00" taborder="40" left="0" top="294" right="0" border="2px solid #10aea9" visible="false" bottom="0">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_bgbr">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">00</Col>
+            <Col id="NAME">미등록</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_panh">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_rpt">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="DATA" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="DATA">도서현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="DATA">속성코드별도서현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="DATA">출교율현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="DATA">거래처출고율현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="DATA">도서현황(종합)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="DATA">도서현황(New)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">6</Col>
+            <Col id="DATA">속성코드별도서현황(종합)</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_mdcode">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="mdcode" type="STRING" size="256"/>
+          <Column id="mnm" type="STRING" size="256"/>
+          <Column id="dnm" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="chk">0</Col>
+            <Col id="mdcode">00</Col>
+            <Col id="mnm">미등록</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_s_values1">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="DATA" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="DATA">판매용</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="DATA">교사용</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="DATA">타계정</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="DATA">매입품</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="DATA">전체</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_s_values6">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="DATA" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="DATA">면세</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="DATA">과세</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="DATA">전체</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_1">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="BOOK_NM" type="STRING" size="256"/>
+          <Column id="BGBR_CD" type="STRING" size="256"/>
+          <Column id="BGBR_NM" type="STRING" size="256"/>
+          <Column id="DANW_CD" type="STRING" size="256"/>
+          <Column id="DANW_NM" type="STRING" size="256"/>
+          <Column id="HAK_CD" type="STRING" size="256"/>
+          <Column id="HAK_NM" type="STRING" size="256"/>
+          <Column id="YGUBN" type="STRING" size="256"/>
+          <Column id="VAT_GB" type="STRING" size="256"/>
+          <Column id="MEIP_C" type="STRING" size="256"/>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="C_YMD" type="STRING" size="256"/>
+          <Column id="P_YMD" type="STRING" size="256"/>
+          <Column id="MOOK" type="STRING" size="256"/>
+          <Column id="CPAGE" type="STRING" size="256"/>
+          <Column id="KWA_CD" type="STRING" size="256"/>
+          <Column id="KWA_NM" type="STRING" size="256"/>
+          <Column id="ISBN_N" type="STRING" size="256"/>
+          <Column id="BUGA_N" type="STRING" size="256"/>
+          <Column id="PANH_CD" type="STRING" size="256"/>
+          <Column id="PANH_NM" type="STRING" size="256"/>
+          <Column id="TPAGE" type="STRING" size="256"/>
+          <Column id="NYUK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_2" keystring="SGRP_CODE">
+        <ColumnInfo>
+          <Column id="MCODE" type="STRING" size="256"/>
+          <Column id="DCODE" type="STRING" size="256"/>
+          <Column id="MNM" type="STRING" size="256"/>
+          <Column id="DNM" type="STRING" size="256"/>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="BOOK_NM" type="STRING" size="256"/>
+          <Column id="BGBR_CD" type="STRING" size="256"/>
+          <Column id="BGBR_NM" type="STRING" size="256"/>
+          <Column id="DANW_CD" type="STRING" size="256"/>
+          <Column id="HAK_CD" type="STRING" size="256"/>
+          <Column id="YGUBN" type="STRING" size="256"/>
+          <Column id="VAT_GB" type="STRING" size="256"/>
+          <Column id="MEIP_C" type="STRING" size="256"/>
+          <Column id="C_YMD" type="STRING" size="256"/>
+          <Column id="P_YMD" type="STRING" size="256"/>
+          <Column id="MOOK" type="STRING" size="256"/>
+          <Column id="CPAGE" type="STRING" size="256"/>
+          <Column id="KWA_CD" type="STRING" size="256"/>
+          <Column id="ISBN_N" type="STRING" size="256"/>
+          <Column id="BUGA_N" type="STRING" size="256"/>
+          <Column id="PANH_CD" type="STRING" size="256"/>
+          <Column id="TPAGE" type="STRING" size="256"/>
+          <Column id="NYUK" type="STRING" size="256"/>
+          <Column id="PANH_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_2_copy1" keystring="SGRP_CODE">
+        <ColumnInfo>
+          <Column id="MCODE" type="STRING" size="256"/>
+          <Column id="DCODE" type="STRING" size="256"/>
+          <Column id="MNM" type="STRING" size="256"/>
+          <Column id="DNM" type="STRING" size="256"/>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="BOOK_NM" type="STRING" size="256"/>
+          <Column id="BGBR_CD" type="STRING" size="256"/>
+          <Column id="BGBR_NM" type="STRING" size="256"/>
+          <Column id="DANW_CD" type="STRING" size="256"/>
+          <Column id="HAK_CD" type="STRING" size="256"/>
+          <Column id="YGUBN" type="STRING" size="256"/>
+          <Column id="VAT_GB" type="STRING" size="256"/>
+          <Column id="MEIP_C" type="STRING" size="256"/>
+          <Column id="C_YMD" type="STRING" size="256"/>
+          <Column id="P_YMD" type="STRING" size="256"/>
+          <Column id="MOOK" type="STRING" size="256"/>
+          <Column id="CPAGE" type="STRING" size="256"/>
+          <Column id="KWA_CD" type="STRING" size="256"/>
+          <Column id="ISBN_N" type="STRING" size="256"/>
+          <Column id="BUGA_N" type="STRING" size="256"/>
+          <Column id="PANH_CD" type="STRING" size="256"/>
+          <Column id="TPAGE" type="STRING" size="256"/>
+          <Column id="NYUK" type="STRING" size="256"/>
+          <Column id="PANH_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_3">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="B_NM" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="SYMD" type="STRING" size="256"/>
+          <Column id="EYMD" type="STRING" size="256"/>
+          <Column id="YUL1" type="STRING" size="256"/>
+          <Column id="YUL2" type="STRING" size="256"/>
+          <Column id="YUL3" type="STRING" size="256"/>
+          <Column id="YUL4" type="STRING" size="256"/>
+          <Column id="COST" type="STRING" size="256"/>
+          <Column id="B_YN" type="STRING" size="256"/>
+          <Column id="B_YMD" type="STRING" size="256"/>
+          <Column id="B_YUL" type="STRING" size="256"/>
+          <Column id="JUK_GB" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+          <Column id="OLD_CODE" type="STRING" size="256"/>
+          <Column id="BGBR_CD" type="STRING" size="256"/>
+          <Column id="PCOST" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_4">
+        <ColumnInfo>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="BOOK_CD" type="STRING" size="256"/>
+          <Column id="B_NM" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="SYMD" type="STRING" size="256"/>
+          <Column id="CYUL" type="STRING" size="256"/>
+          <Column id="CCOST" type="STRING" size="256"/>
+          <Column id="B_YN" type="STRING" size="256"/>
+          <Column id="B_GYMD" type="STRING" size="256"/>
+          <Column id="B_YUL" type="STRING" size="256"/>
+          <Column id="JUK_GB" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_5">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="BOOK_NAME" type="STRING" size="256"/>
+          <Column id="BGBR_CD" type="STRING" size="256"/>
+          <Column id="BGBR_NM" type="STRING" size="256"/>
+          <Column id="ISBN" type="STRING" size="256"/>
+          <Column id="YGUBN" type="STRING" size="256"/>
+          <Column id="VAT_GB" type="STRING" size="256"/>
+          <Column id="MEIP_C" type="STRING" size="256"/>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="C_YMD" type="STRING" size="256"/>
+          <Column id="P_YMD" type="STRING" size="256"/>
+          <Column id="MOOK" type="STRING" size="256"/>
+          <Column id="MCODE" type="STRING" size="256"/>
+          <Column id="DCODE" type="STRING" size="256"/>
+          <Column id="BSCD_CD" type="STRING" size="256"/>
+          <Column id="YUL1" type="STRING" size="256"/>
+          <Column id="YUL2" type="STRING" size="256"/>
+          <Column id="YUL3" type="STRING" size="256"/>
+          <Column id="YUL4" type="STRING" size="256"/>
+          <Column id="COST" type="STRING" size="256"/>
+          <Column id="PCOST" type="STRING" size="256"/>
+          <Column id="B_YN" type="STRING" size="256"/>
+          <Column id="BSCD_NM" type="STRING" size="256"/>
+          <Column id="GCODE" type="STRING" size="256"/>
+          <Column id="DONG_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_6">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="BOOK_NAME" type="STRING" size="256"/>
+          <Column id="BGBR_CD" type="STRING" size="256"/>
+          <Column id="BGBR_NM" type="STRING" size="256"/>
+          <Column id="DANW_CD" type="STRING" size="256"/>
+          <Column id="DANW_NM" type="STRING" size="256"/>
+          <Column id="YGUBN" type="STRING" size="256"/>
+          <Column id="VAT_GB" type="STRING" size="256"/>
+          <Column id="HAK_CD" type="STRING" size="256"/>
+          <Column id="HAK_NM" type="STRING" size="256"/>
+          <Column id="MEIP_C" type="STRING" size="256"/>
+          <Column id="MOOK" type="STRING" size="256"/>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="C_YMD" type="STRING" size="256"/>
+          <Column id="P_YMD" type="STRING" size="256"/>
+          <Column id="ISBN_N" type="STRING" size="256"/>
+          <Column id="PANH_CD" type="STRING" size="256"/>
+          <Column id="PANH_NM" type="STRING" size="256"/>
+          <Column id="NYUK" type="STRING" size="256"/>
+          <Column id="YUL1" type="STRING" size="256"/>
+          <Column id="YUL2" type="STRING" size="256"/>
+          <Column id="YUL3" type="STRING" size="256"/>
+          <Column id="YUL4" type="STRING" size="256"/>
+          <Column id="COST" type="STRING" size="256"/>
+          <Column id="PCOST" type="STRING" size="256"/>
+          <Column id="B_YN" type="STRING" size="256"/>
+          <Column id="BSCD_CD" type="STRING" size="256"/>
+          <Column id="BSCD_NM" type="STRING" size="256"/>
+          <Column id="PLT_CODE" type="STRING" size="256"/>
+          <Column id="PLT_NAME" type="STRING" size="256"/>
+          <Column id="BND_CODE" type="STRING" size="256"/>
+          <Column id="BND_NAME" type="STRING" size="256"/>
+          <Column id="SIGN" type="STRING" size="256"/>
+          <Column id="BODYP" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_7">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="BOOK_NAME" type="STRING" size="256"/>
+          <Column id="BGBR_CD" type="STRING" size="256"/>
+          <Column id="BGBR_NM" type="STRING" size="256"/>
+          <Column id="MNAME" type="STRING" size="256"/>
+          <Column id="DNAME" type="STRING" size="256"/>
+          <Column id="ISBN" type="STRING" size="256"/>
+          <Column id="YGUBN" type="STRING" size="256"/>
+          <Column id="VAT_GB" type="STRING" size="256"/>
+          <Column id="MEIP_C" type="STRING" size="256"/>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="C_YMD" type="STRING" size="256"/>
+          <Column id="P_YMD" type="STRING" size="256"/>
+          <Column id="MOOK" type="STRING" size="256"/>
+          <Column id="MCODE" type="STRING" size="256"/>
+          <Column id="DCODE" type="STRING" size="256"/>
+          <Column id="BSCD_CD" type="STRING" size="256"/>
+          <Column id="YUL1" type="STRING" size="256"/>
+          <Column id="YUL2" type="STRING" size="256"/>
+          <Column id="YUL3" type="STRING" size="256"/>
+          <Column id="YUL4" type="STRING" size="256"/>
+          <Column id="COST" type="STRING" size="256"/>
+          <Column id="PCOST" type="STRING" size="256"/>
+          <Column id="B_YN" type="STRING" size="256"/>
+          <Column id="BSCD_NM" type="STRING" size="256"/>
+          <Column id="GCODE" type="STRING" size="256"/>
+          <Column id="DONG_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+var Find1_sw  = "N";
+var Find2_sw  = "N";
+var Find3_sw  = "N";
+var Fv_HeadChk1 = 0;                        //체크박스1. 
+var Fv_HeadChk2 = 0;                        //체크박스2. 
+var view_x = 0;				// 창 크기 변경 전 스크린에서 팝업창 x좌표
+var view_y = 0;				// 창 크기 변경 전 스크린에서 팝업창 y좌표
+var p_row = 0;
+
+
+this.SD6310P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyy");
+	this.print_select.set_index(0);
+	this.ed_s_values1.set_index(4);
+	this.ed_s_values2.set_value("0000000000");
+	this.ed_s_values3.set_value("9999999999");
+	this.ed_s_values4.set_value(f_date);
+	this.ed_s_values5.set_value(f_date);
+	this.ed_scode.set_value("000000000");
+	this.ed_ecode.set_value("999999999");
+	this.ed_s_values6.set_index(2);
+	
+	var strUrl = "JSP/sd/sel_bgbr.jsp";
+	var strDs 	= "ds_bgbr=ds_bgbr"; 
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, "", "fnCallback", true, "P", false, this);
+	 
+	var strUrl2 = "JSP/sd/sel_panh.jsp";
+	var strDs2	= "ds_panh=ds_panh";
+	this.gfn_TransactionP("select2", strUrl, strDs2, strDs2, "", "fnCallback", true, "P", false, this);
+
+	var strUrl3 = "JSP/sd/sel_mdcode.jsp";
+	var strDs3 = "ds_mdcode=ds_mdcode";
+	this.gfn_TransactionP("select3", strUrl3, strDs3, strDs3, "", "fnCallback", true, "P", false, this);	
+
+	this.ed_s_values1.setFocus();
+};
+
+this.fnCallback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if(nErrorCode != 0)
+	{
+		alert(strErrorMag);
+		return;
+	}
+}
+
+this.fnSelectfile = function(chk_value)
+{
+	if (chk_value=="0") return gv_urlMrd+"/sd/sd6222r.mrd";
+	else if (chk_value=="1") return gv_urlMrd+"/sd/sd6223r.mrd";
+	else if (chk_value=="2") return gv_urlMrd+"/sd/sd63101r.mrd";
+	else if (chk_value=="3") return gv_urlMrd+"/sd/sd63102r.mrd";
+	else if (chk_value=="4") return gv_urlMrd+"/sd/sd63103r.mrd";
+	else if (chk_value=="5") return gv_urlMrd+"/sd/sd63105r.mrd";
+	
+	else if (chk_value=="6") return gv_urlMrd+"/sd/sd63104r.mrd";
+}
+
+this.fnGridcheck = function(strdsname)
+{
+	// 그리드 데이터 중에 체크된 데이터를 선별하여 리턴.
+	var strReturn="";
+	
+	if (strdsname == "ds_mdcode")
+	{
+		for (var loop = 0; loop < this.ds_mdcode.rowcount; loop++)
+			if (this.ds_mdcode.getColumn(loop,"chk") == '1')
+			{
+			    Find1_sw  = "Y";
+				strReturn = strReturn +"'"+this.ds_mdcode.getColumn(loop,"mdcode")+"',";
+			}
+	}	
+	
+	if (strdsname == "ds_bgbr")
+	{
+		for (var loop = 0; loop < this.ds_bgbr.rowcount; loop++)
+			if (this.ds_bgbr.getColumn(loop,"CHK") == '1')
+			{
+			    Find2_sw  = "Y";
+				strReturn = strReturn +"'"+this.ds_bgbr.getColumn(loop,"CODE")+"',";
+			}
+	}
+	
+	if (strdsname == "ds_panh")
+	{
+		for (var loop = 0; loop < this.ds_panh.rowcount; loop++)
+			if (this.ds_panh.getColumn(loop,"chk") == '1')
+			{
+			    Find3_sw  = "Y";
+				strReturn = strReturn +"'"+this.ds_panh.getColumn(loop,"CODE")+"',";
+			}
+	}		
+	
+	
+	//마지막 쉼표 삭제.
+	return strReturn.substr(0, strReturn.length -1);
+}
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var rdfile = this.fnSelectfile(this.print_select.index); 
+	var s_sql1, s_sql2, Hak_g;  
+	var Line_sw;
+	Find1_sw  = "N";
+	Find3_sw  = "N";
+	s_sql1     = "";
+	s_sql2     = "";
+	var bgbr      = this.fnGridcheck("ds_bgbr");
+	var r_sel     = this.fnGridcheck("ds_mdcode");
+	var panh	  = this.fnGridcheck("ds_panh");
+
+	if (( this.print_select.index == 0 ) || ( this.print_select.index == 1 ) || ( this.print_select.index == 4 ) || ( this.print_select.index == 5 ) || ( this.print_select.index == 6 ))
+	{
+		s_sql1     = "    AND  A.CODE >=  '" + this.ed_s_values2.value +"'";
+		s_sql1     = s_sql1 + "    AND  A.CODE <=  '" + this.ed_s_values3.value +"'";
+		s_sql1     = s_sql1 + "    AND  A.yy >=  '" + this.ed_s_values4.value +"'";
+		s_sql1     = s_sql1 + "    AND  A.yy <=  '" + this.ed_s_values5.value +"'";
+		if ( Find2_sw == "Y" )
+		{
+			s_sql1    = s_sql1 + "    and  a.bgbr_cd in ( " + bgbr +" ) ";
+		}
+
+		if ( Find1_sw == "Y" )
+		{
+			s_sql1    = s_sql1 + "   and substr(a.sgrp_code,1,2) in ( " + r_sel +" ) ";
+		}
+
+		if ( Find3_sw == "Y" )
+		{
+			s_sql1    = s_sql1 + "   and a.panh_cd in ( " + panh +" ) ";
+		}
+
+
+		if (((nexacro.trim(this.ed_scode.value)).length == 9) && ((nexacro.trim(this.ed_ecode.value)).length == 9)) 
+		{
+			s_sql1     = s_sql1 + "    AND  A.sgrp_code >=  '" + this.ed_scode.value +"'";
+			s_sql1     = s_sql1 + "    AND  A.sgrp_code <=  '" + this.ed_ecode.value +"'";
+		}
+		Hak_g      = "4";
+		if ( this.ed_s_values1.index == 0 )
+		{
+			s_sql1     =  s_sql1 + "  and  A.meip_c = '0'  ";
+			Hak_g      = "0";
+		} 
+		else if ( this.ed_s_values1.index == 1 )
+		{
+			s_sql1     =  s_sql1 + " and   A.meip_c = '1'  ";
+			Hak_g      = "1";
+		} 
+		else if ( this.ed_s_values1.index == 2 )
+		{
+			s_sql1     =  s_sql1 + " and   A.meip_c = '2'  ";
+			Hak_g      = "2";
+		} 
+		else if ( this.ed_s_values1.index == 3 )
+		{
+			s_sql1     =  s_sql1 + " and   A.meip_c = '3'  ";
+			Hak_g      = "3";
+		} 
+		if ( this.ed_s_values6.index == 0 )
+		{
+			s_sql1     =  s_sql1 + "  and  A.VAT_GB = '0'  ";
+		} 
+		else if ( this.ed_s_values6.index == 1 )
+		{
+			s_sql1     =  s_sql1 + " and   A.VAT_GB = '3'  ";
+		} 
+
+		Line_sw    =  "N";
+		if (( this.chk_hak.value == "1" ) || ( this.chk_hak1.value == "1" ) || ( this.chk_hak2.value == "1" ))
+		{
+			s_sql1    = s_sql1 + "    and  A.book_hcode in (  ";
+			if ( this.chk_hak.value == "1" )
+			{
+				s_sql1    = s_sql1 + " '00' ";
+				Line_sw  = "Y";
+			}
+			if (( Line_sw == "Y"  ) && ( this.chk_hak1.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + ", '01' ";
+				Line_sw   = "Y";
+			}
+			else if (( Line_sw == "N"  ) && ( this.chk_hak1.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + " '01' ";
+				Line_sw   = "Y";
+			}
+			if (( Line_sw == "Y"  ) && ( this.chk_hak2.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + ", '02' ";
+				Line_sw   = "Y";
+			}
+			else if (( Line_sw == "N"  ) && ( this.chk_hak2.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + " '02' ";
+				Line_sw   = "Y";
+			}  
+			s_sql1      = s_sql1 + "    )  ";
+		}      
+		if ( this.print_select.index == 0 )
+			s_sql1     = s_sql1 + "  ORDER BY A.CODE, A.YY ";
+		else if ( this.print_select.index == 1 )
+			s_sql1     = s_sql1 + "  ORDER BY a.SGRP_CODE, A.CODE, A.YY ";
+		else if ( this.print_select.index == 2 )
+			s_sql1     = s_sql1 + "  ORDER BY  A.CODE, A.YY ";
+		if ( this.print_select.index == 5 )
+		{
+			s_sql2     = "    AND  A.BOOKMST_CODE >=  '" + this.ed_s_values2.value +"'";
+			s_sql2     = s_sql2 + "    AND  A.BOOKMST_CODE <=  '" + this.ed_s_values3.value +"'";
+			s_sql2     = s_sql2 + "    AND  A.BOOKMST_YEAR >=  '" + this.ed_s_values4.value +"'";
+			s_sql2     = s_sql2 + "    AND  A.BOOKMST_YEAR <=  '" + this.ed_s_values5.value +"'";
+		}
+	}	
+	else  if ( this.print_select.index == 2 ) 
+	{
+		s_sql1     = "    AND  A.CODE >=  '" + this.ed_s_values2.value +"'";
+		s_sql1     = s_sql1 + "    AND  A.CODE <=  '" + this.ed_s_values3.value +"'";
+		s_sql1     = s_sql1 + "    AND  A.yy >=  '" + this.ed_s_values4.value +"'";
+		s_sql1     = s_sql1 + "    AND  A.yy <=  '" + this.ed_s_values5.value +"'";
+		if ( Find2_sw == "Y" )
+		{
+			s_sql1    = s_sql1 + "    and  b.bgbr_cd in ( " + bgbr +" ) ";
+		}
+
+		if ( Find1_sw == "Y" )
+		{
+			s_sql1    = s_sql1 + "   and substr(a.sgrp_code,1,2) in ( " + r_sel +" ) ";
+		}  
+
+		if ( Find3_sw == "Y" )
+		{
+			s_sql1    = s_sql1 + "   and a.panh_cd in ( " + panh +" ) ";
+		}            
+
+		if (((nexacro.trim(this.ed_scode.value)).length == 9) && ((nexacro.trim(this.ed_ecode.value)).length == 9)) 
+		{
+			s_sql1     = s_sql1 + "    AND  b.sgrp_code >=  '" + this.ed_scode.value +"'";
+			s_sql1     = s_sql1 + "    AND  b.sgrp_code <=  '" + this.ed_ecode.value +"'";
+		}
+		Hak_g      = "4";
+		if ( this.ed_s_values1.index == 0 )
+		{
+			s_sql1     =  s_sql1 + "  and  b.meip_c = '0'  ";
+			Hak_g      = "0";
+		} 
+		else if ( this.ed_s_values1.index == 1 )
+		{
+			s_sql1     =  s_sql1 + " and   b.meip_c = '1'  ";
+			Hak_g      = "1";
+		} 
+		else if ( this.ed_s_values1.index == 2 )
+		{
+			s_sql1     =  s_sql1 + " and   b.meip_c = '2'  ";
+			Hak_g      = "2";
+		} 
+		else if ( this.ed_s_values1.index == 3 )
+		{
+			s_sql1     =  s_sql1 + " and   b.meip_c = '3'  ";
+			Hak_g      = "3";
+		} 
+		if ( this.ed_s_values6.index == 0 )
+		{
+			s_sql1     =  s_sql1 + "  and  b.VAT_GB = '0'  ";
+		} 
+		else if ( this.ed_s_values6.index == 1 )
+		{
+			s_sql1     =  s_sql1 + " and   b.VAT_GB = '3'  ";
+		} 
+
+		Line_sw    =  "N";
+		if (( this.chk_hak.value == "1" ) || ( this.chk_hak1.value == "1" ) || ( this.chk_hak2.value == "1" ))
+		{
+			s_sql1    = s_sql1 + "    and  b.book_hcode in (  ";
+			if ( this.chk_hak.value == "1" )
+			{
+				s_sql1    = s_sql1 + " '00' ";
+				Line_sw  = "Y";
+			}
+			if (( Line_sw == "Y"  ) && ( this.chk_hak1.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + ", '01' ";
+				Line_sw   = "Y";
+			}
+			else if (( Line_sw == "N"  ) && ( this.chk_hak1.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + " '01' ";
+				Line_sw   = "Y";
+			}
+			if (( Line_sw == "Y"  ) && ( this.chk_hak2.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + ", '02' ";
+				Line_sw   = "Y";
+			}
+			else if (( Line_sw == "N"  ) && ( this.chk_hak2.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + " '02' ";
+				Line_sw   = "Y";
+			}  
+			s_sql1      = s_sql1 + "    )  ";
+		}      
+		s_sql1     = s_sql1 + "  ORDER BY  A.CODE, A.YY ";
+	}	
+	else  if ( this.print_select.index == 3 ) 
+	{
+		s_sql1     = "    AND  A.book_cd >=  '" + this.ed_s_values2.value +"'";
+		s_sql1     = s_sql1 + "    AND  A.book_cd <=  '" + this.ed_s_values3.value +"'";
+		s_sql1     = s_sql1 + "    AND  A.yy >=  '" + this.ed_s_values4.value +"'";
+		s_sql1     = s_sql1 + "    AND  A.yy <=  '" + this.ed_s_values5.value +"'";
+		if ( Find2_sw == "Y" )
+		{
+			s_sql1    = s_sql1 + "    and  b.bgbr_cd in ( " + bgbr +" ) ";
+		}
+
+		if ( Find1_sw == "Y" )
+		{
+			s_sql1    = s_sql1 + "   and substr(a.sgrp_code,1,2) in ( " + r_sel +" ) ";
+		}       
+
+		if ( Find3_sw == "Y" )
+		{
+			s_sql1    = s_sql1 + "   and a.panh_cd in ( " + panh +" ) ";
+		}
+
+		if (((nexacro.trim(this.ed_scode.value)).length == 9) && ((nexacro.trim(this.ed_ecode.value)).length == 9)) 
+		{
+			s_sql1     = s_sql1 + "    AND  b.sgrp_code >=  '" + this.ed_scode.value +"'";
+			s_sql1     = s_sql1 + "    AND  b.sgrp_code <=  '" + this.ed_ecode.value +"'";
+		}
+		Hak_g      = "4";
+		if ( this.ed_s_values1.index  == 0 )
+		{
+			s_sql1     =  s_sql1 + "  and  b.meip_c = '0'  ";
+			Hak_g      = "0";
+		} 
+		else if ( this.ed_s_values1.index == 1 )
+		{
+			s_sql1     =  s_sql1 + " and   b.meip_c = '1'  ";
+			Hak_g      = "1";
+		} 
+		else if ( this.ed_s_values1.index == 2 )
+		{
+			s_sql1     =  s_sql1 + " and   b.meip_c = '2'  ";
+			Hak_g      = "2";
+		} 
+		else if ( this.ed_s_values1.index == 3 )
+		{
+			s_sql1     =  s_sql1 + " and   b.meip_c = '3'  ";
+			Hak_g      = "3";
+		} 
+		if ( this.ed_s_values6.index == 0 )
+		{
+			s_sql1     =  s_sql1 + "  and  b.VAT_GB = '0'  ";
+		} 
+		else if ( this.ed_s_values6.index == 1 )
+		{
+			s_sql1     =  s_sql1 + " and   b.VAT_GB = '3'  ";
+		} 
+
+		Line_sw    =  "N";
+		if (( this.chk_hak.value == "1" ) || ( this.chk_hak1.value == "1" ) || ( this.chk_hak2.value == "1" ))
+		{
+			s_sql1    = s_sql1 + "    and  b.book_hcode in (  ";
+			if ( this.chk_hak.value == "1" )
+			{
+				s_sql1    = s_sql1 + " '00' ";
+				Line_sw  = "Y";
+			}
+			if (( Line_sw == "Y"  ) && ( this.chk_hak1.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + ", '01' ";
+				Line_sw   = "Y";
+			}
+			else if (( Line_sw == "N"  ) && ( this.chk_hak1.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + " '01' ";
+				Line_sw   = "Y";
+			}
+			if (( Line_sw == "Y"  ) && ( this.chk_hak2.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + ", '02' ";
+				Line_sw   = "Y";
+			}
+			else if (( Line_sw == "N"  ) && ( this.chk_hak2.value == "1"  ))
+			{
+				s_sql1    = s_sql1 + " '02' ";
+				Line_sw   = "Y";
+			}  
+			s_sql1      = s_sql1 + "    )  ";
+		}      
+		s_sql1     = s_sql1 + "  ORDER BY  a.cust_gb, a.cust_cd, a.book_cd, a.yy ";         
+	}
+	if(obj.name == "btn_print")
+	{
+		var rdopt  = "/rp ["+this.ed_s_values2.value+"]"+
+			 "["+this.ed_s_values3.value+"]"+
+			 "["+this.ed_s_values4.value+"]"+
+			 "["+this.ed_s_values5.value+"]"+
+			 "["+this.ed_s_values1.value+"]"+
+			 "["+this.ed_s_values6.value+"]"+
+			 "["+this.ed_scode.value+"]"+
+			 "["+this.ed_ecode.value+"]"+
+			 "["+Hak_g+"]"+
+			 "["+s_sql1+"]"+
+			 "["+s_sql2+"]";
+			 
+		var rect;
+		if(system.navigatorname == 'nexacro')
+		{
+			if(system.monitorcount > 1)
+			{
+				var monitor_index = system.getMonitorIndex(system.clientToScreenX(this,0), system.clientToScreenY(this,0));
+				rect = system.getScreenRect(monitor_index);
+			}
+			else
+				rect = system.getScreenRect(1);
+		}
+		else
+			rect = system.getScreenRect(1);
+
+		var objParam = {rdUrl:rdfile, rdParam:rdopt};
+		var sOpenStyle = "topmost=true autosize=false dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false resizable=true";
+		nexacro.open("print_rpt", "sd::SDRDF.xfdl", this.getOwnerFrame(), objParam, sOpenStyle, rect.left, rect.top, rect.width, rect.height, this);
+	}
+	else
+	{
+		if(this.Div00.visible == false)
+		{
+			view_x = system.clientToScreenX(this, 0);
+			view_y = system.clientToScreenY(this, 0);
+			var rect;
+			if(system.navigatorname == 'nexacro')
+			{
+				if(system.monitorcount > 1)
+				{
+					var monitor_index = system.getMonitorIndex(system.clientToScreenX(this,0), system.clientToScreenY(this,0));
+					rect = system.getScreenRect(monitor_index);
+				}
+				else
+					rect = system.getScreenRect(1);
+			}
+			else
+				rect = system.getScreenRect(1);
+				
+			if(system.navigatorname == 'nexacro')
+			{
+				this.getOwnerFrame().set_left(rect.left);
+				this.getOwnerFrame().set_top(rect.top);
+				this.getOwnerFrame().set_width(rect.width);
+				this.getOwnerFrame().set_height(rect.height);
+			}
+			else
+			{
+				//window.moveTo(rect.left, rect.top); 		moveTo 안먹힘
+				window.resizeTo(rect.width,rect.height);
+			}
+			this.Div00.set_visible(true);
+			this.btn_preview.set_text("미리보기 닫기");
+			this.btn_preview.set_width(90);
+			
+			var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+
+						 "s_sql2="+nexacro.wrapQuote(s_sql2);
+			
+			switch(this.print_select.index)
+			{
+				case 0:	
+					var strDs = "ds_1=ds_1";
+					this.Div00.set_url("sd::SD6310P_GRID1.xfdl");
+					this.gfn_TransactionP("ds_1","JSP/sd/SD6310P_DS1_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+					break;
+				case 1:	
+					var strDs = "ds_2=ds_2";
+					this.Div00.set_url("sd::SD6310P_GRID2.xfdl");
+					this.gfn_TransactionP("ds_2","JSP/sd/SD6310P_DS2_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+					break;
+				case 2:
+					var strDs = "ds_3=ds_3";
+					this.Div00.set_url("sd::SD6310P_GRID3.xfdl");
+					this.gfn_TransactionP("ds_3","JSP/sd/SD6310P_DS3_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+					break;
+				case 3:
+					var strDs = "ds_4=ds_4";
+					this.Div00.set_url("sd::SD6310P_GRID4.xfdl");
+					this.gfn_TransactionP("ds_4","JSP/sd/SD6310P_DS4_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+					break;
+				case 4:
+					var strDs = "ds_5=ds_5";
+					this.Div00.set_url("sd::SD6310P_GRID5.xfdl");
+					this.gfn_TransactionP("ds_5","JSP/sd/SD6310P_DS5_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+					break;
+				case 5:
+					var strDs = "ds_6=ds_6";
+					this.Div00.set_url("sd::SD6310P_GRID6.xfdl");
+					this.gfn_TransactionP("ds_6","JSP/sd/SD6310P_DS6_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+					break;
+				case 6:
+					var strDs = "ds_7=ds_7";
+					this.Div00.set_url("sd::SD6310P_GRID7.xfdl");
+					this.gfn_TransactionP("ds_7","JSP/sd/SD6310P_DS7_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+					break;
+			}
+		}
+		else
+		{
+			if(system.navigatorname == 'nexacro')
+			{
+				this.getOwnerFrame().set_left(view_x);
+				this.getOwnerFrame().set_top(view_y-20); // 타이틀 바 크기
+				this.getOwnerFrame().set_width(850);
+				this.getOwnerFrame().set_height(320);
+			}
+			else
+			{
+				//window.moveTo(view_x, view_y-20);  	moveTo 안먹힘
+				window.resizeTo(870, 370); 
+			}
+			this.btn_preview.set_text("미리보기");
+			this.btn_preview.set_width(65);
+			this.ds_1.clearData();
+			this.ds_2.clearData();
+			this.ds_3.clearData();
+			this.ds_4.clearData();
+			this.ds_5.clearData();
+			this.ds_6.clearData();
+			this.ds_7.clearData();
+			this.Div00.set_visible(false);
+		}
+	}
+};
+
+this.fnDSCallback = function(strID, ErrorCode, ErrorMsg)
+{
+	if(ErrorCode != 0)
+	{
+		alert(ErrorMsg);
+		return;
+	}
+	if(strID == "ds_2")
+	{
+		this.ds_2_copy1.copyData(this.ds_2);
+		this.ds_2_copy1.set_keystring('');
+		for(var i = 0; i < this.ds_2.rowcount; i++)
+		{
+			if(this.ds_2.getRowLevel(i) == 1)
+			{
+				this.fnGetRowData(i);
+			}
+		}
+		p_row = 0;
+	}
+}
+
+this.fnGetRowData = function(i)
+{
+	this.ds_2_copy1.insertRow(i);
+	this.ds_2_copy1.copyRow(i, this.ds_2_copy1, i-1);
+	var value1=0, value2=0, value3=0, value4=0, value5=0, value6=0, value7=0, value8=0, value9=0, cnt = 0;
+	for(p_row; p_row < i; p_row++)
+	{
+		var panh_cd = this.ds_2_copy1.getColumn(p_row, "PANH_CD");
+		switch(panh_cd)
+		{
+			case '01': value1 += 1; break;
+			case '02': value2 += 1; break;
+			case '03': value3 += 1; break;
+			case '04': value4 += 1; break;
+			case '05': value5 += 1; break;
+			case '06': value6 += 1; break;
+			case '07': value7 += 1; break;
+			case '08': value8 += 1; break;
+			case '00': value9 += 1; break;
+		}
+		cnt += 1;
+	}
+	this.ds_2_copy1.setColumn(i, "CODE", "신간 : " + value1);
+	this.ds_2_copy1.setColumn(i, "BOOK_NM", "재편 : " + value2 + "     표지교체 : " + value3 + "     수정(재생가) : " + value4 + "     수정(재생불가) : " + value5);
+	this.ds_2_copy1.setColumn(i, "BGBR_NM", "무 : " + value6);
+	this.ds_2_copy1.setColumn(i, "VAT_GB", "케이스교체 : " + value7);
+	this.ds_2_copy1.setColumn(i, "PANH_NM", "폐간 : " + value8);
+	this.ds_2_copy1.setColumn(i, "ISBN_N", "유형X : " + value9);
+	this.ds_2_copy1.setColumn(i, "NYUK", "권수 : " + cnt);
+	
+	this.ds_2_copy1.setColumn(i, "YY", "");
+	this.ds_2_copy1.setColumn(i, "C_YMD", "");
+	this.ds_2_copy1.setColumn(i, "MEIP_C", "");
+	this.ds_2_copy1.setColumn(i, "MOOK", "");
+	this.ds_2_copy1.setColumn(i, "YGUBN", "");
+	p_row += 1;
+}
+
+this.fnExpr_buse = function(code, name)
+{
+	if (code.valueOf() == "undefined" || name.valueOf() == "undefined" ) return '';
+	else return code + ')' + name;
+}
+
+this.fnNullChk = function(value)
+{
+	if (value.valueOf() == "undefined" || value == null ) return '';
+	else return value;
+}
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

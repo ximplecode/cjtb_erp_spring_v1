@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="FrameTop" width="1250" height="120" titletext="" onload="form_onload" font="normal 11pt/normal &quot;Arial&quot;" scrollbartype="none none" scrolltype="none" background="#1155a9" onsize="form_onsize" accessibilityrole="form">
+    <Layouts>
+      <Layout height="120" width="1250" screenid="Desktop_screen">
+        <Static id="sta_Title" taborder="0" left="20" top="8" width="218" height="22" cssclass="sta_TF_logo" tooltiptext="천재교과서 통합관리시스템"/>
+        <Static id="Static00" taborder="0" left="0" top="0" height="40" background="#4364ed" right="0"/>
+        <Div id="div_TopMenu" taborder="1" left="0" top="40" bottom="0" background="#4364ed" right="0">
+          <Layouts>
+            <Layout>
+              <ImageViewer id="img_logo" taborder="0" left="0" top="15" width="150" height="50" image="url('Img::logo.png')" stretch="none" background="#4364ed" border="0px none" onclick="div_menu_img_logo_onclick"/>
+              <Button id="btn_hr" taborder="1" text="인사관리" left="240" top="25" width="100" height="30" border="0px none" borderRadius="15px" onclick="div_menu_btn_onclick" cssclass="btn_normal" background="#4364ed"/>
+              <Button id="btn_ac" taborder="2" text="회계관리" left="370" top="25" width="100" height="30" border="0px none" borderRadius="15px" onclick="div_menu_btn_onclick" cssclass="btn_normal" background="#4364ed"/>
+              <Button id="btn_sd" taborder="3" text="영업관리" left="500" top="25" width="100" height="30" border="0px none" borderRadius="15px" onclick="div_menu_btn_onclick" cssclass="btn_normal" background="#4364ed"/>
+              <Button id="btn_mk" taborder="4" text="제작관리" left="630" top="25" width="100" height="30" border="0px none" borderRadius="15px" onclick="div_menu_btn_onclick" cssclass="btn_normal" background="#4364ed"/>
+              <Button id="btn_ed" taborder="5" text="편집관리" left="760" top="25" width="100" height="30" border="0px none" borderRadius="15px" onclick="div_menu_btn_onclick" cssclass="btn_normal" background="#4364ed"/>
+              <Button id="btn_bi" taborder="6" text="경영정보관리" left="890" top="25" width="100" height="30" border="0px none" borderRadius="15px" onclick="div_menu_btn_onclick" cssclass="btn_normal" background="#4364ed"/>
+              <Button id="btn_et" taborder="7" text="기타업무관리" left="1020" top="25" width="100" height="30" border="0px none" borderRadius="15px" onclick="div_menu_btn_onclick" cssclass="btn_normal" background="#4364ed"/>
+              <Button id="btn_gw" taborder="8" text="전자결재" left="1150" top="25" width="100" height="30" border="0px none" borderRadius="15px" onclick="div_menu_btn_onclick" cssclass="btn_normal" background="#4364ed"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_bookmark" taborder="2" text="즐겨찾기 설정" left="8" top="0" width="100" background="#4364ed" border="0px none" height="40" font="normal bold 10pt/normal &quot;Arial&quot;"/>
+        <ImageViewer id="img_email" taborder="3" left="1118" top="10" width="20" height="20" image="url('Img::ico_auth.png')" stretch="none" background="#4364ed" border="0px none"/>
+        <ImageViewer id="img_personal" taborder="4" left="1168" top="10" width="20" height="20" image="url('Img::ico_myinfo.png')" stretch="none" background="#4364ed" border="0px none"/>
+        <ImageViewer id="img_logout" taborder="5" left="1218" top="10" width="20" height="20" image="url('Img::ico_logout.png')" stretch="none" background="#4364ed" border="0px none" onclick="img_logout_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_main.xjs";
+/************************************************************************************************
+ * 1. FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fv_MinWidth 	= 0; 		// 최소 너비
+var objApp = nexacro.getApplication();
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_Init(obj);	
+};
+
+this.form_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if (this.fv_MinWidth > 0) {
+		if (e.cx > this.fv_MinWidth) {
+			obj.set_width(e.cx);
+		} else {
+			obj.set_width(this.fv_MinWidth);
+		}
+	}
+};
+
+this.fn_Init = function(obj)
+{
+	this._gfn_AddLoadFrame(obj.name);
+};
+
+
+this.fn_SetInfo = function()
+{
+	
+};
+
+this.form_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if (this.fv_MinWidth > 0) {
+		if (e.cx > this.fv_MinWidth) {
+			obj.set_width(e.cx);
+		} else {
+			obj.set_width(this.fv_MinWidth);
+		}
+	}
+};
+
+
+this.div_menu_btn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var btn_nm;
+	
+	btn_nm = obj.id;
+	
+	if (btn_nm != "btn_ac") {this.div_TopMenu.form.btn_ac.set_cssclass("btn_normal");}
+	if (btn_nm != "btn_bi") {this.div_TopMenu.form.btn_bi.set_cssclass("btn_normal");}
+	if (btn_nm != "btn_ed") {this.div_TopMenu.form.btn_ed.set_cssclass("btn_normal");}
+	if (btn_nm != "btn_et") {this.div_TopMenu.form.btn_et.set_cssclass("btn_normal");}
+	if (btn_nm != "btn_gw") {this.div_TopMenu.form.btn_gw.set_cssclass("btn_normal");}
+	if (btn_nm != "btn_hr") {this.div_TopMenu.form.btn_hr.set_cssclass("btn_normal");}
+	if (btn_nm != "btn_pd") {this.div_TopMenu.form.btn_mk.set_cssclass("btn_normal");}
+	if (btn_nm != "btn_sd") {this.div_TopMenu.form.btn_sd.set_cssclass("btn_normal");}
+	
+	obj.set_cssclass("btn_line");
+	
+	btn_nm = btn_nm.replace("btn_","");
+
+	if ( nexacro.getApplication().gv_selectMenu != btn_nm)
+	{
+		if (system.navigatorname != 'nexacro')
+		{
+			//MyHistory.setLocationHash(btn_nm, btn_nm); // 해쉬값에 메뉴 설정
+		}
+		trace(obj, obj.id);
+		this.lfn_OpenMenu(obj, obj.id);
+	}
+};
+
+this.lfn_OpenMenu = function(obj, btnId)
+{ 
+	objApp.mainframe.VFrameSet.HFrameSet.VFrameSet.MdiFrame.form.fn_SetLeftFrameSize("expand");
+	objApp.mainframe.VFrameSet.HFrameSet.LeftFrame.form.fn_SetTitle(obj.id, obj.text, true);
+	objApp.mainframe.VFrameSet.HFrameSet.LeftFrame.form.fn_SetInfo();
+	objApp.mainframe.VFrameSet.HFrameSet.LeftFrame.form.fn_InitRow();
+};
+
+/**
+ * @class  Top Menu 명 반환 <br>
+ * @param  {String} categoryId - Category Id
+ * @return {String} Top Menu 명
+ */
+this.fn_GetTopMenuName = function(categoryId)
+{
+	var row = this.ds_TopMenuList.findRow("CATEGORY_ID", categoryId);
+	return this.ds_TopMenuList.getColumn(row, "MENU_NAME");
+};
+
+this.div_menu_img_logo_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	objApp.gv_selectMenu = "";
+	this.lfn_WorkMain_open();
+};
+
+this.img_logout_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.lfn_reLogin();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_TopMenuList">
+        <ColumnInfo>
+          <Column id="CATEGORY_ID" type="STRING" size="32"/>
+          <Column id="SUB_IMAGE_WIDTH" type="STRING" size="32"/>
+          <Column id="SUB_IMAGE" type="STRING" size="32"/>
+          <Column id="TOP_IMAGE" type="STRING" size="32"/>
+          <Column id="ADMIN" type="STRING" size="32"/>
+          <Column id="MENU_NAME" type="STRING" size="32"/>
+          <Column id="TOP_IMAGE_WIDTH" type="STRING" size="32"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

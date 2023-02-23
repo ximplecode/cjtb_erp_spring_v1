@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR202P" width="1250" height="625" titletext="New Form" onload="HR202P_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="인원현황" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta_gb" taborder="1" text="적용일자" left="2" top="50" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="2" left="sta_gb:0" top="50" height="30" border="1px solid #10aea9" background="#9ee0de" right="2"/>
+        <Calendar id="cald_ymd" taborder="3" left="sta_gb:5" top="55" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="100"/>
+        <CheckBox id="ckb_gb" taborder="4" text="당일퇴사자 포함" left="cald_ymd:2" top="55" width="130" height="20" value="false"/>
+        <Static id="sta_gb00" taborder="5" text="구분" left="ckb_gb:0" top="50" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Radio id="rd_select" taborder="6" left="sta_gb00:0" top="50" height="30" right="2" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" columncount="3" padding="0px 0px 0px 50px" value="01" text="부서별 인원 현황" index="0" onitemchanged="rd_select_onitemchanged"/>
+        <Div id="div_sub" taborder="7" left="2" top="sta_gb:0" border="1px solid #3cbcb8" visible="true" right="2" bottom="2">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Button id="btn_search" taborder="8" text="조회" top="16" width="120" height="22" right="140" onclick="btn_search_onclick"/>
+        <Button id="btn_print" taborder="9" text="출력" top="16" width="120" height="22" right="10" onclick="btn_print_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">부서별 인원 현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">학력/연령/근속년수별 인원현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">입/퇴사자 현황(연간)</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_01" keystring="FCODE">
+        <ColumnInfo>
+          <Column id="FCODE" type="STRING" size="256"/>
+          <Column id="FNAME" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSENM" type="STRING" size="256"/>
+          <Column id="LEVEL_CO1" type="INT" size="256"/>
+          <Column id="LEVEL_CO2" type="INT" size="256"/>
+          <Column id="LEVEL_CO3" type="INT" size="256"/>
+          <Column id="LEVEL_CO4" type="INT" size="256"/>
+          <Column id="LEVEL_CO_ETC" type="INT" size="256"/>
+          <Column id="LEVEL_TOTAL" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_021" keystring="GB">
+        <ColumnInfo>
+          <Column id="SCH" type="STRING" size="256"/>
+          <Column id="CNT" type="INT" size="256"/>
+          <Column id="PER" type="FLOAT" size="256"/>
+          <Column id="GB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_022" keystring="GB">
+        <ColumnInfo>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="AGE" type="STRING" size="256"/>
+          <Column id="AGECNT" type="INT" size="256"/>
+          <Column id="AGEPER" type="FLOAT" size="256"/>
+          <Column id="GB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_023" keystring="GB">
+        <ColumnInfo>
+          <Column id="YEARGB" type="STRING" size="256"/>
+          <Column id="YEARCNT" type="INT" size="256"/>
+          <Column id="YEARPER" type="FLOAT" size="256"/>
+          <Column id="GB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_03" keystring="GB">
+        <ColumnInfo>
+          <Column id="MDATE" type="STRING" size="256"/>
+          <Column id="IPSADT" type="INT" size="256"/>
+          <Column id="TOISADT" type="INT" size="256"/>
+          <Column id="CNT" type="STRING" size="256"/>
+          <Column id="GB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	switch (this.rd_select.value)
+	{
+		case "01" :
+			this.getData_01();
+			break;
+		case "02" :
+			this.getData_02();
+			break;
+		case "03" :
+			this.getData_03();
+			break;
+	}
+};
+
+this.getData_01 = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr202_01.jsp";
+	in_ds = "ds_01=ds_01";
+	out_ds = "ds_01=ds_01";
+	str_arg = "YMD='"+ this.cald_ymd.value +"' GB='"+ this.lfn_CheckBox_Return(this.ckb_gb) + "'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+}
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+}
+
+this.HR202P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var dt = new Date();
+	
+	this.cald_ymd.set_value(dt);
+	this.setDiv_url();
+};
+
+this.setDiv_url = function()
+{
+	this.ds_01.clearData();
+	switch (this.rd_select.value)
+	{
+		case "01" :
+			this.div_sub.set_url("hr::HR202P_01.xfdl");
+			break;
+		case "02" :
+			this.div_sub.set_url("hr::HR202P_02.xfdl");
+			break;
+		case "03" :
+			this.div_sub.set_url("hr::HR202P_03.xfdl");
+			break;
+	}
+}
+
+
+this.rd_select_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	this.setDiv_url();
+};
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	switch (this.rd_select.value)
+	{
+		case "01" : 
+			this.fn_print("rpt/hr/HR202P_01.mrd","부서별 인원 현황");
+			break;
+		case "02" :
+			this.fn_print("rpt/hr/HR202P_02.mrd","학력/연령/근속연수별 인원 현황");
+			break;
+		case "03" :
+			this.fn_print("rpt/hr/HR202P_03.mrd","월별 입/퇴사자 인원 현황");
+			break;
+	}
+	
+};
+
+this.fn_print = function(url, caption)
+{
+	var rdUrl = gv_svcUrl + url;	
+    var rdParam;
+	if (this.ckb_gb.value == true)
+	{
+		rdParam = "/rp [" + this.cald_ymd.value + "][][1]";  
+	}
+	else
+	{
+		rdParam = "/rp [" + this.cald_ymd.value + "][1][]";  
+	}
+	
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext(caption);
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(true);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+}
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+}
+
+this.getData_02 = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr202_02all.jsp";
+	in_ds = "ds_021=ds_021 ds_022=ds_022 ds_023=ds_023";
+	out_ds = "ds_021=ds_021 ds_022=ds_022 ds_023=ds_023";
+	str_arg = "YMD='"+ this.cald_ymd.value +"' GB='"+ this.lfn_CheckBox_Return(this.ckb_gb) + "'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+}
+
+this.getData_03 = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr202_03.jsp";
+	in_ds = "ds_03=ds_03";
+	out_ds = "ds_03=ds_03";
+	str_arg = "YMD='"+ this.cald_ymd.value +"' GB='"+ this.lfn_CheckBox_Return(this.ckb_gb) + "'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+}
+
+]]></Script>
+  </Form>
+</FDL>

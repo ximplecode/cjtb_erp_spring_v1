@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Insa" width="474" height="470" titletext="New Form" onload="Insa_onload">
+    <Layouts>
+      <Layout height="470" width="474">
+        <Static id="Static00" taborder="0" text="성명" left="245" top="6" width="55" height="29" background="#10aea9" color="#ffffff" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center"/>
+        <Edit id="edt_name" taborder="1" left="301" top="6" width="115" height="29" onkeydown="edt_name_onkeydown"/>
+        <Button id="btn_search" taborder="2" top="6" width="51" height="29" background="url('Img::loupe.png') no-repeat center center #3cbcb8" left="418" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="3" text="닫기" top="436" height="29" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" width="83" left="196"/>
+        <Grid id="grd_insa" taborder="4" left="237" top="45" binddataset="ds_insa" autofittype="col" width="233" height="385" oncelldblclick="grd_insa_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="115" band="left"/>
+                <Column size="47" band="left"/>
+                <Column size="57"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서"/>
+                <Cell col="1" text="직책"/>
+                <Cell col="2" text="성명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSENM"/>
+                <Cell col="1" text="bind:JIKWINM"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_buse" taborder="5" left="7" top="3" binddataset="ds_buse" treeusebutton="use" treeusecheckbox="false" treeinitstatus="expand,all" oncelldblclick="grd_buse_oncelldblclick" width="231" height="427">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="222"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:NAME" edittype="tree" displaytype="treeitemcontrol" treelevel="bind:BU_LEVEL" border="0px none #dbdee2" cssclass="CssBuse_tree"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_insa">
+        <ColumnInfo>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSENM" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="JIKWINM" type="STRING" size="256"/>
+          <Column id="LEVEL_CD" type="STRING" size="256"/>
+          <Column id="LEVEL_NM" type="STRING" size="256"/>
+          <Column id="OLD_JIKWINM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_buse">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+          <Column id="BU_LEVEL" type="STRING" size="256"/>
+          <Column id="BU_NAME" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="256"/>
+          <Column id="DECISIONLINE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.Insa_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/common/getdata_buse.jsp";
+	in_ds = "ds_buse=ds_buse";
+	out_ds = "ds_buse=ds_buse";
+	str_arg = "buse_nm=''" ;
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_buse_select", true, "P", false, this);
+};
+
+this.Callback_buse_select = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+};
+
+this.getData_insa = function(sabun,name,busecd)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/common/getdata_insa.jsp";
+	in_ds = "ds_insa=ds_insa";
+	out_ds = "ds_insa=ds_insa";
+	str_arg = "sabun='"+sabun+"' name='"+name+"' busecd='"+busecd+"'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_insa", true, "P", false,this);
+};
+
+this.Callback_insa = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+};
+this.grd_buse_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.getData_insa("","",this.ds_buse.getColumn(e.row,"CODE"));
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.edt_name.value) == false)
+	{
+		this.getData_insa("",this.edt_name.value,"");
+	}
+};
+
+this.edt_name_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13)
+	{
+		this.btn_search_onclick(null,null);
+	}
+};
+
+this.grd_insa_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.parent.arr_s[0] = this.ds_insa.getColumn(e.row,"SABUN");
+	this.parent.arr_s[1] = this.ds_insa.getColumn(e.row,"NAME");
+	this.parent.arr_s[2] = this.ds_insa.getColumn(e.row,"JIKWINM");
+	this.parent.arr_s[3] = this.ds_insa.getColumn(e.row,"BUSENM");
+	this.parent.arr_s[4] = this.ds_insa.getColumn(e.row,"OLD_JIKWINM");
+	
+	this.close(1);
+};
+
+]]></Script>
+  </Form>
+</FDL>

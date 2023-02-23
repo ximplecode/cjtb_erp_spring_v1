@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED187F" width="1280" height="720" titletext="New Form" onload="ED187F_onload" onsize="ED187F_onsize" ontimer="ED187F_ontimer">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00_00" taborder="0" text="조회일자" left="20" top="27" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="1" left="103" top="27" width="120" height="30"/>
+        <Calendar id="cal_Edate" taborder="2" left="227" top="27" width="120" height="30"/>
+        <Button id="btn_search" taborder="3" text="조회" top="27" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="96" onclick="Div00_btn_search_onclick"/>
+        <Button id="btn_print" taborder="4" text="출력" top="27" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="27"/>
+        <Grid id="Grid00" taborder="5" left="18" top="61" width="1249" height="639" binddataset="ds_list">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48" band="left"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="80"/>
+                <Column size="500"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="순번"/>
+                <Cell col="1" text="성명"/>
+                <Cell col="2" text="주민등록번호"/>
+                <Cell col="3" text="우편번호"/>
+                <Cell col="4" text="주소"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="currow + 1" textAlign="center"/>
+                <Cell col="1" text="bind:ATHR_NAME" textAlign="center"/>
+                <Cell col="2" text="bind:ATHR_JUMINNO" textAlign="center"/>
+                <Cell col="3" text="bind:ATHR_HOMEZIP" textAlign="center"/>
+                <Cell col="4" text="bind:ATHR_HOMEADDR"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var rdUrl,rdParam,sSelect;
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+this.ED187F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.chk_value = function()
+{
+	if(this.cal_Sdate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Sdate.dropdown();
+		return false;
+	}	
+	
+	if(this.cal_Edate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Edate.dropdown();
+		return false;
+	}	
+	
+	return true;
+}
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	if(this.chk_value())
+	{	
+		var inds = "ds_list=ds_list";
+		var outds = "ds_list=ds_list";
+		
+		var strArg = "SDATE=" + nexacro.wrapQuote(this.cal_Sdate.value)
+				   + " EDATE=" + nexacro.wrapQuote(this.cal_Edate.value);
+				   
+		this.gfn_TransactionP("select","JSP/ed/ed187f_list.jsp", inds, outds, strArg, "fnSearchCallback", false, "P", false, this);
+	}
+};
+
+this.fnSearchCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else if(this.ds_list.rowcount < 1)
+		alert("조회된 데이터가 없습니다.");
+}
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.chk_value())
+	{
+		rdUrl = gv_urlMrd + "/ed/ED187.mrd";
+		
+		rdParam  = "/ragentpath ["+ gv_urlRdDataServer +"]" +
+				   " /rp ["+ this.cal_Sdate.value + "]["+ this.cal_Edate.value +"]";
+				
+		this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+	}
+	
+};
+
+this.ED187F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.ED187F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.Grid00);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="ATHR_JUMINNO" type="STRING" size="256"/>
+          <Column id="ATHR_NAME" type="STRING" size="256"/>
+          <Column id="ATHR_HOMEZIP" type="STRING" size="256"/>
+          <Column id="ATHR_HOMEADDR" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

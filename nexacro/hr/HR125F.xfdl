@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR125F" width="1250" height="625" titletext="New Form" onload="HR125F_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="인사발령대장" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta_gb" taborder="1" text="조회기간" left="2" top="Static02:0" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="2" left="sta_gb:0" top="Static02:0" height="30" border="1px solid #10aea9" background="#9ee0de" right="2"/>
+        <Calendar id="cald_symd" taborder="3" left="sta_gb:5" top="55" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="163"/>
+        <Static id="Static00" taborder="4" text="부터" left="cald_symd:0" top="55" width="60" height="20" textAlign="center" font="normal bold 10pt/normal &quot;Arial&quot;" color="white"/>
+        <Calendar id="cald_eymd" taborder="5" left="Static00:0" top="55" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="163"/>
+        <Static id="sta_gb00" taborder="6" text="발령구분" left="cald_eymd:30" top="50" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_bal_gb" taborder="7" text="Combo00" left="sta_gb00:5" top="55" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_balGB" codecolumn="CODE" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" color="white" right="41.60%"/>
+        <Grid id="grd_list" taborder="8" left="2" top="sta_gb:2" right="2" bottom="2" binddataset="ds_hr125" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="230"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="발령구분"/>
+                <Cell col="1" text="사번"/>
+                <Cell col="2" text="이름"/>
+                <Cell col="3" text="부서"/>
+                <Cell col="4" text="직위"/>
+                <Cell col="5" text="입사일"/>
+                <Cell col="6" text="발령일"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BALGB" textAlign="center"/>
+                <Cell col="1" text="bind:SABUN" textAlign="center"/>
+                <Cell col="2" text="bind:NAME" textAlign="center"/>
+                <Cell col="3" text="bind:BUSE"/>
+                <Cell col="4" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="5" text="bind:IPSADT" textAlign="center" displaytype="date"/>
+                <Cell col="6" text="bind:YMD" textAlign="center" displaytype="date"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="9" text="조회" top="16" width="120" height="22" right="140" onclick="btn_search_onclick"/>
+        <Button id="btn_print" taborder="10" text="출력" top="16" width="120" height="22" right="10" onclick="btn_print_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_balGB">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">00</Col>
+            <Col id="NAME">전체</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">10</Col>
+            <Col id="NAME">임용</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">20</Col>
+            <Col id="NAME">승진</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">30</Col>
+            <Col id="NAME">전보</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">40</Col>
+            <Col id="NAME">파견</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">50</Col>
+            <Col id="NAME">퇴직</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_hr125">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JUMIN" type="STRING" size="256"/>
+          <Column id="IPSADT" type="STRING" size="256"/>
+          <Column id="YMD" type="STRING" size="256"/>
+          <Column id="BAL_GB" type="STRING" size="256"/>
+          <Column id="BALGB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_hr125.jsp";
+	in_ds = "ds_hr125=ds_hr125";
+	out_ds = "ds_hr125=ds_hr125";
+	str_arg = "sdate='"+ this.cald_symd.value +"' edate='"+ this.cald_eymd.value +"' bal_gb='"+ this.cb_bal_gb.value +"'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+};
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+}
+
+this.HR125F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var dt = new Date();
+	
+	this.cald_symd.set_value( Eco.date.addDate(dt, -1) );
+	this.cald_eymd.set_value(dt);
+	this.cb_bal_gb.set_value("00");
+};
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	var rdUrl = gv_svcUrl + "rpt/hr/HR125P_01.mrd";
+    var rdParam = "/rp [" +  this.cald_symd.value + "][" + this.cald_eymd.value + "][" + this.cb_bal_gb.value + "]";  
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("인사발령대장");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(true);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+};
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+}
+]]></Script>
+  </Form>
+</FDL>

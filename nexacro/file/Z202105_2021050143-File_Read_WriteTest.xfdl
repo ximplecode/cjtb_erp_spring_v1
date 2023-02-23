@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="test" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Button id="Button00" taborder="0" text="line수 확인" left="87" top="47" width="193" height="54" onclick="Button00_onclick"/>
+        <TextArea id="TextArea00" taborder="1" left="310" top="185" width="423" height="191"/>
+        <Button id="Button01" taborder="2" text="line단위로 읽어 오기" left="320" top="49" width="210" height="50" onclick="Button01_onclick"/>
+        <Button id="Button02" taborder="3" text="write 하기" left="85" top="121" width="193" height="38" onclick="Button02_onclick"/>
+        <TextArea id="TextArea01" taborder="4" left="14" top="191" width="280" height="182" value="안녕하세요. 투비소프트 입니다.&#10;TXT 파일 생성 테스트 입니다."/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.readCnt = null;
+this.readStr = "";
+this.linecnt = 0;
+this.openStatus = "";
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.readCnt = 0;
+	var vFile = this.FileDialog00.open("FileOpen", FileDialog.LOAD, "%DOCUMENT%");
+};
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.readCnt = 1;
+	var vFile = this.FileDialog00.open("FileOpen", FileDialog.LOAD, "%DOCUMENT%");
+};
+
+this.FileDialog00_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
+{
+	var vFile = e.virtualfiles[0];
+	
+	trace(vFile.fullpath);
+	this.openStatus = "read";
+	var rtn = this.VirtualFile00.open(vFile.fullpath, nexacro.VirtualFile.openRead);
+	
+};
+
+this.VirtualFile00_onsuccess = function(obj:nexacro.VirtualFile,e:nexacro.VirtualFileEventInfo)
+{
+	
+		   switch (e.reason)
+           {         
+                     // open
+                     case 1 :
+							if(this.openStatus == "read")
+							{
+								if(this.readCnt == 0){
+									obj.read();
+								}else{
+									obj.readLine();
+								}
+							}
+							else if(this.openStatus == "write")
+							{
+								var bSuc = this.VirtualFile00.write(this.TextArea01.value);	
+							}
+								
+                            break;             
+
+                     // close
+
+
+                     case 2 :
+
+                                break;             
+
+                     // read
+
+                     case 3 :
+								this.TextArea00.set_value(e.textdata);
+								var nStr = e.textdata.split("\r\n");
+								
+								alert("전체 라인수 >> " + nStr.length);
+                                obj.close();
+								
+
+                                break;
+
+                     // readLine
+
+                     case 4 :
+								
+								if(e.textdata.length == 0){
+									this.TextArea00.set_value(this.readStr);
+									obj.close();
+								 }else{
+									this.linecnt++;
+									this.readStr = this.readStr + e.textdata +" >>> readLine\n";
+									alert(this.linecnt + " 번째 라인\n" + e.textdata);
+									obj.readLine();
+								 }
+                                break;
+
+                     // seek
+
+                     case 5 :
+
+                                break;
+
+                     // write
+
+                     case 6 :
+
+                               trace("@@@@@@ write 성공!");
+								this.VirtualFile00.close(); 
+								break;          
+
+                     // remove
+
+                     case 7 :
+
+                                break;             
+
+                     // getFileList
+
+                     case 8 :           
+
+                                break;             
+
+                     // getFileSize
+
+                     case 9 :
+								trace("size >>> " + e.filesize);
+								
+								
+                                break;             
+
+                     // isExist
+
+                     case 10 :
+
+                                if (e.fileisexist)
+
+                                {
+
+                                          //trace("File is exist.");
+
+                                }
+
+                                else
+
+                                {
+
+                                          //trace("File is not exist.");
+
+                                }
+
+                                break;
+
+           }
+};
+
+
+
+this.Button02_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.openStatus = "write";
+	var path = system.convertRealPath("%MYDOCUMENT%") + "\\txtFile.txt";
+	this.VirtualFile00.open(path, VirtualFile.openWrite);
+};
+]]></Script>
+    <Objects>
+      <FileDialog id="FileDialog00" onclose="FileDialog00_onclose"/>
+      <VirtualFile id="VirtualFile00" onsuccess="VirtualFile00_onsuccess"/>
+    </Objects>
+  </Form>
+</FDL>

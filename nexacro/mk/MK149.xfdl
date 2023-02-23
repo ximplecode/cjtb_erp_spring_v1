@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="진행일자 오류현황" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Button id="btnSearch" taborder="1" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="34" onclick="btnSearch_onclick" right="145" width="80"/>
+        <Static id="Static02" taborder="0" text="진행일자 오류현황" left="12" top="10" width="388" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnExcel" taborder="3" top="34" width="43" height="39" icon="url('Img::ico_excel_O.png')" right="0.69%" onclick="btnExcel_onclick"/>
+        <Button id="btnPrt" taborder="2" text="출력" top="34" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="btnExcel:7" onclick="btnPrt_onclick"/>
+        <Grid id="grdList" taborder="4" left="6" top="80" binddataset="dsList" autofittype="none" width="98.85%" height="87.22%">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="103"/>
+                <Column size="103"/>
+                <Column size="99"/>
+                <Column size="72"/>
+                <Column size="293"/>
+                <Column size="99"/>
+                <Column size="211"/>
+                <Column size="156"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="34"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="발주일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="진행일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="발주번호" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="순번" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="용도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="용지" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="거래처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ORDMST_DATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle" displaytype="date"/>
+                <Cell col="1" text="bind:ORDDTL_RUNDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle" displaytype="date"/>
+                <Cell col="2" text="bind:ORDMST_NO" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" calendardateformat="yyyy-MM-dd" suppress="0" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''"/>
+                <Cell col="3" text="bind:ORDDTL_SEQ" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" calendardateformat="yyyy-MM-dd" suppress="0" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''"/>
+                <Cell col="4" text="bind:BOOKMST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="5" text="bind:USE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="6" text="bind:PPR_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="7" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" text="bind:NAME" suppress="0" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###" calendardateformat="yyyy-MM-dd"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerPrt;
+var vStr;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var urlExcel = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerPrt = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_PRINT");
+	
+	//권한 체크 및 컴포넌트 ENABLE처리
+	if(vPerSel != "1" || vPerPrt != "1")
+		this.fctn_User_Enabled(this, false);
+
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	str_url = "JSP/mk/mk149_Select.jsp";
+	in_ds 	= "dsList=dsList";
+	out_ds 	= "dsList=dsList";
+	
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, "", "fnCallbackSelect", false, "S", false, this);
+	
+};
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		
+		if(this.dsList.rowcount == 0)
+		{
+			alert("조회된 자료가 없습니다.");
+			return false;
+		}
+	}
+};
+
+//레포트 출력 이벤트
+this.btnPrt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var rdUrl = "";
+	rdUrl = gv_svcUrl + "rpt/mk/MK149.mrd";
+	
+	var rdParam = "/ragentpath ["+ gv_urlRdDataServer +"]"; 
+	
+	var vScreenWidth = system.getScreenWidth();
+	
+	if(vScreenWidth >= 1920)
+		vScreenWidth = vScreenWidth/2
+	
+	nexacro.open("popupPrt", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, "autosize=false", 0, 0, vScreenWidth, system.getScreenHeight(), this);
+
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+//#######################################################
+// 사용권한에 따른 컴포넌트 Enable 여부
+// formObj : 폼 ID 변수
+// _set : Enable 변수 (True, False)
+//#######################################################
+this.fctn_User_Enabled = function(formObj, _set)
+{
+	var comObj;
+	// 마스터 폼 컴포넌트 Enabled 여부
+	for(var i = 0; i < formObj.components.length;  i++)
+	{
+		comObj = formObj.components[i];
+		
+		if (comObj == "[object Edit]" || comObj == "[object Combo]"
+		   || comObj == "[object Calendar]" || comObj == "[object MaskEdit]" 
+		   || comObj == "[object TextArea]")
+		{
+			comObj.set_enable(_set);
+		}
+	}
+	
+	if(vPerSel != 1)
+		this.btnSearch.set_enable(_set);
+		
+	if(vPerPrt != 1){
+		this.btnPrt.set_enable(_set);
+		this.btnExcel.set_enable(_set);
+	}
+}
+
+this.btnExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, 
+        this.grdList, "Sheet1!A1");
+    
+	this.exportObj.set_exporturl(urlExcel);
+	this.exportObj.exportData(); 
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="ORDMST_DATE" type="STRING" size="256"/>
+          <Column id="ORDMST_NO" type="STRING" size="256"/>
+          <Column id="ORDDTL_SEQ" type="STRING" size="256"/>
+          <Column id="ORDDTL_RUNDATE" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="256"/>
+          <Column id="USE_NAME" type="STRING" size="256"/>
+          <Column id="ORDMST_QTY" type="STRING" size="256"/>
+          <Column id="PPR_NAME" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsProcess" oncolumnchanged="ds_mk_Paper_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="PRCS_CODE" type="STRING" size="2"/>
+          <Column id="PRCS_NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="PRCS_CODE">00</Col>
+          </Row>
+          <Row>
+            <Col id="PRCS_CODE">01</Col>
+            <Col id="PRCS_NAME">1호기</Col>
+          </Row>
+          <Row>
+            <Col id="PRCS_CODE">02</Col>
+            <Col id="PRCS_NAME">2호기</Col>
+          </Row>
+          <Row>
+            <Col id="PRCS_CODE">03</Col>
+            <Col id="PRCS_NAME">3호기</Col>
+          </Row>
+          <Row>
+            <Col id="PRCS_CODE">04</Col>
+            <Col id="PRCS_NAME">4호기</Col>
+          </Row>
+          <Row>
+            <Col id="PRCS_CODE">05</Col>
+            <Col id="PRCS_NAME">5호기</Col>
+          </Row>
+          <Row>
+            <Col id="PRCS_CODE">06</Col>
+            <Col id="PRCS_NAME">6호기</Col>
+          </Row>
+          <Row>
+            <Col id="PRCS_CODE">07</Col>
+            <Col id="PRCS_NAME">7호기</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

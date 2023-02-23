@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD1110F_GRID7" width="1370" height="720" titletext="New Form" onsize="SD1040F_GRID1_onsize" ontimer="SD1040F_GRID1_ontimer">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1370">
+        <Grid id="SD1110F_GRID7" taborder="0" binddataset="ds_7" height="100.00%" top="0" formatid="default" cellmovingtype="col" cellsizebandtype="allband" cellsizingtype="both" left="0.00%" right="0.00%" autofittype="none" onsize="SD1040F_GRID1_onsize">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="86"/>
+                <Column size="184"/>
+                <Column size="175"/>
+                <Column size="55"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="업체" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="1" text="업체명" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="2" text="도서명" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="3" text="수량" font="11px/normal &quot;Gulim&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" textAlign="center" font="11px/normal &quot;Gulim&quot;" suppress="0" expr="dataset.getRowLevel(currow)==0? CUST_GB + &quot;-&quot; + CUST_CD : &quot;&quot;"/>
+                <Cell col="1" text="bind:CUST_NM" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" textAlign="center" suppressalign="first" font="11px/normal &quot;Gulim&quot;" displaytype="normal" expr="dataset.getRowLevel(currow)==0? CUST_NM :  &quot;도서별 계&quot;"/>
+                <Cell col="2" text="bind:BOOK_NAME" suppress="1" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" textAlign="center" suppressalign="middle" font="11px/normal &quot;Gulim&quot;" displaytype="normal" expr="dataset.getRowLevel(currow)==0? BOOK_NAME : &quot;&quot;"/>
+                <Cell col="3" text="bind:QTY" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right"/>
+              </Band>
+              <Band id="summary">
+                <Cell textAlign="right" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="1" textAlign="right" displaytype="currency" maskeditformat="###,###,###,###,##0" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="2" textAlign="right" displaytype="currency" maskeditformat="###,###,###,###,##0" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="3" expr="dataset.getSum('QTY');" textAlign="right" displaytype="mask" maskeditformat="###,###,###,###,##0" font="bold 11px/normal &quot;Gulim&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+/*
+this.SD1040F_GRID1_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.SD1040F_GRID1);
+};
+
+this.SD1040F_GRID1_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+*/
+]]></Script>
+  </Form>
+</FDL>

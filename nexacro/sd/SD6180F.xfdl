@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6180F" width="1600" height="760" titletext="New Form" onload="SD6180F_onload">
+    <Layouts>
+      <Layout height="760" width="1600" screenid="">
+        <Static id="Static00" taborder="13" text="판매형태(등록)" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="300" height="69" left="56" top="11"/>
+        <Static id="Static01" taborder="16" text="등록" left="25" top="72" background="#3cbcb8" color="white" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" right="25" height="40"/>
+        <Static id="Static01_01" taborder="14" text="사업부" left="25" top="Static01:-2" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127" height="40"/>
+        <Static id="Static01_03" taborder="17" text="판매형태" left="41.50%" top="110" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127" height="40"/>
+        <Static id="Static01_02" taborder="15" left="Static01_01:-2" top="Static01:-2" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_03:-2" height="40"/>
+        <MaskEdit id="ed_saup_code" taborder="0" left="Static01_01:10" top="115" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="@" type="string" textAlign="left" onkeydown="common_onkeydown" right="Static01_03:380" minwidth="32" maxwidth="" onkillfocus="ed_saup_code_onkillfocus"/>
+        <Static id="Static01_04" taborder="18" left="Static01_03:-2" top="Static01:-2" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25" height="40"/>
+        <MaskEdit id="ed_sale_code" taborder="2" left="Static01_03:10" top="115" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="@" type="string" textAlign="left" onkeydown="common_onkeydown" right="598" minwidth="32" maxwidth=""/>
+        <Edit id="ed_sale_name" taborder="3" left="ed_sale_code:-1" top="115" onkeydown="common_onkeydown" right="38" height="30"/>
+        <Static id="Static02" taborder="19" text="조회" left="25" top="172" height="40" background="#3cbcb8" color="white" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" right="25"/>
+        <Static id="Static02_00" taborder="20" left="25" top="210" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25" bottom="25" minheight="150" maxheight=""/>
+        <Static id="Static02_01" taborder="21" text="사업부" left="25" top="210" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static02_05" taborder="22" text="명칭" left="25" top="248" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static02_07" taborder="26" text="정렬조건" left="41.50%" top="248" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static02_06" taborder="23" left="150" top="248" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static02_07:-2"/>
+        <Edit id="ed_s_name" taborder="6" left="Static02_05:10" top="253" height="30" onkeydown="s_common_onkeydown" right="Static02_07:10"/>
+        <Static id="Static02_03" taborder="25" text="조건" left="41.50%" top="210" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static02_01_00" taborder="31" text="판매형태" left="21.5%" top="210" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static02_02" taborder="24" left="Static02_01:-2" top="210" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static02_01_00:-2" minwidth="52" maxwidth=""/>
+        <MaskEdit id="ed_s_saup_code" taborder="4" left="Static02_01:10" top="215" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" type="string" textAlign="left" onkeydown="s_common_onkeydown" right="Static02_01_00:10" format="@" minwidth="32" maxwidth=""/>
+        <Static id="Static02_09" taborder="30" top="210" height="78" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25" width="123"/>
+        <Static id="Static02_04" taborder="27" left="Static02_03:-2" top="210" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static02_09:-2"/>
+        <Static id="Static02_08" taborder="28" left="Static02_07:-2" top="248" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" right="Static02_09:-2"/>
+        <Grid id="grd_view" taborder="29" left="42" top="Static02_07:10" binddataset="ds_book_scode" oncelldblclick="grd_view_oncelldblclick" bottom="42" minheight="50" maxheight="" right="42" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="200"/>
+                <Column size="500"/>
+                <Column size="200"/>
+                <Column size="500"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사업부"/>
+                <Cell col="1" text="사업부명"/>
+                <Cell col="2" text="판매형태"/>
+                <Cell col="3" text="코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:MCODE"/>
+                <Cell col="1" text="bind:MNAME"/>
+                <Cell col="2" text="bind:DCODE"/>
+                <Cell col="3" text="bind:DNAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="9" text="조회하기" top="220" height="57" onclick="btn_search_onclick" right="35" width="101"/>
+        <Combo id="cmb_search" taborder="7" left="Static02_03:10" top="215" height="30" innerdataset="ds_cmb_search" codecolumn="CODE" datacolumn="NAME" index="3" text="&gt;=  (같거나크다)" value="3" right="Static02_09:10"/>
+        <Combo id="cmb_orderby" taborder="8" left="Static02_07:10" top="253" height="30" index="0" innerdataset="ds_cmb_orderby" codecolumn="CODE" datacolumn="NAME" text="전표일자순" value="0" right="Static02_09:10"/>
+        <Button id="btn_can" taborder="12" text="취소" top="26" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="25" onclick="btn_can_onclick"/>
+        <Button id="btn_del" taborder="11" text="삭제" top="26" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="btn_can:12" onclick="btn_del_onclick"/>
+        <Button id="btn_save" taborder="10" text="저장" top="26" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="btn_del:13" onclick="btn_save_onclick" onkeydown="btn_save_onkeydown"/>
+        <Edit id="ed_saup_name" taborder="1" left="ed_saup_code:-1" top="115" height="30" right="Static01_03:10" enable="false"/>
+        <Static id="Static02_02_00" taborder="32" left="Static02_01_00:-2" top="210" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static02_03:-2" minwidth="52" maxwidth=""/>
+        <MaskEdit id="ed_s_sale_code" taborder="5" left="Static02_01_00:10" top="215" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" type="string" textAlign="left" onkeydown="s_common_onkeydown" right="Static02_03:10" format="@" minwidth="32" maxwidth=""/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var NewRowNum    = "";					// 추가행번호.
+var EditnRow	 = "";					//수정된 행번호	
+var Error        = "";					//에러코드.
+var return_code  = "";					
+var IUSW         = "";
+var o_mcode		 = "";
+var o_dcode      = "";
+
+this.SD6180F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.cmb_search.set_index(3);
+	this.cmb_orderby.set_index(0);
+	this.fnDataclear();
+	this.ed_saup_code.setFocus();
+};
+
+this.fnSearch_zipcode = function()
+{
+	var strUrl = "JSP/sd/select_book_scode2.jsp";
+	var strArg;
+	var strDs 	= "ds_book_scode=ds_book_scode";
+
+	strArg = " Option1="+nexacro.wrapQuote(this.cmb_search.index)+" Values1="+nexacro.wrapQuote(this.ed_s_saup_code.value)+
+	         " Values2="+nexacro.wrapQuote(this.ed_s_name.text)+" Values3="+nexacro.wrapQuote(this.ed_s_sale_code.value)+
+	         " Orderby="+nexacro.wrapQuote(this.cmb_orderby.index);
+    
+	this.gfn_TransactionP("codesearch", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+}
+
+this.fnCallback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if(nErrorCode != 0)
+	{
+		alert(strErrorMag);
+		return;
+	}
+}
+
+this.fnDataclear = function()
+{
+	IUSW            = "N";
+    NewRowNum       = "";
+    EditnRow	    = "";
+    o_mcode         = "";
+	o_dcode         = "";
+	this.ed_saup_code.set_value("");
+	this.ed_saup_name.set_value("");
+	this.ed_sale_code.set_value("");
+	this.ed_sale_name.set_value("");
+}
+
+//입력모드
+this.fnInputdata = function()
+{
+	this.ds_book_scode.setColumn(NewRowNum,"MCODE", nexacro.trim(this.ed_saup_code.value)); 
+	this.ds_book_scode.setColumn(NewRowNum,"MNAME", this.ed_saup_name.text);
+	this.ds_book_scode.setColumn(NewRowNum,"DCODE", nexacro.trim(this.ed_sale_code.value)); 
+	this.ds_book_scode.setColumn(NewRowNum,"DNAME", this.ed_sale_name.text); 
+    this.ds_book_scode2_send.addRow();
+	this.ds_book_scode2_send.copyRow(0,this.ds_book_scode,NewRowNum);
+	this.ds_book_scode2_send.setColumn(0,"O_MCODE", o_mcode);
+	this.ds_book_scode2_send.setColumn(0,"O_DCODE", o_dcode);
+	this.ds_book_scode2_send.setColumn(0,"ROWTYPE", "I" );
+}
+
+//수정모드
+this.fnEdit_data = function()
+{
+	this.ds_book_scode.setColumn(EditnRow,"MCODE", nexacro.trim(this.ed_saup_code.value)); 
+	this.ds_book_scode.setColumn(EditnRow,"MNAME", this.ed_saup_name.text);
+	this.ds_book_scode.setColumn(EditnRow,"DCODE", nexacro.trim(this.ed_sale_code.value)); 
+	this.ds_book_scode.setColumn(EditnRow,"DNAME", this.ed_sale_name.text); 
+    this.ds_book_scode2_send.addRow();
+	this.ds_book_scode2_send.copyRow(0,this.ds_book_scode,EditnRow);
+	this.ds_book_scode2_send.setColumn(0,"O_MCODE", o_mcode);
+	this.ds_book_scode2_send.setColumn(0,"O_DCODE", o_dcode);
+	this.ds_book_scode2_send.setColumn(0,"ROWTYPE", "U" );
+	this.grd_view.updateToDataset();
+}
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch_zipcode();
+	NewRowNum = "";
+};
+
+this.grd_view_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	EditnRow = e.row;
+	o_mcode       = this.ds_book_scode.getColumn(e.row,"MCODE");
+	o_dcode       = this.ds_book_scode.getColumn(e.row,"DCODE");
+	IUSW		  = "Y";
+	this.ed_saup_code.set_value(this.ds_book_scode.getColumn(e.row,"MCODE"));
+	this.ed_saup_name.set_value(this.ds_book_scode.getColumn(e.row,"MNAME"));
+	this.ed_sale_code.set_value(this.ds_book_scode.getColumn(e.row,"DCODE"));
+	this.ed_sale_name.set_value(this.ds_book_scode.getColumn(e.row,"DNAME"));
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/sd/insert_book_scode2.jsp";
+	var inDs   = "ds_book_scode2_send=ds_book_scode2_send";
+	if ((nexacro.trim(this.ed_saup_code.value)).length != 1)
+	{
+		alert("코드 오류! 수정하세요!");
+		return;
+	}
+	if ((nexacro.trim(this.ed_sale_code.value)).length != 1)
+	{
+		alert("코드 오류! 수정하세요!");
+		return;
+	}
+	if (IUSW == "Y") 
+		this.fnEdit_data();
+	else 
+	{
+		NewRowNum = this.ds_book_scode.addRow();
+		this.fnInputdata();
+	} 
+	this.gfn_TransactionP("insert", strUrl, inDs, "", "", "fnTr_Callback", false, "P", false, this);
+};
+
+this.fnTr_Callback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if ( strSvcID == "insert" )
+	{
+		if (strErrorMag == "DUP" || strErrorMag.substr(0,10) == "JDBC-10007")
+		{
+			alert("코드가 중복되었습니다. \n 재검색후 저장해주세요.");
+			this.btn_search.click();
+		}
+		else 
+		{
+			alert("저장완료.");
+         	if ( IUSW == "N" )
+            	this.fnDataclear();
+			this.ds_book_scode2_send.deleteRow(0);
+        	this.ed_saup_code.setFocus();
+		}
+	}
+	else if ( strSvcID == "delete" )
+	{
+		if (strErrorMag == "Dup")
+		{
+			alert("삭제 Error.");
+		}
+		else 
+		{
+			alert("삭제완료.");
+			this.ds_book_scode.deleteRow(EditnRow);
+         	this.fnDataclear();
+        	this.ed_saup_code.setFocus();
+		}
+	}
+	else if ( strSvcID == "codesearch" )
+	{
+		if (nErrorCode != 0) 
+			alert("미등록 데이터");
+		else
+			this.ed_saup_name.set_value(strErrorMag);
+	}
+}
+
+this.btn_can_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnDataclear();	
+	this.ed_saup_code.setFocus();
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/sd/insert_book_scode2.jsp";
+	var inDs = "ds_book_scode2_send=ds_book_scode2_send";
+	var objApp = nexacro.getApplication();
+	if(msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? " , "삭제처리", "warning" ))
+    {
+		this.ds_book_scode.setColumn(EditnRow,"MCODE", nexacro.trim(this.ed_saup_code.value)); 
+		this.ds_book_scode.setColumn(EditnRow,"MNAME", this.ed_saup_name.text); 
+		this.ds_book_scode.setColumn(EditnRow,"DCODE", nexacro.trim(this.ed_sale_code.value)); 
+		this.ds_book_scode.setColumn(EditnRow,"DNAME", this.ed_sale_name.text); 
+        this.ds_book_scode2_send.addRow();
+		this.ds_book_scode2_send.copyRow(0,this.ds_book_scode,EditnRow);
+		this.ds_book_scode2_send.setColumn(0,"O_MCODE", o_mcode);
+		this.ds_book_scode2_send.setColumn(0,"O_DCODE", o_dcode);
+		this.ds_book_scode2_send.setColumn(0,"ROWTYPE", "D" );
+		//alert(o_mcode);
+		this.gfn_TransactionP("delete", strUrl, inDs, "", "", "fnTr_Callback", false, "P", false, this);
+		this.ds_book_scode2_send.deleteRow(0);
+		this.grd_view.updateToDataset();
+	}
+};
+
+this.ds_book_scode_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{
+	if(e.reason == 0)
+	{
+		if (this.ds_book_scode.rowcount == 0) 
+			alert("조회된 데이터가 없습니다."); 
+	}
+};
+
+this.ed_saup_code_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	var strUrl = "JSP/sd/book_scode1_help.jsp";
+	var strArg;
+
+	if (this.ed_saup_code.value == "")
+		return;
+	
+	strArg = " Values1="+nexacro.wrapQuote(this.ed_saup_code.value);
+	
+	this.gfn_TransactionP("codesearch", strUrl, "", "", strArg, "fnTr_Callback", false, "P", false, this);
+};
+
+this.common_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	//Enter Key를 눌렀을 경우 처리
+	if (e.keycode == 13) 
+	{		
+		if (obj.name == "ed_saup_code") this.ed_sale_code.setFocus();
+		else if (obj.name == "ed_sale_code") this.ed_sale_name.setFocus();
+	}//ESC 키처리	
+	else if (e.keycode == 27)
+	{
+		if (obj.name == "ed_sale_name") this.ed_sale_code.setFocus();
+		else if (obj.name == "ed_sale_code") this.ed_saup_code.setFocus();
+	}
+};
+
+this.s_common_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	//Enter Key를 눌렀을 경우 처리
+	if (e.keycode == 13) 
+	{
+		if (obj.id == "ed_s_saup_code") this.ed_s_sale_code.setFocus();
+		else if (obj.id == "ed_s_sale_code") this.ed_s_name.setFocus();
+	}//ESC 키처리	
+	else if (e.keycode == 27)
+	{	
+		if (obj.id == "ed_s_sale_code") this.ed_s_saup_code.setFocus();
+		else if (obj.id == "ed_s_name") this.ed_s_sale_code.setFocus();
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_cmb_search">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">〓  (같다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">&gt;   (크다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME"> &lt;  (작다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">&gt;=  (같거나크다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME"> &lt;= (같거나작다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="NAME">%% (나열)</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_cmb_orderby">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">코드순</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">도서구분명순</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_book_scode" onload="ds_book_scode_onload">
+        <ColumnInfo>
+          <Column id="MCODE" type="STRING" size="2"/>
+          <Column id="MNAME" type="STRING" size="30"/>
+          <Column id="DCODE" type="STRING" size="2"/>
+          <Column id="DNAME" type="STRING" size="30"/>
+          <Column id="CHK" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_book_scode2_send">
+        <ColumnInfo>
+          <Column id="MCODE" type="STRING" size="2"/>
+          <Column id="MNAME" type="STRING" size="30"/>
+          <Column id="DCODE" type="STRING" size="2"/>
+          <Column id="DNAME" type="STRING" size="30"/>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="O_MCODE" type="STRING" size="2"/>
+          <Column id="O_DCODE" type="STRING" size="2"/>
+          <Column id="ROWTYPE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

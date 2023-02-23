@@ -1,0 +1,1966 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6900F" width="1620" height="760" titletext="New Form" onload="SD6900F_onload" onsize="SD6900F_onsize">
+    <Layouts>
+      <Layout height="760" width="1620">
+        <Edit id="edt_sabun" taborder="0" left="0" top="770" width="110" height="24" textAlign="center" visible="false"/>
+        <MaskEdit id="cbo_mrd_seq" taborder="1" left="117" top="770" width="112" height="24" format="@@@@@@@@@@@@" visible="false"/>
+        <Div id="div_main" taborder="2" left="10" top="0" width="1150" height="720" text="" minwidth="870" maxwidth="" minheight="450" maxheight="">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="시장조사 대상자 DB등록" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="51.91%" height="11.53%" left="3.48%" top="0.83%"/>
+              <Static id="Static09_06" taborder="1" left="35.04%" top="34.03%" width="64.26%" height="4.73%" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+              <Static id="Static09_13" taborder="2" left="35.05%" top="38.62%" width="64.27%" height="15.56%" background="#c3e4cd" border="1px solid #10aea9" text=""/>
+              <Static id="Static09_01" taborder="3" left="0.87%" top="10.42%" width="98.44%" height="4.8%" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+              <Static id="Static00_03" taborder="9" left="0.87%" top="15.28%" width="5.22%" height="38.89%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="기&#13;&#10;본&#13;&#10;정&#13;&#10;보" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static09_02" taborder="4" left="Static00_03:1.7%" top="Static09_01:2.95%" width="93.14%" height="4.73%" background="#f6f7f9" border="1px solid #8ca5d0" text=""/>
+              <Static id="Static09_03" taborder="5" left="Static00_03:1.7%" top="Static09_02:-3.03%" width="93.14%" height="4.73%" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+              <Static id="Static09_04" taborder="6" left="Static00_03:1.7%" top="Static09_03:-3.03%" width="93.14%" height="4.73%" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+              <Grid id="grd_subject" taborder="38" left="24.00%" top="Static09_04:0.00%" width="11.14%" height="25%" binddataset="dsSubject" autofittype="col" border="1px solid #10aea9">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="23"/>
+                      <Column size="36"/>
+                      <Column size="66"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="1" text="코드"/>
+                      <Cell col="2" text="과목"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:MR_SBJCT_CHECK" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center"/>
+                      <Cell col="1" text="bind:MR_SBJCT_CODE" textAlign="center"/>
+                      <Cell col="2" text="bind:MR_SBJCT_NAME" textAlign="center"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static09_05" taborder="7" left="grd_subject:-0.78%" top="Static09_04:-2.95%" width="64.26%" height="4.73%" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+              <Static id="Static00_01" taborder="8" left="Static09_01:-100%" top="Static09_01:-100%" height="4.8%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="관리번호" font="normal 13px/normal &quot;Gulim&quot;" width="6.96%"/>
+              <Static id="Static00_04" taborder="10" left="Static09_02:-100.00%" top="Static09_02:-100.00%" width="11.57%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="직업구분" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static00_05" taborder="11" left="Static09_03:-100.00%" top="Static09_03:-100.00%" width="11.57%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="학교/학원형태" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static00_06" taborder="12" left="Static09_04:-100.00%" top="Static09_04:-100.00%" width="11.57%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="성명" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static00_07" taborder="13" left="Static00_03:1.67%" top="Static09_04:-2.95%" width="3.48%" height="25.14%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="강의&#13;&#10;구분" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Grid id="grd_year" taborder="37" left="Static00_07:-2.5%" top="Static00_06:0%" width="11.14%" height="25%" binddataset="dsSchoolYear" autofittype="col" border="1px solid #10aea9">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="20"/>
+                      <Column size="35"/>
+                      <Column size="70"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="1" text="코드"/>
+                      <Cell col="2" text="구분"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:MR_SCHOOL_CHECK" edittype="checkbox" displaytype="checkboxcontrol" textAlign="center"/>
+                      <Cell col="1" text="bind:MR_SCHOOL_NAME" textAlign="center"/>
+                      <Cell col="2" text="bind:MR_SCHOOL_NAME" textAlign="center"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static00_08" taborder="14" left="grd_year:-0.79%" top="Static09_04:-2.95%" width="3.48%" height="25.14%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="강의&#13;&#10;과목" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static00_16" taborder="15" left="grd_subject:-0.79%" top="Static09_05:-100%" width="11.57%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="정보 보유 기간" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static00_18" taborder="16" left="grd_subject:-0.79%" top="Static09_06:-100%" width="11.57%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="시장조사 참여일" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt_name" taborder="44" left="Static00_06:5.27%" top="Static09_04:-88%" width="16%" height="3.34%"/>
+              <Static id="Static00_14" taborder="17" left="edt_name:4.35%" top="Static09_04:-100%" width="11.57%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="핸드폰" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <MaskEdit id="edt_kinds" taborder="41" left="Static00_05:5.27%" top="Static09_03:-88.00%" width="3.12%" height="3.34%" padding="0px" textAlign="center"/>
+              <Combo id="cbo_kinds" taborder="43" left="edt_kinds:0%" top="Static09_03:-88%" width="12.96%" height="3.34%" value="" index="-1" displaynulltext="선택해주세요" innerdataset="dsEvltnKind5" codecolumn="CODE" datacolumn="NAME" onitemchanged="cbo_common_onitemchanged"/>
+              <Static id="Static00_10" taborder="18" left="cbo_kinds:5.4%" top="Static09_03:-100%" width="11.57%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="학원 원생 규모" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static00_20" taborder="19" left="Static09_13:-100%" top="Static09_13:-100%" width="11.57%" height="15.56%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="조사내용" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <MaskEdit id="edt_RSRCH_id" taborder="76" left="Static00_01:6.25%" top="Static09_01:-88%" width="8.87%" height="3.33%" format="@@@@@@@@@@@@" textAlign="center" enable="false"/>
+              <Static id="Static00_02" taborder="20" left="edt_RSRCH_id:5.88%" top="Static09_01:-100%" width="6.52%" height="4.8%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="등록자" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <MaskEdit id="edt_job" taborder="40" left="Static00_04:5.27%" top="Static09_02:-88%" width="3.12%" height="3.34%" padding="0px" textAlign="center"/>
+              <Combo id="cbo_job" taborder="42" left="edt_job:0%" top="Static09_02:-88%" width="12.96%" height="3.34%" value="" index="-1" displaynulltext="선택해주세요" innerdataset="dsEvltnKind4" codecolumn="CODE" datacolumn="NAME" onitemchanged="cbo_common_onitemchanged"/>
+              <Static id="Static00_09" taborder="21" left="cbo_job:5.37%" top="Static09_02:-100.00%" width="11.57%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" textAlign="center" text="학교/학원명" font="normal 13px/normal &quot;Gulim&quot;" color="#01656f"/>
+              <Calendar id="cald_hold" taborder="82" left="53.22%" top="Static09_05:-88%" width="11.74%" height="3.34%"/>
+              <Static id="Static00_17" taborder="22" left="cald_hold:5.19%" top="Static09_05:-100%" width="6.43%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="이메일" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt_phone" taborder="45" left="Static00_14:3.76%" top="Static09_04:-88%" width="11.74%" height="3.34%"/>
+              <Static id="Static00_15" taborder="23" left="edt_phone:3.7%" top="Static09_04:-100%" width="6.43%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="주소" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static01_01" taborder="48" text="명" left="52.35%" top="Static09_03:-88%" width="2%" height="3.34%" textAlign="center"/>
+              <Static id="Static00_11" taborder="24" left="Static01_01:21.74%" top="Static09_03:-100%" width="6.43%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="초등" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static01_02" taborder="52" text="%" left="66.52%" top="Static09_03:-88%" width="2%" height="3.34%" textAlign="center"/>
+              <Static id="Static00_12" taborder="25" left="Static01_02:21.74%" top="Static09_03:-100%" width="6.43%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="중등" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static01_03" taborder="53" text="%" left="80.61%" top="Static09_03:-88%" width="2%" height="3.34%" textAlign="center"/>
+              <Static id="Static00_13" taborder="26" left="Static01_03:21.74%" top="Static09_03:-100%" width="6.43%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="고등" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Calendar id="cald_date" taborder="63" left="Static00_18:3.76%" top="Static09_06:-88%" width="11.74%" height="3.34%"/>
+              <Static id="Static00_19" taborder="27" left="cald_date:3.7%" top="Static09_06:-100.00%" width="6.43%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="제3자" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Calendar id="cald_third" taborder="58" left="Static00_19:9.59%" top="Static09_06:-88%" width="11.74%" height="3.34%"/>
+              <Static id="Static09_14" taborder="28" left="cald_third:40.75%" top="Static09_06:-100%" width="16.7%" height="4.73%" border="1px solid #10aea9" background="#c3e4cd" color="#16538c" textAlign="center" text=""/>
+              <Static id="Static00_22" taborder="29" left="Static00_20:3.01%" top="Static09_13:-33.93%" width="11.91%" height="4.72%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="역량평가" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static00_21" taborder="30" left="Static00_20:3.01%" top="Static09_13:-96.43%" width="11.91%" height="9.44%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="참여교재" font="normal 13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static09_07" taborder="31" left="Static09_13:-62.33%" top="Static09_13:-95.54%" width="19.31%" height="4.73%" background="#f6f7f9" border="1px solid #8ca5d0" text=""/>
+              <Static id="Static09_09" taborder="32" left="Static09_13:-62.33%" top="Static09_13:-66.08%" width="19.3%" height="4.73%" background="#f6f7f9" border="1px solid #8ca5d0" text=""/>
+              <Static id="Static09_11" taborder="33" left="Static09_13:-62.33%" top="Static09_13:-33.93%" width="19.3%" height="4.73%" background="#f6f7f9" border="1px solid #8ca5d0" text=""/>
+              <Static id="Static09_10" taborder="34" left="Static09_13:-32.52%" top="Static09_13:-66.08%" width="19.3%" height="4.73%" background="#f6f7f9" border="1px solid #8ca5d0" text=""/>
+              <Static id="Static09_08" taborder="35" left="Static09_13:-32.52%" top="Static09_13:-95.54%" width="19.3%" height="4.73%" background="#f6f7f9" border="1px solid #8ca5d0" text=""/>
+              <Static id="Static09_12" taborder="36" left="Static09_13:-32.52%" top="Static09_13:-33.93%" width="19.3%" height="4.73%" background="#f6f7f9" border="1px solid #8ca5d0" text=""/>
+              <Edit id="edt_title" taborder="39" left="Static00_02:12.16%" top="Static09_01:-88%" width="9.57%" height="3.33%" textAlign="center"/>
+              <Edit id="edt_addr" taborder="46" left="Static00_15:10.96%" top="Static09_04:-88%" width="30%" height="3.34%"/>
+              <Edit id="edt_scale" taborder="47" left="Static00_10:3.76%" top="Static09_03:-88%" width="4.96%" height="3.34%"/>
+              <Edit id="edt_scale_elem" taborder="49" left="Static00_11:8.22%" top="Static09_03:-88%" width="4.43%" height="3.34%"/>
+              <Edit id="edt_scale_mid" taborder="50" left="Static00_12:9.59%" top="Static09_03:-88%" width="4.35%" height="3.34%"/>
+              <Edit id="edt_scale_high" taborder="51" left="Static00_13:6" top="Static09_03:-88%" width="4.09%" height="3.34%"/>
+              <Static id="Static01_04" taborder="54" text="%" left="edt_scale_high:10.64%" top="Static09_03:-88%" width="2%" height="3.34%" textAlign="center"/>
+              <Combo id="cbo_hold" taborder="55" left="Static00_16:3.76%" top="Static09_05:-88%" width="6%" height="3.34%" value="" index="-1" displaynulltext="선택" innerdataset="dsYearCode" codecolumn="CODE" datacolumn="NAME" onitemchanged="cbo_hold_onitemchanged"/>
+              <Grid id="grd_mst" taborder="56" left="0.78%" top="54.72%" width="54.35%" height="43.61%" binddataset="ds_MRKT_RSRCH_MST" autofittype="col" autosizingtype="none" autosizebandtype="head" oncellclick="grd_dtl_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="70"/>
+                      <Column size="70"/>
+                      <Column size="60"/>
+                      <Column size="218"/>
+                      <Column size="60"/>
+                      <Column size="40"/>
+                      <Column size="35"/>
+                      <Column size="35"/>
+                      <Column size="35"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="관리번호"/>
+                      <Cell col="1" text="등록자"/>
+                      <Cell col="2" text="직업구분"/>
+                      <Cell col="3" text="학교명"/>
+                      <Cell col="4" text="학원형태"/>
+                      <Cell col="5" text="규모"/>
+                      <Cell col="6" text="초등"/>
+                      <Cell col="7" text="중등"/>
+                      <Cell col="8" text="고등"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:MRKT_RSRCH_ID"/>
+                      <Cell col="1" text="bind:MRKT_SABUN"/>
+                      <Cell col="2" text="bind:MRKT_JOB" displaytype="combotext" edittype="none" combodataset="dsEvltnKind4" combodatacol="NAME" combocodecol="CODE"/>
+                      <Cell col="3" text="bind:MRKT_JOB_NAME"/>
+                      <Cell col="4" text="bind:MRKT_KIND"/>
+                      <Cell col="5" text="bind:MRKT_PRSNL"/>
+                      <Cell col="6" text="bind:MRKT_ELMNT"/>
+                      <Cell col="7" text="bind:MRKT_MIDDLE"/>
+                      <Cell col="8" text="bind:MRKT_HIGH"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Grid id="grd_dtl" taborder="57" left="55.39%" top="54.72%" width="43.74%" height="43.61%" binddataset="ds_MRKT_RSRCH_DTL" autofittype="col" autosizingtype="none" autosizebandtype="head" oncellclick="grd_dtl_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40"/>
+                      <Column size="50"/>
+                      <Column size="60"/>
+                      <Column size="212"/>
+                      <Column size="80"/>
+                      <Column size="60"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="번호"/>
+                      <Cell col="1" text="학년"/>
+                      <Cell col="2" text="과목"/>
+                      <Cell col="3" text="브랜드"/>
+                      <Cell col="4" text="조사형태"/>
+                      <Cell col="5" text="역량평가" edittype="combo" displaytype="combotext"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" textAlign="center"/>
+                      <Cell col="1" text="bind:EVLTN_KIND1" displaytype="combotext" edittype="combo" combodataset="dsEvltnKind6" combodatacol="NAME" combocodecol="CODE"/>
+                      <Cell col="2" text="bind:EVLTN_KIND2" combodataset="dsEvltnKind1" combodatacol="NAME" combocodecol="CODE" displaytype="combotext" edittype="combo"/>
+                      <Cell col="3" text="bind:EVLTN_KIND3" edittype="combo" displaytype="combotext" combodataset="dsEvltnKind2" combodatacol="NAME" combocodecol="CODE"/>
+                      <Cell col="4" text="bind:EVLTN_KIND4" combodataset="dsEvltnKind3" combodatacol="NAME" combocodecol="CODE" displaytype="combotext" edittype="combo"/>
+                      <Cell col="5" text="bind:EVLTN_KIND5" combodataset="dsTestLevel" combodatacol="NAME" combocodecol="CODE" displaytype="combotext" edittype="combo"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Edit id="edt_email" taborder="59" left="Static00_17:8.22%" top="Static09_05:-88%" width="26.35%" height="3.34%"/>
+              <Button id="btn_in_new" taborder="60" text="추가" left="Static09_14:-93.23%" top="Static09_14:-90%" width="4.52%" height="3.50%" onclick="btn_in_new_onclick"/>
+              <Button id="btn_in_save" taborder="61" text="저장" left="Static09_14:-63.02%" top="Static09_14:-90%" width="4.52%" height="3.50%" onclick="btn_save_onclick"/>
+              <Button id="btn_in_del" taborder="62" text="삭제" left="Static09_14:-32.81%" top="Static09_14:-90%" width="4.52%" height="3.5%" onclick="btn_in_del_onclick"/>
+              <MaskEdit id="edt_kind1_cd" taborder="65" left="Static09_07:-97.75%" top="Static09_07:-85.30%" width="3.48%" height="3.34%" textAlign="center"/>
+              <Combo id="cbo_kind1" taborder="64" left="edt_kind1_cd:5%" top="Static09_07:-85.30%" width="14.52%" height="3.34%" value="" index="-1" displaynulltext="선택해주세요" innerdataset="dsEvltnKind6" codecolumn="CODE" datacolumn="NAME" onitemchanged="cbo_kind_onitemchanged"/>
+              <MaskEdit id="edt_kind3_cd" taborder="67" left="Static09_09:-97.74%" top="Static09_09:-85.30%" width="3.48%" height="3.34%" textAlign="center" format="@@@"/>
+              <Combo id="cbo_kind3" taborder="66" left="edt_kind3_cd:5%" top="Static09_09:-85.30%" width="14.52%" height="3.34%" value="" index="-1" displaynulltext="선택해주세요" innerdataset="dsEvltnKind2" codecolumn="CODE" datacolumn="NAME" onitemchanged="cbo_kind_onitemchanged" text=""/>
+              <Combo id="cbo_kind2" taborder="68" left="Static09_08:-78.29%" top="Static09_08:-85.30%" width="14.52%" height="3.34%" value="" index="-1" displaynulltext="선택해주세요" innerdataset="dsEvltnKind1" codecolumn="CODE" datacolumn="NAME" onitemchanged="cbo_kind_onitemchanged"/>
+              <MaskEdit id="edt_kind2_cd" taborder="69" left="Static09_08:-97.29%" top="Static09_08:-85.30%" width="3.48%" height="3.34%" textAlign="center" format="@@"/>
+              <MaskEdit id="edt_kind4_cd" taborder="70" left="Static09_10:-97.29%" top="Static09_10:-85.30%" width="3.48%" height="3.34%" textAlign="center" format="@@"/>
+              <Combo id="cbo_kind4" taborder="71" left="Static09_10:-78.29%" top="Static09_10:-85.30%" width="14.52%" height="3.34%" value="" index="-1" displaynulltext="선택해주세요" innerdataset="dsEvltnKind3" codecolumn="CODE" datacolumn="NAME" onitemchanged="cbo_kind_onitemchanged"/>
+              <MaskEdit id="edt_kind5_cd" taborder="72" left="Static09_11:-97.74%" top="Static09_11:-85.30%" width="3.48%" height="3.34%" textAlign="center" format="@@"/>
+              <Combo id="cbo_kind5" taborder="73" left="edt_kind5_cd:5%" top="Static09_11:-85.30%" width="14.52%" height="3.34%" value="" index="-1" displaynulltext="선택해주세요" innerdataset="dsTestLevel" codecolumn="CODE" datacolumn="NAME" onitemchanged="cbo_kind_onitemchanged"/>
+              <Edit id="edt_kind5_memo" taborder="74" left="Static09_12:-97.29%" top="Static09_12:-85.30%" width="18.17%" height="3.34%"/>
+              <Div id="div_career" taborder="75" left="edt_title:7.24%" top="Static09_01:-103%" width="64.61%" height="5.28%" visible="false">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static02_00" taborder="1" left="0.14%" top="3%" width="99.5%" height="90%" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+                    <Static id="Static02_02" taborder="0" left="0.14%" top="2.70%" width="18%" height="90.00%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="모집채널" font="normal 13px/normal &quot;Gulim&quot;"/>
+                    <Static id="Static02_01" taborder="2" left="0.14%" top="2.7%" width="18.0%" height="90%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="경력" font="normal 13px/normal &quot;Gulim&quot;"/>
+                    <MaskEdit id="edt_02" taborder="3" left="Static02_02:3.76%" top="15.79%" width="4.71%" height="63.16%" padding="0px"/>
+                    <Combo id="cbo_01" taborder="4" left="edt_02:0%" top="15.79%" width="18.03%" height="63.16%" value="" index="-1" displaynulltext="선택해주세요" innerdataset="dsEvltnKind7" datacolumn="NAME" codecolumn="CODE" onitemchanged="cbo_kind_onitemchanged"/>
+                    <Edit id="edt_01" taborder="5" left="Static02_01:3.76%" top="15.79%" width="7.67%" height="63.16%"/>
+                    <Static id="Static02_06" taborder="6" text="년" left="edt_01:10.71%" top="15.79%" width="23" height="24" textAlign="center"/>
+                    <Static id="Static02_03" taborder="7" left="Static02_01:135.34%" top="2.7%" width="9.96%" height="90%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="성별" font="normal 13px/normal &quot;Gulim&quot;"/>
+                    <Combo id="cbo_02" taborder="9" left="Static02_03:6.76%" top="15.79%" width="10.23%" height="63.16%" value="" index="-1" displaynulltext="선택" innerdataset="dsSex" datacolumn="NAME" codecolumn="CODE"/>
+                    <Static id="Static02_04" taborder="8" left="cbo_02:6.58%" top="2.7%" width="9.96%" height="90%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="생년" font="normal 13px/normal &quot;Gulim&quot;"/>
+                    <MaskEdit id="edt_03" taborder="10" left="Static02_04:6.76%" top="15.79%" width="6.73%" height="63.16%" onkillfocus="div_career_edt_03_onkillfocus"/>
+                    <Static id="Static02_05" taborder="11" left="edt_03:10%" top="2.7%" width="9.96%" height="90%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="나이(만)" font="normal 13px/normal &quot;Gulim&quot;"/>
+                    <MaskEdit id="edt_04" taborder="12" left="Static02_05:8.11%" top="15.79%" width="6.19%" height="63.16%"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Button id="btn_del" taborder="77" text="삭제" top="5%" width="6.61%" height="4.5%" onclick="btn_del_onclick" right="8" font="bold 10pt/normal &quot;Arial&quot;"/>
+              <Button id="btn_save" taborder="78" text="저장" top="5%" height="4.5%" onclick="btn_save_onclick" right="btn_del:11.76%" width="6.61%" font="bold 10pt/normal &quot;Arial&quot;"/>
+              <Button id="btn_can" taborder="79" text="신규" top="5%" height="4.5%" onclick="btn_can_onclick" right="btn_save:11.76%" width="6.61%" font="bold 10pt/normal &quot;Arial&quot;"/>
+              <Button id="btn_search" taborder="80" text="조회" top="5%" height="4.50%" onclick="btn_search_onclick" right="btn_can:11.76%" width="6.61%" font="bold 10pt/normal &quot;Arial&quot;"/>
+              <Button id="btn_xlsfind" taborder="81" text="가져오기" top="5%" height="4.50%" onclick="btn_xlsfind_onclick" right="btn_search:12.96%" width="8.35%" font="bold 10pt/normal &quot;Arial&quot;"/>
+              <Edit id="edt_schoolname" taborder="83" left="Static00_09:3.8%" top="Static09_02:-88%" width="21.74%" height="3.34%"/>
+              <Button id="btn_searchpostnumber" taborder="84" left="edt_addr:1.45%" top="Static09_04:-88%" background="url('Img::btn_TF_src.png') no-repeat center center" textAlign="center" color="black" onclick="btn_searchpostnumber_onclick" width="2.09%" height="3.34%"/>
+              <Div id="div_schoolyear" taborder="85" left="edt_title:7.2%" top="15.14%" width="64.52%" height="5.15%" visible="false">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static04_00" taborder="1" left="0.14%" top="3%" width="99.80%" height="94.45%" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+                    <Static id="Static04_01" taborder="1" left="0.14%" top="2.78%" width="17.95%" height="94.45%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="자녀학년" font="normal 13px/normal &quot;Gulim&quot;"/>
+                    <CheckBox id="chk_01" taborder="2" text="초1" left="Static04_01:6.02%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_02" taborder="3" text="초2" left="chk_01:2.08%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_03" taborder="4" text="초3" left="chk_02:2.08%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_04" taborder="5" text="초4" left="chk_03:1" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_05" taborder="6" text="초5" left="chk_04:2.08%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_06" taborder="7" text="초6" left="chk_05:2.08%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_07" taborder="8" text="중1" left="chk_06:12.5%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_08" taborder="9" text="중2" left="chk_07:2.08%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_09" taborder="10" text="중3" left="chk_08:2.08%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_10" taborder="11" text="고1" left="chk_09:12.5%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_11" taborder="12" text="고2" left="chk_10:2.08%" top="19.45%" width="6.6%" height="63.89%"/>
+                    <CheckBox id="chk_12" taborder="13" text="고3" left="chk_11:2.08%" top="19.45%" width="6.6%" height="63.89%"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="div_grade" taborder="86" left="edt_title:7.24%" top="15.2%" width="34.70%" height="5.15%" visible="false">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static03_00" taborder="1" left="0.27%" top="2.78%" width="97.9%" height="94.45%" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+                    <Static id="Static03_01" taborder="1" left="0.14%" top="2.78%" width="33.34%" height="94.45%" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="학년" font="normal 13px/normal &quot;Gulim&quot;"/>
+                    <Combo id="cbo_01" taborder="2" left="Static03_01:4.51%" top="16.67%" width="37.34%" height="66.67%" value="" index="-1" displaynulltext="선택해주세요" innerdataset="dsGrade" datacolumn="NAME" codecolumn="CODE"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div_exceldata" taborder="3" left="2" top="837" width="648" height="363" background="white" border="1px solid dimgray" text="" visible="false">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="Excel Data Upload" left="5.73%" top="1.13%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" right="24.46%" bottom="83.56%" verticalAlign="top"/>
+              <Button id="btn_close" taborder="1" text="닫기" left="583" top="29" width="52" height="22" onclick="div_exceldata_btn_close_onclick"/>
+              <Static id="Static00_04" taborder="2" left="311" top="97" width="83" height="35" border="1px solid #10aea9" background="#c3e4cd" color="#16538c" textAlign="center" font="normal 13px/normal &quot;Gulim&quot;" text="적용년도"/>
+              <Static id="Static09_02" taborder="3" left="393" top="97" width="242" height="35" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+              <MaskEdit id="edt_year" taborder="4" left="399" top="103" width="85" height="24" padding="0px" textAlign="center" format="@@@@"/>
+              <Grid id="grd_excel_load" taborder="5" left="11" top="136" width="624" height="216" binddataset="dsExcel" autofittype="none" autosizebandtype="allband" autosizingtype="both" cellsizingtype="col" onheadclick="div_exceldata_grd_excel_load_onheadclick">
+                <Formats>
+                  <Format id="default"/>
+                  <Format id="format_init"/>
+                </Formats>
+              </Grid>
+              <Button id="btn_errchk" taborder="6" text="오류검사" left="499" top="104" width="72" height="22" onclick="div_exceldata_btn_errchk_onclick"/>
+              <Button id="btn_apply" taborder="7" text="적용" left="576" top="104" width="52" height="22" onclick="div_exceldata_btn_apply_onclick"/>
+              <Static id="Static00_04_00" taborder="8" left="12" top="97" width="83" height="35" border="1px solid #10aea9" background="#c3e4cd" color="#16538c" textAlign="center" font="normal 13px/normal &quot;Gulim&quot;" text="시트이름"/>
+              <Static id="Static09_02_00" taborder="9" left="94" top="97" width="218" height="35" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+              <Button id="btn_xlsfind" taborder="10" text="가져오기" left="223" top="104" width="72" height="22" onclick="div_exceldata_btn_xlsfind_onclick"/>
+              <Combo id="cbo_sheetname" taborder="11" left="100" top="103" width="105" height="24" innerdataset="dsXlsSheetName" codecolumn="number" datacolumn="sheetname" text="학부모" index="0" value="1"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsMstSeqno">
+        <ColumnInfo>
+          <Column id="MAXNUMBER" type="STRING" size="12"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsJobInfo">
+        <ColumnInfo>
+          <Column id="SHI_ZONE" type="STRING" size="5"/>
+          <Column id="SHI_ZONE_NAME" type="STRING" size="256"/>
+          <Column id="SHI_SCHOOL_LEVEL" type="STRING" size="2"/>
+          <Column id="SHI_DIVISION" type="STRING" size="2"/>
+          <Column id="SHI_CUST_GB" type="STRING" size="2"/>
+          <Column id="SHI_CUST_CD" type="STRING" size="4"/>
+          <Column id="SHI_CUST_RESUME" type="STRING" size="256"/>
+          <Column id="SHI_BRANCH" type="STRING" size="2"/>
+          <Column id="SHI_STATUS" type="STRING" size="2"/>
+          <Column id="SHI_FOUNDATION" type="STRING" size="2"/>
+          <Column id="SHI_SYSTEM" type="STRING" size="2"/>
+          <Column id="SHI_ZIPCODE" type="STRING" size="6"/>
+          <Column id="SHI_SALES_CD" type="STRING" size="6"/>
+          <Column id="SHI_SALES_NAEM" type="STRING" size="256"/>
+          <Column id="SHI_ID" type="STRING" size="7"/>
+          <Column id="SHI_PHONE" type="STRING" size="20"/>
+          <Column id="SHI_FAX" type="STRING" size="20"/>
+          <Column id="SHI_ADDRESS" type="STRING" size="200"/>
+          <Column id="SHI_HOMEPAGE" type="STRING" size="200"/>
+          <Column id="SHI_NAME" type="STRING" size="100"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSchoolStudent">
+        <ColumnInfo>
+          <Column id="SHI_ID" type="STRING" size="7"/>
+          <Column id="SHS_ELEMENTARY1" type="STRING" size="5"/>
+          <Column id="SHS_ELEMENTARY2" type="STRING" size="5"/>
+          <Column id="SHS_ELEMENTARY3" type="STRING" size="5"/>
+          <Column id="SHS_ELEMENTARY4" type="STRING" size="5"/>
+          <Column id="SHS_ELEMENTARY5" type="STRING" size="5"/>
+          <Column id="SHS_ELEMENTARY6" type="STRING" size="5"/>
+          <Column id="SHS_MIDDLE1" type="STRING" size="5"/>
+          <Column id="SHS_MIDDLE2" type="STRING" size="5"/>
+          <Column id="SHS_MIDDLE3" type="STRING" size="5"/>
+          <Column id="SHS_HIGH1" type="STRING" size="5"/>
+          <Column id="SHS_HIGH2" type="STRING" size="5"/>
+          <Column id="SHS_HIGH3" type="STRING" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSchoolTeacher">
+        <ColumnInfo>
+          <Column id="SHI_ID" type="STRING" size="7"/>
+          <Column id="SHT_ET" type="STRING" size="5"/>
+          <Column id="SHT_MT_01" type="STRING" size="5"/>
+          <Column id="SHT_MT_02" type="STRING" size="5"/>
+          <Column id="SHT_MT_03" type="STRING" size="5"/>
+          <Column id="SHT_MT_04" type="STRING" size="5"/>
+          <Column id="SHT_MT_05" type="STRING" size="5"/>
+          <Column id="SHT_MT_06" type="STRING" size="5"/>
+          <Column id="SHT_MT_07" type="STRING" size="5"/>
+          <Column id="SHT_MT_08" type="STRING" size="5"/>
+          <Column id="SHT_MT_09" type="STRING" size="5"/>
+          <Column id="SHT_MT_10" type="STRING" size="5"/>
+          <Column id="SHT_MT_11" type="STRING" size="5"/>
+          <Column id="SHT_MT_12" type="STRING" size="5"/>
+          <Column id="SHT_MT_13" type="STRING" size="5"/>
+          <Column id="SHT_MT_14" type="STRING" size="5"/>
+          <Column id="SHT_MT_15" type="STRING" size="5"/>
+          <Column id="SHT_MT_16" type="STRING" size="5"/>
+          <Column id="SHT_MT_17" type="STRING" size="5"/>
+          <Column id="SHT_MT_18" type="STRING" size="5"/>
+          <Column id="SHT_MT_19" type="STRING" size="5"/>
+          <Column id="SHT_MT_20" type="STRING" size="5"/>
+          <Column id="SHT_HT_01" type="STRING" size="5"/>
+          <Column id="SHT_HT_02" type="STRING" size="5"/>
+          <Column id="SHT_HT_03" type="STRING" size="5"/>
+          <Column id="SHT_HT_04" type="STRING" size="5"/>
+          <Column id="SHT_HT_05" type="STRING" size="5"/>
+          <Column id="SHT_HT_06" type="STRING" size="5"/>
+          <Column id="SHT_HT_07" type="STRING" size="5"/>
+          <Column id="SHT_HT_08" type="STRING" size="5"/>
+          <Column id="SHT_HT_09" type="STRING" size="5"/>
+          <Column id="SHT_HT_10" type="STRING" size="5"/>
+          <Column id="SHT_HT_11" type="STRING" size="5"/>
+          <Column id="SHT_HT_12" type="STRING" size="5"/>
+          <Column id="SHT_HT_13" type="STRING" size="5"/>
+          <Column id="SHT_HT_14" type="STRING" size="5"/>
+          <Column id="SHT_HT_15" type="STRING" size="5"/>
+          <Column id="SHT_HT_16" type="STRING" size="5"/>
+          <Column id="SHT_HT_17" type="STRING" size="5"/>
+          <Column id="SHT_HT_18" type="STRING" size="5"/>
+          <Column id="SHT_HT_19" type="STRING" size="5"/>
+          <Column id="SHT_HT_20" type="STRING" size="5"/>
+          <Column id="SHT_HT_21" type="STRING" size="5"/>
+          <Column id="SHT_HT_22" type="STRING" size="5"/>
+          <Column id="SHT_HT_23" type="STRING" size="5"/>
+          <Column id="SHT_HT_24" type="STRING" size="5"/>
+          <Column id="SHT_HT_25" type="STRING" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSchoolLevel">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">초등학교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">중학교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">고등학교</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsDivision">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">인문</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">실업</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">특수</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsBranch">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">본교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">분교</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsStatus">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">기존교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">신설교</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">폐교</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsFoundation">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">공립</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">국립</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">사립</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSystem">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">일반고</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">자율고</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">특성화고(대안)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">특성화고(직업)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">05</Col>
+            <Col id="NAME">특수목적고</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">06</Col>
+            <Col id="NAME">특수학교</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsXlsSheetName">
+        <ColumnInfo>
+          <Column id="number" type="STRING" size="2"/>
+          <Column id="sheetname" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="number">1</Col>
+            <Col id="sheetname">학부모</Col>
+          </Row>
+          <Row>
+            <Col id="number">2</Col>
+            <Col id="sheetname">학생</Col>
+          </Row>
+          <Row>
+            <Col id="number">3</Col>
+            <Col id="sheetname">교사</Col>
+          </Row>
+          <Row>
+            <Col id="number">4</Col>
+            <Col id="sheetname">강사</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsExcelLoad"/>
+      <Dataset id="dsCell">
+        <ColumnInfo>
+          <Column id="Column" type="STRING" size="256"/>
+          <Column id="CellText" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsEducationOffice">
+        <ColumnInfo>
+          <Column id="SHE_CITIES_CD" type="STRING" size="2"/>
+          <Column id="SHE_EDO_CD" type="STRING" size="4"/>
+          <Column id="SHE_CITIES_NAME" type="STRING" size="20"/>
+          <Column id="SHE_DEO_NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSchoolEducationOfficeZone">
+        <ColumnInfo>
+          <Column id="SHE_CITIES_CD" type="STRING" size="2"/>
+          <Column id="SHI_ZONE" type="STRING" size="5"/>
+          <Column id="SHI_ZONE_NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSubject">
+        <ColumnInfo>
+          <Column id="MRKT_RSRCH_ID" type="STRING" size="256"/>
+          <Column id="MR_SBJCT_CODE" type="STRING" size="256"/>
+          <Column id="MR_SBJCT_NAME" type="STRING" size="256"/>
+          <Column id="MR_SBJCT_CHECK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MR_SBJCT_CODE">01</Col>
+            <Col id="MR_SBJCT_NAME">국어</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">02</Col>
+            <Col id="MR_SBJCT_NAME">영어</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">03</Col>
+            <Col id="MR_SBJCT_NAME">수학</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">04</Col>
+            <Col id="MR_SBJCT_NAME">사회</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">05</Col>
+            <Col id="MR_SBJCT_NAME">과학</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">99</Col>
+            <Col id="MR_SBJCT_NAME">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSchoolYear">
+        <ColumnInfo>
+          <Column id="MRKT_RSRCH_ID" type="STRING" size="256"/>
+          <Column id="MR_SCHOOL_CODE" type="STRING" size="256"/>
+          <Column id="MR_SCHOOL_NAME" type="STRING" size="256"/>
+          <Column id="MR_SCHOOL_CHECK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MR_SCHOOL_CODE">01</Col>
+            <Col id="MR_SCHOOL_NAME">초등</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SCHOOL_CODE">02</Col>
+            <Col id="MR_SCHOOL_NAME">중등</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SCHOOL_CODE">03</Col>
+            <Col id="MR_SCHOOL_NAME">고등</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsEvltnKind1" oncolumnchanged="dsEvltnKind6_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind2">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind3">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTestLevel">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">A</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">B</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">C</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="NAME">D</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_MRKT_RSRCH_MST">
+        <ColumnInfo>
+          <Column id="MRKT_RSRCH_ID" type="STRING" size="256"/>
+          <Column id="MRKT_JOB" type="STRING" size="256"/>
+          <Column id="MRKT_KIND" type="STRING" size="256"/>
+          <Column id="MRKT_EXPRT_DATE" type="STRING" size="256"/>
+          <Column id="MRKT_SABUN" type="STRING" size="256"/>
+          <Column id="MRKT_PRSNL" type="STRING" size="256"/>
+          <Column id="MRKT_ELMNT" type="STRING" size="256"/>
+          <Column id="MRKT_MIDDLE" type="STRING" size="256"/>
+          <Column id="MRKT_HIGH" type="STRING" size="256"/>
+          <Column id="MRKT_JOB_NAME" type="STRING" size="256"/>
+          <Column id="MRKT_NAME" type="STRING" size="256"/>
+          <Column id="MRKT_PHONE" type="STRING" size="256"/>
+          <Column id="MRKT_ADDR" type="STRING" size="256"/>
+          <Column id="MRKT_EMAIL" type="STRING" size="256"/>
+          <Column id="MRKT_CHANNEL" type="STRING" size="256"/>
+          <Column id="MRKT_EXPRT_YEAR" type="STRING" size="256"/>
+          <Column id="MRKT_CAREER" type="STRING" size="256"/>
+          <Column id="MRKT_SEX" type="STRING" size="256"/>
+          <Column id="MRKT_AGE" type="STRING" size="256"/>
+          <Column id="MRKT_SCHOOL" type="STRING" size="256"/>
+          <Column id="MRKT_LV1" type="STRING" size="256"/>
+          <Column id="MRKT_LV2" type="STRING" size="256"/>
+          <Column id="MRKT_LV3" type="STRING" size="256"/>
+          <Column id="MRKT_LV4" type="STRING" size="256"/>
+          <Column id="MRKT_LV5" type="STRING" size="256"/>
+          <Column id="MRKT_LV6" type="STRING" size="256"/>
+          <Column id="MRKT_LV7" type="STRING" size="256"/>
+          <Column id="MRKT_LV8" type="STRING" size="256"/>
+          <Column id="MRKT_LV9" type="STRING" size="256"/>
+          <Column id="MRKT_LV10" type="STRING" size="256"/>
+          <Column id="MRKT_LV11" type="STRING" size="256"/>
+          <Column id="MRKT_LV12" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_MRKT_RSRCH_DTL">
+        <ColumnInfo>
+          <Column id="MRKT_RSRCH_ID" type="STRING" size="256"/>
+          <Column id="MRD_SEQ" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND1" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND2" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND3" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND4" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND5" type="STRING" size="256"/>
+          <Column id="MRKT_OPEN_DATE" type="STRING" size="8"/>
+          <Column id="EVLTN_KIND5_MEMO" type="STRING" size="1000"/>
+          <Column id="MRKT_THIRD_DATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUpdown">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">이상</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">이하</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsEvltnKind7">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnPath">
+        <ColumnInfo>
+          <Column id="CODE1" type="STRING" size="256"/>
+          <Column id="NAME1" type="STRING" size="256"/>
+          <Column id="CODE2" type="STRING" size="256"/>
+          <Column id="NAME2" type="STRING" size="256"/>
+          <Column id="CODE3" type="STRING" size="256"/>
+          <Column id="NAME3" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSex">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">남</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">여</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGrade">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">초등학교 1학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">초등학교 2학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">초등학교 3학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">초등학교 4학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="NAME">초등학교 5학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">6</Col>
+            <Col id="NAME">초등학교 6학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">7</Col>
+            <Col id="NAME">중학교 1학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">8</Col>
+            <Col id="NAME">중학교 2학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">9</Col>
+            <Col id="NAME">중학교 3학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">10</Col>
+            <Col id="NAME">고등학교 1학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">11</Col>
+            <Col id="NAME">고등학교 2학년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">12</Col>
+            <Col id="NAME">고등학교 3학년</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsEvltnKind6" oncolumnchanged="dsEvltnKind6_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind4">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind5">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsExcel"/>
+      <Dataset id="dsYearCode">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">1년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">3년</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">5년</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCopy"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_svraddr = nexacro.getApplication().gfn_getUrl("svcUrl");
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var err_chk = "";
+var pMRKT_RSRCH_ID = "";
+var pMRD_SEQ = "";
+
+var Fv_HeadChk = 0;
+
+this.SD6900F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var strUrl, strDs, strArg;
+	
+	strUrl = "JSP/sd/sd6920_select_info.jsp";
+	strDs = "dsEvltnKind1=dsEvltnKind1 dsEvltnKind2=dsEvltnKind2 dsEvltnKind3=dsEvltnKind3  dsEvltnKind4=dsEvltnKind4 dsEvltnKind5=dsEvltnKind5 dsEvltnKind6=dsEvltnKind6 dsEvltnKind7=dsEvltnKind7 dsEvltnPath=dsEvltnPath";
+	strArg = "";
+	
+	this.gfn_TransactionP("mst_select", strUrl, strDs, strDs, strArg, "fnSearchCallback", false, "P", false, this);
+};
+
+this.fnMstitemClear = function()
+{
+	this.div_main.form.cbo_job.set_index(-1);
+	this.div_main.form.cbo_kinds.set_index(-1);
+	this.fnDtlitemClear();
+}
+
+this.fnDtlitemClear = function()
+{
+	this.div_main.form.cbo_kind1.set_index(-1);
+	this.div_main.form.cbo_kind2.set_index(-1);
+	this.div_main.form.cbo_kind3.set_index(-1);
+	this.div_main.form.cbo_kind4.set_index(-1);
+	this.div_main.form.cbo_kind5.set_index(-1);
+}
+
+this.btn_can_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	
+	if(msg_result = objApp.confirm( "새로운 관리카드를 생성합니다.\n 정말 등록하시겠습니까? " , "신규카드등록", "warning" ))
+	{
+		this.fnMstitemClear();
+		this.div_main.form.div_career.form.edt_04.set_value("");
+		this.ds_MRKT_RSRCH_MST.clearData();
+		this.ds_MRKT_RSRCH_MST.addRow();
+		this.ds_MRKT_RSRCH_DTL.clearData();
+		this.ds_MRKT_RSRCH_DTL.addRow();
+	}
+};
+
+this.btn_xlsfind_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var vtop = (this.height / 2) - (this.div_exceldata.height / 2);
+	var vleft = (this.div_main.form.Static09_01.width / 2) - (this.div_exceldata.width / 2);
+	this.div_exceldata.set_top(vtop);
+	this.div_exceldata.set_left(vleft);
+	this.div_exceldata.set_visible(true);
+	alert('시트이름을 맞춰주시기 바랍니다.');
+};
+
+this.div_exceldata_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.div_exceldata.set_visible(false);
+	this.dsExcel.clear();
+	this.div_exceldata.form.cbo_sheetname.set_index(0);
+	this.div_exceldata.form.edt_year.set_value("");
+};
+
+this.div_exceldata_btn_xlsfind_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.importObj = new ExcelImportObject("Import00",this); 
+    this.importObj.addEventHandler("onsuccess", this.Import_onsuccess, this);
+	this.importObj.addEventHandler("onerror", this.Import_onerror, this);
+    this.importObj.set_importurl(gv_urlXeni);
+	var strArg = "[Output=ds;Body="+this.div_exceldata.form.cbo_sheetname.text+"!A:AS]";
+    var ret = this.importObj.importData("", strArg, "dsCopy=ds");
+	if(!ret){
+		this.alert("업로드에 실패하셨습니다.");
+		return;
+	}
+};
+this.Import_onerror = function()
+{
+	alert('해당 이름의 시트가 존재하지 않습니다.');
+}
+this.Import_onsuccess = function()
+{
+	this.dsExcel.clearData();
+	this.dsExcel.copyData(this.dsCopy);
+	this.dsCopy.clearData();
+	this.div_exceldata.form.grd_excel_load.deleteContentsRow("head",0);
+	for(var i=0; i < this.div_exceldata.form.grd_excel_load.getFormatColCount(); i++)
+		this.div_exceldata.form.grd_excel_load.deleteContentsCol("body",0);
+	for(var i=0; i < this.div_exceldata.form.grd_excel_load.rowcount; i++)
+		this.div_exceldata.form.grd_excel_load.deleteContentsRow("body",0);
+	
+	for(var i=0; i<2; i++)
+		this.dsExcel.deleteRow(0);
+	this.dsExcel.addColumn("CHK","string");
+	this.div_exceldata.form.grd_excel_load.setBindDataset(this.dsExcel);
+	this.div_exceldata.form.grd_excel_load.appendContentsRow("head");
+	this.div_exceldata.form.grd_excel_load.appendContentsRow("body");
+	this.div_exceldata.form.grd_excel_load.setCellProperty("head", 0, "displaytype", "checkboxcontrol");
+	this.div_exceldata.form.grd_excel_load.setCellProperty("head", 0, "edittype", "checkbox");
+	for(var i=0; i<this.dsExcel.colcount-1; i++)
+	{
+		this.div_exceldata.form.grd_excel_load.appendContentsCol("body");
+		this.div_exceldata.form.grd_excel_load.setCellProperty("head", i+1, "text", this.dsExcel.getColumn(0,i));
+		this.div_exceldata.form.grd_excel_load.setCellProperty("row", i+1, "text", "bind:Column"+i)
+	}
+	this.div_exceldata.form.grd_excel_load.setCellProperty("row", 0, "displaytype", "checkboxcontrol");
+	this.div_exceldata.form.grd_excel_load.setCellProperty("row", 0, "edittype", "checkbox");
+	this.div_exceldata.form.grd_excel_load.setCellProperty("row", 0, "text", "bind:CHK");
+	this.dsExcel.deleteRow(0);
+	err_chk = "";
+}
+
+this.div_exceldata_grd_sheet_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(obj.rowcount <= 0)
+		return;
+	
+	this.importObj = new ExcelImportObject("Import01",this); 
+    this.importObj.addEventHandler("onsuccess", this.Import_onsuccess, this);
+    this.importObj.set_importurl(gv_urlXeni);
+    var ret = this.importObj.importData("","output=ds", "dsExcel=ds");
+	if(!ret){
+		this.alert("업로드에 실패하셨습니다.");
+		return;
+	}
+};
+
+
+this.div_exceldata_btn_errchk_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sErrList = "";
+	var iErrCnt = 0;
+	
+	for (var i = 0; i < this.dsExcel.rowcount; i++)
+	{ 
+		if (this.dsExcel.getColumn(i, "CHK") == "1")
+		{	
+			var pTemp1_cd, pTemp2_cd, pTemp3_cd, pTemp4_cd, pTemp5_cd, pTemp6_cd;
+			
+			var pTemp1 = this.dsExcel.getColumn(i, 0); //직업구분
+			var pTemp2 = this.dsExcel.getColumn(i, 1); //학교/학원명
+			var pTemp3 = this.dsExcel.getColumn(i, 2); //학교/학원형태
+			var pTemp4 = this.dsExcel.getColumn(i, 3); //원생규모(명)
+			var pTemp5 = this.dsExcel.getColumn(i, 4); //초등
+			var pTemp6 = this.dsExcel.getColumn(i, 5); //중등
+			var pTemp7 = this.dsExcel.getColumn(i, 6); //고등
+			var pTemp8 = this.dsExcel.getColumn(i, 7); //성명
+			var pTemp9 = this.dsExcel.getColumn(i, 8); //핸드폰
+			var pTemp10 = this.dsExcel.getColumn(i, 9); //주소
+			var pTemp11 = this.dsExcel.getColumn(i, 10); //이메일
+			var pTemp12 = this.dsExcel.getColumn(i, 11); //강의구분(초등)
+			var pTemp13 = this.dsExcel.getColumn(i, 12); //강의구분(중등)
+			var pTemp14 = this.dsExcel.getColumn(i, 13); //강의구분(고등)
+			var pTemp15 = this.dsExcel.getColumn(i, 14); //강의과목(국어)
+			var pTemp16 = this.dsExcel.getColumn(i, 15); //영어
+			var pTemp17 = this.dsExcel.getColumn(i, 16); //수학
+			var pTemp18 = this.dsExcel.getColumn(i, 17); //사회
+			var pTemp19 = this.dsExcel.getColumn(i, 18); //과학
+			var pTemp20 = this.dsExcel.getColumn(i, 19); //기타
+			var pTemp21 = this.dsExcel.getColumn(i, 20); //참여교재(초중고)
+			var pTemp22 = this.dsExcel.getColumn(i, 21); //과목
+			var pTemp23 = this.dsExcel.getColumn(i, 22); //브랜드
+			var pTemp24 = this.dsExcel.getColumn(i, 23); //조사형태
+			var pTemp25 = this.dsExcel.getColumn(i, 24); //역량평가
+			
+			var pTemp26 = this.dsExcel.getColumn(i, 25); //역량평가 비고 
+			var pTemp27 = this.dsExcel.getColumn(i, 26); //시장조사 참여일 26	
+			var pTemp28 = this.dsExcel.getColumn(i, 27); //종료일	27
+			
+			var pTemp29 = this.dsExcel.getColumn(i, 28); //경력
+			var pTemp30 = this.dsExcel.getColumn(i, 29); //성별
+			var pTemp31 = this.dsExcel.getColumn(i, 30); //생년	
+			var pTemp32 = this.dsExcel.getColumn(i, 31); //모집채널
+			
+			var pTemp33 = this.dsExcel.getColumn(i, 32); //학생학년
+			var pTemp34 = this.dsExcel.getColumn(i, 33); //학생학년
+			var pTemp35 = this.dsExcel.getColumn(i, 34); //학생학년
+			var pTemp36 = this.dsExcel.getColumn(i, 35); //학생학년
+			var pTemp37 = this.dsExcel.getColumn(i, 36); //학생학년
+			var pTemp38 = this.dsExcel.getColumn(i, 37); //학생학년
+			var pTemp39 = this.dsExcel.getColumn(i, 38); //학생학년
+			var pTemp40 = this.dsExcel.getColumn(i, 39); //학생학년
+			var pTemp41 = this.dsExcel.getColumn(i, 40); //학생학년
+			var pTemp42 = this.dsExcel.getColumn(i, 41); //학생학년
+			var pTemp43 = this.dsExcel.getColumn(i, 42); //학생학년
+			var pTemp44 = this.dsExcel.getColumn(i, 43); //학생학년
+			var pTemp45 = this.dsExcel.getColumn(i, 44); //학생학년
+			
+			if ((this.dsExcel.getColumn(i, 0) != null))
+			{			
+				this.dsEvltnKind4.filter("NAME == '"+pTemp1+"'");
+				pTemp1_cd = this.dsEvltnKind4.getColumn(0,"CODE");
+				//trace(ds_education_office.SaveXML());
+				this.dsEvltnKind4.filter("");
+				
+				if (pTemp1_cd == null)
+				{
+					//dsExcelLoad.SelectRow(i);
+					iErrCnt = (iErrCnt + 1);
+					
+					sErrList += iErrCnt + " ( " + i + " ) : "   
+					           + this.dsExcel.getColumn(i, 0) + " [" 
+							   + this.dsExcel.getColumn(i, 1) + "] "
+							   + this.dsExcel.getColumn(i, 2) + " : ** 직업구분 코드 오류 ** " + "\r\n";
+					trace(i + "row : ** 직업구분 코드 오류 **");
+				}
+			} 
+			else
+			{
+				iErrCnt = (iErrCnt + 1);
+				sErrList += iErrCnt + " ( " + i + " ) : "   
+						   + this.dsExcel.getColumn(i, 0) + " [" 
+						   + this.dsExcel.getColumn(i, 1) + "] "
+						   + this.dsExcel.getColumn(i, 2) + " : ** 직업구분 데이터 없음 ** " + "\r\n";
+				trace(i + "row : ** 직업구분 데이터 없음 **");
+			}
+			//학교/학원형태
+			if ((this.dsExcel.getColumn(i, 2) != null))
+			{			
+				
+				this.dsEvltnKind5.filter("NAME == '"+pTemp3+"'");
+				pTemp3_cd = this.dsEvltnKind5.getColumn(0,"CODE");
+				this.dsEvltnKind5.filter("");
+				
+				if (pTemp3_cd == null)
+				{
+					iErrCnt = (iErrCnt + 1);
+					
+					sErrList += iErrCnt + " ( " + i + " ) : "   
+					           + this.dsExcel.getColumn(i, 0) + " [" 
+							   + this.dsExcel.getColumn(i, 1) + "] "
+							   + this.dsExcel.getColumn(i, 2) + " : ** 학교/학원형태 코드 오류 ** " + "\r\n";
+					trace(i + "row : ** 학교/학원형태 코드 오류 **");
+				}
+			} 
+			else
+			{
+				iErrCnt = (iErrCnt + 1);
+				sErrList += iErrCnt + " ( " + i + " ) : "   
+						   + this.dsExcel.getColumn(i, 0) + " [" 
+						   + this.dsExcel.getColumn(i, 1) + "] "
+						   + this.dsExcel.getColumn(i, 2) + " : ** 학교/학원형태 데이터 없음 ** " + "\r\n";
+				trace(i + "row : ** 학교/학원형태 데이터 없음 **");
+			}
+			var a = this.dsExcel.getColumn(i, 20);
+			//참여교재
+			if ((this.dsExcel.getColumn(i, 20) != null))
+			{			
+				this.dsEvltnKind6.filter("NAME == '"+pTemp21+"'");
+				pTemp21_cd = this.dsEvltnKind6.getColumn(0,"CODE");
+				this.dsEvltnKind6.filter("");
+				
+				if (pTemp21_cd == null)
+				{
+					iErrCnt = (iErrCnt + 1);
+					
+					sErrList += iErrCnt + " ( " + i + " ) : "   
+					           + this.dsExcel.getColumn(i, 0) + " [" 
+							   + this.dsExcel.getColumn(i, 1) + "] "
+							   + this.dsExcel.getColumn(i, 2) + " : ** 참여교재(초중고) 코드 오류 ** " + "\r\n";
+					trace(i + "row : ** 참여교재(초중고) 코드 오류 **");
+				}
+			} 
+			else
+			{
+				iErrCnt = (iErrCnt + 1);
+				sErrList += iErrCnt + " ( " + i + " ) : "   
+						   + this.dsExcel.getColumn(i, 0) + " [" 
+						   + this.dsExcel.getColumn(i, 1) + "] "
+						   + this.dsExcel.getColumn(i, 2) + " : ** 참여교재(초중고) 데이터 없음 ** " + "\r\n";
+				trace(i + "row : ** 참여교재(초중고) 데이터 없음 **");
+			}
+			//과목
+			if ((this.dsExcel.getColumn(i, 21) != null))
+			{			
+				this.dsEvltnKind1.filter("NAME == '"+pTemp22+"'");
+				pTemp22_cd = this.dsEvltnKind1.getColumn(0,"CODE");
+				this.dsEvltnKind1.filter("");
+				
+				if (pTemp22_cd == null)
+				{
+					iErrCnt = (iErrCnt + 1);
+					
+					sErrList += iErrCnt + " ( " + i + " ) : "   
+					           + this.dsExcel.getColumn(i, 0) + " [" 
+							   + this.dsExcel.getColumn(i, 1) + "] "
+							   + this.dsExcel.getColumn(i, 2) + " : ** 과목 코드 오류 ** " + "\r\n";
+					trace(i + "row : ** 과목 코드 오류 **");
+				}
+			} 
+			else
+			{
+				iErrCnt = (iErrCnt + 1);
+				sErrList += iErrCnt + " ( " + i + " ) : "   
+						   + this.dsExcel.getColumn(i, 0) + " [" 
+						   + this.dsExcel.getColumn(i, 1) + "] "
+						   + this.dsExcel.getColumn(i, 2) + " : ** 과목 데이터 없음 ** " + "\r\n";
+				trace(i + "row : ** 과목 데이터 없음 **");
+			}
+			//브랜드
+			if ((this.dsExcel.getColumn(i, 22) != null))
+			{			
+				
+				this.dsEvltnKind2.filter("NAME == '"+pTemp23+"'");
+				pTemp23_cd = this.dsEvltnKind2.getColumn(0,"CODE");
+				this.dsEvltnKind2.filter("");
+				
+				if (pTemp23_cd == null)
+				{
+					iErrCnt = (iErrCnt + 1);
+					
+					sErrList += iErrCnt + " ( " + i + " ) : "   
+					           + this.dsExcel.getColumn(i, 0) + " [" 
+							   + this.dsExcel.getColumn(i, 1) + "] "
+							   + this.dsExcel.getColumn(i, 2) + " : ** 브랜드 코드 오류 ** " + "\r\n";
+					trace(i + "row : ** 브랜드 코드 오류 **");
+				}
+			} 
+			else
+			{
+				iErrCnt = (iErrCnt + 1);
+				sErrList += iErrCnt + " ( " + i + " ) : "   
+						   + this.dsExcel.getColumn(i, 0) + " [" 
+						   + this.dsExcel.getColumn(i, 1) + "] "
+						   + this.dsExcel.getColumn(i, 2) + " : ** 브랜드 데이터 없음 ** " + "\r\n";
+				trace(i + "row : ** 브랜드 데이터 없음 **");
+			}		
+			//조사형태
+			if ((this.dsExcel.getColumn(i, 23) != null))
+			{				
+				this.dsEvltnKind3.filter("NAME == '"+pTemp24+"'");
+				pTemp24_cd = this.dsEvltnKind2.getColumn(0,"CODE");
+				this.dsEvltnKind3.filter("");
+				
+				if (pTemp24_cd == null)
+				{
+					iErrCnt = (iErrCnt + 1);
+					
+					sErrList += iErrCnt + " ( " + i + " ) : "   
+					           + this.dsExcel.getColumn(i, 0) + " [" 
+							   + this.dsExcel.getColumn(i, 1) + "] "
+							   + this.dsExcel.getColumn(i, 2) + " : ** 조사형태 코드 오류 ** " + "\r\n";
+					trace(i + "row : ** 조사형태 코드 오류 **");
+				}
+			} 
+			else
+			{
+				iErrCnt = (iErrCnt + 1);
+				sErrList += iErrCnt + " ( " + i + " ) : "   
+						   + this.dsExcel.getColumn(i, 0) + " [" 
+						   + this.dsExcel.getColumn(i, 1) + "] "
+						   + this.dsExcel.getColumn(i, 2) + " : ** 조사형태 데이터 없음 ** " + "\r\n";
+				trace(i + "row : ** 조사형태 데이터 없음 **");
+			}	
+			//시장조사 참여일
+			if ((this.dsExcel.getColumn(i, 26) != null))
+			{							
+				if (pTemp27.length != 8)
+				{
+					iErrCnt = (iErrCnt + 1);
+					
+					sErrList += iErrCnt + " ( " + i + " ) : "   
+					           + this.dsExcel.getColumn(i, 0) + " [" 
+							   + this.dsExcel.getColumn(i, 1) + "] "
+							   + this.dsExcel.getColumn(i, 2) + " : ** 시장조사 참여일 오류 ** " + "\r\n";
+					trace(i + "row : ** 시장조사 참여일 오류 **");
+				}
+			} 
+			else
+			{
+				iErrCnt = (iErrCnt + 1);
+				sErrList += iErrCnt + " ( " + i + " ) : "   
+						   + this.dsExcel.getColumn(i, 0) + " [" 
+						   + this.dsExcel.getColumn(i, 1) + "] "
+						   + this.dsExcel.getColumn(i, 2) + " : ** 시장조사 참여일 데이터 없음 ** " + "\r\n";
+				trace(i + "row : ** 시장조사 참여일 데이터 없음 **");
+			}					
+			
+			//핸드폰유효성검사
+			if ( this.dsExcel.getColumn(i, 8) != null )
+			{
+				if ( pTemp9.length < 10 )
+				{
+					iErrCnt = (iErrCnt + 1);
+					
+					sErrList += iErrCnt + " ( " + i + " ) : "   
+					           + this.dsExcel.getColumn(i, 0) + " [" 
+							   + this.dsExcel.getColumn(i, 1) + "] "
+							   + this.dsExcel.getColumn(i, 2) + " : ** 핸드폰 번호 오류 ** " + "\r\n";
+					trace(i + "row : ** 핸드폰 번호 오류 **");
+				}
+			}
+			//시장조사 종료일
+			if ((this.dsExcel.getColumn(i, 27) != null))
+			{							
+				if (pTemp28.length != 8)
+				{
+					iErrCnt = (iErrCnt + 1);
+					
+					sErrList += iErrCnt + " ( " + i + " ) : "   
+					           + this.dsExcel.getColumn(i, 0) + " [" 
+							   + this.dsExcel.getColumn(i, 1) + "] "
+							   + this.dsExcel.getColumn(i, 2) + " : ** 시장조사 만료일 오류 ** " + "\r\n";
+					trace(i + "row : ** 시장조사 만료일 오류 **");
+				}
+			} 
+			else
+			{
+				iErrCnt = (iErrCnt + 1);
+				sErrList += iErrCnt + " ( " + i + " ) : "   
+						   + this.dsExcel.getColumn(i, 0) + " [" 
+						   + this.dsExcel.getColumn(i, 1) + "] "
+						   + this.dsExcel.getColumn(i, 2) + " : ** 시장조사 만료일 데이터 없음 ** " + "\r\n";
+				trace(i + "row : ** 시장조사 만료일 데이터 없음 **");
+			}								
+		}
+	}
+	
+	if (iErrCnt > 0)
+	{
+		alert(iErrCnt + "개의 에러가 발생했습니다.");
+		alert(sErrList);
+	}
+	else
+		alert("에러가 없습니다.");
+	err_chk = "OK";
+};
+
+this.div_exceldata_btn_apply_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.dsExcel.rowcount <= 0) 
+	{
+		alert("변환 할 데이타가 없습니다.");
+		return;
+	}
+	
+	if (err_chk != "OK") 
+	{
+		alert("오류 검사 과정을 진행해주세요!");
+		return;
+	}
+	
+	this.ds_MRKT_RSRCH_MST.clearData();
+	this.ds_MRKT_RSRCH_DTL.clearData();
+	
+	for(var i=0; i < this.dsExcel.rowcount; i++)
+    {
+		if (this.dsExcel.getColumn(i, "CHK") == "1")
+		{	
+			this.fnImportSend(i);
+		}
+	}
+	alert("처리되었습니다!");
+};
+
+this.fnImportSend = function(pSetCount)
+{
+	var pTemp1_cd, pTemp2_cd, pTemp3_cd, pTemp4_cd, pTemp5_cd, pTemp6_cd, pTemp7_cd, pTemp8_cd;
+	var pTemp1 = this.dsExcel.getColumn(pSetCount, 0);
+	this.dsEvltnKind4.filter("NAME == '"+pTemp1+"'");
+	pTemp1_cd = this.dsEvltnKind4.getColumn(0,"CODE");
+	this.dsEvltnKind4.filter("");
+	
+	var pTemp3 = this.dsExcel.getColumn(pSetCount, 2);
+	this.dsEvltnKind5.filter("NAME == '"+pTemp3+"'");
+	pTemp2_cd = this.dsEvltnKind5.getColumn(0,"CODE");
+	this.dsEvltnKind5.filter("");
+	
+	var pRow = this.ds_MRKT_RSRCH_MST.addRow();
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_JOB", pTemp1_cd);
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_JOB_NAME", this.dsExcel.getColumn(pSetCount, 1));
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_KIND", pTemp2_cd);
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_PRSNL", this.dsExcel.getColumn(pSetCount, 3));
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_ELMNT", this.dsExcel.getColumn(pSetCount, 4));
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_MIDDLE", this.dsExcel.getColumn(pSetCount, 5));
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_HIGH", this.dsExcel.getColumn(pSetCount, 6));
+	
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_NAME", this.dsExcel.getColumn(pSetCount, 7));
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_PHONE", this.dsExcel.getColumn(pSetCount, 8));
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_ADDR", this.dsExcel.getColumn(pSetCount, 9));
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_EMAIL", this.dsExcel.getColumn(pSetCount, 10));
+	
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_EXPRT_DATE", this.dsExcel.getColumn(pSetCount, 27));
+	
+	var exprt = this.dsExcel.getColumn(pSetCount, 28); //경력 
+	if(exprt != null)
+		this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_CAREER", nexacro.trim(exprt)); 
+	
+	var gender = this.dsExcel.getColumn(pSetCount, 29); //성별
+	
+	if(nexacro.trim(gender) == "남자"){
+		this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SEX", "0");
+	}else if(nexacro.trim(gender) == "여자"){
+		this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SEX", "1");
+	}
+	
+	var pTemp31 = this.dsExcel.getColumn(pSetCount, 30); //생년	
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_AGE", pTemp31);
+	
+	var pTemp21 = this.dsExcel.getColumn(pSetCount, 20);
+	this.dsEvltnKind6.filter("NAME == '"+pTemp21+"'");
+	pTemp3_cd = this.dsEvltnKind6.getColumn(0,"CODE");
+	this.dsEvltnKind6.filter("");		
+
+	var pTemp22 = this.dsExcel.getColumn(pSetCount, 21);
+	this.dsEvltnKind1.filter("NAME == '"+pTemp22+"'");
+	pTemp4_cd = this.dsEvltnKind1.getColumn(0,"CODE");
+	this.dsEvltnKind1.filter("");
+ 
+	var pTemp23 = this.dsExcel.getColumn(pSetCount, 22);
+	this.dsEvltnKind2.filter("NAME == '"+pTemp23+"'");
+	pTemp5_cd = this.dsEvltnKind2.getColumn(0,"CODE");
+	this.dsEvltnKind2.filter("");
+	
+	var pTemp24 = this.dsExcel.getColumn(pSetCount, 23);
+	this.dsEvltnKind3.filter("NAME == '"+pTemp24+"'");
+	pTemp6_cd = this.dsEvltnKind3.getColumn(0,"CODE");
+	this.dsEvltnKind3.filter("");	
+
+	var pTemp25 = this.dsExcel.getColumn(pSetCount, 24);
+	this.dsTestLevel.filter("NAME == '"+pTemp25+"'");
+	pTemp7_cd = this.dsTestLevel.getColumn(0,"CODE");
+	this.dsTestLevel.filter("");	
+
+	var pTemp32 = this.dsExcel.getColumn(pSetCount, 31);
+	this.dsEvltnKind7.filter("NAME == '"+pTemp32+"'");
+	pTemp8_cd = this.dsEvltnKind7.getColumn(0,"CODE");
+	this.dsEvltnKind7.filter("");
+	
+	this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_CHANNEL", pTemp8_cd);
+	
+	var grade = this.dsExcel.getColumn(pSetCount, 32); //학생학년
+	if (grade != null)
+	{
+		if (nexacro.trim(grade) == "초1")         this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 1);
+		else if (nexacro.trim(grade) == "초2")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 2);
+		else if (nexacro.trim(grade) == "초3")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 3);
+		else if (nexacro.trim(grade) == "초4")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 4);
+		else if (nexacro.trim(grade) == "초5")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 5);
+		else if (nexacro.trim(grade) == "초6")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 6);
+		
+		else if (nexacro.trim(grade) == "중1")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 7);
+		else if (nexacro.trim(grade) == "중2")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 8);
+		else if (nexacro.trim(grade) == "중3")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 9);
+
+		else if (nexacro.trim(grade) == "고1")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 10);
+		else if (nexacro.trim(grade) == "고2")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 11);
+		else if (nexacro.trim(grade) == "고3")    this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_SCHOOL", 12);
+	}
+	var pTemp32 = this.dsExcel.getColumn(pSetCount, 33); //초1
+	var pTemp33 = this.dsExcel.getColumn(pSetCount, 34); //초2
+	var pTemp34 = this.dsExcel.getColumn(pSetCount, 35); //초3
+	var pTemp35 = this.dsExcel.getColumn(pSetCount, 36); //초4
+	var pTemp36 = this.dsExcel.getColumn(pSetCount, 37); //초5
+	var pTemp37 = this.dsExcel.getColumn(pSetCount, 38); //초6
+	
+	var pTemp38 = this.dsExcel.getColumn(pSetCount, 39); //중1
+	var pTemp39 = this.dsExcel.getColumn(pSetCount, 40); //중2
+	var pTemp40 = this.dsExcel.getColumn(pSetCount, 41); //중3
+	
+	var pTemp41 = this.dsExcel.getColumn(pSetCount, 42); //고1
+	var pTemp42 = this.dsExcel.getColumn(pSetCount, 43); //고2
+	var pTemp43 = this.dsExcel.getColumn(pSetCount, 44); //고3
+	
+	if (pTemp32 != null && (nexacro.trim(pTemp32)).length == "1")      this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV1", "1");
+	if (pTemp33 != null && (nexacro.trim(pTemp33)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV2", "1");
+	if (pTemp34 != null && (nexacro.trim(pTemp34)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV3", "1");
+	if (pTemp35 != null && (nexacro.trim(pTemp35)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV4", "1");
+	if (pTemp36 != null && (nexacro.trim(pTemp36)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV5", "1");
+	if (pTemp37 != null && (nexacro.trim(pTemp37)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV6", "1");
+	
+	if (pTemp38 != null && (nexacro.trim(pTemp38)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV7", "1");
+	if (pTemp39 != null && (nexacro.trim(pTemp39)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV8", "1");
+	if (pTemp40 != null && (nexacro.trim(pTemp40)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV9", "1");
+	
+	if (pTemp41 != null && (nexacro.trim(pTemp41)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV10", "1");
+	if (pTemp42 != null && (nexacro.trim(pTemp42)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV11", "1");
+	if (pTemp43 != null && (nexacro.trim(pTemp43)).length == "1") this.ds_MRKT_RSRCH_MST.setColumn(pRow,"MRKT_LV12", "1");
+	
+	var pRow = this.ds_MRKT_RSRCH_DTL.addRow();
+	this.ds_MRKT_RSRCH_DTL.setColumn(pRow,"EVLTN_KIND1", pTemp3_cd);
+	this.ds_MRKT_RSRCH_DTL.setColumn(pRow,"EVLTN_KIND2", pTemp4_cd);
+	this.ds_MRKT_RSRCH_DTL.setColumn(pRow,"EVLTN_KIND3", pTemp5_cd);
+	this.ds_MRKT_RSRCH_DTL.setColumn(pRow,"EVLTN_KIND4", pTemp6_cd);
+	this.ds_MRKT_RSRCH_DTL.setColumn(pRow,"EVLTN_KIND5", pTemp7_cd);
+	this.ds_MRKT_RSRCH_DTL.setColumn(pRow,"MRKT_OPEN_DATE", this.dsExcel.getColumn(pSetCount, 26));	
+	this.ds_MRKT_RSRCH_DTL.setColumn(pRow,"MRKT_THIRD_DATE", "");	
+	this.ds_MRKT_RSRCH_DTL.setColumn(pRow,"EVLTN_KIND5_MEMO", this.dsExcel.getColumn(pSetCount, 25));	
+	
+	//this.dsSchoolYear
+	var pTemp12 = this.dsExcel.getColumn(pSetCount, 11); //강의구분(초등)
+	var pTemp13 = this.dsExcel.getColumn(pSetCount, 12); //강의구분(중등)
+	var pTemp14 = this.dsExcel.getColumn(pSetCount, 13); //강의구분(고등)
+
+	if (pTemp12 != null) this.dsSchoolYear.setColumn(0, "MR_SCHOOL_CHECK", "1");
+	else this.dsSchoolYear.setColumn(0, "MR_SCHOOL_CHECK", "0");
+	
+	if (pTemp13 != null) this.dsSchoolYear.setColumn(1, "MR_SCHOOL_CHECK", "1");
+	else this.dsSchoolYear.setColumn(1, "MR_SCHOOL_CHECK", "0");
+	
+	if (pTemp14 != null) this.dsSchoolYear.setColumn(2, "MR_SCHOOL_CHECK", "1");
+	else this.dsSchoolYear.setColumn(2, "MR_SCHOOL_CHECK", "0");
+	
+	//ds_subject
+	var pTemp15 = this.dsExcel.getColumn(pSetCount, 14); //강의과목(국어)
+	var pTemp16 = this.dsExcel.getColumn(pSetCount, 15); //강의과목(영어)
+	var pTemp17 = this.dsExcel.getColumn(pSetCount, 16); //강의과목(수학)
+	var pTemp18 = this.dsExcel.getColumn(pSetCount, 17); //강의과목(사회
+	var pTemp19 = this.dsExcel.getColumn(pSetCount, 18); //강의과목(과학)
+	var pTemp20 = this.dsExcel.getColumn(pSetCount, 19); //강의과목(기타)
+	
+	if (pTemp15!= null && (nexacro.trim(pTemp15)).length != 0) this.dsSubject.setColumn(0, "MR_SBJCT_CHECK", "1");
+	else this.dsSubject.setColumn(0, "MR_SBJCT_CHECK", "0");
+	
+	if (pTemp15!= null && (nexacro.trim(pTemp16)).length != 0) this.dsSubject.setColumn(1, "MR_SBJCT_CHECK", "1");
+	else this.dsSubject.setColumn(1, "MR_SBJCT_CHECK", "0");
+	
+	if (pTemp15!= null && (nexacro.trim(pTemp17)).length != 0) this.dsSubject.setColumn(2, "MR_SBJCT_CHECK", "1");
+	else this.dsSubject.setColumn(2, "MR_SBJCT_CHECK", "0");
+	
+	if (pTemp15!= null && (nexacro.trim(pTemp18)).length != 0) this.dsSubject.setColumn(3, "MR_SBJCT_CHECK", "1");
+	else this.dsSubject.setColumn(3, "MR_SBJCT_CHECK", "0");
+	
+	if (pTemp15!= null && (nexacro.trim(pTemp19)).length != 0) this.dsSubject.setColumn(4, "MR_SBJCT_CHECK", "1");
+	else this.dsSubject.setColumn(4, "MR_SBJCT_CHECK", "0");
+	
+	if (pTemp15!= null && (nexacro.trim(pTemp20)).length != 0) this.dsSubject.setColumn(5, "MR_SBJCT_CHECK", "1");
+	else this.dsSubject.setColumn(5, "MR_SBJCT_CHECK", "0");
+	
+	var strUrl = "JSP/sd/sd6900_mst_tr.jsp";
+	var inDs 	= "ds_MRKT_RSRCH_MST=ds_MRKT_RSRCH_MST:u ds_MRKT_RSRCH_DTL=ds_MRKT_RSRCH_DTL:u dsSchoolYear=dsSchoolYear:u dsSubject=dsSubject:u ";
+	var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+	
+	this.gfn_TransactionP("save_excel", strUrl, inDs, "", strArg, "fnSaveExcel", false, "P", false, this);
+}
+
+this.fnSaveExcel = function(trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode == -1){
+		alert(ErrorMsg);
+		return;
+	}
+	else if( ErrorCode != 0)
+		this.ds_MRKT_RSRCH_DTL.setColumn(this.ds_MRKT_RSRCH_DTL.rowposition, "MRD_SEQ", ErrorCode);
+	if (ErrorMsg != "FAILED")
+		this.ds_MRKT_RSRCH_MST.setColumn(this.ds_MRKT_RSRCH_MST.rowposition, "MRKT_RSRCH_ID", ErrorMsg);
+}
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("select", {gv_sabun:gv_sabun}, "sd::SD6911F.xfdl", "fnSD6911FCallback", this, 0, 0, 800, 480);
+};
+
+this.fnSD6911FCallback = function(strID, ret)
+{
+	if(ret != null && nexacro.trim(ret) != "cancel")
+	{
+		var mst_rowstatus = "update";	
+		
+		var strUrl, strDs, strArg;
+
+		strUrl   = "JSP/sd/sd6900_select_info.jsp";
+		strDs =  "ds_MRKT_RSRCH_MST=ds_MRKT_RSRCH_MST ds_MRKT_RSRCH_DTL=ds_MRKT_RSRCH_DTL dsSchoolYear=dsSchoolYear dsSubject=dsSubject";
+		strArg   =  "values0="+ nexacro.wrapQuote(ret);
+		
+		this.gfn_TransactionP("mst_select", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+	}
+}
+this.div_exceldata_grd_excel_load_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		if(Fv_HeadChk == 0)
+			Fv_HeadChk = 1;
+		else
+			Fv_HeadChk = 0;
+		
+		this.div_exceldata.form.grd_excel_load.setCellProperty("head", 0, "text", Fv_HeadChk);
+		for(var i = 0; i < this.dsExcel.rowcount; i++)
+		{
+			this.dsExcel.setColumn(i, "CHK", Fv_HeadChk);	
+		}
+	}
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_job.text == "")
+	{
+		alert("작업구분을 선택하세요!");
+		return;
+	}
+	if (this.div_main.form.edt_kinds.text == "")
+	{
+		alert("학교/학원형태를 선택하세요!");
+		return;
+	}
+	if (this.div_main.form.edt_name.text == "") {
+		alert("성명이 누락되었습니다.");
+		return;
+	}
+	if (this.div_main.form.cald_date.value == null) {
+		alert("시상조사 참여일이 누락되었습니다.");
+		return;
+	}
+	if (this.div_main.form.cald_hold.value == null) {
+		alert("시상조사 만료일이 누락되었습니다.");
+		return;
+	}
+	if (this.div_main.form.edt_phone.text != null && (nexacro.trim(this.div_main.form.edt_phone.text)).length < 11 ) {
+		alert("핸드폰 번호에 오류가 있습니다. 핸드폰 번호는 10자리이상으로 입력하셔야합니다.");
+		return;
+	}
+	if (nexacro.toNumber(nexacro.toNumber(this.div_main.form.edt_scale_elem.text)+nexacro.toNumber(this.div_main.form.edt_scale_mid.text)+nexacro.toNumber(this.div_main.form.edt_scale_high.text)) < 100 ){
+		if (nexacro.toNumber(nexacro.toNumber(this.div_main.form.edt_scale_elem.text)+nexacro.toNumber(this.div_main.form.edt_scale_mid.text)+nexacro.toNumber(this.div_main.form.edt_scale_high.text)) > 0 )
+		{
+			var objApp = nexacro.getApplication();
+			if(!(msg_result = objApp.confirm( "원생 규모가 100% 미만입니다.\n정말 등록하시겠습니까? " , "원생규모 확인", "warning" )))
+				return;
+		}
+	}
+	var strUrl = "JSP/sd/sd6900_mst_tr.jsp";
+	var inDs = "ds_MRKT_RSRCH_MST=ds_MRKT_RSRCH_MST:u ds_MRKT_RSRCH_DTL=ds_MRKT_RSRCH_DTL:u dsSchoolYear=dsSchoolYear:u dsSubject=dsSubject:u";
+	var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+	
+	this.gfn_TransactionP("save", strUrl, inDs, "", strArg, "fnCallback", true, "P", false, this);
+};
+
+this.cbo_kind_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var pCnt, pTemp0, pTemp1, pTemp2, pTemp3, pTemp4, pTemp5, pTemp6, pTemp7, pTemp8, pTemp9, pTemp10;
+	
+	if (obj.name == "cbo_kind1") 
+		this.div_main.form.edt_kind1_cd.set_value(obj.value);
+	else if (obj.name == "cbo_kind2") 
+		this.div_main.form.edt_kind2_cd.set_value(obj.value);
+	else if (obj.name == "cbo_kind3") 
+		this.div_main.form.edt_kind3_cd.set_value(obj.value);
+	else if (obj.name == "cbo_kind4") 
+		this.div_main.form.edt_kind4_cd.set_value(obj.value);
+	else if (obj.name == "cbo_kind5") 
+		this.div_main.form.edt_kind5_cd.set_value(obj.value);
+	else if (obj.name == "cbo_01") 
+		this.div_main.form.div_career.form.edt_02.set_value(obj.value);
+	
+	if  (obj.id == "cbo_kind1" || obj.id == "cbo_kind2")
+	{
+		pTemp1 = "";
+		//trace("CODE1 == '"+cb_kind1_cd.Text+"' && CODE3 == '"+cb_kind2_cd.Text+"' ");
+		this.dsEvltnPath.filter("");
+		if(this.div_main.form.edt_kind1_cd.text == "")
+			this.dsEvltnPath.filter("CODE1 == '"+this.div_main.form.edt_kind2_cd.text+"'");
+		else if(this.div_main.form.edt_kind2_cd.text == "")
+			this.dsEvltnPath.filter("CODE3 == '"+this.div_main.form.edt_kind1_cd.text+"' ");
+		else
+			this.dsEvltnPath.filter("CODE1 == '"+this.div_main.form.edt_kind2_cd.text+"' && CODE3 == '"+this.div_main.form.edt_kind1_cd.text+"' ");
+		
+		for (var i=0; i<this.dsEvltnPath.rowcount; i++)
+		{
+			pTemp1 += " || CODE == '"+this.dsEvltnPath.getColumn(i,"CODE2")+"' ";
+		}
+
+		this.dsEvltnKind2.filter("");
+		//trace("CODE == '' "+pTemp1);
+		this.dsEvltnKind2.filter("CODE == '' "+pTemp1);
+	}
+};
+
+this.fnCallback = function(trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0){
+		alert(ErrorMsg);
+		return;
+	}
+	else if (trid != null)
+	{
+		trid = trid.split("|");
+		trid = trid[0] 
+	}
+	if (trid == "save")
+	{
+			if (this.div_main.form.edt_RSRCH_id.value == null) this.div_main.form.edt_RSRCH_id.set_value(ErrorMsg);
+			if (this.cbo_mrd_seq.value == null) this.cbo_mrd_seq.set_value(ErrorCode);
+			this.ds_MRKT_RSRCH_DTL.setColumn(this.ds_MRKT_RSRCH_DTL.rowposition, "MRKT_RSRCH_ID", ErrorMsg);
+			for (var i = 0 ; i <= this.dsSchoolYear.rowposition; i++)
+			{
+				this.dsSchoolYear.setColumn(i, "MRKT_RSRCH_ID", ErrorMsg);
+			}
+			for (var i = 0 ; i <= this.dsSubject.rowposition; i++)
+			{
+				this.dsSubject.setColumn(i, "MRKT_RSRCH_ID", ErrorMsg);
+			}
+		
+		alert("정상적으로 처리되었습니다!");
+	}
+	else if (trid == "mst_select")
+	{
+		this.div_main.form.cbo_job.set_value(this.div_main.form.edt_job.value);
+		
+		this.div_main.form.cbo_kinds.set_value(this.div_main.form.edt_kinds.value);
+		
+		this.div_main.form.cbo_kind1.set_value(this.div_main.form.edt_kind1_cd.value);
+		this.div_main.form.cbo_kind2.set_value(this.div_main.form.edt_kind2_cd.value);
+		this.div_main.form.cbo_kind3.set_value(this.div_main.form.edt_kind3_cd.value);
+		this.div_main.form.cbo_kind4.set_value(this.div_main.form.edt_kind4_cd.value);
+		this.div_main.form.cbo_kind5.set_value(this.div_main.form.edt_kind5_cd.value);
+		
+		this.cbo_common_onitemchanged(this.div_main.form.cbo_job, nexacro.ItemChangeEventInfo);
+		this.cbo_common_onitemchanged(this.div_main.form.cbo_kinds, nexacro.ItemChangeEventInfo);
+		this.cbo_kind_onitemchanged(this.div_main.form.cbo_kind1, nexacro.ItemChangeEventInfo);
+		this.cbo_kind_onitemchanged(this.div_main.form.cbo_kind2, nexacro.ItemChangeEventInfo);
+		this.cbo_kind_onitemchanged(this.div_main.form.cbo_kind3, nexacro.ItemChangeEventInfo);
+		this.cbo_kind_onitemchanged(this.div_main.form.cbo_kind4, nexacro.ItemChangeEventInfo);
+		this.cbo_kind_onitemchanged(this.div_main.form.cbo_kind5, nexacro.ItemChangeEventInfo);
+		
+		if (this.div_main.form.div_career.form.edt_03.value != null && (this.div_main.form.div_career.form.edt_03.value).length == 4)
+		{
+			var objDate = new nexacro.Date();
+			var f_date = Eco.date.getMaskFormatString(objDate, "yyyy");
+			this.div_main.form.div_career.form.edt_04.set_value((nexacro.toNumber(f_date) - nexacro.toNumber(this.div_main.form.div_career.form.edt_03.value)).toString());
+		}
+	}
+}
+this.cbo_common_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if (obj.name == "cbo_job") this.div_main.form.edt_job.set_value(obj.value);
+	else if (obj.name == "cbo_kinds") 
+	{
+		this.div_main.form.edt_kinds.set_value(obj.value);
+		return;
+	}
+	this.div_main.form.edt_scale.set_enable(true);
+	this.div_main.form.edt_scale_elem.set_enable(true);
+	this.div_main.form.edt_scale_mid.set_enable(true);
+	this.div_main.form.edt_scale_high.set_enable(true);
+	this.div_main.form.div_career.set_visible(true);
+	this.div_main.form.div_schoolyear.set_visible(false);
+	this.div_main.form.div_grade.set_visible(false);
+	this.div_main.form.edt_kinds.set_value("");
+	this.div_main.form.cbo_kinds.set_index(-1);
+	
+	//직업구분에서 교사 선택시 학교/학원형태 메뉴에서 학교와 기타만 뜨도록 부탁드립니다.
+	if (obj.value == "01"){
+	    //교사
+		this.dsEvltnKind5.filter("");
+		this.dsEvltnKind5.filter("CODE == '01' || CODE == '09'");	
+		
+		this.div_main.form.edt_scale.set_enable(false);
+		this.div_main.form.edt_scale_elem.set_enable(false);
+		this.div_main.form.edt_scale_mid.set_enable(false);
+		this.div_main.form.edt_scale_high.set_enable(false);
+		this.div_main.form.edt_schoolname.set_visible(true);
+		this.div_main.form.div_career.set_visible(true);
+		this.div_main.form.div_career.form.Static02_01.set_visible(true);
+		this.div_main.form.div_career.form.Static02_02.set_visible(false);
+		this.div_main.form.div_career.form.edt_02.set_visible(false);
+		this.div_main.form.div_career.form.cbo_01.set_visible(false);
+		this.div_main.form.div_career.form.edt_01.set_visible(true);
+		this.div_main.form.div_career.form.Static02_06.set_visible(true);
+		
+	}else if (obj.value == "02"){
+	    //강사
+		this.dsEvltnKind5.filter();
+		this.dsEvltnKind5.filter("CODE != '01'");	
+		this.div_main.form.div_career.set_visible(true);
+		this.div_main.form.edt_schoolname.set_visible(true);
+		this.div_main.form.div_career.form.Static02_01.set_visible(true);
+		this.div_main.form.div_career.form.Static02_02.set_visible(false);
+		this.div_main.form.div_career.form.edt_02.set_visible(false);
+		this.div_main.form.div_career.form.cbo_01.set_visible(false);
+		this.div_main.form.div_career.form.edt_01.set_visible(true);
+		this.div_main.form.div_career.form.Static02_06.set_visible(true);
+	}else if (obj.value == "03"){
+		//학부모
+		this.div_main.form.div_schoolyear.set_visible(true);
+		this.div_main.form.edt_schoolname.set_visible(false);
+		this.div_main.form.div_career.form.Static02_01.set_visible(false);
+		this.div_main.form.div_career.form.Static02_02.set_visible(true);
+		this.div_main.form.div_career.form.edt_02.set_visible(true);
+		this.div_main.form.div_career.form.cbo_01.set_visible(true);
+		this.div_main.form.div_career.form.edt_01.set_visible(false);
+		this.div_main.form.div_career.form.Static02_06.set_visible(false);
+	}
+	else 
+	{
+		//학생
+		this.dsEvltnKind5.filter();
+		this.dsEvltnKind5.filter("CODE == '09'");	
+		this.div_main.form.div_grade.set_visible(true);
+		this.div_main.form.edt_schoolname.set_visible(false);
+		this.div_main.form.div_career.form.Static02_01.set_visible(false);
+		this.div_main.form.div_career.form.Static02_02.set_visible(true);
+		this.div_main.form.div_career.form.edt_02.set_visible(true);
+		this.div_main.form.div_career.form.cbo_01.set_visible(true);
+		this.div_main.form.div_career.form.edt_01.set_visible(false);
+		this.div_main.form.div_career.form.Static02_06.set_visible(false);
+	}
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	if (this.div_main.form.edt_RSRCH_id.value == null) 
+	{
+		alert("선택된 데이터가 없습니다.! \n 데이터 선택후 다시 삭제하세요! ");
+		return;
+	}
+	if(msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? " , "삭제처리", "warning" ))
+	{
+		this.ds_MRKT_RSRCH_MST.deleteRow(this.ds_MRKT_RSRCH_MST.rowposition);
+		this.ds_MRKT_RSRCH_DTL.clearData();
+		
+		var strUrl = "JSP/sd/sd6900_mst_tr.jsp";
+		var inDs 	= "ds_MRKT_RSRCH_MST=ds_MRKT_RSRCH_MST:u ds_MRKT_RSRCH_DTL=ds_MRKT_RSRCH_DTL:u dsSchoolYear=dsSchoolYear:u dsSubject=dsSubject:u";// ds_MRKT_RSRCH_DTL=ds_MRKT_RSRCH_DTL:u";
+		var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+		
+		this.gfn_TransactionP("save", strUrl, inDs, "", strArg, "fnCallback", true, "P", false, this);
+	}	
+};
+
+this.div_career_edt_03_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	if (this.div_main.form.div_career.form.edt_03.value != null && (this.div_main.form.div_career.form.edt_03.value).length == 4)
+	{
+		var objDate = new nexacro.Date();
+		var f_date = Eco.date.getMaskFormatString(objDate, "yyyy");
+		this.div_main.form.div_career.form.edt_04.set_value((nexacro.toNumber(f_date) - nexacro.toNumber(this.div_main.form.div_career.form.edt_03.value)).toString());
+	}
+};
+/* //닫기버튼 클릭 시
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.parent.parent.name == "WorkDetail"){
+		var nRow = this.parent.parent.ds_selectMenu.findRow("selectMenu_Div_id",this.parent.name);
+		var bClose_id = this.parent.parent.ds_selectMenu.getColumn(nRow,"selectButton_Div_id");
+		this.parent.parent.div_selectMenu.form.all[bClose_id].form.CloseButton.click();
+	}
+	else
+		this.close();
+};
+*/
+this.cbo_hold_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if (this.div_main.form.cald_date.value == null)
+	{
+		alert( "시장조사 등록일을 먼저 넣어주세요 " ) ;
+		return;
+	}
+	if (obj.index == 0) this.div_main.form.cald_hold.set_value(Eco.date.addDate(this.div_main.form.cald_date.value, 365));
+	else if (obj.index == 1) this.div_main.form.cald_hold.set_value(Eco.date.addDate(this.div_main.form.cald_date.value, 1095));
+	else if (obj.index == 2) this.div_main.form.cald_hold.set_value(Eco.date.addDate(this.div_main.form.cald_date.value, 1825));
+};
+this.btn_in_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var msg_result, idsIdx;
+	
+	var objApp = nexacro.getApplication();
+	
+	if(msg_result = objApp.confirm( "조사내용을 계속 추가 하시겠습니까? " , "조사내용", "warning" ))
+	{
+		this.fnDtlitemClear();
+		idsIdx = this.ds_MRKT_RSRCH_DTL.addRow();
+		if (this.div_main.form.edt_RSRCH_id.value != null) 
+		{
+			this.ds_MRKT_RSRCH_DTL.setColumn(idsIdx, "MRKT_RSRCH_ID", this.div_main.form.edt_RSRCH_id.value);
+		}
+		trace(this.div_main.form.edt_RSRCH_id.value);
+	}	
+};
+
+this.btn_in_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.cbo_mrd_seq.value == null) 
+	{
+		alert ( "선택된 데이터가 없습니다.! \n 데이터 선택후 다시 삭제하세요! " ) ;
+		return;
+	}
+	
+	var objApp = nexacro.getApplication();
+	
+	if(msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? " , "삭제처리", "warning" ))
+	{
+		var strUrl = "JSP/sd/sd6900_mst_tr";
+		var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+		    strArg += " delete_MRKT_RSRCH_ID="  + nexacro.wrapQuote(this.div_main.form.edt_RSRCH_id.value);
+		    strArg += " delete_MRD_SEQ="  + nexacro.wrapQuote(this.cbo_mrd_seq.value);
+
+		this.ds_MRKT_RSRCH_DTL.deleteRow(this.ds_MRKT_RSRCH_DTL.rowposition);		
+		var inDs 	= "ds_MRKT_RSRCH_MST=ds_MRKT_RSRCH_MST:u ds_MRKT_RSRCH_DTL=ds_MRKT_RSRCH_DTL:u dsSchoolYear=dsSchoolYear:u dsSubject=dsSubject:u";
+		
+		this.gfn_TransactionP("save", strUrl, inDs, "", strArg, "fnCallback", true, "P", false, this);
+	}	
+};
+
+this.grd_dtl_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var strUrl, strDs, strArg;
+
+	strUrl   = "JSP/sd/sd6350_select_info_sub.jsp";
+	strDs =  "dsSchoolStudent=dsSchoolStudent dsSchoolTeacher=dsSchoolTeacher";
+	strArg   =  "education_id="+ nexacro.wrapQuote(this.div_main.form.edt_RSRCH_id.value);
+	
+	this.gfn_TransactionP("mst_select", strUrl, strDs, strDs, strArg, "fnInorder_search_callback", true, "P", false, this);
+};
+
+this.fnInorder_search_callback = function(trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0){
+		alert(ErrorMsg);
+		return;
+	}
+	
+}
+this.btn_searchpostnumber_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("post_search", "", "mm::frmzipcodefive_daum.xfdl", "fnBtnSearchPostNumberCallback", this, 0, 0, 640, 750);
+};
+
+this.fnBtnSearchPostNumberCallback = function(strID, ret)
+{
+	var re_data = ret.split("^");
+	if(re_data.length != 0)
+	{
+		this.ds_MRKT_RSRCH_MST.setColumn(this.ds_MRKT_RSRCH_MST.rowposition, "MRKT_ADDR", re_data[1]);
+		this.div_main.form.edt_addr.setFocus();
+	}
+}
+this.SD6900F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if(this.width < 1170 || this.width > 1650)
+		this.div_main.set_width(this.width - 20)
+	else
+		this.div_main.set_width(1170);
+	
+	if(this.height < 740)
+		this.div_main.set_height(this.height - 20)
+	else
+		this.div_main.set_height(740);
+		
+	if(this.height < 480 || this.width < 730)
+		this.div_main.form.Static00.set_font('bold 32px/normal "함초롬바탕 확장B"');
+	else
+		this.div_main.form.Static00.set_font('bold 40px/normal "함초롬바탕 확장B"');
+};
+]]></Script>
+    <InitValue/>
+    <Bind>
+      <BindItem id="item38" compid="edt_sabun" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_SABUN"/>
+      <BindItem id="item0" compid="div_main.form.edt_title" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_SABUN"/>
+      <BindItem id="item1" compid="div_main.form.edt_job" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_JOB"/>
+      <BindItem id="item2" compid="div_main.form.edt_kinds" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_KIND"/>
+      <BindItem id="item3" compid="div_main.form.edt_name" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_NAME"/>
+      <BindItem id="item4" compid="div_main.form.edt_phone" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_PHONE"/>
+      <BindItem id="item5" compid="div_main.form.edt_addr" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_ADDR"/>
+      <BindItem id="item6" compid="div_main.form.edt_scale" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_PRSNL"/>
+      <BindItem id="item7" compid="edt_scale_elem" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_ELMNT"/>
+      <BindItem id="item8" compid="edt_scale_mid" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_MIDDLE"/>
+      <BindItem id="item9" compid="edt_scale_high" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_HIGH"/>
+      <BindItem id="item10" compid="div_main.form.edt_scale_elem" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_ELMNT"/>
+      <BindItem id="item11" compid="div_main.form.edt_scale_mid" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_MIDDLE"/>
+      <BindItem id="item12" compid="div_main.form.edt_scale_high" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_HIGH"/>
+      <BindItem id="item13" compid="div_main.form.cbo_hold" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_EXPRT_YEAR"/>
+      <BindItem id="item14" compid="div_main.form.cald_third" propid="value" datasetid="ds_MRKT_RSRCH_DTL" columnid="MRKT_THIRD_DATE"/>
+      <BindItem id="item15" compid="div_main.form.edt_email" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_EMAIL"/>
+      <BindItem id="item16" compid="div_main.form.cald_date" propid="value" datasetid="ds_MRKT_RSRCH_DTL" columnid="MRKT_OPEN_DATE"/>
+      <BindItem id="item17" compid="div_main.form.edt_kind1_cd" propid="value" datasetid="ds_MRKT_RSRCH_DTL" columnid="EVLTN_KIND1"/>
+      <BindItem id="item18" compid="div_main.form.edt_kind3_cd" propid="value" datasetid="ds_MRKT_RSRCH_DTL" columnid="EVLTN_KIND3"/>
+      <BindItem id="item19" compid="div_main.form.edt_kind2_cd" propid="value" datasetid="ds_MRKT_RSRCH_DTL" columnid="EVLTN_KIND2"/>
+      <BindItem id="item20" compid="div_main.form.edt_kind4_cd" propid="value" datasetid="ds_MRKT_RSRCH_DTL" columnid="EVLTN_KIND4"/>
+      <BindItem id="item21" compid="div_main.form.edt_kind5_cd" propid="value" datasetid="ds_MRKT_RSRCH_DTL" columnid="EVLTN_KIND5"/>
+      <BindItem id="item22" compid="div_main.form.edt_kind5_memo" propid="value" datasetid="ds_MRKT_RSRCH_DTL" columnid="EVLTN_KIND5_MEMO"/>
+      <BindItem id="item24" compid="div_main.form.div_career.form.edt_01" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_CAREER"/>
+      <BindItem id="item25" compid="div_main.form.div_career.form.edt_02" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_CHANNEL"/>
+      <BindItem id="item26" compid="div_main.form.div_career.form.cbo_02" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_SEX"/>
+      <BindItem id="item27" compid="div_main.form.div_career.form.edt_03" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_AGE"/>
+      <BindItem id="item28" compid="div_main.form.edt_RSRCH_id" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_RSRCH_ID"/>
+      <BindItem id="item29" compid="div_main.form.cald_hold" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_EXPRT_DATE"/>
+      <BindItem id="item30" compid="div_main.form.div_schoolyear.form.chk_01" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV1"/>
+      <BindItem id="item31" compid="div_main.form.div_schoolyear.form.chk_02" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV2"/>
+      <BindItem id="item32" compid="div_main.form.div_schoolyear.form.chk_03" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV3"/>
+      <BindItem id="item33" compid="div_main.form.div_schoolyear.form.chk_04" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV4"/>
+      <BindItem id="item34" compid="div_main.form.div_schoolyear.form.chk_05" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV5"/>
+      <BindItem id="item35" compid="div_main.form.div_schoolyear.form.chk_06" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV6"/>
+      <BindItem id="item36" compid="div_main.form.div_schoolyear.form.chk_07" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV7"/>
+      <BindItem id="item37" compid="div_main.form.div_schoolyear.form.chk_08" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV8"/>
+      <BindItem id="item39" compid="div_main.form.div_schoolyear.form.chk_09" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV9"/>
+      <BindItem id="item40" compid="div_main.form.div_schoolyear.form.chk_10" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV10"/>
+      <BindItem id="item41" compid="div_main.form.div_schoolyear.form.chk_11" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV11"/>
+      <BindItem id="item42" compid="div_main.form.div_schoolyear.form.chk_12" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_LV12"/>
+      <BindItem id="item23" compid="div_main.form.div_grade.form.cbo_01" propid="value" datasetid="ds_MRKT_RSRCH_MST" columnid="MRKT_SCHOOL"/>
+    </Bind>
+  </Form>
+</FDL>

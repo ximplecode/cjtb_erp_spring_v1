@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PDAccountTitle_CustF" width="350" height="392" titletext="New Form" onload="PDAccountTitle_onload" onbeforeclose="PDAccountTitle_onbeforeclose">
+    <Layouts>
+      <Layout height="392" mobileorientation="landscape" width="350">
+        <Static id="Static00" taborder="0" text="거래처에 따른 주 사용계정" left="-1" top="2" width="281" height="48"/>
+        <Button id="btnClose" taborder="1" text="닫기" left="294" top="10" width="50" height="24" onclick="btnClose_OnClick"/>
+        <Static id="Static01" taborder="2" text="※ 아래 해당하는 계정이 없으면 창을닫으시고 &#10;  새로운 계정을 선택해 주세요." left="2" top="38" width="343" height="57"/>
+        <Grid id="Grid00" taborder="3" left="0" top="85" width="349" height="308" oncelldblclick="tvAccountTitle_OnDblClick" treeinitstatus="expand,all" treeusecheckbox="false">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="351"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="treeitemcontrol" text="bind:ACNTTIT_NAME" treelevel="bind:ACNTTIT_LVL" edittype="tree"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var pACNTTIT_CUST = "0614";
+var aQryReturn = new Array();
+this.parentForm = this.opener;
+
+// 지급결의서 계정과목 찾기
+this.PDAccountTitle_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.Grid00.set_binddataset(this.opener.dsAccountTitle)
+};
+
+
+this.tvAccountTitle_OnDblClick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	
+	if (this.opener.dsAccountTitle.getColumn(e.row, "ACNTTIT_ENABLED") == "0")
+	{
+	  alert("선택한 계정은 사용할 수 없는 계정이니 다른 계정이나 하위계정을 선택하여 주세요.");	
+	  return false;
+	} 
+	else
+	{
+		this.close(this.fnReturnValue(aQryReturn));
+	}
+};
+
+
+this.fnReturnValue = function()
+{
+
+	var nRow = this.opener.dsAccountTitle.rowposition;
+
+	aQryReturn[0] = this.opener.dsAccountTitle.getColumn(nRow, "ACNTTIT_NO");
+	aQryReturn[1] = this.opener.dsAccountTitle.getColumn(nRow, "ACNTTIT_CODE");
+	aQryReturn[2] = this.opener.dsAccountTitle.getColumn(nRow, "ACNTTIT_NAME");
+	aQryReturn[3] = this.opener.dsAccountTitle.getColumn(nRow, "ACNTTIT_PNO");
+	aQryReturn[4] = this.opener.dsAccountTitle.getColumn(nRow, "ACNTTIT_DEVELOP");
+	aQryReturn[5] = this.opener.dsAccountTitle.getColumn(nRow, "ACNTTIT_PRODUCT");
+
+	return aQryReturn;
+}
+
+this.btnClose_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();	
+};
+
+
+this.PDAccountTitle_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	this.opener.fn_PDAccountTitle_CustF(aQryReturn);
+};
+]]></Script>
+  </Form>
+</FDL>

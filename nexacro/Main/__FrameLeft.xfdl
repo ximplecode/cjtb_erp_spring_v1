@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="FrameLeft" width="190" height="600" onload="form_onload" titletext="">
+    <Layouts>
+      <Layout height="600" width="190" screenid="Desktop_screen">
+        <Static id="top_title" taborder="2" text="Static00" left="0" top="0" height="40" background="#4364ed" textAlign="center" font="normal 15px/normal &quot;Arial&quot;" right="0"/>
+        <Grid id="div_Menu" taborder="0" left="0" top="40" right="0" bottom="0" border="1px" binddataset="gds_menu" treeasynctoggle="false" treeusecheckbox="false" treeusebutton="no" treeuseline="false" treeuseimage="false" oncellclick="grd_menu_oncellclick" onselectchanged="grd_menu_onselectchanged" autofittype="col" autoenter="select">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="191"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="treeitemcontrol" text="bind:NAME" treelevel="bind:MLEVEL" tooltiptext="bind:NAME" treestartlevel="1"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_main.xjs";
+
+/************************************************************************************************
+ * 1. FORM 변수 선언 영역
+ ************************************************************************************************/
+var objApp = nexacro.getApplication();
+this.fv_CurrCategoryId;
+this.fv_CurrRow;
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fn_Init(obj);
+};
+
+this.fn_Init = function(obj)
+{
+	this._gfn_AddLoadFrame(obj.name);
+};
+
+this.fn_SetTitle = function(categoryId, text, bFlag)
+{
+	//TOP_TITLE지정
+	this.top_title.set_text(text);
+	this.top_title.set_color("white");
+}
+
+this.fn_SetInfo = function()
+{
+	
+};
+
+this.fn_InitRow = function()
+{
+	this.fv_CurrRow = "";
+};
+
+this.fn_SetRow = function(row)
+{	
+	
+}
+
+/************************************************************************************************
+ * 4. CALLBACK 함수 처리부분
+ ************************************************************************************************/
+
+this.fn_setText = function(nRow)
+{
+	var mn_level, rt_text, nStatus, tree_row;
+	tree_row = this.div_Menu.getTreeRow(nRow);
+	rt_text = objApp.gds_menu.getColumn(nRow,"NAME")+"      +";
+	mn_level = objApp.gds_menu.getColumn(nRow,"MLEVEL");
+	nStatus = this.div_Menu.getTreeStatus(tree_row);
+	
+	if (mn_level != 0 && nStatus == 3) {
+		rt_text = rt_text.replace("+", "");
+	}
+	
+	return rt_text;
+}
+
+this.fn_setCss = function(nRow)
+{
+	var app = nexacro.getApplication();
+	var mn_level, rt_css, nStatus, tree_row, select_row;
+	
+	tree_row = this.div_Menu.getTreeRow(nRow);
+	mn_level = objApp.gds_menu.getColumn(nRow,"MLEVEL");
+	nStatus  = objApp.gds_menu.getTreeStatus(tree_row);
+	
+	select_row = this.div_Menu.getSelectedRows();
+	
+	if (mn_level == 0) {
+		rt_css = "CssMenu_level_1";
+	}
+	else if (nStatus != 3) {
+		rt_css = "CssMenu_level_2";
+	}
+	else if (select_row == tree_row) {
+		rt_css = "CssMenu_level_3_select";
+	}
+	else {
+		rt_css = "CssMenu_level_3";
+	}
+	
+	return rt_css;
+}
+
+this.fn_setCss_onmouse = function(nRow)
+{
+	var app = nexacro.getApplication();
+	var mn_level, rt_css, nStatus, tree_row;
+	
+	tree_row = this.grd_menu.getTreeRow(nRow);
+	mn_level = app.gds_menu.getColumn(nRow,"MLEVEL");
+	nStatus = this.grd_menu.getTreeStatus(tree_row);
+	
+	if (mn_level == 0) {
+		rt_css = "CssMenu_level_1";
+	}
+	else if (mn_level != 3) {
+		rt_css = "CssMenu_level_2";
+	}
+	else {
+		rt_css = "CssMenu_level_3";
+	}
+		
+	return rt_css;
+}
+
+
+this.grd_menu_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var nStatus, i, tree_row, permission_use;
+	
+	tree_row = this.div_Menu.getTreeRow(e.row);
+	nStatus = obj.getTreeStatus(tree_row);
+	switch (nStatus) {
+		case 0 : 
+			obj.setTreeStatus(tree_row,true);
+			break;
+		case 1 :
+			obj.setTreeStatus(tree_row,false);
+			break;
+		case 3 :
+			if (objApp.gds_menu.getColumn(e.row, "URL") == true) {
+				this.alert("현재 개발중에 있습니다.");
+				return false;
+			}
+			
+			if (objApp.gds_menu.getColumn(e.row, "UM_PER_USE") == "0") {
+				this.alert("사용 권한이 없습니다.");
+				return false;
+			} 
+			else{
+				//objApp.gv_selectMenu_old = objApp.gv_selectMenu;
+				//objApp.gv_selectMenu = objApp.gds_menu.getColumn(e.row, "MN_ID");
+				//nexacro.getApplication().gv_Client.selectMenu(e.row);
+				this.fn_workFrameMove(obj,e);
+			}
+			break;
+	}
+};
+
+this.fn_PopupCallback = function(strID, variant)
+{
+	this.removeChild("popup");
+}
+
+this.Callback_login = function(strID, variant)
+{
+	application.gv_selectMenu = application.gv_selectMenu_old;
+}
+
+this.fn_menu_filter = function(gb)
+{
+	var i, nStatus, mn_level, tree_row;
+	current_menu = gb;
+	switch (gb)
+	{
+		case "hr" :
+			this.grd_menu.setCellProperty("Head",0,"text","인사관리");
+			break;
+		case "ac" :
+			this.grd_menu.setCellProperty("Head",0,"text","회계관리");
+			break;
+		case "sd" :
+			this.grd_menu.setCellProperty("Head",0,"text","영업관리");
+			break;
+		case "mk" :
+			this.grd_menu.setCellProperty("Head",0,"text","제작관리");
+			break;
+		case "ed" :
+			this.grd_menu.setCellProperty("Head",0,"text","편집관리");
+			break;
+		case "bi" :
+			this.grd_menu.setCellProperty("Head",0,"text","경영정보관리");
+			break;
+		case "et" :
+			this.grd_menu.setCellProperty("Head",0,"text","기타업무관리");
+			break;
+		case "gw" :
+			this.grd_menu.setCellProperty("Head",0,"text","전자결재");
+			break;			
+	}
+	
+	for (i = 0; i < nexacro.getApplication().gds_menu.rowcount -1; i++)
+	{
+		mn_level = nexacro.getApplication().gds_menu.getColumn(i, "MN_LEVEL");
+		tree_row = this.grd_menu.getTreeRow(i);
+		nStatus = this.grd_menu.getTreeStatus(tree_row);
+		
+		if (mn_level == 0)
+		{
+			this.grd_menu.setTreeStatus(tree_row, true);
+		}
+		/*else if (nStatus != 3)
+		{
+			this.grd_menu.setTreeStatus(tree_row, true);
+		}*/		
+	}
+	
+	//this.grd_menu.setTreeStatus(0, true);
+}
+
+this.fn_workFrameMove = function(obj, e)
+{
+	var winId   = objApp.gds_menu.getColumn(e.row, "NAME");
+	var menuNm  = objApp.gds_menu.getColumn(e.row, "NAME");
+	var prefix  = objApp.gds_menu.getColumn(e.row, "PREFIX");
+	var menuUrl = objApp.gds_menu.getColumn(e.row, "URL");
+	var winId = winId + "_" + parseInt(Math.random() * 100);
+	var objChild = new ChildFrame;
+	objChild.init(winId, 0, 0, objApp.gv_WorkFrame.getOffsetWidth() - 0, objApp.gv_WorkFrame.getOffsetHeight() - 0);
+	objApp.gv_WorkFrame.addChild(winId, objChild);
+	
+	objChild.arguments = [];
+	objChild.set_dragmovetype("all");
+	objChild.set_showtitlebar(false);
+	objChild.set_resizable(true);
+	objChild.set_openstatus("maximize");
+	objChild.set_titletext(winId);
+	objChild.set_showtitleicon(false);
+	objChild.set_showcascadetitletext(false);
+	objChild.arguments["winId"] 		= winId;
+	objChild.arguments["menuId"] 		= menuNm;
+	objChild.arguments["menuNm"] 		= menuNm;
+	objChild.arguments["prefix"] 		= prefix;
+	objChild.arguments["formId"] 		= menuUrl.replace(".xml","");
+	objChild.arguments["formUrl"] 		= prefix+"::"+menuUrl.replace(".xml",".xfdl");
+	objChild.set_formurl("Main::FrameWork.xfdl");
+	
+	// 화면 호출
+	objChild.addEventHandler("onsyscommand", this._onsyscommand, this);		
+	objApp.gv_MdiFrame.form.fn_InitFalg2();
+	objApp.gv_MdiFrame.form.fn_AddTab(winId, menuNm, menuUrl);
+	objChild.show();
+}
+
+]]></Script>
+  </Form>
+</FDL>

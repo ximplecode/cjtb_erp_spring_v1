@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR203P" width="1250" height="625" titletext="New Form" onload="HR203P_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="sta_gb00" taborder="6" text="기준일자" left="2" top="50" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="2" left="sta_gb00:0" top="50" height="30" border="1px solid #10aea9" background="#9ee0de" right="2"/>
+        <Static id="Static02" taborder="0" text="기간별 인원 현황" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Calendar id="cald_ymd" taborder="7" left="sta_gb00:5" top="55" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="100"/>
+        <CheckBox id="ckb_gb" taborder="8" text="퇴사자 포함" left="cald_ymd:0" top="55" width="155" height="20" value="false" onchanged="ckb_gb_onchanged"/>
+        <Static id="sta_gb" taborder="1" text="구분" left="ckb_gb:0" top="50" width="99" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Radio id="rd_select" taborder="3" left="sta_gb:0" top="50" height="30" right="2" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" columncount="3" padding="0px 0px 0px 50px" value="01" text="부서별 인원 현황" index="0" onitemchanged="rd_select_onitemchanged"/>
+        <Button id="btn_search" taborder="4" text="조회" top="16" width="120" height="22" right="140" onclick="btn_search_onclick"/>
+        <Button id="btn_print" taborder="5" text="출력" top="16" width="120" height="22" right="10" onclick="btn_print_onclick"/>
+        <Div id="div_sub" taborder="9" left="2" top="Static01_00:0" right="2" bottom="0" url="hr::HR203P_01.xfdl" text=""/>
+        <Button id="btn_clear" taborder="10" text="초기화" top="16" width="120" height="22" right="270" onclick="btn_clear_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">입자,퇴사,정규등 일자 기준</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">경력 기준</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">월별 입퇴사자</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+this.HR203P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var dt = new Date();
+	
+	this.cald_ymd.set_value(dt);
+	this.fn_setDivUrl();
+};
+
+this.rd_select_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_setDivUrl();
+};
+
+this.fn_setDivUrl = function()
+{
+	switch (this.rd_select.value)
+	{
+		case "01" : 
+			this.div_sub.set_url("hr::HR203P_01.xfdl");
+			break;
+		case "02" :
+			this.div_sub.set_url("hr::HR203P_02.xfdl");
+			break;
+		case "03" :
+			this.div_sub.set_url("hr::HR203P_03.xfdl");
+			break;
+	}
+}
+
+this.btn_clear_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.div_sub.form.fn_setClear();
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.div_sub.form.fn_getData_list(this.cald_ymd.value,this.lfn_CheckBox_Return(this.ckb_gb));
+};
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	this.div_sub.form.fn_print(this.cald_ymd.value,this.lfn_CheckBox_Return(this.ckb_gb));
+};
+
+this.ckb_gb_onchanged = function(obj:nexacro.CheckBox,e:nexacro.CheckBoxChangedEventInfo)
+{
+	if (this.rd_select.value == "02")
+	{
+		this.div_sub.form.fn_setUse(this.lfn_CheckBox_Return(this.ckb_gb));
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

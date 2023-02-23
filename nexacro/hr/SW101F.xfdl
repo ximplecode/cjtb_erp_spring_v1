@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SW101F" width="530" height="700" titletext="New Form" onload="SW101F_onload">
+    <Layouts>
+      <Layout height="700" width="530">
+        <Button id="btn_close" taborder="0" text="닫기" left="450" top="88" width="60" height="32" onclick="btn_close_onclick" font="14px/normal &quot;Gulim&quot;"/>
+        <Grid id="Grid00" taborder="1" left="18" top="126" width="492" height="564" binddataset="DS_SW101_1">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="96"/>
+                <Column size="104"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="년월" background="#f0f0f0" color="black"/>
+                <Cell col="1" text="사우회비" background="#f0f0f0" color="black"/>
+              </Band>
+              <Band id="body">
+                <Cell maskeditformat="####-##" maskedittype="string" text="bind:YEAR_MONTH" displaytype="mask" textAlign="center"/>
+                <Cell col="1" text="bind:COST" displaytype="currency" textAlign="center" maskedittype="number"/>
+              </Band>
+              <Band id="summary">
+                <Cell displaytype="text" text="expr:'총 ' +  dataset.getRowCount() + '회 납부'"/>
+                <Cell col="1" text="expr:dataset.getSum(&quot;nexacro.toNumber(COST)&quot;)" displaytype="currency"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02" taborder="2" text="사우회비 납부 현황" left="68" top="10" width="372" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.SW101F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var strUrl = "JSP/sw/SQL_SW100_05S.jsp";
+	var inDs = "DS_SW101_1=DS_SW101_1";
+	var outDs = "DS_SW101_1=DS_SW101_1";
+	var strArg = "strSabun=" + nexacro.wrapQuote(nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN"));
+	
+	this.gfn_TransactionP("get_history", strUrl, inDs, outDs, strArg, "Callback_get_history", true, "P", false, this);
+};
+
+this.Callback_get_history = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+		this.alert(sErrorMsg);
+}
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="DS_SW101_1">
+        <ColumnInfo>
+          <Column id="YEAR_MONTH" type="STRING" size="6"/>
+          <Column id="COST" type="STRING" size="7"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

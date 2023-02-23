@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkDtlMain" width="1285" height="600" scrolltype="none" ontimer="MkMain_ontimer" onsize="MkMain_onsize" onload="MkMain_onload" titletext="후가공비명세서_일반외">
+    <Layouts>
+      <Layout height="600" width="1285">
+        <Grid id="grdList" taborder="0" left="0" top="0" binddataset="dsList2" autofittype="none" width="100.00%" height="100.00%">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="155"/>
+                <Column size="153"/>
+                <Column size="153"/>
+                <Column size="74"/>
+                <Column size="75"/>
+                <Column size="82"/>
+                <Column size="82"/>
+                <Column size="83"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="33"/>
+                <Row size="39" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="외주처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="도서구분" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="용도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="발주수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" text="작업수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="공급가액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="세액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="발주건수" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CUST" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="1" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="1" text="bind:BOOKMSTTYPENAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="2" text="bind:USE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle" expr="dataset.getRowLevel(currow)==1?dataset.getColumn(currow-1,'CUST')+' 합계':USE_NAME"/>
+                <Cell col="3" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:ORDMST_QTY" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,##0.##"/>
+                <Cell col="4" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:ORDMST_WORKQTY" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,##0.##"/>
+                <Cell col="5" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:ORDDTL_AMOUNT" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###"/>
+                <Cell col="6" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:ORDDTL_VAT" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###"/>
+                <Cell col="7" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" text="bind:CO" suppress="0" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###" calendardateformat="yyyy-MM-dd" displaytype="mask"/>
+              </Band>
+              <Band id="summary">
+                <Cell background="#fbce78"/>
+                <Cell col="1" background="#fbce78"/>
+                <Cell col="2" background="#fbce78"/>
+                <Cell col="3" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" textAlign="right" expr="dataset.getSum('ORDMST_QTY');"/>
+                <Cell col="4" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" textAlign="right" expr="dataset.getSum('ORDMST_WORKQTY');"/>
+                <Cell col="5" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" expr="dataset.getSum('ORDDTL_AMOUNT');" textAlign="right"/>
+                <Cell col="6" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" expr="dataset.getSum('ORDDTL_VAT');" textAlign="right"/>
+                <Cell col="7" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" textAlign="right" expr="dataset.getSum('CO');" displaytype="mask" maskeditformat="#,###"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+var rdGubunChk;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	this.fnChk(this.parent.parent.rdGubun2.value);
+}
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+	
+};
+
+this.fnChk = function(rdGubunChk)
+{
+	if(rdGubunChk == 1)
+	{
+		this.grdList.setFormatColProperty(1, "size", "0");
+	}else{
+		this.grdList.setFormatColProperty(1, "size", "153");
+	}
+}
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

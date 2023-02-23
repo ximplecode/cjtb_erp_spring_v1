@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="EDAthrCust_SelectF" width="300" height="100" titletext="New Form">
+    <Layouts>
+      <Layout height="100" width="300">
+        <Static id="Static02" taborder="0" text="저자 / 업체 선택" left="18" top="10" width="182" height="30" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btn_cust" taborder="1" text="업체" top="51" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="65" right="126" onclick="btn_close_onclick"/>
+        <Button id="btn_athr" taborder="2" text="저자" top="51" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="65" right="215" onclick="btn_close_onclick"/>
+        <Button id="btn_close" taborder="3" text="취소" top="51" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="65" right="37" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(obj.getDisplayText());
+};
+
+]]></Script>
+  </Form>
+</FDL>

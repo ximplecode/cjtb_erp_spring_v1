@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="용지관리" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer" onkeydown="MkMain_onkeydown">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Static id="Static02" taborder="0" text="용지관리" left="18" top="10" width="312" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnNew" taborder="1" text="내용추가" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="80" height="40" onclick="btnNew_onclick" right="180" top="31"/>
+        <Button id="btnSave" taborder="2" text="저장" top="31" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="93" onclick="btnSave_onclick"/>
+        <Button id="btnDelete" taborder="3" text="삭제" top="31" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="false" right="5" onclick="btnDelete_onclick"/>
+        <ImageViewer id="ImgClose01" taborder="4" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Grid id="grdPpr" taborder="5" left="20" top="312" width="96.85%" binddataset="ds_mk_Paper" bottom="23" autofittype="none">
+          <Formats>
+            <Format id="grdUse">
+              <Columns>
+                <Column size="71" band="left"/>
+                <Column size="219" band="left"/>
+                <Column size="86"/>
+                <Column size="77"/>
+                <Column size="84"/>
+                <Column size="84"/>
+                <Column size="84"/>
+                <Column size="167"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="용지코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="용지명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="규격" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="G수" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" text="가로" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="세로" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="환산" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="종류" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PPR_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@@@" editmaxlength="4" editinputtype="normal" maskedittype="string"/>
+                <Cell col="1" text="bind:PPR_NAME" displaytype="normal" combodataset="ds_mk_UseType" combocodecol="USE_TYPE_CODE" combodatacol="USE_TYPE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none"/>
+                <Cell col="2" text="bind:PPR_STNDNAME" font="normal 12px/normal &quot;함초롬돋움&quot;" edittype="none" editmaxlength="20" displaytype="normal" combodataset="dsStnd" combodatacol="NAME" combocodecol="NO" textAlign="center"/>
+                <Cell col="3" text="bind:PPR_WEIGHT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,##0"/>
+                <Cell col="4" text="bind:PPR_WIDTH" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,##0"/>
+                <Cell col="5" text="bind:PPR_LENGTH" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" maskeditformat="#,##0" displaytype="mask"/>
+                <Cell col="6" text="bind:PPR_CONVERSION" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" maskeditformat="#,0.##" displaytype="mask"/>
+                <Cell col="7" text="bind:PPRKND_ID" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editmaxlength="2" editinputtype="normal" displaytype="combotext" combodataset="dsPprKind" combodatacol="PPRKND_NAME" combocodecol="PPRKND_ID"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stPprCode" taborder="6" text="용지코드" left="20" top="88" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edPprCode" taborder="7" left="stPprCode:2" top="88" width="6.85%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4"/>
+        <Static id="stPprName" taborder="8" text="용지명" left="edPprCode:3" top="88" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edPprName" taborder="9" left="stPprName:3" top="88" width="30.85%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Static id="stPprStnd" taborder="10" text="단위" left="edPprName:3" top="88" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Static id="stWeight" taborder="11" text="G수" left="20" top="127" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85"/>
+        <MaskEdit id="medtWeight" taborder="22" left="stWeight:3" top="127" height="35" width="15.38%" font="12px/normal &quot;함초롬바탕 확장&quot;" format="#,##0"/>
+        <Static id="stWidth" taborder="12" text="가로" left="medtWeight:3" top="127" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85"/>
+        <MaskEdit id="medtWidth" taborder="23" left="stWidth:3" top="127" width="15.92%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" format="#,##0"/>
+        <Static id="stLength" taborder="13" text="세로" left="medtWidth:3" top="127" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <MaskEdit id="medtLength" taborder="24" left="stLength:3" top="127" width="19.54%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" format="#,##0"/>
+        <Static id="stConversion" taborder="14" text="환산" top="127" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" left="medtLength:3"/>
+        <Static id="stKind" taborder="15" text="종류" left="20" top="166" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Combo id="cbPprClass" taborder="20" left="stKind:3" top="166" width="15.38%" height="35" innerdataset="dsPprKind" codecolumn="PPRKND_ID" datacolumn="PPRKND_NAME" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Static id="stUnitCost" taborder="16" text="단가" left="cbPprClass:3" top="166" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <MaskEdit id="medtUnitCost" taborder="26" left="stUnitCost:3" top="166" width="15.92%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Static id="stDate" taborder="17" text="최초매입일" left="medtUnitCost:3" top="166" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Combo id="cbPprStnd" taborder="18" left="stPprStnd:3" top="88" height="35" innerdataset="dsStnd" codecolumn="NO" datacolumn="NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" width="12.92%"/>
+        <Static id="stPprUnit" taborder="28" text="규격" left="cbPprStnd:3" top="87" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85"/>
+        <Combo id="cbPprUnit" taborder="19" top="87" width="9.85%" height="35" innerdataset="dsUnit" codecolumn="NO" datacolumn="NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" left="stPprUnit:3"/>
+        <Edit id="edPprStndName" taborder="21" top="87" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" left="cbPprUnit:3" right="0.31%"/>
+        <MaskEdit id="medtConversion" taborder="25" top="127" height="35" left="stConversion:3" right="0.38%" font="12px/normal &quot;함초롬바탕 확장&quot;" format="#,0.##"/>
+        <Calendar id="calDate" taborder="27" left="stDate:3" top="166" width="254" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Tab id="Tab00" taborder="29" tabindex="0" left="21" top="210" width="1259" height="92" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" onchanged="Tab00_onchanged" selectedtabbuttonwidth="80" selectedtabbuttonheight="40">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="검색조건" border="1px double darkslateblue">
+              <Layouts>
+                <Layout>
+                  <Button id="btnSearch" taborder="1" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="80" height="40" right="29.59%" top="5" background="" onclick="btnSearch_onclick"/>
+                  <Button id="btnExcel" taborder="0" left="btnSearch:15" top="5" width="43" height="39" icon="url('Img::ico_excel_O.png')" onclick="Tab00_Tabpage1_btnExcel_onclick"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Static id="stSPprCode" taborder="30" text="용지코드" left="32" top="260" width="85" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue"/>
+        <Edit id="edSPprCode" taborder="31" left="119" top="260" width="6.85%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4"/>
+        <Static id="stSPprName" taborder="32" text="용지명" left="231" top="260" width="85" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edSPprName" taborder="33" left="319" top="260" width="30.85%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerDML, vPerDel;
+var urlExcel = nexacro.getApplication().gv_urlXeni;
+var vStr = "U";
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerDML = "U";
+	vPerDel = "D";
+	
+	if(vPerSel = "1"){
+		this.gfn_TransactionP("select", "JSP/mk/paper_kind_select.jsp", "dsPprKind=dsPprKind", "dsPprKind=dsPprKind", "", "", false, "S", false, this);
+		this.btnSearch_onclick();
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdPpr);
+};
+
+
+//조회버튼 이벤트
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	str_url = "JSP/mk/mk112f_paper_search.jsp";
+	//str_url = "JSP/mk/getData_paper.jsp";
+	in_ds = "ds_mk_Paper=ds_mk_Paper";
+	out_ds = "ds_mk_Paper=ds_mk_Paper";
+	str_arg ="PPR_CODE=" +nexacro.wrapQuote( this.edSPprCode.text);
+	str_arg +=" PPR_NAME=" +nexacro.wrapQuote( this.edSPprName.text);
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_Select", false, "S", false, this);
+};
+
+this.Callback_Select = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}
+};
+
+//내용추가 버튼
+this.btnNew_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	switch(this.ds_mk_Paper.rowposition)
+	{
+				// -1 이면 레코드가 없는 상태
+	  case -1 : this.ds_mk_Paper.addRow();
+				var d = new Date(); 
+				var strtoDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");
+				this.calDate.set_value(strtoDay);
+				break;
+
+	  default : // 마지막 레코드 입력여부 확인
+				var nRow = this.ds_mk_Paper.getRowCount()-1
+
+				// 레코드에 내용이 없으면
+				if (this.fctn_Paper_CheckRecord(nRow, true))
+				{
+					// ROW 추가
+					this.ds_mk_Paper.addRow();
+					var d = new Date(); 
+					var strtoDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");
+					this.calDate.set_value(strtoDay);
+				}
+				else
+					break;
+				// 마지막 레코드로 위치 이동
+				this.ds_mk_Paper.rowposition = this.ds_mk_Paper.getRowCount()-1;
+				break;
+	}
+	
+	this.edPprCode.setFocus();
+};
+
+//#######################################################
+//  입력값 확인
+//  nRow : 현재 레코드의 인덱스
+//  msgview : 메시지를 보여줄지 여부 (True, False)
+//#######################################################
+this.fctn_Paper_CheckRecord = function(nRow, msgview)
+{
+	if (this.ds_mk_Paper.getColumn(nRow, "PPR_CODE").length != this.ds_mk_Paper.getColumnInfo("PPR_CODE").size)
+	{
+		if (msgview)
+		{	
+			alert("용지코드를 정확히 입력해 주십시요.");
+			this.edPprCode.setFocus();
+		}
+		return false;
+	}
+
+	if (this.ds_mk_Paper.getColumn(nRow, "PPR_NAME") == null)
+	{
+		if (msgview)
+		{		
+			alert("용지명을 입력해 주십시요.");
+			this.edPprName.setFocus();
+		}
+		return false;
+	}
+
+	if (this.ds_mk_Paper.getColumn(nRow, "PPR_WEIGHT") == null)
+	{
+		if (msgview)
+		{		
+			alert("G수를 입력해 주십시요.");
+			this.medtWeight.setFocus();
+		}
+		return false;
+	}
+
+	if (this.ds_mk_Paper.getColumn(nRow, "PPR_WIDTH") == null)
+	{
+		if (msgview)
+		{		
+			alert("가로길이를 입력해 주십시요.");
+			this.medtWidth.setFocus();
+		}
+		return false;
+	}
+	
+	if (this.ds_mk_Paper.getColumn(nRow, "PPR_LENGTH") == null)
+	{
+		if (msgview)
+		{		
+			alert("세로길이를 입력해 주십시요.");
+			this.medtLength.setFocus();
+		}
+		return false;
+	}	
+	
+	if ((this.ds_mk_Paper.getColumn(nRow, "PPR_UNIT") == "T") &&
+	   (this.ds_mk_Paper.getColumn(nRow, "PPR_CONVERSION") == 0))
+	{
+		if (msgview)
+		{		
+			alert("환산을 입력해 주십시요.");
+			this.medtConversion.setFocus();
+		}
+		return false;
+	}		
+
+	return true;
+}
+
+//저장버튼
+this.btnSave_onclick = function(vStr)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	in_ds = "input=ds_mk_Paper:U";
+	str_url = "JSP/mk/mk112f_paper_dml.jsp";
+	this.gfn_TransactionP("Save", str_url, in_ds, "", "", "Callback_save", false, vStr, false, this);
+		
+};
+
+this.Callback_save = function(Trid, ErrorCode, ErrorMsg)
+{	
+	if (ErrorCode != 0)
+	{
+		if(ErrorCode == -99)
+		{
+			this.btnSearch_onclick();
+		}else{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.btnDelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	bRtn = this.confirm("용지코드 [ "+this.edPprCode.text+" ] 삭제하시겠습니까?", "용지 삭제");
+	
+	if(bRtn == true)
+	{
+		this.ds_mk_Paper.deleteRow(this.ds_mk_Paper.rowposition);
+		this.btnSave_onclick(vPerDel);
+	}
+};
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+//그리드 엑셀로 변환
+this.Tab00_Tabpage1_btnExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	 this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, 
+        this.grdPpr, "Sheet1!A1");
+    
+	this.exportObj.set_exporturl(urlExcel); 
+    this.exportObj.exportData(); 
+};
+
+
+this.MkMain_onkeydown = function(obj:nexacro.Form,e:nexacro.KeyEventInfo)
+{
+	var comObj = obj.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		comObj = this.MkMain.getNextComponent(comObj, true);
+		comObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(comObj.toString() == "[object Combo]")
+			comObj.dropdown();
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsStnd">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NO">0</Col>
+            <Col id="NAME">미</Col>
+          </Row>
+          <Row>
+            <Col id="NO">1</Col>
+            <Col id="NAME">국전</Col>
+          </Row>
+          <Row>
+            <Col id="NO">2</Col>
+            <Col id="NAME">4X6</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUnit">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="NAME1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NO">R</Col>
+            <Col id="NAME">R</Col>
+          </Row>
+          <Row>
+            <Col id="NO">T</Col>
+            <Col id="NAME">T</Col>
+            <Col id="NAME1">ⓣ</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsPprKind">
+        <ColumnInfo>
+          <Column id="PPRKND_CLASS" type="STRING" size="256"/>
+          <Column id="PPRKND_KIND" type="STRING" size="256"/>
+          <Column id="PPRKND_NAME" type="STRING" size="256"/>
+          <Column id="PPRKND_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_Paper" oncolumnchanged="ds_mk_Paper_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="PPR_CODE" type="STRING" size="4"/>
+          <Column id="PPR_UNIT" type="STRING" size="256"/>
+          <Column id="PPR_STND" type="STRING" size="256"/>
+          <Column id="PPR_REGDATE" type="STRING" size="256"/>
+          <Column id="PPR_WEIGHT" type="STRING" size="256"/>
+          <Column id="PPR_WIDTH" type="STRING" size="256"/>
+          <Column id="PPR_LENGTH" type="STRING" size="256"/>
+          <Column id="PPR_CONVERSION" type="STRING" size="256"/>
+          <Column id="PPR_DANGA" type="STRING" size="256"/>
+          <Column id="PPR_NAME" type="STRING" size="256"/>
+          <Column id="PPR_FEQUENT" type="STRING" size="256"/>
+          <Column id="PPR_DISABLED" type="STRING" size="256"/>
+          <Column id="PPR_STNDNAME" type="STRING" size="256"/>
+          <Column id="PPRKND_CLASS" type="STRING" size="256"/>
+          <Column id="PPRKND_KIND" type="STRING" size="256"/>
+          <Column id="PPRKND_NAME" type="STRING" size="256"/>
+          <Column id="PPRKND_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edPprName" propid="value" datasetid="ds_mk_Paper" columnid="PPR_NAME"/>
+      <BindItem id="item1" compid="edPprCode" propid="value" datasetid="ds_mk_Paper" columnid="PPR_CODE"/>
+      <BindItem id="item2" compid="cbPprStnd" propid="value" datasetid="ds_mk_Paper" columnid="PPR_STND"/>
+      <BindItem id="item3" compid="cbPprUnit" propid="value" datasetid="ds_mk_Paper" columnid="PPR_UNIT"/>
+      <BindItem id="item4" compid="edPprStndName" propid="value" datasetid="ds_mk_Paper" columnid="PPR_STNDNAME"/>
+      <BindItem id="item5" compid="medtWeight" propid="value" datasetid="ds_mk_Paper" columnid="PPR_WEIGHT"/>
+      <BindItem id="item6" compid="medtWidth" propid="value" datasetid="ds_mk_Paper" columnid="PPR_WIDTH"/>
+      <BindItem id="item7" compid="medtLength" propid="value" datasetid="ds_mk_Paper" columnid="PPR_LENGTH"/>
+      <BindItem id="item8" compid="medtConversion" propid="value" datasetid="ds_mk_Paper" columnid="PPR_CONVERSION"/>
+      <BindItem id="item9" compid="cbPprClass" propid="value" datasetid="ds_mk_Paper" columnid="PPRKND_ID"/>
+      <BindItem id="item10" compid="medtUnitCost" propid="value" datasetid="ds_mk_Paper" columnid="PPR_DANGA"/>
+      <BindItem id="item11" compid="calDate" propid="value" datasetid="ds_mk_Paper" columnid="PPR_REGDATE"/>
+    </Bind>
+  </Form>
+</FDL>

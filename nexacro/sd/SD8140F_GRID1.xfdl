@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD8140F_GRID1" width="1370" height="720" titletext="New Form" onsize="SD8140F_GRID1_onsize" ontimer="SD8140F_GRID1_ontimer">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1370">
+        <Grid id="SD8140F_GRID1" taborder="0" binddataset="ds_1" height="100.00%" top="0" formatid="default" cellmovingtype="col" cellsizebandtype="allband" cellsizingtype="both" left="0%" right="0%" border="1px solid black" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="88"/>
+                <Column size="200"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24"/>
+                <Row size="24"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+                <Row size="24" band="summ"/>
+                <Row size="24" band="summ"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="NO" font="11px/normal &quot;Gulim&quot;" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell col="1" text="상호" font="11px/normal &quot;Gulim&quot;" textAlign="center" border="1px solid black"/>
+                <Cell col="2" text="교판(총판)" font="11px/normal &quot;Gulim&quot;" textAlign="center" border="1px solid black"/>
+                <Cell col="3" text="직거래서점" font="11px/normal &quot;Gulim&quot;" textAlign="center" border="1px solid black"/>
+                <Cell col="4" text="온라인영업부" font="11px/normal &quot;Gulim&quot;" textAlign="center" border="1px solid black"/>
+                <Cell col="5" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="개인" border="1px solid black"/>
+                <Cell col="6" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="교판(기타)" border="1px solid black"/>
+                <Cell col="7" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="회원" border="1px solid black"/>
+                <Cell col="8" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="기타" border="1px solid black"/>
+                <Cell col="9" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="교원연수" border="1px solid black"/>
+                <Cell col="10" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="국정" border="1px solid black"/>
+                <Cell col="11" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="저작" border="1px solid black"/>
+                <Cell col="12" font="11px/normal &quot;Gulim&quot;" textAlign="center" border="1px solid black"/>
+                <Cell col="13" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="합계" border="1px solid black"/>
+                <Cell row="1" col="1" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="사업자번호" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="2" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="학판(총판)" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="3" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="메릭스" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="4" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="프랜차이즈" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="5" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="학판(기타)" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="6" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="학습지" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="7" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="유치" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="8" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="학력평가" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="9" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="T셀파(쇼핑)" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="10" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="검정" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="11" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="전집" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="12" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="관계(회계)" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="1" col="13" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="총계" border="1px solid black,1px solid black,2px solid black"/>
+              </Band>
+              <Band id="body">
+                <Cell rowspan="4" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" textAlign="center" suppressalign="first" font="11px/normal &quot;Gulim&quot;" expr="dataset.getRowLevel(currow)==1?'':S_MM+S_NO" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell col="1" rowspan="2" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" suppress="0" suppressalign="first" font="11px/normal &quot;Gulim&quot;" textAlign="left" expr="dataset.getRowLevel(currow)==1?'&lt; 소계 &gt;':SANG" border="1px solid black"/>
+                <Cell col="2" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right" padding="0px 3px 0px 0px" displaytype="number" expr="MCHUL1_1==null?0:MCHUL1_1" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="3" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" textAlign="right" font="11px/normal &quot;Gulim&quot;" suppress="0" padding="0px 3px 0px 0px" displaytype="number" expr="MCHUL3_1==null?0:MCHUL3_1" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="4" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" textAlign="right" font="11px/normal &quot;Gulim&quot;" padding="0px 3px 0px 0px" displaytype="number" expr="MCHUL5_1==null?0:MCHUL5_1" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="5" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL7_1==null?0:MCHUL7_1" padding="0px 3px 0px 0px" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="6" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL9_1==null?0:MCHUL9_1" padding="0px 3px 0px 0px" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="7" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL11_1==null?0:MCHUL11_1" padding="0px 3px 0px 0px" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="8" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL13_1==null?0:MCHUL13_1" padding="0px 3px 0px 0px" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="9" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL15_1==null?0:MCHUL15_1" padding="0px 3px 0px 0px" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="10" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL17_1==null?0:MCHUL17_1" padding="0px 3px 0px 0px" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="11" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL19_1==null?0:MCHUL19_1" padding="0px 3px 0px 0px" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="12" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" expr="0" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" padding="0px 3px 0px 0px" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell col="13" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="(MCHUL1_1==null?0:MCHUL1_1) + (MCHUL2_1==null?0:MCHUL2_1) + (MCHUL3_1==null?0:MCHUL3_1) + (MCHUL4_1==null?0:MCHUL4_1) + (MCHUL5_1==null?0:MCHUL5_1) + (MCHUL6_1==null?0:MCHUL6_1) + (MCHUL7_1==null?0:MCHUL7_1) + (MCHUL8_1==null?0:MCHUL8_1) + (MCHUL9_1==null?0:MCHUL9_1) + (MCHUL10_1==null?0:MCHUL10_1) + (MCHUL11_1==null?0:MCHUL11_1) + (MCHUL12_1==null?0:MCHUL12_1) + (MCHUL13_1==null?0:MCHUL13_1) + (MCHUL14_1==null?0:MCHUL14_1) + (MCHUL15_1==null?0:MCHUL15_1) + (MCHUL16_1==null?0:MCHUL16_1) + (MCHUL17_1==null?0:MCHUL17_1) + (MCHUL18_1==null?0:MCHUL18_1) + (MCHUL19_1==null?0:MCHUL19_1) + (MCHUL20_1==null?0:MCHUL20_1) + (MCHUL22_1==null?0:MCHUL22_1)" padding="0px 3px 0px 0px" border="1px solid black, 1px solid black, 1px dashed dimgray"/>
+                <Cell row="1" col="2" font="11px/normal &quot;Gulim&quot;" padding="0px 3px 0px 0px" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" displaytype="number" textAlign="right" expr="MCHUL1_2==null?0:MCHUL1_2" border="1px solid black"/>
+                <Cell row="1" col="3" font="11px/normal &quot;Gulim&quot;" padding="0px 3px 0px 0px" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" displaytype="number" textAlign="right" expr="MCHUL3_2==null?0:MCHUL3_2" border="1px solid black"/>
+                <Cell row="1" col="4" font="11px/normal &quot;Gulim&quot;" padding="0px 3px 0px 0px" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" displaytype="number" textAlign="right" expr="MCHUL5_2==null?0:MCHUL5_2" border="1px solid black"/>
+                <Cell row="1" col="5" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL7_2==null?0:MCHUL7_2" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="1" col="6" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL9_2==null?0:MCHUL9_2" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="1" col="7" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL11_2==null?0:MCHUL11_2" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="1" col="8" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL13_2==null?0:MCHUL13_2" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="1" col="9" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL15_2==null?0:MCHUL15_2" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="1" col="10" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL17_2==null?0:MCHUL17_2" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="1" col="11" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL19_2==null?0:MCHUL19_2" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="1" col="12" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" expr="0" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="1" col="13" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="(MCHUL1_2==null?0:MCHUL1_2) + (MCHUL2_2==null?0:MCHUL2_2) + (MCHUL3_2==null?0:MCHUL3_2) + (MCHUL4_2==null?0:MCHUL4_2) + (MCHUL5_2==null?0:MCHUL5_2) + (MCHUL6_2==null?0:MCHUL6_2) + (MCHUL7_2==null?0:MCHUL7_2) + (MCHUL8_2==null?0:MCHUL8_2) + (MCHUL9_2==null?0:MCHUL9_2) + (MCHUL10_2==null?0:MCHUL10_2) + (MCHUL11_2==null?0:MCHUL11_2) + (MCHUL12_2==null?0:MCHUL12_2) + (MCHUL13_2==null?0:MCHUL13_2) + (MCHUL14_2==null?0:MCHUL14_2) + (MCHUL15_2==null?0:MCHUL15_2) + (MCHUL16_2==null?0:MCHUL16_2) + (MCHUL17_2==null?0:MCHUL17_2) + (MCHUL18_2==null?0:MCHUL18_2) + (MCHUL19_2==null?0:MCHUL19_2) + (MCHUL20_2==null?0:MCHUL20_2) + (MCHUL22_2==null?0:MCHUL22_2)" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="2" col="1" rowspan="2" font="11px/normal &quot;Gulim&quot;" textAlign="left" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="dataset.getRowLevel(currow)==1?'':SA_NO" suppress="0" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="2" col="2" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL2_1==null?0:MCHUL2_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="3" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL4_1==null?0:MCHUL4_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="4" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL6_1==null?0:MCHUL6_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="5" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL8_1==null?0:MCHUL8_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="6" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL10_1==null?0:MCHUL10_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="7" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL12_1==null?0:MCHUL12_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="8" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL14_1==null?0:MCHUL14_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="9" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL16_1==null?0:MCHUL16_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="10" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL18_1==null?0:MCHUL18_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="11" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL20_1==null?0:MCHUL20_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="12" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL22_1==null?0:MCHUL22_1" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="13" rowspan="2" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" text="bind:GMC" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="2" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL2_2==null?0:MCHUL2_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="3" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL4_2==null?0:MCHUL4_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="4" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL6_2==null?0:MCHUL6_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="5" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL8_2==null?0:MCHUL8_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="6" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL10_2==null?0:MCHUL10_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="7" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL12_2==null?0:MCHUL12_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="8" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL14_2==null?0:MCHUL14_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="9" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL16_2==null?0:MCHUL16_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="10" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL18_2==null?0:MCHUL18_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="11" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL20_2==null?0:MCHUL20_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+                <Cell row="3" col="12" font="11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" expr="MCHUL22_2==null?0:MCHUL22_2" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,2px solid black"/>
+              </Band>
+              <Band id="summary">
+                <Cell rowspan="4" colspan="2" text="&lt; 합 계 &gt;" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="2" font="bold 11px/normal &quot;Gulim&quot;" expr="dataset.getSum(&quot;MCHUL1_1&quot;)" displaytype="number" textAlign="right" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="3" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;" expr="dataset.getSum(&quot;MCHUL3_1&quot;)" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="4" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;" expr="dataset.getSum(&quot;MCHUL5_1&quot;)" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="5" expr="dataset.getSum(&quot;MCHUL7_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="6" expr="dataset.getSum(&quot;MCHUL9_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="7" expr="dataset.getSum(&quot;MCHUL11_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="8" expr="dataset.getSum(&quot;MCHUL13_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="9" expr="dataset.getSum(&quot;MCHUL15_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="10" expr="dataset.getSum(&quot;MCHUL17_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="11" expr="dataset.getSum(&quot;MCHUL19_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="12" expr="0" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell col="13" expr="dataset.getSum(&quot;MCHUL1_1&quot;) + dataset.getSum(&quot;MCHUL2_1&quot;) + dataset.getSum(&quot;MCHUL3_1&quot;) + dataset.getSum(&quot;MCHUL4_1&quot;) + dataset.getSum(&quot;MCHUL5_1&quot;) + dataset.getSum(&quot;MCHUL6_1&quot;) + dataset.getSum(&quot;MCHUL7_1&quot;) + dataset.getSum(&quot;MCHUL8_1&quot;) + dataset.getSum(&quot;MCHUL9_1&quot;) + dataset.getSum(&quot;MCHUL10_1&quot;) + dataset.getSum(&quot;MCHUL11_1&quot;) + dataset.getSum(&quot;MCHUL12_1&quot;) + dataset.getSum(&quot;MCHUL13_1&quot;) + dataset.getSum(&quot;MCHUL14_1&quot;) + dataset.getSum(&quot;MCHUL15_1&quot;) + dataset.getSum(&quot;MCHUL16_1&quot;) + dataset.getSum(&quot;MCHUL17_1&quot;) + dataset.getSum(&quot;MCHUL18_1&quot;) + dataset.getSum(&quot;MCHUL19_1&quot;) + dataset.getSum(&quot;MCHUL20_1&quot;) + dataset.getSum(&quot;MCHUL22_1&quot;)" displaytype="number" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" padding="0px 3px 0px 0px" border="2px solid black,1px solid black,1px solid black"/>
+                <Cell row="1" col="2" expr="dataset.getSum(&quot;MCHUL1_2&quot;)" padding="0px 3px 0px 0px" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="3" expr="dataset.getSum(&quot;MCHUL3_2&quot;)" padding="0px 3px 0px 0px" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="4" expr="dataset.getSum(&quot;MCHUL5_2&quot;)" padding="0px 3px 0px 0px" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="5" expr="dataset.getSum(&quot;MCHUL7_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="6" expr="dataset.getSum(&quot;MCHUL9_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="7" expr="dataset.getSum(&quot;MCHUL11_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="8" expr="dataset.getSum(&quot;MCHUL13_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="9" expr="dataset.getSum(&quot;MCHUL15_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="10" expr="dataset.getSum(&quot;MCHUL17_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="11" expr="dataset.getSum(&quot;MCHUL19_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="12" expr="0" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="1" col="13" expr="dataset.getSum(&quot;MCHUL1_2&quot;) + dataset.getSum(&quot;MCHUL2_2&quot;) + dataset.getSum(&quot;MCHUL3_2&quot;) + dataset.getSum(&quot;MCHUL4_2&quot;) + dataset.getSum(&quot;MCHUL5_2&quot;) + dataset.getSum(&quot;MCHUL6_2&quot;) + dataset.getSum(&quot;MCHUL7_2&quot;) + dataset.getSum(&quot;MCHUL8_2&quot;) + dataset.getSum(&quot;MCHUL9_2&quot;) + dataset.getSum(&quot;MCHUL10_2&quot;) + dataset.getSum(&quot;MCHUL11_2&quot;) + dataset.getSum(&quot;MCHUL12_2&quot;) + dataset.getSum(&quot;MCHUL13_2&quot;) + dataset.getSum(&quot;MCHUL14_2&quot;) + dataset.getSum(&quot;MCHUL15_2&quot;) + dataset.getSum(&quot;MCHUL16_2&quot;) + dataset.getSum(&quot;MCHUL17_2&quot;) + dataset.getSum(&quot;MCHUL18_2&quot;) + dataset.getSum(&quot;MCHUL19_2&quot;) + dataset.getSum(&quot;MCHUL20_2&quot;) + dataset.getSum(&quot;MCHUL22_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="2" col="2" expr="dataset.getSum(&quot;MCHUL2_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="3" expr="dataset.getSum(&quot;MCHUL4_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="4" expr="dataset.getSum(&quot;MCHUL6_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="5" expr="dataset.getSum(&quot;MCHUL8_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="6" expr="dataset.getSum(&quot;MCHUL10_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="7" expr="dataset.getSum(&quot;MCHUL12_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="8" expr="dataset.getSum(&quot;MCHUL14_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="9" expr="dataset.getSum(&quot;MCHUL16_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="10" expr="dataset.getSum(&quot;MCHUL18_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="11" expr="dataset.getSum(&quot;MCHUL20_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="12" expr="dataset.getSum(&quot;MCHUL22_1&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black,1px solid black,1px dashed dimgray"/>
+                <Cell row="2" col="13" rowspan="2" expr="dataset.getSum(&quot;GMC&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px solid black"/>
+                <Cell row="3" col="2" expr="dataset.getSum(&quot;MCHUL2_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="3" expr="dataset.getSum(&quot;MCHUL4_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="4" expr="dataset.getSum(&quot;MCHUL6_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="5" expr="dataset.getSum(&quot;MCHUL8_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="6" expr="dataset.getSum(&quot;MCHUL10_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="7" expr="dataset.getSum(&quot;MCHUL12_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="8" expr="dataset.getSum(&quot;MCHUL14_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="9" expr="dataset.getSum(&quot;MCHUL16_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="10" expr="dataset.getSum(&quot;MCHUL18_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="11" expr="dataset.getSum(&quot;MCHUL20_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+                <Cell row="3" col="12" expr="dataset.getSum(&quot;MCHUL22_2&quot;)" font="bold 11px/normal &quot;Gulim&quot;" textAlign="right" displaytype="number" padding="0px 3px 0px 0px" border="1px dashed dimgray,1px solid black,1px solid black"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+/*
+this.SD8130F_GRID1_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.SD8130F_GRID1_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.SD8110F_GRID1);
+};
+*/]]></Script>
+  </Form>
+</FDL>

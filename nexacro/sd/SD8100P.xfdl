@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD8100P" width="390" height="280" titletext="New Form" onload="SD8100P_onload">
+    <Layouts>
+      <Layout height="280" width="390">
+        <Static id="Static00" taborder="0" text="어음, 수표 입금명세서" left="20" top="10" color="#7fb39d" font="bold 28px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="310" height="40"/>
+        <Button id="btn_close" taborder="16" text="닫기" top="21" width="45" height="20" font="bold 9pt/normal &quot;Arial&quot;" right="7" onclick="btn_close_onclick" tabstop="false"/>
+        <Static id="Static01" taborder="17" text="입금일자" left="12" top="91" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01" taborder="18" left="107" top="91" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="255"/>
+        <Calendar id="ed_sdate" taborder="1" left="114" top="96" height="20" width="100" dateformat="yyyy-MM-dd" onkeydown="common_onkeydown"/>
+        <Calendar id="ed_edate" taborder="2" left="244" top="96" height="20" width="100" dateformat="yyyy-MM-dd" onkeydown="common_onkeydown"/>
+        <Static id="Static01_00" taborder="19" text="~" left="222" top="97" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_01" taborder="20" text="번호구간" left="12" top="119" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_00" taborder="21" left="107" top="119" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="255"/>
+        <Static id="Static01_00_00" taborder="22" text="~" left="172" top="125" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_02" taborder="23" text="업체구간" left="12" top="147" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_01" taborder="24" left="107" top="147" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="255"/>
+        <Static id="Static01_00_01" taborder="25" text="~" left="204" top="153" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_03" taborder="26" text="만기일자" left="12" top="175" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_02" taborder="27" left="107" top="175" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="255"/>
+        <Calendar id="ed_smdate" taborder="9" left="114" top="180" height="20" width="100" dateformat="yyyy-MM-dd" onkeydown="common_onkeydown"/>
+        <Calendar id="ed_emdate" taborder="10" left="244" top="180" height="20" width="100" dateformat="yyyy-MM-dd" onkeydown="common_onkeydown"/>
+        <Static id="Static01_00_02" taborder="28" text="~" left="222" top="181" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_04" taborder="29" text="입금자" left="12" top="203" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_03" taborder="30" left="107" top="203" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="255"/>
+        <Static id="Static01_05" taborder="31" text="출력물" left="12" top="231" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_04" taborder="32" left="107" top="231" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="255"/>
+        <MaskEdit id="ed_sno" taborder="3" left="114" top="124" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="###" type="string" textAlign="center" onkillfocus="ed_jukyocd_onkillfocus" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_eno" taborder="4" left="194" top="124" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="###" type="string" textAlign="center" onkillfocus="ed_jukyocd_onkillfocus" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_scustgb" taborder="5" left="114" top="152" width="32" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="center" onkeydown="common_onkeydown" onkillfocus="s_custcd_onkillfocus"/>
+        <MaskEdit id="ed_scustcd" taborder="6" left="148" top="152" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" textAlign="center" onkillfocus="s_custcd_onkillfocus" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_ecustcd" taborder="8" left="258" top="152" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" textAlign="center" onkillfocus="s_custcd_onkillfocus" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_ecustgb" taborder="7" left="224" top="152" width="32" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="center" onkeydown="common_onkeydown" onkillfocus="s_custcd_onkillfocus"/>
+        <Edit id="ed_ipinnm" taborder="15" left="237" top="208" width="106" height="20" enable="false" tabstop="false"/>
+        <Button id="btn_ip_search" taborder="14" left="211" top="209" width="19" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" tabstop="false" onclick="btn_ip_search_onclick" text=""/>
+        <Edit id="ed_ipin" taborder="11" left="114" top="208" width="92" height="20" onkillfocus="ed_ipin_onkillfocus" onkeydown="common_onkeydown"/>
+        <Static id="Static01_06" taborder="33" text="리스트 검색" left="12" top="63" height="30" background="#3cbcb8" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="350" color="white"/>
+        <Combo id="print_select" taborder="12" text="입금자별입금현황" left="112" top="236" height="20" innerdataset="ds_rpt" datacolumn="DATA" codecolumn="CODE" value="5" index="5" width="135" onkeydown="common_onkeydown"/>
+        <Button id="btn_print" taborder="13" text="출력" top="236" width="45" height="20" font="bold 9pt/normal &quot;Arial&quot;" onclick="btn_print_onclick" left="311" onkeydown="btn_print_onkeydown"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_rpt">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="DATA" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="DATA">입급명세서</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="DATA">입급명세서(기간)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="DATA">입금명세서(만기)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="DATA">일자별입금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="DATA">업체별입금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="DATA">입금자별입금현황</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_insa">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_name = nexacro.getApplication().gds_userinfo.getColumn(0,"NAME");
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+var arr_rt;
+
+this.SD8100P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+	
+	this.print_select.set_index(0);
+	this.ed_sdate.setFocus();
+	this.ed_sdate.set_value(f_date);
+	this.ed_edate.set_value(f_date);
+	this.ed_sno.set_value("000");
+	this.ed_eno.set_value("999");
+	this.ed_scustgb.set_value("21");
+	this.ed_scustcd.set_value("0000");
+	this.ed_ecustgb.set_value("37");
+	this.ed_ecustcd.set_value("9999");
+	this.ed_smdate.set_value("");
+	this.ed_emdate.set_value("");
+	this.ed_ipin.set_value(gv_sabun.substr(0,6));
+	this.ed_ipinnm.set_value(gv_name);
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var s_cust, e_cust;
+	var rdfile = this.fnSelectfile(this.print_select.index);	
+	var s_sql1, s_sql2, s_sql3, s_sql4;
+    s_sql1     = "";
+    s_sql2     = "";
+    s_sql3     = "";
+    if (( this.print_select.index == 0 ) && ( this.ed_ipin.value == "" ))
+	{
+		alert("입금자를 등록해 주세요!");
+		return;
+	}    
+    s_cust = this.ed_scustgb.value + this.ed_scustcd.value;
+    e_cust = this.ed_ecustgb.value + this.ed_ecustcd.value;
+    if (( this.print_select.index == 0 ) || ( this.print_select.index == 1 ) || ( this.print_select.index == 2 ) || ( this.print_select.index == 3 )
+         || ( this.print_select.index == 4 ))
+	{
+		s_sql1     =  " and a.s_date >= '" + this.ed_sdate.value +"'";
+		s_sql1     = s_sql1 + "    and  a.s_date <= '" + this.ed_edate.value +"'";
+		s_sql1     = s_sql1 + "    and  (a.cust_gb || a.cust_cd) >= '" + s_cust +"'";
+		s_sql1     = s_sql1 + "    and  (a.cust_gb || a.cust_cd) <= '" + e_cust +"'";
+		if ( this.ed_ipin.value != "" )
+			s_sql1     = s_sql1 + "    AND  a.ipin = '" + this.ed_ipin.value +"'";
+		if (( this.print_select.index == 0 ) || ( this.print_select.index == 1 )) 
+		{
+			s_sql1     = s_sql1 + " and a.jun >= '" + this.ed_sno.value +"'";
+			s_sql1     = s_sql1 + " and a.jun <= '" + this.ed_eno.value +"'";
+			s_sql1     = s_sql1 + "      order by a.s_date, a.ipin, mUP_GB, a.CUST_GB, a.CUST_CD,  a.U_MDATE, a.UP_GB, a.UP_NO  ";
+		}  
+		if ( this.print_select.index == 2 ) 
+		{
+			s_sql1     = s_sql1 + " and a.U_MDATE >= '" + this.ed_smdate.value +"'";
+			s_sql1     = s_sql1 + " and  a.U_MDATE <= '" + this.ed_emdate.value +"'";
+			s_sql1     = s_sql1 + " and a.jun >= '" + this.ed_sno.value +"'";
+			s_sql1     = s_sql1 + " and a.jun <= '" + this.ed_eno.value +"'";
+			s_sql1     = s_sql1 + "      order by a.s_date, a.ipin, mUP_GB, a.CUST_GB, a.CUST_CD,  a.U_MDATE, a.UP_GB, a.UP_NO  ";
+		}  
+	}
+     
+	var rdopt  = "/rp ["+this.ed_sdate.value+"]"+
+					 "["+this.ed_edate.value+"]"+					 
+					 "["+s_cust+"]"+
+					 "["+e_cust+"]"+
+					 "["+s_sql1+"]"+
+					 "["+s_sql2+"]"+
+					 "["+s_sql3+"] /ruseswapdisk ";
+	
+	this.lfn_showModal("rtp_print", {rdUrl:rdfile, rdParam:rdopt}, "sd::SDRDF.xfdl", "", this, 0, 0, 1024, 770);
+};
+
+this.fnSelectfile = function(chk_value)
+{
+	if (chk_value==0) return gv_urlMrd+"/sd/SD8100R.mrd";
+	else if (chk_value==1) return gv_urlMrd+"/sd/SD8100M.mrd";
+	else if (chk_value==2) return gv_urlMrd+"/sd/SD8100Q.mrd";
+	else if (chk_value==3) return gv_urlMrd+"/sd/SD8101R.mrd";
+	else if (chk_value==4) return gv_urlMrd+"/sd/SD8102R.mrd";
+	else if (chk_value==5) return gv_urlMrd+"/sd/SD8103R.mrd";
+}
+
+this.common_onkeydown = function(obj:nexacro.Component,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{	
+		if(obj.name == "btn_print")
+		{
+			this.btn_print.click();
+			return;
+		}
+		var objComp = this.getNextComponent(obj, true);
+		if(objComp != null)
+			objComp.setFocus();
+	}
+	else if(e.keycode == 27)
+	{
+		var objComp = this.getPrevComponent(obj, true);
+		if(objComp != null)
+			objComp.setFocus();
+	}
+};
+
+this.ed_ipin_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	var strUrl = "JSP/sd/sd8100_insa.jsp";
+	var strArg;
+	var strDs 	= "ds_insa=ds_insa";
+	if ( this.ed_ipin.value !=  "" )
+	{ 
+		strArg = " Values1="+nexacro.wrapQuote(this.ed_ipin.value);
+		this.gfn_TransactionP("insa", strUrl, strDs, strDs, strArg, "fnDis_insa", false, "P", false, this);
+	} 
+	else
+	{
+		this.ed_ipinnm.set_value("");
+	}
+};
+
+this.fnDis_insa = function(strSvcID, nErrorCode, strErrorMag)
+{
+	this.ed_ipinnm.set_value(this.ds_insa.getColumn(0,"NAME"));
+}
+
+this.btn_ip_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("ipin_search1", "", "sd::frmsabun_list.xfdl", "fnipinSearchCallback", this, 0, 0, 492, 470);	
+};
+
+this.fnipinSearchCallback = function(strID, ret)
+{
+	if(ret != null)
+	{
+		var gubun = ret.substr(0,6);
+		if(nexacro.trim(ret) != "0")
+		{
+			this.ed_ipin.set_value(gubun);
+			this.ed_ipin_onkillfocus();
+			this.print_select.setFocus();
+		}
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

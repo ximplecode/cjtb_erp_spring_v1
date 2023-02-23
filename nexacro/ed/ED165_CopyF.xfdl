@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED165_CopyF" width="400" height="150" titletext="New Form" onload="ED165_CopyF_onload">
+    <Layouts>
+      <Layout height="150" width="400">
+        <Static id="Static00" taborder="0" text="도서코드" left="6" top="26" width="77" height="29" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00" taborder="1" text="도서명" left="6" top="60" width="77" height="29" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Edit id="edt_bookCode_copy" taborder="2" left="87" top="26" width="100" height="29" text="홍길동" onkeydown="fn_common_onkeydown"/>
+        <Edit id="edt_bookSYear_copy" taborder="3" left="188" top="26" width="60" height="29" text="홍길동" onkeydown="fn_common_onkeydown"/>
+        <Edit id="edt_bookEYear_copy" taborder="4" left="250" top="26" width="60" height="29" text="홍길동" onkeydown="fn_common_onkeydown"/>
+        <Edit id="edt_bookTB_copy" taborder="5" left="87" top="60" width="60" height="29" text="홍길동" onkeydown="fn_common_onkeydown"/>
+        <Edit id="edt_bookName_copy" taborder="6" left="149" top="60" width="241" height="29" text="홍길동" onkeydown="fn_common_onkeydown"/>
+        <Button id="btn_ok" taborder="7" text="확인" top="105" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="65" right="215" onclick="btn_ok_onclick"/>
+        <Button id="btn_close" taborder="8" text="닫기" top="105" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="65" right="135" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsRoyaltyacnt_Mst_Copy"/>
+      <Dataset id="dsRoyaltyacnt_Dtl1_Copy"/>
+      <Dataset id="dsRoyaltyacnt_Dtl2_Copy"/>
+      <Dataset id="ds_Dtl2_MidAmount_All">
+        <ColumnInfo>
+          <Column id="ATHR_IDENTITY" type="STRING" size="256"/>
+          <Column id="RADTL2_MIDACNTAMOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+this.ED165_CopyF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.edt_bookCode_copy.set_value(this.opener.edt_bookCode.value);
+	this.edt_bookTB_copy.set_value(this.opener.edt_bookTB.value);
+	this.edt_bookSYear_copy.set_value("");
+	this.edt_bookEYear_copy.set_value("");
+	this.edt_bookName_copy.set_value(this.opener.edt_bookName.value);
+	this.edt_bookSYear_copy.setFocus();
+};
+
+//확인
+this.btn_ok_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.edt_bookCode_copy.value == "" ||  this.edt_bookSYear_copy.value == "" || this.edt_bookEYear_copy.value == "")
+	{
+		alert("도서정보를 정확히 입력하세요!");
+		return false;
+	}
+	
+	this.dsRoyaltyacnt_Mst_Copy.copyData(this.parent.dsRoyaltyacnt_Mst);
+	this.dsRoyaltyacnt_Dtl1_Copy.copyData(this.parent.dsRoyaltyacnt_Dtl1);
+	this.dsRoyaltyacnt_Dtl2_Copy.copyData(this.parent.dsRoyaltyacnt_Dtl2);
+
+	this.parent.dsRoyaltyacnt_Mst.clearData();
+	this.parent.dsRoyaltyacnt_Dtl1.clearData();
+	this.parent.dsRoyaltyacnt_Dtl2.clearData();
+	this.parent.dsRoyaltyacnt_Mst.addRow();
+	
+	this.opener.edt_bookCode.set_value(this.edt_bookCode_copy.value);
+	this.opener.edt_bookSYear.set_value(this.edt_bookSYear_copy.value);
+	this.opener.edt_bookEYear.set_value(this.edt_bookEYear_copy.value);
+	this.opener.edt_bookTB.set_value(this.edt_bookTB_copy.value);
+	this.opener.edt_bookName.set_value(this.edt_bookName_copy.value);
+	
+	this.opener.txa_remark.value = this.dsRoyaltyacnt_Mst_Copy.getColumn(0, "RAMST_REMARK");
+	
+	var str_url = "JSP/ed/ed165f_midamount_select_all.jsp";
+	var inds = "ds_Dtl2_MidAmount_All=ds_Dtl2_MidAmount_All";
+	var outds = "ds_Dtl2_MidAmount_All=ds_Dtl2_MidAmount_All";
+	var strArg = "BOOKMST_CODE=" + nexacro.wrapQuote(this.edt_bookCode_copy.value);
+	
+	this.gfn_TransactionP("search" ,str_url, inds, outds, strArg, "fnMidAmountAllCallback", false, "P", false, this);
+};
+
+this.fnMidAmountAllCallback = function(svcId, errCode, errMsg)
+{
+	var vRate = this.dsRoyaltyacnt_Dtl1_Copy.getColumn(0, "RADTL1_ROYALTYRATE");
+	
+	for(var i=0; i<this.dsRoyaltyacnt_Dtl2_Copy.rowcount; i++)
+	{
+		this.parent.dsRoyaltyacnt_Dtl2.addRow();
+		this.parent.dsRoyaltyacnt_Dtl2.setColumn(i, "ATHR_IDENTITY", this.dsRoyaltyacnt_Dtl2_Copy.getColumn(i, "ATHR_IDENTITY"));
+		this.parent.dsRoyaltyacnt_Dtl2.setColumn(i, "ATHR_NAME", this.dsRoyaltyacnt_Dtl2_Copy.getColumn(i, "ATHR_NAME"));
+		this.parent.dsRoyaltyacnt_Dtl2.setColumn(i, "ATHR_JUMINNO2", this.dsRoyaltyacnt_Dtl2_Copy.getColumn(i, "ATHR_JUMINNO2"));
+		this.parent.dsRoyaltyacnt_Dtl2.setColumn(i, "RADTL2_EDITRATE", this.dsRoyaltyacnt_Dtl2_Copy.getColumn(i, "RADTL2_EDITRATE"));
+		this.parent.dsRoyaltyacnt_Dtl2.setColumn(i, "RADTL2_PAYRATE", this.dsRoyaltyacnt_Dtl2_Copy.getColumn(i, "RADTL2_PAYRATE"));
+		this.parent.dsRoyaltyacnt_Dtl2.setColumn(i, "RADTL2_MIDACNTAMOUNT", this.ds_Dtl2_MidAmount_All.getColumn( 
+														this.ds_Dtl2_MidAmount_All.findRow("ATHR_IDENTITY", this.dsRoyaltyacnt_Dtl2_Copy.getColumn(i,"ATHR_IDENTITY"))
+														, "RADTL2_MIDACNTAMOUNT"));
+	}
+	
+	this.close(vRate);
+}
+
+this.fn_common_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	var comObj;
+
+	if(e.keycode == 13)
+	{
+		comObj = this.getNextComponent(obj,true);
+		comObj.setFocus();
+	}
+}
+
+//닫기
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+]]></Script>
+  </Form>
+</FDL>

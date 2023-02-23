@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD1020F_GRID2" width="1370" height="720" titletext="New Form" onsize="SD1020F_GRID2_onsize" ontimer="SD1020F_GRID2_ontimer">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1370">
+        <Grid id="SD1020F_GRID1" taborder="0" left="0.00%" binddataset="ds_2" height="100.00%" top="0" formatid="default" cellmovingtype="col" cellsizebandtype="allband" cellsizingtype="both" right="0.00%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="55"/>
+                <Column size="55"/>
+                <Column size="150"/>
+                <Column size="65"/>
+                <Column size="50"/>
+                <Column size="50"/>
+                <Column size="55"/>
+                <Column size="72"/>
+                <Column size="44"/>
+                <Column size="206"/>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="50"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="업체구분" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="1" text="업체코드" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="2" text="업체명" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="3" text="처리일자" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="4" text="전표" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="5" text="전표번호" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="6" text="유형명" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="7" text="도서코드" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="8" text="년판" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="9" text="도서명" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="10" text="도서구분" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="11" text="출고율(%)" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="12" text="수량" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="13" text="단가" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="14" text="금액" font="11px/normal &quot;Gulim&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CUST_GB" suppress="2" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" textAlign="center" suppressalign="first" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="1" text="bind:CUST_CD" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" suppress="1" suppressalign="first" font="11px/normal &quot;Gulim&quot;" textAlign="center"/>
+                <Cell col="2" text="bind:CUST_NM" suppress="2" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" textAlign="center" suppressalign="first" font="11px/normal &quot;Gulim&quot;" expr="dataset.getRowLevel(currow)==0? CUST_NM : dataset.getRowLevel(currow)==1? &quot;거래처별 소계&gt;&gt;&quot; : &quot;&quot;"/>
+                <Cell col="3" text="bind:BYMD" suppress="2" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" textAlign="center" suppressalign="first" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="4" text="bind:NUM" suppress="2" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" textAlign="center" suppressalign="first" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="5" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" textAlign="center" text="bind:NUMS" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="6" text="bind:YOUHYUNG" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" font="11px/normal &quot;Gulim&quot;" textAlign="center"/>
+                <Cell col="7" text="bind:BOOK_CD" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" textAlign="center" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="8" text="bind:BYY" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" textAlign="center" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="9" text="bind:BOOK_NAME" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" textAlign="center" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="10" text="bind:B_GUNM" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" textAlign="center" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="11" text="bind:CYUL" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" font="11px/normal &quot;Gulim&quot;" subsumtext="expr:dataset.getRowLevel(currow)==0? CYUL : &quot;&quot;" textAlign="right"/>
+                <Cell col="12" text="bind:QTY" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" font="11px/normal &quot;Gulim&quot;" textAlign="right"/>
+                <Cell col="13" text="bind:COST" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" font="11px/normal &quot;Gulim&quot;" textAlign="right"/>
+                <Cell col="14" text="bind:AMT" displaytype="currency" textAlign="right" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': ''" font="11px/normal &quot;Gulim&quot;"/>
+              </Band>
+              <Band id="summary">
+                <Cell textAlign="right" font="bold 11px/normal &quot;Gulim&quot;" text="총계 "/>
+                <Cell col="1" font="bold 11px/normal &quot;Gulim&quot;" text="expr:dataset.getRowCount()" displaytype="mask" maskeditformat="###,###,###,###,##0"/>
+                <Cell col="2" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="3" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="4" textAlign="right" displaytype="normal" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="5"/>
+                <Cell col="6" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="7" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="8" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="9" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="10" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="11" textAlign="right" displaytype="normal" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="12" expr="dataset.getSum('QTY');" textAlign="right" displaytype="mask" maskeditformat="###,###,###,###,##0" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="13" expr="dataset.getSum('COST');" textAlign="right" displaytype="currency" maskeditformat="###,###,###,###,##0" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="14" textAlign="right" expr="dataset.getSum('AMT');" displaytype="currency" font="bold 11px/normal &quot;Gulim&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+
+this.SD1020F_GRID2_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.SD1020F_GRID2);
+};
+
+this.SD1020F_GRID2_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	this.setTimer(0,1);
+};
+]]></Script>
+  </Form>
+</FDL>

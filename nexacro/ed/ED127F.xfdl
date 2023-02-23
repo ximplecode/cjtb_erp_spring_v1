@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED127F" width="1400" height="750" titletext="외주자 증명서 발급 관리" onload="ED127F_onload" onsize="ED127F_onsize" ontimer="ED127F_ontimer">
+    <Layouts>
+      <Layout height="750" width="1400">
+        <Div id="Div00" taborder="0" left="15" top="10" height="40" border="1px solid lightgray" text="" width="98%">
+          <Layouts>
+            <Layout>
+              <Button id="btn_search" taborder="0" text="조회" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_new_onclick" width="63" right="241"/>
+              <Button id="btn_delete" taborder="1" text="기각" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_search_onclick" width="63" right="35"/>
+              <Button id="btn_save" taborder="2" text="승인" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_save_onclick" width="63" right="104"/>
+              <Button id="btn_print" taborder="3" text="출력" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="172"/>
+              <Radio id="Radio00" taborder="4" left="344" top="5" width="181" height="28" innerdataset="dsApproval" codecolumn="APPROVAL_CD" datacolumn="APPROCAL_NM" direction="vertical" index="0" text="승인" value="0" canitemchange="Div00_Radio00_canitemchange"/>
+              <Button id="btn_excel" taborder="5" text="엑셀변환" left="254" top="8" width="78" height="22" onclick="Div00_btn_excel_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="1" left="15" top="62" height="658" binddataset="dsAthrCert" onheadclick="Grid00_onheadclick" width="98.00%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="34"/>
+                <Column size="120"/>
+                <Column size="160"/>
+                <Column size="120"/>
+                <Column size="130"/>
+                <Column size="120"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="80"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol"/>
+                <Cell col="1" text="신청자"/>
+                <Cell col="2" text="부서"/>
+                <Cell col="3" text="신청일자"/>
+                <Cell col="4" text="신청구부"/>
+                <Cell col="5" text="발급사유"/>
+                <Cell col="6" colspan="2" text="용역기간"/>
+                <Cell col="8" text="저자코드"/>
+                <Cell col="9" text="저자명"/>
+                <Cell col="10" text="승인여부"/>
+                <Cell col="11" text="승인일시"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" text="bind:CHK" edittype="checkbox"/>
+                <Cell col="1" text="bind:EMPLOYEE_NM"/>
+                <Cell col="2" text="bind:SECTION_NM"/>
+                <Cell col="3" text="bind:REG_DATE"/>
+                <Cell col="4" text="bind:REG_KIND" displaytype="combotext" combodataset="dsRegKind" combocodecol="REG_KIND_CD" combodatacol="REG_KIND_NM"/>
+                <Cell col="5" text="bind:REG_REASON" combodisplaynulltype="none" displaytype="combotext" combodataset="dsRegReason" combocodecol="REG_REASON_CD" combodatacol="REG_REASON_NM"/>
+                <Cell col="6" text="bind:WORK_SDATE"/>
+                <Cell col="7" text="bind:WORK_EDATE"/>
+                <Cell col="8" text="bind:ATHR_IDENTITY"/>
+                <Cell col="9" text="bind:ATHR_NAME"/>
+                <Cell col="10" text="bind:CERT_YN" displaytype="combotext" combodataset="dsApproval" combocodecol="APPROVAL_CD" combodatacol="APPROCAL_NM"/>
+                <Cell col="11" text="bind:CERT_PERMITE_DATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsApproval">
+        <ColumnInfo>
+          <Column id="APPROVAL_CD" type="STRING" size="256"/>
+          <Column id="APPROCAL_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="APPROVAL_CD">0</Col>
+            <Col id="APPROCAL_NM">승인</Col>
+          </Row>
+          <Row>
+            <Col id="APPROVAL_CD">1</Col>
+            <Col id="APPROCAL_NM">기각</Col>
+          </Row>
+          <Row>
+            <Col id="APPROVAL_CD">2</Col>
+            <Col id="APPROCAL_NM">대기</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAthrCert">
+        <ColumnInfo>
+          <Column id="REG_DATE" type="STRING" size="256"/>
+          <Column id="REG_KIND" type="STRING" size="256"/>
+          <Column id="REG_NO" type="STRING" size="256"/>
+          <Column id="REG_REASON" type="STRING" size="256"/>
+          <Column id="ATHR_IDENTITY" type="STRING" size="256"/>
+          <Column id="WORK_SDATE" type="STRING" size="256"/>
+          <Column id="WORK_EDATE" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="256"/>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="CERT_PERMITE_DATE" type="STRING" size="256"/>
+          <Column id="CERT_PERMITE_EMPLOYEE" type="STRING" size="256"/>
+          <Column id="REG_DELETE" type="STRING" size="256"/>
+          <Column id="CERT_YN" type="STRING" size="256"/>
+          <Column id="ATHR_NAME" type="STRING" size="256"/>
+          <Column id="REG_KEY" type="STRING" size="256"/>
+          <Column id="ATHR_AUTHORGB" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_NM" type="STRING" size="256"/>
+          <Column id="SECTION_NM" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRegKind">
+        <ColumnInfo>
+          <Column id="REG_KIND_CD" type="STRING" size="256"/>
+          <Column id="REG_KIND_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="REG_KIND_CD">1</Col>
+            <Col id="REG_KIND_NM">용역 거래 확인서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRegReason">
+        <ColumnInfo>
+          <Column id="REG_REASON_CD" type="STRING" size="256"/>
+          <Column id="REG_REASON_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="REG_REASON_CD">1</Col>
+            <Col id="REG_REASON_NM">관공서 제출용</Col>
+          </Row>
+          <Row>
+            <Col id="REG_REASON_CD">2</Col>
+            <Col id="REG_REASON_NM">금융기관 제출용</Col>
+          </Row>
+          <Row>
+            <Col id="REG_REASON_CD">3</Col>
+            <Col id="REG_REASON_NM">기타 제출용</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gds_menuopen = nexacro.getApplication().gds_menuopen;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+
+this.ED127F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", "ed_01_107");
+	sSelect = nexacro.getApplication().gds_menu.getColumn(nRow, "UM_SELECT");
+	sSelect = Eco.decode(sSelect, null, "1", sSelect);
+	
+	this.Div00_btn_new_onclick();
+};
+
+//조회
+this.Div00_btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var outds = "dsAthrCert=dsAthrCert";
+	var inds = "dsAthrCert=dsAthrCert";
+
+	this.gfn_TransactionP("search","JSP/ed/ed127f_athrCert_approval.jsp", outds, inds, "", "fnCallback", true, "P", false, this);
+};
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var today = new nexacro.Date();
+	var nRow = this.dsAthrCert.rowposition;
+	
+	var vAthr_Identity = this.dsAthrCert.getColumn(nRow, "ATHR_IDENTITY");
+	var vReg_Date = this.dsAthrCert.getColumn(nRow, "REG_DATE");
+	var vReg_No =this.dsAthrCert.getColumn(nRow, "REG_NO");
+	var vWork_sDste = this.dsAthrCert.getColumn(nRow, "WORK_SDATE");
+	var vWork_eDate = this.dsAthrCert.getColumn(nRow, "WORK_EDATE");
+	var to_date = Eco.date.getMaskFormatString(today, "yyyy")+"."+Eco.date.getMaskFormatString(today, "MM")+"."+Eco.date.getMaskFormatString(today, "dd");
+	var to_work_sDate = vWork_sDste.substr(0,4) +"년 "+ vWork_sDste.substr(4,2) +"월 "+ vWork_sDste.substr(6,2)+"일";
+	var to_work_eDate = vWork_eDate.substr(0,4) +"년 "+ vWork_eDate.substr(4,2) +"월 "+ vWork_eDate.substr(6,2)+"일";
+	var vAuthorGb = this.dsAthrCert.getColumn(nRow, "ATHR_AUTHORGB_NM");
+	var vAuthorGb_Nm = "";
+	
+	if(vAuthorGb =="0")
+		vAuthorGb_Nm = "저자";
+	else
+		vAuthorGb_Nm = "외주자";
+		
+	var rdUrl, rdParam; 
+	
+	rdUrl = gv_urlMrd + "/ed/ED126.mrd";
+	rdParam  = "/rp [" + vAthr_Identity + "] [" + to_work_sDate + "] [" + to_work_eDate + "] [" + to_date + "] [" + vReg_Date + "] [" + vReg_No + "] [" + vAuthorGb_Nm + "]";
+	
+	this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1024, 770);
+};
+
+//승인
+this.Div00_btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsAthrCert.rowcount;
+	var objDate = new nexacro.Date();
+	var today = objDate.toString().substr(0,8);
+	
+	for(var i=0; i < nRow; i++)
+	{
+		if(this.dsAthrCert.getColumn(i, "CHK") == 1)
+		{
+			this.dsAthrCert.setColumn(i, "CERT_YN", "0");
+			this.dsAthrCert.setColumn(i, "CERT_PERMITE_EMPLOYEE", gv_sabun);
+			this.dsAthrCert.setColumn(i, "CERT_PERMITE_DATE", today);
+		}
+	}
+	
+	var inds = "input=dsAthrCert:u";
+	this.gfn_TransactionP("save","JSP/ed/ed127f_athrCertApproval_dml.jsp", "", inds, "", "fnCallback", true, "P", false, this);
+	
+};
+
+//기각
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsAthrCert.rowcount;
+	var objDate = new nexacro.Date();
+	var today = objDate.toString().substr(0,8);
+	
+	for(var i=0; i < nRow; i++)
+	{
+		if(this.dsAthrCert.getColumn(i, "CHK") == 1)
+		{
+			this.dsAthrCert.setColumn(i, "CERT_YN", "1");
+			this.dsAthrCert.setColumn(i, "CERT_PERMITE_EMPLOYEE", gv_sabun);
+			this.dsAthrCert.setColumn(i, "CERT_PERMITE_DATE", today);
+		}
+	}
+	
+	trace(this.dsAthrCert.saveXML());
+	
+	var inds = "input=dsAthrCert:u";
+	this.gfn_TransactionP("save","JSP/ed/ed127f_athrCertApproval_dml.jsp", "", inds, "", "fnCallback", true, "P", false, this);
+};
+
+//닫기
+this.Div00_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+//엑셀변환
+this.Div00_btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	 this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, 
+        this.Grid00, "Sheet1!A1");
+    this.exportObj.set_exporturl(gv_urlXeni); 
+	this.exportObj.set_exportfilename("외주자 증명서 발급 관리명단");
+    this.exportObj.exportData(); 
+};
+
+//일괄체크
+this.Grid00_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var nRow = this.dsAthrCert.rowcount;
+	
+	if(e.cell == 0)
+	{
+		if(this.dsAthrCert.getColumn(0, "CHK") == "1")
+		{
+			for(var i = 0; i<nRow; i++)
+			{
+				this.dsAthrCert.setColumn(i, "CHK", "0");
+			}
+		}else
+		{
+			for(var i = 0; i<nRow; i++)
+			{
+				this.dsAthrCert.setColumn(i, "CHK", "1");
+			}
+		}
+	}
+};
+
+this.Div00_Radio00_canitemchange = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	this.dsAthrCert.filter("CERT_YN=='"+e.postvalue+"'");
+};
+
+
+
+this.ED127F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.ED127F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.Grid00);
+};
+]]></Script>
+  </Form>
+</FDL>

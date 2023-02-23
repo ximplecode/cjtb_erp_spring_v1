@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="EDMstApproval_KindF" width="300" height="200" titletext="New Form">
+    <Layouts>
+      <Layout height="200" width="300">
+        <Static id="Static02" taborder="0" text="결재방법 선택" left="18" top="10" width="142" height="30" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Radio id="rd_payKind" taborder="1" left="20" top="60" width="260" height="50" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" fittocontents="none" padding="0px 0px 0px 30px" border="2px groove lightgray" value="0" text="정기지급" index="0">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">0</Col>
+                <Col id="datacolumn">정기지급</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">수시지급</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Static00" taborder="2" text="  ■ 원칙 : 정기지급 선택&#10;&#10;  ■ 예외사항 : 수시지급 선택" left="34" top="120" width="240" height="58"/>
+        <Button id="btn_close" taborder="3" text="적용" top="13" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="65" right="20" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(this.rd_payKind.value);
+};
+]]></Script>
+  </Form>
+</FDL>

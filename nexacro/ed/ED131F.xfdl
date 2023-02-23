@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED131F" width="1300" height="750" titletext="표준계약 품의서" onload="ED131F_onload" onsize="ED131F_onsize" ontimer="ED131F_ontimer">
+    <Layouts>
+      <Layout height="750" width="1300">
+        <Div id="Div00" taborder="0" left="15" top="10" height="40" border="1px solid lightgray" text="" width="98%">
+          <Layouts>
+            <Layout>
+              <Button id="btn_search" taborder="0" text="조회" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="311" onclick="Div00_btn_search_onclick"/>
+              <Button id="btn_delete" taborder="1" text="삭제" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="172" onclick="Div00_btn_delete_onclick"/>
+              <Button id="btn_save" taborder="2" text="저장" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_save_onclick" width="63" right="242"/>
+              <Button id="btn_print" taborder="3" text="출력" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="105"/>
+              <Button id="btn_close" taborder="4" text="닫기" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_close_onclick" width="63" right="38"/>
+              <CheckBox id="ck_open" taborder="5" text="부서공유" left="156" top="12" width="78" height="22" value="true" visible="false"/>
+              <Button id="btn_add" taborder="6" text="내용추가" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="606" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_add_onclick"/>
+              <Button id="btn_new" taborder="7" text="신규카드" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="686" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_new_onclick"/>
+              <Button id="btn_tempchk" taborder="8" text="결재라인설정" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="90" right="767" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_tempchk_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="1" text="관련부서" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="40" width="100"/>
+        <Static id="Static00_00" taborder="2" text="제품명" top="102" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="40" width="100"/>
+        <Combo id="cb_section" taborder="19" text="Combo00" left="Static00:3" top="60" width="15.38%" height="40" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME"/>
+        <Static id="Static00_01" taborder="3" text="계약서 종류" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cb_section:3" height="40" width="7.69%"/>
+        <Radio id="rdo_contractKind" taborder="20" left="Static00_01:10" top="60" width="15.38%" height="40" direction="vertical" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" value="A" text="매절" index="0" onitemchanged="rdo_contractKind_canitemchange">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">A</Col>
+                <Col id="datacolumn">매절</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">B</Col>
+                <Col id="datacolumn">인세</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Static00_02" taborder="4" text="계약서 번호" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="rdo_contractKind:7" height="40" width="7.69%"/>
+        <Edit id="edt_SCMst_bookName" taborder="24" left="Static00_00:3" top="102" width="39.38%" height="40"/>
+        <Static id="Static00_04" taborder="5" text="판형" top="102" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="edt_SCMst_bookName:6" height="40" width="7.69%"/>
+        <Combo id="cb_plate" taborder="22" text="Combo00" left="Static00_04:4" top="102" width="15.38%" height="40" innerdataset="dsPlate" codecolumn="PLT_CODE" datacolumn="PLT_NAME"/>
+        <Static id="st_SCMst_availableTerm" taborder="6" text="출판권 유효기간" top="102" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cb_plate:5" height="40" width="7.69%" visible="false"/>
+        <Static id="Static00_06" taborder="7" text="추가 약정사항" top="145" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="140" width="100"/>
+        <TextArea id="txa_SCMst_addPromise" taborder="25" left="Static00_06:3" top="144" width="39.31%" height="140"/>
+        <Static id="Static00_07" taborder="8" text="첨부서류" top="145" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="txa_SCMst_addPromise:6" height="140" width="7.69%"/>
+        <Button id="btn_jumin" taborder="9" text="주민번호" left="15" top="288" width="100" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_name_onclick"/>
+        <MaskEdit id="medt_juminNo" taborder="27" left="btn_jumin:3" top="289" width="15.38%" height="40" format="###### - #@@@@@#" type="string" trimtype="both" enable="false"/>
+        <Button id="btn_name" taborder="10" text="저자" left="medt_juminNo:5" top="289" width="7.69%" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_name_onclick"/>
+        <Edit id="edt_name" taborder="28" left="btn_name:3" top="289" width="15.8%" height="40" enable="false"/>
+        <Static id="Static00_08" taborder="11" text="원고량" top="289" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="edt_name:5" height="40" width="7.62%"/>
+        <MaskEdit id="medt_SCDtl_qty" taborder="29" left="Static00_08:4" top="290" width="15.38%" height="40" format="#,#"/>
+        <Static id="st_SCDtl_contractAmount" taborder="12" text="쪽당원고료" top="290" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="medt_SCDtl_qty:6" height="40" width="7.69%"/>
+        <Static id="Static00_10" taborder="13" text="인도기일" top="332" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="40" width="100"/>
+        <Calendar id="cal_SCDtl_deliveryDate" taborder="31" left="Static00_10:3" top="332" width="15.38%" height="40"/>
+        <Static id="st_SCDtl_royaltyRate" taborder="14" text="원고료 &#13;&#10;사용료 비율" top="332" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cal_SCDtl_deliveryDate:5" height="40" width="7.69%" visible="false"/>
+        <MaskEdit id="medt_SCDtl_royaltyRate" taborder="32" left="st_SCDtl_royaltyRate:3" top="332" width="15.8%" height="40" format="##.##" visible="false"/>
+        <Static id="st_SCMst_presentQty" taborder="15" text="증정본부수" top="334" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="medt_SCDtl_royaltyRate:5" height="40" width="7.62%" visible="false"/>
+        <Edit id="ed_SCMst_contractNo" taborder="21" left="Static00_02:4" top="60" width="15.38%" height="40" enable="false"/>
+        <Static id="Static00_13" taborder="16" text="전자계약여부" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="ed_SCMst_contractNo:5" height="40" width="7.69%"/>
+        <CheckBox id="ck_ecs" taborder="17" text="전자계약" left="Static00_13:13" top="60" width="9%" height="40" value="true"/>
+        <Grid id="Grid00" taborder="18" left="15" top="390" width="98%" height="313" binddataset="dsSCDtl">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="134"/>
+                <Column size="100"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="150"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="0"/>
+                <Column size="100"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="주민번호"/>
+                <Cell col="1" text="저자명"/>
+                <Cell col="2" text="직장명"/>
+                <Cell col="3" text="졸업학교"/>
+                <Cell col="4" text="전공"/>
+                <Cell col="5" text="원고량"/>
+                <Cell col="6" text="인도기일"/>
+                <Cell col="7" text="사용료 비율"/>
+                <Cell col="8" text="원고료"/>
+                <Cell col="9" text="전자계약"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ATHR_JUMINNO2" displaytype="mask" maskeditformat="######-#@@@@@#" maskedittype="string"/>
+                <Cell col="1" text="bind:ATHR_NAME"/>
+                <Cell col="2" text="bind:ATHR_COMNAME"/>
+                <Cell col="3" text="bind:UNIV_NAME"/>
+                <Cell col="4" text="bind:ATHR_UNIVSTUDY"/>
+                <Cell col="5" text="bind:SCDTL_QTY" maskeditformat="#,0" displaytype="mask" textAlign="right"/>
+                <Cell col="6" text="bind:SCDTL_DELIVERYDATE"/>
+                <Cell col="7" text="bind:SCDTL_ROYALTYRATE" displaytype="mask" maskeditformat="#0.##" textAlign="right"/>
+                <Cell col="8" text="bind:SCDTL_CONTRACTAMOUNT" displaytype="mask" textAlign="right" maskeditformat="#,0"/>
+                <Cell col="9" text="bind:SCDTL_ECS" displaytype="checkboxcontrol"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="cb_SCMst_availableTerm" taborder="23" left="st_SCMst_availableTerm:4" top="101" width="15.38%" height="40" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" visible="false">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">0</Col>
+                <Col id="datacolumn"/>
+              </Row>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">1년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">2년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">3년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">4년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">5년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">6</Col>
+                <Col id="datacolumn">6년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">7</Col>
+                <Col id="datacolumn">7년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">8</Col>
+                <Col id="datacolumn">8년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">9</Col>
+                <Col id="datacolumn">9년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">10</Col>
+                <Col id="datacolumn">10년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">11</Col>
+                <Col id="datacolumn">11년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">12</Col>
+                <Col id="datacolumn">12년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">13</Col>
+                <Col id="datacolumn">13년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">14</Col>
+                <Col id="datacolumn">14년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">15</Col>
+                <Col id="datacolumn">15년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">16</Col>
+                <Col id="datacolumn">16년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">17</Col>
+                <Col id="datacolumn">17년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">18</Col>
+                <Col id="datacolumn">18년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">19</Col>
+                <Col id="datacolumn">19년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">20</Col>
+                <Col id="datacolumn">20년</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">21</Col>
+                <Col id="datacolumn">교육과정 종료시</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <TextArea id="txa_SCMst_addDocument" taborder="26" left="Static00_07:5" top="144" width="38.92%" height="140"/>
+        <MaskEdit id="medt_SCDtl_contractAmount" taborder="30" left="st_SCDtl_contractAmount:4" top="290" width="15.38%" height="40" format="#,#"/>
+        <MaskEdit id="medt_SCMst_presentQty" taborder="33" left="st_SCMst_presentQty:4" top="334" width="15.31%" height="40" format="#,#" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="SECTION_NAME" type="STRING" size="256"/>
+          <Column id="LVL" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="SECTION_SHORTNAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSCMst" onrowsetchanged="dsSCMst_onrowsetchanged">
+        <ColumnInfo>
+          <Column id="SCMST_CONTRACTNO" type="STRING" size="256"/>
+          <Column id="SCMST_CLASS" type="STRING" size="256"/>
+          <Column id="SCMST_ID" type="INT" size="256"/>
+          <Column id="SCMST_DATE" type="STRING" size="256"/>
+          <Column id="SCMST_NO" type="STRING" size="256"/>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="PLT_CODE" type="STRING" size="256"/>
+          <Column id="PLT_NAME" type="STRING" size="256"/>
+          <Column id="SECTION_SHORTCODE" type="STRING" size="256"/>
+          <Column id="SECTION_NAME" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="256"/>
+          <Column id="SCMST_BOOKNAME" type="STRING" size="256"/>
+          <Column id="SCMST_AVAILABLETERM" type="INT" size="256"/>
+          <Column id="SCMST_ADDPROMISE" type="STRING" size="256"/>
+          <Column id="SCMST_ADDDOCUMENT" type="STRING" size="256"/>
+          <Column id="SCMST_PERMITEDATE" type="STRING" size="256"/>
+          <Column id="SCMST_PERMITEUSER" type="STRING" size="256"/>
+          <Column id="SCMST_PERMITE" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="INT" size="256"/>
+          <Column id="SCMST_PRESENTQTY" type="INT" size="256"/>
+          <Column id="SCMST_DELETE" type="STRING" size="256"/>
+          <Column id="OPEN_CHECK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSCDtl" onrowsetchanged="dsSCDtl_onrowsetchanged">
+        <ColumnInfo>
+          <Column id="SCMST_ID" type="STRING" size="256"/>
+          <Column id="SCDTL_SEQ" type="STRING" size="256"/>
+          <Column id="SCDTL_QTY" type="STRING" size="256"/>
+          <Column id="ATHR_IDENTITY" type="STRING" size="256"/>
+          <Column id="ATHR_JUMINNO2" type="STRING" size="256"/>
+          <Column id="ATHR_NAME" type="STRING" size="256"/>
+          <Column id="ATHR_COMNAME" type="STRING" size="256"/>
+          <Column id="UNIV_NAME" type="STRING" size="256"/>
+          <Column id="ATHR_UNIVSTUDY" type="STRING" size="256"/>
+          <Column id="ATHR_HOMEADDR" type="STRING" size="256"/>
+          <Column id="ATHR_HOMETEL" type="STRING" size="256"/>
+          <Column id="ATHR_HP" type="STRING" size="256"/>
+          <Column id="ATHR_COMADDR" type="STRING" size="256"/>
+          <Column id="ATHR_COMTEL" type="STRING" size="256"/>
+          <Column id="ATHR_EMAIL" type="STRING" size="256"/>
+          <Column id="SCDTL_DELIVERYDATE" type="STRING" size="256"/>
+          <Column id="SCDTL_ROYALTYRATE" type="STRING" size="256"/>
+          <Column id="SCDTL_CONTRACTAMOUNT" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="256"/>
+          <Column id="SCDTL_DELETE" type="STRING" size="256"/>
+          <Column id="SCDTL_ECS" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsApproval">
+        <ColumnInfo>
+          <Column id="KIND" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="F_NEXT" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="F_DATE" type="STRING" size="256"/>
+          <Column id="JIKCHAK" type="STRING" size="256"/>
+          <Column id="BUSOR" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="F_NAME" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="KS_SIGN" type="STRING" size="256"/>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="256"/>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_FORMPATH">
+        <ColumnInfo>
+          <Column id="GUBUN" type="STRING" size="256"/>
+          <Column id="F_NUM" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="F_PATH1" type="STRING" size="256"/>
+          <Column id="F_PATH2" type="STRING" size="256"/>
+          <Column id="F_PATH3" type="STRING" size="256"/>
+          <Column id="F_PATH4" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_K">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_H">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_C">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_D">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPlate">
+        <ColumnInfo>
+          <Column id="PLT_CODE" type="STRING" size="256"/>
+          <Column id="PLT_NAME" type="STRING" size="256"/>
+          <Column id="PLT_PAGE" type="STRING" size="256"/>
+          <Column id="PLT_BNDSIGNATURE" type="STRING" size="256"/>
+          <Column id="PLT_PRNSIGNATURE" type="STRING" size="256"/>
+          <Column id="PLT_WIDTH" type="STRING" size="256"/>
+          <Column id="PLT_HEIGHT" type="STRING" size="256"/>
+          <Column id="PLT_DISABLED" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_U">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="GUBUN" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_flow_order">
+        <ColumnInfo>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="KIND" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="F_COMMENT" type="STRING" size="256"/>
+          <Column id="F_NEXT" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="STORE" type="STRING" size="256"/>
+          <Column id="F_DATE" type="STRING" size="256"/>
+          <Column id="JIKCHAK" type="STRING" size="256"/>
+          <Column id="BUSOR" type="STRING" size="256"/>
+          <Column id="F_NAME" type="STRING" size="256"/>
+          <Column id="DAMDANG" type="STRING" size="256"/>
+          <Column id="POSITION_CODE2" type="STRING" size="2"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="cb_SCMst_availableTerm" propid="value" datasetid="dsSCMst" columnid="SCMST_AVAILABLETERM"/>
+      <BindItem id="item1" compid="cb_plate" propid="value" datasetid="dsSCMst" columnid="PLT_CODE"/>
+      <BindItem id="item2" compid="cb_section" propid="value" datasetid="dsSCMst" columnid="SECTION_CODE"/>
+      <BindItem id="item3" compid="rdo_contractKind" propid="value" datasetid="dsSCMst" columnid="SCMST_CLASS"/>
+      <BindItem id="item4" compid="txa_SCMst_addPromise" propid="value" datasetid="dsSCMst" columnid="SCMST_ADDPROMISE"/>
+      <BindItem id="item5" compid="txa_SCMst_addDocument" propid="value" datasetid="dsSCMst" columnid="SCMST_ADDDOCUMENT"/>
+      <BindItem id="item7" compid="medt_juminNo" propid="value" datasetid="dsSCDtl" columnid="ATHR_JUMINNO2"/>
+      <BindItem id="item8" compid="edt_name" propid="value" datasetid="dsSCDtl" columnid="ATHR_NAME"/>
+      <BindItem id="item9" compid="medt_SCDtl_contractAmount" propid="value" datasetid="dsSCDtl" columnid="SCDTL_CONTRACTAMOUNT"/>
+      <BindItem id="item10" compid="medt_SCDtl_royaltyRate" propid="value" datasetid="dsSCDtl" columnid="SCDTL_ROYALTYRATE"/>
+      <BindItem id="item11" compid="medt_SCMst_presentQty" propid="value" datasetid="dsSCMst" columnid="SCMST_PRESENTQTY"/>
+      <BindItem id="item12" compid="edt_SCMst_bookName" propid="value" datasetid="dsSCMst" columnid="SCMST_BOOKNAME"/>
+      <BindItem id="item6" compid="ed_SCMst_contractNo" propid="value" datasetid="dsSCMst" columnid="SCMST_CONTRACTNO"/>
+      <BindItem id="item13" compid="medt_SCDtl_qty" propid="value" datasetid="dsSCDtl" columnid="SCDTL_QTY"/>
+      <BindItem id="item14" compid="cal_SCDtl_deliveryDate" propid="value" datasetid="dsSCDtl" columnid="SCDTL_DELIVERYDATE"/>
+      <BindItem id="item15" compid="ck_ecs" propid="value" datasetid="dsSCDtl" columnid="SCDTL_ECS"/>
+      <BindItem id="item17" compid="Div00.form.ck_open" propid="value" datasetid="dsSCMst" columnid="OPEN_CHECK"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var sSection_Code = nexacro.getApplication().gds_userinfo.getColumn(0, "BUSECD");
+var sSection_ShortCode = nexacro.getApplication().gds_userinfo.getColumn(0, "SHORTCODE");
+var sSection_ShortName = nexacro.getApplication().gds_userinfo.getColumn(0, "SHORTNAME");
+var sSabun = nexacro.getApplication().gds_userinfo.getColumn(0, "SABUN");
+var sName = nexacro.getApplication().gds_userinfo.getColumn(0, "NAME");
+var sSelect, iI_Flow_id;
+
+var sUserCompetence1 = "1";   // 일반사용자
+var sUserCompetence2 = "2";   // 부서승인권자
+var sUserCompetence3 = "3";   // 부서장
+var sUserCompetence4 = "4";   // 일반승인권자
+var sUserCompetence5 = "5";   // 승인1차권한
+var sUserCompetence6 = "6";   // 승인2차권한
+
+this.ED131F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{				
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", "ed_02_101");
+	sSelect = nexacro.getApplication().gds_menu.getColumn(nRow, "UM_SELECT");
+	sSelect = Eco.decode(this.fnisNull(sSelect), true , "1", sSelect);
+
+	var strArg  = "PLATE_CODE= ";
+		strArg += " SQL_SET= ";
+	this.gfn_TransactionP("search","JSP/mk/getData_plate.jsp", "dsPlate=dsPlate",  "dsPlate=dsPlate", strArg, "", false, "P", false, this);	//판형
+	
+	strArg = "SECTION_CODE=" + sSection_Code 
+		   + " COMPETENCE=" + Eco.decode(sSelect, "1", "P", "2", "P", "A");
+	this.gfn_TransactionP("search","JSP/ed/section_select2.jsp", "dsSection=dsSection", "dsSection=dsSection", strArg, "fnSectionCallback", false, "P", false, this);	//부서
+	
+	if(iI_Flow_id == null)
+		this.dsSCMst.addRow();
+	else 
+	{
+		var inds = "dsSCMst=dsSCMst";
+		var outds 	= "dsSCMst=dsSCMst";
+		strArg	= "SET_OPTION=0"
+				+ " I_FLOW_ID=" + iI_Flow_id 
+				+ " COMPETENCE=" +sSelect ; 
+	
+		this.gfn_TransactionP("search","JSP/ed/ed131f_standardcontract_mst.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);
+	}
+	
+	this.edt_SCMst_bookName.setFocus();
+};
+
+this.fnCallback = function(svcid, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(svcid + "::" + errMsg);
+	else
+	{
+		this.lfn_Approval_Select(this.dsSCMst.getColumn(this.dsSCMst.rowposition, "I_FLOW_ID"), this.dsApproval, this.DS_GW_U, this.DS_GW_K, this.DS_GW_H, this.DS_GW_C, this.DS_GW_D);
+	}
+};
+
+this.fnSectionCallback = function(svcid, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(svcid + "::" + errMsg);
+	else
+		this.dsSection.rowposition = this.dsSection.findRow("SECTION_CODE", sSection_Code);
+};
+
+//dsSCMst 초기화
+this.dsSCMst_onrowsetchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowsetChangeEventInfo)
+{
+	var d = new Date(); 
+	var today = Eco.date.getMaskFormatString(d, "yyyyMMdd");
+	
+	if(e.reason == 12 ) //dataset이 추가되었을 때
+	{
+		obj.setColumn(e.row, "SCMST_DATE", today);
+		obj.setColumn(e.row, "SECTION_CODE", sSection_Code);	
+		obj.setColumn(e.row, "SECTION_SHORTCODE", sSection_ShortCode); 
+		obj.setColumn(e.row, "SCMST_CLASS", "A");
+		obj.setColumn(e.row, "PLT_CODE", null);
+		obj.setColumn(e.row, "EMPLOYEE_ID", sSabun);	
+		obj.setColumn(e.row, "EMPLOYEE_NAME", sName);	
+		obj.setColumn(e.row, "SCMST_BOOKNAME", null);
+		obj.setColumn(e.row, "SCMST_AVAILABLETERM", 0);
+		obj.setColumn(e.row, "SCMST_ADDPROMISE", null);
+		obj.setColumn(e.row, "SCMST_ADDDOCUMENT", null);
+		obj.setColumn(e.row, "SCMST_PERMITEDATE", null);
+		obj.setColumn(e.row, "SCMST_PERMITEUSER", null);
+		obj.setColumn(e.row, "SCMST_PERMITE", "0");
+		obj.setColumn(e.row, "SCMST_PRESENTQTY", 0);
+		obj.setColumn(e.row, "I_FLOW_ID", null);
+		obj.setColumn(e.row, "OPEN_CHECK", "1");
+		
+		if(obj.getColumn(e.row, "SCMST_DATE") >= '20180820')
+			this.Div00.form.ck_open.set_visible(true);
+		
+		this.ed_SCMst_contractNo.text = sSection_ShortName  + "-"
+									  + obj.getColumn(e.row, "SCMST_CLASS")
+									  + obj.getColumn(e.row, "SCMST_DATE").substr(2,4) + "-"
+									  + obj.getColumn(e.row, "SCMST_NO");
+		
+		this.rdo_contractKind.index = 0;
+		iI_Flow_id = "";
+		
+		this.dsApproval.clearData();
+		
+		//결재라인 가져오기
+		this.lfn_I_FLOW_ORDER_LOAD("01", 70, sSabun, this.DS_FORMPATH, this.DS_GW_K, this.DS_GW_H, this.DS_GW_C, this.DS_GW_D);
+		
+		this.dsSCDtl.clearData();
+		this.dsSCDtl.addRow();
+	}
+};
+
+//dsSCDtl 초기화
+this.dsSCDtl_onrowsetchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowsetChangeEventInfo)
+{
+	obj.setColumn(e.row, "SCDTL_SEQ", (this.dsSCDtl.rowcount + 1).toString().padLeft(3,"0"));
+	obj.setColumn(e.row, "SCDTL_QTY",0);
+	obj.setColumn(e.row, "EMPLOYEE_ID", sSabun);	
+	obj.setColumn(e.row, "ATHR_IDENTITY", null);
+	obj.setColumn(e.row, "SCDTL_ROYALTYRATE", 0);
+	obj.setColumn(e.row, "SCDTL_DELIVERYDATE", null);
+	obj.setColumn(e.row, "SCDTL_ROYALTYRATE", 0);
+	obj.setColumn(e.row, "SCDTL_CONTRACTAMOUNT", 0);
+	obj.setColumn(e.row, "SCDTL_DELETE", " ");
+	obj.setColumn(e.row, "SCDTL_ECS", 1);
+};
+
+//결재라인설정
+this.Div00_btn_tempchk_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsSCMst.getColumn(this.dsSCMst.rowposition, "EMPLOYEE_ID") != sSabun)
+	{
+		alert("본인이 올린 서류만 결재라인을 설정할 수 있습니다.");
+		return false;
+	}
+	
+	var objParam = {p_fnum : 70,
+					p_ffnum : 7,
+					p_DS_GW_K : this.DS_GW_K,
+					p_DS_GW_H : this.DS_GW_H,
+					p_DS_GW_C : this.DS_GW_C,
+					p_DS_GW_D : this.DS_GW_D}; 
+					
+	this.lfn_showModal("popupTemp", objParam, "gw::GW120.xfdl", "", this, '', '', 670, 750);
+};
+
+//신규 
+this.Div00_btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsSCMst.rowcount > 0)
+		this.Div00_btn_save_onclick();
+	
+	this.dsApproval.clearData();
+	this.DS_GW_K.clearData();
+	this.DS_GW_H.clearData();
+	this.DS_GW_C.clearData();
+	this.DS_GW_D.clearData();
+	this.dsSCMst.clearData();
+	this.dsSCMst.addRow();
+	this.edt_SCMst_bookName.setFocus();
+};
+
+//내용추가
+this.Div00_btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsSCMst.getColumn(this.dsSCMst.rowposition, "EMPLOYEE_ID") != sSabun)
+	{
+		alert("본인이 올린 서류만 수정할 수 있습니다.");
+		return false;
+	}else if(this.fn_dtl_save() == true || this.dsSCMst.getColumn(this.dsSCMst.rowposition, "SCMST_ID") == null)
+	{
+		this.dsSCDtl.addRow();
+		this.medt_juminNo.setFocus();
+	}
+};
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.dsSCMst,
+					dsParam2:this.dsSCDtl,
+					dsParam3:this.dsSection,
+					piI_Flow_id:iI_Flow_id,
+					pSelect:sSelect}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupSearch", objParam, "ed::ED131_SearchF.xfdl", "popupCallback", this, 10, 58, 400, 390);
+};
+
+this.popupCallback = function(svcId, rt_value)
+{
+	this.lfn_Approval_Select(rt_value, this.dsApproval, this.DS_GW_U, this.DS_GW_K, this.DS_GW_H, this.DS_GW_C, this.DS_GW_D);
+}
+
+//삭제
+this.Div00_btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var chkRow = this.dsApproval.findRow("KIND", "1");
+	
+	if(this.dsSCMst.getColumn(this.dsSCMst.rowposition, "EMPLOYEE_ID") != sSabun || this.dsApproval.getColumn(chkRow,"STATUS") == "1" || this.dsApproval.getColumn(chkRow,"STATUS") == "0")
+	{
+		alert("본인이 작성하지 않았거나 승인된 카드는 삭제할 수 없습니다.");
+		return false;
+	}else
+	{
+		alert("전체삭제를 할 경우 복원할 수 없습니다.\n\n" +
+			  "새로운 내용을 추가하실 경우는 삭제하지 마시고 신규버튼을 눌러 작업해 주십시요.");
+		this.lfn_showModal("popupDelete", "", "ed::EDMstDtlCancel_ConformF.xfdl", "popupDeleteCallBack", this, 10, 58, 280, 100);
+	}
+};
+
+this.popupDeleteCallBack = function(svcId, rt_value)
+{
+	if(rt_value == "전체")
+	{
+		this.dsSCMst.deleteRow(this.dsSCMst.rowposition);
+		this.fn_mst_save("delete");
+		this.dsSCDtl.clearData();
+	}
+	else if(rt_value == "내용")
+	{
+		this.dsSCDtl.setColumn(this.dsSCDtl.rowposition, "SCDTL_DELETE", "D");
+		this.dsSCDtl.filter("SCDTL_DELETE!='D'");
+		this.fn_dtl_save();
+	}
+}
+
+
+//저장
+this.Div00_btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var chkRow = this.dsApproval.findRow("KIND", "1");
+	var rowType = this.dsSCMst.getRowType(this.dsSCMst.rowposition);
+	
+	if(this.dsSCMst.getColumn(this.dsSCMst.rowposition, "EMPLOYEE_ID") != sSabun || this.dsApproval.getColumn(chkRow,"STATUS") == "1" || this.dsApproval.getColumn(chkRow,"STATUS") == "0")
+	{
+		alert("본인이 작성하지 않았거나 결재진행 중인 문서는 수정 및 삭제 할 수 없습니다.");
+		return false;
+	}else
+	{
+		if(rowType == 2 || rowType == 4) //insert || update
+		{
+			if(this.fn_mst_save(rowType))
+				this.fn_dtl_save();
+		}else
+			this.fn_dtl_save();
+	}
+};
+
+//닫기
+this.Div00_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+// 매절/인세 변경시 화면구성 변경
+this.rdo_contractKind_canitemchange = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{	
+	if(e.postvalue == "A" || e == "A")	//새로 변경된 값이 A일 경우 or 조회결과 값이 A일 경우 
+	{
+		this.st_SCMst_availableTerm.set_visible(false);
+		this.cb_SCMst_availableTerm.set_visible(false);
+		this.st_SCDtl_royaltyRate.set_visible(false);
+		this.medt_SCDtl_royaltyRate.set_visible(false);
+		this.st_SCMst_presentQty.set_visible(false);
+		this.medt_SCMst_presentQty.set_visible(false);
+		
+		this.st_SCDtl_contractAmount.set_text("쪽당원고료");
+		this.Grid00.setRealColSize("body",7,0,true);
+		
+	}else
+	{
+		this.st_SCMst_availableTerm.set_visible(true);
+		this.cb_SCMst_availableTerm.set_visible(true);
+		this.st_SCDtl_royaltyRate.set_visible(true);
+		this.medt_SCDtl_royaltyRate.set_visible(true);
+		this.st_SCMst_presentQty.set_visible(true);
+		this.medt_SCMst_presentQty.set_visible(true);
+		
+		this.st_SCDtl_contractAmount.set_text("계약금");
+		this.Grid00.setRealColSize("body",7,100,true);
+	}
+	
+	this.Grid00.setCellProperty("head",8,"text",this.st_SCDtl_contractAmount.text);
+};
+
+//저자 착기
+this.btn_name_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("popuppAuthor", "", "ed::EDAuthor_SearchF.xfdl", "", this, 10, 58, 500, 550);
+};
+
+//찾은 저자 데이터 넣어주기
+this.fn_setAuthorValue = function(rtArray)
+{
+	nRow = this.dsSCDtl.rowposition;
+		
+	this.dsSCDtl.setColumn(nRow, "ATHR_NAME", rtArray[0]);
+	this.dsSCDtl.setColumn(nRow, "ATHR_IDENTITY", rtArray[10]);
+	this.dsSCDtl.setColumn(nRow, "ATHR_COMNAME", rtArray[2]);
+	this.dsSCDtl.setColumn(nRow, "ATHR_UNIVSTUDY", rtArray[3]);
+	this.dsSCDtl.setColumn(nRow, "UNIV_NAME", rtArray[5]);
+	this.dsSCDtl.setColumn(nRow, "ATHR_JUMINNO2", rtArray[6]);
+}
+
+//dsSCMst save
+this.fn_mst_save = function(rowType)
+{
+	var setSave = true;
+	
+	if( (rowType != "delete") && (this.fn_mst_checkRow(this.dsSCMst.rowposition) == false))
+	{
+		setSave = false;
+		return false;
+	}
+	
+	if(setSave)
+	{
+		var str_url = "JSP/ed/ed131f_standardcontract_mst_dml.jsp";
+		var inds = "dsSCMst=dsSCMst:U";
+	
+		this.gfn_TransactionP(rowType, str_url, inds, "", "", "mstSave_callback", false, "P", false, this);
+		
+		return true;
+	}
+}
+
+this.mstSave_callback = function(svcId, errCode, errMsg, gv_rt_mst_id, gv_rt_mst_no, gv_rt_i_flow_id)
+{
+	var open_i_flow_id, strArg;
+	var nRow = this.dsSCMst.rowposition;
+	
+	if(errCode != 0)
+		alert(svcId + "::" + errMsg);
+	else if(svcId != "delete")
+	{
+		if(svcId == "2")//insert
+		{
+			var rt_SCMST_ID =nexacro.getApplication().gv_rt_mst_id; 
+			var rt_SCMST_NO =nexacro.getApplication().gv_rt_mst_no; 
+			open_i_flow_id =nexacro.getApplication().gv_rt_i_flow_id; 
+			
+			this.dsSCMst.setColumn(nRow, "SCMST_ID", rt_SCMST_ID);
+			this.dsSCMst.setColumn(nRow, "SCMST_NO", rt_SCMST_NO);
+			this.dsSCMst.setColumn(nRow, "I_FLOW_ID", open_i_flow_id);
+			
+			this.dsSCMst.setColumn(nRow, "SCMST_CONTRACTNO",  
+								sSection_ShortName + "-" +
+								this.dsSCMst.getColumn(nRow, "SCMST_CLASS") +
+								this.dsSCMst.getColumn(nRow, "SCMST_DATE").substr(2,4) + "-" +
+								this.dsSCMst.getColumn(nRow, "SCMST_NO"));
+			
+			this.dsSCMst.setRowType(nRow, 1); //nomal 저장
+		}
+		else if(svcId == "4")
+		{
+			this.dsSCMst.getColumn(nRow, "I_FLOW_ID");
+		}
+		
+		if(this.Div00.form.ck_open.visible == true)
+		{
+			if(this.Div00.form.ck_open.value == true)
+				strArg = "i_flow_id=" + open_i_flow_id  + " open_check=1";
+			else
+				strArg = "i_flow_id=" + open_i_flow_id  + " open_check=0";
+			
+			this.gfn_TransactionP("open_chk", "JSP/gw/SQL_GW110_OPEN_CHECK.jsp", "", "", strArg, "", false, "P", false, this);	
+		}
+		
+		this.lfn_I_FLOW_ORDER_SAVE(open_i_flow_id, this.ds_flow_order, this.DS_GW_K, this.DS_GW_H, this.DS_GW_C, this.DS_GW_D); //결재라인 저장
+		
+	}
+}
+
+//dsSCMst check row
+this.fn_mst_checkRow = function(nRow)
+{
+	if(nRow == -1)
+		return true;
+	
+	if(this.dsSCMst.getColumn(nRow, "SECTION_CODE") == null )
+	{
+		alert("부서를 선택해주세요");
+		this.cb_section.dropdown();
+		return false;
+	}
+	
+	if(this.dsSCMst.getColumn(nRow, "SCMST_BOOKNAME") == null )
+	{
+		alert("제품명을 입력해주세요");
+		this.edt_SCMst_bookName.setFocus();
+		return false;
+	}
+	
+	if(this.dsSCMst.getColumn(nRow, "PLT_CODE") == null )
+	{
+		alert("판형을 선택해주세요");
+		this.cb_plate.dropdown();
+		return false;
+	}
+	
+	if( (this.rdo_contractKind.index == 1) && 
+		( (this.dsSCMst.getColumn(nRow, "SCMST_AVAILABLETERM") == null) || (this.dsSCMst.getColumn(nRow, SCMST_AVAILABLETERM) == 0) ) )
+	{
+		alert("출판권 유효기간을 입력해주세요");
+		this.cb_SCMst_availableTerm.setFocus();
+		return false;
+	}
+	
+	if( (this.dsApproval.rowcount <= 0) && (this.DS_GW_K.rowcount <= 0) )
+	{
+		alert("결재라인을 선택해주세요");
+		this.Div00_btn_tempchk_onclick();
+		return false;
+	}
+	
+	return true;
+}
+
+//dsSCDtl save
+this.fn_dtl_save = function()
+{
+	var setSave = true;
+	var str_url = "JSP/ed/ed131f_standardcontract_dtl_dml.jsp";
+	var inds = "dsSCDtl=dsSCDtl:U";
+	
+	for(var i=0; i<this.dsSCDtl.rowcount; i++)
+	{
+		this.dsSCDtl.setColumn(i, "SCMST_ID", this.dsSCMst.getColumn(this.dsSCMst.rowposition, "SCMST_ID"));
+		
+		if(this.fn_dtl_checkRow(i) == false || this.dsSCDtl.getColumn(i, "SCMST_ID") == null)
+		{
+			setSave = false;
+			return false;
+		}
+	}
+	
+	if(setSave)
+		this.gfn_TransactionP("save", str_url, inds, "", "", "dtlSave_callback", false, "P", false, this);
+		
+	return true;
+}
+
+//dsSCDtl check row
+this.fn_dtl_checkRow = function(nRow)
+{
+	if(nRow == -1)
+		return true;
+		
+	if(this.dsSCDtl.getColumn(nRow, "ATHR_IDENTITY") == null)
+	{
+		alert("저자를 선택해 주세요.");
+		this.btn_name_onclick();
+		return false;
+	}
+	
+	if( (this.dsSCDtl.getColumn(nRow, "SCDTL_QTY") == null) || 
+		(this.dsSCDtl.getColumn(nRow, "SCDTL_QTY") == 0))
+	{
+		alert("원고량을 입력해 주세요.");
+		this.medt_SCDtl_qty.setFocus();
+		return false;
+	}
+	
+	if(this.dsSCDtl.getColumn(nRow, "SCDTL_DELIVERYDATE") == null)
+	{
+		alert("인도기일을 선택해 주세요.");
+		this.cal_SCDtl_deliveryDate.setFocus();
+		return false;
+	}
+	
+	return true;
+}
+
+//인세,매절 자동저장
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("popupPrint", "", "ed::ED150_Print_ConformF.xfdl", "popupPrintCallBack", this, 10, 58, 190, 220);
+};
+
+this.popupPrintCallBack = function(svcId, rt_value)
+{
+	var nRow = this.dsSCMst.rowposition;
+	var nSCMST_ID = this.dsSCMst.getColumn(nRow, "SCMST_ID");
+	var i_flow_id = this.dsSCMst.getColumn(nRow, "I_FLOW_ID");
+	var rdUrl, rdParam;
+	
+	if( nSCMST_ID != null)
+	{
+		if(rt_value == "표준계약서 품의서")
+		{
+			rdUrl = gv_urlMrd + "/ed/ED131_0.mrd";
+			rdParam  = "/rp [1]["+ i_flow_id + "]";
+			
+			this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1024, 770);
+		}
+		/*
+			표준계약서 (공저자) / 표준계약서 (개별저자) 사용여부 확인 필요
+		*/
+		else if(rt_value == "전자계약서 보기")
+		{
+			//C99995 (법무) 계정의 경우 부서코드를 못가져와서 setColumn 해줌
+			var sRow = this.dsApproval.findRow("SABUN", "C99995"); 	
+			this.dsApproval.setColumn(sRow, "SECTION_CODE", "96600");
+			
+			if(this.dsApproval.getColumn(sRow, "STATUS") == "1")
+			{
+				if(this.dsSCDtl.getMax("SCDTL_ECS") == "1")
+				{
+					var Url = "http://ecs.chunjae.co.kr/loginSave.do?loginGb=login&scmst_Id=" +
+					this.dsSCMst.getColumn(this.dsSCMst.rowposition, "SCMST_ID") + "&mode=save";
+					system.execBrowser(Url);
+				}else
+					alert("전자계약을 확정한 저자가 없습니다.");
+			}else
+				alert("결재완료된 약정서가 아닙니다. 최종결재 후 전자계약서를 볼 수 있습니다");
+		}
+		
+	}else
+		alert("조회된 항목이 없습니다");
+}
+
+this.ED131F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.ED131F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.Grid00);
+};
+
+this.fnisNull = function (Val)
+{
+	if (new String(Val).valueOf() == "undefined") return true;
+	if (Val == null) return true;
+	if (("x" + Val == "xNaN") && (new String(Val.length).valueOf() == "undefined")) return true;
+	if (Val.length == 0) return true;
+
+	return false;
+}
+]]></Script>
+  </Form>
+</FDL>

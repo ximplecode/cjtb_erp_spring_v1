@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MK131_Print" width="200" height="510" titletext="발주관리 출력물 양식">
+    <Layouts>
+      <Layout height="510" width="200">
+        <Button id="btn_close" taborder="0" text="닫기" left="155" top="351" height="29" right="1055" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Button id="btn_search" taborder="1" top="50" width="40" height="38" right="898" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Button id="btn1" taborder="2" text="선택 발주서 출력" top="10" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="15" width="170" height="50" border="2px groove #7fb39d" background="white" color="#7fb39d" onmouseenter="btn_onmouseenter" onmouseleave="btn_onmouseleave" onclick="btn1_onclick"/>
+        <Button id="btn2" taborder="3" text="선택 발주서 확인" top="65" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="15" width="170" height="50" border="2px groove #7fb39d" background="white" color="#7fb39d" onmouseenter="btn_onmouseenter" onmouseleave="btn_onmouseleave" onclick="btn2_onclick"/>
+        <Button id="btn3" taborder="4" text="발주리스트 출력" top="120" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="15" width="170" height="50" border="2px groove #7fb39d" background="white" color="#7fb39d" onmouseenter="btn_onmouseenter" onmouseleave="btn_onmouseleave" onclick="btn3_onclick"/>
+        <Button id="btn4" taborder="5" text="선택 용지 합산" top="175" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="15" width="170" height="50" border="2px groove #7fb39d" background="white" color="#7fb39d" onmouseenter="btn_onmouseenter" onmouseleave="btn_onmouseleave" onclick="btn4_onclick"/>
+        <Button id="btn5" taborder="6" text="용지+발주리스트" top="230" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="15" width="170" height="50" border="2px groove #7fb39d" background="white" color="#7fb39d" onmouseenter="btn_onmouseenter" onmouseleave="btn_onmouseleave" onclick="btn5_onclick"/>
+        <Button id="btn6" taborder="7" text="발주서 팩스발송" top="285" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="15" width="170" height="50" border="2px groove #7fb39d" background="white" color="#7fb39d" onmouseenter="btn_onmouseenter" onmouseleave="btn_onmouseleave" onclick="btn6_onclick"/>
+        <Button id="btn7" taborder="8" text="팩스발송현황" top="340" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="15" width="170" height="50" border="2px groove #7fb39d" background="white" color="#7fb39d" onmouseenter="btn_onmouseenter" onmouseleave="btn_onmouseleave" onclick="btn7_onclick"/>
+        <Button id="btn8" taborder="9" text="선택 용지 재고" top="395" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="15" width="170" height="50" border="2px groove #7fb39d" background="white" color="#7fb39d" onmouseenter="btn_onmouseenter" onmouseleave="btn_onmouseleave" onclick="btn8_onclick"/>
+        <Button id="btn9" taborder="10" text="닫기" top="450" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="15" width="170" height="50" border="2px groove #7fb39d" background="white" color="#7fb39d" onmouseenter="btn_onmouseenter" onmouseleave="btn_onmouseleave" onclick="btn9_onclick"/>
+        <WebBrowser id="WebBrowser00" taborder="11" left="480" top="20" width="39" height="40" visible="false" onloadcompleted="WebBrowser00_onloadcompleted"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSelectOrdMst">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="ORDMST_DATENO" type="STRING" size="15"/>
+          <Column id="ORDMST_DATE" type="STRING" size="8"/>
+          <Column id="ORDMST_NO" type="STRING" size="4"/>
+          <Column id="ORDMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="ORDMST_QTY" type="INT" size="6"/>
+          <Column id="ORDER_TOTAL" type="INT" size="6"/>
+          <Column id="ORDMST_REVIVAL" type="STRING" size="1"/>
+          <Column id="REVIVAL" type="STRING" size="4"/>
+          <Column id="PLT_CODE" type="STRING" size="2"/>
+          <Column id="PLT_NAME" type="STRING" size="15"/>
+          <Column id="PLT_PAGE" type="INT" size="3"/>
+          <Column id="PLT_PRNSIGNATURE" type="INT" size="3"/>
+          <Column id="BOOKMST_BODYPAGE" type="INT" size="5"/>
+          <Column id="BOOKMST_SIGNATURE" type="DECIMAL" size="6"/>
+          <Column id="BND_CODE" type="STRING" size="2"/>
+          <Column id="BND_NAME" type="STRING" size="20"/>
+          <Column id="ORDMST_REMARK" type="STRING" size="70"/>
+          <Column id="BOOKMST_REMARK" type="STRING" size="70"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="PDTDTL_DATE" type="STRING" size="8"/>
+          <Column id="PDTDTL_NUMBER" type="STRING" size="4"/>
+          <Column id="PDTDTL_DTLNUMBER" type="STRING" size="3"/>
+          <Column id="PDTDTL_PDT_QTY" type="INT" size="6"/>
+          <Column id="PDTDTL_WANT_INDATE" type="CHAR" size="8"/>
+          <Column id="TONG_QTY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsOrderSelect">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="ORDMST_ID" type="INT" size="20"/>
+          <Column id="CUST" type="STRING" size="256"/>
+          <Column id="CUST_GUBN" type="STRING" size="256"/>
+          <Column id="CUST_CODE" type="STRING" size="256"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="CUST_TEL" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCustSelect">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="CUST" type="STRING" size="256"/>
+          <Column id="CUST_GUBN" type="STRING" size="256"/>
+          <Column id="CUST_CODE" type="STRING" size="256"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="CUST_TEL" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var urlMrdHtml = nexacro.getApplication().gv_urlMrdHtml;
+var urlMrdService = nexacro.getApplication().gv_urlMrdService;
+
+var nOrdMst_Id, rdUrl, rdParam;
+
+this.btn_onmouseenter = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
+{
+	obj.set_background("#7fb39d");
+	obj.set_color("#ffffff");
+};
+
+this.btn_onmouseleave = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
+{
+	obj.set_border("2px groove #7fb39d");
+	obj.set_background("white");
+	obj.set_color("#7fb39d");
+};
+
+//선택 발주서 출력
+this.btn1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ordmst_id = "";
+	
+	for(var i = 0 ; i < this.opener.dsOrdMst.rowcount; i++) // 소스 데이터셋 카운트 루핑
+	{	
+		if( this.opener.dsOrdMst.getColumn(i, "CHK") == "1" ) // 선택된것만 건수에 포함
+		{
+			nOrdMst_Id = this.opener.dsOrdMst.getColumn(i, "ORDMST_ID");
+			
+			if(ordmst_id.length != 0)
+			{
+			   ordmst_id = ordmst_id + ",";
+			}
+			
+			ordmst_id = ordmst_id + nOrdMst_Id;
+		}
+	}
+	
+	if(ordmst_id.length != 0){
+		if(nOrdMst_Id != ""){
+			
+			rdUrl = gv_svcUrl + "rpt/mk/MK131_list.mrd";
+			rdParam = "/rpdfprintdialog /rp [" + ordmst_id + "]"; 
+			this.WebBrowser00.set_url(urlMrdHtml);
+		}
+	}
+	
+};
+
+//선택발주서 확인 버튼
+this.btn2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ordmst_id = "";
+	
+	for(var i = 0 ; i < this.opener.dsOrdMst.rowcount; i++) // 소스 데이터셋 카운트 루핑
+	{	
+		if( this.opener.dsOrdMst.getColumn(i, "CHK") == "1" ) // 선택된것만 건수에 포함
+		{
+			nOrdMst_Id = this.opener.dsOrdMst.getColumn(i, "ORDMST_ID");
+			
+			if(ordmst_id.length != 0)
+			{
+			   ordmst_id = ordmst_id + ",";
+			}
+			
+			ordmst_id = ordmst_id + nOrdMst_Id;
+		}
+	}
+	
+	if(ordmst_id.length != 0){
+		if(nOrdMst_Id != "")
+		{
+			
+			rdUrl = gv_svcUrl + "rpt/mk/MK131_list.mrd";
+			rdParam = "/rp [" + ordmst_id + "]";  
+			//this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+			var vScreenWidth = system.getScreenWidth();
+			
+			if(vScreenWidth >= 1920)
+				vScreenWidth = vScreenWidth/2
+				
+			nexacro.open("popupPrt", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, "autosize=false", 0, 0, vScreenWidth, system.getScreenHeight(), this);
+		}
+	}
+};
+
+//발주리스트 출력
+this.btn3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ordmst_id = "";
+	
+	for(var i = 0 ; i < this.opener.dsOrdMst.rowcount; i++) // 소스 데이터셋 카운트 루핑
+	{	
+		if( this.opener.dsOrdMst.getColumn(i, "CHK") == "1" ) // 선택된것만 건수에 포함
+		{
+			nOrdMst_Id = this.opener.dsOrdMst.getColumn(i, "ORDMST_ID");
+			
+			if(ordmst_id.length != 0)
+			{
+			   ordmst_id = ordmst_id + ",";
+			}
+			
+			ordmst_id = ordmst_id + nOrdMst_Id;
+		}
+	}
+	
+	if(ordmst_id.length != 0){
+		if(nOrdMst_Id != "")
+		{
+			
+			rdUrl = gv_svcUrl + "rpt/mk/MK131_OrderList.mrd";
+			rdParam = "/rp [" + ordmst_id + "]";  
+			//this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+			var vScreenWidth = system.getScreenWidth();
+			
+			if(vScreenWidth >= 1920)
+				vScreenWidth = vScreenWidth/2
+				
+			nexacro.open("popupPrt", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, "autosize=false", 0, 0, vScreenWidth, system.getScreenHeight(), this);
+		}
+	}
+};
+
+//선택용지 합산 출력
+this.btn4_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ordmst_id = "";
+	
+	for(var i = 0 ; i < this.opener.dsOrdMst.rowcount; i++) // 소스 데이터셋 카운트 루핑
+	{	
+		if( this.opener.dsOrdMst.getColumn(i, "CHK") == "1" ) // 선택된것만 건수에 포함
+		{
+			nOrdMst_Id = this.opener.dsOrdMst.getColumn(i, "ORDMST_ID");
+			
+			if(ordmst_id.length != 0)
+			{
+			   ordmst_id = ordmst_id + ",";
+			}
+			
+			ordmst_id = ordmst_id + nOrdMst_Id;
+		}
+	}
+	
+	if(ordmst_id.length != 0){
+		if(nOrdMst_Id != "")
+		{
+			rdUrl = gv_svcUrl + "rpt/mk/MK131_PaperSum.mrd";
+			rdParam = "/rp [" + ordmst_id + "]";  
+			//this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+			var vScreenWidth = system.getScreenWidth();
+			
+			if(vScreenWidth >= 1920)
+				vScreenWidth = vScreenWidth/2
+				
+			nexacro.open("popupPrt", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, "autosize=false", 0, 0, vScreenWidth, system.getScreenHeight(), this);
+		}
+	}
+};
+
+//용지+발주리스트  출력
+this.btn5_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ordmst_id = "";
+	
+	for(var i = 0 ; i < this.opener.dsOrdMst.rowcount; i++) // 소스 데이터셋 카운트 루핑
+	{	
+		if( this.opener.dsOrdMst.getColumn(i, "CHK") == "1" ) // 선택된것만 건수에 포함
+		{
+			nOrdMst_Id = this.opener.dsOrdMst.getColumn(i, "ORDMST_ID");
+			
+			if(ordmst_id.length != 0)
+			{
+			   ordmst_id = ordmst_id + ",";
+			}
+			
+			ordmst_id = ordmst_id + nOrdMst_Id;
+		}
+	}
+	
+	if(ordmst_id.length != 0){
+		if(nOrdMst_Id != "")
+		{
+			rdUrl = gv_svcUrl + "rpt/mk/MK131_PaperSum_Orderlist.mrd";
+			rdParam = "/rp [" + ordmst_id + "]";  
+			//this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+			var vScreenWidth = system.getScreenWidth();
+			
+			if(vScreenWidth >= 1920)
+				vScreenWidth = vScreenWidth/2
+				
+			nexacro.open("popupPrt", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, "autosize=false", 0, 0, vScreenWidth, system.getScreenHeight(), this);
+		}
+	}
+};
+
+//팩스발송
+this.btn6_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ordmst_id = "";
+	
+	for(var i = 0 ; i < this.opener.dsOrdMst.rowcount; i++) // 소스 데이터셋 카운트 루핑
+	{	
+		if( this.opener.dsOrdMst.getColumn(i, "CHK") == "1" ) // 선택된것만 건수에 포함
+		{
+			nOrdMst_Id = this.opener.dsOrdMst.getColumn(i, "ORDMST_ID");
+			
+			if(ordmst_id.length != 0)
+			{
+			   ordmst_id = ordmst_id + ",";
+			}
+			
+			ordmst_id = ordmst_id + nOrdMst_Id;
+		}
+	}
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_arg = "ORDMST_ID=" + nexacro.wrapQuote(ordmst_id);
+	in_ds = "dsOrderSelect=dsOrderSelect";
+	out_ds = "dsOrderSelect=dsOrderSelect";
+	str_url = "JSP/mk/mk131f_send_fax_list.jsp";
+	
+	this.gfn_TransactionP("search", str_url, in_ds, out_ds, str_arg, "Callback_fax", false, "D", false, this);
+};
+
+this.Callback_fax = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		
+		this.dsCustSelect.deleteAll();
+		
+		for( i=0; i<this.dsOrderSelect.rowcount; i++ )
+		{		
+			if( this.dsOrderSelect.getColumn(i, "CUST") != this.dsOrderSelect.getColumn(i + 1 ,"CUST") )
+			{	
+				var nRow = this.dsCustSelect.addRow();
+				this.dsCustSelect.setColumn(nRow ,"CHK"			, this.dsOrderSelect.getColumn(i ,"CHK"));
+				this.dsCustSelect.setColumn(nRow ,"CUST"		, this.dsOrderSelect.getColumn(i ,"CUST"));
+				this.dsCustSelect.setColumn(nRow ,"CUST_GUBN"	, this.dsOrderSelect.getColumn(i ,"CUST_GUBN"));
+				this.dsCustSelect.setColumn(nRow ,"CUST_CODE"	, this.dsOrderSelect.getColumn(i ,"CUST_CODE"));
+				this.dsCustSelect.setColumn(nRow ,"CUST_NAME"	, this.dsOrderSelect.getColumn(i ,"CUST_NAME"));
+				this.dsCustSelect.setColumn(nRow ,"CUST_TEL"	, this.dsOrderSelect.getColumn(i ,"CUST_TEL"));
+				this.dsCustSelect.setColumn(nRow ,"PRODUCT_FAX"	, this.dsOrderSelect.getColumn(i ,"PRODUCT_FAX"));
+			}
+		}
+		
+		var objParam = {dsParam1:this.dsOrderSelect
+					   ,dsParam2:this.dsCustSelect}; //popup 화면으로 전달할 값
+		nexacro.open("popupFax", "mk::MKFax_SendF.xfdl", this.getOwnerFrame(), objParam, "", "", "", 480, 310, this);
+	}
+};
+
+//팩스발송현황 POPUP
+this.btn7_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.open("popupFaxResult", "mk::MKFax_ResultF.xfdl", this.getOwnerFrame(), "", "", "", "", 1080, 650, this);
+};
+
+//선택용지 재고  출력
+this.btn8_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ordmst_id = "";
+	
+	for(var i = 0 ; i < this.opener.dsOrdMst.rowcount; i++) // 소스 데이터셋 카운트 루핑
+	{	
+		if( this.opener.dsOrdMst.getColumn(i, "CHK") == "1" ) // 선택된것만 건수에 포함
+		{
+			nOrdMst_Id = this.opener.dsOrdMst.getColumn(i, "ORDMST_ID");
+			
+			if(ordmst_id.length != 0)
+			{
+			   ordmst_id = ordmst_id + ",";
+			}
+			
+			ordmst_id = ordmst_id + nOrdMst_Id;
+		}
+	}
+	
+	if(ordmst_id.length != 0){
+		if(nOrdMst_Id != "")
+		{
+			rdUrl = gv_svcUrl + "rpt/mk/MK131_PaperJego.mrd";
+			rdParam = "/rp [" + ordmst_id + "]";  
+			this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+		}
+	}
+};
+
+//닫기 버튼
+this.btn9_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{	
+	var sUrl = urlMrdService;
+	var sId = "crownix-viewer";
+	
+	this.WebBrowser00.callMethod("_crownix_createPrint", sUrl, sId, rdUrl, rdParam);
+};]]></Script>
+  </Form>
+</FDL>

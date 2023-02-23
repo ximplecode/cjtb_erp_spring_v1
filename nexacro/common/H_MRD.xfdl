@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="H_MRD" width="800" height="500" onload="H_MRD_onload">
+    <Layouts>
+      <Layout height="500" width="800">
+        <WebBrowser id="WebBrowser00" taborder="0" left="0" top="0" right="0" bottom="0" onloadcompleted="WebBrowser00_onloadcompleted"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[var urlMrdHtml = nexacro.getApplication().gv_urlMrdHtml;
+var urlMrdService = nexacro.getApplication().gv_urlMrdService;
+
+this.H_MRD_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.WebBrowser00.set_url(urlMrdHtml);
+};
+
+this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	var rdUrl = this.parent.rdUrl;
+	var rdParam = this.parent.rdParam;
+	
+	var sUrl = urlMrdService;
+	var sId = "crownix-viewer";
+	trace(rdUrl);
+	trace(rdParam);
+	this.WebBrowser00.callMethod("_crownix_createViewer", sUrl, sId, rdUrl, rdParam);
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+};
+]]></Script>
+  </Form>
+</FDL>

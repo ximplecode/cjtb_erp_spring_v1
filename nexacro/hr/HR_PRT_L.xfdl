@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR_PRT_L" width="1024" height="720" titletext="New Form" onload="HR_PRT_L_onload" onclose="HR_PRT_L_onclose">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1024">
+        <WebBrowser id="WebBrowser00" taborder="1" left="10" top="10" onloadcompleted="WebBrowser00_onloadcompleted" right="10" bottom="10"/>
+        <Button id="btn_close" taborder="1" text="닫기" top="20" right="30" width="50" height="28" onclick="btn_close_onclick"/>
+        <Static id="Static02" taborder="2" left="68" top="10" width="312" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[var urlMrdHtml = nexacro.getApplication().gv_urlMrdHtml;
+var urlMrdService = nexacro.getApplication().gv_urlMrdService;
+
+this.HR_PRT_L_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	if(this.opener.name == "SW102F" || this.opener.name == "SW200F")
+	{
+		this.Static02.set_visible(true);
+		this.WebBrowser00.set_top(80);
+		this.btn_close.set_top(90);
+		if(this.opener.name == "SW102F")
+			this.Static02.set_text("사우회 조직도");
+		else
+			this.Static02.set_text("사우회 규정");
+	}		
+	else
+	{
+		this.Static02.set_visible(false);
+	}
+	this.WebBrowser00.set_url(urlMrdHtml);
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	var urlMrdDoc = this.parent.rdfile;
+	var param = this.parent.rdopt;
+	
+	var sUrl = urlMrdService;
+	var sId = "crownix-viewer";
+	this.WebBrowser00.callMethod("_crownix_createViewer", sUrl, sId, urlMrdDoc, param);
+};
+
+this.HR_PRT_L_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	if(this.opener.name == "SW102F" || this.opener.name == "SW200F"){
+		if(this.opener.parent.parent != null && this.opener.parent.parent.name == "WorkDetail")
+		{
+			var nRow = this.opener.parent.parent.ds_selectMenu.findRow("selectMenu_Div_id",this.opener.parent.name);
+			var bClose_id = this.opener.parent.parent.ds_selectMenu.getColumn(nRow,"selectButton_Div_id");
+			this.opener.parent.parent.div_selectMenu.form.all[bClose_id].form.CloseButton.click();
+		}
+		else
+			return;
+	}
+};]]></Script>
+  </Form>
+</FDL>

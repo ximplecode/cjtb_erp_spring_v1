@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="INFO_SECURITY_SIGN" width="790" height="800" titletext="INFO_SECURITY_SIGN" onload="INFO_SECURITY_SIGN_onload">
+    <Layouts>
+      <Layout height="800" width="790">
+        <WebBrowser id="WebBrowser00" taborder="0" left="5" top="55" width="780" height="700" onloadcompleted="WebBrowser00_onloadcompleted"/>
+        <Button id="btn_save" taborder="1" text="위 사항을 충분히 인지하고 준수할 것을 서약합니다" width="400" height="32" font="bold 11pt/normal &quot;Arial&quot;" color="red" background="#d5ebd7" letterSpacing="1px" top="WebBrowser00:7" left="385" onclick="btn_save_onclick"/>
+        <Static id="Static00" taborder="2" text="정보보호 서약서" left="20" top="10" color="#7fb39d" font="bold 32px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="316" height="43"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+
+gv_sabun = 'C99999';
+
+this.INFO_SECURITY_SIGN_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+	this.WebBrowser00.set_url(gv_urlMrd+"/gw/2018.jpg");
+	this.WebBrowser00.show();
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl, strArg;
+	
+	strUrl = "JSP/gw/SQL_INFO_SECURITY_SIGN_DML.jsp";
+	strArg = "sabun="+nexacro.wrapQuote(gv_sabun);
+	
+	this.gfn_TransactionP("dml", strUrl, "", "", strArg, "fnCallbackDml", false, "P", false, this);
+};
+
+this.fnCallbackDml = function(Trid,ErrorCode,ErrorMsg)
+{
+    if (ErrorCode != 0)
+    {
+       alert(ErrorMsg);
+       return;
+    }
+    
+    alert("정보보호 서약서 서명되었습니다.");
+    this.close();
+    return;
+}
+this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+	alert("하단 부분 '위 사항을 충분히 인지하고 준수할 것을 서약합니다' 버튼을 클릭 하시여 서명을 진행하여 주시기 바랍니다.");
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ENV version="2.1">
+  <Environment themeid="theme::default" datatyperule="2.0" filesecurelevel="all" networksecurelevel="all" httptimeout="900" loadingimage="url('theme://images/btn_N.png')" checkversion="true" usehttpkeepalive="true">
+    <ScreenDefinition>
+      <Screen id="Desktop_screen" type="desktop" datatyperule="1.0"/>
+    </ScreenDefinition>
+    <Variables/>
+    <Cookies/>
+    <httpheader/>
+  </Environment>
+  <Script type="xscript5.1"><![CDATA[]]></Script>
+</ENV>

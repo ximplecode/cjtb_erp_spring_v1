@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="업체정보관리" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer" onkeydown="MkMain_onkeydown">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Static id="Static02" taborder="0" text="업체정보관리" left="8" top="10" width="312" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnSave" taborder="1" text="저장" top="31" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="9" onclick="btnSave_onclick"/>
+        <ImageViewer id="ImgClose01" taborder="2" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Grid id="grdCust" taborder="3" left="11" top="187" width="628" binddataset="ds_mk_Cust" bottom="20" autofittype="none" oncellclick="grdCust_oncellclick" onheadclick="grdCust_onheadclick">
+          <Formats>
+            <Format id="grdUse">
+              <Columns>
+                <Column size="92"/>
+                <Column size="279"/>
+                <Column size="86"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="업체코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="업체명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="업체구분" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CUST_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@@@" editmaxlength="4" editinputtype="normal" maskedittype="string"/>
+                <Cell col="1" text="bind:CUST_NAME" displaytype="normal" combodataset="ds_mk_UseType" combocodecol="USE_TYPE_CODE" combodatacol="USE_TYPE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none"/>
+                <Cell col="2" text="bind:PWT_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" edittype="none" editmaxlength="20" displaytype="combotext" combodataset="dsPWT" combodatacol="PWT_NAME" combocodecol="PWT_CODE" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stCust" taborder="4" text="업체" left="650" top="128" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edCustNm" taborder="5" left="stCust:2" top="128" width="17.31%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" readonly="true"/>
+        <Static id="stCustType" taborder="6" text="업체구분" left="edCustNm:3" top="128" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edCustType" taborder="7" left="stCustType:3" top="128" width="4.08%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="2"/>
+        <Tab id="Tab00" taborder="8" tabindex="0" left="11" top="81" width="629" height="96" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" onchanged="Tab00_onchanged" selectedtabbuttonwidth="80" selectedtabbuttonheight="40">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="검색조건" border="1px double darkslateblue">
+              <Layouts>
+                <Layout>
+                  <Button id="btnSearch" taborder="1" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="80" height="40" top="7" background="" onclick="btnSearch_onclick" left="490"/>
+                  <Button id="btnExcel" taborder="0" left="btnSearch:3" top="7" width="43" height="39" icon="url('Img::ico_excel_O.png')" onclick="Tab00_Tabpage1_btnExcel_onclick"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Static id="stSCustCd" taborder="9" text="업체코드" left="22" top="132" width="85" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue"/>
+        <Edit id="edSCustCd" taborder="10" left="109" top="132" width="60" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4"/>
+        <Static id="stSCustNm" taborder="11" text="업체명" left="181" top="132" width="85" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edSCustNm" taborder="12" left="269" top="132" width="221" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Combo id="cbCustTypeNm" taborder="13" top="128" height="35" innerdataset="dsPWT" codecolumn="PWT_CODE" datacolumn="PWT_NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" left="edCustType:3" right="0.92%"/>
+        <Static id="stRepre" taborder="14" text="대표자" left="650" top="168" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edRepreNm" taborder="15" left="stRepre:3" top="168" width="17.23%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" readonly="true"/>
+        <Static id="stBizNo" taborder="16" text="사업자번호/&#13;&#10;주민번호" left="edRepreNm:4" top="168" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <MaskEdit id="medtCustNo" taborder="17" left="stBizNo:3" top="168" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" format="###-##-#####" type="string" right="0.92%" readonly="true"/>
+        <Static id="stOfficeTel" taborder="18" text="대표전화" left="650" top="208" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edOfficeTel" taborder="19" left="stOfficeTel:3" top="208" width="17.23%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" readonly="true"/>
+        <Static id="stFAXNo" taborder="20" text="FAX" left="edOfficeTel:4" top="208" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edFAXNo" taborder="21" left="stFAXNo:3" top="208" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="0.92%"/>
+        <Static id="stAddr" taborder="22" text="주소" left="650" top="248" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edAddr" taborder="23" left="stAddr:3" top="248" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="0.92%" readonly="true"/>
+        <Static id="stSaleAmt" taborder="24" text="매출규모" left="650" top="288" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Edit id="edSaleAmt" taborder="25" left="stSaleAmt:3" top="288" width="12.31%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" readonly="true"/>
+        <Static id="StUnit" taborder="26" text="억원" left="edSaleAmt:3" top="290" width="58" height="37" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Static id="stStartDate" taborder="27" text="거래개시일" left="StUnit:6" top="288" width="85" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white"/>
+        <Calendar id="calDate" taborder="28" left="stStartDate:3" top="288" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="0.92%" readonly="true"/>
+        <Static id="stFacilities" taborder="29" text="보유시설" left="650" top="328" height="52" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="0.92%"/>
+        <Grid id="grdFacilities" taborder="30" left="651" top="383" binddataset="dsCustFacilities" bottom="20" autofittype="none" right="0.92%" onheadclick="grdFacilities_onheadclick" oncellclick="grdFacilities_oncellclick">
+          <Formats>
+            <Format id="grdUse">
+              <Columns>
+                <Column size="188"/>
+                <Column size="71"/>
+                <Column size="333"/>
+                <Column size="32"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="기종" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="연식" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="제원" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="+"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CF_MACHINES" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="text" maskeditformat="@@@@" editmaxlength="20" editinputtype="normal" maskedittype="string"/>
+                <Cell col="1" text="bind:CF_YEAR" displaytype="normal" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="text" editmaxlength="4"/>
+                <Cell col="2" text="bind:CF_DETAIL" font="normal 12px/normal &quot;함초롬돋움&quot;" edittype="normal" editmaxlength="40" displaytype="normal" textAlign="left"/>
+                <Cell col="3" text="-" textAlign="center" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerDML, vPerDel;
+var vStr = "U";
+var urlExcel = nexacro.getApplication().gv_urlXeni;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerDML = "U";
+	vPerDel = "D";
+	
+	if(vPerSel = "1"){
+		this.gfn_TransactionP("select", "JSP/mk/mk113f_process_work_type.jsp", "dsPWT=dsPWT", "dsPWT=dsPWT", "", "", false, "S", false, this);
+		this.btnSearch_onclick();
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+};
+
+
+//조회버튼 이벤트
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	str_url = "JSP/mk/mk113f_cust_search.jsp";
+	in_ds = "ds_mk_Cust=ds_mk_Cust";
+	out_ds = "ds_mk_Cust=ds_mk_Cust";
+	str_arg ="CUST_CODE=" +nexacro.wrapQuote( this.edSCustCd.text);
+	str_arg +=" CUST_NAME=" +nexacro.wrapQuote( this.edSCustNm.text);
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_Select", false, "S", false, this);
+};
+
+this.Callback_Select = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}
+};
+
+
+this.grdCust_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var strArg  = "";
+	var outds 	= "";
+	var inds 	= "";
+	
+	strArg 	= "CUST_GUBN=" + nexacro.wrapQuote( this.ds_mk_Cust.getColumn(e.row, "CUST_GUBN") ) +
+			  " CUST_CODE=" + nexacro.wrapQuote( this.ds_mk_Cust.getColumn(e.row, "CUST_CODE") ) ;
+	
+	inds 	= "dsCustDetail=dsCustDetail";
+	outds 	= "dsCustDetail=dsCustDetail";
+	this.gfn_TransactionP("select", "JSP/mk/mk113f_cust_detail.jsp", inds, outds, strArg, "", false, "S", false, this);
+	
+	inds 	= "dsCustFacilities=dsCustFacilities";
+	outds 	= "dsCustFacilities=dsCustFacilities";
+	this.gfn_TransactionP("select", "JSP/mk/mk113f_cust_facilities.jsp", inds, outds, strArg, "", false, "S", false, this);
+			
+	
+	if (this.dsCustDetail.rowcount == 0)
+	{
+		this.dsCustDetail.addRow();
+		this.dsCustDetail.setColumn(this.dsCustDetail.rowposition, "CUST_GUBN", this.ds_mk_Cust.getColumn(e.row, "CUST_GUBN"));
+		this.dsCustDetail.setColumn(this.dsCustDetail.rowposition, "CUST_CODE", this.ds_mk_Cust.getColumn(e.row, "CUST_CODE"));			
+	}
+	
+};
+
+//저장버튼
+this.btnSave_onclick = function()
+{
+	this.fctn_Save_Fax(vPerDML);
+	this.fctn_Save_Detail(vPerDML);
+	this.fctn_Save_Facilities(vPerDML);
+};
+
+//#######################################################
+// 업체 FAX 저장
+//#######################################################
+this.fctn_Save_Fax=function(vPerDML)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	in_ds = "input=ds_mk_Cust:U";
+	str_url = "JSP/mk/mk113f_product_fax_dml.jsp";
+	this.gfn_TransactionP("Save", str_url, in_ds, "", "", "Callback_save", false, vPerDML, false, this);
+}
+
+//#######################################################
+// 업체정보 저장
+//#######################################################
+this.fctn_Save_Detail=function(vPerDML)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	in_ds = "input=dsCustDetail:U";
+	str_url = "JSP/mk/mk113f_cust_detail_dml.jsp";
+	this.gfn_TransactionP("Save", str_url, in_ds, "", "", "Callback_save", false, vPerDML, false, this);
+}
+
+//#######################################################
+// 보유시설 저장
+//#######################################################
+this.fctn_Save_Facilities=function(vPerDML)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	in_ds = "input=dsCustFacilities:U";
+	str_url = "JSP/mk/mk113f_cust_facilities_dml.jsp";
+	this.gfn_TransactionP("Save", str_url, in_ds, "", "", "Callback_save", false, vPerDML, false, this);
+}
+
+this.Callback_save = function(Trid, ErrorCode, ErrorMsg)
+{	
+	if (ErrorCode != 0)
+	{
+		if(ErrorCode == -99)
+		{
+			this.btnSearch_onclick();
+		}else{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+//그리드 엑셀로 변환
+this.Tab00_Tabpage1_btnExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	 this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, 
+        this.grdCust, "Sheet1!A1");
+    
+	this.exportObj.set_exporturl(urlExcel);
+	this.exportObj.exportData(); 
+};
+
+
+this.MkMain_onkeydown = function(obj:nexacro.Form,e:nexacro.KeyEventInfo)
+{
+	var comObj = obj.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		comObj = this.MkMain.getNextComponent(comObj, true);
+		comObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(comObj.toString() == "[object Combo]")
+			comObj.dropdown();
+		else if ((comObj.toString() == "[object Combo]") || (comObj.toString() == "[object MaskEdit]"))
+			comObj.setSelect(0, -1);
+	}
+};
+
+this.grdFacilities_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var isAppend = true;
+	
+	if(e.cell == 3)
+	{
+		var nRow = this.dsCustFacilities.getRowCount()-1;
+		
+		for (var i = 0; i<=this.dsCustFacilities.getRowCount()-1 ; i++)
+		{
+			if (this.dsCustFacilities.getColumn(nRow, i) == null)
+			{
+				this.dsCustFacilities.rowposition = nRow;
+				this.grdFacilities.setCellPos(i);
+				alert("입력을 완료하여 주십시요.");
+				isAppend = false;
+				break;
+			}
+		}
+		
+		if(isAppend == true){
+			var nRow;
+			this.dsCustFacilities.addRow();
+			nRow = this.dsCustFacilities.getRowCount()-1;
+			this.dsCustFacilities.rowposition = nRow;
+			var strRow = (nexacro.toNumber(nRow)+1).toString();
+			
+			this.dsCustFacilities.setColumn(nRow, "CUST_GUBN", this.ds_mk_Cust.getColumn(this.ds_mk_Cust.rowposition, "CUST_GUBN"));
+			this.dsCustFacilities.setColumn(nRow, "CUST_CODE", this.ds_mk_Cust.getColumn(this.ds_mk_Cust.rowposition, "CUST_CODE"));
+			this.dsCustFacilities.setColumn(nRow, "CF_SEQ", strRow.padLeft(2, "0"));
+			
+			this.grdFacilities.setCellPos(0);
+		}
+	
+	}
+};
+
+this.grdFacilities_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 3){
+		if(this.confirm("삭제하시겠습니까?", "업체 보유시설 삭제")){
+			if(this.dsCustFacilities.getRowType(this.dsCustFacilities.rowposition) != 2){
+				this.dsCustFacilities.deleteRow(this.dsCustFacilities.rowposition);
+				this.fctn_Save_Facilities(vPerDel);
+			}else{
+				this.dsCustFacilities.deleteRow(this.dsCustFacilities.rowposition);
+			}
+		}
+	}
+};
+
+
+//업체정보 헤더 클릭하면 오름차순 정렬하기
+this.grdCust_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	switch(e.cell){
+		case 0 :
+			this.ds_mk_Cust.set_keystring("S:+CUST_CODE");
+			break;
+		case 1 :
+			this.ds_mk_Cust.set_keystring("S:+CUST_NAME");
+			break;
+		case 2 :
+			this.ds_mk_Cust.set_keystring("S:+PWT_CODE");
+			break;
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsPWT">
+        <ColumnInfo>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+          <Column id="PWT_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCustFacilities">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CF_SEQ" type="STRING" size="2"/>
+          <Column id="CF_MACHINES" type="STRING" size="256"/>
+          <Column id="CF_YEAR" type="STRING" size="256"/>
+          <Column id="CF_DETAIL" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_Cust" oncolumnchanged="ds_mk_Paper_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="REPRESENTATIVE" type="STRING" size="256"/>
+          <Column id="BUSINESSNO" type="STRING" size="256"/>
+          <Column id="BUSINESS_STARTDATE" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="OFFICE_TEL" type="STRING" size="256"/>
+          <Column id="OFFICE_FAX" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+          <Column id="CUST_STOPPAGE" type="STRING" size="256"/>
+          <Column id="BANK_CODE" type="STRING" size="256"/>
+          <Column id="CUST_ACNTNO" type="STRING" size="256"/>
+          <Column id="CUSTDTL_SALEAMOUNT" type="STRING" size="256"/>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCustDetail" oncolumnchanged="ds_mk_Paper_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+          <Column id="CUSTDTL_SALEAMOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edCustNm" propid="value" datasetid="ds_mk_Cust" columnid="CUST_NAME"/>
+      <BindItem id="item1" compid="edCustType" propid="value" datasetid="dsCustDetail" columnid="PWT_CODE"/>
+      <BindItem id="item2" compid="cbCustTypeNm" propid="value" datasetid="dsCustDetail" columnid="PWT_CODE"/>
+      <BindItem id="item3" compid="edRepreNm" propid="value" datasetid="ds_mk_Cust" columnid="REPRESENTATIVE"/>
+      <BindItem id="item4" compid="medtCustNo" propid="value" datasetid="ds_mk_Cust" columnid="BUSINESSNO"/>
+      <BindItem id="item5" compid="edOfficeTel" propid="value" datasetid="ds_mk_Cust" columnid="OFFICE_TEL"/>
+      <BindItem id="item6" compid="edFAXNo" propid="value" datasetid="ds_mk_Cust" columnid="PRODUCT_FAX"/>
+      <BindItem id="item7" compid="edAddr" propid="value" datasetid="ds_mk_Cust" columnid="ADDRESS"/>
+      <BindItem id="item8" compid="edSaleAmt" propid="value" datasetid="ds_mk_Cust" columnid="CUSTDTL_SALEAMOUNT"/>
+      <BindItem id="item9" compid="calDate" propid="value" datasetid="ds_mk_Cust" columnid="BUSINESS_STARTDATE"/>
+    </Bind>
+  </Form>
+</FDL>

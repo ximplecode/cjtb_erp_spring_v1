@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1080" height="650" titletext="FAX 발송현황 POPUP" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="650" width="1080">
+        <Static id="Static02" taborder="0" text="FAX전송결과(발주)" left="8" top="10" width="352" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnSearch" taborder="2" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="49" onclick="btnSearch_onclick" right="105" width="80"/>
+        <Calendar id="calSDate" top="33" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" width="140" left="583" taborder="1" autoselect="true"/>
+        <Static id="stSearch" taborder="3" text="검색기간" top="33" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="503" width="100"/>
+        <ImageViewer id="ImgClose01" taborder="4" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Grid id="grdList" taborder="5" left="8" top="110" width="98.33%" binddataset="dsFaxList" bottom="20" autofittype="none" onheadclick="grdList_onheadclick" autoenter="select" selecttype="row" oncelldblclick="grdList_oncelldblclick">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="111"/>
+                <Column size="133"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="129"/>
+                <Column size="79"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="착신번호" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="업체명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="전송시간" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="전송완료시간" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" text="리포트완료시간" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="페이지" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="전송결과" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PHONE_NUMBER" displaytype="normal" combodataset="ds_mk_UseType" combocodecol="USE_TYPE_CODE" combodatacol="USE_TYPE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" cssclass="expr:ERROR_CODE!='0'?&quot;BgChange4&quot;:&quot;&quot; "/>
+                <Cell col="1" text="bind:DEST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" edittype="none" textAlign="center" cssclass="expr:ERROR_CODE!='0'?&quot;BgChange4&quot;:&quot;&quot; "/>
+                <Cell col="2" text="bind:SEND_DATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" cssclass="expr:ERROR_CODE!='0'?&quot;BgChange4&quot;:&quot;&quot; "/>
+                <Cell col="3" text="bind:DELIVER_DATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" cssclass="expr:ERROR_CODE!='0'?&quot;BgChange4&quot;:&quot;&quot; "/>
+                <Cell col="4" text="bind:REPORT_RES_DATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" cssclass="expr:ERROR_CODE!='0'?&quot;BgChange4&quot;:&quot;&quot; "/>
+                <Cell col="5" text="bind:FAX_PAGE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="number" displaytype="normal" editautoselect="true" cssclass="expr:ERROR_CODE!='0'?&quot;BgChange4&quot;:&quot;&quot; "/>
+                <Cell col="6" text="bind:RESULT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="number" maskeditformat="#,###" displaytype="normal" editautoselect="true" maskeditautoselect="true" cssclass="expr:ERROR_CODE!='0'?&quot;BgChange4&quot;:&quot;&quot; "/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <ImageViewer id="ImgClose" taborder="6" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" text="" top="52" left="1001" onclick="ImgClose_onclick"/>
+        <Calendar id="calEDate" top="33" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" width="140" left="728" taborder="7" autoselect="true"/>
+        <Radio id="rdGubun" taborder="8" top="73" height="35" innerdataset="dsGubun" codecolumn="CODE" datacolumn="NAME" direction="vertical" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" background="lightsteelblue" color="white" index="0" text="단가 '0'인 건  " value="1" right="212" width="391" fittocontents="none" wordSpacing="20px" padding="0px 0px 0px 30px" onitemchanged="rdGubun_onitemchanged"/>
+        <Div id="DivFailLog" taborder="9" left="260" top="99" width="510" height="451" background="#e8e7e3" text="" visible="false">
+          <Layouts>
+            <Layout>
+              <Edit id="edCust" taborder="0" left="82" top="59" width="173" height="33" font="14px/normal &quot;함초롬바탕 확장&quot;" enable="true" background="white" readonly="true"/>
+              <Edit id="edNumber" taborder="1" left="82" top="94" width="426" height="33" font="14px/normal &quot;함초롬바탕 확장&quot;" enable="true" background="white" readonly="true"/>
+              <TextArea id="txaFail" taborder="2" left="82" top="128" width="426" height="312" enable="true" readonly="true" background="white" font="14px/normal &quot;함초롬바탕 확장&quot;"/>
+              <Static id="stCust" taborder="3" text="업체명" left="3" top="58" width="77" height="33" background="#7fb39d" textAlign="center" color="#e8e7e3" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+              <Static id="stNumber" taborder="4" text="착신번호" left="3" top="93" width="77" height="33" background="#7fb39d" textAlign="center" color="#e8e7e3" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+              <Static id="StFail" taborder="5" text="실패사유" left="3" top="128" width="77" height="313" background="#7fb39d" textAlign="center" color="#e8e7e3" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+              <Static id="Static02" taborder="6" text="실패내역" left="7" top="10" width="167" height="41" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+              <Button id="btn_close" taborder="7" text="닫기" left="428" top="11" height="31" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" right="14" onclick="DivFailLog_btn_close_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerDML, vPerDel;
+var vStr;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerDML = "U";
+	vPerDel = "D";
+	
+	var d = new Date(); 
+	var strtoDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");			//오늘날짜 setting
+	this.calSDate.set_value(strtoDay);
+	this.calEDate.set_value(strtoDay);
+
+	this.btnSearch_onclick();
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+	
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" )
+	{
+		alert("조회일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+	
+	if(this.calEDate.value == "" )
+	{
+		alert("조회일자를 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	if(vPerSel = "1")
+	{
+		in_ds 	= "dsFaxList=dsFaxList";
+		out_ds 	= "dsFaxList=dsFaxList";
+		str_url = "JSP/mk/mk131f_result_kt_fax_list.jsp";
+		str_arg = "SDATE=" + nexacro.wrapQuote(this.calSDate.value)
+				+ " EDATE=" + nexacro.wrapQuote(this.calEDate.value)
+				+ " SEARCHTYPE=" + nexacro.wrapQuote(this.rdGubun.value)
+				+ " CPRTYPE=" + nexacro.wrapQuote("(주)천재교육")
+				+ " SUBJECT=" + nexacro.wrapQuote("제작관리 팩스발송");
+		 
+		this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+	}
+};
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		if(this.dsFaxList.rowcount == 0)
+			alert("조회된 자료가 없습니다.");
+		else{
+			
+			//this.grdList.setCellPos(8, 0);
+			//this.grdList.showEditor(true);
+			
+		}
+	}
+};
+
+
+this.grdList_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 6 && this.dsFaxList.getColumn(this.dsFaxList.rowposition, "RESULT") == "실패"){
+		this.DivFailLog.set_visible(true);
+		this.DivFailLog.form.txaFail.set_value(this.dsFaxList.getColumn(this.dsFaxList.rowposition, "ERROR_CONTENT"));
+	}
+};
+
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+this.rdGubun_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	this.btnSearch_onclick();
+};
+
+this.DivFailLog_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.DivFailLog.set_visible(false);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsFaxList">
+        <ColumnInfo>
+          <Column id="DEST_NAME" type="STRING" size="256"/>
+          <Column id="PHONE_NUMBER" type="STRING" size="256"/>
+          <Column id="SEND_DATE" type="STRING" size="256"/>
+          <Column id="DELIVER_DATE" type="STRING" size="256"/>
+          <Column id="REPORT_RES_DATE" type="STRING" size="256"/>
+          <Column id="FAX_PAGE" type="STRING" size="256"/>
+          <Column id="ERROR_CODE" type="STRING" size="256"/>
+          <Column id="ERROR_CONTENT" type="STRING" size="256"/>
+          <Column id="RESULT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGubun">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">전체</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">성공</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="NAME">실패</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="DivFailLog.form.edCust" propid="value" datasetid="dsFaxList" columnid="DEST_NAME"/>
+      <BindItem id="item1" compid="DivFailLog.form.edNumber" propid="value" datasetid="dsFaxList" columnid="PHONE_NUMBER"/>
+    </Bind>
+  </Form>
+</FDL>

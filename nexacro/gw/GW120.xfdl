@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GW120" width="670" height="750" titletext="New Form" onload="GW120_onload">
+    <Layouts>
+      <Layout height="750" width="670">
+        <Grid id="grd_buse" taborder="0" left="9" top="11" binddataset="ds_buse" treeusebutton="use" treeusecheckbox="false" treeinitstatus="expand,all" width="268" height="690" oncellclick="grd_buse_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="222"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:NAME" edittype="tree" displaytype="treeitemcontrol" treelevel="bind:BU_LEVEL" border="0px none #dbdee2" cssclass="CssBuse_tree"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_insa" taborder="1" left="287" top="45" binddataset="ds_insa" autofittype="col" width="117" height="655" oncelldblclick="grd_insa_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="51" band="left"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="직책"/>
+                <Cell col="1" text="성명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:JIKWINM"/>
+                <Cell col="1" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="2" text="성명" left="415" top="10" width="55" height="29" background="#10aea9" color="#ffffff" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center"/>
+        <Edit id="edt_name" taborder="3" left="471" top="10" width="135" height="29" onkeydown="edt_name_onkeydown"/>
+        <Button id="btn_search" taborder="4" top="9" width="49" height="29" background="url('Img::loupe.png') no-repeat center center #3cbcb8" left="608" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="5" text="닫기" top="711" height="29" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" width="83" left="352"/>
+        <Radio id="Radio" taborder="6" left="410" top="47" width="88" height="653" innerdataset="ds_kind" codecolumn="code" datacolumn="name" color="#7fb39d" font="bold 12px/normal &quot;Gulim&quot;" index="0" text="결재자" value="01" canitemchange="Radio_canitemchange"/>
+        <Grid id="Grid_K" taborder="7" left="528" top="80" width="120" height="123" binddataset="DS_GW_K" oncelldblclick="Grid_K_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="118"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="8" text="결재자" left="528" top="53" width="120" height="30"/>
+        <Static id="Static02" taborder="9" text="합의자" left="530" top="210" width="120" height="30"/>
+        <Static id="Static03" taborder="10" text="담당자" left="530" top="370" width="120" height="30"/>
+        <Static id="Static04" taborder="11" text="최종결재자" left="530" top="535" width="120" height="30"/>
+        <Grid id="Grid_H" taborder="12" left="530" top="240" width="120" height="123" binddataset="DS_GW_H" oncelldblclick="Grid_H_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="118"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid_D" taborder="13" left="530" top="400" width="120" height="100" binddataset="DS_GW_D" oncelldblclick="Grid_D_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="118"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid_C" taborder="14" left="531" top="567" width="120" height="123" binddataset="DS_GW_C" oncelldblclick="Grid_C_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="118"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_ok" taborder="15" text="확인" top="710" height="29" font="normal bold 10pt/normal &quot;Arial&quot;" width="83" left="259" onclick="btn_ok_onclick"/>
+        <Static id="Static05" taborder="16" left="290" top="22" width="46" height="20"/>
+        <Static id="Static06" taborder="17" text="1차" left="500" top="78" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_00" taborder="18" text="2차" left="500" top="103" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_01" taborder="19" text="3차" left="500" top="127" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_02" taborder="20" text="4차" left="500" top="152" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_03" taborder="21" text="5차" left="500" top="178" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_04" taborder="22" text="1차" left="502" top="239" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_00_00" taborder="23" text="2차" left="502" top="264" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_01_00" taborder="24" text="3차" left="502" top="288" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_02_00" taborder="25" text="4차" left="502" top="313" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_03_00" taborder="26" text="5차" left="502" top="339" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_05" taborder="27" text="1차" left="503" top="398" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_00_01" taborder="28" text="2차" left="503" top="423" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_01_01" taborder="29" text="3차" left="503" top="447" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_02_01" taborder="30" text="4차" left="503" top="472" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_06" taborder="31" text="1차" left="505" top="566" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_00_02" taborder="32" text="2차" left="505" top="591" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_01_02" taborder="33" text="3차" left="505" top="615" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_02_02" taborder="34" text="4차" left="505" top="640" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06_03_02" taborder="35" text="5차" left="505" top="666" width="24" height="25" font="12px/normal &quot;Gulim&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var f_num;
+var f_fnum;
+
+var gds_userinfo = nexacro.getApplication().gds_userinfo;
+
+this.GW120_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	f_num = this.parent.p_fnum;
+	f_fnum = this.parent.p_ffnum;
+	
+	this.DS_GW_K.copyData(this.parent.p_DS_GW_K);
+	this.DS_GW_H.copyData(this.parent.p_DS_GW_H);
+	this.DS_GW_C.copyData(this.parent.p_DS_GW_C);
+	this.DS_GW_D.copyData(this.parent.p_DS_GW_D);
+	this.DS_GW_U.copyData(this.parent.p_DS_GW_U);
+
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/common/getdata_buse.jsp";
+	in_ds = "ds_buse=ds_buse";
+	out_ds = "ds_buse=ds_buse";
+	str_arg = "buse_nm=''" ;
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_buse_select", true, "P", false, this);
+	
+};
+
+this.Callback_buse_select = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+	
+	//gds_userinfo 이용해서 DS_GW_U (작성자 정보 넣어주기)
+	this.DS_GW_U.addRow();
+	
+	this.DS_GW_U.setColumn(0, 'NO', '1');
+	this.DS_GW_U.setColumn(0, 'GUBUN', '01');
+	this.DS_GW_U.setColumn(0, 'BUSECD',  gds_userinfo.getColumn(0,"BUSECD"));			
+	this.DS_GW_U.setColumn(0, 'BUSE', gds_userinfo.getColumn(0,"BUSENM")); 
+	this.DS_GW_U.setColumn(0, 'JIKWI', gds_userinfo.getColumn(0,"JIKWINM"));			
+	this.DS_GW_U.setColumn(0, 'SABUN', gds_userinfo.getColumn(0,"SABUN"));	
+	this.DS_GW_U.setColumn(0, 'NAME', gds_userinfo.getColumn(0,"NAME"));	
+	
+	//결재라인 가져오기
+	if(f_num != null && f_fnum != "117")
+	{
+		this.lfn_I_FLOW_ORDER_LOAD("01", f_num,  gds_userinfo.getColumn(0,"SABUN"), this.DS_FORMPATH, this.DS_GW_K, this.DS_GW_H, this.DS_GW_C, this.DS_GW_D);
+	}
+};
+
+this.chk_ds = function(svcId, errCode, errMsg)
+{
+
+	trace(this.DS_GW_K.saveXML());
+	if(errCode != 0)
+		alert(errMsg);
+	else
+		trace(this.DS_GW_K.saveXML());
+		trace(this.DS_GW_H.saveXML());
+		trace(this.DS_GW_C.saveXML());
+		trace(this.DS_GW_D.saveXML());
+}
+
+this.getData_insa = function(sabun,name,busecd)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/common/getdata_insa.jsp";
+	in_ds = "ds_insa=ds_insa";
+	out_ds = "ds_insa=ds_insa";
+	str_arg = "sabun='"+sabun+"' name='"+name+"' busecd='"+busecd+"'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_insa", true, "P", false,this);
+};
+
+this.Callback_insa = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}else
+	{
+		this.Static05.set_text('[' + this.ds_insa.rowcount + '명]');
+	}
+
+};
+
+this.grd_buse_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.getData_insa("","",this.ds_buse.getColumn(e.row,"CODE"));
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.edt_name.value) == false)
+	{
+		this.getData_insa("",this.edt_name.value,"");
+	}
+};
+
+this.edt_name_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13)
+	{
+		this.btn_search_onclick(null,null);
+	}
+};
+
+
+this.btn_ok_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close_chk();
+	
+	trace(this.DS_GW_K.saveXML());
+	trace(this.DS_GW_H.saveXML());
+	trace(this.DS_GW_C.saveXML());
+	trace(this.DS_GW_D.saveXML());
+	
+	this.opener.DS_GW_K.copyData(this.DS_GW_K);
+	this.opener.DS_GW_H.copyData(this.DS_GW_H);
+	this.opener.DS_GW_C.copyData(this.DS_GW_C);
+	this.opener.DS_GW_D.copyData(this.DS_GW_D);
+	
+	this.close("ok");
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close_chk();
+	
+	trace(this.DS_GW_K.saveXML());
+	trace(this.DS_GW_H.saveXML());
+	trace(this.DS_GW_C.saveXML());
+	trace(this.DS_GW_D.saveXML());
+	
+	this.opener.DS_GW_K.copyData(this.DS_GW_K);
+	this.opener.DS_GW_H.copyData(this.DS_GW_H);
+	this.opener.DS_GW_C.copyData(this.DS_GW_C);
+	this.opener.DS_GW_D.copyData(this.DS_GW_D);
+	
+	this.close();
+};
+
+this.close_chk = function()
+{
+	for(var i=0; i <= this.DS_GW_K.rowcount -1; i++)
+	{
+		for(var j=0; j <= this.DS_GW_C.rowcount -1; j++)
+		{
+			if(this.DS_GW_K.getColumn(i, "SABUN") == this.DS_GW_C.getColumn(j,"SABUN"))
+			{
+				alert("결재자에 최종결재자와 중복으로 선택된 사람이 있습니다. \n 확인해주세요.");
+				this.DS_GW_K.ClearData();
+				return;
+			}
+		}
+	}
+}
+
+//결재라인 설정
+this.grd_insa_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(this.Radio.value == "01") //결재자
+	{
+		if(gds_userinfo.getColumn(0, 'SABUN') == this.ds_insa.getColumn(e.row, 'SABUN'))
+		{
+			alert("본인은 결재라인에 설정하실 수 없습니다");
+			this.DS_GW_K.clearData();
+			return;
+		}
+		
+		if(f_num == '1' || f_num == '78' || f_num == '80') //기안관련 문서
+		{
+			if( nexacro.trim(this.ds_insa.getColumn(e.row, 'SABUN')) == 'C81002' ||
+				nexacro.trim(this.ds_insa.getColumn(e.row, 'SABUN')) == 'C12225' )
+			{
+				alert("기안관련 문서에서는 사장님, 회장님은 '최종결제란'에 설정하셔야합니다. 결재라인을 재설정 해주십시오!");
+				return;
+			}
+		
+		}
+		
+		if(this.DS_GW_K.rowcount > 0)
+		{
+			for(var k=0; k<=this.DS_GW_K.rowcount -1; k++)
+			{
+				if(this.DS_GW_K.getColumn(k, "SABUN") == this.ds_insa.getColumn(e.row,"SABUN"))
+				{
+					alert("이미 선택하신 이름입니다.\n다른 사람을 선택하여 주세요.");
+					return;
+				}					
+			}
+		}
+		
+		if(this.DS_GW_K.rowcount != "5")
+		{
+			var irow = this.DS_GW_K.addRow();
+			
+			//alert("irow ==> " + irow);
+	
+			//var num = substr("0",0,1-length(tostring((DS_GW_K.RowCount())))) + tostring((DS_GW_K.RowCount()));
+
+			this.DS_GW_K.setColumn(this.DS_GW_K.rowcount-1,"NO", irow+1);
+			this.DS_GW_K.setColumn(this.DS_GW_K.rowposition,"BUSECD", this.ds_insa.getColumn(e.row,"BUSECD"));
+			this.DS_GW_K.setColumn(this.DS_GW_K.rowposition,"BUSE", this.ds_insa.getColumn(e.row,"BUSENM"));
+			this.DS_GW_K.setColumn(this.DS_GW_K.rowposition,"JIKWI", this.ds_insa.getColumn(e.row,"JIKWINM"));
+			this.DS_GW_K.setColumn(this.DS_GW_K.rowposition,"SABUN", this.ds_insa.getColumn(e.row,"SABUN"));
+			this.DS_GW_K.setColumn(this.DS_GW_K.rowposition,"NAME", this.ds_insa.getColumn(e.row,"NAME"));
+		}
+		else
+		{
+			alert("최대 5명까지 선택가능합니다.");
+		}
+		
+		trace(this.DS_GW_K.saveXML());
+	}
+	
+	else if(this.Radio.value == "02") //합의자
+	{
+		if(this.DS_GW_H.rowcount > 0)
+		{
+			for(var k=0; k<=this.DS_GW_H.rowcount -1; k++)
+			{
+				if(this.DS_GW_H.getColumn(k, "SABUN") == this.ds_insa.getColumn(e.row,"SABUN"))
+				{
+					alert("이미 선택하신 이름입니다.\n다른 사람을 선택하여 주세요.");
+					return;
+				}					
+			}
+		}
+		
+		if(this.DS_GW_H.rowcount != "5")
+		{
+			var irow = this.DS_GW_H.addRow();
+			
+			this.DS_GW_H.setColumn(this.DS_GW_H.rowcount-1,"NO", irow+1);
+			this.DS_GW_H.setColumn(this.DS_GW_H.rowposition,"BUSECD", this.ds_insa.getColumn(e.row,"BUSECD"));
+			this.DS_GW_H.setColumn(this.DS_GW_H.rowposition,"BUSE", this.ds_insa.getColumn(e.row,"BUSENM"));
+			this.DS_GW_H.setColumn(this.DS_GW_H.rowposition,"JIKWI", this.ds_insa.getColumn(e.row,"JIKWINM"));
+			this.DS_GW_H.setColumn(this.DS_GW_H.rowposition,"SABUN", this.ds_insa.getColumn(e.row,"SABUN"));
+			this.DS_GW_H.setColumn(this.DS_GW_H.rowposition,"NAME", this.ds_insa.getColumn(e.row,"NAME"));
+		}
+		else
+		{
+			alert("최대 5명까지 선택가능합니다.");
+		}
+		
+	}
+	else if(this.Radio.value == "03") //담당자
+	{
+		if(this.DS_GW_D.rowcount > 0)
+		{
+			for(var k=0; k<=this.DS_GW_D.rowcount -1; k++)
+			{
+				if(this.DS_GW_D.getColumn(k, "SABUN") == this.ds_insa.getColumn(e.row,"SABUN"))
+				{
+					alert("이미 선택하신 이름입니다.\n다른 사람을 선택하여 주세요.");
+					return;
+				}					
+			}
+		}
+		
+		if(this.DS_GW_D.rowcount != "4")
+		{
+			var irow = this.DS_GW_D.addRow();
+			
+			this.DS_GW_D.setColumn(this.DS_GW_D.rowcount-1,"NO", irow+1);
+			this.DS_GW_D.setColumn(this.DS_GW_D.rowposition,"BUSECD", this.ds_insa.getColumn(e.row,"BUSECD"));
+			this.DS_GW_D.setColumn(this.DS_GW_D.rowposition,"BUSE", this.ds_insa.getColumn(e.row,"BUSENM"));
+			this.DS_GW_D.setColumn(this.DS_GW_D.rowposition,"JIKWI", this.ds_insa.getColumn(e.row,"JIKWINM"));
+			this.DS_GW_D.setColumn(this.DS_GW_D.rowposition,"SABUN", this.ds_insa.getColumn(e.row,"SABUN"));
+			this.DS_GW_D.setColumn(this.DS_GW_D.rowposition,"NAME", this.ds_insa.getColumn(e.row,"NAME"));
+		}
+		else
+		{
+			alert("최대 4명까지 선택가능합니다.");
+		}
+		
+		
+	}
+	else if(this.Radio.value == "04") //최종결재자
+	{
+		if(this.DS_GW_C.rowcount > 0)
+		{
+			for(var k=0; k<=this.DS_GW_C.rowcount -1; k++)
+			{
+				if(this.DS_GW_C.getColumn(k, "SABUN") == this.ds_insa.getColumn(e.row,"SABUN"))
+				{
+					alert("이미 선택하신 이름입니다.\n다른 사람을 선택하여 주세요.");
+					return;
+				}					
+			}
+		}
+		
+		if(f_num =='1' || f_num == '78' || f_num == '80') // 기안관련 문서, 전무님, 이사님, 정용환
+		{
+			if( nexacro.trim(this.ds_insa.getColumn(e.row, 'SABUN')) == 'C81001' &&
+				nexacro.trim(this.ds_insa.getColumn(e.row, 'SABUN')) == 'C12225' &&
+				nexacro.trim(this.ds_insa.getColumn(e.row, 'SABUN')) == 'C81002')
+			{
+				alert("기안관련 문서에서는 사장님, 회장님을 제외한 임원(이사,상무,전무,부사장)님은 '결재자란'에 설정하셔야합니다. 결재라인을 재설정 해주십시오!");
+				return;
+			}
+		}
+		
+		if(f_num =='1' || f_num == '78' || f_num == '80') // 기안관련 문서, 전무님, 이사님, 정용환
+		{
+			if( nexacro.trim(this.ds_insa.getColumn(e.row, 'SABUN')) == 'C12225')
+			{
+				alert("계약관련 문서에서는 회장님을 '제외'하고 결재라인을 설정하셔야합니다. 결재라인을 재설정 해주십시오!");
+				return;
+			}
+		}
+		
+		if(this.DS_GW_C.rowcount != "5")
+		{
+			var irow = this.DS_GW_C.addRow();
+			
+			this.DS_GW_C.setColumn(this.DS_GW_C.rowcount-1,"NO", irow+1);
+			this.DS_GW_C.setColumn(this.DS_GW_C.rowposition,"BUSECD", this.ds_insa.getColumn(e.row,"BUSECD"));
+			this.DS_GW_C.setColumn(this.DS_GW_C.rowposition,"BUSE", this.ds_insa.getColumn(e.row,"BUSENM"));
+			this.DS_GW_C.setColumn(this.DS_GW_C.rowposition,"JIKWI", this.ds_insa.getColumn(e.row,"JIKWINM"));
+			this.DS_GW_C.setColumn(this.DS_GW_C.rowposition,"SABUN", this.ds_insa.getColumn(e.row,"SABUN"));
+			this.DS_GW_C.setColumn(this.DS_GW_C.rowposition,"NAME", this.ds_insa.getColumn(e.row,"NAME"));
+		}
+		else
+		{
+			alert("최대 5명까지 선택가능합니다.");
+		}
+	}
+	
+};
+
+this.Grid_K_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.DS_GW_K.deleteRow(e.row);
+};
+
+this.Grid_H_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(f_fnum == '7' || f_fnum == '2') //편집관리, 근태관리
+	{
+		alert('합의자 : 관리자가 지정했으므로 더 이상 편집할 수 없습니다.');
+		return;
+	}
+	else
+	{
+		this.DS_GW_H.deleteRow(e.row);
+	}
+};
+
+this.Grid_D_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.DS_GW_D.deleteRow(e.row);
+};
+
+this.Grid_C_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(f_fnum == '2' || f_fnum == '7')
+	{
+		alert('최종결재자 : 관리자가 지정했으므로 더 이상 편집할 수 없습니다.');
+		return;
+	}
+	else
+	{
+		this.DS_GW_C.deleteRow(e.row);
+	}
+};
+
+this.Radio_canitemchange = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	var strckName = "";
+	
+	if (f_fnum == "6" ||f_fnum == "7" )
+	{
+		if (f_fnum == "6")
+			strckName = "지급결의서";
+		else if (f_fnum == "7")
+			strckName = "편집관리";
+		
+		if(this.Radio.value === '02')
+		{
+			alert("죄송합니다.\n"+ strckName +"에서는 합의자를 선택하실 수 없습니다.");
+			this.Radio.value = "01";
+			return;
+		}				
+	}
+	
+	if (f_num == "13" ||f_num == "10"||f_num == "18"||f_num == "22"||f_num == "23"||f_num == "24"||f_num == "25")
+	{
+		if (f_num == "13")
+			strckName = "출장 비용 신청서 ";
+		else if (f_num == "10")
+			strckName = "경조금신청서 ";
+		else if (f_num == "18")
+			strckName = "사진구입신청서 ";
+		else if (f_num == "22")
+			strckName = "출고증 ";
+		else if (f_num == "23")
+			strckName = "물품구매신청서(사무)";
+		else if (f_num == "24")
+			strckName = "물품구매신청서(PC)";
+		else if (f_num == "25")
+			strckName = "물품구매신청서(수리)";
+			
+		if(this.Radio.value == "04" )  
+		{
+			alert("죄송합니다.\n"+ strckName +"에서는 최종결재자를 선택하실 수 없습니다.");
+			this.Radio.value = "01";
+			return;
+		}
+	}
+};
+
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_insa">
+        <ColumnInfo>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSENM" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="JIKWINM" type="STRING" size="256"/>
+          <Column id="LEVEL_CD" type="STRING" size="256"/>
+          <Column id="LEVEL_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_buse">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+          <Column id="BU_LEVEL" type="STRING" size="256"/>
+          <Column id="BU_NAME" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="256"/>
+          <Column id="DECISIONLINE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_kind">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="2"/>
+          <Column id="name" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="name">결재자</Col>
+          </Row>
+          <Row>
+            <Col id="code">02</Col>
+            <Col id="name">합의자</Col>
+          </Row>
+          <Row>
+            <Col id="code">03</Col>
+            <Col id="name">담당자</Col>
+          </Row>
+          <Row>
+            <Col id="code">04</Col>
+            <Col id="name">최종결재자</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="DS_GW_K">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_H">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_D">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_C">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_U">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="GUBUN" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_FORMPATH">
+        <ColumnInfo>
+          <Column id="GUBUN" type="STRING" size="256"/>
+          <Column id="F_NUM" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="F_PATH1" type="STRING" size="256"/>
+          <Column id="F_PATH2" type="STRING" size="256"/>
+          <Column id="F_PATH3" type="STRING" size="256"/>
+          <Column id="F_PATH4" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="2.0">
+  <Application id="Application_Desktop" screenid="Desktop_screen" onload="Application_onload" onerror="Application_onerror" onbeforeexit="Application_onbeforeexit" licenseurl="../nexacro17_client_license.xml">
+    <Layout>
+      <MainFrame id="mainframe" showtitlebar="true" showstatusbar="false" left="0" top="0" width="1500" height="720" titletext="천재교과서 통합관리" openstatus="maximize" showtitleicon="true" border="1px solid #000000">
+        <VFrameSet id="VFrameSet" separatesize="0,38,*" showcascadetitletext="false" showtitlebar="false" showtitleicon="false" onsyscommand="mainframe_VFrameSet_onsyscommand">
+          <Frames>
+            <ChildFrame id="LoginFrame" formurl="" showtitlebar="false" showtitleicon="false" dragmovetype="none"/>
+            <ChildFrame id="TopFrame" showtitlebar="false" showtitleicon="false" dragmovetype="none"/>
+            <HFrameSet id="HFrameSet" separatesize="0,*" showcascadetitletext="false" showtitlebar="false" showtitleicon="false">
+              <Frames>
+                <ChildFrame id="LeftFrame" showtitlebar="false" showtitleicon="false" dragmovetype="none"/>
+                <VFrameSet id="VFrameSet" separatesize="26,*,18" showcascadetitletext="false" showtitlebar="false" showtitleicon="false">
+                  <Frames>
+                    <ChildFrame id="MdiFrame" formurl="" showtitlebar="false" showtitleicon="false" dragmovetype="none" showcascadetitletext="true"/>
+                    <FrameSet id="WorkFrame" restorechildpositiontype="keepmaximizeposition" showcascadetitletext="true" showtitlebar="false" showtitleicon="false" background="url('theme://images/main_bg.jpg') no-repeat center center" right="20">
+                      <Frames/>
+                    </FrameSet>
+                    <ChildFrame id="BottomFrame" showtitlebar="false" showtitleicon="false" dragmovetype="none"/>
+                  </Frames>
+                </VFrameSet>
+              </Frames>
+            </HFrameSet>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+    <Style url="xcssrc::erpCss.xcss"/>
+    <Style url="xcssrc::etcCss.xcss"/>
+    <Style url="xcssrc::mkCss.xcss"/>
+    <Style url="xcssrc::gwCss.xcss"/>
+    <Style url="xcssrc::sdCss.xcss"/>
+    <Style url="xcssrc::pdCss.xcss"/>
+    <Style url="xcssrc::hrCss.xcss"/>
+  </Application>
+  <Script type="xscript5.1"><![CDATA[/**
+ * 통합정보시스템 고도화 구축
+ * @FileName    chtxt.xadl
+ * @Creator     UI공통
+ * @CreateDate  2023.02.06
+ * @Desction    Application
+ ************** 소스 수정 이력 ***********************************************
+ * date                Modifier                Description
+ *******************************************************************************
+ * 2023.02.06          UI공통                 최초 생성
+ *******************************************************************************
+ */
+
+this.gfn_getUrl = function(svc)
+{
+	/*
+	 *	서비스에 등록한 URL 주소 리턴
+	 */
+
+	var rt_value = nexacro.getEnvironment().services[svc].url;
+	
+	return rt_value;
+}
+
+/************************************************************************************************
+ * Application 변수 선언 영역
+ ************************************************************************************************/
+this.gv_VFrameSet   = null;
+this.gv_LoginFrame  = null;
+this.gv_TopFrame    = null;
+this.gv_HFrameSet   = null;
+this.gv_LeftFrame   = null;
+this.gv_VFrameSet1  = null;
+this.gv_MdiFrame    = null;
+this.gv_WorkFrame   = null;
+this.gv_BottomFrame = null;
+this._gv_LoadForm = new Array(); // Load된 Frame명 배열
+this.objExtCommon = {};
+
+/************************************************************************************************
+ * Application EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @class onload 시 처리내역
+ */
+this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventInfo)
+{
+	// 1. Frame 변수 저장
+	this.gv_VFrameSet	 = obj.mainframe.VFrameSet;
+	this.gv_LoginFrame	 = obj.mainframe.VFrameSet.LoginFrame;
+	this.gv_TopFrame     = obj.mainframe.VFrameSet.TopFrame;
+	this.gv_HFrameSet    = obj.mainframe.VFrameSet.HFrameSet;
+	this.gv_LeftFrame    = obj.mainframe.VFrameSet.HFrameSet.LeftFrame;
+	this.gv_VFrameSet1   = obj.mainframe.VFrameSet.HFrameSet.VFrameSet;
+	this.gv_MdiFrame     = obj.mainframe.VFrameSet.HFrameSet.VFrameSet.MdiFrame;
+	this.gv_WorkFrame    = obj.mainframe.VFrameSet.HFrameSet.VFrameSet.WorkFrame;
+	this.gv_BottomFrame	 = obj.mainframe.VFrameSet.HFrameSet.VFrameSet.BottomFrame;
+	
+	// 2. 웹 접속 (웹 브라우저)
+	if (system.navigatorname != "nexacro") {
+		obj.mainframe.set_showtitlebar(false);
+	} else { // Runtime 접속 (전용 브라우저)
+		obj.mainframe.set_showtitlebar(true);
+		var height = obj.mainframe.height;
+		var titlebarheight = parseInt(obj.mainframe.titlebarheight);
+		obj.mainframe.set_height(height + titlebarheight); // titlebar 높이만큼 추가		
+	}
+	
+	// 5. 로그인 화면 연결
+	this.gv_VFrameSet.set_separatesize("*,0,0");
+	this.gv_LoginFrame.set_formurl("Main::Login.xfdl");
+};
+
+/**
+ * @class onerror 시 처리내역
+ */
+this.Application_onerror = function(obj:nexacro.Application,e:nexacro.ErrorEventInfo)
+{
+	var msg = "\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Application_onerror!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+			+ "\ne.statuscode : " + e.statuscode
+			+ "\ne.errormsg : " + e.errormsg
+			+ "\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+	trace(msg);
+};
+
+/**
+ * @class Application onbeforeexit 시 처리내역
+ */
+this.Application_onbeforeexit = function(obj:nexacro.Application,e:nexacro.ExitEventInfo)
+{
+	if (obj.gv_Exitflag == "Y") {		
+		return;
+	} else {
+		// ※ html5 제약 사항으로 logout 서비스 실행 불가
+		return "천재교과서 통합관리 시스템을 종료하시겠습니까?";
+	}
+};
+
+/**
+ * @class mainframe onsize 시 처리내역
+ */
+this.mainframe_onsize = function(obj:nexacro.MainFrame,e:nexacro.SizeEventInfo)
+{
+
+};
+
+
+this.mainframe_VFrameSet_onsyscommand = function(obj:nexacro.VFrameSet,e:nexacro.SysCommandEventInfo)
+{
+	
+};
+
+]]></Script>
+</ADL>

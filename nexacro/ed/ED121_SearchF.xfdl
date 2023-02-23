@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED121_SearchF" width="350" height="250" titletext="New Form" onload="ED121_SearchF_onload" onclose="ED121_SearchF_onclose">
+    <Layouts>
+      <Layout height="250" width="350">
+        <Button id="btn_close" taborder="0" text="닫기" left="145" top="210" height="29" right="135" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Static id="Static00" taborder="1" text="성명" left="13" top="26" width="67" height="29" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00" taborder="2" text="주민번호" left="13" top="70" width="67" height="29" background="#ffffff" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9" border="2px solid #10aea9"/>
+        <Static id="Static00_01" taborder="3" text="관련부서" left="13" top="114" width="67" height="29" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <CheckBox id="chk_Univ" taborder="4" text="서울대출신" left="26" top="166" width="88" height="17"/>
+        <CheckBox id="chk_Permite" taborder="5" text="미승인저자" left="115" top="166" width="90" height="17"/>
+        <Button id="btn_search" taborder="6" top="160" width="85" height="29" right="50" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Edit id="edt_name" taborder="7" left="88" top="26" width="212" height="29" text="\"/>
+        <Combo id="cb_section" taborder="8" text="Combo00" left="88" top="114" width="212" height="29" innerdataset="dsSection" datacolumn="SECTION_NAME" codecolumn="SECTION_CODE"/>
+        <MaskEdit id="edt_jumin" taborder="9" left="88" top="70" width="212" height="29" format="###### - #######"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+
+this.ED121_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//관련부서 가져오기
+	this.dsSection.copyData(this.parent.dsParam1);
+	this.cb_section.set_innerdataset("dsSection");
+	
+	//저자 정보
+	this.dsAuthor.copyData(this.parent.dsParam2);
+	
+	this.edt_name.setFocus();
+	
+};
+
+//조회버튼 클릭 시
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var chk1, chk2;
+	var textVal = this.edt_name.text.replace(/^\s+|\s+$/g, '');
+	
+	if(textVal.length == 0)
+	{
+		this.alert("성명을 입력하세요");
+		this.edt_name.setFocus();
+	}
+	
+	if(this.chk_Univ.value == true) chk1 = 1;
+	else chk1 = "";
+	
+	if(this.chk_Permite.value == true) chk2 = 1;
+	else chk2 = "";
+	
+	var str_url = "JSP/ed/ed121f_author.jsp";
+	var inds = "dsAuthor=dsAuthor";
+	var outds = "dsAuthor=dsAuthor";
+	var strArg = " ATHR_JUMINNO=" + this.edt_jumin.text + 
+				 " ATHR_NAME=" + this.edt_name.text +
+				 " SECTION_CODE=" + this.cb_section.text + 
+				 " CHECK1=" + chk1 +
+				 " CHECK2=" + chk2 + 
+				 " COMPETENCE=1" +	//페이지권한
+				 " SABUN=C20141" 
+	
+	this.gfn_TransactionP("search",str_url, inds, outds, strArg, "Callback_search", true, "P", false, this);
+	
+};
+
+this.Callback_search = function(id, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}else
+	{
+		this.parent.dsParam2.copyData(this.dsAuthor);
+		this.close();
+	}
+}
+
+this.ED121_SearchF_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	this.parent.dsParam2.copyData(this.dsAuthor);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSection"/>
+      <Dataset id="dsAuthor"/>
+    </Objects>
+  </Form>
+</FDL>

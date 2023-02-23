@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED181F" width="1280" height="720" titletext="New Form" onload="ED181F_onload" onsize="ED181F_onsize" ontimer="ED181F_ontimer">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00_00" taborder="0" text="조회일자" left="27" top="27" width="100" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="1" left="132" top="27" width="130" height="30"/>
+        <Calendar id="cal_Edate" taborder="2" left="296" top="27" width="130" height="30"/>
+        <Static id="Static00" taborder="3" text="~" left="274" top="29" width="22" height="29"/>
+        <Button id="btn_search" taborder="4" text="조회" top="26" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="397" onclick="Div00_btn_search_onclick"/>
+        <Button id="btn_print" taborder="5" text="출력" top="26" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="325"/>
+        <MaskEdit id="medt_juminNo" taborder="6" left="553" top="27" width="120" height="30" format="###### - #@@@@@#" type="string" trimtype="both" enable="true" onkeydown="fn_localKeyDown" oneditclick="btn_name_onclick"/>
+        <CheckBox id="chk_taxCalculater" taborder="7" text="세금재계산" left="690" top="27" width="109" height="30"/>
+        <Grid id="Grid00" taborder="8" left="21" top="71" width="95%" height="629" binddataset="ds_list">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="250"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="300"/>
+                <Column size="70"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="27"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="성명"/>
+                <Cell col="1" text="주민등록번호"/>
+                <Cell col="2" text="주소"/>
+                <Cell col="3" text="지급일자"/>
+                <Cell col="4" text="관리카드번호"/>
+                <Cell col="5" text="소득사항"/>
+                <Cell col="6" text="수량"/>
+                <Cell col="7" text="단가"/>
+                <Cell col="8" text="금액"/>
+                <Cell col="9" text="소득세"/>
+                <Cell col="10" text="주민세"/>
+                <Cell col="11" text="완료일자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ATHR_NAME" suppress="1" textAlign="center"/>
+                <Cell col="1" text="bind:ATHR_JUMINNO" suppress="2" textAlign="center" edittype="mask" maskeditmaskchar="_" maskeditformat="######-#######" displaytype="mask" autosizerow="default" maskeditlimitbymask="both"/>
+                <Cell col="2" text="bind:ATHR_HOMEADDR" suppress="3" wordWrap="char" autosizerow="default"/>
+                <Cell col="3" text="bind:EDITPAYDATE" displaytype="date" subsumtext="      " cssclass="expr:dataset.getRowLevel(currow)==1? 'edbusetotal' : ''"/>
+                <Cell col="4" text="bind:DOCUMENT_ID" cssclass="expr:dataset.getRowLevel(currow)==1? 'edbusetotal' : ''"/>
+                <Cell col="5" text="bind:EDITCONTENT" cssclass="expr:dataset.getRowLevel(currow)==1? 'edbusetotal' : ''" subsumtext="개인합계" textAlign="center"/>
+                <Cell col="6" text="bind:EDIT_QTY" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1? 'edbusetotal' : ''"/>
+                <Cell col="7" text="bind:EDIT_UNITCOST" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1? 'edbusetotal' : ''"/>
+                <Cell col="8" text="bind:EDIT_AMOUNT" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1? 'edbusetotal' : ''"/>
+                <Cell col="9" text="bind:INCOMETAX" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1? 'edbusetotal' : ''"/>
+                <Cell col="10" text="bind:RESIDENTTAX" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1? 'edbusetotal' : ''"/>
+                <Cell col="11" text="bind:FINISHDATE" displaytype="date" subsumtext="     " cssclass="expr:dataset.getRowLevel(currow)==1? 'edbusetotal' : ''"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="5"/>
+                <Cell col="5" text="지급합계"/>
+                <Cell col="6" expr="dataset.getSum('EDIT_QTY')" displaytype="currency" textAlign="right"/>
+                <Cell col="7" expr="dataset.getSum('EDIT_UNITCOST')" displaytype="currency" textAlign="right"/>
+                <Cell col="8" expr="dataset.getSum('EDIT_AMOUNT')" displaytype="currency" textAlign="right"/>
+                <Cell col="9" expr="dataset.getSum('INCOMETAX')" displaytype="currency" textAlign="right"/>
+                <Cell col="10" expr="dataset.getSum('RESIDENTTAX')" displaytype="currency" textAlign="right"/>
+                <Cell col="11"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_name" taborder="9" text="주민번호" left="450" top="27" width="100" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_name_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="medt_juminNo" propid="value" datasetid="dsOutOrdDtl" columnid="ATHR_JUMINNO2"/>
+    </Bind>
+    <Objects>
+      <Dataset id="ds_list" keystring="ATHR_NAME+ATHR_JUMINNO+ATHR_HOMEADDR">
+        <ColumnInfo>
+          <Column id="DOCUMENT_ID" type="STRING" size="256"/>
+          <Column id="EDITPAYDATE" type="STRING" size="256"/>
+          <Column id="FINISHDATE" type="STRING" size="256"/>
+          <Column id="WITHHOLDDATE" type="STRING" size="256"/>
+          <Column id="ATHR_JUMINNO" type="STRING" size="256"/>
+          <Column id="ATHR_NAME" type="STRING" size="256"/>
+          <Column id="ATHR_HOMEADDR" type="STRING" size="256"/>
+          <Column id="EDIT_QTY" type="INT" size="256" prop="SUM"/>
+          <Column id="EDIT_UNITCOST" type="INT" size="256" prop="SUM"/>
+          <Column id="EDIT_AMOUNT" type="INT" size="256" prop="SUM"/>
+          <Column id="INCOMETAX" type="INT" size="256" prop="SUM"/>
+          <Column id="RESIDENTTAX" type="INT" size="256" prop="SUM"/>
+          <Column id="EDITCONTENT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var rdUrl,rdParam,sSelect;
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+this.ED181F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+//주민번호 찾기
+this.btn_name_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("popuppAuthor", "", "ed::EDAuthor_SearchF.xfdl", "", this, 10, 58, 500, 550);
+};
+
+//찾은 저자 데이터 넣어주기
+this.fn_setAuthorValue = function(rtArray)
+{
+	this.medt_juminNo.set_value(rtArray[1]);
+}
+
+this.chk_value = function()
+{
+	if(this.cal_Sdate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Sdate.dropdown();
+		return false;
+	}	
+	
+	if(this.cal_Edate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Edate.dropdown();
+		return false;
+	}
+
+	return true;
+}
+
+//세금재계산
+this.taxCalculater = function()
+{
+	var strArg = "SDATE=" + nexacro.wrapQuote(this.cal_Sdate.value)
+			  + " EDATE=" + nexacro.wrapQuote(this.cal_Edate.value);
+				   
+	this.gfn_TransactionP("calculater","JSP/ed/ed180f_taxcalculater.jsp", "", "", strArg, "fnCallback", false, "P", false, this);	
+}
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.chk_value())
+	{
+		if(this.chk_taxCalculater.value == true)
+			this.taxCalculater();
+		
+		var inds = "ds_list=ds_list";
+		var outds = "ds_list=ds_list";
+		var strArg = "SDATE=" + nexacro.wrapQuote(this.cal_Sdate.value)
+				   + " EDATE=" + nexacro.wrapQuote(this.cal_Edate.value)
+				   + " JUMINNO=" + nexacro.wrapQuote(this.medt_juminNo.value);
+					   
+		this.gfn_TransactionP("calculater","JSP/ed/ed181f_list.jsp", inds, outds, strArg, "fnSearchCallback", true, "P", false, this);
+	}
+};
+
+this.fnSearchCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else if(this.ds_list.rowcount < 1)
+		alert("조회된 데이터가 없습니다.");
+}
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.chk_value())
+	{
+		if(this.chk_taxCalculater.value == true)
+			this.taxCalculater();
+			
+		var juminNo = '';
+	
+		if(this.medt_juminNo.value != null)
+			juminNo = this.medt_juminNo.value;
+		
+		rdUrl = gv_urlMrd + "/ed/ED181.mrd";
+		rdParam  = "/ragentpath ["+ gv_urlRdDataServer +"]" +
+				   " /rp ["+ this.cal_Sdate.value + "]["+ this.cal_Edate.value +"]["+ juminNo +"]";
+
+		this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+	}	
+};
+
+this.ED181F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.ED181F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.Grid00);
+};
+
+]]></Script>
+  </Form>
+</FDL>

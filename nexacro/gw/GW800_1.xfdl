@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GW800_1" width="610" height="100" titletext="New Form" onload="GW800_1_onload">
+    <Layouts>
+      <Layout height="100" width="610">
+        <Static id="Static00" taborder="0" left="5" top="5" width="600" height="90" background="#ededed" border="1px solid #dddddd"/>
+        <Calendar id="cald_begin_date" taborder="1" left="110" top="24" width="140" height="26"/>
+        <Calendar id="cald_end_date" taborder="2" left="310" top="24" width="140" height="26"/>
+        <Edit id="edt_payeename" taborder="3" left="110" top="60" width="140" height="26"/>
+        <Button id="btn_search" taborder="4" text="조회" left="474" top="24" width="50" height="26" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="5" text="닫기" left="534" top="24" width="50" height="26" onclick="btn_close_onclick"/>
+        <Static id="Static01" taborder="6" text="일자구간" left="40" top="24" width="58" height="26" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static01_00" taborder="7" text="수취인" left="40" top="60" width="58" height="26" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static01_01" taborder="8" text="~" left="260" top="24" width="40" height="26" textAlign="center" font="normal 12pt/normal &quot;Arial&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+this.GW800_1_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate1 = new nexacro.Date();
+	var endDate = Eco.date.getMaskFormatString(objDate1, "yyyyMMdd");
+	objDate1.addDate(-30);
+	var beginDate = Eco.date.getMaskFormatString(objDate1, "yyyyMMdd");	
+	
+	this.cald_begin_date.set_value(beginDate);
+	this.cald_end_date.set_value(endDate);
+	this.cald_begin_date.setFocus();
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("cancel");
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.cald_begin_date.text == null || this.cald_end_date.text == null)
+	{
+		alert("날짜구간을 확인하세요");
+		return;
+	}
+	this.dsCPostMst.clearData();
+	var strUrl = "JSP/gw/SQL_GW800_SELECT.jsp";
+	var strDs = "dsCPostMst=dsCPostMst";
+	var strArg = " start="+ nexacro.wrapQuote(' start');
+	strArg += " prepareCall="+ nexacro.wrapQuote(' ITOP.PKG_COMMON_NEWPOST.PROC_MST_SELECT');
+	strArg += " SABUN =" + nexacro.wrapQuote(this.parent.gv_sabun);
+	strArg += " BEGIN_DATE =" + nexacro.wrapQuote(this.cald_begin_date.value);
+	strArg += " END_DATE =" + nexacro.wrapQuote(this.cald_end_date.value);	
+	strArg += " PAYEE_NAME =" + nexacro.wrapQuote(this.edt_payeename.value);
+	
+	this.gfn_TransactionP("SelectIsMstSearch", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+	
+};
+
+this.fnCallback = function(trid, ErrorCode, Error)
+{
+	if(ErrorCode == -1 )
+		alert(Error + "\r\n이 화면을 캡쳐한 후 전산실로 문의하세요");
+
+
+	if(this.dsCPostMst.rowcount == 0) 
+		alert("조회된 자료가 없습니다");
+	else
+	{
+		this.opener.dsPostMst.copyData(this.dsCPostMst);
+		this.opener.dsPostDst.clearData();
+		this.opener.dsBookList.clearData();
+		this.close();
+	}
+}
+]]></Script>
+    <Objects>
+      <Dataset id="dsCPostMst">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="POST_MST_DATE" type="STRING" size="256"/>
+          <Column id="POST_MST_NO" type="STRING" size="256"/>
+          <Column id="POST_MST_ID" type="STRING" size="256"/>
+          <Column id="DELETE_GUBUN" type="STRING" size="256"/>
+          <Column id="DELETEDATETIME" type="STRING" size="256"/>
+          <Column id="GUBUN_NAME" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="PRINT_GUBUN" type="STRING" size="256"/>
+          <Column id="PRINT_GUBUN_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

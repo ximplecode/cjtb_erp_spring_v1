@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkDtlMain" width="1285" height="600" scrolltype="none" ontimer="MkMain_ontimer" onsize="MkMain_onsize" onload="MkMain_onload" titletext="필름 입/출고 현황">
+    <Layouts>
+      <Layout height="600" width="1285">
+        <Grid id="grdList" taborder="0" left="0" top="0" binddataset="dsList1" autofittype="none" width="100.00%" height="100.00%">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="99"/>
+                <Column size="358"/>
+                <Column size="106"/>
+                <Column size="106"/>
+                <Column size="106"/>
+                <Column size="66"/>
+                <Column size="64"/>
+                <Column size="200"/>
+                <Column size="99"/>
+                <Column size="99"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="33"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="발주일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="판형" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="용도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" text="규격" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="색도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="CTP" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="인쇄처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="8" text="출고일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="9" text="입고일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ORDMST_DATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="####-##-##" editinputtype="normal" maskedittype="string" calendardateformat="yyyy-MM-dd" suppress="1" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" displaytype="mask"/>
+                <Cell col="1" text="bind:BOOKMST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="2" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="2" text="bind:PLT_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="3" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="3" text="bind:USE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="4" text="bind:DTL_PAGE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="5" text="bind:ORDDTL_TONE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="6" text="bind:CTP" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="7" text="bind:CUST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="8" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" text="bind:ORDDTL_FILMOUTDATE" suppress="3" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="####-##-##" calendardateformat="yyyy-MM-dd" displaytype="mask" maskedittype="string"/>
+                <Cell col="9" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" text="bind:ORDDTL_FILMINDATE" suppress="3" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="####-##-##" calendardateformat="yyyy-MM-dd" displaytype="mask" maskedittype="string"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+var rdGubunChk;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+}
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+	
+};
+
+
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

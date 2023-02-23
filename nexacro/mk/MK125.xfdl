@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="용지입고현황" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Static id="Static02" taborder="0" text="용지입고현황" left="12" top="10" width="346" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnPrt" taborder="9" text="출력" top="49" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="0.77%" onclick="btnPrt_onclick"/>
+        <Button id="btnSearch" taborder="8" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="49" onclick="btnSearch_onclick" right="btnPrt:7" width="80"/>
+        <Combo id="cbCustNm" taborder="4" top="33" height="35" right="btnSearch:15" width="233" innerdataset="ds_mk_Cust" datacolumn="CUST_NAME" codecolumn="CUST" onitemchanged="cbCustNm_onitemchanged"/>
+        <Edit id="edSCustCd" taborder="3" top="33" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="cbCustNm:3" width="88" onchanged="edSCustCd_onchanged" maxlength="4"/>
+        <Static id="stOrdCust" taborder="12" text="발주처" top="33" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="edSCustCd:3" width="85"/>
+        <Calendar id="calEDate" taborder="2" top="33" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="stOrdCust:3" width="140" onkeydown="LocalFctn_OnKeyDown"/>
+        <Calendar id="calSDate" taborder="1" top="33" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="calEDate:3" width="140" onkeyup="LocalFctn_OnKeyDown"/>
+        <Static id="stInDate" taborder="10" text="입고일자" top="33" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="calSDate:3" width="85"/>
+        <ImageViewer id="ImgClose01" taborder="11" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Radio id="rdGubun" taborder="7" top="btnSearch:-16" height="35" innerdataset="dsGubun" codecolumn="CODE" datacolumn="NAME" direction="vertical" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" background="lightsteelblue" color="white" index="0" text="단가 '0'인 건  " value="1" right="btnSearch:15" width="371" fittocontents="none" wordSpacing="20px" padding="0px 0px 0px 30px" onitemchanged="rdGubun_onitemchanged"/>
+        <Combo id="cbPprNm" taborder="6" top="73" height="35" right="rdGubun:3" width="233" innerdataset="ds_mk_Paper" datacolumn="PPR_NAME" codecolumn="PPR_CODE" onitemchanged="cbPprNm_onitemchanged"/>
+        <Edit id="edPprCd" taborder="5" top="73" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="cbPprNm:3" width="88" maxlength="4" onchanged="edPprCd_onchanged"/>
+        <Static id="stPpr" taborder="13" text="용지코드" top="73" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="edPprCd:3" width="85"/>
+        <Static id="stsmallSub" taborder="14" text="(입고일자별)" left="13" top="64" width="279" height="42" font="bold 24px/normal &quot;함초롬바탕 확장B&quot;" color="#7fb39d"/>
+        <Div id="DivGrd" taborder="15" left="11" top="122" width="98.85%" bottom="2">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerDML, vPerDel;
+var vStr;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var sCust_Gubn = "40";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerDML = "U";
+	vPerDel = "D";
+	
+	if(vPerSel = "1"){
+		var d = new Date(); 
+		var strtoDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");							//오늘날짜 setting
+		var strPreDay = Eco.date.getMaskFormatString(Eco.date.getFirstDate(d), "yyyyMMdd"); //이번달 1일 setting
+		
+		this.calSDate.set_value(strPreDay);
+		this.calEDate.set_value(strtoDay);
+		
+		//발주처 정보 가져오기
+		this.gfn_TransactionP("select", "JSP/mk/Cust_Select.jsp", "ds_mk_Cust=ds_mk_Cust", "ds_mk_Cust=ds_mk_Cust", "", "", false, "S", false, this);
+		this.ds_mk_Cust.filter("CUST_GUBN=='00' || CUST_GUBN=='" + sCust_Gubn + "'");
+		
+		//용지 데이터 가져오기
+		this.gfn_TransactionP("select", "JSP/mk/getData_paper.jsp", "ds_mk_Paper=ds_mk_Paper", "ds_mk_Paper=ds_mk_Paper", "", "", false, "S", false, this); 
+		
+		
+		this.DivGrd.set_url("mk::MK125_1.xfdl");
+		this.dsPprInList.set_keystring("G:PPRINMST_DATE,PPRINMST_NO");
+		
+		this.calSDate.setFocus();
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	//this.lfn_grdAutofit(this.DivGrd.form.grdList);
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" )
+	{
+		alert("입고일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value == "" )
+	{
+		alert("입고일자를 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	in_ds 	= "dsPprInList=dsPprInList";
+	out_ds 	= "dsPprInList=dsPprInList";
+	
+	if(Eco.isUndefined(this.edSCustCd.value) == true){
+		vCustCd = "";
+		sCust_Gubn = "";
+	}else if(this.edSCustCd.value == "0000"){
+		vCustCd = "";
+		sCust_Gubn = "";
+	}else {
+		vCustCd = this.edSCustCd.value;
+		sCust_Gubn = "40";
+	}
+	
+	if(this.rdGubun.value == 1)
+		str_url = "JSP/mk/mk125_Select1.jsp";
+	else if(this.rdGubun.value == 2)
+		str_url = "JSP/mk/mk125_Select2.jsp";
+	else
+		str_url = "JSP/mk/mk125_Select3.jsp";
+	
+	str_arg = "SDATE=" + nexacro.wrapQuote(this.calSDate.value) +
+	          " EDATE=" + nexacro.wrapQuote(this.calEDate.value) + 
+	          " CUST_GUBN=" +nexacro.wrapQuote( sCust_Gubn) +
+			  " CUST_CODE=" +nexacro.wrapQuote( vCustCd ) +
+			  " PPR_CODE=" +nexacro.wrapQuote(this.edPprCd.value);
+	 
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+};
+
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		
+		if(this.dsPprInList.rowcount == 0){
+			alert("조회된 자료가 없습니다.");
+			return false;
+		}
+	}
+};
+
+//레포트 출력 이벤트
+this.btnPrt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" )
+	{
+		alert("입고일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value == "" )
+	{
+		alert("입고일자를 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	var vCustCd;
+	var vPprCd;
+	
+	if(Eco.isUndefined(this.edSCustCd.value) == true){
+		vCustCd = "";
+		sCust_Gubn = "";
+	}else if(this.edSCustCd.value == "0000"){
+		vCustCd = "";
+		sCust_Gubn = "";
+	}else {
+		vCustCd = this.edSCustCd.value;
+		sCust_Gubn = "40";
+	}
+	
+	if(Eco.isUndefined(this.edPprCd.value) == true){
+		vPprCd = "";
+	}
+	
+	var rdUrl = gv_svcUrl + "rpt/mk/MK125_"+this.rdGubun.value+".mrd";
+    var rdParam = "/rp [" + this.calSDate.value + "] [" + this.calEDate.value + "] [" + sCust_Gubn + "] [" +  vCustCd + "] [" +  vPprCd + "]";  
+	
+	this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+this.edSCustCd_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	if(this.edSCustCd.text.length == 1){
+	
+		var vCustCd = this.lfn_CustName(sCust_Gubn, this.edSCustCd.text);
+		this.edSCustCd.set_value(vCustCd);
+	}
+	
+	if(this.edSCustCd.getLength() == this.edSCustCd.text.length){
+	
+		this.cbCustNm.set_index(this.ds_mk_Cust.findRow("CUST", sCust_Gubn+this.edSCustCd.text));
+		
+		if(this.cbCustNm.index == -1){
+			this.cbCustNm.setFocus();
+			this.cbCustNm.dropdown();
+		}else{
+			this.edPprCd.setFocus();
+		}
+	}
+};
+
+this.cbCustNm_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var iCustIdx = this.ds_mk_Cust.findRow("CUST_NAME", this.cbCustNm.text);
+	this.edSCustCd.set_value(this.ds_mk_Cust.getColumn(iCustIdx, "CUST_CODE"));
+	
+	if(iCustIdx != -1)
+		this.edPprCd.setFocus();
+	
+};
+
+this.rdGubun_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	if(e.postvalue == 1){
+		this.stsmallSub.set_text("("+this.dsGubun.getColumn(e.postvalue-1, "NAME")+")");
+		this.DivGrd.set_url("mk::MK125_1.xfdl");
+		this.dsPprInList.set_keystring("G:PPRINMST_DATE,PPRINMST_NO");
+		this.lfn_grdAutofit(this.DivGrd.form.grdList);
+	}else if(e.postvalue == 2){
+		this.stsmallSub.set_text("("+this.dsGubun.getColumn(e.postvalue-1, "NAME")+")");
+		this.DivGrd.set_url("mk::MK125_2.xfdl");
+		this.dsPprInList.set_keystring("G:PPRINMST_DATE,NAME");
+		
+	}else{
+		this.stsmallSub.set_text("("+this.dsGubun.getColumn(e.postvalue-1, "NAME")+")");
+		this.DivGrd.set_url("mk::MK125_3.xfdl");
+		this.dsPprInList.set_keystring("G:PPR_CODE");
+	}
+};
+
+this.edPprCd_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	if(this.edPprCd.getLength() == this.edPprCd.text.length){
+		this.cbPprNm.set_index(this.ds_mk_Paper.findRow("PPR_CODE",  this.edPprCd.text));
+		
+		if(this.cbPprNm.index == -1)
+		{
+			this.cbPprNm.setFocus();
+			this.cbPprNm.dropdown();
+		}else{
+			this.rdGubun.setFocus();
+		}
+	}
+};
+
+this.cbPprNm_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var iPprIdx = this.ds_mk_Paper.findRow("PPR_NAME", this.cbPprNm.text);
+	this.edPprCd.set_value(this.ds_mk_Paper.getColumn(iPprIdx, "PPR_CODE"));
+	
+	if(this.cbPprNm.index != -1)
+	{
+		this.rdGubun.setFocus();
+	}
+	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsPprInList">
+        <ColumnInfo>
+          <Column id="PPRINMST_DATE" type="STRING" size="256"/>
+          <Column id="PPRINMST_NO" type="STRING" size="256"/>
+          <Column id="CUST_GUBN" type="STRING" size="256"/>
+          <Column id="CUST_CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="TYPE_CODE" type="STRING" size="256"/>
+          <Column id="PPR_CODE" type="STRING" size="256"/>
+          <Column id="PPR_NAME" type="STRING" size="256"/>
+          <Column id="PPR_UNIT" type="STRING" size="256"/>
+          <Column id="PPRINDTL_PPRSTND" type="STRING" size="256" prop=""/>
+          <Column id="TYPE_NAME" type="STRING" size="256" prop=""/>
+          <Column id="PPRINDTL_QTY" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="PPRINDTL_WEIGHT" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="PPRINDTL_UNITCOST" type="FLOAT" size="256" prop=""/>
+          <Column id="PPRINDTL_AMOUNT" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="PPRINDTL_VAT" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="PPRINDTL_TOTALAMT" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="CGUBN" type="STRING" size="256"/>
+          <Column id="CCODE" type="STRING" size="256"/>
+          <Column id="CNAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_Cust" oncolumnchanged="ds_mk_Paper_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="REPRESENTATIVE" type="STRING" size="256"/>
+          <Column id="BUSINESSNO" type="STRING" size="256"/>
+          <Column id="BUSINESS_STARTDATE" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="OFFICE_TEL" type="STRING" size="256"/>
+          <Column id="OFFICE_FAX" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+          <Column id="CUST_STOPPAGE" type="STRING" size="256"/>
+          <Column id="BANK_CODE" type="STRING" size="256"/>
+          <Column id="CUST_ACNTNO" type="STRING" size="256"/>
+          <Column id="CUSTDTL_SALEAMOUNT" type="STRING" size="256"/>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGubun">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">입고일자별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">매입처별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">용지별</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_mk_Paper">
+        <ColumnInfo>
+          <Column id="PPR_CODE" type="STRING" size="256"/>
+          <Column id="PPR_UNIT" type="STRING" size="256"/>
+          <Column id="PPR_STND" type="STRING" size="256"/>
+          <Column id="PPR_REGDATE" type="STRING" size="256"/>
+          <Column id="PPR_WEIGHT" type="STRING" size="256"/>
+          <Column id="PPR_WIDTH" type="STRING" size="256"/>
+          <Column id="PPR_LENGTH" type="STRING" size="256"/>
+          <Column id="PPR_CONVERSION" type="STRING" size="256"/>
+          <Column id="PPR_DANGA" type="STRING" size="256"/>
+          <Column id="PPR_NAME" type="STRING" size="256"/>
+          <Column id="PPR_FEQUENT" type="STRING" size="256"/>
+          <Column id="PPR_DISABLED" type="STRING" size="256"/>
+          <Column id="PPR_STNDNAME" type="STRING" size="256"/>
+          <Column id="PPRKND_CLASS" type="STRING" size="256"/>
+          <Column id="PPRKND_KIND" type="STRING" size="256"/>
+          <Column id="PPRKND_NAME" type="STRING" size="256"/>
+          <Column id="PPRKND_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Files" width="510" height="260" titletext="전자결재 첨부파일리스트" onload="Files_onload">
+    <Layouts>
+      <Layout height="260" width="510">
+        <Grid id="grd_file" taborder="3" left="1" top="45" height="205" right="1" binddataset="ds_files" treeusebutton="use" treeusecheckbox="false" treeinitstatus="expand,all">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30"/>
+                <Column size="465"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NO" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="파일명" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:F_NO" font="12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                <Cell col="1" text="bind:F_NAME" font="12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02" taborder="1" text="첨부파일 목록" left="42" top="10" width="167" height="41" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <ImageViewer id="ImageViewer00" taborder="2" left="6" top="12" width="30" height="32" image="url('Img::sticky_note_small.png')" stretch="fixaspectratio" border="0px none"/>
+        <Button id="btn_close" taborder="3" text="닫기" left="440" top="17" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" right="2" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_files">
+        <ColumnInfo>
+          <Column id="GB" type="STRING" size="2"/>
+          <Column id="F_NO" type="STRING" size="150"/>
+          <Column id="F_NAME" type="STRING" size="150"/>
+          <Column id="I_FLOW_ID" type="INT" size="256"/>
+          <Column id="F_SIZE" type="INT" size="256"/>
+          <Column id="R_NAME" type="STRING" size="150"/>
+          <Column id="F_PATH" type="STRING" size="150"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.Files_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/gw/getData_file.jsp";
+	in_ds = "ds_files=ds_files";
+	out_ds = "ds_files=ds_files";
+	str_arg = "i_flow_id ="+nexacro.wrapQuote(this.parent.dsParam1);
+	
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_select", true, "P", false, this);
+};
+
+this.Callback_select = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+};
+
+
+
+]]></Script>
+  </Form>
+</FDL>

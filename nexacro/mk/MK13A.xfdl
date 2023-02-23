@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="710" height="720" titletext="월마감 업체 리스트" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="720" width="710">
+        <Static id="Static02" taborder="0" text="월마감 업체 리스트" left="8" top="10" width="382" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" onclick="Static02_onclick"/>
+        <Button id="btnSearch" taborder="3" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="29" onclick="btnSearch_onclick" width="80" left="Static02:50"/>
+        <Button id="btnPrt" taborder="4" text="출력" top="29" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" onclick="btnPrt_onclick" left="btnSearch:10" width="80"/>
+        <Calendar id="calYyMm" taborder="9" top="80" height="35" dateformat="yyyy-MM" font="12px/normal &quot;함초롬바탕 확장&quot;" editformat="yyyy-MM" width="136" left="101" autoselect="true" onchanged="calYyMm_onchanged"/>
+        <Static id="stDate" taborder="5" text="진행일자" top="80" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="calYyMm:42"/>
+        <Calendar id="calSDate" taborder="1" top="80" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" onkeyup="LocalFctn_OnKeyDown" width="140" left="stDate:3" autoselect="true"/>
+        <Calendar id="calEDate" taborder="2" top="80" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" onkeydown="LocalFctn_OnKeyDown" width="140" left="calSDate:3" autoselect="true"/>
+        <Button id="btnExcel" taborder="12" top="76" width="43" height="39" icon="url('Img::ico_excel_O.png')" left="calEDate:7" onclick="btnExcel_onclick"/>
+        <Static id="stYyyyMm" taborder="8" text="조회연월" top="80" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="calYyMm:3" width="85"/>
+        <ImageViewer id="ImgClose01" taborder="6" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Grid id="grdList" taborder="7" left="8" top="130" width="672" binddataset="dsList" autofittype="none" onenterdown="grdList_onenterdown" onheadclick="grdList_onheadclick" bottom="1.81%">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="143"/>
+                <Column size="104"/>
+                <Column size="330"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="비용구분" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="업체코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="거래처명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PROCESSTYPE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" displaytype="normal"/>
+                <Cell col="1" text="bind:CUST_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" displaytype="normal"/>
+                <Cell col="2" text="bind:NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" displaytype="normal"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnUp" taborder="10" text="▲" left="calYyMm:0" top="80" width="21" height="17" background="lightsteelblue" font="bold 12px/normal &quot;함초롬바탕 확장&quot;" onclick="btnUp_onclick"/>
+        <Button id="btnDown" taborder="11" text="▼" left="calYyMm:0" top="98" width="21" height="17" background="lightsteelblue" font="bold 12px/normal &quot;함초롬바탕 확장&quot;" onclick="btnDown_onclick"/>
+        <Button id="btnClose" taborder="13" text="닫기" top="28" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="80" left="btnPrt:10" onclick="btnClose_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var urlExcel = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	
+	if(vPerSel = "1"){
+		var d = new Date(); 
+		var strToDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");						//오늘날짜 
+		var strToDay  = strToDay.substr(0,6);
+		this.calYyMm.set_value(strToDay);
+		this.fctn_MakeClose_Search();													//해당월 마감기간 조회
+	}
+};
+
+//#######################################################
+//	마감일자 조회
+//#######################################################
+this.fctn_MakeClose_Search = function()
+{
+	
+	in_ds 	= "dsMakeClose=dsMakeClose";
+	out_ds 	= "dsMakeClose=dsMakeClose";
+	str_url = "JSP/mk/make_closing.jsp";
+    str_arg = "MKCLS_YM=" + nexacro.wrapQuote( ) + " MKCLS_STARTDATE=" + nexacro.wrapQuote( );
+	
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, "", "fnCallbackClosingSelect", false, "S", false, this);
+}
+
+this.fnCallbackClosingSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		
+		this.dsMakeClose.filter("MKCLS_STARTDATE<='" + this.calYyMm.value + "'&&MKCLS_ENDDATE>='" + this.calYyMm.value + "'");
+		this.calSDate.set_value(this.dsMakeClose.getColumn(0, "MKCLS_STARTDATE"));
+		this.calEDate.set_value(this.dsMakeClose.getColumn(0, "MKCLS_ENDDATE"));
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	trace(this.calSDate.value.length);
+	
+	if(this.calSDate.value.length != 8 )
+	{
+		alert("일자를 정확히 입력하여 주십시요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value.length != 8 )
+	{
+		alert("일자를 정확히 입력하여 주십시요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	in_ds 	= "dsList=dsList";
+	out_ds 	= "dsList=dsList";
+	str_url = "JSP/mk/mk13A_Select.jsp";
+	str_arg = "SDATE=" + nexacro.wrapQuote(this.calSDate.value) +
+	          " EDATE=" + nexacro.wrapQuote(this.calEDate.value);
+	 
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+
+};
+
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		
+		if(this.dsList.rowcount == 0){
+			alert("조회된 자료가 없습니다.");
+			return false;
+		}
+	}
+};
+
+//레포트 출력 이벤트
+this.btnPrt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value.length != 8 )
+	{
+		alert("일자를 정확히 입력하여 주십시요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value.length != 8 )
+	{
+		alert("일자를 정확히 입력하여 주십시요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	var rdUrl = gv_svcUrl + "rpt/mk/MK13A.mrd";
+	var rdParam = "/ragentpath ["+ gv_urlRdDataServer +"]" + " /rp [" + this.calSDate.value + "] [" + this.calEDate.value + "] ";  
+	this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1024, 770);
+
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+this.btnExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, 
+        this.grdList, "Sheet1!A1");
+    
+	this.exportObj.set_exporturl(urlExcel);
+	this.exportObj.exportData(); 
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.btnUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUpDate = Eco.date.addMonth(this.calYyMm.value, +1);
+	strUpDate = strUpDate.substr(0, 6);
+	this.calYyMm.set_value(strUpDate);
+	this.calYyMm_onchanged();
+	
+};
+
+this.btnDown_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strDownDate = Eco.date.addMonth(this.calYyMm.value, -1);
+	strDownDate = strDownDate.substr(0, 6);
+	this.calYyMm.set_value(strDownDate);
+	this.calYyMm_onchanged();
+	
+};
+
+this.calYyMm_onchanged = function(obj:nexacro.Calendar,e:nexacro.ChangeEventInfo)
+{
+	this.dsMakeClose.filter();
+	this.dsMakeClose.filter("MKCLS_STARTDATE<='" + this.calYyMm.value + "'&&MKCLS_ENDDATE>='" + this.calYyMm.value + "'");
+	this.calSDate.set_value(this.dsMakeClose.getColumn(0, "MKCLS_STARTDATE"));
+	this.calEDate.set_value(this.dsMakeClose.getColumn(0, "MKCLS_ENDDATE"));
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="256"/>
+          <Column id="CUST_CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="USE_PROCESSTYPE" type="STRING" size="256"/>
+          <Column id="PROCESSTYPE_NAME" type="STRING" size="256"/>
+          <Column id="CUST_ORDER" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMakeClose">
+        <ColumnInfo>
+          <Column id="MKCLS_YM" type="STRING" size="6"/>
+          <Column id="MKCLS_STARTDATE" type="STRING" size="8"/>
+          <Column id="MKCLS_ENDDATE" type="STRING" size="8"/>
+          <Column id="MKCLS_CLOSE" type="STRING" size="1"/>
+          <Column id="MKCLS_MODIFY" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

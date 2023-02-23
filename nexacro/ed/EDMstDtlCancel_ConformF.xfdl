@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="EDMstDtlCancel_ConformF" width="280" height="100" titletext="New Form">
+    <Layouts>
+      <Layout height="100" mobileorientation="landscape" width="280">
+        <Button id="btn_dtl" taborder="0" text="내용" top="51" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="65" right="106" onclick="btn_close_onclick"/>
+        <Button id="btn_all" taborder="1" text="전체" top="51" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="65" right="195" onclick="btn_close_onclick"/>
+        <Button id="btn_close" taborder="2" text="취소" top="51" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="65" right="17" onclick="btn_close_onclick"/>
+        <Static id="Static02" taborder="3" text="초기화 선택" left="18" top="10" width="142" height="30" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(obj.getDisplayText());
+};
+
+]]></Script>
+  </Form>
+</FDL>

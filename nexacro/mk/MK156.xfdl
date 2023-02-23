@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="520" height="140" titletext="용지별 재고잔액장" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="140" width="520">
+        <Static id="Static02" taborder="0" text="용지별 재고잔액장" left="12" top="10" width="428" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Calendar id="calEDate" taborder="2" top="80" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" onkeydown="LocalFctn_OnKeyDown" width="160" autoselect="true" left="264"/>
+        <Calendar id="calSDate" taborder="1" top="80" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" onkeyup="LocalFctn_OnKeyDown" right="calEDate:3" width="161" autoselect="true"/>
+        <Static id="stDate" taborder="3" text="조회일자" top="80" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="calSDate:3" width="85"/>
+        <ImageViewer id="ImgClose" taborder="4" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="66.39%" right="2.69%" text="" onclick="ImgClose_onclick"/>
+        <Button id="btnSearch" taborder="5" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="76" right="8" width="80" onclick="btnSearch_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerPrt;
+var vStr, rdUrl, rdParam;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerPrt = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_PRINT");
+	
+	//권한 체크 및 컴포넌트 ENABLE처리
+	if( vPerPrt != "1")
+		this.fctn_User_Enabled(this, false);
+	
+	if(vPerPrt = "1"){
+		
+		this.calSDate.setFocus();
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	
+};
+
+//레포트 출력 이벤트
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" || Eco.isUndefined(this.calSDate.value) == true)
+	{
+		alert("조회 시작일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value == "" || Eco.isUndefined(this.calEDate.value) == true )
+	{
+		alert("조회 종료일자를 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	if(this.calSDate.value.substr(0, 4) != this.calEDate.value.substr(0, 4)){
+		alert("검색연도가 다릅니다. 수정후 다시 조회 하시길 바랍니다.");
+		return false;
+	}
+	
+	rdUrl = gv_svcUrl + "rpt/mk/MK156.mrd";
+		
+	var vEDate;
+	if(this.calEDate.value.substr(4, 4) == "1231")
+		vEDate = this.calEDate.value.substr(0,4)+"1299";
+	else
+		vEDate = this.calEDate.value;
+		
+	
+	rdParam = "/ragentpath ["+ gv_urlRdDataServer +"]"+ " /rp [" + this.calSDate.value.substr(0, 4)+"0100" + "]" +
+															 "[" + this.calSDate.value + "]" +
+															 "[" + vEDate + "]";
+				  
+	var vScreenWidth = system.getScreenWidth();
+	
+	if(vScreenWidth >= 1920)
+		vScreenWidth = vScreenWidth/2
+		
+	nexacro.open("popupPrt", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, "autosize=false", 0, 0, vScreenWidth, system.getScreenHeight(), this);
+
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+//#######################################################
+// 사용권한에 따른 컴포넌트 Enable 여부
+// formObj : 폼 ID 변수
+// _set : Enable 변수 (True, False)
+//#######################################################
+this.fctn_User_Enabled = function(formObj, _set)
+{
+	var comObj;
+	// 마스터 폼 컴포넌트 Enabled 여부
+	for(var i = 0; i < formObj.components.length;  i++)
+	{
+		comObj = formObj.components[i];
+		
+		if (comObj == "[object Edit]" || comObj == "[object Combo]"
+		   || comObj == "[object Calendar]" || comObj == "[object MaskEdit]" 
+		   || comObj == "[object TextArea]")
+		{
+			comObj.set_enable(_set);
+		}
+	}
+	
+	if(vPerPrt != 1){
+		this.btnSearch.set_enable(_set);
+	}
+}
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

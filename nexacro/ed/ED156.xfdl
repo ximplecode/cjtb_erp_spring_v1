@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED156" width="550" height="600" titletext="New Form">
+    <Layouts>
+      <Layout height="600" width="550">
+        <Div id="Div00" taborder="0" left="10" top="10" width="530" height="40" border="1px solid lightgray" text="">
+          <Layouts>
+            <Layout>
+              <Button id="btn_apply" taborder="0" text="적용" left="310" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_search_onclick"/>
+              <Button id="btn_save" taborder="1" text="저장" left="378" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_save_onclick"/>
+              <Button id="btn_close" taborder="2" text="닫기" left="447" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_close_onclick" escapebutton="true"/>
+              <Button id="btn_tempSave" taborder="3" text="가져오기" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="351" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_tempSave_onclick"/>
+              <Button id="btn_tempSave00" taborder="4" text="오류검사" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="271" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_tempSave_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <MaskEdit id="medt_custCode" taborder="1" left="90" top="59" width="8.91%" height="30" format="####" type="string" trimtype="both" enable="true" onkeydown="fn_localKeyDown"/>
+        <Edit id="edt_custName" taborder="2" left="140" top="59" width="24.91%" height="30" enable="true" onkeydown="fn_localKeyDown"/>
+        <Button id="btn_custCode" taborder="3" text="업체코드" left="9" top="59" width="80" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_cust_code_onclick"/>
+        <Calendar id="cal_invoiceYM" taborder="4" left="90" top="155" width="33.82%" height="30" enable="true" onkeydown="fn_localKeyDown" dateformat="yyyy-MM" editformat="yyyy-MM"/>
+        <Static id="Static00_06_00_00" text="세금계산서&#13;&#10;발행년월" top="155" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="9" height="30" width="80" taborder="5"/>
+        <Static id="Static00" taborder="6" top="90" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="9" height="30" width="80" text="관련부서"/>
+        <Combo id="cb_section" taborder="7" text="Combo00" left="90" top="90" width="34.00%" height="30" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME" onkeydown="fn_localKeyDown" onitemchanged="cb_section_onitemchanged"/>
+        <Static id="st_SCMst_availableTerm" taborder="8" text="완료일자" top="122" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="9" height="30" width="80" visible="true"/>
+        <Calendar id="cal_acntDate" taborder="9" left="90" top="122" width="33.82%" height="30" onkeydown="fn_localKeyDown"/>
+        <Static id="st_taxRate01" taborder="10" text="할인율" top="187" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="9" height="30" width="80" visible="true"/>
+        <CheckBox id="ck_discount" text="4.5%" left="102" top="187" width="8.00%" height="30" value="true" enable="false" onclick="ck_discount_onclick" taborder="11"/>
+        <Grid id="Grid00" taborder="12" left="280" top="59" width="260" height="158"/>
+        <Grid id="Grid01" taborder="13" left="9" top="220" width="532" height="133"/>
+        <Grid id="Grid02" taborder="14" left="9" top="360" width="531" height="235"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="medt_custCode" propid="value" datasetid="dsOutOrdDtl" columnid="CUST_CODE"/>
+      <BindItem id="item1" compid="edt_custName" propid="value" datasetid="dsOutOrdDtl" columnid="OUTER_NAME"/>
+      <BindItem id="item2" compid="cal_invoiceYM" propid="value" datasetid="dsOutOrdDtl" columnid="OUTORDDTL_INVOICE_YM"/>
+      <BindItem id="item3" compid="cb_section" propid="value" datasetid="dsOutOrdMst" columnid="SECTION_CODE"/>
+      <BindItem id="item4" compid="cal_acntDate" propid="value" datasetid="dsOutOrdDtl" columnid="OUTORDDTL_ACNTDATE"/>
+      <BindItem id="item5" compid="ck_discount" propid="value" datasetid="dsOutOrdMst" columnid="OUTORDMST_DISCOUNT"/>
+    </Bind>
+  </Form>
+</FDL>

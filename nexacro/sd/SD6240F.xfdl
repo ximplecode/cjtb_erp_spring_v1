@@ -1,0 +1,1053 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6240F" width="1600" height="760" titletext="New Form" onload="SD6240F_onload">
+    <Layouts>
+      <Layout height="760" width="1600">
+        <Static id="Static00" taborder="45" text="도서출고율 관리" left="56" top="11" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="400" height="69"/>
+        <Static id="Static01_01" taborder="46" text="코드" left="25" top="106" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_03" taborder="49" text="분류명" left="29.00%" top="106" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_02" taborder="47" left="Static01_01:-2" top="106" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_03:-2"/>
+        <Button id="btn_code_search" taborder="60" top="116" height="20" edge="url('Img::ico_grdSrc.png') 0px 0px" right="Static01_03:8" width="20" onclick="btn_code_search_onclick" tabstop="false"/>
+        <MaskEdit id="ed_values2" taborder="1" left="20.75%" top="111" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" textAlign="left" onkeydown="common_onkeydown" right="btn_code_search:2" onkillfocus="ed_values1_onkillfocus"/>
+        <MaskEdit id="ed_values1" taborder="0" left="Static01_01:10" top="111" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@@@@@@@" type="string" textAlign="left" right="ed_values2:1" onkeydown="common_onkeydown"/>
+        <Static id="Static01" taborder="48" text="등록" left="25" top="72" height="36" background="#3cbcb8" color="white" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" right="25"/>
+        <Static id="Static01_05" taborder="61" text="도서구분" top="106" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127" left="61.13%"/>
+        <Static id="Static01_04" taborder="50" left="Static01_03:-2" top="106" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_05:-2"/>
+        <Edit id="ed_values4" taborder="3" left="48.19%" top="111" height="26" onkeydown="common_onkeydown" right="Static01_05:10" enable="false"/>
+        <Edit id="ed_values3" taborder="2" left="Static01_03:10" top="111" height="26" onkeydown="common_onkeydown" right="ed_values4:1" text="테스트" enable="false"/>
+        <Static id="Static02" taborder="51" text="조회" left="25" top="287" height="36" background="#3cbcb8" color="white" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" right="25"/>
+        <Static id="Static02_00" taborder="52" left="25" top="321" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25" bottom="10" minheight="170" maxheight=""/>
+        <Static id="Static02_07" taborder="55" text="정렬조건" left="55.25%" top="355" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static02_06" taborder="53" left="25" top="321" height="70" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static02_07:-2"/>
+        <Static id="Static02_03" taborder="54" text="조건" left="55.25%" top="321" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static02_09" taborder="59" top="321" height="70" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25" width="113"/>
+        <Static id="Static02_04" taborder="56" left="Static02_03:-2" top="321" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static02_09:-2"/>
+        <Static id="Static02_08" taborder="57" left="Static02_07:-2" top="355" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" right="Static02_09:-2"/>
+        <Grid id="grd_view" taborder="58" left="37" top="Static02_07:10" binddataset="ds_book" oncelldblclick="grd_view_oncelldblclick" right="42" bottom="22" minheight="80" maxheight="" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="86"/>
+                <Column size="56"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="250"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="52"/>
+                <Column size="50"/>
+                <Column size="80"/>
+                <Column size="56"/>
+                <Column size="56"/>
+                <Column size="72"/>
+                <Column size="50"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="코드"/>
+                <Cell col="1" text="년판"/>
+                <Cell col="2" text="대분류"/>
+                <Cell col="3" text="중분류"/>
+                <Cell col="4" text="도서명"/>
+                <Cell col="5" text="정가"/>
+                <Cell col="6" text="판매단가"/>
+                <Cell col="7" text="예정가"/>
+                <Cell col="8" text="시행일자"/>
+                <Cell col="9" text="종료일자"/>
+                <Cell col="10" text="등급1"/>
+                <Cell col="11" text="출고율1"/>
+                <Cell col="12" text="등급2"/>
+                <Cell col="13" text="출고율2"/>
+                <Cell col="14" text="등급3"/>
+                <Cell col="15" text="출고율3"/>
+                <Cell col="16" text="등급4"/>
+                <Cell col="17" text="출고율4"/>
+                <Cell col="18" text="구분"/>
+                <Cell col="19" text="구분명"/>
+                <Cell col="20" text="OLD번호"/>
+                <Cell col="21" text="반품구분"/>
+                <Cell col="22" text="반품기한일"/>
+                <Cell col="23" text="한도율"/>
+                <Cell col="24" text="적용구분"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE" textAlign="center"/>
+                <Cell col="1" text="bind:YY" textAlign="center"/>
+                <Cell col="2" text="bind:BDBR_NM"/>
+                <Cell col="3" text="bind:BJBR_NM"/>
+                <Cell col="4" text="bind:BGRP_NM"/>
+                <Cell col="5" text="bind:COST" textAlign="right" displaytype="number"/>
+                <Cell col="6" text="bind:PCOST" textAlign="right" displaytype="number"/>
+                <Cell col="7" text="bind:YCOST" textAlign="right" displaytype="number"/>
+                <Cell col="8" text="bind:SYMD" textAlign="center" calendardateformat="yyyy-MM-dd" displaytype="mask" maskeditformat="####-##-##" maskedittype="string"/>
+                <Cell col="9" text="bind:EYMD" textAlign="center" calendardateformat="yyyy-MM-dd" displaytype="mask" maskeditformat="####-##-##" maskedittype="string"/>
+                <Cell col="10" text="bind:DUNG_CD1"/>
+                <Cell col="11" text="bind:YUL1"/>
+                <Cell col="12" text="bind:DUNG_CD2"/>
+                <Cell col="13" text="bind:YUL2"/>
+                <Cell col="14" text="bind:DUNG_CD3"/>
+                <Cell col="15" text="bind:YUL3"/>
+                <Cell col="16" text="bind:DUNG_CD4"/>
+                <Cell col="17" text="bind:YUL4"/>
+                <Cell col="18" text="bind:BGBR_CD"/>
+                <Cell col="19" text="bind:BGBR_NM"/>
+                <Cell col="20" text="bind:OLD_CODE"/>
+                <Cell col="21" text="bind:B_YN" expr="comp.parent.fn_expr(B_YN)"/>
+                <Cell col="22" text="bind:B_YMD"/>
+                <Cell col="23" text="bind:B_YUL"/>
+                <Cell col="24" expr="comp.parent.fn_expr2(JUK_GB)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="39" text="조회하기" top="330" width="95" height="51" onclick="btn_search_onclick" right="33"/>
+        <Combo id="cmb_search1" taborder="37" left="Static02_03:10" top="326" height="26" innerdataset="ds_cmb_search" codecolumn="CODE" datacolumn="NAME" index="3" text="&gt;=  (같거나크다)" value="3" right="Static02_09:10"/>
+        <Combo id="cmb_orderby" taborder="38" left="Static02_07:10" top="360" height="26" index="0" innerdataset="ds_cmb_orderby" codecolumn="CODE" datacolumn="NAME" text="전표일자순" value="0" right="Static02_09:10"/>
+        <Button id="btn_copy" taborder="44" text="년판복사" top="26" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="25" onclick="btn_copy_onclick"/>
+        <Button id="btn_print" taborder="43" text="출력" top="26" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="btn_copy:12" onclick="btn_print_onclick"/>
+        <Button id="btn_can" taborder="42" text="취소" top="26" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="btn_print:12" onclick="btn_can_onclick"/>
+        <Button id="btn_del" taborder="41" text="삭제" top="26" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="btn_can:12" onclick="btn_del_onclick"/>
+        <Button id="btn_save" taborder="40" text="저장" top="26" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="btn_del:12" onclick="btn_save_onclick" onkeydown="btn_save_onkeydown"/>
+        <Static id="Static01_06" taborder="62" left="Static01_05:-2" top="106" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25"/>
+        <Edit id="ed_values5" taborder="4" left="Static01_05:9" top="111" height="26" right="384" minwidth="40" maxwidth="120" onkillfocus="ed_values5_onkillfocus" enable="false"/>
+        <Edit id="ed_values6" taborder="5" left="ed_values5:1" top="111" height="26" onkeydown="common_onkeydown" right="35" enable="false"/>
+        <Static id="Static01_07" taborder="63" text="도서명" left="25" top="140" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_09" taborder="65" text="시행일자" top="140" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127" left="61.13%"/>
+        <Static id="Static01_08" taborder="64" left="Static01_07:-2" top="140" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_09:-2"/>
+        <Edit id="ed_values7" taborder="6" left="Static01_07:10" top="145" height="26" onkeydown="common_onkeydown" right="Static01_09:10" enable="false"/>
+        <Static id="Static01_10" taborder="66" left="Static01_09:-2" top="140" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25"/>
+        <Calendar id="ed_values9" taborder="8" left="83.75%" top="145" height="26" right="35" onkeydown="common_onkeydown"/>
+        <Calendar id="ed_values8" taborder="7" left="Static01_09:10" top="145" height="26" right="ed_values9:1" onkeydown="common_onkeydown"/>
+        <Static id="Static01_11" taborder="67" text="출고율1" left="25" top="174" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_19" taborder="68" text="정가" left="25" top="208" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_13" taborder="70" text="출고율2" left="25.88%" top="174" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_12" taborder="69" left="Static01_11:-2" top="174" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_13:-2"/>
+        <MaskEdit id="ed_values10" taborder="9" left="Static01_11:10" top="179" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="left" onkeydown="common_onkeydown" right="Static01_13:191" minwidth="32" maxwidth="100" onkillfocus="common_onkillfocus"/>
+        <Edit id="ed_values11" taborder="10" left="ed_values10:1" top="179" height="26" onkeydown="common_onkeydown" width="Static01_12:26%" enable="false"/>
+        <MaskEdit id="ed_values12" taborder="11" left="ed_values11:1" top="179" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" type="number" textAlign="right" onkeydown="common_onkeydown" right="Static01_13:8" value="0"/>
+        <Static id="Static01_15" taborder="72" text="출고율3" left="50.19%" top="174" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_14" taborder="71" left="Static01_13:-2" top="174" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_15:-2"/>
+        <MaskEdit id="ed_values13" taborder="12" left="Static01_13:10" top="179" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="left" onkeydown="common_onkeydown" right="Static01_15:190" minwidth="32" maxwidth="100" onkillfocus="common_onkillfocus"/>
+        <Edit id="ed_values14" taborder="13" left="ed_values13:1" top="179" height="26" onkeydown="common_onkeydown" width="Static01_14:26%" enable="false"/>
+        <MaskEdit id="ed_values15" taborder="14" left="ed_values14:1" top="179" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" type="number" textAlign="right" onkeydown="common_onkeydown" right="Static01_15:8" value="0"/>
+        <Static id="Static01_17" taborder="74" text="출고율4" left="74.5%" top="174" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="124"/>
+        <Static id="Static01_16" taborder="73" left="Static01_15:-2" top="174" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_17:-2"/>
+        <MaskEdit id="ed_values16" taborder="15" left="Static01_15:10" top="179" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="left" onkeydown="common_onkeydown" right="Static01_17:190" minwidth="32" maxwidth="100" onkillfocus="common_onkillfocus"/>
+        <Edit id="ed_values17" taborder="16" left="ed_values16:1" top="179" height="26" onkeydown="common_onkeydown" width="Static01_14:26%" enable="false"/>
+        <MaskEdit id="ed_values18" taborder="17" left="ed_values17:1" top="179" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" type="number" textAlign="right" onkeydown="common_onkeydown" right="Static01_17:8" value="0"/>
+        <Static id="Static01_18" taborder="75" left="Static01_17:-2" top="174" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25"/>
+        <MaskEdit id="ed_values19" taborder="18" left="Static01_17:9" top="179" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="left" onkeydown="common_onkeydown" right="214" minwidth="32" maxwidth="100" onkillfocus="common_onkillfocus"/>
+        <Edit id="ed_values20" taborder="19" left="ed_values19:1" top="179" height="26" onkeydown="common_onkeydown" width="Static01_18:26%" enable="false"/>
+        <MaskEdit id="ed_values21" taborder="20" left="ed_values20:1" top="179" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" type="number" textAlign="right" onkeydown="common_onkeydown" right="35" value="0"/>
+        <Static id="Static01_21" taborder="77" text="판매단가" left="21.44%" top="208" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_20" taborder="76" left="Static01_19:-2" top="208" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_21:-2"/>
+        <MaskEdit id="ed_values22" taborder="21" left="Static01_19:10" top="213" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" type="number" textAlign="right" onkeydown="common_onkeydown" right="Static01_21:10" value="0"/>
+        <Static id="Static01_23" taborder="79" text="예정가" left="41.31%" top="208" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_22" taborder="78" left="Static01_21:-2" top="208" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_23:-3"/>
+        <MaskEdit id="ed_values23" taborder="22" left="Static01_21:10" top="213" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" type="number" textAlign="right" onkeydown="common_onkeydown" right="Static01_23:10" value="0"/>
+        <Static id="Static01_25" taborder="81" text="비고" left="61.13%" top="208" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_24" taborder="80" left="Static01_23:-2" top="208" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_25:-2"/>
+        <MaskEdit id="ed_values32" taborder="23" left="Static01_23:11" top="213" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" type="number" textAlign="right" onkeydown="common_onkeydown" right="Static01_25:9" value="0"/>
+        <Static id="Static01_26" taborder="82" left="Static01_25:-2" top="208" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25"/>
+        <Edit id="ed_values28" taborder="24" left="Static01_25:10" top="213" height="26" onkeydown="common_onkeydown" right="35"/>
+        <Static id="Static01_27" taborder="83" text="반품구분" left="25" top="242" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_33" taborder="85" text="적용구분" left="50.19%" top="242" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="127"/>
+        <Static id="Static01_28" taborder="84" left="Static01_27:-2" top="242" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="Static01_33:-2"/>
+        <Static id="Static01_34" taborder="86" left="Static01_33:-2" top="242" height="36" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" right="25"/>
+        <MaskEdit id="ed_values24" taborder="25" left="Static01_27:10" top="247" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="#" type="string" textAlign="left" onkeydown="common_onkeydown" right="1395" minwidth="26" maxwidth="60" onkillfocus="ed_values24_onkillfocus"/>
+        <Combo id="ed_values25" taborder="26" text="적용안함" left="ed_values24:1" top="247" width="Static01_28:32%" height="26" value="" index="-1" onkeydown="common_onkeydown" onitemchanged="ed_values25_onitemchanged" innerdataset="ds_ed_values25" codecolumn="CODE" datacolumn="DATA"/>
+        <Calendar id="ed_values26" taborder="27" left="ed_values25:1" top="247" height="26" width="Static01_28:33%" value="20220505" dateformat="yyyy-MM-dd" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_values27" taborder="28" left="ed_values26:1" top="247" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" type="number" textAlign="right" onkeydown="common_onkeydown" right="Static01_33:10" value="0" minwidth="52" maxwidth=""/>
+        <MaskEdit id="ed_values29" taborder="29" left="Static01_33:10" top="247" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="#" type="string" textAlign="left" onkeydown="common_onkeydown" right="617" minwidth="26" maxwidth="60" onkillfocus="ed_values29_onkillfocus"/>
+        <Combo id="ed_values30" taborder="30" text="Combo00" left="ed_values29:1" top="247" width="Static01_34:36%" height="26" onkeydown="common_onkeydown" onitemchanged="ed_values30_onitemchanged" innerdataset="ds_ed_values30" codecolumn="CODE" datacolumn="DATA"/>
+        <Edit id="ed_values31" taborder="31" left="ed_values30:1" top="247" height="26" onkeydown="common_onkeydown" right="35" enable="false"/>
+        <Static id="Static01_27_00_00" taborder="89" left="11.94%" top="321" height="70" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="81"/>
+        <Static id="Static01_27_00" taborder="87" left="25" top="321" height="70" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" right="Static01_27_00_00:-2"/>
+        <MaskEdit id="ed_s_values1" taborder="32" left="36" top="359" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@@@@@@@" type="string" textAlign="left" right="Static01_27_00_00:10"/>
+        <Static id="Static03_00_00" taborder="90" text="년판" left="11.94%" top="321" width="81" height="36" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9"/>
+        <Static id="Static03_00" taborder="88" text="도서코드" left="25" top="321" height="36" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9" right="Static03_00_00:-2"/>
+        <Static id="Static01_27_00_00_01" taborder="93" left="43.63%" top="321" height="70" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="71"/>
+        <Static id="Static01_27_00_00_00" taborder="91" left="Static01_27_00_00:-2" top="321" height="70" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" right="Static01_27_00_00_01:-2"/>
+        <MaskEdit id="ed_s_values2" taborder="33" left="Static01_27_00:10" top="359" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" textAlign="left" right="Static01_27_00_00_00:10"/>
+        <Static id="Static03_00_00_01" taborder="94" text="구분" left="43.63%" top="321" height="36" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9" width="71"/>
+        <Static id="Static03_00_00_00" taborder="92" text="도서명" left="Static03_00_00:-2" top="321" height="36" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9" right="Static03_00_00_01:-2"/>
+        <Edit id="ed_s_values3" taborder="34" left="Static01_27_00_00:10" top="359" height="26" right="Static01_27_00_00_01:10"/>
+        <MaskEdit id="ed_s_values4" taborder="35" left="Static01_27_00_00_00:10" top="359" height="26" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="left" width="47"/>
+        <CheckBox id="chk_opt" taborder="36" text="미등록" left="Static01_27_00_00_01:7" top="363" height="20" right="Static02_07:5"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+
+var NewRowNum    = "";					// 추가행번호.
+var EditnRow	 = "";					//수정된 행번호	
+var Error        = "";					//에러코드.
+var return_code  = "";
+var return_code1 = "";
+var return_code2 = "";
+var return_code3 = "";
+var return_code4 = "";
+var return_code5 = "";
+var IUSW         = "";
+var o_code       = "";
+var o_yy         = "";
+
+this.SD6240F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyy");
+	this.fnDataclear();
+	this.cmb_search1.set_index(3);
+	this.cmb_orderby.set_index(0);
+	this.ed_s_values1.set_value("");
+	this.ed_s_values2.set_value(f_date);
+	this.ed_s_values3.set_value("");
+	this.ed_s_values4.set_value("");
+	this.ed_values1.setFocus();
+};
+
+this.fnSearch_zipcode = function()
+{
+	var strUrl = "JSP/sd/select_booky.jsp";
+	var strArg;
+	var strDs 	= "ds_book=ds_book";
+	var chk_opt;
+	
+	if (this.chk_opt.value == true) chk_opt = "True";
+	else chk_opt = "";
+	
+	strArg = " Values1="+nexacro.wrapQuote(nexacro.trim(this.ed_s_values1.value))+
+	         " Values2="+nexacro.wrapQuote(nexacro.trim(this.ed_s_values2.value))+
+	         " Values3="+nexacro.wrapQuote(this.ed_s_values3.value)+
+	         " Values4="+nexacro.wrapQuote(nexacro.trim(this.ed_s_values4.value))+
+	         " Values5="+nexacro.wrapQuote(chk_opt)+
+	         " Option ="+nexacro.wrapQuote(this.cmb_search1.index)+
+	         " Orderby="+nexacro.wrapQuote(this.cmb_orderby.index);
+	this.setWaitCursor(true);
+	this.gfn_TransactionP("codesearch", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+}
+
+this.fnCallback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	this.setWaitCursor(false);
+	if(nErrorCode != 0)
+	{
+		alert(strErrorMag);
+		return;
+	}
+}
+
+this.fnDataclear = function()
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyy");
+    NewRowNum       = "";
+    EditnRow	    = "";
+    Error           = "";
+    return_code     = "";
+    return_code1    = "";
+    return_code2    = "";
+    return_code3    = "";
+    return_code4    = "";
+    return_code5    = "";
+    IUSW            = "N";
+    o_code          = "";
+    o_yy            = "";
+	this.ed_values1.set_value("");
+	this.ed_values2.set_value(f_date);
+	this.ed_values3.set_value("");
+	this.ed_values4.set_value("");
+	this.ed_values5.set_value("");
+	this.ed_values6.set_value("");
+	this.ed_values7.set_value("");
+	this.ed_values8.set_value("20000101");
+	this.ed_values9.set_value("99991231");
+	this.ed_values10.set_value("");
+	this.ed_values11.set_value("");
+	this.ed_values12.set_value("0");
+	this.ed_values13.set_value("");
+	this.ed_values14.set_value("");
+	this.ed_values15.set_value("0");
+	this.ed_values16.set_value("");
+	this.ed_values17.set_value("");
+	this.ed_values18.set_value("0");
+	this.ed_values19.set_value("");
+	this.ed_values20.set_value("");
+	this.ed_values21.set_value("0");
+	this.ed_values22.set_value("0");
+	this.ed_values23.set_value("0");
+	this.ed_values32.set_value("0");
+	this.ed_values24.set_value("0");
+	this.ed_values25.set_index(0);
+	this.ed_values26.set_value("");
+	this.ed_values27.set_value("0");
+	this.ed_values28.set_value("");
+	this.ed_values29.set_value("0");
+	this.ed_values30.set_index(0);
+	this.ed_values31.set_value("");
+}
+
+//입력모드
+this.fnInputdata = function()
+{
+	this.ds_book.setColumn(NewRowNum,"CODE",	nexacro.trim(this.ed_values1.value));
+	this.ds_book.setColumn(NewRowNum,"YY",  	nexacro.trim(this.ed_values2.value));
+	this.ds_book.setColumn(NewRowNum,"BDBR_NM", nexacro.trim(this.ed_values3.value));
+	this.ds_book.setColumn(NewRowNum,"BJBR_NM", nexacro.trim(this.ed_values4.value));
+	this.ds_book.setColumn(NewRowNum,"BGBR_CD", nexacro.trim(this.ed_values5.value));
+	this.ds_book.setColumn(NewRowNum,"BGBR_NM", nexacro.trim(this.ed_values6.value));
+	this.ds_book.setColumn(NewRowNum,"BGRP_NM", nexacro.trim(this.ed_values7.value));
+	this.ds_book.setColumn(NewRowNum,"SYMD",    nexacro.trim(this.ed_values8.value));
+	this.ds_book.setColumn(NewRowNum,"EYMD",    nexacro.trim(this.ed_values9.value));
+	this.ds_book.setColumn(NewRowNum,"DUNG_CD1",nexacro.trim(this.ed_values10.value));
+	this.ds_book.setColumn(NewRowNum,"DUNG1_NM",nexacro.trim(this.ed_values11.value));
+	this.ds_book.setColumn(NewRowNum,"YUL1",    nexacro.trim(this.ed_values12.value));
+	this.ds_book.setColumn(NewRowNum,"DUNG_CD2",nexacro.trim(this.ed_values13.value));
+	this.ds_book.setColumn(NewRowNum,"DUNG2_NM",nexacro.trim(this.ed_values14.value));
+	this.ds_book.setColumn(NewRowNum,"YUL2",    nexacro.trim(this.ed_values15.value));
+	this.ds_book.setColumn(NewRowNum,"DUNG_CD3",nexacro.trim(this.ed_values16.value));
+	this.ds_book.setColumn(NewRowNum,"DUNG3_NM",nexacro.trim(this.ed_values17.value));
+	this.ds_book.setColumn(NewRowNum,"YUL3",    nexacro.trim(this.ed_values18.value));
+	this.ds_book.setColumn(NewRowNum,"DUNG_CD4",nexacro.trim(this.ed_values19.value));
+	this.ds_book.setColumn(NewRowNum,"DUNG4_NM",nexacro.trim(this.ed_values20.value));
+	this.ds_book.setColumn(NewRowNum,"YUL4",    nexacro.trim(this.ed_values21.value));
+	this.ds_book.setColumn(NewRowNum,"COST",    nexacro.trim(this.ed_values22.value));
+	this.ds_book.setColumn(NewRowNum,"PCOST",   nexacro.trim(this.ed_values23.value));
+	this.ds_book.setColumn(NewRowNum,"YCOST",   nexacro.trim(this.ed_values32.value));
+	this.ds_book.setColumn(NewRowNum,"B_YN",    nexacro.trim(this.ed_values24.value));
+	this.ds_book.setColumn(NewRowNum,"B_YMD",   nexacro.trim(this.ed_values26.value));
+	this.ds_book.setColumn(NewRowNum,"B_YUL",   nexacro.trim(this.ed_values27.value));
+	this.ds_book.setColumn(NewRowNum,"BIGO",    nexacro.trim(this.ed_values28.value));
+	this.ds_book.setColumn(NewRowNum,"JUK_GB",  nexacro.trim(this.ed_values29.value));
+	this.ds_book.setColumn(NewRowNum,"OLD_CODE",nexacro.trim(this.ed_values31.value));
+	if (this.ed_values10.value == "") this.ds_book.setColumn(NewRowNum,"DUNG_CD1","00");
+	if (this.ed_values13.value == "") this.ds_book.setColumn(NewRowNum,"DUNG_CD2","00");
+	if (this.ed_values16.value == "") this.ds_book.setColumn(NewRowNum,"DUNG_CD3","00");
+	if (this.ed_values19.value == "") this.ds_book.setColumn(NewRowNum,"DUNG_CD4","00");
+	if (this.ed_values24.value == "")this.ds_book.setColumn(NewRowNum,"B_YN","0");
+	if (this.ed_values26.value == "")this.ds_book.setColumn(NewRowNum,"B_YMD","00");
+	if (this.ed_values29.value == "")this.ds_book.setColumn(NewRowNum,"JUK_GB","0");
+	this.ds_book_send.addRow();
+	this.ds_book_send.copyRow(0,this.ds_book,NewRowNum);
+	this.ds_book_send.setColumn(0,"o_code", o_code);
+	this.ds_book_send.setColumn(0,"o_yy", o_yy);
+	this.ds_book_send.setColumn(0,"ROWTYPE", "I");
+}
+
+//수정모드
+this.fnEdit_data = function()
+{
+	this.ds_book.setColumn(EditnRow,"CODE",nexacro.trim(this.ed_values1.value));
+	this.ds_book.setColumn(EditnRow,"YY",  nexacro.trim(this.ed_values2.value));
+	this.ds_book.setColumn(EditnRow,"BDBR_NM", nexacro.trim(this.ed_values3.value));
+	this.ds_book.setColumn(EditnRow,"BJBR_NM", nexacro.trim(this.ed_values4.value));
+	this.ds_book.setColumn(EditnRow,"BGBR_CD", nexacro.trim(this.ed_values5.value));
+	this.ds_book.setColumn(EditnRow,"BGBR_NM", nexacro.trim(this.ed_values6.value));
+	this.ds_book.setColumn(EditnRow,"BGRP_NM", nexacro.trim(this.ed_values7.value));
+	this.ds_book.setColumn(EditnRow,"SYMD", 	  nexacro.trim(this.ed_values8.value));
+	this.ds_book.setColumn(EditnRow,"EYMD", 	  nexacro.trim(this.ed_values9.value));
+	this.ds_book.setColumn(EditnRow,"DUNG_CD1",nexacro.trim(this.ed_values10.value));
+	this.ds_book.setColumn(EditnRow,"DUNG1_NM",nexacro.trim(this.ed_values11.value));
+	this.ds_book.setColumn(EditnRow,"YUL1", 	  nexacro.trim(this.ed_values12.value));
+	this.ds_book.setColumn(EditnRow,"DUNG_CD2",nexacro.trim(this.ed_values13.value));
+	this.ds_book.setColumn(EditnRow,"DUNG2_NM",nexacro.trim(this.ed_values14.value));
+	this.ds_book.setColumn(EditnRow,"YUL2", 	  nexacro.trim(this.ed_values15.value));
+	this.ds_book.setColumn(EditnRow,"DUNG_CD3",nexacro.trim(this.ed_values16.value));
+	this.ds_book.setColumn(EditnRow,"DUNG3_NM",nexacro.trim(this.ed_values17.value));
+	this.ds_book.setColumn(EditnRow,"YUL3", 	  nexacro.trim(this.ed_values18.value));
+	this.ds_book.setColumn(EditnRow,"DUNG_CD4",nexacro.trim(this.ed_values19.value));
+	this.ds_book.setColumn(EditnRow,"DUNG4_NM",nexacro.trim(this.ed_values20.value));
+	this.ds_book.setColumn(EditnRow,"YUL4", 	  nexacro.trim(this.ed_values21.value));
+	this.ds_book.setColumn(EditnRow,"COST", 	  nexacro.trim(this.ed_values22.value));
+	this.ds_book.setColumn(EditnRow,"PCOST",   nexacro.trim(this.ed_values23.value));
+	this.ds_book.setColumn(EditnRow,"YCOST",   nexacro.trim(this.ed_values32.value));
+	this.ds_book.setColumn(EditnRow,"B_YN", 	  nexacro.trim(this.ed_values24.value));
+	this.ds_book.setColumn(EditnRow,"B_YMD",   nexacro.trim(this.ed_values26.value));
+	this.ds_book.setColumn(EditnRow,"B_YUL",   nexacro.trim(this.ed_values27.value));
+	this.ds_book.setColumn(EditnRow,"BIGO", 	  nexacro.trim(this.ed_values28.value));
+	this.ds_book.setColumn(EditnRow,"JUK_GB",  nexacro.trim(this.ed_values29.value));
+	this.ds_book.setColumn(EditnRow,"OLD_CODE",nexacro.trim(this.ed_values31.value));
+	if (this.ed_values10.value == "") this.ds_book.setColumn(EditnRow,"DUNG_CD1","00");
+	if (this.ed_values13.value == "") this.ds_book.setColumn(EditnRow,"DUNG_CD2","00");
+	if (this.ed_values16.value == "") this.ds_book.setColumn(EditnRow,"DUNG_CD3","00");
+	if (this.ed_values19.value == "") this.ds_book.setColumn(EditnRow,"DUNG_CD4","00");
+	if (this.ed_values24.value == "")this.ds_book.setColumn(EditnRow,"B_YN","0");
+	if (this.ed_values26.value == "")this.ds_book.setColumn(EditnRow,"B_YMD","00000000");
+	if (this.ed_values29.value == "")this.ds_book.setColumn(EditnRow,"JUK_GB","0");	
+	this.ds_book_send.addRow();
+	this.ds_book_send.copyRow(0,this.ds_book,EditnRow);
+	this.ds_book_send.setColumn(0,"O_CODE", o_code);
+	this.ds_book_send.setColumn(0,"O_YY", o_yy);
+	if ( (nexacro.trim(o_code)).length != 0 ) 
+	{
+		this.ds_book_send.setColumn(0,"ROWTYPE", "U" );
+	}	
+	else
+	{
+		this.ds_book_send.setColumn(0,"ROWTYPE", "I" );
+	}	
+	this.grd_view.updateToDataset();
+}
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch_zipcode();
+	NewRowNum = "";
+};
+
+this.grd_view_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.fnDataclear();
+	EditnRow          = e.row;
+	IUSW              = "Y";
+	this.ed_values1.set_value(this.ds_book.getColumn(e.row,"CODE"));
+	this.ed_values2.set_value(this.ds_book.getColumn(e.row,"YY"));
+	this.ed_values3.set_value(this.ds_book.getColumn(e.row,"BDBR_NM"));
+	this.ed_values4.set_value(this.ds_book.getColumn(e.row,"BJBR_NM"));
+	this.ed_values5.set_value(this.ds_book.getColumn(e.row,"BGBR_CD"));
+	this.ed_values6.set_value(this.ds_book.getColumn(e.row,"BGBR_NM"));
+	this.ed_values7.set_value(this.ds_book.getColumn(e.row,"BGRP_NM"));
+	this.ed_values8.set_value(this.ds_book.getColumn(e.row,"SYMD"));
+	if ( (nexacro.trim(this.ds_book.getColumn(e.row,"SYMD"))).length != 0 ) 
+	{
+		o_code = this.ds_book.getColumn(e.row,"CODE");
+		o_yy   = this.ds_book.getColumn(e.row,"YY");
+	}	
+	this.ed_values9.set_value(this.ds_book.getColumn(e.row,"EYMD"));
+	this.ed_values10.set_value(this.ds_book.getColumn(e.row,"DUNG_CD1"));
+	this.ed_values11.set_value(this.ds_book.getColumn(e.row,"DUNG1_NM"));
+	this.ed_values12.set_value(this.ds_book.getColumn(e.row,"YUL1"));
+	this.ed_values13.set_value(this.ds_book.getColumn(e.row,"DUNG_CD2"));
+	this.ed_values14.set_value(this.ds_book.getColumn(e.row,"DUNG2_NM"));
+	this.ed_values15.set_value(this.ds_book.getColumn(e.row,"YUL2"));
+	this.ed_values16.set_value(this.ds_book.getColumn(e.row,"DUNG_CD3"));
+	this.ed_values17.set_value(this.ds_book.getColumn(e.row,"DUNG3_NM"));
+	this.ed_values18.set_value(this.ds_book.getColumn(e.row,"YUL3"));
+	this.ed_values19.set_value(this.ds_book.getColumn(e.row,"DUNG_CD4"));
+	this.ed_values20.set_value(this.ds_book.getColumn(e.row,"DUNG4_NM"));
+	this.ed_values21.set_value(this.ds_book.getColumn(e.row,"YUL4"));
+	this.ed_values22.set_value(this.ds_book.getColumn(e.row,"COST"));
+	this.ed_values23.set_value(this.ds_book.getColumn(e.row,"PCOST"));
+	this.ed_values32.set_value(this.ds_book.getColumn(e.row,"YCOST"));
+	this.ed_values24.set_value(this.ds_book.getColumn(e.row,"B_YN"));
+	this.ed_values25.set_index(this.ds_book.getColumn(e.row,"B_YN"));
+	this.ed_values26.set_value(this.ds_book.getColumn(e.row,"B_YMD"));
+	this.ed_values27.set_value(this.ds_book.getColumn(e.row,"B_YUL"));
+	this.ed_values28.set_value(this.ds_book.getColumn(e.row,"BIGO"));
+	this.ed_values29.set_value(this.ds_book.getColumn(e.row,"JUK_GB"));
+	this.ed_values30.set_index(this.ds_book.getColumn(e.row,"JUK_GB"));
+	this.ed_values31.set_value(this.ds_book.getColumn(e.row,"OLD_CODE"));
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/sd/insert_booky.jsp";
+	var strArg  = "user_id="+gv_sabun;	
+	var inDs 	= "ds_book_send=ds_book_send";
+	if ((nexacro.trim(this.ed_values1.value)).length != 10)
+	{
+		alert("코드 오류! 수정하세요!");
+		return;
+	}
+	if ((nexacro.trim(this.ed_values2.value)).length != 4)
+	{
+		alert("년판 오류! 수정하세요!");
+		return;
+	}
+
+	if (((nexacro.trim(this.ed_values12.value)).length == 0) || ((nexacro.trim(this.ed_values15.value)).length == 0) ||((nexacro.trim(this.ed_values18.value)).length == 0) ||
+	   ((nexacro.trim(this.ed_values21.value)).length == 0))
+	{
+		alert("출고율 오류! 수정하세요!");
+		return;
+	}
+
+	if (((nexacro.trim(this.ed_values22.value)).length == 0) || ((nexacro.trim(this.ed_values23.value)).length == 0) ||((nexacro.trim(this.ed_values25.value)).length == 0))
+	{
+		alert("단가 오류! 수정하세요!");
+		return;
+	}
+
+	if (IUSW == "Y") 
+		this.fnEdit_data();
+	else 
+	{
+		NewRowNum = this.ds_book.addRow();
+		this.fnInputdata();
+	} 
+	//	trace(ds_book.SaveXML());
+	this.gfn_TransactionP("insert", strUrl, inDs, "", strArg, "fnTr_Callback", false, "P", false, this);
+};
+
+this.fnTr_Callback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if ( strSvcID == "insert" )
+	{
+		if (strErrorMag == "DUP")
+		{
+			alert("코드가 중복되었습니다. \n 재검색후 저장해주세요.");
+			this.btn_search.click();
+		}
+		else 
+		{
+         	if ( IUSW == "N" )
+            	this.fnDataclear();
+			this.ds_book_send.deleteRow(0);
+        	this.ed_values1.setFocus();
+		}
+	}
+	if ( strSvcID == "delete" )
+	{
+		if (strErrorMag=="Dup")
+		{
+			alert("삭제 Error.");
+		}
+		else 
+		{
+			this.ds_book.deleteRow(EditnRow);
+         	this.fnDataclear();
+        	this.ed_values1.setFocus();
+		}
+	} 
+}
+
+this.btn_can_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnDataclear();	
+	this.ed_values1.setFocus();
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/sd/insert_booky.jsp";
+	var strArg  = "user_id="+gv_sabun;
+	var inDs 	= "ds_book_send=ds_book_send";
+	var objApp = nexacro.getApplication();
+	if(msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? " , "삭제처리", "warning" ))
+	{
+		this.ds_book.setColumn(EditnRow,"CODE",    nexacro.trim(this.ed_values1.value));
+		this.ds_book.setColumn(EditnRow,"YY",      nexacro.trim(this.ed_values2.value));
+		this.ds_book.setColumn(EditnRow,"BDBR_NM", nexacro.trim(this.ed_values3.value));
+		this.ds_book.setColumn(EditnRow,"BJBR_NM", nexacro.trim(this.ed_values4.value));
+		this.ds_book.setColumn(EditnRow,"BGBR_CD", nexacro.trim(this.ed_values5.value));
+		this.ds_book.setColumn(EditnRow,"BGBR_NM", nexacro.trim(this.ed_values6.value));
+		this.ds_book.setColumn(EditnRow,"BGRP_NM", nexacro.trim(this.ed_values7.value));
+		this.ds_book.setColumn(EditnRow,"SYMD", 	  nexacro.trim(this.ed_values8.value));
+		this.ds_book.setColumn(EditnRow,"EYMD", 	  nexacro.trim(this.ed_values9.value));
+		this.ds_book.setColumn(EditnRow,"DUNG_CD1",nexacro.trim(this.ed_values10.value));
+		this.ds_book.setColumn(EditnRow,"DUNG1_NM",nexacro.trim(this.ed_values11.value));
+		this.ds_book.setColumn(EditnRow,"YUL1", 	  nexacro.trim(this.ed_values12.value));
+		this.ds_book.setColumn(EditnRow,"DUNG_CD2",nexacro.trim(this.ed_values13.value));
+		this.ds_book.setColumn(EditnRow,"DUNG2_NM",nexacro.trim(this.ed_values14.value));
+		this.ds_book.setColumn(EditnRow,"YUL2", 	  nexacro.trim(this.ed_values15.value));
+		this.ds_book.setColumn(EditnRow,"DUNG_CD3",nexacro.trim(this.ed_values16.value));
+		this.ds_book.setColumn(EditnRow,"DUNG3_NM",nexacro.trim(this.ed_values17.value));
+		this.ds_book.setColumn(EditnRow,"YUL3", 	  nexacro.trim(this.ed_values18.value));
+		this.ds_book.setColumn(EditnRow,"DUNG_CD4",nexacro.trim(this.ed_values19.value));
+		this.ds_book.setColumn(EditnRow,"DUNG4_NM",nexacro.trim(this.ed_values20.value));
+		this.ds_book.setColumn(EditnRow,"YUL4", 	  nexacro.trim(this.ed_values21.value));
+		this.ds_book.setColumn(EditnRow,"COST", 	  nexacro.trim(this.ed_values22.value));
+		this.ds_book.setColumn(EditnRow,"PCOST",   nexacro.trim(this.ed_values23.value));
+		this.ds_book.setColumn(EditnRow,"YCOST",   nexacro.trim(this.ed_values32.value));
+		this.ds_book.setColumn(EditnRow,"B_YN", 	  nexacro.trim(this.ed_values24.value));
+		this.ds_book.setColumn(EditnRow,"B_YMD",   nexacro.trim(this.ed_values26.value));
+		this.ds_book.setColumn(EditnRow,"B_YUL",   nexacro.trim(this.ed_values27.value));
+		this.ds_book.setColumn(EditnRow,"BIGO", 	  nexacro.trim(this.ed_values28.value));
+		this.ds_book.setColumn(EditnRow,"JUK_GB",  nexacro.trim(this.ed_values29.value));
+		this.ds_book.setColumn(EditnRow,"OLD_CODE",nexacro.trim(this.ed_values31.value));
+		if (this.ed_values10.value == "") this.ds_book.setColumn(EditnRow,"DUNG_CD1","00");
+		if (this.ed_values13.value == "") this.ds_book.setColumn(EditnRow,"DUNG_CD2","00");
+		if (this.ed_values16.value == "") this.ds_book.setColumn(EditnRow,"DUNG_CD3","00");
+		if (this.ed_values19.value == "") this.ds_book.setColumn(EditnRow,"DUNG_CD4","00");
+		if (this.ed_values24.value == "") this.ds_book.setColumn(EditnRow,"B_YN","0");
+		if (this.ed_values26.value == "") this.ds_book.setColumn(EditnRow,"B_YMD","00");
+		if (this.ed_values29.value == "") this.ds_book.setColumn(EditnRow,"JUK_GB","0");	
+		this.ds_book_send.addRow();
+		this.ds_book_send.copyRow(0,this.ds_book,EditnRow);
+		this.ds_book_send.setColumn(0,"o_code", o_code);
+		this.ds_book_send.setColumn(0,"o_yy", o_yy);
+		this.ds_book_send.setColumn(0,"ROWTYPE", "D" );
+		this.gfn_TransactionP("delete", strUrl, inDs, "", strArg, "fnTr_Callback", false, "P", false, this);
+		this.ds_book_send.deleteRow(0);
+		this.grd_view.updateToDataset();
+	}
+};
+
+this.ds_book_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{
+	if(e.reason == 0)
+	{
+		if (this.ds_book.rowcount == 0) 
+			alert("조회된 데이터가 없습니다."); 
+	}
+};
+/*
+this.s_common_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	//Enter Key를 눌렀을 경우 처리
+	if (e.keycode == 13) 
+	{
+		if (obj.id == "ed_s_code") this.ed_s_name.setFocus();
+	}//ESC 키처리	
+	else if (e.keycode == 27)
+	{
+		if (obj.id == "ed_s_name") this.ed_s_code.setFocus();
+	}
+};
+*/
+
+this.ed_values1_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	if ( IUSW == "N" )
+	{
+		var strUrl = "JSP/sd/book_help1.jsp";
+		var strArg;
+		if ((nexacro.trim(this.ed_values1.value)).length != 10) return;
+		if ((nexacro.trim(this.ed_values2.value)).length != 4) return;
+		strArg = " Values1="+nexacro.wrapQuote(nexacro.trim(this.ed_values1.value))+
+				 " Values2="+nexacro.wrapQuote(nexacro.trim(this.ed_values2.value));
+		this.gfn_TransactionP("codesearch2", strUrl, "", "", strArg, "fnTr_Callback2", false, "P", false, this);
+	}	
+	if ( IUSW == "N" )
+	{
+		var strUrl = "JSP/sd/booky_help.jsp";
+		var strArg;
+		if ((nexacro.trim(this.ed_values1.value)).length != 10) return;
+		if ((nexacro.trim(this.ed_values2.value)).length != 4) return;
+		strArg = " Values1="+nexacro.wrapQuote(this.ed_values1.value)+" Values2="+nexacro.wrapQuote(this.ed_values2.value)+" Values3="+nexacro.wrapQuote(this.ed_values1.name);
+		//alert(strArg);
+		this.gfn_TransactionP("Double_chk", strUrl, "", "", strArg, "fnDouble_Callback", false, "P", false, this);
+	}	
+};
+
+this.fnDouble_Callback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if(nErrorCode == 0)
+	{
+		var ret = strErrorMag.split('^');
+		return_code = ret[0];
+		return_code2 = ret[1];
+	}
+    if ( strSvcID == "Double_chk" )
+	{
+		if(return_code != "") // 수정
+		{
+	    	alert ("자료중복 데이터");
+	    	this.ed_values1.set_value("");
+			this.ed_values1.setFocus();
+	    }	
+	}
+}
+
+this.fnTr_Callback2 = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if(nErrorCode != 0)
+	{
+		alert(strErrorMag);
+		return;
+	}
+	if ( strSvcID == "codesearch2" )
+	{
+		var ret = strErrorMag.split('^');
+		return_code1 = ret[0];
+		return_code2 = ret[1];
+		return_code3 = ret[2];
+		return_code4 = ret[3];
+		return_code5 = ret[4];
+		
+		if(return_code3 != "") //수정 
+		{			
+			this.ed_values3.set_value(return_code1);
+			this.ed_values4.set_value(return_code2);
+			this.ed_values5.set_value(return_code4);
+			this.ed_values6.set_value(return_code5);
+			this.ed_values7.set_value(return_code3);
+		}
+		else 
+		{
+			alert("도서코드가 잘못되었습니다.");
+			this.ed_values3.set_value("");
+			this.ed_values4.set_value("");
+			this.ed_values5.set_value("");
+			this.ed_values6.set_value("");
+			this.ed_values7.set_value("");
+			this.ed_values1.set_value("");
+			this.ed_values1.setFocus();
+		}
+	}
+	else if ( strSvcID == "codesearch3" )
+	{
+		var ret = strErrorMag.split('^');
+		return_code = ret[0];
+		return_code1 = ret[1];
+		if (return_code1 =="ed_values10") this.ed_values11.set_value(return_code);
+		else if (return_code1 =="ed_values13") this.ed_values14.set_value(return_code);
+		else if (return_code1 =="ed_values16") this.ed_values17.set_value(return_code);
+		else if (return_code1 =="ed_values19") this.ed_values20.set_value(return_code);
+	}
+}
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strArg;
+	var sOpenStyle = "topmost=true autosize=true dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false resizable=true";
+	nexacro.open("print", "sd::SD6240P.xfdl", this.getOwnerFrame(), "", sOpenStyle, this.width/2, this.height/2);
+};
+
+this.fn_expr = function(val) // Grid 반품구분 expr에 사용
+{
+	if (val == 0) return "적용안함";
+	else if (val == 1) return "반품한도";
+	else if (val == 2) return "반품정산";
+}
+
+this.fn_expr2 = function(val) // Grid 적용구분 expr에 사용
+{
+	if (val == 0) return "적용";
+	else if (val == 1) return "단가";
+	else if (val == 2) return "출고율";
+	else if (val == 3) return "적용안함";
+}
+
+this.common_onkeydown = function(obj:nexacro.Component,e:nexacro.KeyEventInfo)
+{
+	var strArg = "";
+	var code = "";
+		//Enter Key를 눌렀을 경우 처리
+	if (e.keycode == 13) 
+	{
+		if (obj.name == "ed_values1") this.ed_values2.setFocus();
+		else if (obj.name == "ed_values2") this.ed_values8.setFocus();
+		else if (obj.name == "ed_values8") this.ed_values9.setFocus();	
+		else if (obj.name == "ed_values9") this.ed_values10.setFocus();	
+		else if (obj.name == "ed_values10") this.ed_values12.setFocus();
+		else if (obj.name == "ed_values12") this.ed_values13.setFocus();
+		else if (obj.name == "ed_values13") this.ed_values15.setFocus();
+		else if (obj.name == "ed_values15") this.ed_values16.setFocus();
+		else if (obj.name == "ed_values16") this.ed_values18.setFocus();
+		else if (obj.name == "ed_values18") this.ed_values19.setFocus();
+		else if (obj.name == "ed_values19") this.ed_values21.setFocus();
+		else if (obj.name == "ed_values21") this.ed_values22.setFocus();
+		else if (obj.name == "ed_values22") this.ed_values23.setFocus();
+		else if (obj.name == "ed_values23") this.ed_values32.setFocus();
+		else if (obj.name == "ed_values32") this.ed_values24.setFocus();
+		else if (obj.name == "ed_values24") this.ed_values25.setFocus();
+		else if (obj.name == "ed_values25") this.ed_values26.setFocus();
+		else if (obj.name == "ed_values26") this.ed_values27.setFocus();
+		else if (obj.name == "ed_values27") this.ed_values28.setFocus();
+		else if (obj.name == "ed_values28") this.ed_values29.setFocus();
+		else if (obj.name == "ed_values29") this.ed_values30.setFocus();
+		else if (obj.name == "ed_values30") this.ed_values31.setFocus();
+	}//ESC 키처리	
+	else if (e.keycode == 27)
+	{
+		if (obj.name == "ed_values2") this.ed_values1.setFocus();
+		else if (obj.name == "ed_values8") this.ed_values2.setFocus();
+		else if (obj.name == "ed_values9") this.ed_values8.setFocus();
+		else if (obj.name == "ed_values10") this.ed_values9.setFocus();
+		else if (obj.name == "ed_values12") this.ed_values10.setFocus();
+		else if (obj.name == "ed_values13") this.ed_values12.setFocus();
+		else if (obj.name == "ed_values15") this.ed_values13.setFocus();
+		else if (obj.name == "ed_values16") this.ed_values15.setFocus();
+		else if (obj.name == "ed_values18") this.ed_values16.setFocus();
+		else if (obj.name == "ed_values19") this.ed_values18.setFocus();
+		else if (obj.name == "ed_values21") this.ed_values19.setFocus();
+		else if (obj.name == "ed_values22") this.ed_values21.setFocus();
+		else if (obj.name == "ed_values23") this.ed_values22.setFocus();
+		else if (obj.name == "ed_values32") this.ed_values23.setFocus();
+		else if (obj.name == "ed_values24") this.ed_values32.setFocus();
+		else if (obj.name == "ed_values25") this.ed_values24.setFocus();
+		else if (obj.name == "ed_values26") this.ed_values25.setFocus();
+		else if (obj.name == "ed_values27") this.ed_values26.setFocus();
+		else if (obj.name == "ed_values28") this.ed_values27.setFocus();
+		else if (obj.name == "ed_values29") this.ed_values28.setFocus();
+		else if (obj.name == "ed_values30") this.ed_values29.setFocus();
+		else if (obj.name == "ed_values31") this.ed_values30.setFocus();
+	}   
+	else if (e.keycode == 112) //F1 키... 
+	{
+		if ((obj.name == "ed_values1") || (obj.name == "ed_values2")) 
+		{
+			this.lfn_showModal("code", {setting:this.ed_values1.value}, "sd::frmBookcode.xfdl", "fnCodeCallback", this, 0, 0, 500, 585);		
+			if(trim(code) != "0")
+			{
+				this.ed_values1.set_value(code.substr(0,10));
+				this.ed_values2.set_value(code.substr(10,4));
+				this.ed_values7.set_value(code.substr(14,code.length));
+				this.ed_values8.setFocus();
+			}
+		} 
+	}
+};
+
+this.fnCodeCallback = function(sFormId, sArg)
+{
+	if(nexacro.trim(sArg) != "0")
+	{
+		this.ed_values1.set_value(sArg.substr(0,10));
+		this.ed_values2.set_value(sArg.substr(10,4));
+		this.ed_values7.set_value(sArg.substr(14,sArg.length));
+		this.ed_values1_onkillfocus();
+		this.ed_values8.setFocus(); 
+	}
+};
+
+this.common_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	var strUrl = "JSP/sd/dung_help1.jsp"
+	var strArg;
+	if ((nexacro.trim(obj.value)).length != 2) 
+		return;
+	
+	strArg = " Values1="+nexacro.wrapQuote(obj.value)+
+			 " Values2="+nexacro.wrapQuote(obj.name);
+	this.gfn_TransactionP("codesearch3", strUrl, "", "", strArg, "fnTr_Callback2", false, "P", false, this);
+};
+
+this.ed_values24_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	if (obj.value == "") return;
+	else if (obj.value == "0") this.ed_values25.set_index(0);
+	else if (obj.value == "1") this.ed_values25.set_index(1);
+	else if (obj.value == "2") this.ed_values25.set_index(2);
+};
+
+this.ed_values25_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if (obj.text == "") return;
+	else if (obj.index == 0) this.ed_values24.set_value("0");
+	else if (obj.index == 1) this.ed_values24.set_value("1");
+	else if (obj.index == 2) this.ed_values24.set_value("2");
+};
+
+this.ed_values29_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	if (obj.value == "") return;
+	else if (obj.value == "0") this.ed_values30.set_index(0);
+	else if (obj.value == "1") this.ed_values30.set_index(1);
+	else if (obj.value == "2") this.ed_values30.set_index(2);	
+	else if (obj.value == "3") this.ed_values30.set_index(3);	
+};
+
+this.ed_values30_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if (obj.text == "") return;
+	else if (obj.index == 0) this.ed_values29.set_value("0");
+	else if (obj.index == 1) this.ed_values29.set_value("1");
+	else if (obj.index == 2) this.ed_values29.set_value("2");	
+	else if (obj.index == 3) this.ed_values29.set_value("3");		
+};
+
+this.btn_copy_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("copy", "", "sd::SD6241P.xfdl", "", this, 0, 0, 420, 160);	
+};
+
+this.btn_code_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("code_search", {setting:this.ed_values1.value}, "sd::frmBookcode.xfdl", "fnCodeCallback", this, 0, 0, 500, 585);		
+};]]></Script>
+    <Objects>
+      <Dataset id="ds_cmb_search">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">〓  (같다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">&gt;   (크다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME"> &lt;  (작다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">&gt;=  (같거나크다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME"> &lt;= (같거나작다)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="NAME">%% (나열)</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_cmb_orderby">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">번호별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">중분류별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">년판</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">도서구분</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">OLD번호</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="NAME">시행일</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">6</Col>
+            <Col id="NAME">종료일</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_book" onload="ds_book_onload">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="BDBR_NM" type="STRING" size="256"/>
+          <Column id="BJBR_NM" type="STRING" size="256"/>
+          <Column id="BGRP_NM" type="STRING" size="256"/>
+          <Column id="SYMD" type="STRING" size="256"/>
+          <Column id="EYMD" type="STRING" size="256"/>
+          <Column id="DUNG_CD1" type="STRING" size="256"/>
+          <Column id="DUNG_CD2" type="STRING" size="256"/>
+          <Column id="DUNG_CD3" type="STRING" size="256"/>
+          <Column id="DUNG_CD4" type="STRING" size="256"/>
+          <Column id="YUL1" type="FLOAT" size="256"/>
+          <Column id="YUL2" type="FLOAT" size="256"/>
+          <Column id="YUL3" type="FLOAT" size="256"/>
+          <Column id="YUL4" type="FLOAT" size="256"/>
+          <Column id="COST" type="STRING" size="256"/>
+          <Column id="PCOST" type="STRING" size="256"/>
+          <Column id="YCOST" type="STRING" size="256"/>
+          <Column id="B_YN" type="STRING" size="256"/>
+          <Column id="B_YMD" type="STRING" size="256"/>
+          <Column id="B_YUL" type="STRING" size="256"/>
+          <Column id="JUK_GB" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+          <Column id="BGBR_CD" type="STRING" size="256"/>
+          <Column id="BGBR_NM" type="STRING" size="256"/>
+          <Column id="OLD_CODE" type="STRING" size="256"/>
+          <Column id="DUNG1_NM" type="STRING" size="256"/>
+          <Column id="DUNG2_NM" type="STRING" size="256"/>
+          <Column id="DUNG3_NM" type="STRING" size="256"/>
+          <Column id="DUNG4_NM" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_book_send">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="BDBR_NM" type="STRING" size="256"/>
+          <Column id="BJBR_NM" type="STRING" size="256"/>
+          <Column id="BGRP_NM" type="STRING" size="256"/>
+          <Column id="SYMD" type="STRING" size="256"/>
+          <Column id="EYMD" type="STRING" size="256"/>
+          <Column id="DUNG_CD1" type="STRING" size="256"/>
+          <Column id="DUNG_CD2" type="STRING" size="256"/>
+          <Column id="DUNG_CD3" type="STRING" size="256"/>
+          <Column id="DUNG_CD4" type="STRING" size="256"/>
+          <Column id="YUL1" type="STRING" size="256"/>
+          <Column id="YUL2" type="STRING" size="256"/>
+          <Column id="YUL3" type="STRING" size="256"/>
+          <Column id="YUL4" type="STRING" size="256"/>
+          <Column id="COST" type="STRING" size="256"/>
+          <Column id="PCOST" type="STRING" size="256"/>
+          <Column id="YCOST" type="STRING" size="256"/>
+          <Column id="B_YN" type="STRING" size="256"/>
+          <Column id="B_YMD" type="STRING" size="256"/>
+          <Column id="B_YUL" type="STRING" size="256"/>
+          <Column id="JUK_GB" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+          <Column id="BGBR_CD" type="STRING" size="256"/>
+          <Column id="BGBR_NM" type="STRING" size="256"/>
+          <Column id="OLD_CODE" type="STRING" size="256"/>
+          <Column id="DUNG1_NM" type="STRING" size="256"/>
+          <Column id="DUNG2_NM" type="STRING" size="256"/>
+          <Column id="DUNG3_NM" type="STRING" size="256"/>
+          <Column id="DUNG4_NM" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="O_CODE" type="STRING" size="256"/>
+          <Column id="O_YY" type="STRING" size="256"/>
+          <Column id="ROWTYPE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_ed_values25">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="DATA" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="DATA">적용안함</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="DATA">반품한도</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="DATA">반품정산</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_ed_values30">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="DATA" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="DATA">적용</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="DATA">단가</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="DATA">출고율</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="DATA">적용안함</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

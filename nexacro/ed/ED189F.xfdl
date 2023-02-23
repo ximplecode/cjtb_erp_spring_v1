@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED189F" width="350" height="280" titletext="New Form">
+    <Layouts>
+      <Layout height="280" width="350">
+        <Static id="Static00_00" taborder="0" text="조회일자" left="15" top="14" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="1" left="100" top="14" width="110" height="30"/>
+        <Calendar id="cal_Edate" taborder="2" left="215" top="14" width="110" height="30"/>
+        <Static id="Static05" taborder="3" text="제출일자" left="15" top="49" width="80" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Static id="Static05_00" taborder="4" text="매수" left="15" top="84" width="80" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Static id="Static05_00_00" taborder="5" text="소득금액" left="15" top="120" width="80" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Button id="btn_search" taborder="6" text="조회" top="240" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="210" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="7" text="닫기" top="240" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="70" onclick="btn_close_onclick"/>
+        <Button id="btn_print" taborder="8" text="출력" top="240" height="28" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="140" onclick="btn_print_onclick"/>
+        <Static id="Static05_00_00_00" taborder="9" text="소득제" left="15" top="156" width="80" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <Static id="Static05_00_00_01" taborder="10" text="주민세" left="15" top="192" width="80" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9"/>
+        <MaskEdit id="medt_qty" taborder="11" left="99" top="84" width="220" height="30" format="#,##0"/>
+        <MaskEdit id="medt_amount" taborder="12" left="99" top="120" width="220" height="30" format="#,##0"/>
+        <MaskEdit id="medt_incometax" taborder="13" left="100" top="156" width="220" height="30" format="#,##0"/>
+        <MaskEdit id="medt_residenttax" taborder="14" left="99" top="192" width="220" height="30" format="#,##0"/>
+        <Calendar id="cal_submitDate" taborder="15" left="100" top="49" width="110" height="30"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsIncomeTotAmount">
+        <ColumnInfo>
+          <Column id="ROWCNT" type="INT" size="256"/>
+          <Column id="AMOUNT" type="STRING" size="256"/>
+          <Column id="INCOMETAX" type="STRING" size="256"/>
+          <Column id="RESIDENTTAX" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="medt_qty" propid="value" datasetid="dsIncomeTotAmount" columnid="ROWCNT"/>
+      <BindItem id="item1" compid="medt_amount" propid="value" datasetid="dsIncomeTotAmount" columnid="AMOUNT"/>
+      <BindItem id="item2" compid="medt_incometax" propid="value" datasetid="dsIncomeTotAmount" columnid="INCOMETAX"/>
+      <BindItem id="item3" compid="medt_residenttax" propid="value" datasetid="dsIncomeTotAmount" columnid="RESIDENTTAX"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var rdUrl,rdParam,sSelect;
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+this.chk_value = function()
+{
+	if(this.cal_Sdate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Sdate.dropdown();
+		return false;
+	}	
+	
+	if(this.cal_Edate.value == null)
+	{
+		alert("조회일자를 입력해주세요.");
+		this.cal_Edate.dropdown();
+		return false;
+	}	
+	
+	return true;
+}
+
+//조회
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	if(this.chk_value())
+	{	
+		var inds = "dsIncomeTotAmount=dsIncomeTotAmount";
+		var outds = "dsIncomeTotAmount=dsIncomeTotAmount";
+		
+		var strArg = "SDATE=" + nexacro.wrapQuote(this.cal_Sdate.value)
+				   + " EDATE=" + nexacro.wrapQuote(this.cal_Edate.value);
+				   
+		this.gfn_TransactionP("select","JSP/ed/ed189f_withhold_data.jsp", inds, outds, strArg, "fnCallback", false, "P", false, this);
+	}
+};
+
+this.fnCallback = function()
+{
+	trace(this.dsIncomeTotAmount.saveXML());
+}
+
+//출력
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.cal_submitDate.value == null)
+	{
+		alert("제출일자를 입력해주세요.");
+		this.cal_submitDate.dropdown();
+		return false;
+	}
+	
+	if(this.chk_value())
+	{
+		rdUrl = gv_urlMrd + "/ed/ED189.mrd";
+		
+		rdParam  = "/ragentpath ["+ gv_urlRdDataServer +"]" +
+				   " /rp ["+ this.cal_Sdate.value + "]["+ this.cal_Edate.value +"][" + this.cal_submitDate.value + "]";
+				
+		this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+	}
+};
+
+//닫기
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

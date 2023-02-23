@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="350" height="600" titletext="제품사고접수 통계 POPUP" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="600" width="350">
+        <Static id="Static02" taborder="0" text="제품사고접수 통계" left="8" top="10" width="352" height="65" color="#7fb39d" font="bold 30px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <ImageViewer id="ImgClose01" taborder="1" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Grid id="grdList" taborder="2" left="8" top="70" width="332" binddataset="dsErrorReport" bottom="10" autofittype="none" onheadclick="grdList_onheadclick" autoenter="select" selecttype="row" oncelldblclick="grdList_oncelldblclick">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="170"/>
+                <Column size="154"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="32"/>
+                <Row size="32" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="해당월" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="사고건수" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ORDMST_MONTH" displaytype="normal" combodataset="ds_mk_UseType" combocodecol="USE_TYPE_CODE" combodatacol="USE_TYPE_NAME" font="bold 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" cssclass="expr:ERROR_CODE!='0'?&quot;BgChange4&quot;:&quot;&quot; " color="steelblue"/>
+                <Cell col="1" text="bind:ERROR_CNT" font="bold 12px/normal &quot;함초롬돋움&quot;" edittype="none" textAlign="right" cssclass="expr:ERROR_CODE!='0'?&quot;BgChange4&quot;:&quot;&quot; " displaytype="number" color="steelblue"/>
+              </Band>
+              <Band id="summary">
+                <Cell background="#fbce78" font="bold 13px/normal &quot;함초롬돋움&quot;" text="총계"/>
+                <Cell col="1" background="#fbce78" expr="dataset.getSum('ERROR_CNT');" font="bold 13px/normal &quot;함초롬돋움&quot;" textAlign="right" displaytype="number"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <ImageViewer id="ImgClose" taborder="3" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" text="" top="25" left="309" onclick="ImgClose_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var rSDATE, rEDATE;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	rSDATE = this.parent.dsParam1;
+	rEDATE = this.parent.dsParam2;
+	this.Get_Error_Report();
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+	
+};
+
+//조회버튼 클릭
+this.Get_Error_Report = function()
+{
+	in_ds 	= "dsErrorReport=dsErrorReport";
+	out_ds 	= "dsErrorReport=dsErrorReport";
+	str_url = "JSP/mk/product_error_report_select.jsp";
+	str_arg = "SDATE=" + nexacro.wrapQuote(rSDATE)
+			+ " EDATE=" + nexacro.wrapQuote(rEDATE)
+			+ " GUBUN=" + nexacro.wrapQuote("2");
+		 
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+	
+};
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		
+		if(this.dsErrorReport.rowcount == 0)
+			alert("조회된 자료가 없습니다.");
+		
+	}
+};
+
+this.setdata_rate = function(rate)
+{
+   var rt_rate;
+   if (rate <= 0) rt_rate = "S";
+   else if (rate <= 0.1) rt_rate = "A";
+   else if (rate <= 0.2) rt_rate = "B";
+   else if (rate < 0.3) rt_rate = "C";
+   else rt_rate = "D";
+   return rt_rate;
+}
+
+
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsErrorReport">
+        <ColumnInfo>
+          <Column id="ORDMST_MONTH" type="STRING" size="256"/>
+          <Column id="ORDMST_CNT" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="ERROR_CNT" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="RATE" type="STRING" size="256" prop=""/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

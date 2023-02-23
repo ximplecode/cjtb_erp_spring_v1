@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[.Button
+{
+	font : normal 13px /normal "NotoSansKR";
+	background : #765cf8;
+	color : white;
+}
+
+.Button[status=mouseover]
+{
+	background : #765cf8;
+	color : white;
+}
+
+.Button[userstatus=selected],.Button[status=focused],.Button[userstatus=pushed]
+{
+	background : #765cf8;
+	color : white;
+}
+.Calendar .datepicker .head
+{
+	background : #4364ed;
+	color : #ffffff;
+	font : bold 10px/normal "NotoSansKR";
+}
+
+.Calendar .datepicker .head .yearspin .spinedit
+{
+	background : #4364ed;
+	
+}
+
+.Calendar .datepicker .head .monthspin .spinedit
+{
+	background : #4364ed;
+}
+
+.Calendar .datepicker .body .weekband
+{
+	background : #4364ed;
+	color : #ffffff;
+	font : bold 10px/normal "NotoSansKR";
+}
+
+.Calendar .datepicker .body
+{
+	-nexa-border : 0px none;	
+}
+
+.Calendar[status=mouseover],.CalendarControl[status=mouseover],.Calendar[status=focused],.CalendarControl[status=focused]
+{
+	-nexa-border : 1px solid #cacddb;
+}
+
+.Calendar .datepicker .body .dayitem 
+{
+	border-radius : 50px;	
+}
+
+.Calendar .datepicker .body .dayitem[status=mouseover]
+{
+	background : #4364ed;
+	
+}
+
+.Calendar .datepicker .body .dayitem[userstatus=selected]
+{
+	background : #4364ed;
+}
+
+
+.Grid .vscrollbar .trackbar
+{
+	background : #eaeaea;
+}
+
+.Grid
+{
+	-nexa-border : 1px solid #b7b1b2,1px solid #b7b1b2,1px solid #b7b1b2;	
+	font : 13px/normal "NotoSansKR";
+}
+
+.Grid .head .row .cell
+{
+	background : #f2f4fb;
+	color : #1435C1;
+	font : 13px/normal "NotoSansKR";
+}
+.Combo .dropbutton
+{
+	color : white;
+	background : white;			
+}
+
+.Combo .dropbutton[status=disabled]
+{
+	background : #f7f8fc;	
+}
+
+
+.Combo[status=mouseover],.Combo[status=focused]
+{
+	-nexa-border : 1px solid #4364ed;	
+}
+
+.Combo .combolist
+{
+	-nexa-border : 1px solid #4364ed;	
+}
+
+.Combo .combolist .listboxitem[status=mouseover],.Combo .combolist .listboxitem[status=focused]
+{
+	background : #4364ed;
+	color : white;
+}
+
+.Combo .combolist .listboxitem[userstatus=selected]
+{
+	background : #4364ed;
+	color : white;
+}
+
+.Combo .combolist .vscrollbar
+{
+	background : #f7f8fc;
+	
+}
+
+
+
+.Combo
+{
+	
+}
+.MaskEdit[status=focused],.MaskEdit[status=mouseover]
+{
+	-nexa-border : 1px solid  #4364ed;
+}
+
+.TextArea[status=mouseover],.TextArea[status=focused]
+{
+	-nexa-border : 1px solid  #4364ed;
+}
+.ListBox[status=focused],.ListBox[status=mouseover]
+{
+	-nexa-border : 1px solid  #4364ed;
+}
+
+.ListBox .listboxitem[status=focused],.ListBox .listboxitem[status=mouseover]
+{
+	background : #4364ed;
+}
+
+.ListBox .listboxitem[userstatus=selected]
+{
+	background : #4364ed;
+}
+
+.Spin[status=focused],.Spin[status=mouseover]
+{
+	-nexa-border : 1px solid  #4364ed;
+}
+
+.Edit[status=mouseover],.Edit[status=focused]
+{
+	-nexa-border : 1px solid  #4364ed;
+	
+}
+
+
+
+]]></XCSS>

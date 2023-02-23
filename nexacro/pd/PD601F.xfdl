@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD601F" width="420" height="200" titletext="New Form" onload="PD601F_onload">
+    <Layouts>
+      <Layout height="200" width="420">
+        <Static id="Static00" taborder="0" text="추가항목 입력" left="20" top="4" color="#7fb39d" font="bold 26px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="226" height="43"/>
+        <Button id="btn_save" taborder="1" text="저장" top="8" height="22" right="66" width="52" font="12px/normal &quot;Gulim&quot;" onclick="btn_save_onclick"/>
+        <Button id="btn_close" taborder="2" text="닫기" top="8" height="22" width="51" right="10" font="12px/normal &quot;Gulim&quot;" onclick="btn_close_onclick"/>
+        <Static id="Static01" taborder="3" text="부서" left="20" top="50" width="70" height="26" textAlign="center" font="bold 12px/normal &quot;Gulim&quot;" background="#c3e4cd"/>
+        <Static id="Static02" taborder="4" text="년월" left="20" top="78" width="70" height="26" textAlign="center" font="bold 12px/normal &quot;Gulim&quot;" background="#c3e4cd"/>
+        <Static id="Static04" taborder="5" text="금액" left="20" top="106" width="70" height="26" textAlign="center" font="bold 12px/normal &quot;Gulim&quot;" background="#c3e4cd"/>
+        <Static id="Static05" taborder="6" text="사유" left="20" top="134" width="70" height="26" textAlign="center" font="bold 12px/normal &quot;Gulim&quot;" background="#c3e4cd"/>
+        <CheckBox id="chk_all" taborder="7" text="하위 월 일괄 적용" left="20" top="170" width="135" height="20" value="false" font="12px/normal &quot;Gulim&quot;"/>
+        <Edit id="edt_section_name" taborder="8" left="90" top="50" width="320" height="26" enable="false"/>
+        <MaskEdit id="medt_ym" taborder="9" left="90" top="78" width="100" height="26" type="string" format="####-##" textAlign="center"/>
+        <Static id="Static03" taborder="10" text="항목" left="190" top="78" width="70" height="26" textAlign="center" font="bold 12px/normal &quot;Gulim&quot;" background="#c3e4cd"/>
+        <Combo id="cbo_order_gb" taborder="11" text="Combo00" left="260" top="78" width="150" height="26" innerdataset="dsOrderGB" codecolumn="CODE" datacolumn="NAME"/>
+        <MaskEdit id="medt_amount" taborder="12" left="90" top="106" width="171" height="26"/>
+        <Edit id="edt_bigo" taborder="13" left="90" top="134" width="320" height="26"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var section_code;
+var gv_sabun;
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.PD601F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	this.medt_ym.set_value(this.parent.yy + this.parent.mm);
+	this.cbo_order_gb.set_value(this.parent.order_gb);
+	this.edt_section_name.set_value(this.opener.dsData.getColumn(0,"SECTION_NAME"));
+	section_code = this.parent.section_code;
+	gv_sabun = this.parent.gv_sabun;
+	
+	this.medt_amount.setFocus();
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl, strArg, chk;
+	if (this.chk_all.value)
+		chk = 1;
+	else
+		chk = 0;
+	strUrl = "JSP/pd/PD600_etc_dml.jsp";
+	strArg = "yy="+nexacro.wrapQuote(this.medt_ym.value.substr(0,4)) + " mm="+nexacro.wrapQuote(this.medt_ym.value.substr(4,2)) +
+	          " section_code="+nexacro.wrapQuote(section_code) + " in_id="+nexacro.wrapQuote("") +
+	          " amount="+nexacro.wrapQuote(this.medt_amount.value) + " bigo="+nexacro.wrapQuote(this.edt_bigo.text)  +
+	          " ckb="+nexacro.wrapQuote(chk) + " order_gb="+nexacro.wrapQuote(this.cbo_order_gb.value) +
+	          " sabun="+nexacro.wrapQuote(gv_sabun);
+
+	this.gfn_TransactionP("etc_dml", strUrl, "", "", strArg, "Callback_etc_dml", false, "P", false, this);
+};
+
+this.Callback_etc_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return;
+	}
+	this.close(0);
+}]]></Script>
+    <Objects>
+      <Dataset id="dsOrderGB">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">부서운영비</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">업무시식비</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">사무용품비</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">일반접대비</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

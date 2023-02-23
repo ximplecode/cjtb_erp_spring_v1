@@ -1,0 +1,770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD201F" width="1630" height="760" titletext="New Form" onload="PD201F_onload" onsize="PD201F_onsize">
+    <Layouts>
+      <Layout height="760" width="1630">
+        <Div id="div_main" taborder="56" left="0" top="0" width="1350" height="730" text="" maxwidth="" minheight="390" maxheight="" minwidth="790">
+          <Layouts>
+            <Layout>
+              <Button id="btn_del" taborder="6" text="삭제" top="5.48%" width="5.63%" height="4.4%" font="bold 10pt/normal &quot;Arial&quot;" right="10" onclick="div_main_btn_del_onclick"/>
+              <Button id="btn_print" taborder="5" text="출력" top="5.48%" width="5.63%" height="4.40%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_del:16.68%" onclick="div_main_btn_print_onclick"/>
+              <Button id="btn_excel" taborder="4" text="엑셀변환" top="5.48%" width="7.12%" height="4.40%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_print:16.68%" onclick="div_main_btn_excel_onclick"/>
+              <Button id="btn_save" taborder="3" text="저장" top="5.48%" width="5.63%" height="4.40%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_excel:11.12%" onclick="div_main_btn_save_onclick"/>
+              <Button id="btn_edit" taborder="2" text="수정" top="5.48%" width="5.63%" height="4.40%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_save:16.68%" onclick="div_main_btn_edit_onclick"/>
+              <Button id="btn_cancle" taborder="1" text="취소" top="5.48%" width="5.63%" height="4.40%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_edit:16.68%" onclick="div_main_btn_cancle_onclick"/>
+              <Button id="btn_new" taborder="0" text="신규카드" top="5.48%" width="7.12%" height="4.40%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_cancle:16.68%" onclick="div_main_btn_new_onclick"/>
+              <Static id="Static01_03" taborder="39" text="CVC번호" left="58.75%" top="11.79%" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="1px" padding="0px 0px 0px 2px"/>
+              <Static id="Static01_07" taborder="40" text="유효기간" left="58.75%" top="Static01_03:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 0px 0px 2px" letterSpacing="2px"/>
+              <Static id="Static01_11" taborder="41" text="사용유무" left="58.75%" top="Static01_07:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+              <Static id="Static01_14" taborder="42" text="은      행" left="58.75%" top="Static01_11:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f"/>
+              <Static id="Static_SP1" taborder="48" left="2.22%" top="Static01_14:1" height="2" background="#368b65" right="10"/>
+              <Static id="Static_BG2" taborder="47" left="2.22%" top="Static_SP1:1" border="1px solid #10aea9" textAlign="center" color="#00307a" font="bold 12px/normal &quot;Gulim&quot;" text="" height="4.53%" right="10"/>
+              <Static id="Static02_00" taborder="49" left="Static_BG2:-100%" top="Static_BG2:-100%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" text="조    회" width="Static_SP1:8.40%" height="4.53%" background="#e0f6ff"/>
+              <Static id="Static01_01" taborder="32" text="등록번호" left="Static02_00:-1" top="11.79%" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+              <Static id="Static01_05" taborder="33" text="카 드 명" left="Static02_00:-1" top="Static01_01:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+              <Static id="Static01_09" taborder="34" text="결제은행" left="Static02_00:-1" top="Static01_05:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+              <Static id="Static01_13" taborder="35" text="비      고" left="Static02_00:-1" top="Static01_09:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="1px"/>
+              <Static id="Static01_00" taborder="31" left="2.22%" top="Static01_01:-100%" border="1px solid #10aea9" text="카  드&#13;&#10;&#13;&#10;정  보" textAlign="center" color="#01656f" font="bold 11pt/normal &quot;Arial&quot;" bottom="Static01_13:-100%" width="8.15%" background="#ebfef3"/>
+              <Combo id="cbo_banktype" taborder="8" top="11.79%" width="9.5%" height="4.53%" border="1px solid #10aea9" enable="false" value="" innerdataset="dsBankType" codecolumn="BANK_CODE" datacolumn="BANK_NAME" font="13px/normal &quot;Gulim&quot;" text="" left="36.67%"/>
+              <Static id="Static01_02" taborder="36" text="카드번호" top="11.79%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 0px 0px 2px" letterSpacing="2px" right="cbo_banktype:-1" width="9%"/>
+              <Edit id="edt_index" taborder="7" left="Static01_01:-1" top="11.79%" height="4.53%" border="1px solid #10aea9" enable="false" textAlign="center" font="12px/normal &quot;Gulim&quot;" right="Static01_02:-1"/>
+              <MaskEdit id="medt_cardnum" taborder="9" left="cbo_banktype:-1" top="11.79%" height="4.53%" border="1px solid #10aea9" type="string" format="####-####-####-####" textAlign="center" enable="false" font="12px/normal &quot;Gulim&quot;" right="Static01_03:-1" padding="0px"/>
+              <Static id="Static01_06" taborder="37" text="결제한도" left="36.67%" top="Static01_01:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 0px 0px 2px" letterSpacing="2px"/>
+              <Edit id="edt_cardname" taborder="12" left="Static01_05:-1" top="Static01_01:-1" height="4.53%" border="1px solid #10aea9" enable="true" textAlign="left" font="13px/normal &quot;Gulim&quot;" right="Static01_06:-1"/>
+              <Static id="Static01_10" taborder="38" text="결제계좌" left="36.67%" top="Static01_05:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 0px 0px 2px" letterSpacing="2px"/>
+              <Edit id="edt_paybank" taborder="16" left="Static01_09:-1" top="Static01_05:-1" height="4.53%" border="1px solid #10aea9" enable="true" textAlign="left" font="13px/normal &quot;Gulim&quot;" right="Static01_10:-1"/>
+              <MaskEdit id="medt_amtlimit" taborder="13" left="Static01_06:-1" top="Static01_01:-1" height="4.53%" border="1px solid #10aea9" type="number" textAlign="right" visible="true" displaynulltext="0" font="13px/normal &quot;Gulim&quot;" right="Static01_07:-1"/>
+              <MaskEdit id="medt_bankacc" taborder="17" left="Static01_10:-1" top="Static01_05:-1" height="4.53%" border="1px solid #10aea9" type="string" format="################" textAlign="center" font="12px/normal &quot;Gulim&quot;" right="Static01_11:-1" padding="0px"/>
+              <Edit id="edt_bigo" taborder="20" left="Static01_13:-1" top="Static01_09:-1" height="4.53%" border="1px solid #10aea9" enable="true" textAlign="left" font="13px/normal &quot;Gulim&quot;" right="Static01_14:-1"/>
+              <Edit id="edt_cvc" taborder="10" left="Static01_03:-1" top="11.79%" width="8.89%" height="4.53%" border="1px solid #10aea9" enable="true" textAlign="center" font="13px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt_expdate" taborder="14" left="Static01_07:-1" top="Static01_03:-1" width="8.89%" height="4.53%" border="1px solid #10aea9" enable="true" textAlign="center" font="13px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt_04" taborder="43" left="Static01_11:-1" top="Static01_07:-1" width="8.89%" height="4.53%" border="1px solid #10aea9" enable="true" textAlign="center" font="13px/normal &quot;Gulim&quot;"/>
+              <MaskEdit id="medt_cust_cd" taborder="21" left="Static01_14:-1" top="Static01_11:-1" width="5.19%" height="4.53%" border="1px solid #10aea9" type="string" textAlign="center" format="@@@@" font="13px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt_cust_nm" taborder="22" left="medt_cust_cd:-1" top="Static01_11:-1" width="13.19%" height="4.53%" border="1px solid #10aea9" enable="true" textAlign="left" font="13px/normal &quot;Gulim&quot;"/>
+              <Static id="Static01_04" taborder="44" text="등  록  자" left="edt_cvc:-1" top="11.79%" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 0px 0px 1px" letterSpacing="1px"/>
+              <Static id="Static01_08" taborder="45" text="등  록  일" left="edt_expdate:-1" top="Static01_03:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="1px" padding="0px 0px 0px 1px"/>
+              <Static id="Static01_12" taborder="46" text="최근수정일" left="edt_04:-1" top="Static01_07:-1" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f"/>
+              <MaskEdit id="medt_update" taborder="19" left="Static01_12:-1" top="Static01_07:-1" height="4.53%" border="1px solid #10aea9" type="string" format="####/##/## ##:##:##" textAlign="center" enable="false" font="12px/normal &quot;Gulim&quot;" right="10" padding="0px"/>
+              <MaskEdit id="medt_indate" taborder="15" left="Static01_08:-1" top="Static01_03:-1" height="4.53%" border="1px solid #10aea9" type="string" format="####/##/## ##:##:##" textAlign="center" enable="false" font="12px/normal &quot;Gulim&quot;" right="10" padding="0px"/>
+              <Edit id="edt_inuser" taborder="11" left="Static01_04:-1" top="11.79%" height="4.53%" border="1px solid #10aea9" enable="false" textAlign="center" font="13px/normal &quot;Gulim&quot;" right="10"/>
+              <CheckBox id="chk_usecode" taborder="18" text="사용" left="edt_04:-75%" top="edt_04:-78.79%" width="4.44%" height="2.74%" textAlign="center" font="12px/normal &quot;Gulim&quot;" value="true"/>
+              <Static id="Static02_01" taborder="50" text="카드종류" left="Static02_00:-1" top="Static_BG2:-100%" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+              <Static id="Static02_03" taborder="52" text="결제계좌" top="Static_BG2:-100%" width="9.5%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 0px 0px 2px" letterSpacing="2px" left="Static_BG2:-51.48%"/>
+              <MaskEdit id="medt_sch_cardnum" taborder="24" left="36.67%" top="Static_BG2:-100%" height="4.53%" border="1px solid #10aea9" type="string" format="####-####-####-####" textAlign="center" enable="true" font="12px/normal &quot;Gulim&quot;" right="Static02_03:-1"/>
+              <Static id="Static02_02" taborder="51" text="카드번호" top="Static_BG2:-100%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 0px 0px 2px" letterSpacing="2px" right="medt_sch_cardnum:-1" width="9.00%"/>
+              <Combo id="cbo_sch_type" taborder="23" left="Static02_01:-1" top="Static_BG2:-100%" height="4.53%" value="0" index="0" border="1px solid #10aea9" innerdataset="dsBankType" codecolumn="BANK_CODE" datacolumn="BANK_NAME" font="13px/normal &quot;Gulim&quot;" text="선택" right="Static02_02:-1"/>
+              <MaskEdit id="medt_sch_bankacc" taborder="26" left="Static02_03:-1" top="Static_BG2:-100%" width="9.48%" height="4.52%" border="1px solid #10aea9" type="string" format="################" textAlign="center" font="12px/normal &quot;Gulim&quot;"/>
+              <Static id="Static02_04" taborder="53" text="유효기간" left="medt_sch_bankacc:-1" top="Static_BG2:-100%" width="8.89%" height="4.53%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 0px 0px 2px" letterSpacing="2px"/>
+              <Combo id="cbo_gb" taborder="27" left="Static02_04:-1" top="Static_BG2:-100%" width="9.50%" height="4.53%" value="" index="0" border="1px solid #10aea9" innerdataset="dsGB" codecolumn="CODE" datacolumn="NAME" font="13px/normal &quot;Gulim&quot;" text="전체"/>
+              <Button id="btn_search" taborder="30" text="조회" top="Static_BG2:-90%" height="Static_BG2:80%" font="bold 10pt/normal &quot;Arial&quot;" onclick="div_main_btn_search_onclick" right="Static_BG2:-99.33%" left="cbo_gb:75%"/>
+              <Static id="Static_SP2" taborder="54" left="2.22%" top="Static_BG2:1" height="2" background="#368b65" right="10"/>
+              <Grid id="grd_cardlist" taborder="55" left="2.22%" top="Static_SP2:1" height="63.42%" border="1px solid #10aea9" binddataset="dsCardList" autofittype="col" right="10" cellsizingtype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="26"/>
+                      <Column size="64"/>
+                      <Column size="64"/>
+                      <Column size="124"/>
+                      <Column size="116"/>
+                      <Column size="78"/>
+                      <Column size="100"/>
+                      <Column size="84"/>
+                      <Column size="64"/>
+                      <Column size="40"/>
+                      <Column size="56"/>
+                      <Column size="120"/>
+                      <Column size="120"/>
+                      <Column size="64"/>
+                      <Column size="186"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                      <Row size="24" band="summ"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="1" text="등록번호"/>
+                      <Cell col="2" text="종류"/>
+                      <Cell col="3" text="카드번호"/>
+                      <Cell col="4" text="카드명"/>
+                      <Cell col="5" text="결제은행"/>
+                      <Cell col="6" text="결제계좌"/>
+                      <Cell col="7" text="결제한도"/>
+                      <Cell col="8" text="유효기간"/>
+                      <Cell col="9" text="CVC"/>
+                      <Cell col="10" text="등록자"/>
+                      <Cell col="11" text="등록일"/>
+                      <Cell col="12" text="최근수정일"/>
+                      <Cell col="13" text="사용유무"/>
+                      <Cell col="14" text="비고"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center"/>
+                      <Cell col="1" text="bind:CI_IDEX" textAlign="center"/>
+                      <Cell col="2" text="bind:CI_CARD" displaytype="combotext" combodataset="dsBankType" combocodecol="BANK_CODE" combodatacol="BANK_NAME" textAlign="center"/>
+                      <Cell col="3" text="bind:CI_CARDNUM" textAlign="center" displaytype="mask" maskeditformat="####-####-####-####" maskedittype="string"/>
+                      <Cell col="4" text="bind:CI_CARDNAME" textAlign="center"/>
+                      <Cell col="5" text="bind:CI_PAYBANKNAME" textAlign="center"/>
+                      <Cell col="6" text="bind:CI_ACCOUNT" textAlign="center"/>
+                      <Cell col="7" text="bind:CI_AMTLIMIT" textAlign="center" displaytype="currency"/>
+                      <Cell col="8" text="bind:CI_CARDDATE" textAlign="center" maskeditformat="@@@@-@@" maskedittype="string" displaytype="mask"/>
+                      <Cell col="9" text="bind:CI_CVCNUM" textAlign="center"/>
+                      <Cell col="10" text="bind:CI_INUSER" textAlign="center"/>
+                      <Cell col="11" text="bind:CI_INDATE" textAlign="center" displaytype="mask" maskeditformat="@@@@/@@/@@ @@:@@:@@" maskedittype="string"/>
+                      <Cell col="12" text="bind:CI_UPDATE" textAlign="center" maskeditformat="@@@@/@@/@@ @@:@@:@@" maskedittype="string" displaytype="mask"/>
+                      <Cell col="13" text="bind:CI_USEFLG" textAlign="center" expr="Eco.decode(CI_USEFLG, &quot;1&quot;,'사용',&quot;true&quot;,'사용',&quot;0&quot;,&quot;사용불가&quot;,&quot;false&quot;,&quot;사용불가&quot;)"/>
+                      <Cell col="14" text="bind:CI_BIGO" textAlign="center"/>
+                    </Band>
+                    <Band id="summary">
+                      <Cell background="#0d908c" color="white"/>
+                      <Cell col="1" background="#0d908c" color="white"/>
+                      <Cell col="2" background="#0d908c" color="white"/>
+                      <Cell col="3" background="#0d908c" text="등록 합계" color="white"/>
+                      <Cell col="4" background="#0d908c" color="white"/>
+                      <Cell col="5" background="#0d908c" color="white"/>
+                      <Cell col="6" background="#0d908c" expr="dataset.rowcount" displaytype="text" color="white"/>
+                      <Cell col="7" background="#0d908c" color="white"/>
+                      <Cell col="8" background="#0d908c" color="white"/>
+                      <Cell col="9" background="#0d908c" color="white"/>
+                      <Cell col="10" background="#0d908c" color="white"/>
+                      <Cell col="11" background="#0d908c" color="white"/>
+                      <Cell col="12" background="#0d908c" color="white"/>
+                      <Cell col="13" background="#0d908c" color="white"/>
+                      <Cell col="14" background="#0d908c" color="white"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static00" taborder="56" text="법인카드 등록" left="3.33%" top="1.51%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="30%" height="9.45%"/>
+              <Static id="Static_99" taborder="25" left="edt_cust_nm:-1" top="medt_update:-1" height="4.53%" border="1px solid #10aea9" right="10"/>
+              <Button id="btn_scust" taborder="28" left="edt_cust_nm:2.63%" top="Static_99:-90%" height="Static_99:80%" background="url('Img::btn_TF_src.png') no-repeat center center" width="Static_99:17.45%"/>
+              <Button id="btn_newup" taborder="29" text="데이터 업로드" left="btn_scust:19.23%" top="Static_99:-90%" height="Static_99:80%" font="bold 10pt/normal &quot;Arial&quot;" onclick="div_main_btn_newup_onclick" right="Static_99:-95.97%"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsCCUL">
+        <ColumnInfo>
+          <Column id="CCUL_ID" type="STRING" size="20"/>
+          <Column id="CCUL_DATE" type="STRING" size="8"/>
+          <Column id="CCUL_USEDATE" type="STRING" size="8"/>
+          <Column id="CREDITCARD_CODE" type="STRING" size="2"/>
+          <Column id="CREDITCARD_NAME" type="STRING" size="20"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CCUL_AMOUNT" type="STRING" size="10"/>
+          <Column id="CCUL_CUST_NAME" type="STRING" size="35"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="CCUL_GETBACK_DATE" type="STRING" size="8"/>
+          <Column id="CCUL_GETBACK_USER" type="STRING" size="6"/>
+          <Column id="CCUL_GETBACK" type="STRING" size="1"/>
+          <Column id="CCUL_REMARK" type="STRING" size="200"/>
+          <Column id="CCUL_BUSINESSTRIP" type="STRING" size="1"/>
+          <Column id="CCUL_BUSINESSTRIP_NAME" type="STRING" size="4"/>
+          <Column id="CCUL_SECTIONMANAGECOST" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCorpCard">
+        <ColumnInfo>
+          <Column id="CREDITCARD_CODE" type="STRING" size="2"/>
+          <Column id="CREDITCARD_NAME" type="STRING" size="20"/>
+          <Column id="CREDITCARD_ENABLED" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCardList">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="2"/>
+          <Column id="CI_IDEX" type="STRING" size="10"/>
+          <Column id="CI_CARD" type="STRING" size="30"/>
+          <Column id="CI_CARDNUM" type="STRING" size="30"/>
+          <Column id="CI_CARDNAME" type="STRING" size="25"/>
+          <Column id="CI_ACCOUNT" type="STRING" size="30"/>
+          <Column id="CI_AMTLIMIT" type="STRING" size="30"/>
+          <Column id="CI_CARDDATE" type="STRING" size="20"/>
+          <Column id="CI_CVCNUM" type="STRING" size="10"/>
+          <Column id="CI_USEFLG" type="STRING" size="10"/>
+          <Column id="CI_INUSER" type="STRING" size="20"/>
+          <Column id="CI_INDATE" type="STRING" size="20"/>
+          <Column id="CI_UPDATE" type="STRING" size="20"/>
+          <Column id="CI_BIGO" type="STRING" size="100"/>
+          <Column id="CUST_CD" type="STRING" size="4"/>
+          <Column id="CUST_NM" type="STRING" size="25"/>
+          <Column id="CI_PAYBANKNAME" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="SECTION_NAME" type="STRING" size="256"/>
+          <Column id="LVL" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="SECTION_SHORTNAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBankType">
+        <ColumnInfo>
+          <Column id="BANK_CODE" type="STRING" size="5"/>
+          <Column id="BANK_NAME" type="STRING" size="15"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="BANK_CODE">0</Col>
+            <Col id="BANK_NAME">선택</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">1</Col>
+            <Col id="BANK_NAME">국민</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">2</Col>
+            <Col id="BANK_NAME">신한</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">3</Col>
+            <Col id="BANK_NAME">우리</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">4</Col>
+            <Col id="BANK_NAME">현대</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">5</Col>
+            <Col id="BANK_NAME">삼성</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">6</Col>
+            <Col id="BANK_NAME">기업</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">7</Col>
+            <Col id="BANK_NAME">(개인)법인</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">8</Col>
+            <Col id="BANK_NAME">하나</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsGB">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NAME">전체</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">유효</Col>
+            <Col id="CODE">01</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">만료</Col>
+            <Col id="CODE">02</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCardList_search">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="2"/>
+          <Column id="CI_IDEX" type="STRING" size="10"/>
+          <Column id="CI_CARD" type="STRING" size="30"/>
+          <Column id="CI_CARDNUM" type="STRING" size="30"/>
+          <Column id="CI_CARDNAME" type="STRING" size="25"/>
+          <Column id="CI_ACCOUNT" type="STRING" size="30"/>
+          <Column id="CI_AMTLIMIT" type="STRING" size="30"/>
+          <Column id="CI_CARDDATE" type="STRING" size="20"/>
+          <Column id="CI_CVCNUM" type="STRING" size="10"/>
+          <Column id="CI_USEFLG" type="STRING" size="10"/>
+          <Column id="CI_INUSER" type="STRING" size="20"/>
+          <Column id="CI_INDATE" type="STRING" size="20"/>
+          <Column id="CI_UPDATE" type="STRING" size="20"/>
+          <Column id="CI_BIGO" type="STRING" size="100"/>
+          <Column id="CUST_CD" type="STRING" size="4"/>
+          <Column id="CUST_NM" type="STRING" size="25"/>
+          <Column id="CI_PAYBANKNAME" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var cust_cd, cust_nm;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+
+this.PD201F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fnInit();
+	this.div_main.form.btn_search.click();
+	this.fnCloseEdit();
+};
+
+this.fnInit = function()
+{
+	this.div_main.form.edt_index.set_value("");
+	this.div_main.form.cbo_banktype.set_index(0);
+	this.div_main.form.medt_cardnum.set_value("");
+	this.div_main.form.edt_cvc.set_value("");
+	this.div_main.form.medt_bankacc.set_value("");
+	this.div_main.form.medt_amtlimit.set_value("");
+	this.div_main.form.edt_expdate.set_value("");
+	this.div_main.form.chk_usecode.set_value(1);
+	this.div_main.form.edt_bigo.set_value("");
+	this.div_main.form.edt_inuser.set_value(gv_sabun);
+	this.div_main.form.edt_cardname.set_value("");
+}
+
+this.fnOpenEdit = function()
+{
+	this.div_main.form.cbo_banktype.set_enable(true);
+	this.div_main.form.medt_cardnum.set_enable(true);
+}
+
+this.fnCloseEdit = function()
+{
+	this.div_main.form.cbo_banktype.set_enable(false);
+	this.div_main.form.medt_cardnum.set_enable(false);
+}
+
+this.div_main_btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsCardList.clearData();
+	this.dsCardList.addRow();
+	this.fnInit();
+	this.fnOpenEdit();
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+	this.div_main.form.cbo_banktype.set_index(0);		// 선택
+	this.div_main.form.medt_indate.set_value(f_date); 	// 등록일
+	this.div_main.form.medt_update.set_value(""); 		// 최근수정일
+};
+
+this.div_main_btn_cancle_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 데이터 입력 취소 처리
+	if(this.div_main.form.cbo_banktype.enable == true)
+	{
+		this.fnInit();
+		this.fnCloseEdit();
+		this.div_main.form.medt_indate.set_value(""); // 등록일
+		this.div_main.form.medt_update.set_value(""); // 최근수정일
+		this.div_main.form.cbo_banktype.set_index(-1);
+	}
+	// 조회 취소 처리
+	else
+	{
+		this.div_main.form.cbo_sch_type.set_index(0);
+		this.div_main.form.medt_sch_cardnum.set_value("");
+		this.div_main.form.medt_sch_bankacc.set_value("");
+	}
+};
+
+this.div_main_btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var count;
+	
+    if (this.div_main.form.edt_index.value == null || (this.div_main.form.edt_index.value).length > 0)
+    {
+		alert("기존카드를 중복으로 등록할 수 없습니다, 신규카드 또는 수정을 이용하세요.");
+		return;
+	}
+	if (this.div_main.form.cbo_banktype.index == null || this.div_main.form.cbo_banktype.index == 0)
+	{
+		alert("카드종류를 선택하세요.");
+		this.div_main.form.cbo_banktype.setFocus();
+		return;
+	}
+	if (this.div_main.form.medt_cardnum.value == null || (nexacro.trim(this.div_main.form.medt_cardnum.value)).length != 16)
+	{
+		alert("카드번호를 확인하세요.");
+		this.div_main.form.medt_cardnum.setFocus();
+		return;
+	}
+	if (this.div_main.form.edt_cvc.value == null || (this.div_main.form.edt_cvc.value).length != 3)
+	{
+		alert("CVC번호를 확인하세요.");
+		this.div_main.form.edt_cvc.setFocus();
+		return;
+	}
+	if (this.div_main.form.edt_expdate.value == null || (this.div_main.form.edt_expdate.value).length != 6)
+	{
+		alert("유효기간을 확인하세요.\n(유효기간은 년월 6자리 입니다)");
+		this.div_main.form.edt_expdate.setFocus();
+		return;
+	}
+	var objApp = nexacro.getApplication();
+	if(msg_result = objApp.confirm( "저장하시겠습니까?" , "저장확인", "warning" ))
+	{
+		this.fnSaveSearch(); //저장가능 여부 확인
+				
+		count = nexacro.toNumber(this.dsCardList_search.rowcount);
+		
+		if (count > 0)
+		{
+			alert("등록 카드가 이미 존재합니다.");
+			return;
+		}
+		else
+		{
+			var objDate = new nexacro.Date();
+			var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+			this.div_main.form.medt_indate.set_value(f_date);//등록일
+			this.div_main.form.medt_update.set_value(f_date);//최근수정일
+			this.fnBtnSave(); //저장 함수 호출
+		}
+	}
+};
+
+this.fnBtnSave = function()
+{
+	var strUrl = "JSP/pd/pd201f_corpcard_save.jsp";
+	var strArg;
+	strArg  = " cboBankType="	+ nexacro.wrapQuote(this.div_main.form.cbo_banktype.value);
+	strArg += " mdtCardNum="	+ nexacro.wrapQuote(this.div_main.form.medt_cardnum.value); //카드번호
+	strArg += " edtCvc="    	+ nexacro.wrapQuote(this.div_main.form.edt_cvc.value); //cvc번호
+	strArg += " mdtBankAcc="    + nexacro.wrapQuote(this.div_main.form.medt_bankacc.value); //결제계좌
+	strArg += " mdtAmtLimit="   + nexacro.wrapQuote(this.div_main.form.medt_amtlimit.value);  //결제한도
+	strArg += " edtExpdate="    + nexacro.wrapQuote(this.div_main.form.edt_expdate.value); //유효기간
+	strArg += " edtBigo="      	+ nexacro.wrapQuote(this.div_main.form.edt_bigo.value); //비고
+	if(this.div_main.form.chk_usecode.value == true || this.div_main.form.chk_usecode.value == 1)
+		strArg += " chkusecode="    + nexacro.wrapQuote(1); // 사용유무 (nexacro에서는 checkbox value값이 true or false로 나오기에 조건문 추가)
+	else
+		strArg += " chkusecode="    + nexacro.wrapQuote(0); //사용유무
+	strArg += " edtInUser="     + nexacro.wrapQuote(gv_sabun); //등록자
+	strArg += " mdtInDate="     + nexacro.wrapQuote(this.div_main.form.medt_indate.value); //등록일
+	strArg += " mdtupdate="     + nexacro.wrapQuote(this.div_main.form.medt_update.value); //최근수정일
+	strArg += " edtCardname="   + nexacro.wrapQuote(this.div_main.form.edt_cardname.text); //카드명
+	strArg += " cust_gb="		+ nexacro.wrapQuote("47");
+	strArg += " cust_cd="		+ nexacro.wrapQuote(this.div_main.form.medt_cust_cd.value);
+	strArg += " edtPayBankNm="	+ nexacro.wrapQuote(this.div_main.form.edt_paybank.value);  //결제은행
+	
+	this.gfn_TransactionP("Save_card", strUrl, "", "", strArg, "fnCallback", false, "P", false, this);
+}
+
+this.fnSaveSearch = function()
+{
+	var strUrl = "JSP/pd/pd201f_corpcard_Search.jsp"
+	var	strArg;   //변수
+	var strDs 	= "dsCardList_search=dsCardList_search"; //받는 데이터셋
+
+	strArg  = " cboBankType="	+ nexacro.wrapQuote(this.div_main.form.cbo_banktype.value);
+	strArg += " mdtCardNum="	+ nexacro.wrapQuote(this.div_main.form.medt_cardnum.value); 
+	strArg += " mdtBankAcc="	+ nexacro.wrapQuote(this.div_main.form.medt_bankacc.value);
+	strArg += " CI_USEFLG="		+ nexacro.wrapQuote(0); //사용유무
+	 	
+	this.dsCardList_search.clearData(); //데이터 초기화
+
+	this.gfn_TransactionP("Search_count", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+}
+
+this.div_main_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/pd/pd201f_corpcard_Search.jsp";
+	var	strArg;   //변수
+	var strDs 	= "dsCardList=dsCardList"; //받는 데이터셋
+	
+	strArg  = " cboBankType="	+ nexacro.wrapQuote(this.div_main.form.cbo_sch_type.value);
+	if(this.div_main.form.medt_sch_cardnum.value != null)
+		strArg += " mdtCardNum="	+ nexacro.wrapQuote(nexacro.trim(this.div_main.form.medt_sch_cardnum.value)); 
+	else
+		strArg += " mdtCardNum=" 	+ nexacro.wrapQuote();
+	if(this.div_main.form.medt_sch_bankacc.value != null)
+		strArg += " mdtBankAcc="   	+ nexacro.wrapQuote(nexacro.trim(this.div_main.form.medt_sch_bankacc.value));
+	else
+		strArg += " mdtBankAcc="   	+ nexacro.wrapQuote();
+	strArg += " CI_USEFLG="		+ nexacro.wrapQuote(0); //사용유무
+	strArg += " cb_gubn="		+ nexacro.wrapQuote(this.div_main.form.cbo_gb.value);
+	
+	this.dsCardList.clearData(); //데이터 초기화
+
+	this.gfn_TransactionP("Search_cardList", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+};
+
+this.div_main_btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	if(msg_result = objApp.confirm( "수불 진행 중인 카드는 삭제되지 않습니다, 삭제하시겠습니까? " , "삭제확인", "warning" ))
+	{
+		this.fnBtnDel(); //삭제 함수 호출
+	}
+};
+
+this.fnBtnDel = function()
+{
+	var strUrl = "JSP/pd/pd201f_corpcard_Delete.jsp";
+	var inDs 	= "input=dsCardList:u";	//보내는 데이터셋
+	
+	this.gfn_TransactionP("Del_cardList", strUrl, inDs, "", "", "fnCallback", false, "P", false, this);
+}
+
+this.div_main_btn_edit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if ((this.div_main.form.edt_index.value).length == 0)
+	{
+		alert("수정할 정보가 선택되지 않았습니다.");
+		return;
+	}
+	
+	var objApp = nexacro.getApplication();
+	if(msg_result = objApp.confirm( "수정하시겠습니까? ", "수정확인", "warning" ))
+	{
+		var objDate = new nexacro.Date();
+		var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+		this.div_main.form.medt_update.set_value(f_date);//최근수정일
+		this.fnBtnUpdate(); //수정 함수 호출
+	}
+};
+
+this.fnBtnUpdate = function()
+{
+	var strUrl = "JSP/pd/pd201f_corpcard_update.jsp";
+	var	strArg;   //변수
+	//--생성	
+	strArg  = " edtindex="		+ nexacro.wrapQuote(this.div_main.form.edt_index.text); //등록번호
+	strArg += " edtCvc="    	+ nexacro.wrapQuote(this.div_main.form.edt_cvc.value); //cvc번호
+	strArg += " mdtBankAcc="    + nexacro.wrapQuote(this.div_main.form.medt_bankacc.value); //결제계좌
+	strArg += " mdtAmtLimit="   + nexacro.wrapQuote(this.div_main.form.medt_amtlimit.value);  //결제한도
+	strArg += " edtExpdate="    + nexacro.wrapQuote(this.div_main.form.edt_expdate.value); //유효기간
+	strArg += " edtBigo="      	+ nexacro.wrapQuote(this.div_main.form.edt_bigo.value); //비고
+	strArg += " chkusecode="    + nexacro.wrapQuote(this.div_main.form.chk_usecode.value); //사용유무
+	strArg += " mdtupdate="     + nexacro.wrapQuote(this.div_main.form.medt_update.value); //최근수정일
+	strArg += " edtCardname="   + nexacro.wrapQuote(this.div_main.form.edt_cardname.value); //카드명
+	strArg += " cust_gb="      	+ nexacro.wrapQuote("47");
+	strArg += " cust_cd="      	+ nexacro.wrapQuote(this.div_main.form.medt_cust_cd.value);
+	strArg += " edtPayBankNm="	+ nexacro.wrapQuote(this.div_main.form.edt_paybank.value);  //결제은행
+			
+	this.gfn_TransactionP("Update_card", strUrl, "", "", strArg, "fnCallback", false, "P", false, this);
+}
+
+this.fnCallback = function(trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0){
+		alert(ErrorMsg);
+		return;
+	}
+	else if (trid != null)
+	{
+		trid = trid.split("|");
+		trid = trid[0] 
+	}
+	
+	if(trid == "Save_card")
+	{
+		trace("저장 완료");
+		this.div_main.form.btn_search.click();
+		this.fnCloseEdit();
+		this.fnInit(); //저장 후 초기화
+	}
+	if(trid == "Search_cardList")
+	{
+		trace("조회 완료");
+	}
+	if(trid == "Update_card")
+	{
+		trace("수정 완료");
+		this.div_main.form.btn_search.click();
+		this.fnCloseEdit();
+		this.fnInit(); //저장 후 초기화
+	}
+	if(trid == "Search_count")
+	{
+		trace("카운트조회완료");
+	}
+	if(trid == "Del_cardList")
+	{
+		trace("삭제완료");
+		this.div_main.form.btn_search.click();
+		this.fnCloseEdit();
+		this.fnInit(); //저장 후 초기화
+	}
+}
+
+this.div_main_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("print_popup", "", "pd::PD201_printF.xfdl", "fnPrintCallBack", this, 0, 0, 350, 120);
+};
+
+this.div_main_btn_newup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//매핑된 데이터 초기화
+	//카드정보 초기화
+	this.div_main.form.cbo_banktype.set_index(0); //카드종류
+	this.div_main.form.medt_cardnum.set_value(''); //카드번호
+	this.div_main.form.edt_cvc.set_value(''); //cvc번호
+	this.div_main.form.medt_bankacc.set_value('');//결제계좌
+	this.div_main.form.medt_amtlimit.set_value(''); //결제한도
+	this.div_main.form.edt_expdate.set_value(''); //유효기간
+
+	this.lfn_showModal("excelup_popup", "", "pd::PD201_ExcelUploadF.xfdl", "fnExcelUpCallBack", this, 0, 0, 800, 480);
+};
+
+this.fnExcelUpCallBack = function(strID, ret)
+{
+	this.div_main.form.btn_search.click();
+}
+
+this.div_main_btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.div_main.form.grd_cardlist, "Sheet1!A1");
+	this.exportObj.set_exportfilename( "CorpCardList" );
+	this.exportObj.set_exporturl(gv_urlXeni);
+    this.exportObj.exportData();
+};
+
+this.PD201F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if(this.width < 1350 || this.width > 1630)
+		this.div_main.set_width(this.width - 20)
+	else
+		this.div_main.set_width(1350);
+	
+	if(this.height < 730)
+		this.div_main.set_height(this.height - 20)
+	else
+		this.div_main.set_height(730);
+		
+	if(this.height < 490 || this.width < 910)
+	{
+		this.div_main.form.Static00.set_font('bold 30px/normal "함초롬바탕 확장B"');
+		
+		this.div_main.form.Static01_00.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_01.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_02.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_03.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_04.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_05.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_06.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_07.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_08.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_09.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_10.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_11.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_12.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_13.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static01_14.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static02_00.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static02_01.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static02_02.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static02_03.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.Static02_04.set_font('bold 10pt/normal "Arial"');
+		
+		this.div_main.form.edt_index.set_font('10px/normal "Arial"');
+		this.div_main.form.medt_cardnum.set_font('10px/normal "Arial"');
+		this.div_main.form.medt_bankacc.set_font('10px/normal "Arial"');
+		this.div_main.form.chk_usecode.set_font('10px/normal "Arial"');
+		this.div_main.form.medt_indate.set_font('10px/normal "Arial"');
+		this.div_main.form.medt_update.set_font('10px/normal "Arial"');
+		this.div_main.form.medt_sch_bankacc.set_font('10px/normal "Arial"');
+		this.div_main.form.medt_sch_cardnum.set_font('10px/normal "Arial"');
+		
+		this.div_main.form.cbo_banktype.set_font('11px/normal "Gulim"');
+		this.div_main.form.edt_cvc.set_font('11px/normal "Gulim"');
+		this.div_main.form.edt_inuser.set_font('11px/normal "Gulim"');
+		this.div_main.form.edt_cardname.set_font('11px/normal "Gulim"');
+		this.div_main.form.medt_amtlimit.set_font('11px/normal "Gulim"');
+		this.div_main.form.edt_expdate.set_font('11px/normal "Gulim"');
+		this.div_main.form.edt_paybank.set_font('11px/normal "Gulim"');
+		this.div_main.form.edt_bigo.set_font('11px/normal "Gulim"');
+		this.div_main.form.medt_cust_cd.set_font('11px/normal "Gulim"');
+		this.div_main.form.edt_cust_nm.set_font('11px/normal "Gulim"');
+		this.div_main.form.cbo_sch_type.set_font('11px/normal "Gulim"');
+		this.div_main.form.cbo_gb.set_font('11px/normal "Gulim"');
+		
+		this.div_main.form.btn_new.set_font('bold 9pt/normal "Arial"');
+		this.div_main.form.btn_cancle.set_font('bold 9pt/normal "Arial"');
+		this.div_main.form.btn_edit.set_font('bold 9pt/normal "Arial"');
+		this.div_main.form.btn_save.set_font('bold 9pt/normal "Arial"');
+		this.div_main.form.btn_excel.set_font('bold 9pt/normal "Arial"');
+		this.div_main.form.btn_print.set_font('bold 9pt/normal "Arial"');
+		this.div_main.form.btn_del.set_font('bold 9pt/normal "Arial"');
+		this.div_main.form.btn_newup.set_font('bold 9pt/normal "Arial"');
+		this.div_main.form.btn_search.set_font('bold 9pt/normal "Arial"');
+	}
+	else
+	{
+		this.div_main.form.Static00.set_font('bold 40px/normal "함초롬바탕 확장B"');
+		
+		this.div_main.form.Static01_00.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_01.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_02.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_03.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_04.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_05.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_06.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_07.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_08.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_09.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_10.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_11.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_12.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_13.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static01_14.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static02_00.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static02_01.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static02_02.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static02_03.set_font('bold 11pt/normal "Arial"');
+		this.div_main.form.Static02_04.set_font('bold 11pt/normal "Arial"');
+		
+		this.div_main.form.edt_index.set_font('12px/normal "Gulim"');
+		this.div_main.form.medt_cardnum.set_font('12px/normal "Gulim"');
+		this.div_main.form.medt_bankacc.set_font('12px/normal "Gulim"');
+		this.div_main.form.chk_usecode.set_font('12px/normal "Gulim"');
+		this.div_main.form.medt_indate.set_font('12px/normal "Gulim"');
+		this.div_main.form.medt_update.set_font('12px/normal "Gulim"');
+		this.div_main.form.medt_sch_bankacc.set_font('12px/normal "Gulim"');
+		this.div_main.form.medt_sch_cardnum.set_font('12px/normal "Gulim"');
+		
+		this.div_main.form.cbo_banktype.set_font('13px/normal "Gulim"');
+		this.div_main.form.edt_cvc.set_font('13px/normal "Gulim"');
+		this.div_main.form.edt_inuser.set_font('13px/normal "Gulim"');
+		this.div_main.form.edt_cardname.set_font('13px/normal "Gulim"');
+		this.div_main.form.medt_amtlimit.set_font('13px/normal "Gulim"');
+		this.div_main.form.edt_expdate.set_font('13px/normal "Gulim"');
+		this.div_main.form.edt_paybank.set_font('13px/normal "Gulim"');
+		this.div_main.form.edt_bigo.set_font('13px/normal "Gulim"');
+		this.div_main.form.medt_cust_cd.set_font('13px/normal "Gulim"');
+		this.div_main.form.edt_cust_nm.set_font('13px/normal "Gulim"');
+		this.div_main.form.cbo_sch_type.set_font('13px/normal "Gulim"');
+		this.div_main.form.cbo_gb.set_font('13px/normal "Gulim"');
+		
+		this.div_main.form.btn_new.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.btn_cancle.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.btn_edit.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.btn_save.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.btn_excel.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.btn_print.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.btn_del.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.btn_newup.set_font('bold 10pt/normal "Arial"');
+		this.div_main.form.btn_search.set_font('bold 10pt/normal "Arial"');
+	}
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="div_main.form.edt_index" propid="value" datasetid="dsCardList" columnid="CI_IDEX"/>
+      <BindItem id="item1" compid="div_main.form.cbo_banktype" propid="value" datasetid="dsCardList" columnid="CI_CARD"/>
+      <BindItem id="item2" compid="div_main.form.medt_cardnum" propid="value" datasetid="dsCardList" columnid="CI_CARDNUM"/>
+      <BindItem id="item3" compid="div_main.form.edt_cvc" propid="value" datasetid="dsCardList" columnid="CI_CVCNUM"/>
+      <BindItem id="item4" compid="div_main.form.medt_bankacc" propid="value" datasetid="dsCardList" columnid="CI_ACCOUNT"/>
+      <BindItem id="item5" compid="div_main.form.medt_amtlimit" propid="value" datasetid="dsCardList" columnid="CI_AMTLIMIT"/>
+      <BindItem id="item6" compid="div_main.form.edt_expdate" propid="value" datasetid="dsCardList" columnid="CI_CARDDATE"/>
+      <BindItem id="item7" compid="div_main.form.chk_usecode" propid="value" datasetid="dsCardList" columnid="CI_USEFLG"/>
+      <BindItem id="item8" compid="div_main.form.edt_bigo" propid="value" datasetid="dsCardList" columnid="CI_BIGO"/>
+      <BindItem id="item9" compid="div_main.form.edt_inuser" propid="value" datasetid="dsCardList" columnid="CI_INUSER"/>
+      <BindItem id="item10" compid="div_main.form.medt_indate" propid="value" datasetid="dsCardList" columnid="CI_INDATE"/>
+      <BindItem id="item11" compid="div_main.form.medt_update" propid="value" datasetid="dsCardList" columnid="CI_UPDATE"/>
+      <BindItem id="item12" compid="div_main.form.edt_cardname" propid="value" datasetid="dsCardList" columnid="CI_CARDNAME"/>
+      <BindItem id="item13" compid="div_main.form.medt_cust_cd" propid="value" datasetid="dsCardList" columnid="CUST_CD"/>
+      <BindItem id="item14" compid="div_main.form.edt_cust_nm" propid="value" datasetid="dsCardList" columnid="CUST_NM"/>
+      <BindItem id="item15" compid="div_main.form.edt_paybank" propid="value" datasetid="dsCardList" columnid="CI_PAYBANKNAME"/>
+    </Bind>
+  </Form>
+</FDL>

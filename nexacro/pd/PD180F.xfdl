@@ -1,0 +1,760 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD180F" width="1630" height="760" titletext="New Form" onload="PD180F_onload" onsize="PD180F_onsize">
+    <Layouts>
+      <Layout height="760" width="1630">
+        <Grid id="grd_excel" taborder="0" left="-15" top="822" width="1746" height="298" binddataset="dsExcel" visible="false" autosizingtype="col" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="90"/>
+                <Column size="134"/>
+                <Column size="130"/>
+                <Column size="110"/>
+                <Column size="130"/>
+                <Column size="100"/>
+                <Column size="146"/>
+                <Column size="146"/>
+                <Column size="96"/>
+                <Column size="156"/>
+                <Column size="106"/>
+                <Column size="60"/>
+                <Column size="110"/>
+                <Column size="130"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="BTMST_DATE"/>
+                <Cell col="1" text="BTMST_NO"/>
+                <Cell col="2" text="BUSINESSTRIP_NO"/>
+                <Cell col="3" text="SECTION_NAME"/>
+                <Cell col="4" text="EMPLOYEE_ID"/>
+                <Cell col="5" text="EMPLOYEE_NAME"/>
+                <Cell col="6" text="LEVEL_NAME"/>
+                <Cell col="7" text="BTMST_STARTDATE"/>
+                <Cell col="8" text="BTMST_ENDDATE"/>
+                <Cell col="9" text="BANK_NAME"/>
+                <Cell col="10" text="EBA_BANK_ACCOUNT"/>
+                <Cell col="11" text="DAY_AMOUNT"/>
+                <Cell col="12" text="PAYEE"/>
+                <Cell col="13" text="PERMITEDATE"/>
+                <Cell col="14" text="BTMST_PAYDATE"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BTMST_DATE" textAlign="left"/>
+                <Cell col="1" text="bind:BTMST_NO" textAlign="left"/>
+                <Cell col="2" text="bind:BUSINESSTRIP_NO" textAlign="left"/>
+                <Cell col="3" text="bind:SECTION_NAME" textAlign="left"/>
+                <Cell col="4" text="bind:EMPLOYEE_ID" textAlign="left"/>
+                <Cell col="5" text="bind:EMPLOYEE_NAME"/>
+                <Cell col="6" text="bind:LEVEL_NAME"/>
+                <Cell col="7" text="bind:BTMST_STARTDATE"/>
+                <Cell col="8" text="bind:BTMST_ENDDATE"/>
+                <Cell col="9" text="bind:BANK_NAME"/>
+                <Cell col="10" text="bind:EBA_BANK_ACCOUNT"/>
+                <Cell col="11" text="bind:DAY_AMOUNT"/>
+                <Cell col="12" text="bind:PAYEE"/>
+                <Cell col="13" text="bind:PERMITEDATE"/>
+                <Cell col="14" text="bind:BTMST_PAYDATE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_main" taborder="1" left="0" top="0" width="1620" height="750" minwidth="920" maxwidth="" minheight="380" maxheight="">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="출장비 승인" left="4.75%" top="1.47%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="30%" height="9.20%" minheight="34" maxheight="" minwidth="278" maxwidth=""/>
+              <Button id="btn_print" taborder="1" text="출력" top="4.8%" width="4.74%" height="4.27%" font="bold 10pt/normal &quot;Arial&quot;" right="20" onclick="btn_print_onclick" minwidth="28" maxwidth="" minheight="16" maxheight=""/>
+              <Button id="btn_del" taborder="2" text="삭제" top="4.8%" width="4.74%" height="4.27%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_print:15.89%" onclick="btn_del_onclick" minwidth="28" maxwidth="" minheight="16" maxheight=""/>
+              <Button id="btn_save1" taborder="3" text="저장" top="4.8%" width="4.74%" height="4.27%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_del:15.89%" onclick="btn_save1_onclick" minwidth="28" maxwidth="" minheight="16" maxheight=""/>
+              <Button id="btn_search" taborder="4" text="조회" top="4.8%" width="4.74%" height="4.27%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_save1:15.89%" onclick="btn_search_onclick" minheight="16" maxheight="" minwidth="28" maxwidth=""/>
+              <Grid id="grd_mst" taborder="5" left="30" top="Static00:8.83%" height="49.34%" binddataset="dsBTMst" autofittype="col" oncellclick="grd_mst_oncellclick" autoenter="select" onexpanddown="grd_mst_onexpanddown" onheadclick="grd_mst_onheadclick" cellsizingtype="col" right="20" maxwidth="">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="30"/>
+                      <Column size="100"/>
+                      <Column size="105"/>
+                      <Column size="80"/>
+                      <Column size="150"/>
+                      <Column size="190"/>
+                      <Column size="105"/>
+                      <Column size="80"/>
+                      <Column size="105"/>
+                      <Column size="80"/>
+                      <Column size="105"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="20" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell rowspan="2" text="0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="1" rowspan="2" text="지급결의서번호"/>
+                      <Cell col="2" rowspan="2" text="작성일자"/>
+                      <Cell col="3" rowspan="2" text="담당자"/>
+                      <Cell col="4" rowspan="2" text="담당부서"/>
+                      <Cell col="5" rowspan="2" text="출장기간"/>
+                      <Cell col="6" colspan="2" text="1차"/>
+                      <Cell col="8" colspan="2" text="2차"/>
+                      <Cell col="10" rowspan="2" text="지급일자"/>
+                      <Cell row="1" col="6" text="승인일자"/>
+                      <Cell row="1" col="7" text="승인자"/>
+                      <Cell row="1" col="8" text="승인일자"/>
+                      <Cell row="1" col="9" text="승인자"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="1" text="bind:BUSINESSTRIP_NO" textAlign="center"/>
+                      <Cell col="2" text="bind:BTMST_DATE" textAlign="center" displaytype="date" maskeditformat="####-##-##" maskedittype="string" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nulltext"/>
+                      <Cell col="3" text="bind:EMPLOYEE_NAME" textAlign="center"/>
+                      <Cell col="4" text="bind:SECTION_CODE" textAlign="center" displaytype="combotext" combodataset="dsSection" combodatacol="SECTION_NAME" combocodecol="SECTION_CODE"/>
+                      <Cell col="5" text="bind:BTMST_STARTENDDATE" displaytype="mask" maskeditformat="####-##-## ~ ####-##-##" maskedittype="string" textAlign="center"/>
+                      <Cell col="6" text="bind:BTMST_PERMITEDATE1" textAlign="center" displaytype="date" calendardateformat="yyyy-MM-dd" calendardisplaynulltext=" " calendardisplayinvalidtext=" " expandshow="expr:COMPETENCE==&quot;5&quot;?&quot;show&quot;:&quot;hide&quot;" calendardisplaynulltype="nulltext"/>
+                      <Cell col="7" text="bind:BTMST_PERMITENAME1" textAlign="center"/>
+                      <Cell col="8" text="bind:BTMST_PERMITEDATE2" textAlign="center" displaytype="date" calendardisplayinvalidtext=" " calendardateformat="yyyy-MM-dd" expandshow="expr:COMPETENCE&gt;5?&quot;show&quot;:&quot;hide&quot;" calendardisplaynulltype="nulltext"/>
+                      <Cell col="9" text="bind:BTMST_PERMITENAME2" textAlign="center"/>
+                      <Cell col="10" text="bind:BTMST_PAYDATE" textAlign="center" displaytype="date" maskedittype="string" maskeditformat="####-##" calendardisplaynulltype="nulltext" calendardateformat="yyyy-MM-dd"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Grid id="grd_dtl" taborder="6" left="30" top="grd_mst:2" height="37.34%" binddataset="dsBTDtl" cellsizingtype="col" summarytype="top" onenterdown="grd_dtl_onenterdown" autoenter="select" autofittype="col" width="53.72%" maxwidth="">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="90"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                      <Row size="24" band="summ"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell rowspan="2" textAlign="center" text="구분"/>
+                      <Cell col="1" colspan="2" text="법인카드"/>
+                      <Cell col="3" colspan="4" text="현금"/>
+                      <Cell row="1" col="1" text="규정금액"/>
+                      <Cell row="1" col="2" text="실사용액"/>
+                      <Cell row="1" col="3" text="규정금액"/>
+                      <Cell row="1" col="4" text="가지급금"/>
+                      <Cell row="1" col="5" text="실사용액"/>
+                      <Cell row="1" col="6" text="과부족"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:BTDTL_SEQ" expr="Eco.decode(BTDTL_SEQ, &quot;1&quot;, &quot;교통비&quot;, &quot;2&quot;, &quot;숙박비&quot;, &quot;3&quot;, &quot;식비&quot;, &quot;4&quot;, &quot;일비&quot;, &quot;기타&quot;)" textAlign="center"/>
+                      <Cell col="1" text="bind:BTDTL_CARD_PROVISIONAL" displaytype="mask" maskeditformat="#,##0" edittype="normal" textAlign="right" padding="0px 3px 0px 0px"/>
+                      <Cell col="2" text="bind:BTDTL_CARD_PAYAMOUNT" maskeditformat="#,##0" displaytype="mask" edittype="normal" textAlign="right" padding="0px 3px 0px 0px"/>
+                      <Cell col="3" text="bind:BTDTL_CASH_REGULATION" maskeditformat="#,##0" displaytype="mask" edittype="normal" textAlign="right" padding="0px 3px 0px 0px"/>
+                      <Cell col="4" text="bind:BTDTL_CASH_PROVISIONAL" maskeditformat="#,##0" displaytype="mask" edittype="normal" textAlign="right" padding="0px 3px 0px 0px"/>
+                      <Cell col="5" text="bind:BTDTL_CASH_PAYAMOUNT" maskeditformat="#,##0" displaytype="mask" edittype="normal" textAlign="right" padding="0px 3px 0px 0px"/>
+                      <Cell col="6" text="bind:BTDTL_CASH_OASAMOUNT" maskeditformat="#,##0" displaytype="mask" edittype="normal" textAlign="right" padding="0px 3px 0px 0px"/>
+                    </Band>
+                    <Band id="summary">
+                      <Cell text="합계" background="#0d908c" color="white"/>
+                      <Cell col="1" background="#0d908c" color="white" expr="dataset.getSum(&quot;nexacro.toNumber(BTDTL_CARD_PROVISIONAL)&quot;)" displaytype="mask" textAlign="right" padding="0px 3px 0px 0px" maskeditformat="#,##0"/>
+                      <Cell col="2" background="#0d908c" color="white" textAlign="right" padding="0px 3px 0px 0px" maskeditformat="#,##0" displaytype="mask" expr="dataset.getSum(&quot;nexacro.toNumber(BTDTL_CARD_PAYAMOUNT)&quot;)"/>
+                      <Cell col="3" background="#0d908c" color="white" textAlign="right" padding="0px 3px 0px 0px" maskeditformat="#,##0" displaytype="mask" expr="dataset.getSum(&quot;nexacro.toNumber(BTDTL_CASH_REGULATION)&quot;)"/>
+                      <Cell col="4" background="#0d908c" color="white" textAlign="right" padding="0px 3px 0px 0px" maskeditformat="#,##0" displaytype="mask" expr="dataset.getSum(&quot;nexacro.toNumber(BTDTL_CASH_PROVISIONAL)&quot;)"/>
+                      <Cell col="5" background="#0d908c" color="white" textAlign="right" padding="0px 3px 0px 0px" maskeditformat="#,##0" displaytype="mask" expr="dataset.getSum(&quot;nexacro.toNumber(BTDTL_CASH_PAYAMOUNT)&quot;)"/>
+                      <Cell col="6" background="#0d908c" color="white" textAlign="right" padding="0px 3px 0px 0px" maskeditformat="#,##0" displaytype="mask" expr="dataset.getSum(&quot;nexacro.toNumber(BTDTL_CASH_OASAMOUNT)&quot;)"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Calendar id="cald_00" taborder="7" left="57.12%" top="15.73%" width="17.30%" height="32.00%" type="monthonly" visible="false" onmouseleave="cald_00_onmouseleave" onmouseenter="cald_00_onmouseenter" ondayclick="cald_00_ondayclick" onkeydown="div_main_cald_00_onkeydown"/>
+              <Button id="btn_excel" taborder="11" text="EXCEL" top="4.8%" width="5.93%" height="4.27%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_search:120%" onclick="div_main_btn_excel_onclick" minheight="16" maxheight="" minwidth="50" maxwidth=""/>
+              <Calendar id="cald_edate" taborder="10" top="4.8%" height="4.27%" dateformat="yyyy-MM-dd" right="btn_excel:4.05%" width="8.28%" onkeydown="LocalFn_OnKeyDown" minheight="16" maxheight="" minwidth="110" maxwidth=""/>
+              <Calendar id="cald_sdate" taborder="9" top="4.8%" height="4.27%" dateformat="yyyy-MM-dd" right="cald_edate:1%" width="8.28%" onkeydown="LocalFn_OnKeyDown" minheight="16" maxheight="" minwidth="110" maxwidth=""/>
+              <Static id="Static01" taborder="8" text="일비DATA" top="4.8%" height="4.27%" textAlign="center" border="1px solid #10aea9" font="bold 10pt/normal &quot;Arial&quot;" color="#01656f" right="cald_sdate:1.9%" width="7.52%" minheight="16" maxheight="" minwidth="62" maxwidth=""/>
+              <Grid id="grd_mem" taborder="12" left="grd_dtl:0" top="grd_mst:2" height="37.34%" binddataset="dsBTMem" cellsizingtype="col" onenterdown="grd_dtl_onenterdown" autoenter="select" autosizingtype="none" autofittype="col" right="20" maxwidth="">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="120"/>
+                      <Column size="70"/>
+                      <Column size="85"/>
+                      <Column size="200"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="소속"/>
+                      <Cell col="1" text="직위"/>
+                      <Cell col="2" text="성명"/>
+                      <Cell col="3" text="기간"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:SECTION_NAME" textAlign="center"/>
+                      <Cell col="1" text="bind:POSITION_NAME" textAlign="center"/>
+                      <Cell col="2" text="bind:EMPLOYEE_NAME" textAlign="center"/>
+                      <Cell col="3" text="bind:BT_DATE" textAlign="center"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsPDClass">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="1"/>
+          <Column id="NAME" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NO">0</Col>
+            <Col id="NAME">일반경비</Col>
+          </Row>
+          <Row>
+            <Col id="NO">1</Col>
+            <Col id="NAME">정기지불</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsBTMst" onrowposchanged="dsBTMst_onrowposchanged" onload="dsBTMst_onload">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="BTMST_DATE" type="STRING" size="8"/>
+          <Column id="BTMST_NO" type="STRING" size="3"/>
+          <Column id="BTMST_ID" type="INT" size="20"/>
+          <Column id="BUSINESSTRIP_NO" type="STRING" size="12"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="BTMST_STARTDATE" type="STRING" size="8"/>
+          <Column id="BTMST_ENDDATE" type="STRING" size="8"/>
+          <Column id="BTMST_STARTENDDATE" type="STRING" size="16"/>
+          <Column id="BTMST_STAY_OVERNIGHT" type="INT" size="2"/>
+          <Column id="BTMST_STAY_DAY" type="INT" size="2"/>
+          <Column id="BTMST_PLACE" type="STRING" size="100"/>
+          <Column id="BTMST_CONTENTS" type="STRING" size="1000"/>
+          <Column id="BTMST_POSTULATE" type="STRING" size="1000"/>
+          <Column id="BTMST_DELETE" type="STRING" size="1"/>
+          <Column id="BTMST_PERMITEDATE1" type="STRING" size="8"/>
+          <Column id="BTMST_PERMITEUSER1" type="STRING" size="6"/>
+          <Column id="BTMST_PERMITENAME1" type="STRING" size="10"/>
+          <Column id="BTMST_PERMITE1" type="STRING" size="1"/>
+          <Column id="BTMST_PERMITEDATE2" type="STRING" size="8"/>
+          <Column id="BTMST_PERMITEUSER2" type="STRING" size="6"/>
+          <Column id="BTMST_PERMITENAME2" type="STRING" size="10"/>
+          <Column id="BTMST_PERMITE2" type="STRING" size="1"/>
+          <Column id="COMPETENCE" type="STRING" size="1"/>
+          <Column id="I_FLOW_ID" type="INT" size="20"/>
+          <Column id="BTMST_PERMITEDATE0" type="STRING" size="8"/>
+          <Column id="BTMST_PERMITEUSER0" type="STRING" size="6"/>
+          <Column id="BTMST_PERMITE0" type="STRING" size="1"/>
+          <Column id="BTMST_PAYDATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBTDtl">
+        <ColumnInfo>
+          <Column id="BTDTL_SEQ" type="STRING" size="1"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="BTMST_ID" type="INT" size="20"/>
+          <Column id="ACNTTIT_NO" type="INT" size="20"/>
+          <Column id="BTDTL_CARD_PROVISIONAL" type="DECIMAL" size="13"/>
+          <Column id="BTDTL_CARD_PAYAMOUNT" type="DECIMAL" size="13"/>
+          <Column id="BTDTL_CASH_REGULATION" type="DECIMAL" size="13"/>
+          <Column id="BTDTL_CASH_PROVISIONAL" type="DECIMAL" size="13"/>
+          <Column id="BTDTL_CASH_PAYAMOUNT" type="DECIMAL" size="13"/>
+          <Column id="BTDTL_CASH_OASAMOUNT" type="DECIMAL" size="13"/>
+          <Column id="BTDTL_REMARK" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAccountTitle">
+        <ColumnInfo>
+          <Column id="ACNTTIT_RN" type="INT" size="5"/>
+          <Column id="ACNTTIT_NO" type="INT" size="20"/>
+          <Column id="ACNTTIT_NAME" type="STRING" size="40"/>
+          <Column id="ACNTTIT_LVL" type="INT" size="2"/>
+          <Column id="ACNTTIT_PNO" type="INT" size="20"/>
+          <Column id="ACNTTIT_CODE" type="STRING" size="4"/>
+          <Column id="ACNTTIT_REMARK" type="STRING" size="100"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBTMem">
+        <ColumnInfo>
+          <Column id="BTMST_ID" type="INT" size="20"/>
+          <Column id="BTMEM_SEQ" type="STRING" size="3"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="POSITION_CODE" type="STRING" size="2"/>
+          <Column id="POSITION_NAME" type="STRING" size="20"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="BT_DATE" type="STRING" size="21"/>
+          <Column id="BTMEM_STARTDATE" type="STRING" size="8"/>
+          <Column id="BTMEM_ENDDATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsExcel">
+        <ColumnInfo>
+          <Column id="BTMST_DATE" type="STRING" size="8"/>
+          <Column id="BTMST_NO" type="STRING" size="2"/>
+          <Column id="BUSINESSTRIP_NO" type="STRING" size="12"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="LEVEL_NAME" type="STRING" size="2"/>
+          <Column id="BTMST_STARTDATE" type="STRING" size="8"/>
+          <Column id="BTMST_ENDDATE" type="STRING" size="8"/>
+          <Column id="BANK_NAME" type="STRING" size="100"/>
+          <Column id="EBA_BANK_ACCOUNT" type="STRING" size="50"/>
+          <Column id="DAY_AMOUNT" type="STRING" size="100"/>
+          <Column id="PAYEE" type="STRING" size="6"/>
+          <Column id="PERMITEDATE" type="STRING" size="10"/>
+          <Column id="BTMST_PAYDATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="LVL" type="STRING" size="1"/>
+          <Column id="SHORTCODE" type="STRING" size="3"/>
+          <Column id="SECTION_SHORTNAME" type="STRING" size="10"/>
+          <Column id="BU_UPCODE" type="STRING" size="5"/>
+          <Column id="BU_GRCODE" type="STRING" size="2"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsProof">
+        <ColumnInfo>
+          <Column id="PRF_CODE" type="INT" size="3"/>
+          <Column id="PRF_NAME" type="STRING" size="25"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsParam4">
+        <ColumnInfo>
+          <Column id="GUBUN" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var aQryReturn = new Array();
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd + "/pd/"; 
+var aQryReturn = new Array();
+var sSection_Code = nexacro.getApplication().gds_userinfo.getColumn(0, "BUSECD");
+var sEmployee_Name = nexacro.getApplication().gds_userinfo.getColumn(0, "NAME");
+var sSection_ShortCode = nexacro.getApplication().gds_userinfo.getColumn(0, "SHORTCODE");
+var sUserCompetence;
+var sUserCompetence1 = "1";   // 일반사용자
+var sUserCompetence2 = "2";   // 부서승인권자
+var sUserCompetence3 = "3";   // 부서장
+var sUserCompetence4 = "4";   // 일반승인권자
+var sUserCompetence5 = "5";   // 승인1차권한
+var sUserCompetence6 = "6";   // 승인2차권한
+var cald_focus = false;
+
+this.PD180F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", "sub7001-8");
+	sUserCompetence = nexacro.getApplication().gds_menu.getColumn(nRow, "UM_PER_USE");
+	if(sUserCompetence == null)
+		sUserCompetence = '1';
+	//sUserCompetence = "S";
+	
+	this.gfn_TransactionP("section","JSP/ed/section_select.jsp", "dsSection=dsSection", "dsSection=dsSection", "", "fnSectionCallback", false, "P", false, this);	//부서	
+	
+	// 승인으로 초기화
+	aQryReturn[3] = 1;
+};
+
+this.fnSectionCallback = function(svcid, errCode, errMsg)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+	if(svcid == "section")
+	{
+		if(errCode != 0 )
+			trace("[PD180F.fnSectionCallback(" + f_date + ")] " + svcid +"::"+ errMsg );
+		else
+		{
+			if ( sUserCompetence < sUserCompetence5 )
+				this.dsSection.filter("SECTION_CODE=='" + sSection_Code + "'");
+		}
+	}
+}
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("search", {PDCompetence:sUserCompetence, JSPFileName:"JSP/pd/pd180f_businesstrip_mst.jsp"}, "pd::PD180_SearchF.xfdl", "fnSearchCallBack", this, 0, 0, 410, 150);
+};
+
+this.fnSearchCallBack = function(strID, ret)
+{
+	aQryReturn = ret.split("^");
+}
+
+this.btn_save1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/pd/pd140f_businesstrip_mst_dml.jsp";
+	var inDs = "input=dsBTMst:u";
+
+	this.gfn_TransactionP("save", strUrl, inDs, "", "", "fnCallback", false, "P", false, this);
+};
+
+this.grd_mst_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		if((sUserCompetence == sUserCompetence5) && (this.dsBTMst.getColumn(e.row, "BTMST_PERMITE2") == "0")) // 권한 확인
+		{
+			if(this.dsBTMst.getColumn(e.row, "CHK") != '1' ) // 승인 <->미승인 토글
+			{
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITEDATE1", null);
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITEUSER1", null);
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITENAME1", null);
+				this.dsBTMst.setColumn(e.row, "BTMST_PAYDATE", null);
+			}
+			else
+			{
+				var objDate = new nexacro.Date();
+				var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITEDATE1", f_date);
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITEUSER1", gv_sabun);
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITENAME1", sEmployee_Name);
+				this.dsBTMst.setColumn(e.row, "BTMST_PAYDATE", f_date);
+			}
+		}
+		if((sUserCompetence > sUserCompetence5) && (this.dsBTMst.getColumn(e.row, "BTMST_PERMITE1") == "1")) // 권한 확인
+		{
+			if(this.dsBTMst.getColumn(e.row, "CHK") != '1') // 승인 <->미승인 토글
+			{
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITEDATE2", null);
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITEUSER2", null);
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITENAME2", null);
+				this.dsBTMst.setColumn(e.row, "BTMST_PAYDATE", null);
+			}
+			else
+			{
+				var objDate = new nexacro.Date();
+				var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITEDATE2", f_date);
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITEUSER2", gv_sabun);
+				this.dsBTMst.setColumn(e.row, "BTMST_PERMITENAME2", sEmployee_Name);
+				this.dsBTMst.setColumn(e.row, "BTMST_PAYDATE", f_date);
+			}
+		}
+	}
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	if(msg_result = objApp.confirm( "삭제하시겠습니까?" , "삭제", "warning" ))
+    {
+		this.dsBTMst.deleteRow(this.dsBTMst.rowposition);
+		this.fnMstSave();
+		
+		this.dsBTMst.clearData();
+    }    
+};
+
+this.fnMstSave = function()
+{
+	var inDs = "input=dsBTMst:u";
+	
+	for(var nRow; nRow <= this.dsBTMst.rowcount -1; nRow ++)
+	{
+		if((sUserCompetence == sUserCompetence5) && (this.dsBTMst.getColumn(nRow, "BTMST_PERMITE2") == "0") && (this.dsBTMst.getColumn(nRow, "CHK") == "1"))
+		{
+			if(aQryReturn[3] == 1) // 승인 <->미승인 토글
+			{
+				this.dsBTMst.setColumn(nRow, "BTMST_PERMITEDATE1", null);
+				this.dsBTMst.setColumn(nRow, "BTMST_PERMITEUSER1", null);
+			}
+			else if(aQryReturn[3] == 0)
+			{
+				var objDate = new nexacro.Date();
+				var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+				this.dsBTMst.setColumn(nRow, "BTMST_PERMITEDATE1", f_date);
+				this.dsBTMst.setColumn(nRow, "BTMST_PERMITEUSER1", gv_sabun);
+			}
+		}
+		if((sUserCompetence > sUserCompetence5) && (this.dsBTMst.getColumn(e.row, "BTMST_PERMITE1") == "1") && (this.dsBTMst.getColumn(nRow, "CHK") == "1"))
+		{
+			if(aQryReturn[3] == 1) // 승인 <->미승인 토글
+			{
+				this.dsBTMst.setColumn(nRow, "BTMST_PERMITEDATE2", null);
+				this.dsBTMst.setColumn(nRow, "BTMST_PERMITEUSER2", null);
+			}
+			else if(aQryReturn[3] == 0)
+			{
+				var objDate = new nexacro.Date();
+				var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+				this.dsBTMst.setColumn(nRow, "BTMST_PERMITEDATE2", f_date);
+				this.dsBTMst.setColumn(nRow, "BTMST_PERMITEUSER2", gv_sabun);
+			}
+		}
+	}
+	var strUrl = "JSP/pd/pd140f_businesstrip_mst_dml.jsp";
+	this.gfn_TransactionP("update", strUrl, inDs, "", "", "fnMstSaveCallback", false, "P", false, this);
+}
+
+this.fnMstSaveCallback = function(svcid, errCode, errMsg)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+	if (svcid == "update")
+	{
+	    if(errCode != 0 )
+	    {
+			trace("[PD180F.fctn_MstSaveCallback(" + f_date + ")] " + svcid +"::"+ errMsg );
+	    }
+	    else
+	    {
+			var strUrl = "JSP/pd/pd180f_businesstrip_mst.jsp"
+			var strArg = "";
+			var strDs  = "dsBTMst=dsBTMst";
+		
+			strArg 	= "BTMST_SDATE=" + nexacro.wrapQuote( aQryReturn[0] ) +
+					  " BTMST_EDATE=" + nexacro.wrapQuote( aQryReturn[1] ) +
+					  " SECTION_CODE=" + nexacro.wrapQuote( aQryReturn[2] ) +
+					  " BTMST_PERMITE=" + nexacro.wrapQuote( aQryReturn[3] ) +
+					  " COMPETENCE=" + nexacro.wrapQuote( sUserCompetence );
+			//trace(strArg);
+			this.gfn_TransactionP("search", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+	    }
+	} 
+	else if(errCode != 0 )
+	{
+		trace("[PD180F.fctn_MstSaveCallback(" + f_date + ")] " + svcid +"::"+ errMsg );
+	}
+}
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsBTMst.rowcount > 0)
+	{
+		var strArg, sOU;
+		var objApp = nexacro.getApplication();
+		if(msg_result = objApp.confirm( " 출장 복명서 및 지결서 결재 원본을 출력 하시겠습니까? " , "출력", "question" ))
+		{
+			alert(" 선택된 하나의 지결서만 조회가 가능합니다. ");
+			
+			this.dsParam4.setColumn(0, "GUBUN", "01");
+			this.dsParam4.setColumn(0, "I_FLOW_ID", this.dsBTMst.getColumn(this.dsBTMst.rowposition, "I_FLOW_ID"));
+			
+			strArg = {dsParam1:this.dsBTMst.getColumn(this.dsBTMst.rowposition, "I_FLOW_ID"),
+			dsParam4:this.dsParam4};
+			
+			this.lfn_showModal("popupElecDoc", strArg, "gw::GW130.xfdl", "popupCallBack", this, 10, 58, 1300, 720);
+		}
+		else
+		{
+			rdParam = "/rp ["+aQryReturn[0]+"] ["+aQryReturn[1]+"] [";
+			if(aQryReturn[3] == 1) rdParam += "1" + "] [";
+			else rdParam += "" + "] [";
+			if(sUserCompetence == "3") rdParam += "" + "] [";
+			else rdParam += "1" + "] []";
+			
+			strArg = {rdUrl:gv_urlMrd+"PD180.mrd", rdParam:rdParam};
+			
+			var rect;
+			if(system.navigatorname == 'nexacro')
+			{
+				if(system.monitorcount > 1)
+				{
+					var monitor_index = system.getMonitorIndex(system.clientToScreenX(this,0), system.clientToScreenY(this,0));
+					rect = system.getScreenRect(monitor_index);
+				}
+				else
+					rect = system.getScreenRect(1);
+			}
+			else
+				rect = system.getScreenRect(1);
+
+			var sOpenStyle = "topmost=true autosize=false dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false resizable=true";
+	
+			nexacro.open("popupElecDoc", "mk::MKRDF.xfdl", this.getOwnerFrame(), strArg, sOpenStyle, rect.left, rect.top, rect.width, rect.height, this);
+		}
+	}
+	else
+		alert("조회된 항목이 없습니다.");
+};
+
+this.div_main_btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl, strDs, strArg;
+	
+	strUrl = "JSP/pd/pd140f_businesstrip_excel.jsp";
+	strDs = "dsExcel=dsExcel";
+	strArg = "S_DATE=" + nexacro.wrapQuote( this.div_main.form.cald_sdate.value) +
+			  " E_DATE=" + nexacro.wrapQuote( this.div_main.form.cald_edate.value ) ;
+	this.gfn_TransactionP("excel_select", strUrl, strDs, strDs, strArg, "fnCallBackSelectExcel", false, "P", false, this);
+};
+
+this.fnCallBackSelectExcel = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		alert(ErrorMsg);
+		return;
+	}
+	else{
+		if ( this.dsExcel.rowcount <= 0){
+			alert("변환가능한 리스트가 없습니다.");
+			return;
+		}
+		this.exportObj = new ExcelExportObject();
+		this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.grd_excel, "Sheet1!A1");
+		this.exportObj.set_exportfilename( this.div_main.form.cald_sdate.value + " - " + this.div_main.form.cald_edate.value);
+		this.exportObj.set_exporturl(gv_urlXeni);
+		this.exportObj.exportData(); 
+	}
+}
+
+this.dsBTMst_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{
+	if(e.reason == 0)
+		this.dsBTMst_onrowposchanged(obj,nexacro.DSRowPosChangeEventInfo);
+};
+
+this.dsBTMst_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	if (this.dsBTMst.rowcount != 0)
+	{
+		if (this.dsBTMst.getRowType(e.newrow) != "2")
+		{
+			var strArg 	= "BTMST_ID=" + nexacro.wrapQuote( this.dsBTMst.getColumn(e.newrow, "BTMST_ID"));
+			
+			this.gfn_TransactionP("search","JSP/pd/pd140f_businesstrip_dtl.jsp", "dsBTDtl=dsBTDtl", "dsBTDtl=dsBTDtl", strArg, "fnCallback", false, "P", false, this);
+			this.gfn_TransactionP("search","JSP/pd/pd140f_businesstrip_mem.jsp", "dsBTMem=dsBTMem", "dsBTMem=dsBTMem", strArg, "fnCallback", false, "P", false, this);
+		}
+	}
+};
+
+this.cald_00_onmouseenter = function(obj:nexacro.Calendar,e:nexacro.MouseEventInfo)
+{
+	cald_focus = true;
+};
+
+this.cald_00_onmouseleave = function(obj:nexacro.Calendar,e:nexacro.MouseEventInfo)
+{
+	if(cald_focus == true)
+	{
+		this.div_main.form.cald_00.set_visible(false);
+		cald_focus = false;
+	}
+};
+
+this.div_main_cald_00_onkeydown = function(obj:nexacro.Calendar,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 27)
+		obj.set_visible(false);  // 달력을 안보이게 합니다.	
+};
+
+this.cald_00_ondayclick = function(obj:nexacro.Calendar,e:nexacro.CalendarDayClickEventInfo)
+{
+	if (sUserCompetence == sUserCompetence5)
+		this.dsBTMst.setColumn(this.dsBTMst.rowposition, "BTMST_PERMITEDATE1", e.date); //날짜를 선택
+	else if (sUserCompetence > sUserCompetence5)
+		this.dsBTMst.setColumn(this.dsBTMst.rowposition, "BTMST_PERMITEDATE2", e.date); //날짜를 선택
+	
+	this.div_main.form.grd_mst.moveToNextCell(); //그리드 셀 이동
+	obj.set_visible(false);  // 달력을 안보이게 합니다.
+};
+
+this.grd_mst_onexpanddown = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	var rect = obj.getCellRect(e.row, e.cell);
+	
+	var top = nexacro.toNumber(obj.top) + nexacro.toNumber(rect.top) + 18; //소스 중에서 달력이 표현될 위치를 지정합니다. Top
+	var right = nexacro.toNumber(rect.right) - 100; //소스 중에서 달력이 표현될 위치를 지정합니다.
+
+	this.div_main.form.cald_00.set_top(top);
+	this.div_main.form.cald_00.set_left(right);
+	this.div_main.form.cald_00.set_visible(true);
+};
+
+this.grd_mst_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if (e.cell == 0)
+	{
+		for(var nRow = 0; nRow <= this.dsBTMst.rowcount -1; nRow ++ )
+		{	
+			if (this.dsBTMst.getColumn(nRow, "CHK") == "1")
+				this.dsBTMst.setColumn(nRow, "CHK", "0");
+			else
+				this.dsBTMst.setColumn(nRow, "CHK", "1");
+			e.row = nRow;
+			this.grd_mst_oncellclick(obj,e);
+		}
+	}
+};
+
+this.fnCallback = function(svcid, errCode, errMsg)
+{
+	if(errCode != 0)
+	{
+		var objDate = new nexacro.Date();
+		var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+		if(svcid == "search")
+		{
+			trace("[PD180F.fnCallBack(" + f_date + ")] " + svcid +"::"+ errMsg );
+		}
+		else if(svcid == "save")
+		{
+			trace("[PD180F.fnCallBack(" + f_date + ")] " + svcid +"::"+ errMsg );		
+			alert( "전산실로 문의 바랍니다." + "   " +  svcid +"::"+ errMsg );
+		}
+		return;
+	}
+}
+
+// 세부사항 저장 및 동행자 저장은 쓰이지 않음 (btn_save, 승인버튼) dsBTDtl 및 dsBTMem 바인딩 그리드의 edit도 없음
+
+this.LocalFn_OnKeyDown = function(obj:nexacro.Component,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13)
+	{
+		var curObj = this.getFocus();
+		var objCom;
+		if(curObj.parent.parent == "[object Div]")
+			objCom = curObj.parent.parent.form.getNextComponent(this.getFocus(),true);
+		else
+			objCom = this.getNextComponent(this.getFocus(),true);
+		
+		objCom.setFocus();
+		if(objCom == "[object Calendar]" || objCom == "[object Combo]" )
+			objCom.dropdown();
+	}
+};
+
+this.PD180F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.div_main.set_width(this.width - 10)
+	this.div_main.set_height(this.height - 10)
+	
+	if(this.height < 480)
+		this.div_main.form.Static00.set_font('bold 32px/normal "함초롬바탕 확장B"');
+	else
+		this.div_main.form.Static00.set_font('bold 40px/normal "함초롬바탕 확장B"');
+};]]></Script>
+  </Form>
+</FDL>

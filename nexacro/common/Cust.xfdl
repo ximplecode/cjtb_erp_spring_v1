@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Cust" width="560" height="380" titletext="New Form" onload="Cust_onload">
+    <Layouts>
+      <Layout height="380" width="560">
+        <Static id="Static00" taborder="0" text="거래처구분" left="8" top="8" width="81" height="29" background="#10aea9" color="#ffffff" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center"/>
+        <Combo id="cb_cust_gb" taborder="1" text="-선택-" left="90" top="8" width="107" height="29" innerdataset="ds_cust_gb" datacolumn="NAME" codecolumn="CODE" index="0" value=""/>
+        <Static id="Static00_00" taborder="2" text="거래처명" left="200" top="8" width="81" height="29" background="#10aea9" color="#ffffff" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center"/>
+        <Edit id="edt_cust_nm" taborder="3" left="282" top="8" width="185" height="29" onkeydown="edt_name_onkeydown"/>
+        <Button id="btn_search" taborder="4" top="8" width="80" height="29" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" left="471"/>
+        <Static id="Static00_01" taborder="5" text="사업자번호" left="8" top="46" width="81" height="29" background="#10aea9" color="#ffffff" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center"/>
+        <MaskEdit id="medt_saupno" taborder="6" left="90" top="46" width="107" height="29"/>
+        <CheckBox id="ckb_use_gb" taborder="7" text="거래중지업체 제외" left="208" top="46" width="150" height="29" font="normal 700 11pt/normal &quot;Arial&quot;"/>
+        <Grid id="grd_cust" taborder="8" left="8" top="80" height="257" width="544" binddataset="ds_cust" autofittype="col" oncelldblclick="grd_cust_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="365"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="구분"/>
+                <Cell col="1"/>
+                <Cell col="2" text="코드"/>
+                <Cell col="3" text="거래처명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:GUBN" combodataset="ds_cust_gb" combocodecol="CODE" combodatacol="NAME" displaytype="combotext" edittype="none"/>
+                <Cell col="1" text="bind:GUBN"/>
+                <Cell col="2" text="bind:CODE"/>
+                <Cell col="3" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_close" taborder="9" text="닫기" left="239" top="344" height="29" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" width="83"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_cust_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE"/>
+            <Col id="NAME">-선택-</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">학습</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">11</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">12</Col>
+            <Col id="NAME">주간</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">20</Col>
+            <Col id="NAME">개인</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">21</Col>
+            <Col id="NAME">교판</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">22</Col>
+            <Col id="NAME">속셈</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">23</Col>
+            <Col id="NAME">학원</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">24</Col>
+            <Col id="NAME">서점</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">25</Col>
+            <Col id="NAME">유치</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">26</Col>
+            <Col id="NAME">스쿨</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">27</Col>
+            <Col id="NAME">외주</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">28</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">29</Col>
+            <Col id="NAME">NET</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">30</Col>
+            <Col id="NAME">GGE</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">31</Col>
+            <Col id="NAME">해법</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">32</Col>
+            <Col id="NAME">영어</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">33</Col>
+            <Col id="NAME">고등</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">34</Col>
+            <Col id="NAME">과학</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">35</Col>
+            <Col id="NAME">독서</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">36</Col>
+            <Col id="NAME">논술</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">37</Col>
+            <Col id="NAME">학력</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">38</Col>
+            <Col id="NAME">교원</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">39</Col>
+            <Col id="NAME">쇼핑</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">13</Col>
+            <Col id="NAME">캐릭</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">14</Col>
+            <Col id="NAME">저작</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">40</Col>
+            <Col id="NAME">매입</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">41</Col>
+            <Col id="NAME">외주</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">42</Col>
+            <Col id="NAME">상품</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">47</Col>
+            <Col id="NAME">은행</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">48</Col>
+            <Col id="NAME">부서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_cust">
+        <ColumnInfo>
+          <Column id="GUBN" type="STRING" size="2"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="F_SNAME" type="STRING" size="256"/>
+          <Column id="F_SAUPNO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.getData_cust(this.cb_cust_gb.value,"",this.edt_cust_nm.value, this.medt_saupno.value, this.ckb_use_gb.value );
+};
+
+this.getData_cust = function(cust_gb, cust_cd, cust_nm, saup_no, use_gb)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/common/getdata_cust.jsp";
+	in_ds = "ds_cust=ds_cust";
+	out_ds = "ds_cust=ds_cust";
+	str_arg = "cust_gb='"+cust_gb+"' cust_cd='"+ cust_cd +"' cust_nm='"+cust_nm+"' saup_no='"+saup_no+"' use_gb='"+use_gb+"'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_cust", true, "P", false, this);
+};
+
+this.Callback_cust = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+	
+    trace(this.ds_cust.saveXML());
+}
+
+this.Cust_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.cb_cust_gb.set_value(this.parent.pCust_gb);
+	this.cb_cust_gb.set_enable(this.parent.pUse_gb);
+};
+
+this.grd_cust_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.parent.arr_s[0] = this.ds_cust.getColumn(e.row,"GUBN");
+	this.parent.arr_s[1] = this.ds_cust.getColumn(e.row,"CODE");
+	this.parent.arr_s[2] = this.ds_cust.getColumn(e.row,"NAME");
+	this.parent.arr_s[3] = this.ds_cust.getColumn(e.row,"F_SNAME");
+	this.parent.arr_s[4] = this.ds_cust.getColumn(e.row,"F_SAUPNO");
+	this.close(1);
+};
+]]></Script>
+  </Form>
+</FDL>

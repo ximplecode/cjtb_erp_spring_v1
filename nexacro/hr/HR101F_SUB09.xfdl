@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR101F_SUB09" width="1244" height="242" titletext="New Form">
+    <Layouts>
+      <Layout height="242" width="1244">
+        <TextArea id="TextArea00" taborder="0" left="2" top="32" right="2" bottom="2"/>
+        <Static id="Static00" taborder="1" text="면담내용" left="4" top="2" width="120" height="30" color="orangered" font="normal bold 10pt/normal &quot;Arial&quot;"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Bind>
+      <BindItem id="item0" compid="TextArea00" propid="value" datasetid="ds_insa" columnid="RETIRE_TALK"/>
+    </Bind>
+  </Form>
+</FDL>

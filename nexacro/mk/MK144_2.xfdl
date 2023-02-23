@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkDtlMain" width="1285" height="600" scrolltype="none" ontimer="MkMain_ontimer" onsize="MkMain_onsize" onload="MkMain_onload" titletext="제본비명세서_STN/ETC">
+    <Layouts>
+      <Layout height="600" width="1285">
+        <Grid id="grdList" taborder="0" left="0" top="0" binddataset="dsList1" autofittype="none" width="100.00%" height="100.00%">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="80"/>
+                <Column size="293"/>
+                <Column size="139"/>
+                <Column size="62"/>
+                <Column size="82"/>
+                <Column size="82"/>
+                <Column size="82"/>
+                <Column size="82"/>
+                <Column size="82"/>
+                <Column size="82"/>
+                <Column size="99"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="33"/>
+                <Row size="39" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="진행일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="구분" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="페이지" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" text="발주수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="제본수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="단가" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="(표준)단가" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="8" text="(표준)공급가액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="9" text="(표준)세액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="10" text="발주일자" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ORDDTL_RUNDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" displaytype="expr:dataset.getRowLevel(currow)==1||dataset.getRowLevel(currow)==2?'normal':'date'" calendardateformat="yyyy-MM-dd" suppress="1" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''"/>
+                <Cell col="1" text="bind:BOOK_CODEYEAR" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle"/>
+                <Cell col="2" text="bind:BND_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" suppressalign="middle" expr="dataset.getRowLevel(currow)==1?'도서별 소계':BND_NAME"/>
+                <Cell col="3" text="bind:ORDDTL_PAGE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''"/>
+                <Cell col="4" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:ORDMST_QTY" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###"/>
+                <Cell col="5" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:ORDDTL_REALWORKQTY" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###"/>
+                <Cell col="6" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:ORDDTL_UNITCOST" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###.#"/>
+                <Cell col="7" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:CAL_UNITCOST" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###.#"/>
+                <Cell col="8" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:CAL_ORDDTL_AMOUNT" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###"/>
+                <Cell col="9" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" text="bind:CAL_ORDDTL_VAT" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" maskeditformat="#,###"/>
+                <Cell col="10" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" displaytype="expr:dataset.getRowLevel(currow)==1?'mask':'normal'" text="bind:ORD_NO" suppress="0" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':''" expr="dataset.getRowLevel(currow)==1?CAL_ORDDTL_AMOUNT+CAL_ORDDTL_VAT:ORD_NO" maskeditformat="#,###"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="4" background="#fbce78" text="제본비 합계" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" expr="dataset.getSum('ORDMST_QTY');" textAlign="right"/>
+                <Cell col="5" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" expr="dataset.getSum('ORDDTL_REALWORKQTY');" textAlign="right"/>
+                <Cell col="6" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" textAlign="right"/>
+                <Cell col="7" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" textAlign="right"/>
+                <Cell col="8" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" expr="dataset.getSum('CAL_ORDDTL_AMOUNT');" textAlign="right"/>
+                <Cell col="9" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" maskeditformat="#,###" displaytype="mask" expr="dataset.getSum('CAL_ORDDTL_VAT');" textAlign="right"/>
+                <Cell col="10" background="#fbce78" font="bold 12px/normal &quot;함초롬돋움&quot;" textAlign="right" expr="dataset.getSum('CAL_ORDDTL_AMOUNT')+dataset.getSum('CAL_ORDDTL_VAT');" displaytype="mask" maskeditformat="#,###"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+var rdGubunChk;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	this.fnChk(this.parent.parent.rdGubun.value);
+}
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+	
+};
+
+this.fnChk = function(rdGubunChk)
+{
+	if(rdGubunChk == 5)
+	{
+		this.grdList.setCellProperty("head", "7", "text", "(현금)단가");
+		this.grdList.setCellProperty("head", "8", "text", "(현금)공급가액");
+		this.grdList.setCellProperty("head", "9", "text", "(현금)세액");
+	}else{
+		this.grdList.setCellProperty("head", "7", "text", "(표준)단가");
+		this.grdList.setCellProperty("head", "8", "text", "(표준)공급가액");
+		this.grdList.setCellProperty("head", "9", "text", "(표준)세액");
+	}
+}
+
+]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

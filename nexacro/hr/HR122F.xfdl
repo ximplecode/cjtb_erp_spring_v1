@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR122F" width="1250" height="625" titletext="New Form" onload="HR122F_onload" onsize="HR122F_onsize">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="인사발령" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Grid id="grd_buse" taborder="1" left="3" top="50" binddataset="ds_buse" treeusebutton="use" treeusecheckbox="false" treeinitstatus="expand,all" oncelldblclick="grd_buse_oncelldblclick" width="280" bottom="3">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="222"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:NAME" edittype="tree" displaytype="treeitemcontrol" treelevel="bind:BU_LEVEL" border="0px none #dbdee2" cssclass="CssBuse_tree"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="2" text="성명" left="grd_buse:3" top="50" width="55" height="29" background="#10aea9" color="#ffffff" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center"/>
+        <Edit id="edt_name" taborder="3" left="Static00:1" top="50" width="216" height="29" onkeydown="edt_name_onkeydown"/>
+        <Button id="btn_search" taborder="4" top="50" width="51" height="29" background="url('Img::loupe.png') no-repeat center center #3cbcb8" left="edt_name:1" onclick="btn_search_onclick"/>
+        <Grid id="grd_insa" taborder="5" left="grd_buse:3" top="edt_name:1" binddataset="ds_insa" autofittype="col" width="324" bottom="3" oncelldblclick="grd_insa_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="115" band="left"/>
+                <Column size="47" band="left"/>
+                <Column size="73"/>
+                <Column size="57"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서"/>
+                <Cell col="1" text="직책"/>
+                <Cell col="2" text="사번"/>
+                <Cell col="3" text="성명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSENM"/>
+                <Cell col="1" text="bind:JIKWINM"/>
+                <Cell col="2" text="bind:SABUN"/>
+                <Cell col="3" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta_gb" taborder="8" text="발령구분" left="btn_search:5" top="50" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Radio id="rd_balGB" taborder="6" left="sta_gb:0" top="50" height="30" innerdataset="ds_insaBalGB" codecolumn="CODE" datacolumn="NAME" columncount="7" rowcount="0" direction="vertical" border="1px solid #10aea9" right="3" background="#9ee0de" font="normal 900 10pt/normal &quot;Arial&quot;" color="white"/>
+        <Button id="btn_save" taborder="7" text="저장" top="16" width="120" height="22" right="10" onclick="btn_save_onclick"/>
+        <Static id="sta_gb00" taborder="13" text="발령부서" left="grd_insa:5" top="sta_gb:0" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_balYMD" taborder="9" text="발령일자" left="grd_insa:5" top="sta_gb00:0" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01" taborder="10" left="sta_balYMD:0" top="110" height="30" border="1px solid #10aea9" background="#9ee0de" right="3"/>
+        <Static id="Static01_00" taborder="14" left="sta_gb00:0" top="rd_balGB:0" height="30" border="1px solid #10aea9" background="#9ee0de" right="3"/>
+        <Calendar id="cald_ymd" taborder="11" left="sta_balYMD:2" top="Static01_00:5" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="100"/>
+        <Button id="btn_ymdAll" taborder="12" text="일괄적용" top="Static01_00:5" width="60" height="22" left="cald_ymd:0" onclick="btn_ymdAll_onclick"/>
+        <Combo id="cb_buse" taborder="15" text="Combo00" left="sta_gb00:2" top="85" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_buse" codecolumn="CODE" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" color="white" right="28.08%"/>
+        <Button id="btn_buseAll" taborder="16" text="일괄적용" top="rd_balGB:4" width="60" height="22" left="cb_buse:0" onclick="btn_buseAll_onclick"/>
+        <Static id="sta_gb00_00" taborder="17" text="발령직위" left="btn_buseAll:5" top="rd_balGB:0" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_jikwi" taborder="18" text="Combo00" top="rd_balGB:5" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_jikwi" codecolumn="CODE" datacolumn="NAME" left="sta_gb00_00:2" font="normal 900 10pt/normal &quot;Arial&quot;" right="5.68%"/>
+        <Button id="btn_jikwiAll" taborder="19" text="일괄적용" top="rd_balGB:4" width="60" height="22" left="cb_jikwi:0" onclick="btn_jikwiAll_onclick"/>
+        <Grid id="grd_bal" taborder="20" left="grd_insa:5" top="Static01:2" right="3" bottom="3" binddataset="ds_bal" autoenter="select" oncellclick="grd_bal_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="124"/>
+                <Column size="80"/>
+                <Column size="73"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="구분"/>
+                <Cell col="1" text="발령일자"/>
+                <Cell col="2" text="사번"/>
+                <Cell col="3" text="성명"/>
+                <Cell col="4" text="발령부서"/>
+                <Cell col="5" text="발령보임"/>
+                <Cell col="6" text="발령직위"/>
+                <Cell col="7"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BAL_GB" displaytype="combocontrol" edittype="combo" combodataset="ds_insaBalGB" combocodecol="CODE" combodatacol="NAME" combotype="dropdown"/>
+                <Cell col="1" text="bind:YMD" edittype="date" displaytype="date"/>
+                <Cell col="2" text="bind:SABUN"/>
+                <Cell col="3" text="bind:NAME"/>
+                <Cell col="4" text="bind:BUSE" displaytype="combocontrol" edittype="combo" combotype="filterlike" combodataset="ds_buse" combocodecol="CODE" combodatacol="NAME"/>
+                <Cell col="5" text="bind:NICK" edittype="combo" displaytype="combocontrol" combodataset="ds_nick" combocodecol="CODE" combodatacol="NAME" combotype="dropdown"/>
+                <Cell col="6" text="bind:JIKWI" displaytype="combocontrol" edittype="combo" combotype="dropdown" combodataset="ds_jikwi" combodatacol="NAME" combocodecol="CODE"/>
+                <Cell col="7" displaytype="buttoncontrol" edittype="button" text="삭제"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_clear" taborder="21" text="초기화" top="16" width="120" height="22" right="140" onclick="btn_clear_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_buse">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+          <Column id="BU_LEVEL" type="STRING" size="256"/>
+          <Column id="BU_NAME" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="256"/>
+          <Column id="DECISIONLINE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_insa">
+        <ColumnInfo>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSENM" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="JIKWINM" type="STRING" size="256"/>
+          <Column id="LEVEL_CD" type="STRING" size="256"/>
+          <Column id="LEVEL_NM" type="STRING" size="256"/>
+          <Column id="OLD_JIKWICD" type="STRING" size="256"/>
+          <Column id="OLD_JIKWINM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_bal">
+        <ColumnInfo>
+          <Column id="BAL_GB" type="STRING" size="256"/>
+          <Column id="YMD" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="UPDATE_DT" type="STRING" size="256"/>
+          <Column id="NICK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_insaBalGB">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">20</Col>
+            <Col id="NAME">승진</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">22</Col>
+            <Col id="NAME">보임</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">25</Col>
+            <Col id="NAME">호칭</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">30</Col>
+            <Col id="NAME">전보</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">50</Col>
+            <Col id="NAME">퇴직</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">99</Col>
+            <Col id="NAME">정규직전환</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_jikwi">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_nick">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+this.HR122F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var dt = new Date();
+	this.cald_ymd.set_value(dt);
+	
+	this.lfn_grdAutofit(this.grd_bal);
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/common/getdata_buse.jsp";
+	in_ds = "ds_buse=ds_buse";
+	out_ds = "ds_buse=ds_buse";
+	str_arg = "buse_nm=''" ;
+	this.gfn_TransactionP("select_buse", str_url, in_ds, out_ds, str_arg, "Callback_select_jikwi", true, "S", false, this);
+};
+
+this.Callback_select_jikwi = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/common/getdata_jikwi.jsp";
+	in_ds = "ds_jikwi=ds_jikwi";
+	out_ds = "ds_jikwi=ds_jikwi";
+	str_arg = "" ;
+	this.gfn_TransactionP("select_jikwi", str_url, in_ds, out_ds, str_arg, "Callback_select_nick", true, "S", false, this);
+}
+
+this.Callback_select_nick = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/common/getdata_nick.jsp";
+	in_ds = "ds_nick=ds_nick";
+	out_ds = "ds_nick=ds_nick";
+	str_arg = "" ;
+	this.gfn_TransactionP("select_nick", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false, this);
+}
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0 && ErrorCode != -99)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+}
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.edt_name.value) == false)
+	{
+		this.getData_insa("",this.edt_name.value,"");
+	}
+};
+
+this.getData_insa = function(sabun,name,busecd)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/common/getdata_insa.jsp";
+	in_ds = "ds_insa=ds_insa";
+	out_ds = "ds_insa=ds_insa";
+	str_arg = "sabun='"+sabun+"' name='"+name+"' busecd='"+busecd+"'";
+	this.gfn_TransactionP("select_insa", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+};
+
+
+this.grd_buse_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.getData_insa("","",this.ds_buse.getColumn(e.row,"CODE"));
+};
+
+this.HR122F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.lfn_grdAutofit(this.grd_bal);
+};
+
+this.grd_insa_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.setBal(e.row);
+};
+
+this.setBal = function(sRow)
+{
+	var nRow = this.ds_bal.findRow("SABUN", this.ds_insa.getColumn(sRow,"SABUN"));
+	
+	if (nRow >= 0) 
+	{
+		return false;
+	}
+	
+	nRow = this.ds_bal.addRow();
+	this.ds_bal.setColumn(nRow,"YMD",this.cald_ymd.value);
+	this.ds_bal.setColumn(nRow,"BAL_GB",this.rd_balGB.value);
+	this.ds_bal.setColumn(nRow,"SABUN",this.ds_insa.getColumn(sRow,"SABUN"));
+	this.ds_bal.setColumn(nRow,"NAME",this.ds_insa.getColumn(sRow,"NAME"));
+	this.ds_bal.setColumn(nRow,"BUSE",this.ds_insa.getColumn(sRow,"BUSECD"));
+	this.ds_bal.setColumn(nRow,"JIKWI",this.ds_insa.getColumn(sRow,"OLD_JIKWICD"));
+	this.ds_bal.setColumn(nRow,"NICK",this.ds_insa.getColumn(sRow,"JIKWICD"));
+}
+
+
+this.btn_buseAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var i;
+	
+	for (i = 0; i < this.ds_bal.getRowCount(); i++ )
+	{
+		this.ds_bal.setColumn(i, "BUSE", this.cb_buse.value);
+	}
+};
+
+
+this.btn_jikwiAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var i;
+	
+	for (i = 0; i < this.ds_bal.getRowCount(); i++ )
+	{
+		this.ds_bal.setColumn(i, "JIKWI", this.cb_jikwi.value);
+	}
+};
+
+this.btn_ymdAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var i;
+	
+	for (i = 0; i < this.ds_bal.getRowCount(); i++ )
+	{
+		this.ds_bal.setColumn(i, "YMD", this.cald_ymd.value);
+	}
+};
+
+this.btn_clear_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_bal.clearData();
+};
+
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_HR122.jsp";
+	in_ds = "ds_bal=ds_bal:U";
+	out_ds = "ds_bal=ds_bal";
+	str_arg = "update_id='" + nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN") + "'";
+	this.gfn_TransactionP("dml", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "U", false, this);
+};
+
+this.Callback_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0 && ErrorCode != -99)
+	{
+		if (ErrorCode != -99)
+		{
+		  this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.ds_bal.clearData();
+	this.alert("저장되었습니다.");
+}
+
+this.grd_bal_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if (e.col == 7)
+	{
+		this.ds_bal.deleteRow(e.row);
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

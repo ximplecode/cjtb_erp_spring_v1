@@ -1,0 +1,1222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR101F" width="1250" height="625" titletext="New Form" onload="HR101F_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="sta_sabun" taborder="2" text="사원번호" left="225" top="53" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01" taborder="3" left="sta_sabun:0" top="53" height="30" border="1px solid #10aea9" background="#9ee0de" right="3"/>
+        <Static id="Static02" taborder="0" text="입사지원서 조회" left="4" top="5" width="296" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <ImageViewer id="img_insa" taborder="1" left="3" top="Static02:3" width="217" height="240" stretch="fit"/>
+        <Static id="sta_ipsadt" taborder="4" text="정규직전환일" left="80%" top="53" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_re_ipsadt" taborder="5" text="입사일" left="38.40%" top="53" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_sagb1" taborder="6" text="사원구분" left="img_insa:5" top="sta_sabun:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_01" taborder="7" left="sta_sagb1:0" top="Static01:0" height="30" border="1px solid #10aea9" background="#9ee0de" right="3"/>
+        <Static id="sta_sagb1_00" taborder="14" text="부   서" left="img_insa:5" top="113" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_01_00" taborder="8" left="sta_sagb1_00:0" top="113" height="30" border="1px solid #10aea9" background="#9ee0de" right="3"/>
+        <Static id="sta_buse00_00" taborder="9" text="성   명" left="img_insa:5" top="sta_sagb1_00:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_ipChaDay00_00" taborder="16" text="직    급" left="sta_re_ipsadt:0" top="113" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_01_00_01" taborder="10" left="sta_buse00_00:0" top="sta_ipChaDay00_00:0" height="30" border="1px solid #10aea9" background="#9ee0de" right="3"/>
+        <Static id="sta_sooEnd" taborder="11" text="재입사&amp;중전산일" left="60%" top="53" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_buse" taborder="12" text="계약기간만료일" left="60%" top="sta_sooEnd:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_kyeEnd" taborder="13" text="퇴 사 일" left="80%" top="sta_ipsadt:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_ipChaDay00" taborder="15" text="호    칭" left="sta_buse:0" top="Static01_01:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_buse00_00_00" taborder="17" text="한    문" left="38.4%" top="Static01_01_00:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_buse00_00_00_00" taborder="18" text="영    문" left="60%" top="Static01_01_00:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_buse00_00_01" taborder="19" text="주민번호" left="img_insa:5" top="sta_buse00_00:3" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="20" left="sta_buse00_00_01:0" top="Static01_01_00_01:3" height="30" border="1px solid #10aea9" background="#9ee0de" right="3"/>
+        <Static id="sta_re_ipsadt00" taborder="21" text="생년월일" left="38.40%" top="Static01_01_00_01:3" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_re_ipsadt00_00" taborder="22" text="전화번호" left="60.00%" top="176" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_re_ipsadt00_00_00" taborder="23" text="HP" left="80.00%" top="Static01_01_00_01:3" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_re_ipsadt00_00_00_00" taborder="24" text="근무위치" left="80.00%" top="Static01_01_00:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_buse00_00_01_00" taborder="25" text="최종학력" left="img_insa:5" top="sta_buse00_00_01:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00" taborder="26" left="sta_buse00_00_01_00:0" top="Static01_00:0" height="30" border="1px solid #10aea9" background="#9ee0de" right="3"/>
+        <Static id="sta_re_ipsadt00_01" taborder="27" text="결혼유무" left="38.40%" top="206" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9" padding="0px 0px 0px 10px"/>
+        <Static id="sta_re_ipsadt00_01_00" taborder="28" text="장    애" left="60.00%" top="206" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_re_ipsadt00_01_00_00" taborder="29" text="보훈대상" left="80.00%" top="206" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="sta_buse00_00_01_01" taborder="30" text="본    적" left="img_insa:5" top="sta_buse00_00_01_00:3" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_01" taborder="31" left="sta_buse00_00_01_01:0" top="Static01_00_00:3" height="30" border="1px solid #10aea9" background="#9ee0de" right="3" text=""/>
+        <Static id="sta_buse00_00_01_01_00" taborder="32" text="주    소" left="img_insa:5" top="sta_buse00_00_01_01:0" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_01_00" taborder="33" left="sta_buse00_00_01_01_00:0" top="269" height="30" border="1px solid #10aea9" background="#9ee0de" right="3"/>
+        <Tab id="tab_insa" taborder="34" tabindex="0" left="3" top="350" height="30" right="3" background="" onchanged="Tab00_onchanged" canchange="tab_insa_canchange">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="신상명세" background="transparent">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="가족사항">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage3" text="학력사항">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage4" text="경력사항">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage5" text="인사발령">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage6" text="교육사항">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage7" text="자격/면허">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage8" text="외국어">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage11" text="퇴직면담">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Div id="div_detail" taborder="35" left="3" top="tab_insa:-2" border="1px solid #10aea9" bottom="5" right="3" url="hr::HR101F_SUB01.xfdl"/>
+        <Edit id="edt_sabun" taborder="36" left="sta_sabun:0" top="58" height="20" right="sta_re_ipsadt:0" border="0px none transparent" background="transparent" text="123"/>
+        <Calendar id="cald_ipsadt" taborder="37" left="sta_re_ipsadt:0" top="58" height="20" right="sta_sooEnd:0" background="transparent" border="0px none transparent,0px none,0px none"/>
+        <Calendar id="cald_iymd" taborder="38" left="sta_sooEnd:0" top="58" height="20" right="sta_ipsadt:0" background="transparent" border="0px none transparent,0px none,0px none"/>
+        <Calendar id="cald_IpchDay" taborder="39" left="sta_ipsadt:0" top="58" height="20" right="3" background="transparent" border="0px none transparent,0px none,0px none"/>
+        <Calendar id="cald_kyeEnd" taborder="40" left="sta_buse:0" top="88" height="20" right="sta_kyeEnd:0" background="transparent" border="0px none transparent,0px none,0px none"/>
+        <Calendar id="cald_toisadt" taborder="41" left="sta_kyeEnd:0" top="88" height="20" right="3" background="transparent" border="0px none transparent,0px none,0px none"/>
+        <Edit id="edt_buse_cd" taborder="42" left="sta_sagb1_00:0" top="118" height="20" border="0px none transparent" background="transparent" onchanged="Edit00_00_onchanged" width="6.8%"/>
+        <Button id="btn_Search_buse" taborder="44" top="118" height="20" icon="url('Img::loupe.png')" right="sta_ipChaDay00_00:2" width="21" onclick="btn_Search_buse_onclick"/>
+        <Edit id="edt_buse_nm" taborder="43" left="edt_buse_cd:0" top="118" height="20" right="btn_Search_buse:2" border="0px none transparent" background="transparent"/>
+        <Combo id="cb_level" taborder="45" text="Combo00" left="sta_ipChaDay00_00:0" top="118" width="70" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_Level" codecolumn="CODE" datacolumn="NAME"/>
+        <Static id="Static00" taborder="46" text="년차" top="113" height="30" right="sta_ipChaDay00:0" width="35" font="normal bold 10pt/normal &quot;Arial&quot;" color="white"/>
+        <Edit id="edt_level_yy" taborder="47" left="cb_level:2" top="118" height="20" border="0px none transparent" background="transparent" onchanged="Edit00_00_onchanged" right="Static00:2"/>
+        <Edit id="edt_jikwi_cd" taborder="48" left="sta_ipChaDay00:0" top="118" height="20" border="0px none transparent" background="transparent" onchanged="Edit00_00_onchanged" width="4.80%"/>
+        <Combo id="cb_nick" taborder="51" text="Combo00" top="118" width="70" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_nick" codecolumn="CODE" datacolumn="NAME" right="4"/>
+        <Button id="btn_search_jikwi" taborder="50" top="118" height="20" icon="url('Img::loupe.png')" right="cb_nick:3" width="21" onclick="btn_search_jikwi_onclick"/>
+        <Edit id="edt_jikwi_nm" taborder="49" left="edt_jikwi_cd:0" top="118" height="20" right="btn_search_jikwi:2" border="0px none transparent" background="transparent"/>
+        <Edit id="edt_name" taborder="52" left="sta_buse00_00:0" top="148" height="20" right="sta_buse00_00_00:0" border="0px none transparent" background="transparent"/>
+        <Edit id="edt_han_name" taborder="53" left="sta_buse00_00_00:0" top="148" height="20" right="sta_buse00_00_00_00:0" border="0px none transparent" background="transparent"/>
+        <Edit id="edt_eng_name" taborder="54" left="sta_buse00_00_00_00:0" top="148" height="20" right="sta_re_ipsadt00_00_00_00:0" border="0px none transparent" background="transparent"/>
+        <Combo id="cb_location" taborder="55" text="Combo00" left="sta_re_ipsadt00_00_00_00:0" top="148" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_401" codecolumn="CODE" datacolumn="POSITION_NAME" right="4"/>
+        <MaskEdit id="medt_jumin_num" taborder="56" left="sta_buse00_00_01:0" top="176" height="30" right="sta_re_ipsadt00:0" background="transparent" border="0px none transparent,0px none,0px none" type="string" color="black" format="@@@@@@-@@@@@@@"/>
+        <MaskEdit id="medt_birth" taborder="57" left="sta_re_ipsadt00:0" top="176" height="30" background="transparent" border="0px none transparent,0px none,0px none" type="string" color="black" format="@@@@-@@-@@" width="6.4%"/>
+        <Radio id="rd_birthGB" taborder="58" left="medt_birth:0" top="176" height="30" right="sta_re_ipsadt00_00:0" innerdataset="db_dtgb" codecolumn="CODE" datacolumn="NAME" onitemchanged="Radio00_onitemchanged" fittocontents="none" columncount="2" rowcount="0"/>
+        <Edit id="edt_tel" taborder="59" left="sta_re_ipsadt00_00:0" top="176" height="30" right="sta_re_ipsadt00_00_00:0" border="0px none transparent" background="transparent" text="123"/>
+        <Edit id="edt_hp" taborder="60" left="sta_re_ipsadt00_00_00:0" top="176" height="30" right="3" border="0px none transparent" background="transparent" text="123"/>
+        <Combo id="cb_schGB" taborder="61" text="Combo00" left="sta_buse00_00_01_00:0" top="206" height="30" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_schGB" codecolumn="CODE" datacolumn="NAME" right="sta_re_ipsadt00_01:0"/>
+        <Radio id="rd_marryGB" taborder="62" left="sta_re_ipsadt00_01:0" top="206" height="30" right="sta_re_ipsadt00_01_00:0" innerdataset="ds_wdgb" codecolumn="CODE" datacolumn="NAME" onitemchanged="Radio00_onitemchanged" fittocontents="none" columncount="2" rowcount="0" padding="0px 0px 0px 10px"/>
+        <Radio id="rd_impairment" taborder="63" left="sta_re_ipsadt00_01_00:0" top="206" height="30" right="sta_re_ipsadt00_01_00_00:0" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" onitemchanged="Radio00_onitemchanged" fittocontents="none" columncount="2" rowcount="0" padding="0px 0px 0px 10px"/>
+        <Edit id="edt_merit" taborder="64" left="sta_re_ipsadt00_01_00_00:0" top="206" height="30" right="3" border="0px none transparent" background="transparent" text="123"/>
+        <MaskEdit id="medt_bonZip" taborder="65" left="sta_buse00_00_01_01:0" top="239" height="30" background="transparent" border="0px none transparent,0px none,0px none" type="string" color="black" format="@@@@@" width="55"/>
+        <Button id="btn_search_bonAddr" taborder="66" top="245" height="20" icon="url('Img::loupe.png')" width="21" left="medt_bonZip:0" onclick="btn_search_bonAddr_onclick"/>
+        <Edit id="edt_bonAddr" taborder="67" left="btn_search_bonAddr:0" top="239" height="30" right="3" border="0px none transparent" background="transparent" text="123"/>
+        <MaskEdit id="medt_Zip" taborder="68" left="sta_buse00_00_01_01_00:0" top="269" height="30" background="transparent" border="0px none transparent,0px none,0px none" type="string" color="black" format="@@@@@" width="55"/>
+        <Button id="btn_search_Addr" taborder="69" top="274" height="20" icon="url('Img::loupe.png')" width="21" left="medt_Zip:0" onclick="btn_search_Addr_onclick"/>
+        <Edit id="edt_Addr" taborder="70" left="btn_search_Addr:0" top="269" height="30" right="3" border="0px none transparent" background="transparent" text="123"/>
+        <Static id="sta_buse00_00_01_01_00_00" taborder="71" text="입사경로" left="225" top="sta_buse00_00_01_01_00:3" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_01_01" taborder="72" left="sta_buse00_00_01_01_00_00:0" top="302" height="30" border="1px solid #10aea9" background="#9ee0de" right="3" text=""/>
+        <Static id="sta_re_ipsadt01" taborder="74" text="수습만료일" left="38.40%" top="83" width="120" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Calendar id="clad_sooEnd" taborder="75" left="sta_re_ipsadt01:0" top="88" height="20" right="sta_buse:0" background="transparent" border="0px none transparent,0px none,0px none"/>
+        <Combo id="cb_sagb" taborder="76" text="Combo00" left="sta_sagb1:0" top="88" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_Sagb" codecolumn="CODE" datacolumn="NAME" right="sta_re_ipsadt01:0"/>
+        <Button id="btn_search" taborder="77" text="조회" top="16" width="120" height="22" right="530" onclick="btn_search_onclick"/>
+        <Button id="btn_new" taborder="78" text="신규" top="16" width="120" height="22" right="400" onclick="btn_new_onclick"/>
+        <Edit id="edt_etc" taborder="73" left="sta_buse00_00_01_01_00_00:0" top="302" height="30" right="3" border="0px none transparent" background="transparent" text="123"/>
+        <Button id="btn_save" taborder="79" text="저장" top="16" width="120" height="22" right="270" onclick="btn_save_onclick"/>
+        <Button id="btn_imgUpload" taborder="80" text="사진업로드" left="4" top="img_insa:9" width="216" height="30" onclick="btn_imgUpload_onclick"/>
+        <Button id="btn_delete" taborder="81" text="삭제" top="16" width="120" height="22" right="140" onclick="btn_delete_onclick"/>
+        <Button id="btn_print" taborder="82" text="출력" top="16" width="120" height="22" right="10" onclick="btn_print_onclick"/>
+        <Button id="btnTest" taborder="83" text="test" top="18" width="120" height="22" right="675" onclick="btnTest_onclick"/>
+        <WebBrowser id="WebBrowser" taborder="84" left="62" top="118" width="360" height="229"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+var arr_rt;
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+this.Tab00_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	
+	this.setTapData(e.postindex);
+};
+
+this.Edit00_00_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	
+};
+
+this.Radio00_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	
+};
+
+this.HR101F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+	this.getData_etc();
+};
+
+this.getData_etc = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_hr101_etcAll.jsp";
+	in_ds = "ds_nick=ds_nick ds_buse=ds_buse ds_jikwi=ds_jikwi";
+	out_ds = "ds_nick=ds_nick ds_buse=ds_buse ds_jikwi=ds_jikwi";
+	str_arg = "";
+	this.gfn_TransactionP("select_nick", str_url, in_ds, out_ds, str_arg, "Callback_select_none", true, "P", false, this);
+	
+}
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+		this.addChild("sInsa",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_insa);
+};
+
+this.fn_Callback_insa = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.setData_clearData();	
+		this.getData_insa101(arr_rt[0]);			
+	}	
+	this.removeChild("sInsa");
+	
+};
+
+this.btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_insa.clearData();
+	this.ds_insa.addRow();
+	this.setData_clearData();
+	
+	str_url = "JSP/hr/getData_new_sabun.jsp";
+	in_ds = "";
+	out_ds = "";
+	str_arg = "";
+	this.gfn_TransactionP("select_new_sabun", str_url, in_ds, out_ds, str_arg, "Callback_select_newSabun", true, "P", false, this);
+	
+};
+
+this.Callback_select_newSabun = function(Trid,ErrorCode,ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode !== -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.ds_insa.setColumn(0,"SABUN",nexacro.getApplication().gv_rt_value);
+}
+
+this.setData_clearData = function()
+{
+	this.ds_family.clearData();
+	this.ds_school.clearData();
+	this.ds_career.clearData();
+	this.ds_edu.clearData();
+	this.ds_foreign.clearData();
+	this.ds_license.clearData();
+	this.img_insa.set_image("");
+}
+
+this.getData_insa101 = function(sabun)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/SQL_HR101_01S.jsp";
+	in_ds = "ds_insa=ds_insa";
+	out_ds = "ds_insa=ds_insa";
+	str_arg = "sabun='" + sabun + "'";
+	this.gfn_TransactionP("select_insa101", str_url, in_ds, out_ds, str_arg, "Callback_select_insa101", true, "S", false, this);
+}
+
+this.Callback_select_insa101 = function(Trid, ErrorCode, ErrorMsg)
+{   
+	var img_url;
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	img_url = "https://cj-erp.chunjae.co.kr/erp-next/hr/img/"+this.ds_insa.getColumn(0,"IMG_NAME");
+	this.setTapData(this.tab_insa.getIndex());
+	this.img_insa.set_image(img_url);
+	
+	trace(this.img_insa.image);
+}
+
+this.btn_Search_buse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sBuse",0,0,237,440,null,null,"common::Buse.xfdl");
+		this.addChild("sBuse",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sBuse",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_buse);
+};
+
+this.fn_Callback_buse = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.ds_insa.setColumn(0,"BUSECD",arr_rt[0]);
+		this.ds_insa.setColumn(0,"BUSENM",arr_rt[1]);
+	}
+	
+	this.removeChild("sBuse");
+};
+
+
+this.btn_search_jikwi_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sJikwi",0,0,237,440,null,null,"common::Jikwi.xfdl");
+		this.addChild("sJikwi",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sJikwi",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_jikwi);
+};
+
+this.fn_Callback_jikwi = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.ds_insa.setColumn(0,"JIKWICD",arr_rt[0]);
+		this.ds_insa.setColumn(0,"JIKWINM",arr_rt[1]);
+	}
+	
+	this.removeChild("sJikwi");
+};
+
+this.btn_search_bonAddr_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sAddress",0,0,237,440,null,null,"common::Address.xfdl");
+		this.addChild("sAddress",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sAddress",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_Address_bon);
+};
+
+this.fn_Callback_Address_bon= function(strID, vArgu)
+{
+	arr_rt = vArgu.split(":");
+	this.ds_insa.setColumn(0,"BON_ZIP",arr_rt[0]);
+	this.ds_insa.setColumn(0,"BON_ADDR",arr_rt[1]);
+	
+	this.removeChild("sAddress");
+};
+
+this.btn_search_Addr_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sAddress",0,0,237,440,null,null,"common::Address.xfdl");
+		this.addChild("sAddress",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sAddress",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_Address);
+};
+
+this.fn_Callback_Address_bon= function(strID, vArgu)
+{
+	arr_rt = vArgu.split(":");
+	this.ds_insa.setColumn(0,"ZIP1",arr_rt[0]);
+	this.ds_insa.setColumn(0,"ADDR1",arr_rt[1]);
+	
+	this.removeChild("sAddress");
+};
+
+this.setTapData = function(tapIndex)
+{
+	switch (tapIndex)
+	{
+		case 0 :
+			this.div_detail.set_url("hr::HR101F_SUB01.xfdl");
+			break;
+		case 1 :
+			this.div_detail.set_url("hr::HR101F_SUB02.xfdl");
+			if (this.ds_family.getRowCount() == 0)
+			{
+				if (this.ds_insa.getRowCount() > 0)
+				{
+					this.getData_family(this.ds_insa.getColumn(0,"SABUN"));
+				}
+			}
+			break;
+		case 2 :
+			this.div_detail.set_url("hr::HR101F_SUB03.xfdl");
+			if (this.ds_school.getRowCount() == 0)
+			{
+				if (this.ds_insa.getRowCount() > 0)
+				{
+					this.getData_school(this.ds_insa.getColumn(0,"SABUN"));
+				}
+			}
+			break;
+		case 3 :
+			this.div_detail.set_url("hr::HR101F_SUB04.xfdl");
+			if (this.ds_career.getRowCount() == 0)
+			{
+				if (this.ds_insa.getRowCount() > 0)
+				{
+					this.getData_career(this.ds_insa.getColumn(0,"SABUN"));
+				}
+			}
+			break;
+		case 4 : 
+			this.div_detail.set_url("hr::HR101F_SUB05.xfdl");
+			if (this.ds_insaBal.getRowCount() == 0)
+			{
+				if (this.ds_insa.getRowCount() > 0)
+				{
+					this.getData_insaBal(this.ds_insa.getColumn(0,"SABUN"));
+				}
+			}
+			break;
+		case 5 : 
+			this.div_detail.set_url("hr::HR101F_SUB06.xfdl");
+			if (this.ds_edu.getRowCount() == 0)
+			{
+				if (this.ds_insa.getRowCount() > 0)
+				{
+					this.getData_Edu(this.ds_insa.getColumn(0,"SABUN"));
+				}
+			}
+			break;
+		case 6 : 
+			this.div_detail.set_url("hr::HR101F_SUB07.xfdl");
+			if (this.ds_license.getRowCount() == 0)
+			{
+				if (this.ds_insa.getRowCount() > 0)
+				{
+					this.getData_License(this.ds_insa.getColumn(0,"SABUN"));
+				}
+			}
+			break;
+		case 7 : 
+			this.div_detail.set_url("hr::HR101F_SUB08.xfdl");
+			if (this.ds_foreign.getRowCount() == 0)
+			{
+				if (this.ds_insa.getRowCount() > 0)
+				{
+					this.getData_Foreign(this.ds_insa.getColumn(0,"SABUN"));
+				}
+			}
+			break;
+		case 8 : 
+			this.div_detail.set_url("hr::HR101F_SUB09.xfdl");
+			break;
+	}
+	
+}
+
+this.getData_family = function(sabun)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_family.jsp";
+	in_ds = "ds_family=ds_family";
+	out_ds = "ds_family=ds_family";
+	str_arg = "sabun='" + sabun + "'";
+	this.gfn_TransactionP("select_family", str_url, in_ds, out_ds, str_arg, "Callback_select_none", true, "P", false, this);	
+}
+
+this.Callback_select_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+}
+
+this.getData_school = function(sabun)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_school.jsp";
+	in_ds = "ds_school=ds_school";
+	out_ds = "ds_school=ds_school";
+	str_arg = "sabun='" + sabun + "'";
+	this.gfn_TransactionP("select_school", str_url, in_ds, out_ds, str_arg, "Callback_select_none", true, "P", false, this);	
+}
+
+this.getData_career = function(sabun)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_career.jsp";
+	in_ds = "ds_career=ds_career";
+	out_ds = "ds_career=ds_career";
+	str_arg = "sabun='" + sabun + "'";
+	this.gfn_TransactionP("select_school", str_url, in_ds, out_ds, str_arg, "Callback_select_none", true, "P", false, this);	
+}
+
+this.ds_career_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{	
+	if (e.columnid == "YMD1" || e.columnid == "YMD2" || e.columnid =="DEST_PER")
+	{
+		this.setData_workDay(e.row);
+	}
+};
+
+this.setData_workDay = function(nRow)
+{
+	var diff = new Array;
+	var yy, mm, ym, work_day; 
+	
+	if (this.ds_career.getColumn( nRow, "YMD1" ) < this.ds_career.getColumn(nRow, "YMD2") )
+	{
+		diff = Eco.date.getDiffTime(this.ds_career.getColumn( nRow, "YMD1" ) + "000000", this.ds_career.getColumn( nRow, "YMD2" ) + "000000");			
+		yy =  nexacro.floor( diff[0] / 365 );
+		mm =  nexacro.floor((diff[0] - (nexacro.floor( diff[0] / 365 ) * 365))/30);
+		//Eco.number.getMaskFormatString(yy,"00");
+		ym = Eco.number.getMaskFormatString(yy,"00") + "." + Eco.number.getMaskFormatString(mm,"00");
+		this.ds_career.setColumn(nRow, "YEAR", ym);
+		
+		if ( Eco.isEmpty(this.ds_career.getColumn(nRow,"DEST_PER")) == false )
+		{
+			work_day = nexacro.floor( nexacro.toNumber(this.ds_career.getColumn(nRow,"DEST_PER")) / 100 * diff[0] );
+		}
+		else
+		{
+			work_day = 0;
+		}
+		
+		this.ds_career.setColumn(nRow, "WORK_DAY", work_day);
+		yy = nexacro.floor( work_day / 365 );
+		mm = nexacro.floor((work_day - (nexacro.floor( work_day / 365 ) * 365))/30);
+		ym = Eco.number.getMaskFormatString(yy,"00") + "." + Eco.number.getMaskFormatString(mm,"00");	
+		this.ds_career.setColumn(nRow,"WORK_YEAR",ym);
+	}
+	else
+	{
+		this.ds_career.setColumn(nRow, "YEAR", "00.00");
+		this.ds_career.setColumn(nRow, "WORK_YEAR", "00.00");
+	}
+}
+
+this.getData_insaBal = function(sabun)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_insaBal.jsp";
+	in_ds = "ds_insaBal=ds_insaBal";
+	out_ds = "ds_insaBal=ds_insaBal";
+	str_arg = "sabun='" + sabun + "'";
+	this.gfn_TransactionP("select_insaBal", str_url, in_ds, out_ds, str_arg, "Callback_select_none", true, "P", false, this);
+}
+
+this.getData_Edu = function(sabun)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_Edu.jsp";
+	in_ds = "ds_edu=ds_edu";
+	out_ds = "ds_edu=ds_edu";
+	str_arg = "sabun='" + sabun + "'";
+	this.gfn_TransactionP("select_Edu", str_url, in_ds, out_ds, str_arg, "Callback_select_none", true, "P", false, this);
+}
+
+this.getData_License = function(sabun)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_License.jsp";
+	in_ds = "ds_license=ds_license";
+	out_ds = "ds_license=ds_license";
+	str_arg = "sabun='" + sabun + "'";
+	this.gfn_TransactionP("select_license", str_url, in_ds, out_ds, str_arg, "Callback_select_none", true, "P", false, this);
+}
+
+this.getData_Foreign = function(sabun)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_Foreign.jsp";
+	in_ds = "ds_foreign=ds_foreign";
+	out_ds = "ds_foreign=ds_foreign";
+	str_arg = "sabun='" + sabun + "'";
+	this.gfn_TransactionP("select_license", str_url, in_ds, out_ds, str_arg, "Callback_select_none", true, "P", false, this);
+}
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.edt_buse_cd.value) == true)
+	{
+		this.alert("부서명이 입력되지 않았습니다..!!");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.edt_jikwi_cd.value) == true)
+	{
+		this.alert("직책이 입력되지 않았습니다..!!");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.edt_name.value) == true)
+	{
+		this.alert("성명 입력되지 않았습니다..!!");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.cald_ipsadt.value) == true)
+	{
+		this.alert("입사일이 입력되지 않았습니다..!!");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.medt_jumin_num.value) == true)
+	{
+		this.alert("주민등록번호가 입력되지 않았습니다..!!");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.cb_schGB.value) == true)
+	{
+		this.alert("최종학력이 입력되지 않았습니다..!!");
+		return false;
+	}
+	
+	
+	str_url = "JSP/hr/SQL_HR101_01U.jsp";
+	in_ds = "ds_insa=ds_insa:U ds_family=ds_family:U ds_school=ds_school:U ds_career=ds_career:U ds_insaBal=ds_insaBal:U ds_edu=ds_edu:U ds_license=ds_license:U ds_foreign=ds_foreign:U";
+	out_ds = "ds_insa=ds_insa ds_family=ds_family ds_school=ds_school ds_career=ds_career ds_insaBal=ds_insaBal ds_edu=ds_edu ds_license=ds_license ds_foreign=ds_foreign";
+	str_arg = "update_id='" + nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN") + "'";
+	this.gfn_TransactionP("insa_dml", str_url, in_ds, out_ds, str_arg, "Callback_select_none", true, "U", false, this);
+};
+
+
+this.btn_imgUpload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.edt_sabun.value) == true)
+	{
+		return false;
+	}
+	
+	this.FileD.open('nexacro17', FileDialog.MULTILOAD);
+};
+
+this.FileD_onclose = function(obj:nexacro.FileDialog,e:nexacro.FileDialogEventInfo)
+{
+	this.FileUpTransfer.clearFileList();
+	var filelist = e.virtualfiles;
+	
+	for (var i = 0, len = filelist.length, vFile; i < len; i++)
+    {
+        vFile = filelist[i];
+		var extension = vFile.filename.substr((vFile.filename).lastIndexOf('.'), (vFile.filename).length);		
+		//var r_name = date + gv_sabun + extension;
+		var ImgFile = this.edt_sabun.value + extension; // 저장할 사진 파일 이름
+
+		vFile.name = ImgFile;
+        vFile.addEventHandler("onsuccess", this.fn_FileList_onsuccess, this);
+        vFile.addEventHandler("onerror", this.fn_FileList_onerror , this);
+        vFile.open(null, 1);
+    }
+};
+
+this.fn_FileList_onsuccess = function(obj:nexacro.VirtualFile, e:nexacro.VirtualFileEventInfo)
+{	
+	switch (e.reason)
+    {
+        case 1:
+            obj.getFileSize();
+            break;
+        case 9:			
+			this.FileUpTransfer.addFile(obj.name, obj);	
+			this.img_insa.set_image("file://"+obj.fullpath);
+			this.FileUpTransfer.upload(nexacro.getApplication().gv_urlNext + '/JSP/fileUpload.jsp?fileFolder=hr/img');
+			this.ds_insa.setColumn(0,"IMG_NAME",obj.name);
+			break;
+    }
+};
+
+this.fn_FileList_onerror = function(obj:nexacro.VirtualFile, e:nexacro.VirtualFileErrorEventInfo)
+{
+	trace("errortype: "+e.errortype);
+    trace("errormsg: "+e.errormsg);
+    trace("statuscode: "+e.statuscode);
+};
+
+this.FileUpTransfer_onsuccess = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferEventInfo)
+{
+	if(e.message != "Success")
+	{
+		alert("사진정보가 정상적으로 저장되지 않았습니다.");
+	}
+};
+
+this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.edt_sabun.value) == true)
+	{
+		return false;
+	}
+	var objApp = nexacro.getApplication();
+	
+	var confirm_result = objApp.confirm("삭제된 데이터는 복원하실수 없습니다.\n" + this.edt_name.value + "님의 자료를 정말 삭제하게요..?","삭제","warning");
+	
+	if (confirm_result == true)
+	{
+		str_url = "JSP/hr/setData_delete_hr101.jsp";
+		in_ds = "";
+		out_ds = "";
+		str_arg = "sabun='" + this.edt_sabun.value + "'";
+		this.gfn_TransactionP("insa_delete", str_url, in_ds, out_ds, str_arg, "Callback_delete", true, "D", false, this);
+	}
+};
+
+this.Callback_delete = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != 0)
+		{
+			this.alert(ErrorMsg);			
+		}
+		return false;
+	}
+	this.ds_insa.clearData();
+	this.setData_clearData();
+};
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	var rdUrl = gv_svcUrl + "rpt/hr/HR101P.mrd";
+    var rdParam = "/rp [" + this.edt_sabun.value + "]";  
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,100,100,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("인사카드");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(true);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+};
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+};
+
+this.tab_insa_canchange = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	if (Eco.isEmpty(this.edt_sabun.value) == true)
+	{
+		return false;
+	}
+};
+
+this.btnTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.WebBrowser.set_url("http://www.naver.com");
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_Sagb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">정규직</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">계약직</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">인턴직</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">9</Col>
+            <Col id="NAME">무기계약직</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Level">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">-</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">R</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">M</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">E</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="NAME">S</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_nick">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_401">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="POSITION_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="POSITION_NAME">본사</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="POSITION_NAME">R&amp;D</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">03</Col>
+            <Col id="POSITION_NAME">스타벨리</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">04</Col>
+            <Col id="POSITION_NAME">리더스타워</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">05</Col>
+            <Col id="POSITION_NAME">인천</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">06</Col>
+            <Col id="POSITION_NAME">삼지전자건물</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">07</Col>
+            <Col id="POSITION_NAME">SK트윈타워</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">08</Col>
+            <Col id="POSITION_NAME">테라타워</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">09</Col>
+            <Col id="POSITION_NAME">AP타워</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">10</Col>
+            <Col id="POSITION_NAME">한산IT타워</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="db_dtgb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">양</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">음</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_schGB">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">00</Col>
+            <Col id="NAME">미취학</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">초등학교졸업</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">11</Col>
+            <Col id="NAME">초등학교재학</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">13</Col>
+            <Col id="NAME">초등학교중퇴</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">19</Col>
+            <Col id="NAME">검정고시(초졸)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">20</Col>
+            <Col id="NAME">중학교졸업</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">21</Col>
+            <Col id="NAME">중학교재학</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">23</Col>
+            <Col id="NAME">중학교중퇴</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">29</Col>
+            <Col id="NAME">검정고시(중졸)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">30</Col>
+            <Col id="NAME">고등학교졸업</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">31</Col>
+            <Col id="NAME">고등학교재학</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">33</Col>
+            <Col id="NAME">고등학교중퇴</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">39</Col>
+            <Col id="NAME">검정고시(고졸)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">40</Col>
+            <Col id="NAME">전문대졸업</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">41</Col>
+            <Col id="NAME">전문대재학</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">43</Col>
+            <Col id="NAME">전문대중퇴</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">50</Col>
+            <Col id="NAME">대학교졸업</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">51</Col>
+            <Col id="NAME">대학교재학</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">53</Col>
+            <Col id="NAME">대학교중퇴</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">54</Col>
+            <Col id="NAME">대학교수료</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">58</Col>
+            <Col id="NAME">학사고시</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">60</Col>
+            <Col id="NAME">대학원졸업</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">61</Col>
+            <Col id="NAME">대학원재학</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">63</Col>
+            <Col id="NAME">대학원중퇴</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">64</Col>
+            <Col id="NAME">대학원수료</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_wdgb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">기혼</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">미혼</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">무</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">유</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_insa">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="SA_GB1" type="STRING" size="256"/>
+          <Column id="SA_GB2" type="STRING" size="256"/>
+          <Column id="IPSADT" type="STRING" size="256"/>
+          <Column id="SOOENDDATE" type="STRING" size="256"/>
+          <Column id="IPSADT_CH" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSENM" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="JIKWINM" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="HANJA" type="STRING" size="256"/>
+          <Column id="ENG" type="STRING" size="256"/>
+          <Column id="JUMIN" type="STRING" size="256"/>
+          <Column id="BIRTH_DT" type="STRING" size="256"/>
+          <Column id="HONIN_GB" type="STRING" size="256"/>
+          <Column id="TEL1" type="STRING" size="256"/>
+          <Column id="TEL2" type="STRING" size="256"/>
+          <Column id="KYEENDDATE" type="STRING" size="256"/>
+          <Column id="TOISADT" type="STRING" size="256"/>
+          <Column id="ADDR1" type="STRING" size="256"/>
+          <Column id="ZIP1" type="STRING" size="256"/>
+          <Column id="BON_ZIP" type="STRING" size="256"/>
+          <Column id="BON_ADDR" type="STRING" size="256"/>
+          <Column id="BONGUAN" type="STRING" size="256"/>
+          <Column id="CHUIMI" type="STRING" size="256"/>
+          <Column id="TUKGI" type="STRING" size="256"/>
+          <Column id="HYUL" type="STRING" size="256"/>
+          <Column id="JONGGYO" type="STRING" size="256"/>
+          <Column id="GUNBYUL" type="STRING" size="256"/>
+          <Column id="BYUNGKWA" type="STRING" size="256"/>
+          <Column id="GEAGUB" type="STRING" size="256"/>
+          <Column id="BOKMUDT1" type="STRING" size="256"/>
+          <Column id="BOKMUDT2" type="STRING" size="256"/>
+          <Column id="JSAU" type="STRING" size="256"/>
+          <Column id="MSAU" type="STRING" size="256"/>
+          <Column id="JUGB" type="STRING" size="256"/>
+          <Column id="EYE1" type="STRING" size="256"/>
+          <Column id="EYE2" type="STRING" size="256"/>
+          <Column id="WEIGHT" type="STRING" size="256"/>
+          <Column id="HEIGHT" type="STRING" size="256"/>
+          <Column id="JIBYUNG" type="STRING" size="256"/>
+          <Column id="DT_GB" type="STRING" size="256"/>
+          <Column id="SCH_GB" type="STRING" size="256"/>
+          <Column id="ETC" type="STRING" size="256"/>
+          <Column id="IMG_NAME" type="STRING" size="256"/>
+          <Column id="INC_JUMIN" type="STRING" size="256"/>
+          <Column id="LEVEL_CD" type="STRING" size="256"/>
+          <Column id="LEVEL_YEAR" type="STRING" size="256"/>
+          <Column id="JIKWI_YEAR" type="STRING" size="256"/>
+          <Column id="RETIRE_TALK" type="STRING" size="256"/>
+          <Column id="NICK_CD" type="STRING" size="256"/>
+          <Column id="NICK_NM" type="STRING" size="256"/>
+          <Column id="IMPAIRMENT" type="STRING" size="256"/>
+          <Column id="MERIT" type="STRING" size="256"/>
+          <Column id="IYMD" type="STRING" size="256"/>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_family">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="GUAN" type="STRING" size="256"/>
+          <Column id="YMD" type="STRING" size="256"/>
+          <Column id="SCH_GB" type="STRING" size="256"/>
+          <Column id="JIKUP" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+          <Column id="UPDATE_DT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_school">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="YMD" type="STRING" size="256"/>
+          <Column id="SCHOOL" type="STRING" size="256"/>
+          <Column id="SCH_GB" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+          <Column id="UPDATE_DT" type="STRING" size="256"/>
+          <Column id="SUNGJUK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_career" oncolumnchanged="ds_career_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="YMD1" type="STRING" size="256"/>
+          <Column id="YMD2" type="STRING" size="256"/>
+          <Column id="JIKJANG" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="YEAR" type="STRING" size="256"/>
+          <Column id="DEST_PER" type="STRING" size="256"/>
+          <Column id="WORK_DAY" type="STRING" size="256"/>
+          <Column id="WORK_YEAR" type="STRING" size="256"/>
+          <Column id="UPMU" type="STRING" size="256"/>
+          <Column id="TSAYOO" type="STRING" size="256"/>
+          <Column id="YPAY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_insaBal">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="YMD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="UPMU" type="STRING" size="256"/>
+          <Column id="GITA" type="STRING" size="256"/>
+          <Column id="BAL_GB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_edu">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="YMD1" type="STRING" size="256"/>
+          <Column id="YMD2" type="STRING" size="256"/>
+          <Column id="GIGUAN" type="STRING" size="256"/>
+          <Column id="NAEYONG" type="STRING" size="256"/>
+          <Column id="CHUI" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_license">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="YMD" type="STRING" size="256"/>
+          <Column id="JONGRYU" type="STRING" size="256"/>
+          <Column id="GIGUAN" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+          <Column id="UPDATE_ID" type="STRING" size="256"/>
+          <Column id="UPDATE_DT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_foreign">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="YMD" type="STRING" size="256"/>
+          <Column id="EXNM" type="STRING" size="256"/>
+          <Column id="EXRE" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileDialog id="FileD" onclose="FileD_onclose"/>
+      <Dataset id="ds_buse">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+          <Column id="BU_LEVEL" type="STRING" size="256"/>
+          <Column id="BU_NAME" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="256"/>
+          <Column id="DECISIONLINE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_jikwi">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileDownTransfer id="FileDownTransfer"/>
+      <FileUpTransfer id="FileUpTransfer" onsuccess="FileUpTransfer_onsuccess"/>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edt_sabun" propid="value" datasetid="ds_insa" columnid="SABUN"/>
+      <BindItem id="item1" compid="cald_ipsadt" propid="value" datasetid="ds_insa" columnid="IPSADT"/>
+      <BindItem id="item2" compid="cald_iymd" propid="value" datasetid="ds_insa" columnid="IYMD"/>
+      <BindItem id="item3" compid="cald_IpchDay" propid="value" datasetid="ds_insa" columnid="IPSADT_CH"/>
+      <BindItem id="item4" compid="cb_sagb" propid="value" datasetid="ds_insa" columnid="SA_GB1"/>
+      <BindItem id="item5" compid="clad_sooEnd" propid="value" datasetid="ds_insa" columnid="SOOENDDATE"/>
+      <BindItem id="item6" compid="cald_kyeEnd" propid="value" datasetid="ds_insa" columnid="KYEENDDATE"/>
+      <BindItem id="item7" compid="cald_toisadt" propid="value" datasetid="ds_insa" columnid="TOISADT"/>
+      <BindItem id="item8" compid="edt_buse_cd" propid="value" datasetid="ds_insa" columnid="BUSECD"/>
+      <BindItem id="item9" compid="edt_buse_nm" propid="value" datasetid="ds_insa" columnid="BUSENM"/>
+      <BindItem id="item10" compid="cb_level" propid="value" datasetid="ds_insa" columnid="LEVEL_CD"/>
+      <BindItem id="item11" compid="edt_level_yy" propid="value" datasetid="ds_insa" columnid="LEVEL_YEAR"/>
+      <BindItem id="item12" compid="edt_jikwi_cd" propid="value" datasetid="ds_insa" columnid="JIKWICD"/>
+      <BindItem id="item13" compid="edt_jikwi_nm" propid="value" datasetid="ds_insa" columnid="JIKWINM"/>
+      <BindItem id="item14" compid="cb_nick" propid="value" datasetid="ds_insa" columnid="NICK_CD"/>
+      <BindItem id="item15" compid="edt_name" propid="value" datasetid="ds_insa" columnid="NAME"/>
+      <BindItem id="item16" compid="edt_han_name" propid="value" datasetid="ds_insa" columnid="HANJA"/>
+      <BindItem id="item17" compid="edt_eng_name" propid="value" datasetid="ds_insa" columnid="ENG"/>
+      <BindItem id="item18" compid="cb_location" propid="value" datasetid="ds_insa" columnid="POSITION_CODE"/>
+      <BindItem id="item19" compid="medt_jumin_num" propid="value" datasetid="ds_insa" columnid="JUMIN"/>
+      <BindItem id="item20" compid="medt_birth" propid="value" datasetid="ds_insa" columnid="BIRTH_DT"/>
+      <BindItem id="item21" compid="rd_birthGB" propid="value" datasetid="ds_insa" columnid="DT_GB"/>
+      <BindItem id="item22" compid="edt_tel" propid="value" datasetid="ds_insa" columnid="TEL1"/>
+      <BindItem id="item23" compid="edt_hp" propid="value" datasetid="ds_insa" columnid="TEL2"/>
+      <BindItem id="item24" compid="cb_schGB" propid="value" datasetid="ds_insa" columnid="SCH_GB"/>
+      <BindItem id="item25" compid="rd_marryGB" propid="value" datasetid="ds_insa" columnid="HONIN_GB"/>
+      <BindItem id="item26" compid="rd_impairment" propid="value" datasetid="ds_insa" columnid="IMPAIRMENT"/>
+      <BindItem id="item27" compid="edt_merit" propid="value" datasetid="ds_insa" columnid="MERIT"/>
+      <BindItem id="item28" compid="medt_bonZip" propid="value" datasetid="ds_insa" columnid="BON_ZIP"/>
+      <BindItem id="item29" compid="edt_bonAddr" propid="value" datasetid="ds_insa" columnid="BON_ADDR"/>
+      <BindItem id="item30" compid="medt_Zip" propid="value" datasetid="ds_insa" columnid="ZIP1"/>
+      <BindItem id="item31" compid="edt_Addr" propid="value" datasetid="ds_insa" columnid="ADDR1"/>
+      <BindItem id="item32" compid="edt_etc" propid="value" datasetid="ds_insa" columnid="ETC"/>
+    </Bind>
+  </Form>
+</FDL>

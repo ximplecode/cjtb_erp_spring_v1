@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="EDAuthor_Attendance" width="600" height="500" titletext="New Form" onload="EDAuthor_Attendance_onload">
+    <Layouts>
+      <Layout height="500" mobileorientation="landscape" width="600">
+        <Div id="Div00" taborder="0" left="10" top="10" width="580" height="40" border="1px solid lightgray" text="">
+          <Layouts>
+            <Layout>
+              <Button id="btn_new" taborder="0" text="신규" left="224" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_new_onclick"/>
+              <Button id="btn_search" taborder="1" text="조회" left="293" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_search_onclick"/>
+              <Button id="btn_save" taborder="2" text="저장" left="361" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_save_onclick"/>
+              <Button id="btn_print" taborder="3" text="삭제" left="429" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick"/>
+              <Button id="btn_close" taborder="4" text="닫기" left="497" top="7" width="63" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_close_onclick" escapebutton="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="1" left="10" top="60" width="580" height="426" binddataset="dsAuthorAttend">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="115"/>
+                <Column size="144"/>
+                <Column size="108"/>
+                <Column size="95"/>
+                <Column size="95"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="소속"/>
+                <Cell col="1" text="부서"/>
+                <Cell col="2" text="등록자"/>
+                <Cell col="3" colspan="2" text="계약기간"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="combotext" combotype="dropdown" combodataset="dsCompany" combocodecol="COMPANY_CODE" combodatacol="COMPANY_NAME" edittype="none" text="bind:COMPANY_KIND"/>
+                <Cell col="1" displaytype="combocontrol" combodataset="dsSection" combocodecol="SECTION_CODE" combodatacol="SECTION_NAME" edittype="combo" text="bind:SECTION_CODE"/>
+                <Cell col="2" text="bind:EMPLOYEE_NM"/>
+                <Cell col="3" text="bind:WORK_SDATE" edittype="date" displaytype="date"/>
+                <Cell col="4" text="bind:WORK_EDATE" displaytype="date" edittype="date"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsAuthorAttend"/>
+      <Dataset id="dsCompany"/>
+      <Dataset id="dsSection"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var flag = "normal";
+
+this.Div00_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.EDAuthor_Attendance_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+	this.dsAuthorAttend.copyData(this.parent.param1);
+	this.dsSection.copyData(this.parent.param2);
+	this.dsCompany.copyData(this.parent.param3);
+	
+};
+
+//신규
+this.Div00_btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsAuthorAttend.addRow();
+	this.dsAuthorAttend.setColumn(this.dsAuthorAttend.rowposition, "COMPANY_KIND", "C");
+	this.dsAuthorAttend.setColumn(this.dsAuthorAttend.rowposition, "ATHR_IDENTITY", this.parent.identity);
+	this.dsAuthorAttend.setColumn(this.dsAuthorAttend.rowposition, "ATHR_JUMINNO", this.parent.juminNo);
+	this.dsAuthorAttend.setColumn(this.dsAuthorAttend.rowposition, "SECTION_CODE", "24000"); //sSection_Code);			//부서
+	this.dsAuthorAttend.setColumn(this.dsAuthorAttend.rowposition, "EMPLOYEE_ID", "C20141"); //trim(gv_SABUN));			//사번
+	this.dsAuthorAttend.setColumn(this.dsAuthorAttend.rowposition, "EMPLOYEE_NM", "최유빈"); //trim(sEmployee_Name));		//이름 
+};
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strArg = " ATHR_JUMINNO=" + this.parent.juminNo;
+	this.gfn_TransactionP("select","JSP/ed/ed121f_athrattend.jsp", "dsAuthorAttend=dsAuthorAttend", "dsAuthorAttend=dsAuthorAttend", strArg, "", true, "P", false, this);	
+};
+
+//저장
+this.Div00_btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var inds = "dsAuthorAttend=dsAuthorAttend:u";
+	
+	if(this.dsAuthorAttend.getColumn(this.dsAuthorAttend.rowposition, "COMPANY_KIND") != "C"){
+		alert("소속이 천재교육이 아닐 경우 수정할 수 없습니다.");
+		Div00_btn_search_onclick();
+	}
+	
+	if(this.dsAuthorAttend.getColumn(this.dsAuthorAttend.rowposition, "SECTION_CODE") == null){
+		alert("부서를 선택해주세요");
+		return false;;
+	}
+	
+	if(this.dsAuthorAttend.getColumn(this.dsAuthorAttend.rowposition, "WORK_SDATE") == null){
+		alert("용역기간을 입력해주세요");
+		return false;;
+	}
+	
+	if(this.dsAuthorAttend.getColumn(this.dsAuthorAttend.rowposition, "WORK_EDATE") == null){
+		alert("용역기간을 입력해주세요");
+		return false;;
+	}
+	
+	if(flag == "delete")
+	{
+		this.dsAuthorAttend.setRowType(this.dsAuthorAttend.rowposition, "D");
+		this.dsAuthorAttend.deleteRow(this.dsAuthorAttend.rowposition);
+	}
+	
+	this.gfn_TransactionP(this.dsAuthorAttend.getRowType(this.dsAuthorAttend.rowposition),"JSP/ed/ed121f_athrattend_dml.jsp", inds , "", "", "fnCallbackSave", true, "P", false, this);	
+	
+};
+
+//삭제
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.confirm("삭제하시겠습니까?"))
+	{
+		this.dsAuthorAttend.setColumn(this.dsAuthorAttend.rowposition, "ATHRATTEND_DELETE", "D");
+		flag = "delete";
+		this.Div00_btn_save_onclick();
+	}
+};
+
+this.fnCallbackSave = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(ErrorCode != 0)  
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}else
+	{
+		alert("완료되었습니다");
+		flag = 'nomal';
+	}
+};
+]]></Script>
+  </Form>
+</FDL>

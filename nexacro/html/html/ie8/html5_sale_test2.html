@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html style="margin:0; height: 100%" xmlns:v="urn:schemas-microsoft-com:vml">
+	<head>
+		<meta charset="utf-8">	
+		<title>Crownix HTML5 Viewer</title>
+		<script src="../../js/jquery-1.11.0.min.js"></script>
+		<script src="../../js/crownix-viewer.min.js"></script>		
+
+		
+		
+	</head>
+	<body style="margin:0; height: 100% ">
+
+		<div id="crownix-viewer" class="center" style="position:absolute; width: 50%; height: 50%"></div>
+		
+		<script>
+			 crownixViewer = new m2soft.crownix.Viewer("http://erpdev.chunjae.co.kr:8283/ReportingServer/service", "crownix-viewer" );
+			 crownixViewer.openFile("http://next.chunjae.co.kr:7010/erpmobile//RPT/GW/TEST.mrd","/rp [2019][06][21][0237][C17011][이상인][이상인]  /rformmode [2]",{showPageNum:2})
+
+		</script>
+	</body>
+</html>

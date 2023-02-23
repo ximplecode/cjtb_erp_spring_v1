@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6920F" width="1620" height="760" titletext="New Form" onload="SD6920F_onload" onsize="SD6920F_onsize">
+    <Layouts>
+      <Layout height="760" mobileorientation="landscape" width="1620">
+        <Div id="div_main" taborder="1" text="" left="10" top="0" width="1470" height="670">
+          <Layouts>
+            <Layout>
+              <Static id="Static01_01" taborder="0" left="0.62%" top="12.5%" width="12.66%" height="5%" background="#c3e4cd" border="1px solid #10aea9" color="#01656f" textAlign="center" text="과목코드 관리" font="bold 14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static01_02" taborder="1" left="Static01_01:2.69%" top="12.5%" width="20.14%" height="5.00%" background="#c3e4cd" border="1px solid #10aea9" color="#01656f" textAlign="center" text="브랜드 관리" font="bold 14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static01_03" taborder="2" left="Static01_02:1.69%" top="12.50%" width="12.66%" height="5%" background="#c3e4cd" border="1px solid #10aea9" color="#01656f" textAlign="center" text="조사형태 관리" font="bold 14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static01_05" taborder="13" left="Static01_03:2.69%" top="12.50%" width="12.66%" height="5%" background="#c3e4cd" border="1px solid #10aea9" color="#01656f" textAlign="center" text="모집채널 관리" font="bold 14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static01_04" taborder="3" left="Static01_05:2.69%" top="12.50%" width="39.19%" height="5%" background="#c3e4cd" border="1px solid #10aea9" color="#01656f" textAlign="center" text="관계코드 관리" font="bold 14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_01" taborder="4" left="0.62%" top="Static01_01:-5.88%" width="12.66%" height="5.08%" background="#c3e4cd" border="1px solid #10aea9" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_02" taborder="5" left="Static03_01:2.69%" top="Static01_02:-5.88%" width="20.14%" height="5.08%" background="#c3e4cd" border="1px solid #10aea9" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_03" taborder="6" left="Static03_02:1.69%" top="Static01_03:-5.88%" width="12.66%" height="5.08%" background="#c3e4cd" border="1px solid #10aea9" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_12" taborder="14" left="Static03_03:2.69%" top="Static01_05:-5.88%" width="12.66%" height="5%" background="#c3e4cd" border="1px solid #10aea9" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_04" taborder="7" left="Static03_12:2.69%" top="Static01_04:-5.88%" width="39.19%" height="5%" background="#c3e4cd" border="1px solid #10aea9" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_05" taborder="8" left="0.62%" top="Static03_01:17.65%" width="12.66%" height="5.08%" background="#F6F7F9" border="1px solid #10aea9" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_06" taborder="9" left="Static03_05:2.69%" top="Static03_02:17.65%" width="20.14%" height="5.08%" background="#F6F7F9" border="1px solid #10aea9" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_07" taborder="10" left="Static03_06:1.69%" top="Static03_03:17.65%" width="12.66%" height="5.08%" background="#F6F7F9" border="1px solid #10aea9" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_13" taborder="15" left="Static03_07:2.69%" top="Static03_12:21.22%" width="12.68%" height="5.08%" background="#F6F7F9" border="1px solid #8CA5D0" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static03_08" taborder="11" left="Static03_13:2.69%" top="Static03_04:21.22%" width="39.25%" height="5.08%" background="#F6F7F9" border="1px solid #10aea9" color="#16538c" textAlign="center" font="14px/normal &quot;Gulim&quot;"/>
+              <Grid id="grd_info1" taborder="12" left="0.61%" top="Static03_05:14.71%" width="12.66%" height="69.4%" font="13px/normal &quot;Gulim&quot;" binddataset="dsEvltnKind1" autofittype="col" autosizingtype="none" border="1px solid #10aea9">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="67"/>
+                      <Column size="107"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell background="#e3f2e7" text="코드" color="black" border="1px solid #10aea9"/>
+                      <Cell col="1" background="#e3f2e7" color="black" text="구분" border="1px solid #10aea9"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell textAlign="center" text="bind:CODE"/>
+                      <Cell col="1" textAlign="center" text="bind:NAME"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <MaskEdit id="edt_info_cd1" taborder="16" left="Static03_05:-68.82%" top="Static03_05:-85.3%" width="1.85%" height="3.59%" padding="0px" textAlign="center" font="14px/normal &quot;Gulim&quot;" type="string" format="@@"/>
+              <MaskEdit id="edt_info_cd2" taborder="17" left="Static03_06:-80.41%" top="Static03_06:-85.30%" width="2.52%" height="3.59%" padding="0px" textAlign="center" font="14px/normal &quot;Gulim&quot;" format="@@@" type="string"/>
+              <MaskEdit id="edt_info_cd3" taborder="18" left="Static03_07:-68.82%" top="Static03_07:-85.30%" width="1.84%" height="3.59%" padding="0px" textAlign="center" font="14px/normal &quot;Gulim&quot;" format="@@" type="string"/>
+              <Static id="Static02_04" taborder="54" left="Static03_08:-100%" top="Static03_08:-100%" width="3.61%" height="5.08%" background="#c3e4cd" border="1px solid #8CA5D0" color="#01656f" textAlign="center" text="과목" font="14px/normal &quot;Gulim&quot;"/>
+              <MaskEdit id="edt_path_cd1" taborder="19" left="Static02_04:9.44%" top="Static03_08:-85.30%" width="1.84%" height="3.59%" padding="0px" textAlign="center" font="14px/normal &quot;Gulim&quot;" format="@@" type="string"/>
+              <Combo id="cbo_path1" taborder="27" left="edt_path_cd1:-7.40%" top="Static03_08:-85.30%" width="6.12%" height="3.59%" font="14px/normal &quot;Gulim&quot;" innerdataset="dsEvltnKind1" codecolumn="CODE" datacolumn="NAME" onitemchanged="div_main_cbo_path_onitemchanged"/>
+              <Static id="Static02_05" taborder="55" left="cbo_path1:4.5%" top="Static03_08:-100%" width="3.61%" height="5.08%" background="#c3e4cd" border="1px solid #8CA5D0" color="#01656f" textAlign="center" text="브랜드" font="14px/normal &quot;Gulim&quot;"/>
+              <MaskEdit id="edt_path_cd2" taborder="20" left="Static02_05:5" top="Static03_08:-85.30%" width="2.52%" height="3.59%" padding="0px" textAlign="center" font="14px/normal &quot;Gulim&quot;" format="@@@" type="string"/>
+              <Combo id="cbo_path2" taborder="28" left="edt_path_cd2:-2.71%" top="Static03_08:-85.30%" width="8.16%" height="3.59%" font="14px/normal &quot;Gulim&quot;" innerdataset="dsEvltnKind2" codecolumn="CODE" datacolumn="NAME" onitemchanged="div_main_cbo_path_onitemchanged" text=""/>
+              <Static id="Static02_06" taborder="56" left="cbo_path2:4.21%" top="Static03_08:-100%" width="3.61%" height="5.08%" background="#c3e4cd" border="1px solid #8CA5D0" color="#16538c" textAlign="center" text="학년" font="14px/normal &quot;Gulim&quot;"/>
+              <MaskEdit id="edt_path_cd3" taborder="21" left="Static02_06:9.44%" top="Static03_08:-85.30%" width="1.84%" height="3.59%" padding="0px" textAlign="center" font="14px/normal &quot;Gulim&quot;" format="@@" type="string"/>
+              <MaskEdit id="edt_info_cd4" taborder="22" left="Static03_13:-68.82%" top="Static03_13:-85.30%" width="1.84%" height="3.59%" padding="0px" textAlign="center" font="14px/normal &quot;Gulim&quot;" type="string" format="@@"/>
+              <Edit id="edt_info1" taborder="23" left="Static03_05:-54.84%" top="Static03_05:-85.3%" width="Static03_05:51.61%" height="Static03_05:70.59%" font="14px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt_info2" taborder="24" left="Static03_06:-68.25%" top="Static03_06:-85.3%" width="13.34%" height="3.59%" font="14px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt_info3" taborder="25" left="Static03_07:-54.84%" top="Static03_07:-85.30%" width="6.54%" height="3.59%" font="14px/normal &quot;Gulim&quot;"/>
+              <Edit id="edt_info4" taborder="26" left="Static03_13:-54.84%" top="Static03_13:-85.30%" width="6.54%" height="3.59%" font="14px/normal &quot;Gulim&quot;"/>
+              <Combo id="cbo_path3" taborder="29" left="edt_path_cd3:-3.71%" top="Static03_08:-85.30%" width="6.13%" height="3.59%" font="14px/normal &quot;Gulim&quot;" innerdataset="dsEvltnKind6" codecolumn="CODE" datacolumn="NAME" onitemchanged="div_main_cbo_path_onitemchanged"/>
+              <Button id="btn_info_new1" taborder="30" left="Static03_01:-97.31%" top="Static03_01:-90%" width="3.54%" height="3.9%" text="추가" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_new1_onclick" background="#f6f8f7"/>
+              <Button id="btn_info_del1" taborder="31" left="Static03_01:-31.2%" top="Static03_01:-90%" width="3.54%" height="3.9%" text="삭제" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_del1_onclick"/>
+              <Button id="btn_info_save1" taborder="32" left="Static03_01:-63.98%" top="Static03_01:-90%" width="3.54%" height="3.9%" text="저장" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_save1_onclick"/>
+              <Button id="btn_info_new2" taborder="33" left="Static03_02:-81.42%" top="Static03_02:-90%" width="3.54%" height="3.90%" text="추가" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_new2_onclick"/>
+              <Button id="btn_info_del2" taborder="34" left="Static03_02:-36.15%" top="Static03_02:-90%" width="3.54%" height="3.90%" text="삭제" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_del2_onclick"/>
+              <Button id="btn_info_save2" taborder="35" left="Static03_02:-58.78%" top="Static03_02:-90%" width="3.54%" height="3.90%" text="저장" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_save2_onclick"/>
+              <Button id="btn_info_new3" taborder="36" left="Static03_03:-97.31%" top="Static03_03:-90%" width="3.54%" height="3.90%" text="추가" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_new3_onclick"/>
+              <Button id="btn_info_save3" taborder="37" left="Static03_03:-63.98%" top="Static03_03:-90%" width="3.54%" height="3.90%" text="저장" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_save3_onclick"/>
+              <Button id="btn_info_del3" taborder="38" left="Static03_03:-30.65%" top="Static03_03:-90%" width="3.54%" height="3.90%" text="삭제" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_del3_onclick"/>
+              <Button id="btn_path_del" taborder="39" left="Static03_04:-9.73%" top="Static03_04:-90%" width="3.54%" height="3.90%" text="삭제" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_path_del_onclick"/>
+              <Button id="btn_path_save" taborder="40" left="Static03_04:-20.49%" top="Static03_04:-90%" width="3.54%" height="3.90%" text="저장" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_path_save_onclick"/>
+              <Button id="btn_path_new" taborder="41" left="Static03_04:-31.25%" top="Static03_04:-90%" width="3.54%" height="3.90%" text="추가" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_path_new_onclick"/>
+              <Button id="btn_info_del4" taborder="42" left="Static03_12:-30.65%" top="Static03_12:-90%" width="3.54%" height="3.90%" text="삭제" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_del4_onclick"/>
+              <Button id="btn_info_save4" taborder="43" left="Static03_03:38.71%" top="Static03_12:-90%" width="3.54%" height="3.90%" text="저장" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_save4_onclick"/>
+              <Button id="btn_info_new4" taborder="44" left="Static03_12:-97.31%" top="Static03_12:-90%" width="3.54%" height="3.90%" text="추가" background="#f6f8f7" color="#000000" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_info_new4_onclick"/>
+              <Grid id="grd_info2" taborder="45" left="grd_info1:3.23%" top="Static03_06:14.71%" width="20.14%" height="69.4%" font="13px/normal &quot;Gulim&quot;" binddataset="dsEvltnKind2" autofittype="col" autosizingtype="none" border="1px solid #10aea9">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="67"/>
+                      <Column size="227"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell background="#e3f2e7" text="코드" color="black" border="1px solid #10aea9"/>
+                      <Cell col="1" background="#e3f2e7" color="black" text="구분" border="1px solid #10aea9"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:CODE" textAlign="center"/>
+                      <Cell col="1" text="bind:NAME" textAlign="center"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Grid id="grd_info3" taborder="46" left="grd_info2:1.69%" top="Static03_07:14.71%" width="12.66%" height="69.4%" font="13px/normal &quot;Gulim&quot;" binddataset="dsEvltnKind3" autosizingtype="none" autofittype="col" border="1px solid #10aea9">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="67"/>
+                      <Column size="107"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell background="#e3f2e7" text="코드" color="black" border="1px solid #10aea9"/>
+                      <Cell col="1" background="#e3f2e7" color="black" text="구분" border="1px solid #10aea9"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell textAlign="center" text="bind:CODE"/>
+                      <Cell col="1" textAlign="center" text="bind:NAME"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Grid id="grd_info4" taborder="48" left="grd_info3:2.69%" top="Static03_13:14.71%" width="12.68%" height="69.25%" font="13px/normal &quot;Gulim&quot;" binddataset="dsEvltnKind7" autosizingtype="none" autofittype="col" border="1px solid #10aea9">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="67"/>
+                      <Column size="107"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell background="#e3f2e7" text="코드" color="black" border="1px solid #10aea9"/>
+                      <Cell col="1" background="#e3f2e7" color="black" text="구분" border="1px solid #10aea9"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell textAlign="center" text="bind:CODE"/>
+                      <Cell col="1" textAlign="center" text="bind:NAME"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Grid id="grd_path" taborder="47" left="grd_info4:2.69%" top="Static03_08:14.71%" width="39.25%" height="69.4%" font="13px/normal &quot;Gulim&quot;" binddataset="dsEvltnPath" autofittype="col" autosizingtype="none" border="1px solid #10aea9">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="50"/>
+                      <Column size="65"/>
+                      <Column size="50"/>
+                      <Column size="293"/>
+                      <Column size="50"/>
+                      <Column size="65"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell background="#e3f2e7" text="코드" color="black" border="1px solid #10aea9"/>
+                      <Cell col="1" background="#e3f2e7" color="black" text="과목구분" border="1px solid #10aea9"/>
+                      <Cell col="2" background="#e3f2e7" border="1px solid #10aea9" color="black" text="코드"/>
+                      <Cell col="3" background="#e3f2e7" border="1px solid #10aea9" color="black" text="브랜드명"/>
+                      <Cell col="4" background="#e3f2e7" border="1px solid #10aea9" color="black" text="학년"/>
+                      <Cell col="5" background="#e3f2e7" border="1px solid #10aea9" color="black" text="학년명"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell textAlign="center" text="bind:CODE1"/>
+                      <Cell col="1" textAlign="center" text="bind:NAME1"/>
+                      <Cell col="2" textAlign="center" text="bind:CODE2"/>
+                      <Cell col="3" textAlign="center" text="bind:NAME2"/>
+                      <Cell col="4" textAlign="center" text="bind:CODE3"/>
+                      <Cell col="5" textAlign="center" text="bind:NAME3"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static00" taborder="49" text="시장조사 코드관리" left="4.01%" top="0.75%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="33.95%" height="10.45%"/>
+              <Static id="Static02_01" taborder="50" left="Static03_05:-100%" top="Static03_05:-100%" width="3.61%" height="5.08%" background="#c3e4cd" border="1px solid #8CA5D0" color="#01656f" textAlign="center" text="코드" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static02_02" taborder="51" left="Static03_06:-100%" top="Static03_06:-100%" width="3.61%" height="5.08%" background="#c3e4cd" border="1px solid #8CA5D0" color="#01656f" textAlign="center" text="코드" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static02_03" taborder="52" left="Static03_07:-100%" top="Static03_07:-100%" width="3.61%" height="5.08%" background="#c3e4cd" border="1px solid #8CA5D0" color="#01656f" textAlign="center" text="코드" font="14px/normal &quot;Gulim&quot;"/>
+              <Static id="Static02_07" taborder="53" left="Static03_13:-100%" top="Static03_13:-100%" width="3.61%" height="5.08%" background="#c3e4cd" border="1px solid #8CA5D0" color="#01656f" textAlign="center" text="코드" font="14px/normal &quot;Gulim&quot;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+
+this.SD6920F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var strUrl, strDs, strArg;
+
+	strUrl   = "JSP/sd/sd6920_select_info.jsp";
+	strDs =  "dsEvltnKind1=dsEvltnKind1 dsEvltnKind2=dsEvltnKind2 dsEvltnKind3=dsEvltnKind3 dsEvltnKind4=dsEvltnKind4 dsEvltnKind5=dsEvltnKind5 dsEvltnKind6=dsEvltnKind6 dsEvltnKind7=dsEvltnKind7 dsEvltnPath=dsEvltnPath";
+	strArg = "";
+	
+	this.gfn_TransactionP("mst_select", strUrl, strDs, strDs, strArg, "fnSearchCallback", true, "P", false, this);
+};
+
+this.div_main_btn_info_new1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var max = nexacro.toNumber(this.dsEvltnKind1.getMax("CODE")) + 1;
+	if(max < 10){
+		max = "0"+max;
+	}
+	this.dsEvltnKind1.setColumn(this.dsEvltnKind1.addRow(), "CODE", max);
+};
+
+this.div_main_btn_info_new2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var max = nexacro.toNumber(this.dsEvltnKind2.getMax("CODE")) + 1;
+	if(max < 10){
+		max = "00"+max;
+	}else if(max>9 && max<100){
+		max = "0"+max;
+	}
+ 	this.dsEvltnKind2.setColumn(this.dsEvltnKind2.addRow(), "CODE", max);
+};
+
+this.div_main_btn_info_new3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var max = nexacro.toNumber(this.dsEvltnKind3.getMax("CODE")) + 1;
+	if(max < 10){
+		max = "0"+max;
+	}
+	this.dsEvltnKind3.setColumn(this.dsEvltnKind3.addRow(), "CODE", max);
+};
+
+this.div_main_btn_info_new4_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var max = nexacro.toNumber(this.dsEvltnKind7.getMax("CODE")) + 1;
+	if(max <10){
+		max = "0"+max;
+	}
+	this.dsEvltnKind7.setColumn(this.dsEvltnKind7.addRow(), "CODE", max);
+};
+
+this.div_main_btn_info_save1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_info_cd1.text == "") {
+		alert("과목코드가 누락되었습니다.");
+		return;
+	}
+	
+	if (this.div_main.form.edt_info1.text == "") {
+		alert("과목명이 누락되었습니다.");
+		return;
+	}
+	var strUrl = "JSP/sd/sd6920_mst_tr.jsp";
+	var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+	var outDs 	= "";
+	var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+	trace(strArg);
+	this.gfn_TransactionP("save", strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this);
+};
+
+this.div_main_btn_info_save2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_info_cd2.text == "") {
+		alert("브랜드 코드가 누락되었습니다.");
+		return;
+	}
+	
+	if (this.div_main.form.edt_info2.text == "") {
+		alert("브랜드명이 누락되었습니다.");
+		return;
+	}
+	var strUrl = "JSP/sd/sd6920_mst_tr.jsp";
+	var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+	var outDs 	= "";
+	var strArg = " usercode="  + nexacro.WrapQuote(gv_sabun);
+	trace(strArg);
+	this.gfn_TransactionP("save", strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this);
+};
+
+
+this.div_main_btn_info_save3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_info_cd3.text == "") {
+		alert("조사형태 코드가 누락되었습니다.");
+		return;
+	}
+	
+	if (this.div_main.form.edt_info3.text == "") {
+		alert("조사형태명이 누락되었습니다.");
+		return;
+	}
+	var strUrl = "JSP/sd/sd6920_mst_tr.jsp";
+	var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+	var outDs 	= "";
+	var strArg = " usercode="  + nexacro.WrapQuote(gv_sabun);
+	trace(strArg);
+	this.gfn_TransactionP("save", strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this);
+};
+
+this.div_main_btn_info_save4_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_info_cd4.text == "") {
+		alert("코드가 누락되었습니다.");
+		return;
+	}
+	
+	if (this.div_main.form.edt_info4.text == "") {
+		alert("명칭이 누락되었습니다.");
+		return;
+	}
+	var strUrl = "JSP/sd/sd6920_mst_tr.jsp";
+	var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+	var outDs 	= "";
+	var strArg = " usercode="  + nexacro.WrapQuote(gv_sabun);
+	trace(strArg);
+	this.gfn_TransactionP("save",  strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this)
+};
+
+this.div_main_btn_info_del1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_info_cd1.text == "")
+	{
+		alert( "선택된 데이터가 없습니다.! \n 데이터 선택후 다시 삭제하세요! ") ;
+		return;
+	}
+		
+	var objApp = nexacro.getApplication();
+	
+	if(msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? ", "삭제처리", "warning" ))
+	{
+		var strUrl = "JSP/sd/sd6920_mst_tr.jsp";
+		var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+		this.dsEvltnKind1.deleteRow(this.dsEvltnKind1.rowposition);
+		var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+		var outDs 	= "";
+		
+		trace(strArg);	
+		this.gfn_TransactionP("save", strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this);
+	}
+};
+
+this.div_main_btn_info_del2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_info_cd2.text == "")
+	{
+		alert( "선택된 데이터가 없습니다.! \n 데이터 선택후 다시 삭제하세요! ") ;
+		return;
+	}
+		
+	var objApp = nexacro.getApplication();
+	
+	if(msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? ", "삭제처리", "warning" ))
+	{
+		var strUrl = "JSP/sd/sd6920_mst_tr.jsp";
+		var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+		this.dsEvltnKind2.deleteRow(this.dsEvltnKind2.rowposition);
+		var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+		var outDs 	= "";
+		
+		trace(strArg);	
+		this.gfn_TransactionP("delete", strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this);
+	}
+};
+
+this.div_main_btn_info_del3_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_info_cd4.text == "")
+	{
+		alert( "선택된 데이터가 없습니다.! \n 데이터 선택후 다시 삭제하세요! ") ;
+		return;
+	}
+		
+	var objApp = nexacro.getApplication();
+	
+	if(msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? ", "삭제처리", "warning" ))
+	{
+		var strUrl = "JSP/sd/sd6920_mst_tr.jsp";
+		var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+		this.dsEvltnKind7.deleteRow(this.dsEvltnKind7.rowposition);
+		var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+		var outDs 	= "";
+		
+		trace(strArg);	
+		this.gfn_TransactionP("delete", strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this);
+	}
+};
+
+this.div_main_btn_info_del4_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_info_cd4.text == "")
+	{
+		alert( "선택된 데이터가 없습니다.! \n 데이터 선택후 다시 삭제하세요! ") ;
+		return;
+	}
+		
+	var objApp = nexacro.getApplication();
+	
+	if(msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? ", "삭제처리", "warning" ))
+	{
+		var strUrl = "JSP/sd/sd6920_mst_tr.jsp";
+		var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+		this.dsEvltnKind3.deleteRow(this.dsEvltnKind3.rowposition);
+		var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+		var outDs 	= "";
+		
+		trace(strArg);	
+		this.gfn_TransactionP("delete", strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this);
+	}
+};
+
+this.fnCallback = function(trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0){
+		alert(ErrorMsg);
+		return;
+	}
+	else if (trid != null)
+	{
+		trid = trid.split("|");
+		trid = trid[0] 
+	}
+	if(trid == "save")
+		alert('저장되었습니다');
+	if(trid == "delete")
+		alert('삭제되었습니다');
+}
+
+this.div_main_cbo_path_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if (obj.name == "cbo_path1")
+		this.dsEvltnPath.setColumn(this.dsEvltnPath.rowposition,"NAME1", obj.text);
+	else if (obj.name == "cbo_path2") 
+		this.dsEvltnPath.setColumn(this.dsEvltnPath.rowposition,"NAME2",obj.text);
+	else if (obj.name == "cbo_path3") 
+		this.dsEvltnPath.setColumn(this.dsEvltnPath.rowposition,"NAME3",obj.text);
+};
+this.div_main_btn_path_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsEvltnPath.addRow();
+};
+
+this.div_main_btn_path_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_path_cd1.text =="") {
+		alert("과목이 누락되었습니다.");
+		return;
+	}
+	
+	if (this.div_main.form.edt_path_cd2.text =="") {
+		alert("브랜드가 누락되었습니다.");
+		return;
+	}
+	
+	if (this.div_main.form.edt_path_cd3.text =="") {
+		alert("학년코드가 누락되었습니다.");
+		return;
+	}
+	var strUrl = "JSP/sd/sd6920_mst_tr.jsp";	
+	var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+	var outDs 	= "";
+	var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+	trace(strArg);
+	this.gfn_TransactionP("save", strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this);
+};
+
+this.div_main_btn_path_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.div_main.form.edt_path_cd1.value == "") 
+	{
+		alert("선택된 데이터가 없습니다.! \n 데이터 선택후 다시 삭제하세요! ") ;
+		return;
+	}
+	
+	var objApp = nexacro.getApplication();
+		
+	if(msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? ", "삭제처리", "warning" ))
+	{
+		var strUrl = "JSP/sd/sd6920_mst_tr.jsp";
+		var strArg = " usercode="  + nexacro.wrapQuote(gv_sabun);
+		this.dsEvltnPath.deleteRow(this.dsEvltnPath.rowposition);		
+		var inDs 	= "dsEvltnKind1=dsEvltnKind1:u dsEvltnKind2=dsEvltnKind2:u dsEvltnKind3=dsEvltnKind3:u dsEvltnKind7=dsEvltnKind7:u dsEvltnPath=dsEvltnPath:u";
+		var outDs 	= "";
+		
+		trace(strArg);
+		this.gfn_TransactionP("delete", strUrl, inDs, outDs, strArg, "fnCallback", true, "P", false, this);
+	}	
+};
+/* // 닫기버튼 클릭 시
+this.div_main_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.parent.parent.name == "WorkDetail"){
+		var nRow = this.parent.parent.ds_selectMenu.findRow("selectMenu_Div_id",this.parent.name);
+		var bClose_id = this.parent.parent.ds_selectMenu.getColumn(nRow,"selectButton_Div_id");
+		this.parent.parent.div_selectMenu.form.all[bClose_id].form.CloseButton.click();
+	}
+	else
+		this.close();
+};
+*/
+this.SD6920F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if(this.width < 1470)
+		this.div_main.set_width(this.width - 20);
+	else
+		this.div_main.set_width(1470);
+	
+	if(this.height < 670)
+		this.div_main.set_height(this.height - 20);
+	else
+		this.div_main.set_height(670);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsEvltnKind1" oncolumnchanged="dsEvltnKind6_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind2">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind3">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind4">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind5">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind6" oncolumnchanged="dsEvltnKind6_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind7">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnPath">
+        <ColumnInfo>
+          <Column id="CODE1" type="STRING" size="256"/>
+          <Column id="NAME1" type="STRING" size="256"/>
+          <Column id="CODE2" type="STRING" size="256"/>
+          <Column id="NAME2" type="STRING" size="256"/>
+          <Column id="CODE3" type="STRING" size="256"/>
+          <Column id="NAME3" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="div_main.form.edt_info_cd1" propid="value" datasetid="dsEvltnKind1" columnid="CODE"/>
+      <BindItem id="item1" compid="div_main.form.edt_info1" propid="value" datasetid="dsEvltnKind1" columnid="NAME"/>
+      <BindItem id="item2" compid="div_main.form.edt_info_cd2" propid="value" datasetid="dsEvltnKind2" columnid="CODE"/>
+      <BindItem id="item3" compid="div_main.form.edt_info2" propid="value" datasetid="dsEvltnKind2" columnid="NAME"/>
+      <BindItem id="item4" compid="div_main.form.edt_info_cd3" propid="value" datasetid="dsEvltnKind3" columnid="CODE"/>
+      <BindItem id="item5" compid="div_main.form.edt_info3" propid="value" datasetid="dsEvltnKind3" columnid="NAME"/>
+      <BindItem id="item6" compid="div_main.form.edt_info_cd4" propid="value" datasetid="dsEvltnKind7" columnid="CODE"/>
+      <BindItem id="item7" compid="div_main.form.edt_info4" propid="value" datasetid="dsEvltnKind7" columnid="NAME"/>
+      <BindItem id="item8" compid="div_main.form.edt_path_cd1" propid="value" datasetid="dsEvltnPath" columnid="CODE1"/>
+      <BindItem id="item9" compid="div_main.form.cbo_path1" propid="value" datasetid="dsEvltnPath" columnid="CODE1"/>
+      <BindItem id="item10" compid="div_main.form.edt_path_cd2" propid="value" datasetid="dsEvltnPath" columnid="CODE2"/>
+      <BindItem id="item11" compid="div_main.form.cbo_path2" propid="value" datasetid="dsEvltnPath" columnid="CODE2"/>
+      <BindItem id="item12" compid="div_main.form.edt_path_cd3" propid="value" datasetid="dsEvltnPath" columnid="CODE3"/>
+      <BindItem id="item13" compid="div_main.form.cbo_path3" propid="value" datasetid="dsEvltnPath" columnid="CODE3"/>
+    </Bind>
+  </Form>
+</FDL>

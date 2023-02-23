@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED150_SearchF" width="400" height="390" titletext="New Form" onload="ED150_SearchF_onload">
+    <Layouts>
+      <Layout height="390" width="400">
+        <Button id="btn_close" taborder="0" text="닫기" left="155" top="351" height="29" right="245" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Static id="Static00_00" taborder="1" text="조회일자" left="13" top="27" width="87" height="29" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_01" taborder="2" text="관련부서" left="13" top="58" width="87" height="29" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="3" left="104" top="27" width="110" height="29"/>
+        <Calendar id="cal_Edate" taborder="4" left="222" top="27" width="110" height="29"/>
+        <Combo id="cb_section" taborder="5" text="Combo00" left="104" top="58" width="229" height="29" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME"/>
+        <Grid id="Grid00" taborder="6" left="17" top="95" width="369" height="246" binddataset="dsOutOrdMst" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="190"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="관리카드 번호"/>
+                <Cell col="1" text="도서명"/>
+                <Cell col="2" text="담당자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:OUTORDER_NO"/>
+                <Cell col="1" text="bind:BOOKNAME"/>
+                <Cell col="2" text="bind:EMPLOYEE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search00" taborder="7" top="34" width="40" height="38" right="17" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Button id="btn_close00" taborder="8" text="닫기" left="155" top="351" height="29" right="175" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var iI_flow_id, sSabun, sSelect, OutOrderKind, OutOrderEtc;
+
+this.ED150_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.dsOutOrdMst.copyData(this.parent.pdsOutOrdMst);
+	this.dsOutOrdDtl.copyData(this.parent.pdsOutOrdDtl);
+	this.dsSection.copyData(this.parent.pdsSection);
+	this.dsFormpath.copyData(this.parent.pdsFormpath);
+	
+	sSabun = this.parent.pSabun;
+	sSelect = this.parent.pSelect;
+	sSection_Code = this.parent.psectionCode;
+	
+	OutOrderKind = this.parent.pOutOrderKind;
+	OutOrderEtc = this.parent.pOutOrderEtc;
+	
+	//this.cb_section.set_index(this.dsSection.findRow("SECTION_CODE", sSection_Code ));
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var inds = "dsOutOrdMst=dsOutOrdMst";
+	var outds = "dsOutOrdMst=dsOutOrdMst";
+	var strArg = "OUTORDMST_SDATE=" + this.cal_Sdate.value
+				+ " OUTORDMST_EDATE=" + this.cal_Edate.value
+				+ " OUTORDMST_KIND=" + OutOrderKind 
+				+ " OUTORDMST_ETC=" + OutOrderEtc
+				+ " SECTION_CODE=" + this.cb_section.value
+				+ " EMPLOYEE_ID=" + sSabun
+				+ " COMPETENCE=S" //+ sSelect
+				+ " SET_OPTION=1"
+				+ " I_FLOW_ID= ";
+	
+	this.gfn_TransactionP("search","JSP/ed/ed150f_outorder_mst.jsp", inds, outds, strArg, "fnMstCallback", false, "P", false, this);	
+};
+
+this.fnMstCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else if(this.dsOutOrdMst.rowcount == 0)
+		alert("조회된 자료가 없습니다.");
+}
+
+//세부내역찾기
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var mstId = this.dsOutOrdMst.getColumn(e.row, "OUTORDMST_ID");
+	iI_flow_id = this.dsOutOrdMst.getColumn(e.row, "I_FLOW_ID");
+	
+	this.dsOutOrdMst.filter("OUTORDMST_ID ==" + mstId);
+	this.parent.pdsOutOrdMst.copyData(this.dsOutOrdMst, true);
+	
+	if(this.dsOutOrdMst.rowcount != 0)
+	{	
+		this.lfn_I_FLOW_FOMPAHT2_LOAD(this.dsOutOrdMst.getColumn(0, "EMPLOYEE_ID"), this.dsFormpath);	//저장된 결재라인 가져오기
+	
+		var inds = "dsOutOrdDtl=dsOutOrdDtl";
+		var outds = "dsOutOrdDtl=dsOutOrdDtl";
+		var strArg = "OUTORDMST_ID=" + mstId
+					+" OUTORDMST_KIND=" + OutOrderKind
+					+" COMPETENCE=S"  //+ sSelect;
+
+		this.gfn_TransactionP("search","JSP/ed/ed150f_outorder_dtl.jsp", inds, outds, strArg, "fnDtlCallback", false, "P", false, this);	
+	}else
+		this.dsOutOrdDtl.clearData();
+};
+
+this.fnDtlCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else
+	{
+		this.parent.pdsOutOrdDtl.copyData(this.dsOutOrdDtl);
+		this.parent.pdsFormpath.copyData(this.dsFormpath);
+		
+		if(this.dsOutOrdMst.getColumn(this.dsOutOrdMst.rowposition, "OUTORDMST_PAYKIND") == "0")
+			this.opener.btn_pay.text = "정기지급";
+		else
+			this.opener.btn_pay.text = "수시지급";
+			
+		this.close(iI_flow_id);
+	}
+}
+
+//총쪽수, 총금액 구하기
+this.dsOutOrdDtl_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{	
+	this.opener.medt_totAmount.set_value(this.dsOutOrdDtl.getSum("OUTORDDTL_AMOUNT"));
+	this.opener.medt_totQty.set_value(this.dsOutOrdDtl.getSum("OUTORDDTL_QTY"));
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsOutOrdMst"/>
+      <Dataset id="dsSection"/>
+      <Dataset id="dsOutOrdDtl" onload="dsOutOrdDtl_onload"/>
+      <Dataset id="dsFormpath"/>
+    </Objects>
+  </Form>
+</FDL>

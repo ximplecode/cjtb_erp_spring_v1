@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6911F" width="800" height="480" titletext="New Form" onload="SD6911F_onload">
+    <Layouts>
+      <Layout height="480" width="800">
+        <Static id="Static00" taborder="0" text="시장조사 대상자 DB조회" left="4.88%" top="1.46%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" right="25.50%" bottom="85.21%" verticalAlign="top"/>
+        <Static id="Static09_01" taborder="1" left="20" top="85" width="452" height="34" background="#f6f7f9" border="1px solid #10aea9" text=""/>
+        <Static id="Static00_01" taborder="2" left="20" top="85" width="80" height="34" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="관리번호" font="normal 13px/normal &quot;Gulim&quot;"/>
+        <Static id="Static00_02" taborder="3" left="205" top="85" width="75" height="34" border="1px solid #10aea9" background="#c3e4cd" color="#01656f" textAlign="center" text="등록자" font="normal 13px/normal &quot;Gulim&quot;"/>
+        <Edit id="edt_sabun" taborder="4" left="356" top="90" width="110" height="24" textAlign="center"/>
+        <MaskEdit id="edt_RSRCH_id" taborder="5" left="105" top="90" width="95" height="24" format="@@@@@@@@@@@@" textAlign="center" enable="false" padding="0px"/>
+        <Edit id="edt_title" taborder="6" left="285" top="90" width="70" height="24" textAlign="center"/>
+        <Grid id="grd_mst" taborder="7" left="20" top="118" width="760" height="332" binddataset="ds_MRKT_RSRCH_MST" onheadclick="grd_mst_onheadclick" oncellclick="grd_mst_oncellclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="150"/>
+                <Column size="65"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="100"/>
+                <Column size="55"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="관리번호"/>
+                <Cell col="2" text="등록자"/>
+                <Cell col="3" text="직업구분"/>
+                <Cell col="4" text="학교명"/>
+                <Cell col="5" text="학원형태"/>
+                <Cell col="6" text="규모"/>
+                <Cell col="7" text="초등"/>
+                <Cell col="8" text="중등"/>
+                <Cell col="9" text="고등"/>
+                <Cell col="10" text="작성부서"/>
+                <Cell col="11" text="이름"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:MRKT_RSRCH_ID" textAlign="center"/>
+                <Cell col="2" text="bind:MRKT_SABUN" textAlign="center"/>
+                <Cell col="3" text="bind:MRKT_JOB" displaytype="combotext" edittype="combo" combodataset="dsEvltnKind4_cp" combodatacol="NAME" combocodecol="CODE"/>
+                <Cell col="4" text="bind:MRKT_JOB_NAME"/>
+                <Cell col="5" text="bind:MRKT_KIND" combodataset="dsEvltnKind5_cp" combodatacol="NAME" combocodecol="CODE" displaytype="combotext" edittype="combo"/>
+                <Cell col="6" text="bind:MRKT_PRSNL"/>
+                <Cell col="7" text="bind:MRKT_ELMNT"/>
+                <Cell col="8" text="bind:MRKT_MIDDLE"/>
+                <Cell col="9" text="bind:MRKT_HIGH"/>
+                <Cell col="10" text="bind:BUSE" textAlign="center"/>
+                <Cell col="11" text="bind:NAME" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="8" text="조회" left="671" top="29" width="52" height="22" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="9" text="닫기" left="728" top="29" height="22" width="52" onclick="btn_close_onclick"/>
+        <Button id="btn_del" taborder="10" text="삭제" left="604" top="29" width="52" height="22" onclick="btn_del_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_MRKT_RSRCH_MST">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="MRKT_RSRCH_ID" type="STRING" size="256"/>
+          <Column id="MRKT_JOB" type="STRING" size="256"/>
+          <Column id="MRKT_KIND" type="STRING" size="256"/>
+          <Column id="MRKT_EXPRT_DATE" type="STRING" size="256"/>
+          <Column id="MRKT_SABUN" type="STRING" size="256"/>
+          <Column id="MRKT_PRSNL" type="STRING" size="256"/>
+          <Column id="MRKT_ELMNT" type="STRING" size="256"/>
+          <Column id="MRKT_MIDDLE" type="STRING" size="256"/>
+          <Column id="MRKT_HIGH" type="STRING" size="256"/>
+          <Column id="MRKT_JOB_NAME" type="STRING" size="256"/>
+          <Column id="MRKT_NAME" type="STRING" size="256"/>
+          <Column id="MRKT_PHONE" type="STRING" size="256"/>
+          <Column id="MRKT_ADDR" type="STRING" size="256"/>
+          <Column id="MRKT_EMAIL" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="MRKT_CHANNEL" type="STRING" size="256"/>
+          <Column id="MRKT_EXPRT_YEAR" type="STRING" size="256"/>
+          <Column id="MRKT_CAREER" type="STRING" size="256"/>
+          <Column id="MRKT_SEX" type="STRING" size="256"/>
+          <Column id="MRKT_AGE" type="STRING" size="256"/>
+          <Column id="MRKT_SCHOOL" type="STRING" size="256"/>
+          <Column id="MRKT_LV1" type="STRING" size="256"/>
+          <Column id="MRKT_LV2" type="STRING" size="256"/>
+          <Column id="MRKT_LV3" type="STRING" size="256"/>
+          <Column id="MRKT_LV4" type="STRING" size="256"/>
+          <Column id="MRKT_LV5" type="STRING" size="256"/>
+          <Column id="MRKT_LV6" type="STRING" size="256"/>
+          <Column id="MRKT_LV7" type="STRING" size="256"/>
+          <Column id="MRKT_LV8" type="STRING" size="256"/>
+          <Column id="MRKT_LV9" type="STRING" size="256"/>
+          <Column id="MRKT_LV10" type="STRING" size="256"/>
+          <Column id="MRKT_LV11" type="STRING" size="256"/>
+          <Column id="MRKT_LV12" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_MRKT_RSRCH_DTL">
+        <ColumnInfo>
+          <Column id="MRKT_RSRCH_ID" type="STRING" size="256"/>
+          <Column id="MRD_SEQ" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND1" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND2" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND3" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND4" type="STRING" size="256"/>
+          <Column id="EVLTN_KIND5" type="STRING" size="256"/>
+          <Column id="MRKT_OPEN_DATE" type="STRING" size="8"/>
+          <Column id="EVLTN_KIND5_MEMO" type="STRING" size="1000"/>
+          <Column id="MRKT_THIRD_DATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSubject">
+        <ColumnInfo>
+          <Column id="MRKT_RSRCH_ID" type="STRING" size="256"/>
+          <Column id="MR_SBJCT_CODE" type="STRING" size="256"/>
+          <Column id="MR_SBJCT_NAME" type="STRING" size="256"/>
+          <Column id="MR_SBJCT_CHECK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MR_SBJCT_CODE">01</Col>
+            <Col id="MR_SBJCT_NAME">국어</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">02</Col>
+            <Col id="MR_SBJCT_NAME">영어</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">03</Col>
+            <Col id="MR_SBJCT_NAME">수학</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">04</Col>
+            <Col id="MR_SBJCT_NAME">사회</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">05</Col>
+            <Col id="MR_SBJCT_NAME">과학</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SBJCT_CODE">06</Col>
+            <Col id="MR_SBJCT_NAME">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSchoolYear">
+        <ColumnInfo>
+          <Column id="MRKT_RSRCH_ID" type="STRING" size="256"/>
+          <Column id="MR_SCHOOL_CODE" type="STRING" size="256"/>
+          <Column id="MR_SCHOOL_NAME" type="STRING" size="256"/>
+          <Column id="MR_SCHOOL_CHECK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="MR_SCHOOL_CODE">01</Col>
+            <Col id="MR_SCHOOL_NAME">초등</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SCHOOL_CODE">02</Col>
+            <Col id="MR_SCHOOL_NAME">중등</Col>
+          </Row>
+          <Row>
+            <Col id="MR_SCHOOL_CODE">03</Col>
+            <Col id="MR_SCHOOL_NAME">고등</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsEvltnKind4_cp">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvltnKind5_cp">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var Fv_HeadChk1 = 0;
+var Fv_HeadChk2 = 0;
+
+var gv_sabun = this.parent.gv_sabun;
+
+this.SD6911F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.dsEvltnKind4_cp.clearData();
+	this.dsEvltnKind4_cp.copyData(this.opener.dsEvltnKind4);
+	
+	this.dsEvltnKind5_cp.clearData();
+	this.dsEvltnKind5_cp.copyData(this.opener.dsEvltnKind5);
+};
+
+this.grd_mst_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		if(Fv_HeadChk2 == 0)
+			Fv_HeadChk2 = 1;
+		else
+			Fv_HeadChk2 = 0;
+		
+		this.grd_mst.setCellProperty("head", 0, "text", Fv_HeadChk2);
+		for(var i = 0; i < this.ds_MRKT_RSRCH_MST.rowcount; i++)
+		{
+			this.ds_MRKT_RSRCH_MST.setColumn(i, "CHK", Fv_HeadChk2);	
+		}
+	}
+};
+
+this.grd_mst_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if (e.cell >= 1)	this.close(this.ds_MRKT_RSRCH_MST.getColumn(e.row,"MRKT_RSRCH_ID"));
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var pRowCount=0;
+	
+	var objApp = nexacro.getApplication() ;
+	
+	this.ds_MRKT_RSRCH_MST.filter("");
+	this.ds_MRKT_RSRCH_MST.filter("CHK == '1' ");
+	pRowCount = this.ds_MRKT_RSRCH_MST.rowcount;
+	this.ds_MRKT_RSRCH_MST.filter("");
+	
+	if (pRowCount == 0) 
+	{
+		alert( "삭제처리", "선택된 데이터가 없습니다.! \n 데이터 선택후 다시 삭제하세요! " ) ;
+		return;
+	}
+	if (msg_result = objApp.confirm( "삭제된 데이터는 복원하실수 없습니다.\n 정말 삭제하시겠습니까? " , "삭제처리", "warning" ))
+	{
+		var strArg ="";
+
+		this.ds_MRKT_RSRCH_MST.filter("");
+		this.ds_MRKT_RSRCH_MST.filter("CHK == '1' ");
+		pRowCount = this.ds_MRKT_RSRCH_MST.rowcount;
+		
+		for(var i=0; i<pRowCount; i++){
+			strArg = " usercode="  + nexacro.wrapQuote(this.ds_MRKT_RSRCH_MST.getColumn(i,"MRKT_SABUN"));
+			strArg += " delete_MRKT_RSRCH_ID="  + nexacro.wrapQuote(this.ds_MRKT_RSRCH_MST.getColumn(i,"MRKT_RSRCH_ID"));
+			strArg += " delete_MRD_SEQ="  + nexacro.wrapQuote(this.ds_MRKT_RSRCH_DTL.getColumn(i,"MRD_SEQ"));
+
+			this.ds_MRKT_RSRCH_MST.deleteRow(this.ds_MRKT_RSRCH_MST.rowposition);
+		}
+		
+		var strUrl = "JSP/sd/sd6900_mst_tr.jsp";
+		var inDs = "ds_MRKT_RSRCH_MST=ds_MRKT_RSRCH_MST:u ds_MRKT_RSRCH_DTL=ds_MRKT_RSRCH_DTL:u dsSchoolYear=dsSchoolYear:u dsSubject=dsSubject:u";
+	
+		this.gfn_TransactionP("delete", strUrl, inDs, "", strArg, "fnCallback", true, "P", false, this);
+		this.ds_MRKT_RSRCH_MST.filter("");
+	}
+};
+
+this.fnCallback = function(trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0){
+		alert(ErrorMsg);
+		return;
+	}
+}
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/sd/sd6911_search.jsp";
+	var strArg;
+	var strDs 	= "ds_MRKT_RSRCH_MST=ds_MRKT_RSRCH_MST ds_MRKT_RSRCH_DTL=ds_MRKT_RSRCH_DTL";
+
+	strArg = "values0="+nexacro.wrapQuote(gv_sabun);
+	this.gfn_TransactionP("codesearch", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("cancel");
+};]]></Script>
+  </Form>
+</FDL>

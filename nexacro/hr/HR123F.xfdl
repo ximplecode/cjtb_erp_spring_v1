@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR123F" width="1250" height="625" titletext="증명서 승인/발급" onload="HR123F_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <GroupBox id="GroupBox00" taborder="26" text="증명서 승인" left="2" top="52" height="36%" right="2" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;"/>
+        <GroupBox id="GroupBox01" taborder="28" text="증명서 발급" left="2" top="GroupBox00:13" bottom="2" right="2" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;"/>
+        <Static id="Static02" taborder="0" text="증명서 승인/발급" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="Static01_00" taborder="4" left="102" top="GroupBox00:60" height="30" border="1px solid #10aea9" background="#9ee0de" right="4"/>
+        <Static id="Static01_00_00" taborder="17" left="102" top="Static01_00:0" height="30" border="1px solid #10aea9" background="#9ee0de" right="4"/>
+        <Grid id="grd_list2" taborder="1" left="4" top="Static01_00_00:0" right="4" bottom="4" binddataset="ds_hr123_03" autofittype="col" oncellclick="grd_list2_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="155"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="141"/>
+                <Column size="80"/>
+                <Column size="100"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="발급번호"/>
+                <Cell col="1" text="사번"/>
+                <Cell col="2" text="성명"/>
+                <Cell col="3" text="부서"/>
+                <Cell col="4" text="직위"/>
+                <Cell col="5" text="신청구분"/>
+                <Cell col="6" text="용도"/>
+                <Cell col="7" text="발급수량"/>
+                <Cell col="8" text="발급일자"/>
+                <Cell col="9"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BALNO" textAlign="center"/>
+                <Cell col="1" text="bind:SABUN" textAlign="center"/>
+                <Cell col="2" text="bind:SIN" textAlign="center"/>
+                <Cell col="3" text="bind:BUSE" textAlign="center"/>
+                <Cell col="4" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="5" text="bind:JMGB" displaytype="combotext" combodataset="ds_type" combodatacol="NAME" combocodecol="CODE" textAlign="center"/>
+                <Cell col="6" text="bind:YONGDO" combodataset="ds_purpose" combocodecol="NAME" combodatacol="NAME" textAlign="center"/>
+                <Cell col="7" text="bind:QTY" textAlign="center" displaytype="number"/>
+                <Cell col="8" text="bind:YMD" textAlign="center" displaytype="date"/>
+                <Cell col="9" displaytype="buttoncontrol" edittype="button" text="출력"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_approval" taborder="2" text="확인" top="70" width="120" height="22" onclick="btn_approval_onclick" right="10"/>
+        <Static id="sta00_01" taborder="3" text="발급일자" left="4" top="GroupBox00:60" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Calendar id="cald_bymd" taborder="5" left="sta00_01:2" top="GroupBox00:66" height="20" background="transparent" border="0px none transparent,0px none,0px none" dateformat="yyyy-MM-dd" width="10.96%" color="white" font="normal bold 10pt/normal &quot;Arial&quot;"/>
+        <Static id="sta00_01_00" taborder="6" text="발급번호" left="cald_bymd:2" top="GroupBox00:60" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_no" taborder="7" left="sta00_01_00:2" top="GroupBox00:66" height="20" border="0px none transparent" background="transparent" width="10.56%" text="010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;" readonly="true" textAlign="center" color="white"/>
+        <Static id="sta00_01_00_00" taborder="8" text="신청인" left="edt_no:0" top="GroupBox00:60" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_sabun" taborder="13" left="sta00_01_00_00:2" top="GroupBox00:66" height="20" border="0px none transparent" background="transparent" width="5.60%" text="010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;" textAlign="center" color="white"/>
+        <Edit id="edt_name" taborder="9" left="edt_sabun:0" top="GroupBox00:66" height="20" border="0px none transparent" background="transparent" width="10.56%" text="010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;" textAlign="center" color="white"/>
+        <Button id="btn_search_insa" taborder="10" top="GroupBox00:65" height="20" icon="url('Img::loupe.png')" width="21" left="edt_name:0" onclick="btn_search_insa_onclick"/>
+        <Static id="sta00_01_00_00_00" taborder="11" text="부서" left="edt_name:23" top="GroupBox00:60" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_busenm" taborder="12" left="sta00_01_00_00_00:2" top="GroupBox00:66" height="20" border="0px none transparent" background="transparent" width="10.56%" text="010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;" textAlign="center" color="white"/>
+        <Static id="sta00_01_00_00_00_00" taborder="14" text="직위" left="edt_busenm:0" top="GroupBox00:60" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_jikwinm" taborder="15" left="sta00_01_00_00_00_00:0" top="GroupBox00:66" height="20" border="0px none transparent" background="transparent" text="010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;" right="3" textAlign="center" color="white"/>
+        <Static id="sta00_01_01" taborder="16" text="증명구분" left="4" top="sta00_01:0" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_type" taborder="18" text="Combo00" left="sta00_01_01:2" top="Static01_00:6" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_type" codecolumn="CODE" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" enable="true" width="10.96%" color="white"/>
+        <Static id="sta00_01_00_01" taborder="19" text="용도" left="cb_type:2" top="GroupBox00:90" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_purpose" taborder="20" text="Combo00" left="sta00_01_00_01:2" top="Static01_00:6" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_purpose" codecolumn="NAME" datacolumn="NAME" type="filterlike" font="normal 900 10pt/normal &quot;Arial&quot;" enable="true" width="10.56%" color="white"/>
+        <Static id="sta00_01_00_00_01" taborder="21" text="발급수량" left="cb_purpose:0" top="sta00_01_00_00:0" width="100" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Spin id="sp_qty" taborder="22" left="sta00_01_00_00_01:2" top="Static01_00:2" width="111" height="25" background="transparent" color="white" font="normal 800 10pt/normal &quot;Arial&quot;"/>
+        <Button id="btn_del" taborder="23" text="삭제" top="GroupBox00:30" width="120" height="22" right="10" onclick="btn_del_onclick"/>
+        <Button id="btn_save" taborder="24" text="저장" top="GroupBox00:30" width="120" height="22" right="140" onclick="btn_save_onclick"/>
+        <Button id="btn_new" taborder="25" text="추가" top="GroupBox00:30" width="120" height="22" right="270" onclick="btn_new_onclick"/>
+        <Grid id="grd_list1" taborder="27" left="4" height="27.52%" right="4" binddataset="ds_hr123_01" autofittype="col" onheadclick="grd_list1_onheadclick" top="98">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="44"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="118"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="103"/>
+                <Column size="80"/>
+                <Column size="68"/>
+                <Column size="91"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="0" displaytype="checkboxcontrol" edittype="checkbox" checkboxfalsevalue="0" checkboxtruevalue="1"/>
+                <Cell col="1" text="사번"/>
+                <Cell col="2" text="성명"/>
+                <Cell col="3" text="부서"/>
+                <Cell col="4" text="직위"/>
+                <Cell col="5" text="연락처"/>
+                <Cell col="6" text="신청구분"/>
+                <Cell col="7" text="용도"/>
+                <Cell col="8" text="발급수량"/>
+                <Cell col="9" text="신청일자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHECK" displaytype="checkboxcontrol" edittype="checkbox" checkboxfalsevalue="0" checkboxtruevalue="1"/>
+                <Cell col="1" text="bind:SABUN" textAlign="center"/>
+                <Cell col="2" text="bind:NAME" textAlign="center"/>
+                <Cell col="3" text="bind:BUSENM" textAlign="center"/>
+                <Cell col="4" text="bind:JIKWINM" textAlign="center"/>
+                <Cell col="5" text="bind:PHONE_NUMBER" textAlign="center"/>
+                <Cell col="6" text="bind:REQUEST_GUBUN" textAlign="center" displaytype="combotext" combodataset="ds_type" combocodecol="CODE" combodatacol="NAME"/>
+                <Cell col="7" text="bind:USE_GUBUN" textAlign="center" displaytype="combotext" combodataset="ds_purpose" combocodecol="CODE" combodatacol="NAME"/>
+                <Cell col="8" text="bind:REQUEST_QTY" textAlign="center"/>
+                <Cell col="9" text="bind:REQUEST_DATETIME" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_hr123_01">
+        <ColumnInfo>
+          <Column id="CK" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="BUSENM" type="STRING" size="256"/>
+          <Column id="JIKWINM" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="REQUEST_DATETIME" type="STRING" size="256"/>
+          <Column id="REQUEST_GUBUN" type="STRING" size="256"/>
+          <Column id="REQUEST_QTY" type="STRING" size="256"/>
+          <Column id="USE_GUBUN" type="STRING" size="256"/>
+          <Column id="COMPLETE_USER" type="STRING" size="256"/>
+          <Column id="COMPLETE_DATETIME" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="REQUEST_ID" type="STRING" size="256"/>
+          <Column id="PHONE_NUMBER" type="STRING" size="256"/>
+          <Column id="PRT_BTN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_hr123_03">
+        <ColumnInfo>
+          <Column id="BALNO" type="STRING" size="256"/>
+          <Column id="JMGB" type="STRING" size="256"/>
+          <Column id="QTY" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="SIN" type="STRING" size="256"/>
+          <Column id="YMD" type="STRING" size="256"/>
+          <Column id="YONGDO" type="STRING" size="256"/>
+          <Column id="UPDATE_ID" type="STRING" size="256"/>
+          <Column id="UPDATE_DT" type="STRING" size="256"/>
+          <Column id="PRT_BTN" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="PRT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_type">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">재직증명서</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">경력증명서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_purpose">
+        <ColumnInfo>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="NAME">은행제출용</Col>
+            <Col id="CODE">01</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">비자발급용</Col>
+            <Col id="CODE">02</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">학교제출용</Col>
+            <Col id="CODE">03</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">회사제출용</Col>
+            <Col id="CODE">04</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">보험사제출용</Col>
+            <Col id="CODE">05</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">카드발급용</Col>
+            <Col id="CODE">06</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">관공서제출용</Col>
+            <Col id="CODE">07</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">금융사제출용</Col>
+            <Col id="CODE">08</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">EBS제출용</Col>
+            <Col id="CODE">09</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">교육인적자원부제출용</Col>
+            <Col id="CODE">10</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">기타</Col>
+            <Col id="CODE">99</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+var arr_rt;
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+this.HR123F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+	
+	this.getData_all();
+};
+
+this.getData_all = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr123_all.jsp";
+	in_ds = "ds_hr123_01=ds_hr123_01 ds_hr123_03=ds_hr123_03";
+	out_ds = "ds_hr123_01=ds_hr123_01 ds_hr123_03=ds_hr123_03";
+	str_arg = "strGUBUN='1'";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_01", true, "S", false,this);
+}
+
+this.getData_list1 = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr123_01.jsp";
+	in_ds = "ds_hr123_01=ds_hr123_01";
+	out_ds = "ds_hr123_01=ds_hr123_01";
+	str_arg = "strGUBUN='1'";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+}
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.grd_list1_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var i;
+	if (e.col == 0)
+	{
+		var nVal = this.grd_list1.getCellProperty("head","0","text");
+		if (nVal == "0") 
+		{
+			nVal = "1";
+		}
+		else
+		{
+			nVal = "0";
+		}
+		
+		this.grd_list1.setCellProperty("head","0","text",nVal);
+		for (i = 0; i < this.ds_hr123_01.getRowCount(); i ++)
+		{
+			this.ds_hr123_01.setColumn(i,"CK",nVal);
+		}		
+	}
+};
+
+
+this.btn_approval_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_hr123_01.jsp";
+	in_ds = "ds_hr123_01=ds_hr123_01:U";
+	out_ds = "ds_hr123_01=ds_hr123_01";
+	str_arg = "UPDATE_ID='"+ nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN") +"'";
+			  
+	this.gfn_TransactionP("approval", str_url, in_ds, out_ds, str_arg, "Callback_approval", true, "U", false,this);
+};
+
+this.Callback_approval = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.getData_list1();
+}
+
+this.getData_list2 = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr123_03.jsp";
+	in_ds = "ds_hr123_03=ds_hr123_03";
+	out_ds = "ds_hr123_03=ds_hr123_03";
+	str_arg = "";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+}
+
+this.btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var dt = new Date;
+	var nRow = this.ds_hr123_03.addRow();
+	
+	this.ds_hr123_03.setColumn(nRow,"YMD",dt);
+	this.ds_hr123_03.setColumn(nRow,"QTY",1);
+	this.ds_hr123_03.setColumn(nRow,"PRT","N");
+};
+
+this.btn_search_insa_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+	objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+	this.addChild("sInsa",objNew);
+	objNew.set_openalign("center middle");		
+	objNew.set_showtitlebar(false);
+	objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_insa);
+};
+
+this.fn_Callback_insa = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_sabun.set_value(arr_rt[0]);
+		this.edt_name.set_value(arr_rt[1]);
+		this.edt_busenm.set_value(arr_rt[3]);
+		this.edt_jikwinm.set_value(arr_rt[4]);
+	}	
+	this.removeChild("sInsa");
+	
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.edt_sabun.value) == true)
+	{
+		this.alert("신청인을 선택하세요..!!");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.cb_type.value) == true)
+	{
+		this.alert("증명구분을 선택하세요..!!");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.cb_purpose.value) == true)
+	{
+		this.alert("용도를 선택하세요..!!");
+		return false;
+	}
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_hr123_dml.jsp";
+	in_ds = "ds_hr123_03=ds_hr123_03:U";
+	out_ds = "ds_hr123_03=ds_hr123_03";
+	str_arg = "UPDATE_ID='" + nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN") +"'";;
+			  
+	this.gfn_TransactionP("delete", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "U", false,this);
+};
+
+this.Callback_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.getData_list1();
+}
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var confirm_result = objApp.confirm("삭제된 데이터는 복원하실수 없습니다.\n" + this.edt_no.value + " 자료를 정말 삭제하게요..?","삭제","warning");
+	
+	this.ds_hr123_03.deleteRow(this.ds_hr123_03.rowposition);
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_hr123_dml.jsp";
+	in_ds = "ds_hr123_03=ds_hr123_03:U";
+	out_ds = "ds_hr123_03=ds_hr123_03";
+	str_arg = "UPDATE_ID='" + nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN") +"'";;
+			  
+	this.gfn_TransactionP("delete", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "D", false,this);
+};
+
+this.grd_list2_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if (e.col == 9)
+	{
+		var permission = this.getPermission_print();
+	
+		if (permission == false)
+		{
+			this.alert("권한이 없습니다.");
+			return false;
+		}
+		
+		if (this.cb_type.value == "1")
+		{
+			this.fn_prt1();
+		}
+		else
+		{
+			this.fn_prt2();
+		}
+		
+		this.ds_hr123_03.setColumn(e.row,"PRT","Y");
+		var str_url, in_ds, out_ds, str_arg;
+		str_url = "JSP/hr/setData_hr123_dml.jsp";
+		in_ds = "ds_hr123_03=ds_hr123_03:U";
+		out_ds = "ds_hr123_03=ds_hr123_03";
+		str_arg = "UPDATE_ID='" + nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN") +"'";
+		//str_arg = "UPDATE_ID='C17011'";
+		
+			  
+		this.gfn_TransactionP("update", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "P", false,this);
+	}
+};
+
+this.fn_prt1 = function()
+{
+	var rDate = this.cald_bymd.value;
+	var rdUrl;
+	var rdParam = "/rp ["+this.edt_no.value+"]";
+	
+	// 2018년 이후 발급분에 대해서만 최정민 신임 회장님이 대표이사
+	if (rDate <= "20171231") rdUrl = gv_svcUrl+"rpt/hr/HR124P_01.mrd";
+	else if (rDate < "20210901") rdUrl = gv_svcUrl+"rpt/hr/HR124P_01_2018.mrd";
+	else rdUrl = gv_svcUrl+"rpt/hr/HR124P_01_2021.mrd";
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,100,100,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("재직증명서");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(true);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+}
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+};
+
+this.fn_prt2 = function()
+{
+	var rDate = this.cald_bymd.value;
+	var rdUrl = "";
+	var rdParam = "/rp ["+this.edt_no.value+"]";
+	
+	// 2018년 이후 발급분에 대해서만 최정민 신임 회장님이 대표이사
+	if (rDate <= '20171231') rdUrl = gv_svcUrl+"rpt/hr/HR124P_02.mrd";
+	else if (rDate < '20210901') rdUrl = gv_svcUrl+"rpt/hr/HR124P_02_2018.mrd";
+	else rdUrl = gv_svcUrl+"rpt/hr/HR124P_02_2021.mrd";
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,100,100,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("경력증명서");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(true);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+}
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="cald_bymd" propid="value" datasetid="ds_hr123_03" columnid="YMD"/>
+      <BindItem id="item1" compid="edt_no" propid="value" datasetid="ds_hr123_03" columnid="BALNO"/>
+      <BindItem id="item2" compid="edt_sabun" propid="value" datasetid="ds_hr123_03" columnid="SABUN"/>
+      <BindItem id="item3" compid="edt_name" propid="value" datasetid="ds_hr123_03" columnid="SIN"/>
+      <BindItem id="item4" compid="edt_busenm" propid="value" datasetid="ds_hr123_03" columnid="BUSE"/>
+      <BindItem id="item5" compid="edt_jikwinm" propid="value" datasetid="ds_hr123_03" columnid="JIKWI"/>
+      <BindItem id="item6" compid="cb_type" propid="value" datasetid="ds_hr123_03" columnid="JMGB"/>
+      <BindItem id="item7" compid="cb_purpose" propid="value" datasetid="ds_hr123_03" columnid="YONGDO"/>
+      <BindItem id="item8" compid="sp_qty" propid="value" datasetid="ds_hr123_03" columnid="QTY"/>
+    </Bind>
+  </Form>
+</FDL>

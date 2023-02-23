@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[.Grid .body .row .cell.prsubColor
+{
+	background : #cceadc;
+	font : bold 10pt "Arial";
+}
+
+]]></XCSS>

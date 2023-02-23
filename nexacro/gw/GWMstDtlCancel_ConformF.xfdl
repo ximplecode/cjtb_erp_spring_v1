@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GWMstDtlCancel_ConformF" width="280" height="90" titletext="New Form" onload="GWMstDtlCancel_ConformF_onload">
+    <Layouts>
+      <Layout height="90" width="280">
+        <Static id="Static00" taborder="0" left="10" top="10" width="260" height="35" border="1px solid dimgray" padding="0px 0px 0px 20px" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Button id="btn_dtl" taborder="1" text="내용" left="20" top="55" width="55" height="22" background="#ffffff" textAlign="center" color="black" onclick="btn_dtl_onclick"/>
+        <Button id="btn_mst" taborder="2" text="전체" left="110" top="55" width="55" height="22" background="#ffffff" textAlign="center" color="black" onclick="btn_mst_onclick"/>
+        <Button id="btn_close" taborder="3" text="취소" left="200" top="55" width="55" height="22" background="#ffffff" textAlign="center" color="black" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.GWMstDtlCancel_ConformF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.Static00.set_text(this.parent.arg);
+};
+
+this.btn_dtl_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("dtl");
+};
+
+this.btn_mst_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("mst");
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6310P_GRID4" width="1370" height="720" titletext="New Form" onsize="SD6310F_GRID4_onsize" ontimer="SD6310F_GRID4_ontimer">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1370">
+        <Grid id="SD6310P_GRID4" taborder="0" binddataset="ds_4" height="100.00%" top="0" formatid="default" cellmovingtype="col" cellsizebandtype="allband" cellsizingtype="both" left="0%" right="0%" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="250"/>
+                <Column size="80"/>
+                <Column size="40"/>
+                <Column size="300"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="90"/>
+                <Column size="60"/>
+                <Column size="70"/>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="130"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="총판코드" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="1" rowspan="2" text="총판명" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="2" rowspan="2" text="도서코드" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="3" rowspan="2" text="년판" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="4" rowspan="2" text="도서명" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="5" rowspan="2" text="시행일자" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="6" rowspan="2" text="출고율" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="7" rowspan="2" text="정가" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="8" colspan="3" font="11px/normal &quot;Gulim&quot;" text="반품"/>
+                <Cell col="11" rowspan="2" text="적용구분" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="12" rowspan="2" text="비고" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="8" text="허용여부" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="9" text="반품기한" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="10" text="한도율" font="11px/normal &quot;Gulim&quot;"/>
+              </Band>
+              <Band id="body" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''">
+                <Cell expr="CUST_GB+'-'+CUST_CD" suppress="1" textAlign="center"/>
+                <Cell col="1" text="bind:CUST_NM" suppress="1"/>
+                <Cell col="2" textAlign="center" suppressalign="first" font="11px/normal &quot;Gulim&quot;" text="bind:BOOK_CD"/>
+                <Cell col="3" text="bind:YY" suppressalign="first" font="11px/normal &quot;Gulim&quot;" textAlign="center"/>
+                <Cell col="4" font="11px/normal &quot;Gulim&quot;" text="bind:B_NM"/>
+                <Cell col="5" font="11px/normal &quot;Gulim&quot;" displaytype="mask" maskeditformat="####-##-##" maskedittype="string" textAlign="center" text="bind:SYMD"/>
+                <Cell col="6" font="11px/normal &quot;Gulim&quot;" text="bind:CYUL" textAlign="right" displaytype="number"/>
+                <Cell col="7" font="11px/normal &quot;Gulim&quot;" text="bind:CCOST" textAlign="right" displaytype="number"/>
+                <Cell col="8" font="11px/normal &quot;Gulim&quot;" textAlign="center" expr="B_YN=='0'?'적용안함':B_YN=='1'?'반품한도':'반품적용'"/>
+                <Cell col="9" font="11px/normal &quot;Gulim&quot;" textAlign="center" text="bind:B_GYMD" displaytype="mask" maskeditformat="####-##-##" maskedittype="string"/>
+                <Cell col="10" font="11px/normal &quot;Gulim&quot;" textAlign="right" text="bind:B_YUL" displaytype="number"/>
+                <Cell col="11" font="11px/normal &quot;Gulim&quot;" expr="JUK_GB=='0'?'적용':JUK_GB=='1'?'단가':JUK_GB=='2'?'출고율':'적용안함'" textAlign="center"/>
+                <Cell col="12" font="11px/normal &quot;Gulim&quot;" text="bind:BIGO"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+/*
+this.SD6310P_GRID4_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.SD6310P_GRID4_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.SD8101F_GRID1);
+};
+*/
+]]></Script>
+  </Form>
+</FDL>

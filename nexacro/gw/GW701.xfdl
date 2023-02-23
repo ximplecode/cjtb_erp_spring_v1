@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GW701" width="370" height="220" titletext="New Form" onload="GW701_onload">
+    <Layouts>
+      <Layout height="220" width="370">
+        <Static id="Static00_00" taborder="0" text="신청일자" left="18" top="18" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00_00" taborder="1" text="직인종류" left="18" top="50" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00_01" taborder="2" text="제목" left="18" top="81" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Edit id="edt_title" taborder="3" left="99" top="81" width="245" height="30"/>
+        <Static id="Static00_00_01_00" taborder="4" text="상태" left="18" top="112" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Combo id="cb_status" taborder="5" text="전체" left="99" top="112" width="245" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" value="">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn"/>
+                <Col id="datacolumn">전체</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">승인</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">9</Col>
+                <Col id="datacolumn">미승인</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">0</Col>
+                <Col id="datacolumn">기각</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Static id="Static00_00_01_01" taborder="6" text="작성자" left="18" top="143" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Combo id="cb_kind" taborder="7" left="99" top="50" width="245" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">03</Col>
+                <Col id="datacolumn">법인인감(회장)</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">01</Col>
+                <Col id="datacolumn">법인인감(사장)</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">02</Col>
+                <Col id="datacolumn">사용인감</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+        <Edit id="edt_name" taborder="8" left="100" top="143" width="245" height="30" enable="true"/>
+        <Calendar id="cal_sDate" taborder="9" left="100" top="18" width="120" height="30"/>
+        <Calendar id="cal_eDate" taborder="10" left="222" top="18" width="120" height="30"/>
+        <Button id="btn_close" taborder="11" text="닫기" left="190" top="183" height="29" right="110" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Button id="btn_search" taborder="12" text="조회" left="110" top="183" height="29" right="190" font="normal bold 10pt/normal &quot;Arial&quot;" escapebutton="true" onclick="btn_search_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_sabun, gv_name;
+
+this.GW701_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var d = new Date(); 
+	var today = Eco.date.getMaskFormatString(d, "yyyyMMdd");
+	
+	gv_sabun = this.parent.p_sabun;
+	gv_name = this.parent.p_name;
+	
+	this.edt_name.set_value(gv_name);
+	
+	this.cal_sDate.set_value(today.substr(0,6) + "01");
+	this.cal_eDate.set_value(today);
+	
+	if(this.opener.name == "GW700")
+		this.edt_name.set_enable(false);
+	else if(this.opener.name == "GW710")
+		this.cb_status.set_value("9");
+};
+
+//조회
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.cal_sDate.value == "")
+	{
+		alert("검색 시작일자를 입력하세요.");
+		this.cal_sDate.setFocus();
+		return false;
+	}
+	
+	if(this.cal_eDate.value == "")
+	{
+		alert("검색 종료일자를 입력하세요.");
+		this.cal_eDate.setFocus();
+		return false;
+	}
+	
+	var strUrl = "JSP/gw/GW700_select.jsp";
+	var inds = "ds_i_flow_seal=ds_i_flow_seal";
+	var outds = "ds_i_flow_seal=ds_i_flow_seal";
+	var strArg ="sabun=" + nexacro.wrapQuote(this.gv_sabun) + 
+				" sdate="+ nexacro.wrapQuote(this.cal_sDate.value) + 
+				" edate="+ nexacro.wrapQuote(this.cal_eDate.value) + 
+				" gubn_code="+ nexacro.wrapQuote(this.cb_kind.value) + 
+				" title="+ nexacro.wrapQuote(nexacro.trim(this.edt_title.text)) + 
+				" status="+ nexacro.wrapQuote(this.cb_status.value) + 
+				" name="+ nexacro.wrapQuote(nexacro.trim(this.edt_name.text)) + 
+				" i_flow_id=''";
+	
+	this.gfn_TransactionP("select", strUrl, inds, outds, strArg, "fnSelectCallback", false, "P", false, this);
+};
+
+this.fnSelectCallback = function()
+{
+	this.opener.ds_i_flow_seal.copyData(this.ds_i_flow_seal);
+	this.close(1);
+}
+
+//닫기
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_i_flow_seal">
+        <ColumnInfo>
+          <Column id="FS_ID" type="INT" size="256"/>
+          <Column id="FS_DATE" type="STRING" size="256"/>
+          <Column id="FS_GUBN_CODE" type="STRING" size="256"/>
+          <Column id="FS_TITLE" type="STRING" size="256"/>
+          <Column id="FS_USE" type="STRING" size="256"/>
+          <Column id="FS_BUSECD" type="STRING" size="256"/>
+          <Column id="FS_BUSENM" type="STRING" size="256"/>
+          <Column id="FS_SABUN" type="STRING" size="256"/>
+          <Column id="FS_NAME" type="STRING" size="256"/>
+          <Column id="FS_ORDER_DATE1" type="STRING" size="256"/>
+          <Column id="FS_ORDER_SABUN1" type="STRING" size="256"/>
+          <Column id="FS_ORDER_NAME1" type="STRING" size="256"/>
+          <Column id="FS_ORDER_DATE2" type="STRING" size="256"/>
+          <Column id="FS_ORDER_SABUN2" type="STRING" size="256"/>
+          <Column id="FS_ORDER_NAME2" type="STRING" size="256"/>
+          <Column id="FS_BIGO" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="INT" size="256"/>
+          <Column id="CO_SEQ" type="STRING" size="256"/>
+          <Column id="FS_STATUS" type="STRING" size="256"/>
+          <Column id="FS_STATUS_NM" type="STRING" size="256"/>
+          <Column id="CUST_CODE" type="STRING" size="256"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="F_TYPE" type="STRING" size="256"/>
+          <Column id="OPEN_CHECK" type="STRING" size="256"/>
+          <Column id="F_CONTENT" type="STRING" size="256"/>
+          <Column id="FS_CONTRACT" type="STRING" size="256"/>
+          <Column id="F_PATH" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

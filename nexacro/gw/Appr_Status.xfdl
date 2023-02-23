@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Files" width="710" height="310" titletext="전자결재 결재현황" onload="Files_onload">
+    <Layouts>
+      <Layout height="310" width="710">
+        <Grid id="grd_appr_status" taborder="3" left="1" top="45" height="255" right="1" binddataset="ds_elec_status" treeusebutton="use" treeusecheckbox="false" treeinitstatus="expand,all">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="89"/>
+                <Column size="40"/>
+                <Column size="93"/>
+                <Column size="77"/>
+                <Column size="176"/>
+                <Column size="73"/>
+                <Column size="148"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="결재" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="순서" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="성명" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="직위" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" text="부서" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="상태" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="결재일" font="bold 13px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:KIND" font="12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                <Cell col="1" text="bind:SEQ" font="12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                <Cell col="2" font="12px/normal &quot;함초롬돋움&quot;" text="bind:F_NAME" textAlign="center"/>
+                <Cell col="3" font="12px/normal &quot;함초롬돋움&quot;" text="bind:JIKCHAK" textAlign="center"/>
+                <Cell col="4" font="12px/normal &quot;함초롬돋움&quot;" text="bind:BUSOR" textAlign="center"/>
+                <Cell col="5" font="12px/normal &quot;함초롬돋움&quot;" text="bind:STATUS" textAlign="center"/>
+                <Cell col="6" font="12px/normal &quot;함초롬돋움&quot;" text="bind:F_DATE" textAlign="center" displaytype="mask" maskedittype="string" maskeditformat="@@@@-@@-@@ @@:@@"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02" taborder="1" text="결재상세내역" left="42" top="10" width="218" height="41" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;" onclick="Static02_onclick"/>
+        <ImageViewer id="ImageViewer00" taborder="2" left="6" top="12" width="30" height="32" image="url('Img::electric_sign_small.png')" stretch="fixaspectratio" border="0px none"/>
+        <Button id="btn_close" taborder="3" text="닫기" left="610" top="17" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" right="2" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_elec_status">
+        <ColumnInfo>
+          <Column id="KIND" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="F_NEXT" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="F_DATE" type="STRING" size="256"/>
+          <Column id="JIKCHAK" type="STRING" size="256"/>
+          <Column id="BUSOR" type="STRING" size="256"/>
+          <Column id="F_NAME" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="KS_SIGN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.Files_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/gw/getData_elec_status.jsp";
+	in_ds = "ds_elec_status=ds_elec_status";
+	out_ds = "ds_elec_status=ds_elec_status";
+	str_arg = "i_flow_id="+nexacro.wrapQuote(this.parent.dsParam1);
+	
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_select", true, "P", false, this);
+};
+
+this.Callback_select = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		trace("바뀜");
+		this.alert(ErrorMsg);
+		return false;
+	}
+};
+
+]]></Script>
+  </Form>
+</FDL>

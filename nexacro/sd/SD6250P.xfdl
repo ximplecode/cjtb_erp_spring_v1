@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6250P" width="390" height="305" titletext="New Form" onload="SD6250P_onload">
+    <Layouts>
+      <Layout height="305" width="390">
+        <Static id="Static00" taborder="15" text="총판별 출고율 출력" left="20" top="10" color="#7fb39d" font="bold 28px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="310" height="40"/>
+        <Button id="btn_close" taborder="16" text="닫기" top="17" width="45" height="22" right="18" font="8pt/normal &quot;Arial&quot;" onclick="btn_close_onclick"/>
+        <Static id="Static01" taborder="17" text="도서구간" left="12" top="147" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01" taborder="18" left="107" top="147" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="265"/>
+        <Static id="Static01_00" taborder="19" text="~" left="232" top="153" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_01" taborder="20" text="년판구간" left="12" top="175" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_00" taborder="21" left="107" top="175" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="265"/>
+        <Static id="Static01_00_00" taborder="22" text="~" left="172" top="181" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_02" taborder="23" text="도서구분" left="12" top="203" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_01" taborder="24" left="107" top="203" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="265"/>
+        <Static id="Static01_00_01" taborder="25" text="~" left="233" top="209" height="18" textAlign="center" width="14"/>
+        <Static id="Static01_05" taborder="26" text="출력물" left="12" top="259" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_04" taborder="27" left="107" top="259" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="265"/>
+        <MaskEdit id="ed_values6" taborder="5" left="114" top="180" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" textAlign="center" onkillfocus="ed_jukyocd_onkillfocus" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_values7" taborder="6" left="194" top="180" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" textAlign="center" onkillfocus="ed_jukyocd_onkillfocus" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_values8" taborder="7" left="114" top="208" width="32" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="center" onkeydown="common_onkeydown" onkillfocus="ed_values8_onkillfocus"/>
+        <MaskEdit id="ed_values9" taborder="8" left="249" top="208" width="32" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="center" onkeydown="common_onkeydown" onkillfocus="ed_values9_onkillfocus"/>
+        <Static id="Static01_06" taborder="28" text="리스트 검색" left="12" top="63" height="30" background="#3cbcb8" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="360" color="white"/>
+        <Combo id="print_select" taborder="11" text="입금자별입금현황" left="114" top="264" height="20" innerdataset="ds_rpt" datacolumn="DATA" codecolumn="CODE" value="5" index="5" width="105" onkeydown="common_onkeydown"/>
+        <Button id="btn_print" taborder="13" text="출력" top="264" width="45" height="20" font="bold 9pt/normal &quot;Arial&quot;" onclick="btn_print_onclick" left="321" onkeydown="btn_print_onkeydown"/>
+        <MaskEdit id="ed_values4" taborder="3" left="114" top="152" width="90" height="20" type="string" format="@@@@@@@@@@" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_values5" taborder="4" left="254" top="152" width="90" height="20" type="string" format="@@@@@@@@@@" onkeydown="common_onkeydown"/>
+        <Combo id="ed_values8_1" taborder="29" left="145" top="208" width="86" height="20" font="10px/normal &quot;Gulim&quot;" value="" index="-1" innerdataset="ds_bgbrcd_s" codecolumn="INDEX" datacolumn="CD_KEY" text="" onitemchanged="ed_values8_1_onitemchanged" tabstop="false"/>
+        <Combo id="ed_values9_1" taborder="30" left="280" top="208" width="86" height="20" font="10px/normal &quot;Gulim&quot;" value="" index="-1" innerdataset="ds_bgbrcd_e" codecolumn="INDEX" datacolumn="CD_KEY" text="" onitemchanged="ed_values9_1_onitemchanged" tabstop="false"/>
+        <Button id="btn_ip_search" taborder="31" left="205" top="152" width="19" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" tabstop="false" onclick="btn_ip_search_onclick" text=""/>
+        <Button id="btn_ip_search00" taborder="32" left="345" top="152" width="19" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" tabstop="false" onclick="btn_ip_search_onclick" text=""/>
+        <Button id="btn_preview" taborder="12" text="미리보기" top="264" width="55" height="20" font="bold 9pt/normal &quot;Arial&quot;" onclick="btn_preview_onclick" left="231" onkeydown="btn_print_onkeydown"/>
+        <Grid id="grd_view" taborder="33" left="0" top="295" visible="false" right="0" bottom="0" binddataset="ds_data" autofittype="col" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="66"/>
+                <Column size="250"/>
+                <Column size="70"/>
+                <Column size="62"/>
+                <Column size="250"/>
+                <Column size="80"/>
+                <Column size="56"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="56"/>
+                <Column size="80"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="거래처"/>
+                <Cell col="1" rowspan="2" text="거래처명"/>
+                <Cell col="2" rowspan="2" text="도서코드"/>
+                <Cell col="3" rowspan="2" text="년판"/>
+                <Cell col="4" rowspan="2" text="도서명"/>
+                <Cell col="5" rowspan="2" text="시행일자"/>
+                <Cell col="6" rowspan="2" text="출고율"/>
+                <Cell col="7" rowspan="2" text="정가"/>
+                <Cell col="8" colspan="3" text="반품"/>
+                <Cell col="11" rowspan="2" text="적용구분"/>
+                <Cell col="12" rowspan="2" text="비고"/>
+                <Cell row="1" col="8" text="허용여부"/>
+                <Cell row="1" col="9" text="반품기한"/>
+                <Cell row="1" col="10" text="한도율"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CUST_CD" textAlign="center"/>
+                <Cell col="1" text="bind:NAME"/>
+                <Cell col="2" text="bind:BOOK_CD" textAlign="center"/>
+                <Cell col="3" text="bind:YY" textAlign="center"/>
+                <Cell col="4" text="bind:B_NM"/>
+                <Cell col="5" text="bind:SYMD" displaytype="mask" maskeditformat="####-##-##" maskedittype="string" textAlign="center"/>
+                <Cell col="6" text="bind:CYUL" displaytype="number" textAlign="right"/>
+                <Cell col="7" text="bind:CCOST" textAlign="right" displaytype="number"/>
+                <Cell col="8" text="bind:B_YN" expr="B_YN=='0'?'적용안함':B_YN=='1'?'반품한도':'반품적용'" textAlign="center"/>
+                <Cell col="9" text="bind:B_GYMD" textAlign="center" maskedittype="string" maskeditformat="####-##-##"/>
+                <Cell col="10" text="bind:B_YUL" textAlign="right"/>
+                <Cell col="11" text="bind:JUK_GB" expr="JUK_GB=='0'?'적용':JUK_GB=='1'?'단가':JUK_GB=='2'?'출고율':'적용안함'" textAlign="center"/>
+                <Cell col="12" text="bind:BIGO"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01_03" taborder="34" text="총판구분" left="12" top="91" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static01_04" taborder="35" text="업체구간" left="12" top="119" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_02" taborder="36" left="107" top="91" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="265"/>
+        <Static id="Static00_01_03" taborder="37" left="107" top="119" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="265"/>
+        <Static id="Static01_02_00" taborder="38" text="시행일자" left="12" top="231" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_01_00" taborder="39" left="107" top="231" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" text="" width="265"/>
+        <Static id="Static01_00_01_00" taborder="40" text="~" left="213" top="237" height="18" textAlign="center" width="14"/>
+        <Combo id="ed_values1" taborder="0" left="114" top="96" width="105" height="20" innerdataset="ds_code" codecolumn="CODE" datacolumn="NAME" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_values2" taborder="1" left="114" top="124" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" textAlign="center" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_values3" taborder="2" left="194" top="124" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" textAlign="center" onkeydown="common_onkeydown"/>
+        <Static id="Static01_00_00_00" taborder="41" text="~" left="172" top="125" height="18" textAlign="center" width="14"/>
+        <MaskEdit id="ed_values10" taborder="9" left="114" top="236" width="90" height="20" type="string" format="####-##-##" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_values11" taborder="10" left="237" top="236" width="90" height="20" type="string" format="####-##-##" onkeydown="common_onkeydown"/>
+        <CheckBox id="chk_eymd" taborder="14" text="거래중지 총판제외" left="247" top="96" width="120" height="20" value="true"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_rpt">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="DATA" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">N</Col>
+            <Col id="DATA">코드별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">N</Col>
+            <Col id="DATA">도서구분별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">N</Col>
+            <Col id="DATA">시행일자별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">N</Col>
+            <Col id="DATA">OLD코드별</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_bgbrcd_s">
+        <ColumnInfo>
+          <Column id="INDEX" type="STRING" size="256"/>
+          <Column id="CD_KEY" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="INDEX">00</Col>
+            <Col id="CD_KEY">미기재</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">01</Col>
+            <Col id="CD_KEY">SET</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">02</Col>
+            <Col id="CD_KEY">도서1</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">03</Col>
+            <Col id="CD_KEY">도서2</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">04</Col>
+            <Col id="CD_KEY">매절</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">05</Col>
+            <Col id="CD_KEY">연구용</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">06</Col>
+            <Col id="CD_KEY">부록</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">07</Col>
+            <Col id="CD_KEY">시험지</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">08</Col>
+            <Col id="CD_KEY">답지</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">09</Col>
+            <Col id="CD_KEY">카바</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">10</Col>
+            <Col id="CD_KEY">판권</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">11</Col>
+            <Col id="CD_KEY">기타부속물</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">12</Col>
+            <Col id="CD_KEY">카드</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">13</Col>
+            <Col id="CD_KEY">표지</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">14</Col>
+            <Col id="CD_KEY">면지</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">15</Col>
+            <Col id="CD_KEY">Tape</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">16</Col>
+            <Col id="CD_KEY">CD</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">17</Col>
+            <Col id="CD_KEY">DVD</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">18</Col>
+            <Col id="CD_KEY">비디오</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">20</Col>
+            <Col id="CD_KEY">홍보물</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">21</Col>
+            <Col id="CD_KEY">기타</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">30</Col>
+            <Col id="CD_KEY">상품</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_bgbrcd_e">
+        <ColumnInfo>
+          <Column id="INDEX" type="STRING" size="256"/>
+          <Column id="CD_KEY" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="INDEX">00</Col>
+            <Col id="CD_KEY">미기재</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">01</Col>
+            <Col id="CD_KEY">SET</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">02</Col>
+            <Col id="CD_KEY">도서1</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">03</Col>
+            <Col id="CD_KEY">도서2</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">04</Col>
+            <Col id="CD_KEY">매절</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">05</Col>
+            <Col id="CD_KEY">연구용</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">06</Col>
+            <Col id="CD_KEY">부록</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">07</Col>
+            <Col id="CD_KEY">시험지</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">08</Col>
+            <Col id="CD_KEY">답지</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">09</Col>
+            <Col id="CD_KEY">카바</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">10</Col>
+            <Col id="CD_KEY">판권</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">11</Col>
+            <Col id="CD_KEY">기타부속물</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">12</Col>
+            <Col id="CD_KEY">카드</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">13</Col>
+            <Col id="CD_KEY">표지</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">14</Col>
+            <Col id="CD_KEY">면지</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">15</Col>
+            <Col id="CD_KEY">Tape</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">16</Col>
+            <Col id="CD_KEY">CD</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">17</Col>
+            <Col id="CD_KEY">DVD</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">18</Col>
+            <Col id="CD_KEY">비디오</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">20</Col>
+            <Col id="CD_KEY">홍보물</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">21</Col>
+            <Col id="CD_KEY">기타</Col>
+          </Row>
+          <Row>
+            <Col id="INDEX">30</Col>
+            <Col id="CD_KEY">상품</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_data">
+        <ColumnInfo>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BOOK_CD" type="STRING" size="256"/>
+          <Column id="B_NM" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="SYMD" type="STRING" size="256"/>
+          <Column id="CYUL" type="STRING" size="256"/>
+          <Column id="CCOST" type="STRING" size="256"/>
+          <Column id="B_YN" type="STRING" size="256"/>
+          <Column id="B_GYMD" type="STRING" size="256"/>
+          <Column id="B_YUL" type="STRING" size="256"/>
+          <Column id="JUK_GB" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_custcode">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">20</Col>
+            <Col id="NAME">개인</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">21</Col>
+            <Col id="NAME">교판</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">22</Col>
+            <Col id="NAME">속셈</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">23</Col>
+            <Col id="NAME">학원</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">24</Col>
+            <Col id="NAME">서점</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">25</Col>
+            <Col id="NAME">유치</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">26</Col>
+            <Col id="NAME">스쿨</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">27</Col>
+            <Col id="NAME">외주</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">28</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">29</Col>
+            <Col id="NAME">NET</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">30</Col>
+            <Col id="NAME">GGE</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">31</Col>
+            <Col id="NAME">해법</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">32</Col>
+            <Col id="NAME">영어</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">33</Col>
+            <Col id="NAME">I_HB</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">34</Col>
+            <Col id="NAME">과학</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">35</Col>
+            <Col id="NAME">바칼</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">36</Col>
+            <Col id="NAME">우등생논술</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_code">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">20</Col>
+            <Col id="NAME">개인</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">21</Col>
+            <Col id="NAME">교판</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">22</Col>
+            <Col id="NAME">속셈</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">23</Col>
+            <Col id="NAME">학원</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">24</Col>
+            <Col id="NAME">서점</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">25</Col>
+            <Col id="NAME">유치</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">26</Col>
+            <Col id="NAME">스쿨</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">27</Col>
+            <Col id="NAME">외주</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">28</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">29</Col>
+            <Col id="NAME">NET</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">30</Col>
+            <Col id="NAME">GGE</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">33</Col>
+            <Col id="NAME">인터넷</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">36</Col>
+            <Col id="NAME">논술</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">37</Col>
+            <Col id="NAME">학력</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+this.SD6250P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyy");
+	this.print_select.set_index(0);
+	this.ed_values1.setFocus();
+	this.ed_values1.set_index(0);
+	this.ed_values2.set_value("0000");
+	this.ed_values3.set_value("9999");
+	this.ed_values4.set_value("0000000000");
+	this.ed_values5.set_value("9999999999");
+	this.ed_values6.set_value(f_date);
+	this.ed_values7.set_value(f_date);
+	this.ed_values8.set_value("00");
+	this.ed_values9.set_value("99");	
+	this.ed_values10.set_value("19000101");
+	this.ed_values11.set_value("20991231");	
+	this.chk_eymd.set_value(false);	
+};
+
+this.common_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	//Enter Key를 눌렀을 경우 처리
+	if (e.keycode == 13) 
+	{
+		if (obj.name == "ed_values1") this.ed_values2.setFocus();
+		else if (obj.name == "ed_values2") this.ed_values3.setFocus();
+		else if (obj.name == "ed_values3") this.ed_values4.setFocus();	
+		else if (obj.name == "ed_values4") this.ed_values5.setFocus();	
+		else if (obj.name == "ed_values5") this.ed_values6.setFocus();
+		else if (obj.name == "ed_values6") this.ed_values7.setFocus();
+		else if (obj.name == "ed_values7") this.ed_values8.setFocus();
+		else if (obj.name == "ed_values8") this.ed_values9.setFocus();
+		else if (obj.name == "ed_values9") this.ed_values10.setFocus();
+		else if (obj.name == "ed_values10")this.ed_values11.setFocus();
+		else if (obj.name == "ed_values11")this.ed_values12.setFocus();
+		else if (obj.name == "ed_values12")this.ed_values13.setFocus();
+		else if (obj.name == "ed_values13")this.print_select.setFocus();
+	}//ESC 키처리	
+	else if (e.keycode == 27)
+	{
+		if (obj.name == "ed_values2") this.ed_values1.setFocus();
+		else if (obj.name == "ed_values3") this.ed_values2.setFocus();
+		else if (obj.name == "ed_values4") this.ed_values3.setFocus();
+		else if (obj.name == "ed_values5") this.ed_values4.setFocus();
+		else if (obj.name == "ed_values6") this.ed_values5.setFocus();
+		else if (obj.name == "ed_values7") this.ed_values6.setFocus();
+		else if (obj.name == "ed_values8") this.ed_values7.setFocus();
+		else if (obj.name == "ed_values9") this.ed_values8.setFocus();
+		else if (obj.name == "ed_values10") this.ed_values9.setFocus();
+		else if (obj.name == "ed_values11") this.ed_values10.setFocus();
+		else if (obj.name == "ed_values12") this.ed_values11.setFocus();
+		else if (obj.name == "ed_values13") this.ed_values12.setFocus();
+		else if (obj.name == "rd_chk") this.ed_values13.setFocus();
+	}
+	else if (e.keycode == 112)
+	{
+		if (obj.name == "ed_values4") this.btn_sbookcode.click();
+		else if (obj.name == "ed_values5") this.btn_ebookcode.click();
+	}
+};
+
+this.ed_values8_1_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.ed_values8.set_value(this.ed_values8_1.value);
+};
+
+this.ed_values9_1_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.ed_values9.set_value(this.ed_values9_1.value);
+};
+
+this.ed_values8_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	this.ed_values8_1.set_value(this.ed_values8.value);
+};
+
+this.ed_values9_onkillfocus = function(obj:nexacro.MaskEdit,e:nexacro.KillFocusEventInfo)
+{
+	this.ed_values9_1.set_value(this.ed_values9.value);
+};
+
+
+//정렬조건.
+function fnCreate_orderby(ord_index)
+{
+	switch(ord_index)
+	{
+		case 0 : return "A.CUST_CD, A.BOOK_CD";
+				 break;
+		case 1 : return "A.CUST_CD, B.BGBR_CD,A.BOOK_CD";
+				 break;
+		case 2 : return "ORDER BY A.CUST_CD, A.SYMD, A.BOOK_CD";
+				 break;
+		case 3 : return "ORDER BY A.CUST_CD, B.OLD_CODE,A.BOOK_CD";
+				 break;			 
+	}		
+}
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//출력
+	var orderby;
+	var rdfile;
+	var chk_eymd;
+	
+	rdfile  = gv_urlMrd+"/sd/sd6250r.mrd";
+	orderby = fnCreate_orderby(this.print_select.index);	
+	chk_eymd = "";
+   	if ( this.chk_eymd.value == true )
+    	chk_eymd = " AND RTRIM(C.EYMD) IS NULL ";
+	
+	var rdopt  = "/rp ["+this.ed_values1.value+"]"+
+					 "["+this.ed_values2.value+"]"+
+					 "["+this.ed_values3.value+"]"+
+					 "["+this.ed_values4.value+"]"+
+					 "["+this.ed_values5.value+"]"+
+					 "["+this.ed_values6.value+"]"+
+					 "["+this.ed_values7.value+"]"+
+					 "["+this.ed_values8.value+"]"+
+					 "["+this.ed_values9.value+"]"+
+					 "["+this.ed_values10.value+"]"+
+					 "["+this.ed_values11.value+"]"+
+					 "["+orderby+"]"+
+					 "["+chk_eymd+"]";
+	
+	var rect;
+	if(system.navigatorname == 'nexacro')
+	{
+		if(system.monitorcount > 1)
+		{
+			var monitor_index = system.getMonitorIndex(system.clientToScreenX(this,0), system.clientToScreenY(this,0));
+			rect = system.getScreenRect(monitor_index);
+		}
+		else
+			rect = system.getScreenRect(1);
+	}
+	else
+		rect = system.getScreenRect(1);
+
+	var objParam = {rdUrl:rdfile, rdParam:rdopt};
+	var sOpenStyle = "topmost=true autosize=false dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false resizable=true";
+	
+	nexacro.open("search", "sd::SDRDF.xfdl", this.getOwnerFrame(), objParam, sOpenStyle, rect.left, rect.top, rect.width, rect.height, this);
+};
+
+this.btn_preview_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.grd_view.visible == false)
+	{
+		if(system.navigatorname == 'nexacro')
+		{
+			this.getOwnerFrame().set_width(1280);
+			this.getOwnerFrame().set_height(830);
+		}
+		else
+			window.resizeTo(1305,880);
+		this.grd_view.set_visible(true);
+		this.btn_preview.set_text("미리보기 닫기");
+		this.btn_preview.set_width(80);
+		this.fnPreview();
+	}
+	else
+	{
+		if(system.navigatorname == 'nexacro')
+		{
+			this.getOwnerFrame().set_width(390);
+			this.getOwnerFrame().set_height(315);
+		}
+		else
+			window.resizeTo(415,365);
+		this.grd_view.set_visible(false);
+		this.btn_preview.set_text("미리보기");
+		this.btn_preview.set_width(55);
+	}
+};
+
+this.fnPreview = function()
+{
+	orderby = fnCreate_orderby(this.print_select.index);	
+	chk_eymd = "";
+   	if ( this.chk_eymd.value == true )
+    	chk_eymd = " AND RTRIM(C.EYMD) IS NULL ";
+		
+	var strUrl = "";
+	var strDs = "";
+
+	strUrl = "JSP/sd/SD6250P_SELECT.jsp";
+	strDs = "ds_data=ds_data";
+	
+	var strArg = " custgb="+nexacro.wrapQuote(nexacro.trim(this.ed_values1.value))+
+				 " cust_scode="+nexacro.wrapQuote(nexacro.trim(this.ed_values2.value))+
+				 " cust_ecode="+nexacro.wrapQuote(nexacro.trim(this.ed_values3.value))+
+				 " book_scode="+nexacro.wrapQuote(nexacro.trim(this.ed_values4.value))+
+				 " book_ecode="+nexacro.wrapQuote(nexacro.trim(this.ed_values5.value))+
+				 " syy="+nexacro.wrapQuote(nexacro.trim(this.ed_values6.value))+
+				 " eyy="+nexacro.wrapQuote(nexacro.trim(this.ed_values7.value))+
+				 " sbgbr_cd="+nexacro.wrapQuote(nexacro.trim(this.ed_values8.value))+
+				 " ebgbr_cd="+nexacro.wrapQuote(nexacro.trim(this.ed_values9.value))+
+				 " ssymd="+nexacro.wrapQuote(nexacro.trim(this.ed_values10.value))+
+				 " esymd="+nexacro.wrapQuote(nexacro.trim(this.ed_values11.value))+
+				 " orderby="+nexacro.wrapQuote(nexacro.trim(orderby))+
+				 " chk_eymd="+nexacro.wrapQuote(nexacro.trim(chk_eymd));
+	this.gfn_TransactionP("search", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+}
+
+this.fnCallback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if(nErrorCode != 0)
+	{
+		alert(strErrorMag);
+		return;
+	}
+}
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+]]></Script>
+  </Form>
+</FDL>

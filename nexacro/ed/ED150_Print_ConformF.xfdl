@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED150_Print_ConformF" width="190" height="220" titletext="New Form" locale="aa_DJ">
+    <Layouts>
+      <Layout height="220" mobileorientation="landscape" width="190">
+        <Static id="Static02" taborder="0" text="인쇄 선택" left="10" top="10" width="142" height="30" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <ImageViewer id="ImgClose" taborder="1" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" onclick="ImgClose_onclick" bottom="82.00%" right="6.84%"/>
+        <Button id="btn1" taborder="2" text="표준계약서 품의서" top="60" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="140" right="25" onclick="btn1_onclick"/>
+        <Button id="btn1_00" taborder="3" text="표준계약서 (공저자)" top="95" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="140" right="25" onclick="btn1_onclick" enable="false"/>
+        <Button id="btn1_01" taborder="4" text="표준계약서 (개별저자)" top="130" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="140" right="25" onclick="btn1_onclick" enable="false"/>
+        <Button id="btn1_02" taborder="5" text="전자계약서 보기" top="165" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="140" right="25" onclick="btn1_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.btn1_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(obj.getDisplayText());
+};
+]]></Script>
+  </Form>
+</FDL>

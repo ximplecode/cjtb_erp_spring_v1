@@ -1,0 +1,762 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD8110F" width="1400" height="1200" titletext="New Form" onload="SD8110F_onload">
+    <Layouts>
+      <Layout height="1200" width="1400">
+        <Static id="Static01" taborder="21" text="작업구간" left="25" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127"/>
+        <Static id="Static00_01" taborder="10" left="Static01:-2" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="290"/>
+        <Static id="Static06" taborder="22" text="업체코드(선택)" left="25" top="88" height="263" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127"/>
+        <Static id="Static00_01_00_00_00_00_00" taborder="23" left="Static06:-2" top="88" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="701"/>
+        <Grid id="Grid0" taborder="18" left="Static06:-2" top="Static00_01_00_00_00_00_00:-2" height="225" binddataset="ds_cgbcust" autofittype="col" autosizingtype="col" border="2px solid #10aea9" width="701">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30"/>
+                <Column size="80"/>
+                <Column size="30"/>
+                <Column size="50"/>
+                <Column size="200"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="선택" displaytype="text"/>
+                <Cell col="1" text="구분"/>
+                <Cell col="2" text="GU"/>
+                <Cell col="3" text="코드"/>
+                <Cell col="4" text="거래처명"/>
+                <Cell col="5" text="사업자번호"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:GBNM"/>
+                <Cell col="2" text="bind:GUBN"/>
+                <Cell col="3" text="bind:CODE"/>
+                <Cell col="4" text="bind:NAME"/>
+                <Cell col="5" text="bind:F_SAUPNO"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static07" taborder="24" text="업체구분" left="849" top="12" height="301" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="64"/>
+        <Static id="Static08" taborder="25" text="적요" left="1113" top="12" height="301" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="64"/>
+        <Static id="Static03" taborder="29" text="적요코드" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127" left="25"/>
+        <Grid id="grd_ioyh00" taborder="20" left="Static08:-2" top="12" height="301" binddataset="ds_juk" autofittype="col" onheadclick="gr_ioyh_onheadclick" border="2px solid #10aea9" width="204">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="32"/>
+                <Column size="40"/>
+                <Column size="128"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="선택"/>
+                <Cell col="1" text="구분"/>
+                <Cell col="2" text="구분명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:CODE"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static09" taborder="27" text="출력물" top="311" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127" left="849"/>
+        <Static id="Static00_01_00_00_01_00_00" taborder="26" top="311" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" height="40" width="405" left="Static09:-2"/>
+        <Static id="Static00_01_00_00_01" taborder="28" left="Static03:-2" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="288" text=""/>
+        <Static id="Static02" taborder="31" text="업체구간" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="436" width="127"/>
+        <Static id="Static00_01_00_00" taborder="30" left="Static02:-2" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="290" text=""/>
+        <Static id="Static04" taborder="32" text="만기일자" left="436" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127"/>
+        <Static id="Static00_01_00" taborder="33" left="Static04:-2" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="290"/>
+        <Grid id="grd_ioyh" taborder="19" left="Static07:-2" top="12" height="301" binddataset="ds_ccode1" autofittype="col" onheadclick="gr_ioyh_onheadclick" width="204" border="2px solid #10aea9">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="36"/>
+                <Column size="50"/>
+                <Column size="110"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="선택"/>
+                <Cell col="1" text="구분"/>
+                <Cell col="2" text="구분명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:CODE"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Calendar id="ed_work_symd" taborder="0" left="Static01:5" top="17" height="30" width="120" dateformat="yyyy-MM-dd" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Static id="Static10" taborder="34" text="~" left="ed_work_symd:7" top="17" width="20" height="30" textAlign="center"/>
+        <Calendar id="ed_work_eymd" taborder="1" left="Static10:7" top="17" height="30" width="120" dateformat="yyyy-MM-dd" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <MaskEdit id="ed_sgb" taborder="2" left="Static02:5" top="17" width="40" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <MaskEdit id="ed_scode" taborder="3" left="ed_sgb:0" top="17" width="55" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" value="0000" textAlign="center" onkeydown="common_onkeydown" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Button id="btn_Hscust" taborder="35" left="ed_scode:2" top="23" width="19" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" onclick="btn_Hcust_onclick" tabstop="false"/>
+        <MaskEdit id="ed_egb" taborder="4" left="728" top="17" width="40" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <MaskEdit id="ed_ecode" taborder="5" left="ed_egb:0" top="17" width="55" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" value="0000" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Button id="btn_Hecust" taborder="36" left="ed_ecode:2" top="23" width="19" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" onclick="btn_Hcust_onclick" tabstop="false"/>
+        <Static id="Static11" taborder="37" text="~" left="697" top="17" width="19" height="30" textAlign="center"/>
+        <MaskEdit id="ed_ssjuk" taborder="6" left="157" top="55" width="70" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="###" type="string" value="000" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Static id="Static12" taborder="38" text="~" left="ed_ssjuk:15" top="55" width="19" height="30" textAlign="center"/>
+        <MaskEdit id="ed_esjuk" taborder="7" left="Static12:15" top="55" width="70" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="###" type="string" value="000" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Calendar id="ed_mature_symd" taborder="8" left="568" top="55" height="30" width="120" dateformat="yyyy-MM-dd" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Static id="Static13" taborder="39" text="~" left="695" top="55" width="20" height="30" textAlign="center"/>
+        <Calendar id="ed_mature_eymd" taborder="9" left="722" top="55" height="30" width="120" dateformat="yyyy-MM-dd" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Edit id="ed_scust" taborder="12" left="311" top="93" width="120" height="30" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Edit id="ed_name" taborder="13" left="436" top="93" width="320" height="30" onkillfocus="common_kill_focus" onsetfocus="common_set_focus" onkeydown="common_onkeydown"/>
+        <Button id="btn_search" taborder="40" text="검색" left="769" top="93" width="75" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_search_onclick" tabstop="false"/>
+        <Combo id="cmb_print_select" taborder="14" text="일자별 출고현황" left="Static09:5" top="316" width="200" height="30" index="0" value="0" innerdataset="ds_rpt" codecolumn="CODE" datacolumn="DATA" onkillfocus="common_kill_focus" onsetfocus="common_set_focus" onkeydown="common_onkeydown"/>
+        <Button id="btn_printview" taborder="15" text="미리보기" top="318" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="90" visible="true" left="1213" onclick="btn_printview_onclick"/>
+        <Button id="btn_print" taborder="16" text="출력" top="318" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" visible="true" left="1310" onclick="btn_printview_onclick"/>
+        <Div id="Div00" taborder="41" left="1.79%" top="387" height="763" formscrolltype="horizontal" right="1.50%" text="">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Button id="btn_excel" taborder="17" text="엑셀변환" left="92.00%" top="355" height="25" onclick="btn_excel_onclick" font="normal bold 10pt/normal &quot;Arial&quot;" right="1.50%"/>
+        <CheckBox id="C_gymd" taborder="11" text="중지업체제외" left="167" top="98" width="110" height="20" falsevalue="0" truevalue="1" onkeydown="check_onkeydown" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_ccode1">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">교판</Col>
+          </Row>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">속셈</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_juk">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">271</Col>
+            <Col id="NAME">2007년 1학기 선수금</Col>
+          </Row>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">272</Col>
+            <Col id="NAME">2007년 2학기 선수금</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_cgbcust">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="GUBN" type="STRING" size="256"/>
+          <Column id="GBNM" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="F_SAUPNO" type="STRING" size="256"/>
+          <Column id="F_DPNO" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="GUBN">21</Col>
+            <Col id="GBNM">교판</Col>
+            <Col id="CODE">0143</Col>
+            <Col id="NAME">(강남)천지</Col>
+          </Row>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="GUBN">21</Col>
+            <Col id="GBNM">교판</Col>
+            <Col id="CODE">0144</Col>
+            <Col id="NAME">(도봉)백서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_rpt">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="DATA" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="DATA">교판)일자별선수금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="DATA">속셈)일자별선수금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="DATA">자가)일자별수금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="DATA">입금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="DATA">월별)입금현황</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_1" keystring="SYYMM">
+        <ColumnInfo>
+          <Column id="SYYMM" type="STRING" size="256"/>
+          <Column id="S_DATE" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="MYMM" type="STRING" size="256"/>
+          <Column id="CNT" type="STRING" size="256"/>
+          <Column id="MDD" type="STRING" size="256"/>
+          <Column id="U_SUGM" type="FLOAT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_2" keystring="CUST_GB+CUST_CD">
+        <ColumnInfo>
+          <Column id="S_DATE" type="STRING" size="256"/>
+          <Column id="JUN" type="STRING" size="256"/>
+          <Column id="CGB_NAME" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JUK2" type="STRING" size="256"/>
+          <Column id="H_SUGM" type="FLOAT" size="256"/>
+          <Column id="B_SUGM" type="FLOAT" size="256"/>
+          <Column id="D_SUGM" type="FLOAT" size="256"/>
+          <Column id="BM_NO" type="STRING" size="256"/>
+          <Column id="BM_DATE" type="STRING" size="256"/>
+          <Column id="BM_NAME" type="STRING" size="256"/>
+          <Column id="BM_BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_3" keystring="JUKYO_CD">
+        <ColumnInfo>
+          <Column id="S_DATE" type="STRING" size="256"/>
+          <Column id="JUN" type="STRING" size="256"/>
+          <Column id="CGB_NAME" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JUKYO_CD" type="STRING" size="256"/>
+          <Column id="JUK1" type="STRING" size="256"/>
+          <Column id="JUK2" type="STRING" size="256"/>
+          <Column id="H_SUGM" type="FLOAT" size="256"/>
+          <Column id="B_SUGM" type="FLOAT" size="256"/>
+          <Column id="D_SUGM" type="FLOAT" size="256"/>
+          <Column id="BM_NO" type="STRING" size="256"/>
+          <Column id="BM_DATE" type="STRING" size="256"/>
+          <Column id="BM_NAME" type="STRING" size="256"/>
+          <Column id="BM_BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+
+this.SD8110F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+	
+	var     u_yy;
+	var		i,j = 0;
+	var     u_yymm;
+	var     u_ym;
+	var     u_mm;
+	this.ed_work_eymd.set_value(Eco.date.addDate(f_date, -1));
+	u_yy           = f_date;
+	this.ed_work_symd.set_value(u_yy.substr(0,6) + "01");
+	this.ed_mature_symd.set_value(u_yy);
+	this.ed_mature_eymd.set_value(u_yy);
+    this.ed_sgb.set_value("20");
+    this.ed_scode.set_value("0000");
+    this.ed_egb.set_value("37");
+    this.ed_ecode.set_value("9999");
+    this.ed_ssjuk.set_value("000");
+    this.ed_esjuk.set_value("999"); 
+	this.C_gymd.set_value("1"); 
+	
+	var strUrl = "JSP/sd/sel_ccode1.jsp";
+	var strArg 	= "" ;		
+	var strDs 	= "ds_ccode1=ds_ccode1";
+	
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+	
+	strUrl = "JSP/sd/sel_juk.jsp";
+	strArg 	= "" ;
+	strDs 	= "ds_juk=ds_juk"; 
+	
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+};
+
+this.fnCallback = function(svcid, errCode, errMsg)
+{
+	if(svcid == "select")
+	{
+		var objDate = new nexacro.Date();
+		var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+		if(errCode != 0)
+			trace("[PD160_SearchF.fnCallBack(" + f_date + ")] " + svcid +"::"+ errMsg );
+		else
+		{
+			trace('succ');
+		}
+	}
+}
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var U_cgb, U_code, U_name, U_egb, U_jumin, U_gymd;
+    var Find_sw = "N";
+    U_code = this.ed_scust.text;
+    if ( this.ed_scust.text == "" )
+		U_code = "All";
+	U_name   = this.ed_name.text;
+    if ( this.ed_name.text == "" )
+		U_name = "All";
+	var  i = 0;
+	var  j = 0;
+	for( i = 0 ; i < this.ds_ccode1.rowcount; i++ )
+	{
+		if ( this.ds_ccode1.getColumn(i, "CHK") == "1" )
+		{
+			Find_sw = "Y";
+		}
+	}
+	U_cgb = "";
+	U_egb = "";
+	if ( Find_sw == "N" )
+    {
+		U_cgb = this.ed_scust.text.substr(0,2);
+		U_code = this.ed_scust.text.substr(2,4);
+		if ( U_code == "" )
+		{
+			U_code = "All";
+		}  
+    }
+	if ( Find_sw == "Y" )
+    {
+       for( i = 0 ; i < this.ds_ccode1.rowcount; i++ )
+    	{
+			if (( Find_sw == "Y"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+			{
+				U_egb = this.ds_ccode1.getColumn(i, "CODE");
+				Find_sw  = "N";
+			}
+     	}
+    }
+    U_gymd = "";
+    if ( this.C_gymd.value == "1" )
+		U_gymd = "1";
+	U_jumin = "";
+	var strUrl = "JSP/sd/sel_cust.jsp";
+//	var strArg 	= "Gubn="+ quote(U_gb) + " Code=" + quote(U_code)  + " Name='"+Ed_NAME.Text +"'" + " Egb='"+U_egb +"'";
+	var strArg 	= "Cgb='"+ U_cgb + "'"+ " Code='" + U_code + "'" + " Name='" + U_name + "'" + " Egb= '" + U_egb + "'" + " Fjumin= '" + U_jumin + "'" + " Eymd= '" + U_gymd + "'";
+	var strDs = "ds_cgbcust=ds_cgbcust";
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+};
+
+this.btn_Hcust_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.lfn_showModal(obj.name, "", "sd::frmCustList.xfdl", "fnCustlistCallBack", this, 0, 0, 590, 555);
+};
+
+this.fnCustlistCallBack = function(strID, ret)
+{
+	if(ret == null)
+		return;
+	
+	var gubun = ret.substr(0,2);	                      
+	var code =  ret.substr(3,4);
+
+	if(nexacro.trim(ret) != "0"){
+		if (strID == "btn_Hscust") {
+			this.ed_sgb.set_value(gubun);
+			this.ed_scode.set_value(code);
+		}
+		else if (strID = "btn_Hecust") {
+			this.ed_egb.set_value(gubun);
+			this.ed_ecode.set_value(code);
+		}  
+	}
+}
+this.btn_printview_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var  Find1_sw   = "N";
+	var  Find2_sw   = "N";
+	var  Find3_sw   = "N";
+	var  Line_sw    = "N";
+	var  Dol_cust;
+	var  Sd_sql, Sd_sql1, Sd_sql2, Sd_sql3, Sd_sql4, Sd_sql5, Sd_sql6;
+	var  rdfile;   
+	var  i = 0;
+	Sd_sql    =   "";
+	Sd_sql1   =   "";
+	Sd_sql2   =   "";
+	for( i = 0 ; i < this.ds_ccode1.rowcount ; i++ )
+	{
+	    if ( this.ds_ccode1.getColumn(i, "CHK") == "1" )
+		{
+			Find1_sw   = "Y";
+		}
+	}
+	for( i = 0 ; i < this.ds_juk.rowcount ; i++ )
+	{
+	    if ( this.ds_juk.getColumn(i, "CHK") == "1" )
+		{
+			Find2_sw   = "Y";
+		}
+	}
+	for( i = 0 ; i < this.ds_cgbcust.rowcount ; i++ )
+	{
+	    if ( this.ds_cgbcust.getColumn(i, "CHK") == "1" )
+		{
+			Find3_sw   = "Y";
+		}
+	}
+	if(this.ed_mature_symd.value == "" || this.ed_mature_eymd.value == "")
+	{
+		alert("만기일자 등록");
+		return;
+	}
+
+	Sd_sql     =  "    where a.S_DATE >= '" + this.ed_work_symd.value +"'";
+	Sd_sql     = Sd_sql + "    and  a.S_DATE <= '" + this.ed_work_eymd.value +"'";
+	Line_Sw    = "Y";
+	if ( Find3_sw == "Y" )
+	{
+		Sd_sql    = Sd_sql + "    and  A.cust_gb || A.cust_cd in (  ";
+		for( i = 0 ; i < this.ds_cgbcust.rowcount ; i++ )
+		{
+			if (( Line_Sw == "Y"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+			{
+				Dol_cust  =  "'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+				Sd_sql    = Sd_sql +  Dol_cust;
+				Line_Sw   = "N";
+			}
+			else if (( Line_Sw == "N"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+			{
+				Dol_cust  =  ",'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+				Sd_sql    = Sd_sql +  Dol_cust;
+			}
+		}
+		Sd_sql    = Sd_sql + "    )  ";
+	}
+	else if ( Find3_sw == "N" )
+	{
+		Sd_sql    = Sd_sql + "   and a.cust_gb  >= '" + this.ed_sgb.value +"'";
+		Sd_sql    = Sd_sql + "   and a.cust_gb <= '" + this.ed_egb.value +"'";
+		Sd_sql    = Sd_sql + "   and a.cust_cd  >= '" + this.ed_scode.value +"'";
+		Sd_sql    = Sd_sql + "   and a.cust_cd <= '" + this.ed_ecode.value +"'";
+	}
+	Line_Sw    = "Y";
+	if ( Find1_sw == "Y" )
+	{
+		Sd_sql    = Sd_sql + "    and  b.cgb in (  ";
+		for( i = 0 ; i < this.ds_ccode1.rowcount ; i++ )
+		{
+			if (( Line_Sw == "Y"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+			{
+				Sd_sql    = Sd_sql +  "'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+				Line_Sw   = "N";
+			}
+			else if (( Line_Sw == "N"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+			{
+				Sd_sql    = Sd_sql +  ",'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+			}
+		}
+		Sd_sql    = Sd_sql + "    )  ";
+	}
+ 
+	Line_Sw    = "Y";
+	if ( Find2_sw == "Y" )
+	{
+		Sd_sql    = Sd_sql + "    and  a.jukyo_cd in (  ";
+		for( i = 0 ; i < this.ds_juk.rowcount ; i++ )
+		{
+			if (( Line_Sw == "Y"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+			{
+				Sd_sql    = Sd_sql +  "'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+				Line_Sw   = "N";
+			}
+			else if (( Line_Sw == "N"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+			{
+				Sd_sql    = Sd_sql +  ",'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+			}
+		}
+		Sd_sql    = Sd_sql + "    )  ";
+	}
+	else if ( Find2_sw == "N" )
+	{
+		Sd_sql    = Sd_sql + "   and a.jukyo_cd  >= '" + this.ed_ssjuk.value +"'";
+		Sd_sql    = Sd_sql + "   and a.jukyo_cd  <= '" + this.ed_esjuk.value +"'";
+	}
+	if (( this.ed_mature_symd.value != "" ) || ( this.ed_mature_eymd.value != "" ))
+	{    
+		Sd_sql    = Sd_sql + "   and a.u_mdate  >= '" + this.ed_mature_symd.value +"'";
+		Sd_sql    = Sd_sql + "   and a.u_mdate  <= '" + this.ed_mature_eymd.value +"'";
+	}
+	if (( this.ed_mature_symd.value != "" ) || ( this.ed_mature_eymd.value != "" ))
+	{    
+		Sd_sql1    = Sd_sql1 + "   where syymm  >= '" + (this.ed_mature_symd.value).substr(0,6) +"'";
+		Sd_sql1    = Sd_sql1 + "     and syymm  <= '" + (this.ed_mature_eymd.value).substr(0,6) +"'";
+	}
+ 
+ 
+	// 미리보기 변수
+	var strArg = "s_sql="+nexacro.wrapQuote(Sd_sql)+
+				 "s_sql1="+nexacro.wrapQuote(Sd_sql1);
+	strArg += " syymm="+nexacro.wrapQuote((this.ed_mature_symd.value).substr(0,6));
+	strArg += " eyymm="+nexacro.wrapQuote((this.ed_mature_eymd.value).substr(0,6));
+	
+	// 출력 변수
+	var rdopt  = "/rp ["+this.ed_work_symd.value+"]" +
+	                 "["+this.ed_work_eymd.value+"]" + 				
+					 "["+this.ed_sgb.value + this.ed_scode.value+"]" +
+					 "["+this.ed_egb.value + this.ed_ecode.value+"]" +
+					 "["+Sd_sql+"]" +
+					 "["+Sd_sql1+"]" + 
+					 "["+Sd_sql2+"]" ; //속성코드 자리 
+	
+	switch(this.cmb_print_select.index)
+	{
+		case 0:
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_1=ds_1";
+				strArg += "gubn=0";
+				this.gfn_TransactionP("ds_1","JSP/sd/SD8101F_DS1_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD81011r.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "mk::MKRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			break;
+		case 1:
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_1=ds_1";
+				strArg += "gubn=0";	
+				this.gfn_TransactionP("ds_2","JSP/sd/SD8101F_DS1_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD81012r.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "mk::MKRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			break;
+		case 2:
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_1=ds_1";
+				strArg += "gubn=1";
+				this.gfn_TransactionP("ds_3","JSP/sd/SD8101F_DS1_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD81013r.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "mk::MKRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			break;
+		case 3: // mrd 존재하지 않음
+			/* 
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_4=ds_4";
+				this.Div00.set_url("sd::SD8101F_GRID4.xfdl");			
+				this.gfn_TransactionP("ds_4","JSP/sd/SD8101F_DS4_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD8113r.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "mk::MKRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			*/
+			break;
+		case 4: // mrd 존재하지 않음
+			/*
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_5=ds_5";
+				this.Div00.set_url("sd::SD8101F_GRID5.xfdl");
+				this.gfn_TransactionP("ds_5","JSP/sd/SD8101F_DS5_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD8114r.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "mk::MKRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			*/
+			break;
+	}
+};
+
+this.fnCallback = function(Trid, ErroCode, ErrorMsg)
+{
+	if(ErroCode != 0)
+		return;
+		
+	if(Trid == "select")
+	{
+		var objDate = new nexacro.Date();
+		var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+		if(ErroCode != 0)
+			trace("[PD160_SearchF.fnCallBack(" + f_date + ")] " + svcid +"::"+ errMsg );
+		else
+		{
+			trace('succ');
+		}
+	}
+}
+
+this.fnDSCallback = function(Trid, ErroCode, ErrorMsg)
+{
+	if(ErroCode != 0)
+		return;
+
+	if(Trid.substr(0,3) == "ds_" && this.ds_1.rowcount <= 0)  // ds_1만 사용
+	{
+		alert('조회된 데이터가 없습니다.');
+		return;
+	}
+	
+	if(Trid == "ds_1")
+	{
+		this.Div00.set_url();
+		this.Div00.set_url("sd::SD8101F_GRID1.xfdl");
+	}
+	else if(Trid == "ds_2")
+	{
+		this.Div00.set_url();
+		this.Div00.set_url("sd::SD8101F_GRID2.xfdl");
+	}
+	else if(Trid == "ds_3")
+	{
+		this.Div00.set_url();
+		this.Div00.set_url("sd::SD8101F_GRID3.xfdl");
+	}
+	/* // mrd 존재하지않음
+	else if(Trid == "ds_4")
+	{
+		this.Div00.set_url();
+		this.Div00.set_url("sd::SD8101F_GRID4.xfdl");
+	}
+	else if(Trid == "ds_5")
+	{
+		this.Div00.set_url();
+		this.Div00.set_url("sd::SD8101F_GRID5.xfdl");
+	}
+	*/
+}
+
+this.btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var filename;
+	
+	this.exportObj = new ExcelExportObject();
+	if ( this.Div00.url == "sd::SD8110F_GRID1.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID1, "Sheet1!A1");
+		filename = "Excel_1"; } //"일자별 출고현황"
+	else if ( this.Div00.url == "sd::SD8110F_GRID2.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID2, "Sheet1!A1");
+		filename = "Excel_2"; } //"업체별 수금현황"
+	else if ( this.Div00.url == "sd::SD8110F_GRID3.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID3, "Sheet1!A1");
+		filename = "Excel_3"; } //"적요별 수금현황"
+	else if ( this.Div00.url == "sd::SD8110F_GRID4.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID4, "Sheet1!A1");
+		filename = "Excel_4"; } //"만기일별 수금현황"
+	else if ( this.Div00.url == "sd::SD8110F_GRID5.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID5, "Sheet1!A1");
+		filename = "Excel_5"; } //"업체별 어음현황"
+	else if ( this.Div00.url == "sd::SD8110F_GRID6.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID6, "Sheet1!A1");
+		filename = "Excel_6"; } //"업체별 수금현황(월별)"
+	else if ( this.Div00.url == "sd::SD8110F_GRID7.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID7, "Sheet1!A1");
+		filename = "Excel_7"; } //"업체구분별 수금현황(월별)"
+	else if ( this.Div00.url == "sd::SD8110F_GRID8.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID8, "Sheet1!A1");
+		filename = "Excel_8"; } //"업체별만기일별수금현황"
+	else if ( this.Div00.url == "sd::SD8110F_GRID9.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID9, "Sheet1!A1");
+		filename = "Excel_9"; } //"업체별역송,역장현황"
+	else if ( this.Div00.url == "sd::SD8110F_GRID10.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID10, "Sheet1!A1");
+		filename = "Excel_10"; } //"업체별역송,연장집계"
+	else if ( this.Div00.url == "sd::SD8110F_GRID11.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8110F_GRID11, "Sheet1!A1");
+		filename = "Excel_11"; } //"일자별 수금현황+만기"
+	
+	this.exportObj.set_exporturl(gv_urlXeni); 
+	this.exportObj.set_exportfilename(filename);
+    this.exportObj.exportData();
+};
+
+this.common_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		if(obj.name == 'ed_scode')
+			this.btn_Hscust.click();
+		else if(obj.name == 'ed_ecode')
+			this.btn_Hecust.click();
+		else if(obj.name == 'ed_name')
+			this.btn_search.click();
+		else if(obj.name == 'cmb_print_select')
+			this.cmb_print_select.dropdown();
+	}
+};
+
+this.check_onkeydown = function(obj:nexacro.CheckBox,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13)
+	{
+		if(obj.value == 0) obj.set_value(1);
+		else obj.set_value(0)
+	}
+};
+
+this.common_set_focus = function(obj:nexacro.CheckBox,e:nexacro.SetFocusEventInfo)
+{
+	obj.set_border("2px solid #10aea9");
+};
+
+
+this.common_kill_focus = function(obj:nexacro.CheckBox,e:nexacro.KillFocusEventInfo)
+{
+	obj.set_border("");
+};
+]]></Script>
+  </Form>
+</FDL>

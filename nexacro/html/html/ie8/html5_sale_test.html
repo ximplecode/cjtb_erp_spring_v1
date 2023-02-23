@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html style="margin:0; height: 100%" xmlns:v="urn:schemas-microsoft-com:vml">
+	<head>
+		<meta charset="utf-8">		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, minimum-scale=1.0 user-scalable=yes" />
+		<title>Crownix HTML5 Viewer</title>
+		<script src="../../js/jquery-1.11.0.min.js"></script>
+		<script src="../../js/crownix-viewer.min.js"></script>		
+		<script>src="../../js/crownix-formfield.min.js"</script>
+		<link rel="stylesheet" type="text/css" href="../../css/crownix-viewer.min.css">		
+		<script type="text/javascript">
+			var crownixViewer;
+			function _crownix_createViewer(sUrl,sId,mrd,sparam)
+			{
+				crownixViewer = new m2soft.crownix.Viewer(sUrl, sId );
+				//crownixViewer.hideToolbarItem(["move","zoomin","zoomout","save","ratio","inquery","cancel","print_pdf","first","prev","next","last","sharing"]);
+				//crownixViewer.showToolbarItem(["submit"]);
+				//crownixViewer.hideToolbar();
+				//crownixViewer.hideToolbar();
+				
+				
+				//crownixViewer.useAdjustLetterSpace(true);
+				//crownixViewer.useAdjustCharacterScale(true); // 장평조정 허용 여부
+				crownixViewer.openFile(mrd,sparam,{showPageNum:2});
+				crownixViewer.useWebFont(true); // 서버폰트 사용 영부
+				crownixViewer.hideToolbar();
+
+
+				
+				//return crownixViewer;
+			}
+			
+			function fn_setContents(strData)
+	    	{
+	    		document.getElementById("contents").innerHTML = strData;
+	    	}
+
+	    	function _crownix_nextpage()
+			{
+				crownixViewer.nextPage();
+			}
+
+			function _crownix_prevpage()
+			{
+				crownixViewer.prevPage();
+			}
+
+			// 제출을 눌러서 완료 되었을때 발생하는 이벤트
+			/* var eventHandler = function(event){
+			 	if(event.status){
+			 		alert('success');
+			 	}
+			 	else
+			 		alert('fail : ' + event.message);
+			 }
+			 crownixViewer.bind('submit-finished',eventHandler);*/
+
+			
+		</script>
+	</head>
+	<body style="margin:0; height: 100% ">
+
+		<div id="crownix-viewer" class="center" style="position:absolute; width: 100%; height: 100%"></div>
+		
+		<script>
+			 crownixViewer = new m2soft.crownix.Viewer("http://erpdev.chunjae.co.kr:8283/ReportingServer/service", "crownix-viewer" );
+			 crownixViewer.openFile("http://next.chunjae.co.kr:7010/erpmobile//RPT/SD/CR_SD4175r.mrd","/rp [2019][06][21][0237][C17011][이상인][이상인]  /rformmode [2]",{showPageNum:2})
+
+			 
+			//absolute relative
+			//window.onload = function(){
+			//var viewer = new m2soft.crownix.Viewer('http://erperun.chunjae.co.kr/ReportingServer/service', 'crownix-viewer');				
+        	//viewer.openFile('http://erperun.chunjae.co.kr/elearning/hr/rpt/hr2400_01.mrd', '/rp [201607] []');
+			//};
+		</script>
+	</body>
+</html>

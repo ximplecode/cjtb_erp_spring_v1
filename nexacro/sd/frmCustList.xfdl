@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SDBook_SearchF" width="590" height="550" titletext="New Form" onload="SDBook_SearchF_onload">
+    <Layouts>
+      <Layout height="550" width="590">
+        <Static id="Static00" taborder="0" text="구분" left="16" top="66" width="77" height="30" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Grid id="grd_list" taborder="1" left="16" top="140" width="560" height="400" binddataset="ds_custcode" oncelldblclick="grd_list_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="46"/>
+                <Column size="51"/>
+                <Column size="242"/>
+                <Column size="80"/>
+                <Column size="104"/>
+                <Column size="50"/>
+                <Column size="98"/>
+                <Column size="292"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="구분"/>
+                <Cell col="1" text="코드"/>
+                <Cell col="2" text="상호"/>
+                <Cell col="3" text="대표자"/>
+                <Cell col="4" text="사업자번호"/>
+                <Cell col="5" text="국번"/>
+                <Cell col="6" text="전화"/>
+                <Cell col="7" text="주소"/>
+                <Cell col="8" text="우편번호"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:gubn"/>
+                <Cell col="1" text="bind:code"/>
+                <Cell col="2" text="bind:name"/>
+                <Cell col="3" text="bind:f_dpnm"/>
+                <Cell col="4" text="bind:f_saupno"/>
+                <Cell col="5" text="bind:o_ddd"/>
+                <Cell col="6" text="bind:o_tel"/>
+                <Cell col="7" text="bind:addr"/>
+                <Cell col="8" text="bind:post_cd"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <MaskEdit id="ed_code" taborder="2" left="266" top="66" width="45" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" onkeydown="ed_code_onkeydown"/>
+        <Static id="Static00_00" taborder="3" text="코드" left="187" top="66" width="77" height="30" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_01" taborder="4" text="상호" left="16" top="100" width="77" height="30" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Edit id="ed_sangho" taborder="5" left="95" top="100" width="168" height="30" onkeydown="ed_code_onkeydown"/>
+        <Button id="btn_search" taborder="6" text="조회" top="66" height="64" font="normal bold 10pt/normal &quot;Arial&quot;" width="107" visible="true" left="470" onclick="btn_search_onclick"/>
+        <Static id="Static02" taborder="7" text="거래처 코드 리스트" left="22" top="20" width="248" height="41" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btn_search_all" taborder="8" text="전체목록" top="28" height="24" font="normal bold 10pt/normal &quot;Arial&quot;" width="60" visible="true" left="446" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="9" text="닫기" top="28" height="24" font="normal bold 10pt/normal &quot;Arial&quot;" width="60" visible="true" left="516" onclick="btn_close_onclick"/>
+        <Combo id="cmb_gubun" taborder="10" left="95" top="66" width="91" height="30" innerdataset="ds_gubun" datacolumn="data" codecolumn="code" value="00" text="전체" index="29"/>
+        <CheckBox id="chk_custend" taborder="11" text="거래중지업체 포함" left="318" top="70" width="150" height="20"/>
+        <Static id="Static00_01_00" taborder="12" text="사업자" left="264" top="100" width="77" height="30" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <MaskEdit id="ed_saup" taborder="13" left="342" top="100" width="118" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="###-##-#####" type="string" onkeydown="ed_code_onkeydown"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_sd.xjs";
+
+var F_gubun = "" ; //구분 코드.
+
+ 
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(null);
+};
+
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strArg; 	
+	var code, old_code; 
+	var inds 	= "ds_custcode=ds_custcode";
+	var outds 	= "ds_custcode=ds_custcode";
+	var gubn, chkstop;
+	
+	if (this.cmb_gubun.value =="00") gubn = "null";
+	else gubn = this.cmb_gubun.value;
+	
+	if (this.chk_custend.value == true) chkstop = "";
+	else chkstop = "null";
+	
+	//strArg = "gubun= null Code= null old_Code= null Names= null Saup= null chkstop="+chkstop;
+	if (obj.id =="btn_search_all") strArg = "gubun="+nexacro.wrapQuote("null")+
+											"Code="+nexacro.wrapQuote("null")+
+											"Names="+nexacro.wrapQuote("null")+
+											"Saup="+nexacro.wrapQuote("null")+
+											"chkstop="+nexacro.wrapQuote(chkstop);
+	else strArg = "gubun="+nexacro.wrapQuote(gubn)+
+				  "Code="+nexacro.wrapQuote(this.ed_code.value)+
+				  "Names="+nexacro.wrapQuote(this.ed_sangho.value)+
+				  "Saup="+nexacro.wrapQuote(this.ed_saup.value)+
+				  "chkstop="+nexacro.wrapQuote(chkstop);
+	
+	this.gfn_TransactionP("select_custcode","JSP/sd/select_cust_ac.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+	//Transaction("select_custcode", "ac_bl::select_cust_ac.jsp", inds, outds, strArg, "fnCallback");	
+};
+
+this.fnCallback = function(svcId, ErrorCode, ErrorMsg)
+{
+	if(svcId == "select_custcode"){
+		this.grd_list.setFocus();
+	} 
+}
+
+this.grd_list_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if( this.ds_custcode.getColumn(this.ds_custcode.rowposition, "code").length == 4 )
+		this.close(this.ds_custcode.getColumn(this.ds_custcode.rowposition, "gubn")+":"
+					+this.ds_custcode.getColumn(this.ds_custcode.rowposition, "code"));
+	else
+		this.close(null);
+};
+
+this.ed_code_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13)
+		this.btn_search_onclick(obj);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_custcode">
+        <ColumnInfo>
+          <Column id="gubn" type="STRING" size="256"/>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="f_dpnm" type="STRING" size="256"/>
+          <Column id="f_saupno" type="STRING" size="256"/>
+          <Column id="o_ddd" type="STRING" size="256"/>
+          <Column id="o_tel" type="STRING" size="256"/>
+          <Column id="addr" type="STRING" size="256"/>
+          <Column id="post_cd" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_gubun">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">01</Col>
+            <Col id="data">학습(01)</Col>
+          </Row>
+          <Row>
+            <Col id="code">12</Col>
+            <Col id="data">주간(12)</Col>
+          </Row>
+          <Row>
+            <Col id="code">20</Col>
+            <Col id="data">개인(20)</Col>
+          </Row>
+          <Row>
+            <Col id="code">21</Col>
+            <Col id="data">교판(21)</Col>
+          </Row>
+          <Row>
+            <Col id="code">22</Col>
+            <Col id="data">속셈(22)</Col>
+          </Row>
+          <Row>
+            <Col id="code">23</Col>
+            <Col id="data">학원(23)</Col>
+          </Row>
+          <Row>
+            <Col id="code">24</Col>
+            <Col id="data">서점(24)</Col>
+          </Row>
+          <Row>
+            <Col id="code">25</Col>
+            <Col id="data">유치(25)</Col>
+          </Row>
+          <Row>
+            <Col id="code">26</Col>
+            <Col id="data">스쿨(26)</Col>
+          </Row>
+          <Row>
+            <Col id="code">27</Col>
+            <Col id="data">외주(27)</Col>
+          </Row>
+          <Row>
+            <Col id="code">28</Col>
+            <Col id="data">기타(28)</Col>
+          </Row>
+          <Row>
+            <Col id="code">29</Col>
+            <Col id="data">NET(29)</Col>
+          </Row>
+          <Row>
+            <Col id="code">30</Col>
+            <Col id="data">GGE(30)</Col>
+          </Row>
+          <Row>
+            <Col id="code">31</Col>
+            <Col id="data">해법(31)</Col>
+          </Row>
+          <Row>
+            <Col id="code">32</Col>
+            <Col id="data">영어(32)</Col>
+          </Row>
+          <Row>
+            <Col id="code">33</Col>
+            <Col id="data">고등(33)</Col>
+          </Row>
+          <Row>
+            <Col id="code">34</Col>
+            <Col id="data">과학(34)</Col>
+          </Row>
+          <Row>
+            <Col id="code">35</Col>
+            <Col id="data">독서(35)</Col>
+          </Row>
+          <Row>
+            <Col id="code">36</Col>
+            <Col id="data">논술(36)</Col>
+          </Row>
+          <Row>
+            <Col id="code">37</Col>
+            <Col id="data">학력(37)</Col>
+          </Row>
+          <Row>
+            <Col id="code">38</Col>
+            <Col id="data">교원(38)</Col>
+          </Row>
+          <Row>
+            <Col id="code">39</Col>
+            <Col id="data">쇼핑(39)</Col>
+          </Row>
+          <Row>
+            <Col id="code">13</Col>
+            <Col id="data">캐릭(13)</Col>
+          </Row>
+          <Row>
+            <Col id="code">14</Col>
+            <Col id="data">저작(14)</Col>
+          </Row>
+          <Row>
+            <Col id="code">40</Col>
+            <Col id="data">매입(40)</Col>
+          </Row>
+          <Row>
+            <Col id="code">41</Col>
+            <Col id="data">외주(41)</Col>
+          </Row>
+          <Row>
+            <Col id="code">42</Col>
+            <Col id="data">상품(42)</Col>
+          </Row>
+          <Row>
+            <Col id="code">47</Col>
+            <Col id="data">은행(47)</Col>
+          </Row>
+          <Row>
+            <Col id="code">48</Col>
+            <Col id="data">부서(48)</Col>
+          </Row>
+          <Row>
+            <Col id="code">00</Col>
+            <Col id="data">전체</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

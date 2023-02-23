@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED164F" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00_00" taborder="0" text="지급일자" left="22" top="27" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="1" left="105" top="27" width="125" height="30" value="20220701"/>
+        <Calendar id="cal_Edate" taborder="2" left="236" top="27" width="125" height="30" value="20220729"/>
+        <Button id="btn_search" taborder="3" text="조회" top="27" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="96" onclick="Div00_btn_search_onclick"/>
+        <Button id="btn_print" taborder="4" text="출력" top="27" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="27"/>
+        <Static id="Static00_00_00" taborder="5" text="출력구분" left="369" top="27" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Radio id="rdo_gubun" taborder="6" left="457" top="26" width="223" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" index="0" text="도서별집계" value="1">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">도서별집계</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">도서별상세집계</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Div id="div_grid" taborder="7" left="20" top="65" width="97.19%" height="630" text="">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var rdUrl,rdParam;
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.chkValue())
+	{
+		this.getData();
+	}
+};
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.chkValue())
+	{
+		if(this.rdo_gubun.value == "1")
+			rdUrl = gv_urlMrd + "/ed/ED164.mrd";
+		else
+			rdUrl = gv_urlMrd + "/ed/ED164_3.mrd";
+			
+		rdParam  = "/ragentpath ["+ gv_urlRdDataServer +"]" +
+				   " /rp ["+ this.cal_Sdate.value + "]["+ this.cal_Edate.value +"]";
+				
+		this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1500, 850);
+	}
+};
+
+//입력값 확인
+this.chkValue = function()
+{
+	if(this.cal_Sdate.value == null)
+	{
+		alert("지급일자를 입력해주세요.");
+		this.cal_Sdate.dropdown();
+		return false;
+	}
+	
+	if(this.cal_Edate.value == null)
+	{
+		alert("지급일자를 입력해주세요.");
+		this.cal_Edate.dropdown();
+		return false;
+	}
+	
+	return true;
+}
+
+//데이터 가져오기
+this.getData = function()
+{	
+	var outds, inds, str_url;
+	
+	var strArg = "SDATE="  + nexacro.wrapQuote(this.cal_Sdate.value) 
+			   + " EDATE="  + nexacro.wrapQuote(this.cal_Edate.value);
+		
+	switch(this.rdo_gubun.value) {
+	case "1":
+		this.div_grid.set_url("ed::ED164F_GRID1.xfdl");
+						 
+	    outds = "ds_list=ds_list";
+		inds = "ds_list=ds_list";
+		str_url = "JSP/ed/ed164f_list.jsp";
+		
+		this.gfn_TransactionP("select1", str_url, inds, outds, strArg, "fnSearchCallback", true, "P", false, this);
+		
+		break;
+			
+	case "2":
+		this.div_grid.set_url("ed::ED164F_GRID2.xfdl");
+			
+		outds = "ds_list2=ds_list2";
+		inds = "ds_list2=ds_list2";
+		str_url = "JSP/ed/ed164f_list2.jsp";
+		
+		this.gfn_TransactionP("select2", str_url, inds, outds, strArg, "fnSearchCallback", true, "P", false, this);
+		
+		break;
+		
+	default:
+	}			
+}
+
+this.fnSearchCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else if((svcId == "select1" && this.ds_list.rowcount < 1) || (svcId == "select2" && this.ds_list2.rowcount < 1))
+		alert("조회된 데이터가 없습니다.");
+}
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_list" keystring="SECTION_CODE+ROYALTY_KIND, SECTION_CODE">
+        <ColumnInfo>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKNAME" type="STRING" size="60"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="ROYALTY_KIND" type="STRING" size="1"/>
+          <Column id="BOOK_ROYALTY_KIND" type="STRING" size="11"/>
+          <Column id="SECTION_ROYALTY_KIND" type="STRING" size="6"/>
+          <Column id="ROYALTY_NAME" type="STRING" size="10"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="PRICE" type="INT" size="6"/>
+          <Column id="ROYALTYRATE" type="DECIMAL" size="6"/>
+          <Column id="DELIVERYQTY" type="INT" size="7"/>
+          <Column id="RETURNEDQTY" type="INT" size="7"/>
+          <Column id="CHANGEQTY" type="INT" size="7"/>
+          <Column id="NETSALEQTY" type="INT" size="7"/>
+          <Column id="TOTAL_AMOUNT" type="INT" size="13"/>
+          <Column id="PRE_AMOUNT" type="INT" size="13"/>
+          <Column id="PAYRATE" type="DECIMAL" size="6"/>
+          <Column id="YEAR_PAYAMOUNT" type="INT" size="13"/>
+          <Column id="DOWN_PAYMENT" type="INT" size="13"/>
+          <Column id="MANUSCRIPT_AMOUNT" type="INT" size="13"/>
+          <Column id="REAL_PAYAMOUNT" type="INT" size="13"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_list2">
+        <ColumnInfo>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKNAME" type="STRING" size="60"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="ATHR_NAME" type="STRING" size="30"/>
+          <Column id="ROYALTY_KIND" type="STRING" size="1"/>
+          <Column id="BOOK_ROYALTY_KIND" type="STRING" size="11"/>
+          <Column id="SECTION_ROYALTY_KIND" type="STRING" size="6"/>
+          <Column id="ROYALTY_NAME" type="STRING" size="10"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="PRICE" type="INT" size="6"/>
+          <Column id="ROYALTYRATE" type="DECIMAL" size="6"/>
+          <Column id="DELIVERYQTY" type="INT" size="7"/>
+          <Column id="RETURNEDQTY" type="INT" size="7"/>
+          <Column id="CHANGEQTY" type="INT" size="7"/>
+          <Column id="NETSALEQTY" type="INT" size="7"/>
+          <Column id="TOTAL_AMOUNT" type="INT" size="13"/>
+          <Column id="PRE_AMOUNT" type="INT" size="13"/>
+          <Column id="PAYRATE" type="DECIMAL" size="6"/>
+          <Column id="YEAR_PAYAMOUNT" type="INT" size="13"/>
+          <Column id="DOWN_PAYMENT" type="INT" size="13"/>
+          <Column id="MANUSCRIPT_AMOUNT" type="INT" size="13"/>
+          <Column id="REAL_PAYAMOUNT" type="INT" size="13"/>
+          <Column id="PAYDATE" type="STRING" size="8"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="JOB_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

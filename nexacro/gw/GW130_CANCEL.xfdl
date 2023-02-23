@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="FCancel" width="510" height="270" titletext="전자결재 취소POPUP" onload="Cancel_onload">
+    <Layouts>
+      <Layout height="270" width="510">
+        <Div id="DivCancel" taborder="7" left="0" top="49" width="510" height="221" background="#e8e7e3">
+          <Layouts>
+            <Layout>
+              <Edit id="edCoSeq" taborder="0" left="82" top="8" width="173" height="33" font="12px/normal &quot;함초롬바탕 확장&quot;" enable="false"/>
+              <Edit id="edTitle" taborder="1" left="82" top="43" width="426" height="33" font="10px/normal &quot;함초롬바탕 확장&quot;" enable="false"/>
+              <TextArea id="txaCancel" taborder="2" left="82" top="78" width="426" height="133"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static02" taborder="0" text="결재취소" left="42" top="10" width="167" height="41" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <ImageViewer id="ImageViewer00" taborder="1" left="6" top="12" width="30" height="32" image="url('Img::img_check.png')" stretch="fixaspectratio" border="0px none"/>
+        <Button id="btn_close" taborder="2" text="닫기" left="440" top="17" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" right="2" onclick="btn_close_onclick"/>
+        <Button id="btn_Reg" taborder="3" text="등록" left="370" top="17" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" right="72" onclick="btn_Reg_onclick"/>
+        <Static id="StDocNo" taborder="4" text="문서번호" left="3" top="57" width="77" height="33" background="#7fb39d" textAlign="center" color="#e8e7e3" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Static id="StDocTitle" taborder="5" text="문서제목" left="3" top="92" width="77" height="33" background="#7fb39d" textAlign="center" color="#e8e7e3" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Static id="StCancel" taborder="6" text="취소사유" left="3" top="127" width="77" height="133" background="#7fb39d" textAlign="center" color="#e8e7e3" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+var vI_Flow_Id, rt_value;
+
+this.Cancel_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	vI_Flow_Id = this.parent.dsParam1;
+	this.DivCancel.form.edCoSeq.set_value(this.parent.dsParam2);
+	this.DivCancel.form.edTitle.set_value(this.parent.dsParam3);
+};
+
+this.btn_Reg_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.DivCancel.form.txaCancel.text.length > 0){
+	
+		var str_url, in_ds, out_ds, str_arg;
+		str_url = "JSP/gw/SQL_GW130_CANCEL_TEST.jsp";
+		str_arg = " sabun =" + nexacro.wrapQuote(nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN"));	
+		str_arg += " i_flow_id ="+nexacro.wrapQuote(vI_Flow_Id);
+		str_arg += " i_flow_bigo =" + nexacro.wrapQuote(this.DivCancel.form.txaCancel.text);
+	
+		this.gfn_TransactionP("select", str_url, "", "", str_arg, "Callback_register", true, "P", false, this);
+	}else{
+		alert("취소 사유를 입력 후 처리해 주시기 바랍니다.");
+		this.DivCancel.form.txaCancel.setFocus();
+	}
+};	
+	
+
+this.Callback_register = function(Trid, ErrorCode, ErrorMsg, gv_rt_value)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+	
+	this.close(nexacro.getApplication().gv_rt_value);
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+
+
+
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR660P" width="488" height="136" titletext="New Form">
+    <Layouts>
+      <Layout height="136" width="488">
+        <Button id="Button00" taborder="0" text="조회" left="340" top="18" width="50" height="25"/>
+        <Button id="Button00_00" taborder="1" text="닫기" left="415" top="18" width="50" height="25"/>
+        <Static id="Static00" taborder="2" text="조회년월" left="3" top="58" width="120" height="35" background="#deeafc" border="1px solid" textAlign="center"/>
+        <Static id="Static00_00" taborder="3" text="Static00" left="3" top="Static00:-1" width="120" height="35" background="#92dcda" border="1px solid" textAlign="center"/>
+        <Static id="Static00_01" taborder="4" left="122" top="58" width="358" height="35" background="#b5e7e5" border="1px solid" textAlign="center"/>
+        <Static id="Static00_01_00" taborder="5" left="122" top="92" width="108" height="35" background="#b5e7e5" border="1px solid" textAlign="center"/>
+        <Static id="Static00_00_00" taborder="6" text="Static00" left="229" top="92" width="120" height="35" background="#92dcda" border="1px solid" textAlign="center"/>
+        <Static id="Static00_01_00_00" taborder="7" left="348" top="92" width="132" height="35" background="#b5e7e5" border="1px solid" textAlign="center"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

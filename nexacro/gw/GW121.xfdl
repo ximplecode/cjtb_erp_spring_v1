@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GW121" width="670" height="750" titletext="New Form" font="normal bold 10pt/normal &quot;Arial&quot;" onload="GW121_onload">
+    <Layouts>
+      <Layout height="750" mobileorientation="landscape" width="670">
+        <Grid id="grd_buse" taborder="0" left="9" top="11" binddataset="ds_buse" treeusebutton="use" treeusecheckbox="false" treeinitstatus="expand,all" width="268" height="690" oncellclick="grd_buse_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="222"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:NAME" edittype="tree" displaytype="treeitemcontrol" treelevel="bind:BU_LEVEL" border="0px none #dbdee2" cssclass="CssBuse_tree"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_insa" taborder="1" left="290" top="45" binddataset="ds_insa" autofittype="col" width="145" height="325" oncelldblclick="grd_insa_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="51" band="left"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="직책"/>
+                <Cell col="1" text="성명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:JIKWINM"/>
+                <Cell col="1" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="2" text="성명" left="415" top="10" width="55" height="29" background="#10aea9" color="#ffffff" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center"/>
+        <Edit id="edt_name" taborder="3" left="471" top="10" width="135" height="29" onkeydown="edt_name_onkeydown"/>
+        <Button id="btn_search" taborder="4" top="9" width="49" height="29" background="url('Img::loupe.png') no-repeat center center #3cbcb8" left="608" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="5" text="닫기" top="711" height="29" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" width="83" left="352"/>
+        <Button id="btn_ok" taborder="6" text="확인" top="710" height="29" font="normal bold 10pt/normal &quot;Arial&quot;" width="83" left="259" onclick="btn_ok_onclick"/>
+        <Static id="Static05" taborder="7" left="290" top="22" width="46" height="20"/>
+        <Grid id="Grid00" taborder="8" left="296" top="400" width="361" height="300" oncelldblclick="Grid00_oncelldblclick" binddataset="dsFormpath">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="차수"/>
+                <Cell col="1" text="직책"/>
+                <Cell col="2" text="성명"/>
+                <Cell col="3"/>
+                <Cell col="4"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="currow + 1 + &quot;차&quot;" textAlign="center"/>
+                <Cell col="1" text="bind:POSITION_NAME" textAlign="center"/>
+                <Cell col="2" text="bind:EMPLOYEE_NAME" textAlign="center"/>
+                <Cell col="3" text="bind:POSITION_CODE2" combodataset="dsPosition" combocodecol="CODE" combodatacol="NAME" displaytype="combotext" textAlign="center"/>
+                <Cell col="4" text="bind:POSITION_CODE" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <CheckBox id="CheckBox00" taborder="9" text="결재라인(전결규정)" left="347" top="376" width="259" height="22" color="#3cbcb8" textAlign="center" value="true"/>
+        <Static id="Static01" taborder="10" text="1. 부서장 이상 결재라인은 자동으로&#13;&#10;   설정되며 부서장 직전까지의 &#13;&#10;   결재라인만 설정합니다." left="450" top="70" width="210" height="74" textAlign="left" fittocontents="both" verticalAlign="middle" wordWrap="char" font="bold 10pt/normal &quot;Arial&quot;" onclick="Static01_onclick"/>
+        <Static id="Static01_00" taborder="11" text="2. 결재라인 설정이 이상할 때에는&#13;&#10;    결재라인 초기화를 눌러 다시 &#13;&#10;    등록합니다." left="450" top="134" width="210" height="76" textAlign="left" fittocontents="both" verticalAlign="middle" wordWrap="char" font="bold 10pt/normal &quot;Arial&quot;"/>
+        <Button id="btn_ok00" taborder="12" text="결재라인 초기화" top="211" height="29" font="normal bold 10pt/normal &quot;Arial&quot;" width="200" left="450" onclick="btn_ok00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var f_num, f_fnum, f_EMPLOYEE_ID, f_SECTION_CODE;
+var gds_userinfo = nexacro.getApplication().gds_userinfo;
+
+this.GW121_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	f_num = this.parent.p_fnum;
+	f_fnum = this.parent.p_ffnum;
+	f_EMPLOYEE_ID = this.parent.p_EMPLOYEE_ID;
+	f_SECTION_CODE = this.parent.p_SECTION_CODE;
+
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/common/getdata_buse.jsp";
+	in_ds = "ds_buse=ds_buse";
+	out_ds = "ds_buse=ds_buse";
+	str_arg = "buse_nm=''" ;
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_buse_select", true, "P", false, this);
+	
+};
+
+this.Callback_buse_select = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+	
+	//결재라인 가져오기
+	var str_url = "JSP/gw/SQL_GW121_Select1_v2.jsp";
+	var in_ds = "dsFormpath=dsFormpath";
+	var out_ds = "dsFormpath=dsFormpath";
+	var strArg = "GUBUN=01"
+			   + " F_NUM=" + 0
+			   + " SABUN=" + f_EMPLOYEE_ID;
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, strArg, "fnFormpathApprovalCallback", true, "P", false,this);
+};
+
+this.fnFormpathApprovalCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else if(this.dsFormpath.rowcount == 0)
+		this.fnEmployeeAdd(this.dsFormpath);	//정보가 없을 경우 개인정보 결재라인 추가
+}
+
+this.fnEmployeeAdd = function(obj)
+{
+	var nRow = obj.addRow();
+	
+	obj.setColumn(nRow, "GUBUN" , "01");
+	obj.setColumn(nRow, "F_NUM" , 0);
+	obj.setColumn(nRow, "F_SEQ" , (this.dsFormpath.getMaxNF("F_SEQ").toString()).padLeft(2,"0"));
+	obj.setColumn(nRow, "SABUN" , f_EMPLOYEE_ID);
+	obj.setColumn(nRow, "SECTION_CODE" , gds_userinfo.getColumn(0,"BUSECD"));
+	obj.setColumn(nRow, "SECTION_NAME" , gds_userinfo.getColumn(0,"BUSENM"));
+	obj.setColumn(nRow, "POSITION_CODE" , gds_userinfo.getColumn(0,"JILWICD"));
+	obj.setColumn(nRow, "POSITION_NAME" , gds_userinfo.getColumn(0,"JIKWINM"));
+	obj.setColumn(nRow, "APPROVAL_EMP" , f_EMPLOYEE_ID);
+	obj.setColumn(nRow, "EMPLOYEE_NAME" , gds_userinfo.getColumn(0,"NAME"));
+	
+	if(gds_userinfo.getColumn(0,"TEAM_MANAGER") == f_EMPLOYEE_ID)
+		obj.setColumn(nRow, "POSITION_CODE2", "54");							//부서승인자
+	else if(gds_userinfo.getColumn(0,"DEPARTMENT_MANAGER") == f_EMPLOYEE_ID)
+		obj.setColumn(nRow, "POSITION_CODE2", "53");							//부서장
+	else if(gds_userinfo.getColumn(0,"PART_DIRECTOR") == f_EMPLOYEE_ID)
+		obj.setColumn(nRow, "POSITION_CODE2", "52");							//부문장
+	else if(gds_userinfo.getColumn(0,"GENERAL_MANAGER") == f_EMPLOYEE_ID)
+		obj.setColumn(nRow, "POSITION_CODE2", "51");							//본부장
+}
+
+//부서선택시 직원 정보 가져오기
+this.getData_insa = function(sabun,name,busecd)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/common/getdata_insa.jsp";
+	in_ds = "ds_insa=ds_insa";
+	out_ds = "ds_insa=ds_insa";
+	str_arg = "sabun='"+sabun+"' name='"+name+"' busecd='"+busecd+"'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_insa", true, "P", false,this);
+};
+
+this.Callback_insa = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}else
+	{
+		this.Static05.set_text('[' + this.ds_insa.rowcount + '명]');
+		trace(this.ds_insa.saveXML());
+	}
+
+};
+
+this.grd_buse_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.getData_insa("","",this.ds_buse.getColumn(e.row,"CODE"));
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.edt_name.value) == false)
+	{
+		this.getData_insa("",this.edt_name.value,"");
+	}
+};
+
+this.edt_name_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13)
+	{
+		this.btn_search_onclick(null,null);
+	}
+};
+
+//직원선택 
+this.grd_insa_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if((this.ds_insa.getColumn(e.row, "JIKWICD") == "09")||
+		(this.ds_insa.getColumn(e.row, "JIKWICD") == "10"))
+	{
+		alert("선택할 수 없습니다");
+		return false;
+	}	
+	
+	if((!((f_SECTION_CODE == "28000") ||	
+        (f_SECTION_CODE == "28100") ||
+        (f_SECTION_CODE == "28200") ||
+        (f_SECTION_CODE == "28300") ||
+        (f_SECTION_CODE == "28400") ||
+        (f_SECTION_CODE == "28500") ||
+        (f_SECTION_CODE == "91000"))) && (this.ds_insa.getColumn(e.row, "POSITION_CODE") == "03"))
+	{
+		alert("선택할 수 없습니다");
+		return false;
+	}
+	
+	var i = this.dsFormpath.findRow("APPROVAL_EMP", this.ds_insa.getColumn(e.row, "SABUN"));
+	var fRow, tmp_nRow, tRow;
+	
+	if(i != -1)
+	{
+		alert("결재자에 중복으로 선택 된 사람이 있습니다. \n확인해주세요.");
+		return false;
+	}
+	
+	if(this.dsFormpath.findRow("POSITION_CODE2", "53") == -1)
+		fRow = this.dsFormpath.findRow("POSITION_CODE2", "51");
+	else 
+		fRow = this.dsFormpath.findRow("POSITION_CODE2", "53");
+		
+	if(fRow < 0)
+		fRow = this.dsFormpath.findRow("POSITION_CODE2", "60");
+	if(fRow < 0)
+		fRow = this.dsFormpath.findRow("EMPLOYEE_ID", "C12225");
+		
+	this.dsFormpath_temp.copyData(this.dsFormpath);
+	this.dsFormpath.clearData();
+	
+	tmp_nRow = 0;
+	
+	for(var i=0; i<=this.dsFormpath_temp.rowcount; i++)
+	{
+		tRow = this.dsFormpath.addRow();
+		
+		if(fRow == tRow)
+		{
+			this.dsFormpath.setColumn(tRow, "GUBUN", "01");
+			this.dsFormpath.setColumn(tRow, "F_NUM", 0);
+			this.dsFormpath.setColumn(tRow, "F_SEQ", i+1);
+			this.dsFormpath.setColumn(tRow, "SABUN", f_EMPLOYEE_ID);
+			this.dsFormpath.setColumn(tRow, "SECTION_CODE", this.ds_insa.getColumn(e.row, "BUSECD"));
+			this.dsFormpath.setColumn(tRow, "SECTION_NAME", this.ds_insa.getColumn(e.row, "BUSENM"));
+			this.dsFormpath.setColumn(tRow, "POSITION_CODE", this.ds_insa.getColumn(e.row, "JIKWICD"));
+			this.dsFormpath.setColumn(tRow, "POSITION_NAME", this.ds_insa.getColumn(e.row, "JIKWINM"));
+			this.dsFormpath.setColumn(tRow, "APPROVAL_EMP", this.ds_insa.getColumn(e.row, "SABUN"));
+			this.dsFormpath.setColumn(tRow, "EMPLOYEE_NAME", this.ds_insa.getColumn(e.row, "NAME"));
+			this.dsFormpath.setColumn(tRow, "POSITION_CODE2", "");
+		}else
+		{
+			this.dsFormpath.setColumn(tRow, "GUBUN", "01");
+			this.dsFormpath.setColumn(tRow, "F_NUM", 0);
+			this.dsFormpath.setColumn(tRow, "F_SEQ", i+1);
+			this.dsFormpath.setColumn(tRow, "SABUN", f_EMPLOYEE_ID);
+			this.dsFormpath.setColumn(tRow, "SECTION_CODE", this.dsFormpath_temp.getColumn(tmp_nRow, "SECTION_CODE"));
+			this.dsFormpath.setColumn(tRow, "SECTION_NAME", this.dsFormpath_temp.getColumn(tmp_nRow, "SECTION_NAME"));
+			this.dsFormpath.setColumn(tRow, "POSITION_CODE", this.dsFormpath_temp.getColumn(tmp_nRow, "POSITION_CODE"));
+			this.dsFormpath.setColumn(tRow, "POSITION_NAME", this.dsFormpath_temp.getColumn(tmp_nRow, "POSITION_NAME"));
+			this.dsFormpath.setColumn(tRow, "APPROVAL_EMP", this.dsFormpath_temp.getColumn(tmp_nRow, "APPROVAL_EMP"));
+			this.dsFormpath.setColumn(tRow, "EMPLOYEE_NAME", this.dsFormpath_temp.getColumn(tmp_nRow, "EMPLOYEE_NAME"));
+			this.dsFormpath.setColumn(tRow, "POSITION_CODE2", this.dsFormpath_temp.getColumn(tmp_nRow, "POSITION_CODE2"));
+			tmp_nRow += 1;
+		}
+	
+	}
+};
+
+//결재라인 초기화
+this.btn_ok00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url = "JSP/gw/SQL_GW121_Delete.jsp";
+	var strArg = "GUBUN=01"
+				+ " SABUN=" + f_EMPLOYEE_ID;
+	
+	this.gfn_TransactionP("delete", str_url, "", "", strArg, "fnDeleteCallback", true, "P", false,this);
+				
+};
+
+this.fnDeleteCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else
+	{
+		//결재라인 가져오기
+		var str_url = "JSP/gw/SQL_GW121_Select1_v2.jsp";
+		var in_ds = "dsFormpath=dsFormpath";
+		var out_ds = "dsFormpath=dsFormpath";
+		var strArg = "GUBUN=01"
+				   + " F_NUM=" + 0
+				   + " SABUN=" + f_EMPLOYEE_ID;
+		this.gfn_TransactionP("select", str_url, in_ds, out_ds, strArg, "fnFormpathApprovalCallback", true, "P", false,this);
+	}
+		
+}
+
+//결재자 제거
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell != 3)
+	{
+		if(f_EMPLOYEE_ID == this.dsFormpath.getColumn(e.row, "APPROVAL_EMP"))
+			alert("사용자 본인은 삭제할 수 없습니다.");
+		else if ( (this.dsFormpath.getColumn(e.row, "POSITION_CODE2") == "51") ||
+				 (this.dsFormpath.getColumn(e.row, "POSITION_CODE2") == "53") || 
+				 (this.dsFormpath.getColumn(e.row, "POSITION_NAME") == "부사장") ||
+				 (this.dsFormpath.getColumn(e.row, "POSITION_NAME") == "감사") ||
+				 (this.dsFormpath.getColumn(e.row, "POSITION_NAME") == "사장") ||
+				 (this.dsFormpath.getColumn(e.row, "POSITION_NAME") == "회장") )
+			alert("부서장 이상 결재자는 삭제할 수 없습니다.");
+		else if( this.confirm("삭제하시겠습니까?") )
+			this.dsFormpath.deleteRow(e.row);
+	}
+	
+};
+
+//확인
+this.btn_ok_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url = "JSP/gw/SQL_GW121_Insert.jsp";
+	var inds = "dsFormpath=dsFormpath:A";
+	
+	this.gfn_TransactionP("select", str_url, inds, "", "", "fnFormpathSaveCallback", true, "P", false,this);
+};
+
+this.fnFormpathSaveCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else
+	{
+		this.opener.dsFormpath.copyData(this.dsFormpath);
+		
+		alert("결재라인이 지정되었습니다. 최종적으로 해당 결의서를 저장하셔야 적용됩니다.");
+		this.close("ok");
+	}
+}
+
+//닫기
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.close();
+};
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_insa">
+        <ColumnInfo>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSENM" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="JIKWINM" type="STRING" size="256"/>
+          <Column id="LEVEL_CD" type="STRING" size="256"/>
+          <Column id="LEVEL_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_buse">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+          <Column id="BU_LEVEL" type="STRING" size="256"/>
+          <Column id="BU_NAME" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="256"/>
+          <Column id="DECISIONLINE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsFormpath">
+        <ColumnInfo>
+          <Column id="GUBUN" type="STRING" size="2"/>
+          <Column id="F_NUM" type="INT" size="3"/>
+          <Column id="F_SEQ" type="INT" size="2"/>
+          <Column id="SABUN" type="STRING" size="6"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="POSITION_CODE" type="STRING" size="2"/>
+          <Column id="POSITION_NAME" type="STRING" size="20"/>
+          <Column id="APPROVAL_EMP" type="STRING" size="6"/>
+          <Column id="POSITION_CODE2" type="STRING" size="2"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPosition">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="2"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE"> </Col>
+            <Col id="NAME"> </Col>
+          </Row>
+          <Row>
+            <Col id="CODE">53</Col>
+            <Col id="NAME">부서장</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">부문장</Col>
+            <Col id="CODE">52</Col>
+          </Row>
+          <Row>
+            <Col id="NAME">본부장</Col>
+            <Col id="CODE">51</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsFormpath_temp">
+        <ColumnInfo>
+          <Column id="GUBUN" type="STRING" size="2"/>
+          <Column id="F_NUM" type="INT" size="3"/>
+          <Column id="F_SEQ" type="INT" size="2"/>
+          <Column id="SABUN" type="STRING" size="6"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="POSITION_CODE" type="STRING" size="2"/>
+          <Column id="POSITION_NAME" type="STRING" size="20"/>
+          <Column id="APPROVAL_EMP" type="STRING" size="6"/>
+          <Column id="POSITION_CODE2" type="STRING" size="2"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

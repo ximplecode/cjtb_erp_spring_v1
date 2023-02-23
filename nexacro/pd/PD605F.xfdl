@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD605F" width="1630" height="760" titletext="New Form" onload="PD605F_onload" onsize="PD605F_onsize">
+    <Layouts>
+      <Layout height="760" width="1630">
+        <Div id="div_main" taborder="8" left="0" top="0" width="1510" height="710">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="업무추진비 예산 확인" left="4.51%" top="1.55%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="50%" height="9.86%"/>
+              <Grid id="grd_section" taborder="5" left="1.33%" top="Static00:14.29%" binddataset="dsSection" treeusebutton="use" treeusecheckbox="false" treeinitstatus="collapse,all" width="16.56%" height="42.26%" oncelldblclick="div_main_grd_section_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="222"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:NAME" edittype="tree" displaytype="treeitemcontrol" treelevel="bind:BU_LEVEL" border="0px none #dbdee2" cssclass="CssBuse_tree"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static01" taborder="1" text="년도" left="grd_section:4%" top="Static00:14.29%" width="6.63%" height="4.51%" textAlign="center" background="#c3e4cd" font="bold 13px/normal &quot;Gulim&quot;"/>
+              <Spin id="sp_yy" taborder="2" left="Static01:0%" top="Static00:14.29%" width="9.28%" height="4.51%" textAlign="center" border="1px groove #c3e4cd" font="bold 14px/normal &quot;Gulim&quot;" max="9999" min="0" onspin="sp_yy_onspin"/>
+              <Grid id="Grid00" taborder="3" left="grd_section:4%" top="Static01:25%" width="80.80%" height="80.29%" binddataset="dsData" autofittype="col" oncelldblclick="div_main_Grid00_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="110"/>
+                      <Column size="40"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="26" band="head"/>
+                      <Row size="26" band="head"/>
+                      <Row size="34"/>
+                      <Row size="34" band="summ"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell rowspan="2" text="부서"/>
+                      <Cell col="1" rowspan="2" text="월"/>
+                      <Cell col="2" colspan="3" text="부서운영비"/>
+                      <Cell col="5" colspan="3" text="업무시식비"/>
+                      <Cell col="8" colspan="3" text="사무용품비"/>
+                      <Cell col="11" colspan="3" text="전체"/>
+                      <Cell row="1" col="2" text="예산"/>
+                      <Cell row="1" col="3" text="사용"/>
+                      <Cell row="1" col="4" text="차액"/>
+                      <Cell row="1" col="5" text="예산"/>
+                      <Cell row="1" col="6" text="사용"/>
+                      <Cell row="1" col="7" text="차액"/>
+                      <Cell row="1" col="8" text="예산"/>
+                      <Cell row="1" col="9" text="사용"/>
+                      <Cell row="1" col="10" text="차액"/>
+                      <Cell row="1" col="11" text="예산"/>
+                      <Cell row="1" col="12" text="사용"/>
+                      <Cell row="1" col="13" text="차액"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:SECTION_NAME" suppress="1" textAlign="center"/>
+                      <Cell col="1" text="bind:MM" textAlign="center"/>
+                      <Cell col="2" text="bind:BUDGET_AMOUNT1" displaytype="number"/>
+                      <Cell col="3" text="bind:USE_AMOUNT1" displaytype="number"/>
+                      <Cell col="4" background="#ebfef3" displaytype="number" expr="(BUDGET_AMOUNT1!=null?nexacro.toNumber(BUDGET_AMOUNT1):0) - (USE_AMOUNT1!=null?nexacro.toNumber(USE_AMOUNT1):0)" cssclass="expr:(BUDGET_AMOUNT1!=null?nexacro.toNumber(BUDGET_AMOUNT1):0) - (USE_AMOUNT1!=null?nexacro.toNumber(USE_AMOUNT1):0)&lt;0?'pdColorChange':''"/>
+                      <Cell col="5" text="bind:BUDGET_AMOUNT2" displaytype="number"/>
+                      <Cell col="6" text="bind:USE_AMOUNT2" displaytype="number"/>
+                      <Cell col="7" background="#ebfef3" displaytype="number" expr="(BUDGET_AMOUNT2!=null?nexacro.toNumber(BUDGET_AMOUNT2):0) - (USE_AMOUNT2!=null?nexacro.toNumber(USE_AMOUNT2):0)" cssclass="expr:(BUDGET_AMOUNT2!=null?nexacro.toNumber(BUDGET_AMOUNT2):0) - (USE_AMOUNT2!=null?nexacro.toNumber(USE_AMOUNT2):0)&lt;0?'pdColorChange':''"/>
+                      <Cell col="8" text="bind:BUDGET_AMOUNT3" displaytype="number"/>
+                      <Cell col="9" text="bind:USE_AMOUNT3" displaytype="number"/>
+                      <Cell col="10" background="#ebfef3" displaytype="number" expr="(BUDGET_AMOUNT3!=null?nexacro.toNumber(BUDGET_AMOUNT3):0) - (USE_AMOUNT3!=null?nexacro.toNumber(USE_AMOUNT3):0)" cssclass="expr:(BUDGET_AMOUNT3!=null?nexacro.toNumber(BUDGET_AMOUNT3):0) - (USE_AMOUNT3!=null?nexacro.toNumber(USE_AMOUNT3):0)&lt;0?'pdColorChange':''"/>
+                      <Cell col="11" text="bind:BUDGET_AMOUNT" displaytype="number"/>
+                      <Cell col="12" text="bind:USE_AMOUNT" displaytype="number"/>
+                      <Cell col="13" background="#ebfef3" displaytype="number" expr="(BUDGET_AMOUNT!=null?nexacro.toNumber(BUDGET_AMOUNT):0) - (USE_AMOUNT!=null?nexacro.toNumber(USE_AMOUNT):0)" cssclass="expr:(BUDGET_AMOUNT!=null?nexacro.toNumber(BUDGET_AMOUNT):0) - (USE_AMOUNT!=null?nexacro.toNumber(USE_AMOUNT):0)&lt;0?'pdColorChange':''"/>
+                    </Band>
+                    <Band id="summary">
+                      <Cell colspan="2" text="합계" background="#0d908c" color="white"/>
+                      <Cell col="2" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="3" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="4" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)" cssclass="expr:dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)&lt;0?'pdColorChange':''" textAlign="right" padding="3px" background="#ebfef3"/>
+                      <Cell col="5" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="6" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="7" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)" cssclass="expr:dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)&lt;0?'pdColorChange':''" textAlign="right" padding="3px" background="#ebfef3"/>
+                      <Cell col="8" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT3)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="9" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT3)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="10" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT3)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT3)&quot;)" cssclass="expr:dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT3)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT3)&quot;)&lt;0?'pdColorChange':''" textAlign="right" padding="3px" background="#ebfef3"/>
+                      <Cell col="11" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="12" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="13" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)" cssclass="expr:dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)&lt;0?'pdColorChange':''" textAlign="right" padding="3px" background="#ebfef3"/>
+                    </Band>
+                  </Format>
+                  <Format id="format_2019">
+                    <Columns>
+                      <Column size="120"/>
+                      <Column size="40"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="26" band="head"/>
+                      <Row size="26" band="head"/>
+                      <Row size="34"/>
+                      <Row size="34" band="summ"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell rowspan="2" text="부서"/>
+                      <Cell col="1" rowspan="2" text="월"/>
+                      <Cell col="2" colspan="3" text="전체"/>
+                      <Cell col="5" colspan="3" text="부서운영비"/>
+                      <Cell col="8" colspan="3" text="업무시식비"/>
+                      <Cell col="11" colspan="3" text="사무용품비"/>
+                      <Cell col="14" colspan="3" text="일반접대비"/>
+                      <Cell row="1" col="2" text="예산"/>
+                      <Cell row="1" col="3" text="사용"/>
+                      <Cell row="1" col="4" text="차액"/>
+                      <Cell row="1" col="5" text="예산"/>
+                      <Cell row="1" col="6" text="사용"/>
+                      <Cell row="1" col="7" text="차액"/>
+                      <Cell row="1" col="8" text="예산"/>
+                      <Cell row="1" col="9" text="사용"/>
+                      <Cell row="1" col="10" text="차액"/>
+                      <Cell row="1" col="11" text="예산"/>
+                      <Cell row="1" col="12" text="사용"/>
+                      <Cell row="1" col="13" text="차액"/>
+                      <Cell row="1" col="14" text="예산"/>
+                      <Cell row="1" col="15" text="사용"/>
+                      <Cell row="1" col="16" text="차액"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:SECTION_NAME" suppress="1" textAlign="center"/>
+                      <Cell col="1" text="bind:MM" textAlign="center"/>
+                      <Cell col="2" text="bind:BUDGET_AMOUNT" displaytype="number"/>
+                      <Cell col="3" text="bind:USE_AMOUNT" displaytype="number"/>
+                      <Cell col="4" background="#ebfef3" displaytype="number" expr="(BUDGET_AMOUNT!=null?nexacro.toNumber(BUDGET_AMOUNT):0) - (USE_AMOUNT!=null?nexacro.toNumber(USE_AMOUNT):0)" cssclass="expr:(BUDGET_AMOUNT!=null?nexacro.toNumber(BUDGET_AMOUNT):0) - (USE_AMOUNT!=null?nexacro.toNumber(USE_AMOUNT):0)&lt;0?'pdColorChange':''"/>
+                      <Cell col="5" text="bind:BUDGET_AMOUNT1" displaytype="number"/>
+                      <Cell col="6" text="bind:USE_AMOUNT1" displaytype="number"/>
+                      <Cell col="7" displaytype="number" cssclass="expr:(BUDGET_AMOUNT1!=null?nexacro.toNumber(BUDGET_AMOUNT1):0) - (USE_AMOUNT1!=null?nexacro.toNumber(USE_AMOUNT1):0)&lt;0?'colorChange':''" expr="(BUDGET_AMOUNT1!=null?nexacro.toNumber(BUDGET_AMOUNT1):0) - (USE_AMOUNT1!=null?nexacro.toNumber(USE_AMOUNT1):0)" background="#ebfef3"/>
+                      <Cell col="8" text="bind:BUDGET_AMOUNT2" displaytype="number"/>
+                      <Cell col="9" text="bind:USE_AMOUNT2" displaytype="number"/>
+                      <Cell col="10" background="#ebfef3" displaytype="number" expr="(BUDGET_AMOUNT2!=null?nexacro.toNumber(BUDGET_AMOUNT2):0) - (USE_AMOUNT2!=null?nexacro.toNumber(USE_AMOUNT2):0)" cssclass="expr:(BUDGET_AMOUNT2!=null?nexacro.toNumber(BUDGET_AMOUNT2):0) - (USE_AMOUNT2!=null?nexacro.toNumber(USE_AMOUNT2):0)&lt;0?'pdColorChange':''"/>
+                      <Cell col="11" text="bind:BUDGET_AMOUNT3" displaytype="number"/>
+                      <Cell col="12" text="bind:USE_AMOUNT3" displaytype="number"/>
+                      <Cell col="13" background="#ebfef3" displaytype="number" expr="(BUDGET_AMOUNT3!=null?nexacro.toNumber(BUDGET_AMOUNT3):0) - (USE_AMOUNT3!=null?nexacro.toNumber(USE_AMOUNT3):0)" cssclass="expr:(BUDGET_AMOUNT3!=null?nexacro.toNumber(BUDGET_AMOUNT3):0) - (USE_AMOUNT3!=null?nexacro.toNumber(USE_AMOUNT3):0)&lt;0?'pdColorChange':''"/>
+                      <Cell col="14" text="bind:BUDGET_AMOUNT4" displaytype="number"/>
+                      <Cell col="15" text="bind:USE_AMOUNT4" displaytype="number"/>
+                      <Cell col="16" background="#ebfef3" displaytype="number" expr="(BUDGET_AMOUNT4!=null?nexacro.toNumber(BUDGET_AMOUNT4):0) - (USE_AMOUNT4!=null?nexacro.toNumber(USE_AMOUNT4):0)" cssclass="expr:(BUDGET_AMOUNT4!=null?nexacro.toNumber(BUDGET_AMOUNT4):0) - (USE_AMOUNT4!=null?nexacro.toNumber(USE_AMOUNT4):0)&lt;0?'pdColorChange':''"/>
+                    </Band>
+                    <Band id="summary">
+                      <Cell colspan="2" text="합계" background="#0d908c" color="white"/>
+                      <Cell col="2" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="3" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="4" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)" cssclass="expr:dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)&lt;0?'pdColorChange':''" textAlign="right" padding="3px" background="#ebfef3"/>
+                      <Cell col="5" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="6" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="7" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)" cssclass="expr:dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)&lt;0?'pdColorChange':''" textAlign="right" padding="3px" background="#ebfef3"/>
+                      <Cell col="8" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="9" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="10" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)" cssclass="expr:dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)&lt;0?'pdColorChange':''" textAlign="right" padding="3px" background="#ebfef3"/>
+                      <Cell col="11" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT3)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="12" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT3)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="13" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT3)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT3)&quot;)" cssclass="expr:dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT3)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT3)&quot;)&lt;0?'pdColorChange':''" textAlign="right" padding="3px" background="#ebfef3"/>
+                      <Cell col="14" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT4)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="15" background="#0d908c" color="white" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT4)&quot;)" textAlign="right" padding="3px"/>
+                      <Cell col="16" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT4)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT4)&quot;)" cssclass="expr:dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT4)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT4)&quot;)&lt;0?'pdColorChange':''" textAlign="right" padding="3px" background="#ebfef3"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btn_excel" taborder="4" text="엑셀변환" top="5.64%" height="4.51%" right="0.67%" width="6.36%" font="13px/normal &quot;Gulim&quot;" onclick="div_main_btn_excel_onclick"/>
+              <Grid id="grd_section_etc" taborder="6" left="1.33%" top="grd_section:3.34%" binddataset="dsSection_etc" treeusebutton="use" treeusecheckbox="false" treeinitstatus="collapse,all" width="16.56%" height="42.26%" oncelldblclick="div_main_grd_section_etc_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="222"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:SECTION_NAME" edittype="tree" displaytype="treeitemcontrol" treelevel="bind:LVL" border="0px none #dbdee2" cssclass="CssBuse_tree"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var section_code;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+this.PD605F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyy");
+	this.div_main.form.sp_yy.set_value(f_date);
+	this.fnSetdata_Grid_format(this.div_main.form.sp_yy.value);
+	var strUrl1, strUrl2, strDs1, strDs2, strArg1, strArg2;
+	strUrl1 = "JSP/common/getdata_buse.jsp";
+	strUrl2 = "JSP/pd/section_select_etc.jsp";
+	strDs1 = "dsSection=dsSection";
+	strDs2 = "dsSection_etc=dsSection_etc";
+	strArg1 = "buse_nm=''" ;
+	strArg2 = "yy="+nexacro.wrapQuote(this.div_main.form.sp_yy.value);
+	this.gfn_TransactionP("search", strUrl1, strDs1, strDs1, strArg1, "Callback_section", false, "P", false, this);
+	this.gfn_TransactionP("search", strUrl2, strDs2, strDs2, strArg2, "Callback_section", false, "P", false, this);
+};
+
+this.Callback_section = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return;
+	}
+}
+
+this.fnGetdata_budget = function()
+{
+   var strUrl, strDs, strArg;
+    
+	strUrl = "JSP/pd/PD602_select.jsp";
+	strDs = "dsData=dsData";
+	strArg = "section_code="+nexacro.wrapQuote(section_code) +
+			 " yy="+nexacro.wrapQuote(this.div_main.form.sp_yy.value);
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "Callback_select", false, "P", false, this);
+}
+
+this.Callback_select = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return;
+	}
+}
+
+this.fnSetdata_Grid_format = function(strText)
+{
+	if (nexacro.toNumber(strText) < 2019)
+	{
+		this.div_main.form.Grid00.set_formatid("default");
+	}
+	else
+	{
+		this.div_main.form.Grid00.set_formatid("format_2019");
+	}
+}
+this.sp_yy_onspin = function(obj:nexacro.Spin,e:nexacro.SpinEventInfo)
+{
+	this.fnSetdata_Grid_format(e.postvalue);
+	
+	strUrl2 = "JSP/pd/section_select_etc.jsp";
+	strDs2 = "dsSection_etc=dsSection_etc";
+	strArg2 = "yy="+nexacro.wrapQuote(e.postvalue);
+	this.gfn_TransactionP("search", strUrl2, strDs2, strDs2, strArg2, "Callback_section", false, "P", false, this);
+	this.dsData.clearData();
+};
+
+this.div_main_grd_section_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	section_code = this.dsSection.getColumn(e.row, "CODE");
+	this.fnGetdata_budget();
+};
+
+this.div_main_grd_section_etc_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	section_code = this.dsSection.getColumn(e.row, "SECTION_CODE");
+	this.fnGetdata_budget();
+};
+
+this.div_main_btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if ( this.dsData.rowcount <= 0){
+		alert("변환가능한 리스트가 없습니다.");
+		return;
+	}
+	
+	this.exportObj = new ExcelExportObject();
+    this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.div_main.form.Grid00, "Sheet1!A1");
+	this.exportObj.set_exportfilename( this.div_main.form.sp_yy.value );
+    this.exportObj.set_exporturl(gv_urlXeni);
+    this.exportObj.exportData(); 
+};
+
+this.div_main_Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var rdUrl  = gv_urlMrd + "/pd/PD605.mrd";
+	var rdParam = "/rp ["+(this.div_main.form.sp_yy.value).toString()+"]"+ 
+					  "["+this.dsData.getColumn(e.row,"MM")+"]"+
+					  "["+this.dsData.getColumn(e.row,"SECTION_CODE")+"]"+
+					  "[" + this.dsData.getColumn(e.row,"SECTION_NAME") +"]";
+	var rect;
+	if(system.navigatorname = 'nexacro')
+	{
+		if(system.monitorcount > 1)
+		{
+			var monitor_index = system.getMonitorIndex(system.clientToScreenX(this,0), system.clientToScreenY(this,0));
+			rect = system.getScreenRect(monitor_index);
+		}
+		else
+			rect = system.getScreenRect(1);
+	}
+	else
+		rect = system.getScreenRect(1);
+
+	var sOpenStyle = "topmost=true autosize=false dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false resizable=true";
+
+	nexacro.open("search", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, sOpenStyle, rect.left, rect.top, rect.width, rect.height, this);
+};
+
+this.PD605F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if(this.width < 1510)
+		this.div_main.set_width(this.width - 20)
+	else
+		this.div_main.set_width(this.width - 20)
+	
+	if(this.height < 710)
+		this.div_main.set_height(this.height - 20)
+	else
+		this.div_main.set_height(710);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsData">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="SECTION_NAME" type="STRING" size="256"/>
+          <Column id="MM" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT1" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT1" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT2" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT2" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT3" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT3" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT4" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT4" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBuse"/>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+          <Column id="BU_LEVEL" type="STRING" size="256"/>
+          <Column id="BU_NAME" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="256"/>
+          <Column id="DECISIONLINE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSection_etc">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="SECTION_NAME" type="STRING" size="256"/>
+          <Column id="LVL" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+          <Column id="GENERAL_MANAGER" type="STRING" size="256"/>
+          <Column id="PART_DIRECTOR" type="STRING" size="256"/>
+          <Column id="DEPARTMENT_MANAGER" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

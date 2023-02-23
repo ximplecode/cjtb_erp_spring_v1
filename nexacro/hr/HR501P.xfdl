@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR501P" width="1250" height="625" titletext="New Form" onload="HR501P_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="근무지별 인원현황" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta_gb" taborder="1" text="기준일자" left="2" top="50" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="2" left="sta_gb:0" top="50" height="30" border="1px solid #10aea9" background="#9ee0de" right="2"/>
+        <Calendar id="cald_ymd" taborder="3" left="sta_gb:2" top="55" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="100"/>
+        <CheckBox id="ckb_gb" taborder="4" text="당일퇴사자 포함" left="cald_ymd:2" top="55" width="130" height="20" value="false"/>
+        <Static id="sta_gb00" taborder="5" text="구분" left="319" top="50" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Radio id="rd_select" taborder="6" left="sta_gb00:0" top="50" height="30" right="2" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" columncount="3" padding="0px 0px 0px 50px" value="01" text="부서별 인원 현황" index="0" onitemchanged="rd_select_onitemchanged"/>
+        <Div id="div_sub" taborder="7" left="2" top="Static01_00:0" right="2" bottom="2"/>
+        <Button id="btn_search" taborder="8" text="조회" top="16" width="120" height="22" right="140" onclick="btn_search_onclick"/>
+        <Button id="btn_print" taborder="9" text="출력" top="16" width="120" height="22" right="10" onclick="btn_print_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">부서기준</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">개인별 근무위치</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+this.HR501P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var dt = new Date();
+	
+	this.cald_ymd.set_value(dt);
+	
+	this.fn_setDiv(this.rd_select.value);
+};
+
+this.fn_setDiv = function(val)
+{
+	var rt;
+	switch (val)
+	{
+		case "01" :
+			rt = "hr::HR501P_01.xfdl";
+			break;
+		case "02" :
+			rt = "hr::HR501P_02.xfdl";
+			break;			
+	}
+	
+	this.div_sub.set_url(rt);
+}
+
+this.rd_select_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_setDiv(e.postvalue);
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.div_sub.form.fn_getData(this.cald_ymd.value, this.lfn_CheckBox_Return(this.ckb_gb));
+};
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	this.div_sub.form.fn_print(this.cald_ymd.value, this.lfn_CheckBox_Return_var(this.ckb_gb,"Y",""));
+};
+]]></Script>
+  </Form>
+</FDL>

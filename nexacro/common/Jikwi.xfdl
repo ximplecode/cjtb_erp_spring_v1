@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Jikwi" width="237" height="440" titletext="New Form" onload="Jikwi_onload">
+    <Layouts>
+      <Layout height="440" width="237">
+        <Grid id="Grid00" taborder="0" left="0" top="0" right="0" bottom="40" binddataset="ds_jikwi" autofittype="col" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="코드"/>
+                <Cell col="1" text="직위"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_close" taborder="1" text="닫기" left="77" height="29" right="77" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" bottom="4"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.Jikwi_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/common/getdata_jikwi.jsp";
+	in_ds = "ds_jikwi=ds_jikwi";
+	out_ds = "ds_jikwi=ds_jikwi";
+	str_arg = "" ;
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_select", true, "P", false, this);
+};
+
+this.Callback_select = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+};
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.parent.arr_s[0] = this.ds_jikwi.getColumn( e.row, "CODE" );
+	this.parent.arr_s[1] = this.ds_jikwi.getColumn( e.row, "NAME" );
+	this.close(1);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_jikwi">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

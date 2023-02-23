@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR202P_02" width="1246" height="543" titletext="New Form">
+    <Layouts>
+      <Layout height="543" width="1246">
+        <Static id="sta00" taborder="3" text="학력별 인원현황" left="0" top="0" height="40" background="#9ee0de" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="left" border="1px solid #10aea9" width="33%"/>
+        <Grid id="grd_021" taborder="0" left="0" top="sta00:0" width="33%" bottom="0" binddataset="ds_021" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="구분"/>
+                <Cell col="1" text="인원"/>
+                <Cell col="2" text="비율(%)"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:comp.parent.fn_setText021(currow)" textAlign="center"/>
+                <Cell col="1" text="bind:CNT" textAlign="center"/>
+                <Cell col="2" text="bind:PER" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta00_00" taborder="4" text="연령별 인원현황" left="sta00:4" top="0" height="40" background="#9ee0de" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="left" border="1px solid #10aea9" width="33%"/>
+        <Grid id="grd_022" taborder="1" left="grd_021:4" top="sta00_00:0" width="33%" bottom="0" binddataset="ds_022" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="구분"/>
+                <Cell col="1" text="인원"/>
+                <Cell col="2" text="비율(%)"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:comp.parent.fn_setText022(currow)" textAlign="center"/>
+                <Cell col="1" text="bind:AGECNT" textAlign="center"/>
+                <Cell col="2" text="bind:AGEPER" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta00_00_00" taborder="5" text="연차별 인원현황" left="sta00_00:4" top="0" height="40" background="#9ee0de" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="left" border="1px solid #10aea9" right="0"/>
+        <Grid id="grd_022_00" taborder="2" left="grd_022:4" top="sta00_00_00:0" right="0" bottom="0" binddataset="ds_023" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="구분"/>
+                <Cell col="1" text="인원"/>
+                <Cell col="2" text="비율(%)"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:comp.parent.fn_setText023(currow)" textAlign="center"/>
+                <Cell col="1" text="bind:YEARCNT" textAlign="center"/>
+                <Cell col="2" text="bind:YEARPER" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.fn_setText021 = function(nRow)
+{
+	var rt;
+	if (this.parent.parent.ds_021.getRowLevel(nRow) != 0 )
+	{
+		rt = "합  계";
+	}
+	else
+	{
+		rt = this.parent.parent.ds_021.getColumn(nRow,"SCH");
+	}
+	
+	return rt;
+}
+
+this.fn_setText022 = function(nRow)
+{
+	var rt;
+	if (this.parent.parent.ds_022.getRowLevel(nRow) != 0 )
+	{
+		rt = "합  계";
+	}
+	else
+	{
+		rt = this.parent.parent.ds_022.getColumn(nRow,"AGE");
+	}
+	
+	return rt;
+}
+
+this.fn_setText023 = function(nRow)
+{
+	var rt;
+	if (this.parent.parent.ds_023.getRowLevel(nRow) != 0 )
+	{
+		rt = "합  계";
+	}
+	else
+	{
+		rt = this.parent.parent.ds_023.getColumn(nRow,"YEARGB");
+	}
+	
+	return rt;
+}]]></Script>
+  </Form>
+</FDL>

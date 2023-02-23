@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD602F" width="1040" height="552" titletext="New Form" onload="PD602F_onLoad">
+    <Layouts>
+      <Layout height="552" mobileorientation="landscape" width="1040">
+        <Static id="Static00" taborder="0" text="업무추진 예산 확인" left="10" top="11" width="1024" height="45" color="#7fb39d" font="bold 30px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="Static01" taborder="1" text="년도" left="14" top="72" width="90" height="30" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" background="#7fb39d" color="white"/>
+        <Static id="Static02" taborder="2" text="부서" left="225" top="72" width="90" height="30" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" color="white" background="#7fb39d"/>
+        <Combo id="cb_buse" taborder="3" left="313" top="72" width="157" height="30" innerdataset="DS_BUSE" datacolumn="NAME" codecolumn="CODE" canitemchange="cb_buse_OnChanged" index="-1"/>
+        <Spin id="sp_yy" taborder="4" left="104" top="72" width="97" height="30" onchanged="sp_yy_OnChanged" onspin="sy_yy_onspin"/>
+        <Button id="btnClose" taborder="5" text="닫기" left="951" top="17" width="70" height="35" onclick="btnClose_onclick"/>
+        <Button id="Button0" taborder="6" text="엑셀" left="870" top="17" width="70" height="35" onclick="Button0_OnClick"/>
+        <Grid id="Grid00" taborder="7" left="15" top="113" width="1016" height="429" binddataset="DS_DATA" autofittype="col" oncelldblclick="Grid0_OnCellDblClick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="98"/>
+                <Column size="38"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="50" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="부서"/>
+                <Cell col="1" rowspan="2" text="월"/>
+                <Cell col="2" colspan="3" text="부서운영비"/>
+                <Cell col="5" colspan="3" text="업무시식비"/>
+                <Cell col="8" colspan="3" text="사무용품비"/>
+                <Cell col="11" colspan="3" text="전체"/>
+                <Cell row="1" col="2" text="예산"/>
+                <Cell row="1" col="3" text="사용"/>
+                <Cell row="1" col="4" text="차액"/>
+                <Cell row="1" col="5" text="예산"/>
+                <Cell row="1" col="6" text="사용"/>
+                <Cell row="1" col="7" text="차액"/>
+                <Cell row="1" col="8" text="예산"/>
+                <Cell row="1" col="9" text="사용"/>
+                <Cell row="1" col="10" text="차액"/>
+                <Cell row="1" col="11" text="예산"/>
+                <Cell row="1" col="12" text="사용"/>
+                <Cell row="1" col="13" text="차액"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:SECTION_NAME" textAlign="center" suppress="1"/>
+                <Cell col="1" text="bind:MM" textAlign="center"/>
+                <Cell col="2" text="bind:BUDGET_AMOUNT1" displaytype="number"/>
+                <Cell col="3" text="bind:USE_AMOUNT1" displaytype="number"/>
+                <Cell col="4" expr="nexacro.toNumber(BUDGET_AMOUNT1) - nexacro.toNumber(USE_AMOUNT1)" displaytype="number" background="#f2e6c9" cssclass="expr:nexacro.toNumber(BUDGET_AMOUNT1) - nexacro.toNumber(USE_AMOUNT1) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;"/>
+                <Cell col="5" text="bind:BUDGET_AMOUNT2" displaytype="number"/>
+                <Cell col="6" text="bind:USE_AMOUNT2" displaytype="number"/>
+                <Cell col="7" expr="nexacro.toNumber(BUDGET_AMOUNT2) - nexacro.toNumber(USE_AMOUNT2)" displaytype="number" background="#f2e6c9" cssclass="expr:nexacro.toNumber(BUDGET_AMOUNT2) - nexacro.toNumber(USE_AMOUNT2) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;"/>
+                <Cell col="8" text="bind:BUDGET_AMOUNT3" displaytype="number"/>
+                <Cell col="9" text="bind:USE_AMOUNT3" displaytype="number"/>
+                <Cell col="10" expr="nexacro.toNumber(BUDGET_AMOUNT3) - nexacro.toNumber(USE_AMOUNT3)" displaytype="number" background="#f2e6c9" cssclass="expr:nexacro.toNumber(BUDGET_AMOUNT3) - nexacro.toNumber(USE_AMOUNT3) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;"/>
+                <Cell col="11" text="bind:BUDGET_AMOUNT" displaytype="number"/>
+                <Cell col="12" text="bind:USE_AMOUNT" displaytype="number"/>
+                <Cell col="13" expr="nexacro.toNumber(BUDGET_AMOUNT) - nexacro.toNumber(USE_AMOUNT)" displaytype="number" background="#f2e6c9" cssclass="expr:nexacro.toNumber(BUDGET_AMOUNT) - nexacro.toNumber(USE_AMOUNT) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합 계" background="#10aea9"/>
+                <Cell col="2" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;)"/>
+                <Cell col="3" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)"/>
+                <Cell col="4" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)"/>
+                <Cell col="5" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;)"/>
+                <Cell col="6" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)"/>
+                <Cell col="7" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)"/>
+                <Cell col="8" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT3)&quot;)"/>
+                <Cell col="9" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT3)&quot;)"/>
+                <Cell col="10" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT3)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT3)&quot;)"/>
+                <Cell col="11" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;)"/>
+                <Cell col="12" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)"/>
+                <Cell col="13" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)"/>
+              </Band>
+            </Format>
+            <Format id="2019">
+              <Columns>
+                <Column size="98"/>
+                <Column size="38"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="50" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="부서"/>
+                <Cell col="1" rowspan="2" text="월"/>
+                <Cell col="2" colspan="3" text="전체"/>
+                <Cell col="5" colspan="3" text="부서운영비"/>
+                <Cell col="8" colspan="3" text="업무시식비"/>
+                <Cell col="11" colspan="3" text="일반접대비"/>
+                <Cell row="1" col="2" text="예산"/>
+                <Cell row="1" col="3" text="사용"/>
+                <Cell row="1" col="4" text="차액"/>
+                <Cell row="1" col="5" text="예산"/>
+                <Cell row="1" col="6" text="사용"/>
+                <Cell row="1" col="7" text="차액"/>
+                <Cell row="1" col="8" text="예산"/>
+                <Cell row="1" col="9" text="사용"/>
+                <Cell row="1" col="10" text="차액"/>
+                <Cell row="1" col="11" text="예산"/>
+                <Cell row="1" col="12" text="사용"/>
+                <Cell row="1" col="13" text="차액"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:SECTION_NAME" textAlign="center" suppress="1"/>
+                <Cell col="1" text="bind:MM" textAlign="center"/>
+                <Cell col="2" text="bind:BUDGET_AMOUNT" displaytype="number"/>
+                <Cell col="3" text="bind:USE_AMOUNT" displaytype="number"/>
+                <Cell col="4" expr="nexacro.toNumber(BUDGET_AMOUNT) - nexacro.toNumber(USE_AMOUNT)" displaytype="number" background="#f2e6c9" cssclass="expr:nexacro.toNumber(BUDGET_AMOUNT) - nexacro.toNumber(USE_AMOUNT) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;"/>
+                <Cell col="5" text="bind:BUDGET_AMOUNT1" displaytype="number"/>
+                <Cell col="6" text="bind:USE_AMOUNT1" displaytype="number"/>
+                <Cell col="7" expr="nexacro.toNumber(BUDGET_AMOUNT1) - nexacro.toNumber(USE_AMOUNT1)" displaytype="number" background="#f2e6c9" cssclass="expr:nexacro.toNumber(BUDGET_AMOUNT1) - nexacro.toNumber(USE_AMOUNT1) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;"/>
+                <Cell col="8" text="bind:BUDGET_AMOUNT2" displaytype="number"/>
+                <Cell col="9" text="bind:USE_AMOUNT2" displaytype="number"/>
+                <Cell col="10" expr="nexacro.toNumber(BUDGET_AMOUNT2) - nexacro.toNumber(USE_AMOUNT2)" displaytype="number" background="#f2e6c9" cssclass="expr:nexacro.toNumber(BUDGET_AMOUNT2) - nexacro.toNumber(USE_AMOUNT2) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;"/>
+                <Cell col="11" text="bind:BUDGET_AMOUNT4" displaytype="number"/>
+                <Cell col="12" text="bind:USE_AMOUNT4" displaytype="number"/>
+                <Cell col="13" expr="nexacro.toNumber(BUDGET_AMOUNT4) - nexacro.toNumber(USE_AMOUNT4)" displaytype="number" background="#f2e6c9" cssclass="expr:nexacro.toNumber(BUDGET_AMOUNT4) - nexacro.toNumber(USE_AMOUNT4) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합 계" background="#10aea9"/>
+                <Cell col="2" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;)"/>
+                <Cell col="3" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)"/>
+                <Cell col="4" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)"/>
+                <Cell col="5" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;)"/>
+                <Cell col="6" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)"/>
+                <Cell col="7" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT1)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT1)&quot;)"/>
+                <Cell col="8" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;)"/>
+                <Cell col="9" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)"/>
+                <Cell col="10" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT2)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT2)&quot;)"/>
+                <Cell col="11" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT4)&quot;)"/>
+                <Cell col="12" displaytype="number" background="#10aea9" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT4)&quot;)"/>
+                <Cell col="13" displaytype="number" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT4)&quot;) - dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT4)&quot;)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="DS_DATA">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="SECTION_NAME" type="STRING" size="256"/>
+          <Column id="MM" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT1" type="STRING" size="256" prop=""/>
+          <Column id="USE_AMOUNT1" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT2" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT2" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT3" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT3" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT4" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT4" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_BUSE">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var section_code, yy;
+//var str_SvrRptUrl = gv_svraddr + "pd/rpt/";
+
+this.parentForm = this.opener;
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.PD602F_onLoad = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	yy = this.parent.yy;	
+	section_code = this.parent.section_code;		
+	this.sp_yy.set_value(yy);
+	this.setdata_Grid_format(yy);
+	this.getdata_buse();
+	this.getdata_budget();
+};
+
+this.setdata_Grid_format = function(strText)
+{
+	if (strText < "2019")
+	{		
+		this.Grid00.set_formatid("default");
+	}
+	else
+	{				
+		this.Grid00.set_formatid("2019");				
+	}
+}
+
+this.getdata_buse = function()
+{
+   var str_url, str_arg;   
+
+   if (section_code == null)
+   { 
+     this.Button0.set_visible(true);
+     str_url = "JSP/pd/PD_buse_all.jsp";
+     str_arg = "section_code="+nexacro.wrapQuote("10000")+ 
+               " employee_id="+nexacro.wrapQuote(nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN"));
+   }
+   else
+   {
+     this.Button0.set_visible(false);
+     str_url = "JSP/pd/PD_buse.jsp";
+     str_arg = "section_code="+nexacro.wrapQuote(section_code) + 
+               " employee_id="+nexacro.wrapQuote(nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN"));
+   }   
+   this.gfn_TransactionP("buse_select", str_url, "DS_BUSE=DS_BUSE", "DS_BUSE=DS_BUSE", str_arg, "Callback_buse_select", false, "P", false, this);	
+}
+
+this.getdata_budget = function()
+{
+   var str_url, str_arg;
+    
+   str_url = "JSP/pd/PD602_select.jsp";
+   str_arg = "section_code="+nexacro.wrapQuote(this.cb_buse.value) +
+             " yy="+nexacro.wrapQuote(this.sp_yy.value);
+    
+   this.gfn_TransactionP("select", str_url, "DS_DATA=DS_DATA", "DS_DATA=DS_DATA", str_arg, "Callback_select", false, "P", false, this);	
+}
+
+this.Callback_select = function(Trid, ErrorCode, ErrorMsg)
+{
+    if (ErrorCode != 0)
+    {
+       alert(ErrorMsg);
+       return false;
+    }
+   
+}
+
+//키보드로 연도 변경했을 때
+this.sp_yy_OnChanged = function(obj:nexacro.Spin,e:nexacro.ChangeEventInfo)
+{
+	var strPostvalue = e.postvalue;	
+	
+	this.setdata_Grid_format(strPostvalue);
+};
+
+
+//마우스 스핀으로 연도 변경했을 때
+this.sy_yy_onspin = function(obj:nexacro.Spin,e:nexacro.SpinEventInfo)
+{
+	var strPostvalue = e.postvalue; 
+	this.sp_yy.set_value(strPostvalue);
+	this.setdata_Grid_format(strPostvalue);
+	this.getdata_budget();
+};
+
+this.cb_buse_OnChanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.getdata_budget();
+};
+
+// getdata_buse 콜백
+function Callback_buse_select(Trid,ErrorCode,ErrorMsg)
+{
+   if (ErrorCode != 0)
+   {
+      alert(ErrorMsg);
+      break;
+   }
+   
+   this.cb_buse.Value = section_code;
+}
+this.Button0_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Grid00, "Sheet1!A1");    
+	this.exportObj.set_exporturl(gv_urlXeni); 
+    this.exportObj.exportData(); 
+};
+
+this.Grid0_OnCellDblClick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{	
+	var nRow = e.row;
+	
+	var rdUrl = gv_svcUrl + "rpt/pd/PD605.mrd";
+    var rdParam = "/rp [" + this.sp_yy.value + "] [" + this.DS_DATA.getColumn(nRow,"MM") + "]"+
+					"[" + this.DS_DATA.getColumn(nRow,"SECTION_CODE") + "][" + this.DS_DATA.getColumn(nRow,"SECTION_NAME") +"]";  
+	this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "pd::PDRDF.xfdl", "", this, 0, 0, 1024, 770);
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="cb_buse" propid="value" datasetid="DS_BUSE" columnid="CODE"/>
+    </Bind>
+  </Form>
+</FDL>

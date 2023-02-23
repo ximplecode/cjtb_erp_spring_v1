@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frmBookcode" width="500" height="585" titletext="New Form" onload="frmBookcode_onload">
+    <Layouts>
+      <Layout height="585" width="500">
+        <Static id="Static00" taborder="0" text="코드" left="16" top="66" width="77" height="30" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Grid id="grd_list" taborder="1" left="16" top="140" width="470" height="400" binddataset="ds_book_list" oncelldblclick="grd_list_oncelldblclick" autofittype="col" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="280"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="코드"/>
+                <Cell col="1" text="년판"/>
+                <Cell col="2" text="도서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:YY"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <MaskEdit id="ed_yy" taborder="2" left="306" top="66" width="65" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" onkeydown="ed_code_onkeydown"/>
+        <Static id="Static00_00" taborder="3" text="년판" left="227" top="66" width="77" height="30" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_01" taborder="4" text="코드명" left="16" top="100" width="77" height="30" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Edit id="ed_bookname" taborder="5" left="95" top="100" width="276" height="30" onkeydown="ed_code_onkeydown"/>
+        <Button id="btn_search" taborder="6" text="조회" top="66" height="64" font="normal bold 10pt/normal &quot;Arial&quot;" width="107" visible="true" left="380" onclick="btn_search_onclick"/>
+        <Static id="Static02" taborder="7" text="도서코드 리스트" left="22" top="20" width="248" height="41" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btn_search_all" taborder="8" text="전체목록" top="28" height="24" font="normal bold 10pt/normal &quot;Arial&quot;" width="60" visible="true" left="356" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="9" text="닫기" top="28" height="24" font="normal bold 10pt/normal &quot;Arial&quot;" width="60" visible="true" left="426" onclick="btn_close_onclick"/>
+        <MaskEdit id="ed_bookcode" taborder="10" left="95" top="66" width="125" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@@@@@@@" type="string" onkeydown="ed_code_onkeydown"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_book_list">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+this.fnInit = function()
+{
+	this.ed_bookcode.set_value("");
+	this.ed_yy.set_value("");
+	this.ed_bookname.set_value("");
+}
+
+this.fnNullChk = function(val)
+{
+	if(new String(val).valueOf() == "undefined")
+		return true;
+	if(val == null)
+		return true;
+	if(val.length == 0)
+		return true;
+	return false;
+}
+
+this.frmBookcode_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fnInit();
+	if (!this.fnNullChk(this.parent.setting))
+	{
+		this.ed_bookcode.set_value(this.parent.setting);
+		this.btn_search.click();
+	}
+	this.ed_bookcode.setFocus();
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close("0");
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/sd/select_books.jsp";
+	var strArg ; 	
+	var code, yyear, bookname;
+	var old_code = "";
+	var strDs 	= "ds_book_list=ds_book_list";
+	
+	if (this.ed_bookcode.value == "") 
+		code = "null";
+	else 
+		code = this.ed_bookcode.value;
+	
+	if (this.ed_yy.value == "")
+		yyear = "null";
+	else 
+		yyear = this.ed_yy.value;
+	
+	if (this.ed_bookname.value == "") 
+		bookname = "null";
+	else 
+		bookname = this.ed_bookname.value;	
+	
+	if (obj.name == "btn_search_all") 
+		strArg = "Codes="+nexacro.wrapQuote(null)+" old_Code="+nexacro.wrapQuote(null)+
+				 " yy="+nexacro.wrapQuote(null)+" Names="+nexacro.wrapQuote(null);
+	else 
+		strArg = "Codes="+nexacro.wrapQuote(code)+" old_Code="+nexacro.wrapQuote(old_code)+
+				 " yy="+nexacro.wrapQuote(yyear)+" Names="+nexacro.wrapQuote(bookname);
+	this.setWaitCursor(true);
+	this.gfn_TransactionP("select_custcode", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+};
+
+this.fnCallback = function(svcid,errCode,errMsg)
+{
+	this.setWaitCursor(false);
+	if(errCode != 0)
+	{
+		alert(errMsg);
+		return;
+	}
+	if(svcid == "select_custcode")
+		this.grd_list.setFocus();
+}
+
+this.grd_list_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.fnCodeReturn();
+};
+this.grd_list_onkeydown = function(obj:nexacro.Grid,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+		this.fnCodeReturn();
+};
+
+this.fnCodeReturn = function()
+{
+	var bookcode;
+	bookcode = this.ds_book_list.getColumn(this.ds_book_list.rowposition,"CODE") + this.ds_book_list.getColumn(this.ds_book_list.rowposition,"YY")
+	         + nexacro.trim(this.ds_book_list.getColumn(this.ds_book_list.rowposition,"NAME"));
+	this.close(bookcode);
+}]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR704F" width="1250" height="625" titletext="근무시간 예외자 관리" onload="HR704F_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="근무시간 예외자 관리" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <GroupBox id="GroupBox00" taborder="1" text="자료 등록/수정" left="2" top="Static02:2" right="2" height="90" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;"/>
+        <GroupBox id="GroupBox00_00" taborder="2" text="자료 검색" left="2" top="GroupBox00:2" right="2" height="80" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;"/>
+        <Grid id="grd_list" taborder="3" left="2" top="GroupBox00_00:2" right="2" bottom="2" binddataset="ds_list" autosizingtype="none" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="141"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="250"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사번"/>
+                <Cell col="1" text="부서"/>
+                <Cell col="2" text="직위"/>
+                <Cell col="3" text="성명"/>
+                <Cell col="4" text="출근시간"/>
+                <Cell col="5" text="퇴근시간"/>
+                <Cell col="6" text="입사일"/>
+                <Cell col="7" text="퇴사일"/>
+                <Cell col="8" text="기타"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:SABUN" textAlign="center"/>
+                <Cell col="1" text="bind:BNAME"/>
+                <Cell col="2" text="bind:JNAME" textAlign="center"/>
+                <Cell col="3" text="bind:NAME" textAlign="center"/>
+                <Cell col="4" text="bind:INTIME" textAlign="center" displaytype="mask" maskeditformat="@@:@@" maskedittype="string"/>
+                <Cell col="5" text="bind:OUTTIME" textAlign="center" displaytype="mask" maskeditformat="@@:@@" maskedittype="string"/>
+                <Cell col="6" text="bind:IPSADT" textAlign="center"/>
+                <Cell col="7" text="bind:TOISADT" textAlign="center"/>
+                <Cell col="8" text="bind:ETC"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta_name" taborder="4" text="성명" left="4" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="5" left="84" top="105" height="30" border="1px solid #10aea9" background="#9ee0de" right="4"/>
+        <Edit id="edt_sabun" taborder="6" left="sta_name:0" top="110" height="20" border="0px none transparent" background="transparent" width="4.64%" text="C17011" textAlign="center" readonly="true"/>
+        <Edit id="edt_name" taborder="7" left="edt_sabun:2" top="110" height="20" border="0px none transparent" background="transparent" textAlign="center" width="7.04%" readonly="true"/>
+        <Button id="btn_Search_nm" taborder="8" top="110" height="20" icon="url('Img::loupe.png')" width="21" left="edt_name:2" onclick="btn_Search_nm_onclick"/>
+        <Static id="sta_buse" taborder="9" text="부서" left="btn_Search_nm:2" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_busenm" taborder="10" left="sta_buse:2" top="110" height="20" border="0px none transparent" background="transparent" width="12%" text="010-9118-8920" textAlign="center" readonly="true"/>
+        <Static id="sta_jikwi" taborder="11" text="직위" left="edt_busenm:2" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_jikwi" taborder="12" left="sta_jikwi:2" top="110" height="20" border="0px none transparent" background="transparent" width="6.16%" text="010-9118-8920" textAlign="center" readonly="true"/>
+        <Static id="sta_intime" taborder="13" text="출근시간" left="edt_jikwi:2" top="104" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <MaskEdit id="medt_intime" taborder="14" left="sta_intime:2" top="105" height="30" background="transparent" border="0px none transparent,0px none,0px none" type="string" color="black" format="@@:@@" width="4%" textAlign="center"/>
+        <Static id="sta_outtime" taborder="15" text="출근시간" left="medt_intime:2" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <MaskEdit id="medt_outtime" taborder="16" left="sta_outtime:2" top="105" height="30" background="transparent" border="0px none transparent,0px none,0px none" type="string" color="black" format="@@:@@" width="4%" textAlign="center"/>
+        <Static id="sta_bigo" taborder="17" text="기타" left="medt_outtime:2" top="105" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_bigo" taborder="18" left="sta_bigo:2" top="110" height="20" border="0px none transparent" background="transparent" textAlign="left" readonly="false" right="6"/>
+        <Static id="sta_s_name" taborder="19" text="성명" left="4" top="190" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00" taborder="20" left="84" top="190" height="30" border="1px solid #10aea9" background="#9ee0de" right="4"/>
+        <Edit id="edt_s_sabun" taborder="21" left="sta_s_name:0" top="195" height="20" border="0px none transparent" background="transparent" width="4.64%" text="C17011" textAlign="center" readonly="false"/>
+        <Edit id="edt_s_name" taborder="22" left="edt_s_sabun:2" top="195" height="20" border="0px none transparent" background="transparent" textAlign="center" width="7.04%" readonly="false"/>
+        <Button id="btn_S_name" taborder="23" top="195" height="20" icon="url('Img::loupe.png')" width="21" left="edt_s_name:2" onclick="btn_S_name_onclick"/>
+        <Static id="sta_busecd" taborder="24" text="부서" left="sta_buse:-80" top="190" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_s_busecd" taborder="25" left="sta_busecd:2" top="195" height="20" border="0px none transparent" background="transparent" onchanged="Edit00_00_onchanged" width="6.8%" readonly="true"/>
+        <Static id="sta_s_gb" taborder="28" text="근태사유" left="sta_intime:-78" top="190" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_s_busenm" taborder="26" left="edt_s_busecd:2" top="195" height="20" border="0px none transparent" background="transparent" right="sta_s_gb:26" readonly="true"/>
+        <Button id="btn_s_buse" taborder="27" top="195" height="20" icon="url('Img::loupe.png')" width="21" left="edt_s_busenm:2" onclick="btn_s_buse_onclick"/>
+        <Combo id="cb_gb" taborder="29" text="전체" left="sta_s_gb:2" top="195" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" width="139" value="0" index="0"/>
+        <Button id="btn_new" taborder="30" text="신규" top="75" width="120" height="22" right="266" onclick="btn_new_onclick"/>
+        <Button id="btn_save" taborder="31" text="저장" top="75" width="120" height="22" right="136" onclick="btn_save_onclick"/>
+        <Button id="btn_delete" taborder="32" text="삭제" top="75" width="120" height="22" right="6" onclick="btn_delete_onclick"/>
+        <Button id="btn_clear" taborder="33" text="초기화" top="163" width="120" height="22" right="136" onclick="btn_clear_onclick"/>
+        <Button id="btn_search" taborder="34" text="조회" top="163" width="120" height="22" right="6" onclick="btn_search_onclick"/>
+        <CheckBox id="ckb_toisadt" taborder="35" text="퇴사자 포함" left="cb_gb:20" top="195" width="150" height="20"/>
+        <Button id="btn_excel" taborder="36" text="엑셀변환" top="162" width="120" height="22" onclick="btn_excel_onclick" right="266"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_list" canrowposchange="ds_list_canrowposchange">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="INTIME" type="STRING" size="256"/>
+          <Column id="OUTTIME" type="STRING" size="256"/>
+          <Column id="ETC" type="STRING" size="256"/>
+          <Column id="OVERTIME" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BNAME" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="JNAME" type="STRING" size="256"/>
+          <Column id="IPSADT" type="STRING" size="256"/>
+          <Column id="TOISADT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">전체</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">임신기간 단축</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <FileDownTransfer id="FileDownTrans" onsuccess="fileDownTrans_onsuccess"/>
+      <FileDialog id="F_Dialog" onclose="F_Dialog_onclose"/>
+      <FileUpTransfer id="FileUpTrans" onsuccess="FileUpTrans_onsuccess" onerror="FileUpTrans_onerror"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var arr_rt;
+var urlFile = nexacro.getApplication().gv_urlNext;
+var vFileList = new Array();
+var urlXeni = nexacro.getApplication().gv_urlXeni;
+
+this.HR704F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+	this.fn_getData_list("","","","0");
+};
+
+this.fn_getData_list = function(sabun, name, busecd, gb)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr704.jsp";
+	in_ds = "ds_list=ds_list";
+	out_ds = "ds_list=ds_list";
+	str_arg = " SABUN='" + sabun + "'"+			  
+	          " NAME='" + name + "'" +
+			  " BUSECD='" + busecd + "'" +
+			  " GB='" + gb + "'" +
+			  " TOISADT='" + this.lfn_CheckBox_Return(this.ckb_toisadt) + "'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+}
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_getData_list(this.edt_s_sabun.value, this.edt_s_name.value, this.edt_s_busecd.value, this.cb_gb.value);
+};
+
+this.btn_S_name_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+	objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+	this.addChild("sInsa",objNew);
+	objNew.set_openalign("center middle");		
+	objNew.set_showtitlebar(false);
+	objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_s_insa);
+};
+
+this.fn_Callback_s_insa = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_s_sabun.set_value(arr_rt[0]);
+		this.edt_s_name.set_value(arr_rt[1]);
+	}
+	
+	this.removeChild("sInsa");
+	
+};
+
+this.btn_Search_nm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.ds_list.getRowCount() == 0)
+	{
+		return false;
+	}
+	
+	if (this.ds_list.getRowType(this.ds_list.rowposition) != 2)
+	{
+		this.alert("저장된 데이터는 대상을 변경 할 수 없습니다.");
+		return false;
+	}
+	
+	var objNew = new ChildFrame();
+	objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+	this.addChild("sInsa",objNew);
+	objNew.set_openalign("center middle");		
+	objNew.set_showtitlebar(false);
+	objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_insa);
+};
+
+this.fn_Callback_insa = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_sabun.set_value(arr_rt[0]);
+		this.edt_name.set_value(arr_rt[1]);
+		this.edt_busenm.set_value(arr_rt[3]);
+		this.edt_jikwi.set_value(arr_rt[2]);
+	}
+	
+	this.removeChild("sInsa");
+	
+};
+
+this.btn_s_buse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sBuse",0,0,237,440,null,null,"common::Buse.xfdl");
+		this.addChild("sBuse",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sBuse",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_buse);
+};
+
+
+this.fn_Callback_buse = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_s_busecd.set_value(arr_rt[0]);
+		this.edt_s_busenm.set_value(arr_rt[1]);
+	}
+	
+	this.removeChild("sBuse");
+};
+
+this.btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.ds_list.getRowCount() != 0)
+	{
+	
+		if ( 
+		  Eco.isEmpty(this.ds_list.getColumn(this.ds_list.rowposition,"SABUN")) == true ||
+		  Eco.isEmpty(this.ds_list.getColumn(this.ds_list.rowposition,"INTIME")) == true ||
+		  Eco.isEmpty(this.ds_list.getColumn(this.ds_list.rowposition,"OUTTIME")) == true
+		)
+		{
+			this.alert("현재 작업을 완료 후 신규 추가 해주시기 바랍니다.");
+			return false;
+		}
+	}
+	this.ds_list.addRow();
+};
+
+this.ds_list_canrowposchange = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	if (e.oldrow > 0)
+	{
+		if ( 
+		  Eco.isEmpty(this.ds_list.getColumn(e.oldrow,"SABUN")) == true ||
+		  Eco.isEmpty(this.ds_list.getColumn(e.oldrow,"INTIME")) == true ||
+		  Eco.isEmpty(this.ds_list.getColumn(e.oldrow,"OUTTIME")) == true
+		)
+		{
+			this.alert("현재 작업을 완료 후 신규 추가 해주시기 바랍니다.");
+			return false;
+		}
+	}
+};
+
+this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	
+	var confirm_result = objApp.confirm("삭제된 데이터는 복원하실수 없습니다.\n" + this.edt_name.value + "님의 자료를 정말 삭제하게요..?","삭제","warning");
+	
+	if (confirm_result == true)
+	{
+		if (this.ds_list.getRowType(this.ds_list.rowposition) == 2)
+		{
+			this.ds_list.setColumn(this.ds_list.rowposition,"SABUN","");
+		}
+		
+		this.ds_list.deleteRow(this.ds_list.rowposition);
+		var str_url, in_ds, out_ds, str_arg;
+	    str_url = "JSP/hr/setData_hr704.jsp";
+	    in_ds = "ds_list=ds_list:U";
+	    out_ds = "ds_list=ds_list";
+	    str_arg = "";			  
+	    this.gfn_TransactionP("dml", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "D", false,this);
+	}
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (Eco.isEmpty(this.ds_list.getColumn(this.ds_list.rowposition,"SABUN")) == true)
+	{
+		this.alert("대상자를 선택해 주세요");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.ds_list.getColumn(this.ds_list.rowposition,"INTIME")) == true)
+	{
+		this.alert("출근시간 입력해주세요");
+		return false;
+	}
+	
+	if (Eco.isEmpty(this.ds_list.getColumn(this.ds_list.rowposition,"OUTTIME")) == true)
+	{
+		this.alert("퇴근시간 입력해주세요");
+		return false;
+	}
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_hr704.jsp";
+	in_ds = "ds_list=ds_list:U";
+	out_ds = "ds_list=ds_list";
+	str_arg = " WSABUN='" + nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN") + "'";	
+	this.gfn_TransactionP("dml", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "U", false,this);
+};
+
+this.Callback_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.alert("처리되었습니다.");
+};
+
+this.btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	var filename;
+	filename = "GridList";
+	this.exportObj = new ExcelExportObject();
+	var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.grd_list , "Sheet1!A1");
+
+	this.exportObj.set_exporturl(urlXeni); 
+	this.exportObj.set_exportfilename(filename);
+    this.exportObj.exportData(); 
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="edt_sabun" propid="value" datasetid="ds_list" columnid="SABUN"/>
+      <BindItem id="item1" compid="edt_name" propid="value" datasetid="ds_list" columnid="NAME"/>
+      <BindItem id="item2" compid="edt_busenm" propid="value" datasetid="ds_list" columnid="BNAME"/>
+      <BindItem id="item3" compid="edt_jikwi" propid="value" datasetid="ds_list" columnid="JNAME"/>
+      <BindItem id="item4" compid="medt_intime" propid="value" datasetid="ds_list" columnid="INTIME"/>
+      <BindItem id="item5" compid="medt_outtime" propid="value" datasetid="ds_list" columnid="OUTTIME"/>
+      <BindItem id="item6" compid="edt_bigo" propid="value" datasetid="ds_list" columnid="ETC"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[.Grid .body .row .cell.edsubtotal
+{
+	background : #FCEAF1;
+	font : bold 10pt "Arial";
+}
+.Grid .body .row .cell.edbusetotal
+{
+	background : #FDF5FF;
+	font : bold 10pt "Arial";
+}
+]]></XCSS>

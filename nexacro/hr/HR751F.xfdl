@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR751F" width="1250" height="625" titletext="New Form">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="신규입사자 미사용 연차휴가 신청 현황" left="4" top="5" width="386" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta00_01_00" taborder="1" text="구분" left="2" top="Static02:0" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="2" left="82" top="50" height="30" border="1px solid #10aea9" background="#9ee0de" right="2"/>
+        <Combo id="cb_s_gb" taborder="3" text="전체" left="90" top="55" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" width="190" index="0" value="0" onitemchanged="cb_s_gb_onitemchanged"/>
+        <Static id="sta00_01_00_00" taborder="4" text="이름" left="290" top="50" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_s_name" taborder="5" left="374" top="55" height="20" border="1px solid #10aea9" background="transparent" width="132" text="010-9118-8920" font="normal 900 10pt/normal &quot;Arial&quot;" onkeydown="edt_s_name_onkeydown"/>
+        <Grid id="grd_list" taborder="6" left="2" top="Static01_00:0" right="2" bottom="2" binddataset="ds_list" autofittype="col" oncellclick="grd_list_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="185"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="48"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서코드"/>
+                <Cell col="1" text="부서명"/>
+                <Cell col="2" text="직책"/>
+                <Cell col="3" text="사번"/>
+                <Cell col="4" text="이름"/>
+                <Cell col="5" text="입사일자"/>
+                <Cell col="6" text="3개월전"/>
+                <Cell col="7" text="결재"/>
+                <Cell col="8" text="1개월전"/>
+                <Cell col="9" text="결재"/>
+                <Cell col="10" text="1년"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSECD" textAlign="center"/>
+                <Cell col="1" text="bind:BUSE" textAlign="center"/>
+                <Cell col="2" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="3" text="bind:SABUN" textAlign="center"/>
+                <Cell col="4" text="bind:NAME" textAlign="center"/>
+                <Cell col="5" text="bind:IPSADT" displaytype="date" textAlign="center"/>
+                <Cell col="6" text="bind:SMONTH9" textAlign="center" displaytype="date"/>
+                <Cell col="7" textAlign="center" cssclass="expr:comp.parent.fn_setCss3(currow)"/>
+                <Cell col="8" text="bind:SMONTH11" textAlign="center" displaytype="date"/>
+                <Cell col="9" textAlign="center" cssclass="expr:comp.parent.fn_setCss1(currow)"/>
+                <Cell col="10" text="bind:MONTH12" textAlign="center" displaytype="date"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="7" text="조회" top="18" width="120" height="22" right="4" onclick="btn_search_onclick"/>
+        <Button id="btn_excel" taborder="8" text="Excel" top="18" width="120" height="22" right="130" onclick="btn_excel_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">전체</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">신규 입사자</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">금일 작성자</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="IPSADT" type="STRING" size="256"/>
+          <Column id="SMONTH9" type="STRING" size="256"/>
+          <Column id="EMONTH9" type="STRING" size="256"/>
+          <Column id="SMONTH11" type="STRING" size="256"/>
+          <Column id="EMONTH11" type="STRING" size="256"/>
+          <Column id="MONTH12" type="STRING" size="256"/>
+          <Column id="GB" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID3" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID1" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var urlXeni = nexacro.getApplication().gv_urlXeni;
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_getData();
+};
+
+this.fn_getData = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr751.jsp";
+	in_ds = "ds_list=ds_list";
+	out_ds = "ds_list=ds_list";
+	str_arg = " SABUN=''"+
+	          " GB='"+ this.cb_s_gb.value + "'" +
+			  " NAME='" + this.edt_s_name.value + "'";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+}
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.fn_setCss3 = function(nRow)
+{
+	var rt;
+	trace(this.ds_list.getColumn(nRow,"I_FLOW_ID3") );
+	if (this.ds_list.getColumn(nRow,"I_FLOW_ID3") > 0)
+	{
+		rt = "CssBGI_BC_none_loupe";
+	}
+	else
+	{
+		rt = "";
+	}
+	
+	return rt;
+}
+
+this.fn_setCss1 = function(nRow)
+{
+	var rt;
+	
+	if (this.ds_list.getColumn(nRow,"I_FLOW_ID1") > 0)
+	{
+		rt = "CssBGI_BC_none_loupe";
+	}
+	else
+	{
+		rt = "";
+	}
+	
+	return rt;
+}
+this.cb_s_gb_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.fn_getData();
+};
+
+this.edt_s_name_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13)
+	{
+		this.fn_getData();
+	}
+};
+
+this.grd_list_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	if (e.col != 7 && e.col != 9)
+	{
+		return false;
+	}
+	
+	if (e.col == 7)
+	{
+		if (this.ds_list.getColumn(e.row,"I_FLOW_ID3") <= 0)
+		{
+			return false;
+		}
+	}
+	
+	if (e.col == 9)
+	{
+		if (this.ds_list.getColumn(e.row,"I_FLOW_ID1") <= 0)
+		{
+			return false;
+		}
+	}
+	
+	
+	var rdUrl = gv_svcUrl + "rpt/hr/OT170.mrd";	
+	if (e.col == 7)
+	{
+		var rdParam = "/rp [1][" + this.ds_list.getColumn(e.row,"I_FLOW_ID3") + "]";
+	}
+	else if (e.col == 9)
+	{
+		var rdParam = "/rp [1][" + this.ds_list.getColumn(e.row,"I_FLOW_ID1") + "]";
+	}
+	
+	
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("미사용 연차 휴가 사용계획(신규입사자)");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(false);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+};
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+}
+
+this.btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var permission = this.getPermission_print();
+	
+	if (permission == false)
+	{
+		this.alert("권한이 없습니다.");
+		return false;
+	}
+	
+	var filename;
+	filename = "GridList";
+	this.exportObj = new ExcelExportObject();
+	var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.grd_list , "Sheet1!A1");
+
+	this.exportObj.set_exporturl(urlXeni); 
+	this.exportObj.set_exportfilename(filename);
+    this.exportObj.exportData(); 
+};
+]]></Script>
+  </Form>
+</FDL>

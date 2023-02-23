@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkDtlMain" width="1265" height="420" titletext="기타외주비 관리 세부사양" scrolltype="none" onload="MkDtlMain_onload" ontimer="MkDtlMain_ontimer" onsize="MkDtlMain_onsize">
+    <Layouts>
+      <Layout height="420" width="1265">
+        <Div id="DivDtl" taborder="1" top="0" background="#e8e7e3" left="0" visible="true" width="100.00%" height="100.00%" text="">
+          <Layouts>
+            <Layout>
+              <Button id="btnBook" taborder="18" text="도서코드" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="85" height="35" top="44" background="" left="21" onclick="DivDtl_btnBook_onclick"/>
+              <Edit id="edt_bookCode" taborder="1" top="44" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="8.77%" left="btnBook:3" maxlength="10" autoselect="true" onkeydown="LocalFctn_OnKeyDown"/>
+              <Edit id="edBookSeq" taborder="2" top="44" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="3.79%" left="edt_bookCode:3" maxlength="3" autoselect="true" onkeydown="LocalFctn_OnKeyDown"/>
+              <Edit id="edt_bookYear" taborder="3" top="44" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="5.45%" left="edBookSeq:3" maxlength="4" autoselect="true" onkeydown="LocalFctn_OnKeyDown"/>
+              <Edit id="edBookName" taborder="4" top="44" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="left" width="25.22%" left="edt_bookYear:3" autoselect="true" onkeydown="LocalFctn_OnKeyDown"/>
+              <Static id="stBook" taborder="0" text="용도구분" top="44" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" left="edBookName:3" width="85"/>
+              <Static id="stQty" taborder="13" text="수량" top="81" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="21"/>
+              <Edit id="edRemark" taborder="12" left="109" top="118" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="1.74%" onkeydown="DivDtl_edRemark_onkeydown" autoselect="true" textAlign="left"/>
+              <Grid id="grdDtl" taborder="14" left="21" binddataset="dsEtcCostDtl" height="60.71%" top="edRemark:3" width="96.6%">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="107" band="left"/>
+                      <Column size="44" band="left"/>
+                      <Column size="66" band="left"/>
+                      <Column size="280" band="left"/>
+                      <Column size="105" band="left"/>
+                      <Column size="110" band="left"/>
+                      <Column size="85" band="left"/>
+                      <Column size="83" band="left"/>
+                      <Column size="107" band="left"/>
+                      <Column size="83" band="left"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="도서코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="1" text="순번" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="2" text="년판" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="3" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="4" text="용도구분" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="5" text="용도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="6" text="수량" font="bold 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell col="7" text="단가" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="8" text="공급가액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="9" text="부가세" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:BOOKMST_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell col="1" text="bind:BOOKMST_SEQ" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell col="2" text="bind:BOOKMST_YEAR" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell col="3" text="bind:BOOKMST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="4" text="bind:ETCCOSTDTL_USETYPE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="combotext" combodatacol="USE_TYPE_NAME" combocodecol="USE_TYPE_CODE" combodataset="ds_mk_UseType"/>
+                      <Cell col="5" text="bind:USE_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="combotext" combodatacol="USE_NAME" combocodecol="USE_CODE" combodataset="ds_mk_use"/>
+                      <Cell col="6" text="bind:ETCCOSTDTL_QTY" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" displaytype="mask" maskeditformat="#,##0" maskeditautoselect="true"/>
+                      <Cell col="7" text="bind:ETCCOSTDTL_UNITCOST" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" displaytype="mask" maskeditformat="#,##0" maskeditautoselect="true"/>
+                      <Cell col="8" text="bind:ETCCOSTDTL_AMOUNT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" displaytype="mask" maskeditformat="#,##0" maskeditautoselect="true"/>
+                      <Cell col="9" text="bind:ETCCOSTDTL_VAT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" displaytype="mask" maskeditautoselect="true" maskeditformat="#,##0"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static01" taborder="15" text="▣기타외주비 관리 세부사항▣" left="12" top="0" width="228" height="46" font="bold 16px/normal &quot;함초롬바탕 확장&quot;"/>
+              <MaskEdit id="medtQty" taborder="8" left="stQty:3" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="8.70%" onkeydown="LocalFctn_OnKeyDown" autoselect="true" textAlign="right" format="#,##0"/>
+              <Static id="stUnitCost" taborder="16" text="단가" top="81" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="medtQty:3"/>
+              <MaskEdit id="medtUnitCost" taborder="9" left="stUnitCost:3" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="8.70%" autoselect="true" textAlign="right" format="#,##0" onkeydown="DivDtl_medtUnitCost_onkeydown"/>
+              <Static id="stRemark" taborder="17" left="21" top="118" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="비고" width="85"/>
+              <Combo id="cbUseType" taborder="5" top="44" height="35" innerdataset="ds_mk_UseType" codecolumn="USE_TYPE_CODE" datacolumn="USE_TYPE_NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" width="12.89%" left="stBook:3"/>
+              <Button id="btnUse" taborder="19" text="용도" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="85" height="35" top="44" background="" left="cbUseType:3" onclick="DivDtl_btnUse_onclick"/>
+              <Edit id="edUseCd" taborder="6" top="44" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" width="3.72%" left="btnUse:3" maxlength="4" autoselect="true" onchanged="DivDtl_edUseCd_onchanged"/>
+              <Combo id="cbUseNm" taborder="7" top="44" height="35" innerdataset="ds_mk_use" codecolumn="USE_CODE" datacolumn="USE_NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" width="14.70%" left="edUseCd:3" onitemchanged="DivDtl_cbUseNm_onitemchanged"/>
+              <Static id="stAmount" taborder="20" text="공급가액" top="81" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="medtUnitCost:3"/>
+              <MaskEdit id="medtAmt" taborder="10" left="stAmount:3" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="12.65%" autoselect="true" textAlign="right" format="#,##0" onkeydown="DivDtl_medtAmt_onkeydown"/>
+              <Static id="stVat" taborder="21" text="부가세" top="81" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="medtAmt:3"/>
+              <MaskEdit id="medtVat" taborder="11" left="stVat:3" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="8.46%" autoselect="true" textAlign="right" format="#,##0" onkeydown="LocalFctn_OnKeyDown"/>
+              <Static id="stReqNo" taborder="22" text="생산의뢰번호" top="81" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="90" left="medtVat:3"/>
+              <Edit id="edPdtDtlDate" taborder="23" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" autoselect="true" width="7.51%" left="stReqNo:3" textAlign="center" enable="false"/>
+              <Static id="Static00" taborder="24" text="-" top="78" height="40" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" width="10" left="edPdtDtlDate:3"/>
+              <Edit id="edPdtDtlYear" taborder="25" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" autoselect="true" width="4.43%" left="Static00:3" textAlign="center" enable="false"/>
+              <Static id="Static00_00" taborder="26" text="-" top="78" height="40" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" width="14" left="edPdtDtlYear:5"/>
+              <Edit id="edPdtDtlSeq" taborder="27" top="81" width="3.40%" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" autoselect="true" left="Static00_00:2" textAlign="center" enable="false"/>
+              <Button id="btnDDel" taborder="31" text="삭제" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="50" top="6" height="32" right="1.98%" onclick="DivDtl_btnDDel_onclick"/>
+              <Button id="btnDSave" taborder="30" text="저장" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="32" top="6" right="btnDDel:8" width="50" onclick="DivDtl_btnDSave_onclick"/>
+              <Button id="btnDAdd" taborder="29" text="추가" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="32" top="6" right="btnDSave:8" width="50" onclick="DivDtl_btnDAdd_onclick"/>
+              <Button id="btnDSearch" taborder="28" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="32" top="6" right="btnDAdd:8" width="50" onclick="DivDtl_btnDSearch_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var nRow, vEtcCostMst_Id;
+var str_url, in_ds, out_ds, str_arg;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var vStr = "U";
+var vMST;
+
+this.MkDtlMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	vEtcCostMst_Id = this.parent.parent.dsEtcCostMst.getColumn(this.parent.parent.dsEtcCostMst.rowposition, "ETCCOSTMST_ID");
+	this.gfn_TransactionP("select", "JSP/mk/getData_use.jsp", "ds_mk_use=ds_mk_use", "ds_mk_use=ds_mk_use", "", "", false, "S", false, this); 	//용도코드
+	
+	if(Eco.isUndefined(vEtcCostMst_Id) == false){
+		this.getData_EtcCostDtl(vEtcCostMst_Id);
+	}
+};
+
+//세부사항 조회
+this.DivDtl_btnDSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	vEtcCostMst_Id = this.parent.parent.dsEtcCostMst.getColumn(this.parent.parent.dsEtcCostMst.rowposition, "ETCCOSTMST_ID");
+	if(Eco.isUndefined(vEtcCostMst_Id) == false){
+		this.getData_EtcCostDtl(vEtcCostMst_Id);
+	}
+};
+
+
+// 기타외주비 관리 상세내역 가져오기
+this.getData_EtcCostDtl = function(vEtcCostMst_Id)
+{
+	str_url = "JSP/mk/mk139f_etccost_dtl.jsp";
+	in_ds ="dsEtcCostDtl=dsEtcCostDtl";
+	out_ds ="dsEtcCostDtl=dsEtcCostDtl";
+	str_arg ="ETCCOSTMST_ID=" +nexacro.wrapQuote(vEtcCostMst_Id);
+	
+	this.gfn_TransactionP("selectDtl", str_url, in_ds, out_ds, str_arg, "Callback_Search", false, "S", false, this);
+};
+
+this.Callback_Search = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+};
+
+//#######################################################
+//  신규로 등록하기
+//#######################################################
+
+/*상세내역 추가*/
+this.DivDtl_btnDAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fctn_Dtl_New();
+};
+
+this.fctn_Dtl_New = function()
+{
+	var nRow = "";
+	switch(this.dsEtcCostDtl.rowposition)
+	{
+	  // -1 이면 레코드가 없는 상태
+	  case -1 : this.dsEtcCostDtl.addRow();
+				this.fctn_Default_Value_Set(this.dsEtcCostDtl.rowposition);
+				break;
+				
+	  default : // 마지막 레코드 입력여부 확인
+	            nRow = this.dsEtcCostDtl.getRowCount()-1;
+				
+	            // 레코드에 내용이 있으면
+	            if (this.fctn_EtcCostDtl_CheckRecord(nRow) == true)
+	            {
+					// ROW 추가
+					this.dsEtcCostDtl.addRow();
+					this.fctn_Default_Value_Set(this.dsEtcCostDtl.rowposition);
+				}
+				else
+					break;
+					
+				// 마지막 레코드로 위치 이동
+				this.dsEtcCostDtl.set_rowposition(this.dsEtcCostDtl.getRowCount()-1);
+				break;
+	}
+	this.DivDtl.form.edt_bookCode.setFocus();
+}
+
+//row추가시 기본setting
+this.fctn_Default_Value_Set = function(nRow)
+{
+	var sEtcCostDtl_SEQ = 1;
+	vEtcCostMst_Id = this.parent.parent.dsEtcCostMst.getColumn(this.parent.parent.dsEtcCostMst.rowposition, "ETCCOSTMST_ID");
+	
+	this.dsEtcCostDtl.setColumn(nRow, "ETCCOSTMST_ID", vEtcCostMst_Id);
+	this.dsEtcCostDtl.setColumn(nRow, "EMPLOYEE_ID", gv_sabun);
+	
+	if (this.dsEtcCostDtl.rowcount == 1){   // 미리 Addrow를 하기 때문에 1로 지정
+		sEtcCostDtl_SEQ = sEtcCostDtl_SEQ.toString();
+		sEtcCostDtl_SEQ = sEtcCostDtl_SEQ.padLeft(2, "0");
+	}else{
+		sEtcCostDtl_SEQ = this.dsEtcCostDtl.getMax("ETCCOSTDTL_SEQ");
+		sEtcCostDtl_SEQ = (nexacro.toNumber(sEtcCostDtl_SEQ)+1).toString();
+		sEtcCostDtl_SEQ = sEtcCostDtl_SEQ.padLeft(2, "0");
+	}
+
+	this.dsEtcCostDtl.setColumn(nRow, "ETCCOSTDTL_SEQ", sEtcCostDtl_SEQ);
+	this.dsEtcCostDtl.setColumn(nRow, "ETCCOSTDTL_QTY", 0);
+	this.dsEtcCostDtl.setColumn(nRow, "ETCCOSTDTL_UNITCOST", 0);
+	this.dsEtcCostDtl.setColumn(nRow, "ETCCOSTDTL_AMOUNT", 0);
+	this.dsEtcCostDtl.setColumn(nRow, "ETCCOSTDTL_VAT", 0);
+}
+
+//기타외주비 세부사양 저장이벤트
+this.DivDtl_btnDSave_onclick = function(vStr)
+{
+	var inds = "input=dsEtcCostDtl:U";
+	var setSave = true;
+	
+	for(var nRow=0 ; nRow<=this.dsEtcCostDtl.rowcount-1 ; nRow++)
+	{
+		if (!this.fctn_EtcCostDtl_CheckRecord(nRow)){
+			setSave = false;
+			return false;
+		}
+		
+		if(vStr != "D")
+		{
+			vEtcCostMst_Id = this.parent.parent.dsEtcCostMst.getColumn(this.parent.parent.dsEtcCostMst.rowposition, "ETCCOSTMST_ID");
+			
+			if(Eco.isUndefined(vEtcCostMst_Id) == true){
+				alert("기타외주비 관리 등록 내역이 없습니다.");
+				return false;
+			}
+				
+			this.dsEtcCostDtl.setColumn(nRow, "ETCCOSTMST_ID", vEtcCostMst_Id);
+		}
+	}
+	
+	if(setSave)
+	{
+		this.gfn_TransactionP("save", "JSP/mk/mk139f_etccost_dtl_dml.jsp", inds, "", "", "fnDtlSaveCallback", false, vStr, false, this);
+	}
+};
+
+
+//#######################################################
+//  입력값 확인
+//#######################################################
+this.fctn_EtcCostDtl_CheckRecord = function(nRow)
+{
+	if (this.dsEtcCostDtl.getColumn(nRow, "BOOKMST_CODE") == null || Eco.isUndefined(this.dsEtcCostDtl.getColumn(nRow, "BOOKMST_CODE")) == true)
+	{
+		alert("도서코드를 입력해 주십시요.");
+		this.DivDtl.form.edt_bookCode.setFocus();
+		return false;
+	}
+
+	if (this.dsEtcCostDtl.getColumn(nRow, "BOOKMST_SEQ") == null || Eco.isUndefined(this.dsEtcCostDtl.getColumn(nRow, "BOOKMST_SEQ")) == true)
+	{
+		alert("도서순번을 입력해 주십시요.");
+		this.DivDtl.form.edBookSeq.setFocus();
+		return false;
+	}
+
+	if (this.dsEtcCostDtl.getColumn(nRow, "BOOKMST_YEAR") == null || Eco.isUndefined(this.dsEtcCostDtl.getColumn(nRow, "BOOKMST_YEAR")) == true)
+	{
+		alert("도서연판을 입력해 주십시요.");
+		this.DivDtl.form.edt_bookYear.setFocus();
+		return false;
+	}
+	
+	if (this.dsEtcCostDtl.getColumn(nRow, "USE_CODE") == null || Eco.isUndefined(this.dsEtcCostDtl.getColumn(nRow, "USE_CODE")) == true)
+	{
+		alert("용도를 입력해 주십시요.");
+		this.DivDtl.form.edUseCd.setFocus();
+		return false;
+	}
+	
+	if (this.dsEtcCostDtl.getColumn(nRow, "ETCCOSTDTL_USETYPE") == null || Eco.isUndefined(this.dsEtcCostDtl.getColumn(nRow, "ETCCOSTDTL_USETYPE")) == true)
+	{
+		alert("용도구분을 선택해 주십시요.");
+		this.DivDtl.form.cbUseType.setFocus();
+		this.DivDtl.form.cbUseName.dropdown();
+		return false;
+	}
+	
+	return true;
+}
+
+
+this.DivDtl_btnDDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo, vEtcCostMst_Id)
+{
+	if(this.dsEtcCostDtl.getRowType(this.dsEtcCostDtl.rowposition) == 2){ 
+		//row 삭제
+		this.dsEtcCostDtl.deleteRow(this.dsEtcCostDtl.rowposition);
+	}else{
+		// row 삭제 후 저장 -> 마스터에서 전체삭제할 경우
+		if(this.dsEtcCostDtl.getColumn(this.dsEtcCostDtl.rowposition, "ETCCOSTMST_ID") == vEtcCostMst_Id)
+		{
+			  this.dsEtcCostDtl.deleteRow(this.dsEtcCostDtl.rowposition);
+			  this.DivDtl_btnDSave_onclick("D");
+		}else{
+			  this.dsEtcCostDtl.deleteRow(this.dsEtcCostDtl.rowposition);
+			  this.DivDtl_btnDSave_onclick("D");
+		}
+	}
+};
+
+this.DivDtl_edUseCd_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	var nRow = this.ds_mk_use.findRow("USE_CODE", this.DivDtl.form.edUseCd.text);
+	
+	if(nRow >= 0)
+	{
+		this.DivDtl.form.cbUseNm.set_index(nRow);
+		this.DivDtl.form.medtQty.setFocus();
+	}else{
+		alert('찾고자 하는 용도가 없습니다.');
+		this.DivDtl.form.edUseCd.set_autoselect(true);
+		this.DivDtl.form.edUseCd.setFocus();
+	}
+};
+
+
+this.DivDtl_cbUseNm_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var iUseIdx = this.ds_mk_use.findRow("USE_NAME", this.DivDtl.form.cbUseNm.text);
+	this.DivDtl.form.edUseCd.set_value(this.ds_mk_use.getColumn(iUseIdx, "USE_CODE"));
+	
+	if(iUseIdx != -1)
+		this.DivDtl.form.medtQty.setFocus();
+	else
+		this.DivDtl.form.cbUseNm.dropdown();
+};
+
+
+//공급가액에 변경시 부가세 계산
+this.DivDtl_medtAmt_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		var dAmt 		= nexacro.floor(this.DivDtl.form.medtAmt.value);
+		this.DivDtl.form.medtVat.set_value(dAmt/10);
+		this.DivDtl.form.medtVat.setFocus();
+	}
+};
+
+//단가 변경시 공급가액에 계산
+this.DivDtl_medtUnitCost_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		var dQty 		= nexacro.floor(this.DivDtl.form.medtQty.value);
+		var dUnitCost 	= nexacro.floor(this.DivDtl.form.medtUnitCost.value);
+		var dAmt 		= nexacro.floor(dQty*dUnitCost);
+	
+		this.DivDtl.form.medtAmt.set_value(dAmt);
+		this.DivDtl.form.medtAmt.setFocus();
+	}
+};
+
+// 비고 키보드 이벤트
+this.DivDtl_edRemark_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13){
+		this.dsEtcCostDtl.setColumn(this.dsEtcCostDtl.rowposition, "ETCCOSTDTL_REMARK", this.DivDtl.form.edRemark.text);
+		this.fctn_Dtl_New();
+	}
+};
+
+this.MkDtlMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+
+this.MkDtlMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.DivDtl.form.grdDtl);
+};
+
+
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.DivDtl.form.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+//도서코드 팝업 연결
+this.DivDtl_btnBook_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.dsBookMst
+				   ,dsParam2:"MK139"}; //popup 화면으로 전달할 값
+	this.dsBookMst.clearData();
+	this.lfn_showModal("popupBook", objParam, "mk::MKBook_SearchF.xfdl", "popupBookCallback", this, 10, 58, 450, 400);
+};
+
+this.popupBookCallback = function(){
+	
+	this.dsEtcCostDtl.setColumn(this.dsEtcCostDtl.rowposition, "BOOKMST_CODE", this.dsBookMst.getColumn(0, "BOOKMST_CODE"));
+	this.dsEtcCostDtl.setColumn(this.dsEtcCostDtl.rowposition, "BOOKMST_YEAR", this.dsBookMst.getColumn(0, "BOOKMST_YEAR"));
+	this.dsEtcCostDtl.setColumn(this.dsEtcCostDtl.rowposition, "BOOKMST_NAME", this.dsBookMst.getColumn(0, "BOOKMST_NAME"));
+	this.dsEtcCostDtl.setColumn(this.dsEtcCostDtl.rowposition, "BOOKMST_SEQ", this.dsBookMst.getColumn(0, "BOOKMST_SEQ"));
+	this.dsEtcCostDtl.setColumn(this.dsEtcCostDtl.rowposition, "BOOKMST_ID", this.dsBookMst.getColumn(0, "BOOKMST_ID"));
+	
+	this.DivDtl.form.cbUseType.setFocus();
+	this.DivDtl.form.cbUseType.dropdown();
+}
+
+//용도코드 팝업 연결
+this.DivDtl_btnUse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.ds_mk_use
+				   ,dsParam2:this.DivDtl.form.edUseCd.text
+				   ,dsParam3:this.DivDtl.form.cbUseNm.text
+				   ,dsParam4:"MK139"}; //popup 화면으로 전달할 값
+	
+	this.lfn_showModal("popupUse",objParam, "mk::MKUse_SearchF.xfdl", "popupUseCallback", this, 10, 58, 450, 400);
+};
+
+this.popupUseCallback = function(){
+	
+	this.DivDtl.form.medtQty.setFocus();
+}
+
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEtcCostDtl">
+        <ColumnInfo>
+          <Column id="ETCCOSTMST_ID" type="INT" size="20"/>
+          <Column id="ETCCOSTDTL_SEQ" type="STRING" size="2"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="USE_CODE" type="STRING" size="2"/>
+          <Column id="USE_NAME" type="STRING" size="20"/>
+          <Column id="ETCCOSTDTL_USETYPE" type="STRING" size="1"/>
+          <Column id="ETCCOSTDTL_TYPENAME" type="STRING" size="6"/>
+          <Column id="ETCCOSTDTL_QTY" type="DECIMAL" size="10"/>
+          <Column id="ETCCOSTDTL_UNITCOST" type="DECIMAL" size="9"/>
+          <Column id="ETCCOSTDTL_AMOUNT" type="INT" size="9"/>
+          <Column id="ETCCOSTDTL_VAT" type="INT" size="8"/>
+          <Column id="ETCCOSTDTL_REMARK" type="STRING" size="60"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="PDTDTL_DATE" type="STRING" size="8"/>
+          <Column id="PDTDTL_NUMBER" type="STRING" size="4"/>
+          <Column id="PDTDTL_DTLNUMBER" type="STRING" size="3"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_use">
+        <ColumnInfo>
+          <Column id="USE_CODE" type="STRING" size="256"/>
+          <Column id="USE_NAME" type="STRING" size="256"/>
+          <Column id="USE_PROCESSTYPE" type="STRING" size="256"/>
+          <Column id="USE_PUSE_CODE" type="STRING" size="256"/>
+          <Column id="USE_SHEETPRNCLASS" type="STRING" size="256"/>
+          <Column id="USE_PAGECNT" type="STRING" size="256"/>
+          <Column id="USE_DISABLED" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_UseType">
+        <ColumnInfo>
+          <Column id="USE_TYPE_CODE" type="STRING" size="256"/>
+          <Column id="USE_TYPE_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="USE_TYPE_CODE">P</Col>
+            <Col id="USE_TYPE_NAME">인쇄</Col>
+          </Row>
+          <Row>
+            <Col id="USE_TYPE_CODE">B</Col>
+            <Col id="USE_TYPE_NAME">제본</Col>
+          </Row>
+          <Row>
+            <Col id="USE_TYPE_CODE">C</Col>
+            <Col id="USE_TYPE_NAME">가공</Col>
+          </Row>
+          <Row>
+            <Col id="USE_TYPE_CODE">A</Col>
+            <Col id="USE_TYPE_NAME">후가공</Col>
+          </Row>
+          <Row>
+            <Col id="USE_TYPE_CODE">E</Col>
+            <Col id="USE_TYPE_NAME">기타</Col>
+          </Row>
+          <Row>
+            <Col id="USE_TYPE_CODE">I</Col>
+            <Col id="USE_TYPE_NAME">부족분</Col>
+          </Row>
+          <Row>
+            <Col id="USE_TYPE_CODE">M</Col>
+            <Col id="USE_TYPE_NAME">사고분</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="DivDtl.form.edt_bookCode" propid="value" datasetid="dsEtcCostDtl" columnid="BOOKMST_CODE"/>
+      <BindItem id="item6" compid="DivDtl.form.medtQty" propid="value" datasetid="dsEtcCostDtl" columnid="ETCCOSTDTL_QTY"/>
+      <BindItem id="item7" compid="DivDtl.form.medtUnitCost" propid="value" datasetid="dsEtcCostDtl" columnid="ETCCOSTDTL_UNITCOST"/>
+      <BindItem id="item11" compid="DivDtl.form.edRemark" propid="value" datasetid="dsEtcCostDtl" columnid="ETCCOSTDTL_REMARK"/>
+      <BindItem id="item2" compid="DivDtl.form.edBookSeq" propid="value" datasetid="dsEtcCostDtl" columnid="BOOKMST_SEQ"/>
+      <BindItem id="item3" compid="DivDtl.form.edt_bookYear" propid="value" datasetid="dsEtcCostDtl" columnid="BOOKMST_YEAR"/>
+      <BindItem id="item4" compid="DivDtl.form.edBookName" propid="value" datasetid="dsEtcCostDtl" columnid="BOOKMST_NAME"/>
+      <BindItem id="item1" compid="DivDtl.form.cbUseType" propid="value" datasetid="dsEtcCostDtl" columnid="ETCCOSTDTL_USETYPE"/>
+      <BindItem id="item5" compid="DivDtl.form.edUseCd" propid="value" datasetid="dsEtcCostDtl" columnid="USE_CODE"/>
+      <BindItem id="item12" compid="DivDtl.form.cbUseNm" propid="value" datasetid="dsEtcCostDtl" columnid="USE_CODE"/>
+      <BindItem id="item8" compid="DivDtl.form.medtAmt" propid="value" datasetid="dsEtcCostDtl" columnid="ETCCOSTDTL_AMOUNT"/>
+      <BindItem id="item9" compid="DivDtl.form.medtVat" propid="value" datasetid="dsEtcCostDtl" columnid="ETCCOSTDTL_VAT"/>
+      <BindItem id="item10" compid="DivDtl.form.edPdtDtlDate" propid="value" datasetid="dsEtcCostDtl" columnid="PDTDTL_DATE"/>
+      <BindItem id="item13" compid="DivDtl.form.edPdtDtlYear" propid="value" datasetid="dsEtcCostDtl" columnid="PDTDTL_NUMBER"/>
+      <BindItem id="item14" compid="DivDtl.form.edPdtDtlSeq" propid="value" datasetid="dsEtcCostDtl" columnid="PDTDTL_DTLNUMBER"/>
+    </Bind>
+  </Form>
+</FDL>

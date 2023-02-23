@@ -1,0 +1,1221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD8120F" width="1400" height="1200" titletext="New Form" onload="SD8120F_onload" ontimer="SD8120F_ontimer">
+    <Layouts>
+      <Layout height="1200" width="1400">
+        <Static id="Static01" taborder="25" text="작업구간" left="436" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127"/>
+        <Static id="Static00_01" taborder="16" left="Static01:-2" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="290"/>
+        <Static id="Static06" taborder="26" text="업체코드(선택)" left="25" top="88" height="263" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127"/>
+        <Static id="Static00_01_00_00_00_00_00" taborder="27" left="Static06:-2" top="88" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="477"/>
+        <Grid id="Grid0" left="Static06:-2" top="Static00_01_00_00_00_00_00:-2" height="225" binddataset="ds_cgbcust" autofittype="col" autosizingtype="col" border="2px solid #10aea9" width="477" taborder="17">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30"/>
+                <Column size="72"/>
+                <Column size="30"/>
+                <Column size="44"/>
+                <Column size="190"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="선택" displaytype="text"/>
+                <Cell col="1" text="구분"/>
+                <Cell col="2" text="GU"/>
+                <Cell col="3" text="코드"/>
+                <Cell col="4" text="거래처명"/>
+                <Cell col="5" text="사업자번호"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:GBNM"/>
+                <Cell col="2" text="bind:GUBN"/>
+                <Cell col="3" text="bind:CODE"/>
+                <Cell col="4" text="bind:NAME"/>
+                <Cell col="5" text="bind:F_SAUPNO"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static07" taborder="28" text="업체구분" left="849" top="88" height="225" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="64"/>
+        <Static id="Static08" taborder="29" text="적요" left="1113" top="88" height="225" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="64"/>
+        <Static id="Static03" taborder="33" text="적요코드" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127" left="25"/>
+        <Grid id="grd_ioyh00" taborder="20" left="Static08:-2" top="88" height="225" binddataset="ds_juk" autofittype="col" onheadclick="gr_ioyh_onheadclick" border="2px solid #10aea9" width="204">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="32"/>
+                <Column size="40"/>
+                <Column size="128"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="선택"/>
+                <Cell col="1" text="구분"/>
+                <Cell col="2" text="구분명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:CODE"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static09" taborder="31" text="출력물" top="311" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127" left="849"/>
+        <Static id="Static00_01_00_00_01_00_00" taborder="30" top="311" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" height="40" width="405" left="Static09:-2"/>
+        <Static id="Static00_01_00_00_01" taborder="32" left="Static03:-2" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="288"/>
+        <Static id="Static02" taborder="35" text="업체구간" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="849" width="127"/>
+        <Static id="Static00_01_00_00" taborder="34" left="Static02:-2" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="405" text=""/>
+        <Static id="Static04" taborder="36" text="만기일자" left="436" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127"/>
+        <Static id="Static00_01_00" taborder="37" left="Static04:-2" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="290"/>
+        <Static id="Static05" taborder="38" text="출력구분" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="849" width="127"/>
+        <Static id="Static00_01_00_00_00" taborder="39" left="Static05:-2" top="50" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="405"/>
+        <Grid id="grd_ioyh" taborder="19" left="Static07:-2" top="88" height="225" binddataset="ds_ccode1" autofittype="col" onheadclick="gr_ioyh_onheadclick" width="204" border="2px solid #10aea9">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="36"/>
+                <Column size="50"/>
+                <Column size="110"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="선택"/>
+                <Cell col="1" text="구분"/>
+                <Cell col="2" text="구분명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:CODE"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Calendar id="ed_work_symd" taborder="2" left="Static01:5" top="17" height="30" width="120" dateformat="yyyy-MM-dd" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Static id="Static10" taborder="40" text="~" left="ed_work_symd:7" top="17" width="20" height="30" textAlign="center"/>
+        <Calendar id="ed_work_eymd" taborder="3" left="Static10:7" top="17" height="30" width="120" dateformat="yyyy-MM-dd" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <MaskEdit id="ed_sgb" taborder="4" left="Static02:5" top="17" width="40" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <MaskEdit id="ed_scode" taborder="5" left="ed_sgb:0" top="17" width="55" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" value="0000" textAlign="center" onkeydown="common_onkeydown" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Button id="btn_Hscust" taborder="41" left="ed_scode:2" top="23" width="19" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" onclick="btn_Hcust_onclick" tabstop="false"/>
+        <MaskEdit id="ed_egb" taborder="6" left="1139" top="17" width="40" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <MaskEdit id="ed_ecode" taborder="7" left="ed_egb:0" top="17" width="55" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="####" type="string" value="0000" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Button id="btn_Hecust" taborder="42" left="ed_ecode:2" top="23" width="19" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" onclick="btn_Hcust_onclick" tabstop="false"/>
+        <Static id="Static11" taborder="43" text="~" left="1108" top="17" width="19" height="30" textAlign="center"/>
+        <MaskEdit id="ed_ssjuk" taborder="8" left="200" top="55" width="70" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="###" type="string" value="000" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Static id="Static12" taborder="44" text="~" left="ed_ssjuk:15" top="55" width="19" height="30" textAlign="center"/>
+        <MaskEdit id="ed_esjuk" taborder="9" left="Static12:15" top="55" width="70" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="###" type="string" value="000" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Calendar id="ed_mature_symd" taborder="10" left="568" top="55" height="30" width="120" dateformat="yyyy-MM-dd" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Static id="Static13" taborder="45" text="~" left="695" top="55" width="20" height="30" textAlign="center"/>
+        <Calendar id="ed_mature_eymd" taborder="11" left="722" top="55" height="30" width="120" dateformat="yyyy-MM-dd" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <CheckBox id="C_dae" taborder="12" text="대체금액제외" left="Static05:6" top="61" width="150" height="20" onkeydown="check_onkeydown" onkillfocus="common_kill_focus" onsetfocus="common_set_focus" falsevalue="0" truevalue="1"/>
+        <Edit id="ed_scust" taborder="14" left="268" top="93" width="80" height="30" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Edit id="ed_name" taborder="15" left="353" top="93" width="200" height="30" onkillfocus="common_kill_focus" onsetfocus="common_set_focus" onkeydown="common_onkeydown"/>
+        <Button id="btn_search" taborder="46" text="검색" left="556" top="93" width="65" height="30" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_search_onclick" tabstop="false"/>
+        <Combo id="cmb_print_select" taborder="21" text="일자별 출고현황" left="Static09:5" top="316" width="200" height="30" index="0" value="0" innerdataset="ds_rpt" codecolumn="CODE" datacolumn="DATA" onkillfocus="common_kill_focus" onsetfocus="common_set_focus" onkeydown="common_onkeydown"/>
+        <Button id="btn_printview" taborder="22" text="미리보기" top="318" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="90" visible="true" left="1213" onclick="btn_printview_onclick"/>
+        <Button id="btn_print" taborder="23" text="출력" top="318" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" visible="true" left="1310" onclick="btn_printview_onclick"/>
+        <Div id="Div00" taborder="47" left="1.79%" top="387" height="763" formscrolltype="horizontal" right="1.50%" text="">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Button id="btn_excel" taborder="24" text="엑셀변환" left="92.00%" top="355" height="25" onclick="btn_excel_onclick" font="normal bold 10pt/normal &quot;Arial&quot;" right="1.50%"/>
+        <CheckBox id="C_gymd" taborder="13" text="중지업체제외" left="161" top="98" width="100" height="20" falsevalue="0" truevalue="1" onkeydown="check_onkeydown" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Static id="Static03_00" taborder="48" text="영업사원" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127" left="25"/>
+        <Static id="Static00_01_00_00_01_00" taborder="49" left="150" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="288"/>
+        <MaskEdit id="ed_ssale" taborder="0" left="200" top="17" width="70" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="######" type="string" value="000000" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Static id="Static12_00" taborder="50" text="~" left="285" top="17" width="19" height="30" textAlign="center"/>
+        <MaskEdit id="ed_esale" taborder="1" left="319" top="17" width="70" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="######" type="string" value="000000" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <Grid id="grd_puser" taborder="18" left="687" top="88" height="263" binddataset="ds_puser" autofittype="col" onheadclick="gr_ioyh_onheadclick" width="164" border="2px solid #10aea9">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="38"/>
+                <Column size="55"/>
+                <Column size="68"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="선택"/>
+                <Cell col="1" text="구분"/>
+                <Cell col="2" text="구분명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:CODE"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static07_00" taborder="51" text="영업사원&#13;&#10;(선택)" left="625" top="88" height="263" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="64"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_ccode1">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">01</Col>
+            <Col id="NAME">교판</Col>
+          </Row>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">02</Col>
+            <Col id="NAME">속셈</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_juk">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">271</Col>
+            <Col id="NAME">2007년 1학기 선수금</Col>
+          </Row>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">272</Col>
+            <Col id="NAME">2007년 2학기 선수금</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_cgbcust">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="GUBN" type="STRING" size="256"/>
+          <Column id="GBNM" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="F_SAUPNO" type="STRING" size="256"/>
+          <Column id="F_DPNO" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="GUBN">21</Col>
+            <Col id="GBNM">교판</Col>
+            <Col id="CODE">0143</Col>
+            <Col id="NAME">(강남)천지</Col>
+          </Row>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="GUBN">21</Col>
+            <Col id="GBNM">교판</Col>
+            <Col id="CODE">0144</Col>
+            <Col id="NAME">(도봉)백서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_rpt">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="DATA" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="DATA">일자별 수금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="DATA">업체별 수금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="DATA">적요별 수금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="DATA">만기일별 수금현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4</Col>
+            <Col id="DATA">영업사원별 수금현황(월별)</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5</Col>
+            <Col id="DATA">영업사원별 수금현황(월별)업체구분</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_1" keystring="SALE_CD+E_NAME, SALE_CD+S_DATE">
+        <ColumnInfo>
+          <Column id="SALE_CD" type="STRING" size="256"/>
+          <Column id="E_NAME" type="STRING" size="256"/>
+          <Column id="S_DATE" type="STRING" size="256"/>
+          <Column id="JUN" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NAME" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JUKYO_CD" type="STRING" size="256"/>
+          <Column id="JUK1" type="STRING" size="256"/>
+          <Column id="JUK2" type="STRING" size="256"/>
+          <Column id="H_SUGM" type="FLOAT" size="256"/>
+          <Column id="B_SUGM" type="FLOAT" size="256"/>
+          <Column id="D_SUGM" type="FLOAT" size="256"/>
+          <Column id="BM_NO" type="STRING" size="256"/>
+          <Column id="BM_DATE" type="STRING" size="256"/>
+          <Column id="BM_NAME" type="STRING" size="256"/>
+          <Column id="BM_BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_2" keystring="SALE_CD+E_NAME, SALE_CD+CUST_GB+CUST_CD">
+        <ColumnInfo>
+          <Column id="SALE_CD" type="STRING" size="256"/>
+          <Column id="E_NAME" type="STRING" size="256"/>
+          <Column id="S_DATE" type="STRING" size="256"/>
+          <Column id="JUN" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NAME" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JUKYO_CD" type="STRING" size="256"/>
+          <Column id="JUK1" type="STRING" size="256"/>
+          <Column id="JUK2" type="STRING" size="256"/>
+          <Column id="H_SUGM" type="FLOAT" size="256"/>
+          <Column id="B_SUGM" type="FLOAT" size="256"/>
+          <Column id="D_SUGM" type="FLOAT" size="256"/>
+          <Column id="BM_NO" type="STRING" size="256"/>
+          <Column id="BM_DATE" type="STRING" size="256"/>
+          <Column id="BM_NAME" type="STRING" size="256"/>
+          <Column id="BM_BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_3" keystring="SALE_CD+E_NAME, SALE_CD+JUKYO_CD">
+        <ColumnInfo>
+          <Column id="SALE_CD" type="STRING" size="256"/>
+          <Column id="E_NAME" type="STRING" size="256"/>
+          <Column id="S_DATE" type="STRING" size="256"/>
+          <Column id="JUN" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NAME" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JUKYO_CD" type="STRING" size="256"/>
+          <Column id="JUK1" type="STRING" size="256"/>
+          <Column id="JUK2" type="STRING" size="256"/>
+          <Column id="H_SUGM" type="FLOAT" size="256"/>
+          <Column id="B_SUGM" type="FLOAT" size="256"/>
+          <Column id="D_SUGM" type="FLOAT" size="256"/>
+          <Column id="BM_NO" type="STRING" size="256"/>
+          <Column id="BM_DATE" type="STRING" size="256"/>
+          <Column id="BM_NAME" type="STRING" size="256"/>
+          <Column id="BM_BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_4" keystring="SALE_CD+E_NAME, SALE_CD+BM_DATE">
+        <ColumnInfo>
+          <Column id="SALE_CD" type="STRING" size="256"/>
+          <Column id="E_NAME" type="STRING" size="256"/>
+          <Column id="S_DATE" type="STRING" size="256"/>
+          <Column id="JUN" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NAME" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="JUKYO_CD" type="STRING" size="256"/>
+          <Column id="JUK1" type="STRING" size="256"/>
+          <Column id="JUK2" type="STRING" size="256"/>
+          <Column id="H_SUGM" type="FLOAT" size="256"/>
+          <Column id="B_SUGM" type="FLOAT" size="256"/>
+          <Column id="D_SUGM" type="FLOAT" size="256"/>
+          <Column id="BM_NO" type="STRING" size="256"/>
+          <Column id="BM_DATE" type="STRING" size="256"/>
+          <Column id="BM_NAME" type="STRING" size="256"/>
+          <Column id="BM_BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_5" keystring="SALE_CD+SALE_NM, SALE_CD+CGB">
+        <ColumnInfo>
+          <Column id="SALE_CD" type="STRING" size="256"/>
+          <Column id="SALE_NAME" type="STRING" size="256"/>
+          <Column id="CG" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NAME" type="STRING" size="256"/>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="SYYMM" type="STRING" size="256"/>
+          <Column id="H_SUGM" type="FLOAT" size="256"/>
+          <Column id="B_SUGM" type="FLOAT" size="256"/>
+          <Column id="D_SUGM" type="FLOAT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_6" keystring="SALE_CD+SALE_NM">
+        <ColumnInfo>
+          <Column id="SALE_CD" type="STRING" size="256"/>
+          <Column id="SALE_NAME" type="STRING" size="256"/>
+          <Column id="CG" type="STRING" size="256"/>
+          <Column id="CGB" type="STRING" size="256"/>
+          <Column id="CGB_NAME" type="STRING" size="256"/>
+          <Column id="SYYMM" type="STRING" size="256"/>
+          <Column id="H_SUGM" type="FLOAT" size="500"/>
+          <Column id="B_SUGM" type="FLOAT" size="500"/>
+          <Column id="D_SUGM" type="FLOAT" size="500"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_puser">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">100516</Col>
+            <Col id="NAME">박규철</Col>
+          </Row>
+          <Row>
+            <Col id="CHK">0</Col>
+            <Col id="CODE">100519</Col>
+            <Col id="NAME">정우석</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+
+this.SD8120F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+	
+	var     u_yy;
+	var		i,j = 0;
+	var     u_yymm;
+	var     u_ym;
+	var     u_mm;
+	this.ed_ssale.set_value("100000");
+	this.ed_esale.set_value("900000");
+	this.ed_work_eymd.set_value(Eco.date.addDate(f_date, -1));
+	u_yy           = f_date;
+	this.ed_work_symd.set_value(u_yy.substr(0,6) + "01");
+	this.ed_mature_symd.set_value("");
+	this.ed_mature_eymd.set_value("");
+    this.ed_sgb.set_value("20");
+    this.ed_scode.set_value("0000");
+    this.ed_egb.set_value("36");
+    this.ed_ecode.set_value("9999");
+    this.ed_ssjuk.set_value("000");
+    this.ed_esjuk.set_value("999"); 
+	this.C_gymd.set_value("1"); 
+	
+	var strUrl = "JSP/sd/sel_ccode1.jsp";
+	var strArg 	= "" ;		
+	var strDs 	= "ds_ccode1=ds_ccode1";
+	
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+	
+	strUrl = "JSP/sd/sel_juk.jsp";
+	strArg 	= "" ;
+	strDs 	= "ds_juk=ds_juk"; 
+	
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+	
+	strUrl = "JSP/bi/sel_puser.jsp";
+	strArg = "";
+	strDs = "ds_puser=ds_puser";
+	
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var U_cgb, U_code, U_name, U_egb, U_jumin, U_gymd;
+    var Find_sw = "N";
+    U_code = this.ed_scust.text;
+    if ( this.ed_scust.text == "" )
+		U_code = "All";
+	U_name   = this.ed_name.text;
+    if ( this.ed_name.text == "" )
+		U_name = "All";
+	var  i = 0;
+	var  j = 0;
+	for( i = 0 ; i < this.ds_ccode1.rowcount; i++ )
+	{
+		if ( this.ds_ccode1.getColumn(i, "CHK") == "1" )
+		{
+			Find_sw = "Y";
+		}
+	}
+	U_cgb = "";
+	U_egb = "";
+	if ( Find_sw == "N" )
+    {
+		U_cgb = this.ed_scust.text.substr(0,2);
+		U_code = this.ed_scust.text.substr(2,4);
+		if ( U_code == "" )
+		{
+			U_code = "All";
+		}  
+    }
+	if ( Find_sw == "Y" )
+    {
+       for( i = 0 ; i < this.ds_ccode1.rowcount; i++ )
+    	{
+			if (( Find_sw == "Y"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+			{
+				U_egb = this.ds_ccode1.getColumn(i, "CODE");
+				Find_sw  = "N";
+			}
+     	}
+    }
+    U_gymd = "";
+    if ( this.C_gymd.value == "1" )
+		U_gymd = "1";
+	U_jumin = "";
+	var strUrl = "JSP/sd/sel_cust.jsp";
+//	var strArg 	= "Gubn="+ quote(U_gb) + " Code=" + quote(U_code)  + " Name='"+Ed_NAME.Text +"'" + " Egb='"+U_egb +"'";
+	var strArg 	= "Cgb='"+ U_cgb + "'"+ " Code='" + U_code + "'" + " Name='" + U_name + "'" + " Egb= '" + U_egb + "'" + " Fjumin= '" + U_jumin + "'" + " Eymd= '" + U_gymd + "'";
+	var strDs = "ds_cgbcust=ds_cgbcust";
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+};
+
+this.btn_Hcust_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.lfn_showModal(obj.name, "", "sd::frmCustList.xfdl", "fnCustlistCallBack", this, 0, 0, 590, 555);
+};
+
+this.fnCustlistCallBack = function(strID, ret)
+{
+	if(ret == null)
+		return;
+	
+	var gubun = ret.substr(0,2);	                      
+	var code =  ret.substr(3,4);
+
+	if(nexacro.trim(ret) != "0"){
+		if (strID == "btn_Hscust") {
+			this.ed_sgb.set_value(gubun);
+			this.ed_scode.set_value(code);
+		}
+		else if (strID = "btn_Hecust") {
+			this.ed_egb.set_value(gubun);
+			this.ed_ecode.set_value(code);
+		}  
+	}
+}
+this.btn_printview_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var  Find1_sw   = "N";
+	var  Find2_sw   = "N";
+	var  Find3_sw   = "N";
+	var  Find4_sw   = "N";
+	var  Line_sw    = "N";
+	var  Dol_cust;
+	var  Sd_sql, Sd_sql1, Sd_sql2, Sd_sql3, Sd_sql4, Sd_sql5, Sd_sql6;
+	var  rdfile;   
+	var  i = 0;
+	Sd_sql    =   "";
+	Sd_sql1   =   "";
+	Sd_sql2   =   "";
+	Sd_sql3   =   "";
+	for( i = 0 ; i < this.ds_ccode1.rowcount ; i++ )
+	{
+	    if ( this.ds_ccode1.getColumn(i, "CHK") == "1" )
+		{
+			Find4_sw   = "Y";
+		}
+	}
+	for( i = 0 ; i < this.ds_juk.rowcount ; i++ )
+	{
+	    if ( this.ds_juk.getColumn(i, "CHK") == "1" )
+		{
+			Find1_sw   = "Y";
+		}
+	}
+	for( i = 0 ; i < this.ds_cgbcust.rowcount ; i++ )
+	{
+	    if ( this.ds_cgbcust.getColumn(i, "CHK") == "1" )
+		{
+			Find2_sw   = "Y";
+		}
+	}
+	for( i = 0 ; i < this.ds_puser.rowcount; i++ )
+	{
+	    if ( this.ds_puser.getColumn(i, "CHK") == "1" )
+	    {
+			Find3_sw   = "Y";
+	    }
+	}
+	if (( this.cmb_print_select.index != 4 ) && ( this.cmb_print_select.index != 5 )) 
+	{
+		Sd_sql     =  "    and a.S_DATE >= '" + this.ed_work_symd.value +"'";
+		Sd_sql     = Sd_sql + "    and  a.S_DATE <= '" + this.ed_work_eymd.value +"'";
+		Line_Sw    = "Y";
+		if ( Find2_sw == "Y" )
+		{
+			Sd_sql    = Sd_sql + "    and  A.cust_gb || A.cust_cd in (  ";
+			for( i = 0 ; i < this.ds_cgbcust.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+				{
+					Dol_cust  =  "'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+					Sd_sql    = Sd_sql +  Dol_cust;
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+				{
+					Dol_cust  =  ",'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+					Sd_sql    = Sd_sql +  Dol_cust;
+				}
+			}
+			Sd_sql    = Sd_sql + "    )  ";
+		}
+		else if ( Find2_sw == "N" )
+		{
+			Sd_sql    = Sd_sql + "   and a.cust_gb  >= '" + this.ed_sgb.value +"'";
+			Sd_sql    = Sd_sql + "   and a.cust_gb <= '" + this.ed_egb.value +"'";
+			Sd_sql    = Sd_sql + "   and a.cust_cd  >= '" + this.ed_scode.value +"'";
+			Sd_sql    = Sd_sql + "   and a.cust_cd <= '" + this.ed_ecode.value +"'";
+		}
+		Line_Sw    = "Y";
+		if ( Find4_sw == "Y" )
+		{
+			Sd_sql    = Sd_sql + "    and  b.cgb in (  ";
+			for( i = 0 ; i < this.ds_ccode1.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  "'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  ",'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql    = Sd_sql + "    )  ";
+		}
+     
+		Line_Sw    = "Y";
+		if ( Find1_sw == "Y" )
+		{
+			Sd_sql    = Sd_sql + "    and  A.JUKYO_CD in (  ";
+			for( i = 0 ; i < this.ds_juk.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  "'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  ",'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql    = Sd_sql + "    )  ";
+		}
+		else if ( Find1_sw == "N" )
+		{
+			Sd_sql    = Sd_sql + "   and A.JUKYO_CD  >= '" + this.ed_ssjuk.value +"'";
+			Sd_sql    = Sd_sql + "   and A.JUKYO_CD  <= '" + this.ed_esjuk.value +"'";
+		}
+		Line_Sw    = "Y";
+		if ( Find3_sw == "Y" )
+		{
+			Sd_sql    = Sd_sql + "    and b.sale_CD in (  ";
+			for( i = 0 ; i < this.ds_puser.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_puser.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  "'" +  this.ds_puser.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_puser.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  ",'" +  this.ds_puser.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql    = Sd_sql + "    )  ";
+		}
+		else if ( Find3_sw == "N" )
+		{
+			Sd_sql    = Sd_sql + "   and b.sale_CD  >= '" + this.ed_ssale.value +"'";
+			Sd_sql    = Sd_sql + "   and b.sale_CD  <= '" + this.ed_esale.value +"'";
+		}
+		if (( this.ed_mature_symd.value != "" ) || ( this.ed_mature_eymd.value != "" ))
+		{    
+			Sd_sql    = Sd_sql + "   and A.BM_DATE  >= '" + this.ed_mature_symd.value +"'";
+			Sd_sql    = Sd_sql + "   and A.BM_DATE  <= '" + this.ed_mature_eymd.value +"'";
+		}
+		if (this.C_dae.value == 1)
+		{    
+			Sd_sql    = Sd_sql + "   AND ( A.H_SUGM <> 0  or   A.B_SUGM <> 0 ) ";
+		}
+		
+	//=====================Sd_sql1
+		Sd_sql1     =  "    and a.S_DATE >= '" + this.ed_work_symd.value +"'";
+		Sd_sql1     = Sd_sql1 + "    and  a.S_DATE <= '" + this.ed_work_eymd.value +"'";
+		Line_Sw    = "Y";
+		if ( Find2_sw == "Y" )
+		{
+			Sd_sql1    = Sd_sql1 + "    and  A.cust_gb || A.cust_cd in (  ";
+			for( i = 0 ; i < this.ds_cgbcust.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+				{
+					Dol_cust  =  "'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+					Sd_sql1    = Sd_sql1 +  Dol_cust;
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+				{
+					Dol_cust  =  ",'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+					Sd_sql1    = Sd_sql1 +  Dol_cust;
+				}
+			}
+			Sd_sql1    = Sd_sql1 + "    )  ";
+		}
+		else if ( Find2_sw == "N" )
+		{
+			Sd_sql1    = Sd_sql1 + "   and a.cust_gb  >= '" + this.ed_sgb.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and a.cust_gb <= '" + this.ed_egb.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and a.cust_cd  >= '" + this.ed_scode.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and a.cust_cd <= '" + this.ed_ecode.value +"'";
+		}
+		Line_Sw    = "Y";
+		if ( Find4_sw == "Y" )
+		{
+			Sd_sql1    = Sd_sql1 + "    and  b.cgb in (  ";
+			for( i = 0 ; i < this.ds_ccode1.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  "'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  ",'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql1    = Sd_sql1 + "    )  ";
+		}
+		
+		Line_Sw    = "Y";
+		if ( Find1_sw == "Y" )
+		{
+			Sd_sql1    = Sd_sql1 + "    and  A.JUKYO_CD in (  ";
+			for( i = 0 ; i < this.ds_juk.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  "'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  ",'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql1    = Sd_sql1 + "    )  ";
+		}
+		else if ( Find1_sw == "N" )
+		{
+			Sd_sql1    = Sd_sql1 + "   and A.JUKYO_CD  >= '" + this.ed_ssjuk.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and A.JUKYO_CD  <= '" + this.ed_esjuk.value +"'";
+		}
+		if ( Find3_sw == "Y" )
+		{
+			Sd_sql1    = Sd_sql1 + "    and  b.sale_CD in (  ";
+			for( i = 0 ; i < this.ds_puser.rowcount; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_puser.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  "'" +  this.ds_puser.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_puser.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  ",'" +  this.ds_puser.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql1    = Sd_sql1 + "    )  ";
+		}
+		else if ( Find3_sw == "N" )
+		{
+			Sd_sql1    = Sd_sql1 + "   and b.sale_CD  >= '" + this.ed_ssale.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and b.sale_CD  <= '" + this.ed_esale.value +"'";
+		}
+		if (( this.ed_mature_symd.value != "" ) || ( this.ed_mature_eymd.value != "" ))
+		{    
+			Sd_sql1    = Sd_sql1 + "   and A.BM_DATE  >= '" + this.ed_mature_symd.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and A.BM_DATE  <= '" + this.ed_mature_eymd.value +"'";
+		}
+		if (this.C_dae.value == 1)
+		{    
+			Sd_sql1    = Sd_sql1 + "   AND ( A.H_SUGM <> 0  or   A.B_SUGM <> 0 ) ";
+		}
+	} 
+	else if (( this.cmb_print_select.index == 4 ) || ( this.cmb_print_select.index == 5 ))
+	{
+		Sd_sql2   = "   where syymm >= '" + this.ed_work_symd.value.substr(0,6) +"'";
+		Sd_sql2   = Sd_sql2 + "    and  syymm <= '" + this.ed_work_eymd.value.substr(0,6) +"'";
+
+		Sd_sql    =  "    and a.S_DATE >= '" + this.ed_work_symd.value +"'";
+		Sd_sql    = Sd_sql + "    and  a.S_DATE <= '" + this.ed_work_eymd.value +"'";
+		Line_Sw   = "Y";
+		if ( Find2_sw == "Y" )
+		{
+			Sd_sql    = Sd_sql + "    and  A.cust_gb || A.cust_cd in (  ";
+			for( i = 0 ; i < this.ds_cgbcust.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+				{
+					Dol_cust  =  "'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+					Sd_sql    = Sd_sql +  Dol_cust;
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+				{
+					Dol_cust  =  ",'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+					Sd_sql    = Sd_sql +  Dol_cust;
+				}
+			}
+			Sd_sql    = Sd_sql + "    )  ";
+		}
+		else if ( Find2_sw == "N" )
+		{
+			Sd_sql    = Sd_sql + "   and a.cust_gb  >= '" + this.ed_sgb.value +"'";
+			Sd_sql    = Sd_sql + "   and a.cust_gb <= '" + this.ed_egb.value +"'";
+			Sd_sql    = Sd_sql + "   and a.cust_cd  >= '" + this.ed_scode.value +"'";
+			Sd_sql    = Sd_sql + "   and a.cust_cd <= '" + this.ed_ecode.value +"'";
+		}
+		Line_Sw    = "Y";
+		if ( Find4_sw == "Y" )
+		{
+			Sd_sql    = Sd_sql + "    and  b.cgb in (  ";
+			for( i = 0 ; i < this.ds_ccode1.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  "'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  ",'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql    = Sd_sql + "    )  ";
+		}
+		Line_Sw    = "Y";
+		if ( Find1_sw == "Y" )
+		{
+			Sd_sql    = Sd_sql + "    and  A.JUKYO_CD in (  ";
+			for( i = 0 ; i < this.ds_juk.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  "'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  ",'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+				}	
+			}
+			Sd_sql    = Sd_sql + "    )  ";
+		}
+		else if ( Find1_sw == "N" )
+		{
+			Sd_sql    = Sd_sql + "   and A.JUKYO_CD  >= '" + this.ed_ssjuk.value +"'";
+			Sd_sql    = Sd_sql + "   and A.JUKYO_CD  <= '" + this.ed_esjuk.value +"'";
+		}
+		if ( Find3_sw == "Y" )
+		{
+			Sd_sql    = Sd_sql + "    and  b.sale_CD in (  ";
+			for( i = 0 ; i < this.ds_puser.rowcount; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_puser.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  "'" +  this.ds_puser.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_puser.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql    = Sd_sql +  ",'" +  this.ds_puser.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql    = Sd_sql + "    )  ";
+		}
+		else if ( Find3_sw == "N" )
+		{
+			Sd_sql    = Sd_sql + "   and b.sale_CD  >= '" + this.ed_ssale.value +"'";
+			Sd_sql    = Sd_sql + "   and b.sale_CD  <= '" + this.ed_esale.value +"'";
+		}
+		if (( this.ed_mature_symd.value != "" ) || ( this.ed_mature_eymd.value != "" ))
+		{    
+			Sd_sql    = Sd_sql + "   and A.BM_DATE  >= '" + this.ed_mature_symd.value +"'";
+			Sd_sql    = Sd_sql + "   and A.BM_DATE  <= '" + this.ed_mature_eymd.value +"'";
+		}
+		if (this.C_dae.value == 1)
+		{    
+			Sd_sql    = Sd_sql + "   AND ( A.H_SUGM <> 0  or   A.B_SUGM <> 0 ) ";
+		}
+//=====================Sd_sql1
+		Sd_sql1     =  "    and a.S_DATE >= '" + this.ed_work_symd.value +"'";
+		Sd_sql1     = Sd_sql1 + "    and  a.S_DATE <= '" + this.ed_work_eymd.value +"'";
+		Line_Sw    = "Y";
+		if ( Find2_sw == "Y" )
+		{
+			Sd_sql1    = Sd_sql1 + "    and  A.cust_gb || A.cust_cd in (  ";
+			for( i = 0 ; i < this.ds_cgbcust.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+				{
+					Dol_cust  =  "'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+					Sd_sql1    = Sd_sql1 +  Dol_cust;
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_cgbcust.getColumn(i, "CHK") == "1" ))
+				{
+					Dol_cust  =  ",'" + this.ds_cgbcust.getColumn(i, "GUBN") + this.ds_cgbcust.getColumn(i, "CODE") + "'";
+					Sd_sql1    = Sd_sql1 +  Dol_cust;
+				}
+			}
+			Sd_sql1    = Sd_sql1 + "    )  ";
+		}
+		else if ( Find2_sw == "N" )
+		{
+			Sd_sql1    = Sd_sql1 + "   and a.cust_gb  >= '" + this.ed_sgb.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and a.cust_gb <= '" + this.ed_egb.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and a.cust_cd  >= '" + this.ed_scode.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and a.cust_cd <= '" + this.ed_ecode.value +"'";
+		}
+		Line_Sw    = "Y";
+		if ( Find4_sw == "Y" )
+		{
+			Sd_sql1    = Sd_sql1 + "    and  b.cgb in (  ";
+			for( i = 0 ; i < this.ds_ccode1.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  "'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_ccode1.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  ",'" +  this.ds_ccode1.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql1    = Sd_sql1 + "    )  ";
+		}
+    
+		Line_Sw    = "Y";
+		if ( Find1_sw == "Y" )
+		{
+			Sd_sql1    = Sd_sql1 + "    and  A.JUKYO_CD in (  ";
+			for( i = 0 ; i < this.ds_juk.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  "'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_juk.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  ",'" +  this.ds_juk.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql1    = Sd_sql1 + "    )  ";
+		}
+		else if ( Find1_sw == "N" )
+		{
+			Sd_sql1    = Sd_sql1 + "   and A.JUKYO_CD  >= '" + this.ed_ssjuk.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and A.JUKYO_CD  <= '" + this.ed_esjuk.value +"'";
+		}
+		Line_Sw    = "Y";
+		if ( Find3_sw == "Y" )
+		{
+			Sd_sql1    = Sd_sql1 + "    and  b.sale_CD in (  ";
+			for( i = 0 ; i < this.ds_puser.rowcount ; i++ )
+			{
+				if (( Line_Sw == "Y"  ) && ( this.ds_puser.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  "'" +  this.ds_puser.getColumn(i, "CODE") + "'";
+					Line_Sw   = "N";
+				}
+				else if (( Line_Sw == "N"  ) && ( this.ds_puser.getColumn(i, "CHK") == "1" ))
+				{
+					Sd_sql1    = Sd_sql1 +  ",'" +  this.ds_puser.getColumn(i, "CODE") + "'";
+				}
+			}
+			Sd_sql1    = Sd_sql1 + "    )  ";
+		}
+		else if ( Find3_sw == "N" )
+		{
+			Sd_sql1    = Sd_sql1 + "   and b.sale_CD  >= '" + this.ed_ssale.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and b.sale_CD  <= '" + this.ed_esale.value +"'";
+		}
+		if (( this.ed_mature_symd.value != "" ) || ( this.ed_mature_eymd.value != "" ))
+		{    
+			Sd_sql1    = Sd_sql1 + "   and A.BM_DATE  >= '" + this.ed_mature_symd.value +"'";
+			Sd_sql1    = Sd_sql1 + "   and A.BM_DATE  <= '" + this.ed_mature_eymd.value +"'";
+		}
+		if (this.C_dae.value == 1)
+		{    
+			Sd_sql1    = Sd_sql1 + "   AND ( A.H_SUGM <> 0  or   A.B_SUGM <> 0 ) ";
+		}
+	}
+	// 미리보기 변수
+	var strArg = "s_sql1="+nexacro.wrapQuote(Sd_sql1)+ 
+				 "s_sql2="+nexacro.wrapQuote(Sd_sql2)+
+				 "s_sql="+nexacro.wrapQuote(Sd_sql);
+	
+	// 출력 변수
+	var rdopt  = "/rp ["+this.ed_work_symd.value+"]" +
+	                 "["+this.ed_work_eymd.value+"]" + 				
+					 "["+this.ed_sgb.value + this.ed_scode.value+"]" +
+					 "["+this.ed_egb.value + this.ed_ecode.value+"]" +
+					 "["+Sd_sql+"]" +
+					 "["+Sd_sql1+"]" + 
+					 "["+Sd_sql2+"]";
+	
+	switch(this.cmb_print_select.index)
+	{
+		case 0:
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_1=ds_1";
+				this.Div00.set_url("sd::SD8120F_GRID1.xfdl");
+				this.gfn_TransactionP("ds_1","JSP/sd/SD8120F_DS1_SELECT.jsp", strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD8120r.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "sd::SDRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			break;
+		case 1:
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_2=ds_2";
+				this.Div00.set_url("sd::SD8120F_GRID2.xfdl");				
+				this.gfn_TransactionP("ds_2","JSP/sd/SD8120F_DS2_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD8121r.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "sd::SDRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			break;
+		case 2:
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_3=ds_3";
+				this.Div00.set_url("sd::SD8120F_GRID3.xfdl");		
+				this.gfn_TransactionP("ds_3","JSP/sd/SD8120F_DS3_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD8122r.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "sd::SDRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			break;
+		case 3:
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_4=ds_4";
+				this.Div00.set_url("sd::SD8120F_GRID4.xfdl");			
+				this.gfn_TransactionP("ds_4","JSP/sd/SD8120F_DS4_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD8123r.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "sd::SDRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			break;
+		case 4:
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_5=ds_5";
+				strArg += " syymm="+nexacro.wrapQuote((this.ed_work_symd.value).substr(0,6));
+				strArg += " eyymm="+nexacro.wrapQuote((this.ed_work_eymd.value).substr(0,6));
+				this.gfn_TransactionP("ds_5","JSP/sd/SD8120F_DS5_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD8124R.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "sd::SDRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			break;
+		case 5:
+			if(obj.name == "btn_printview" ) // 미리보기 일때
+			{
+				var strDs = "ds_6=ds_6";
+				strArg += " syymm="+nexacro.wrapQuote((this.ed_work_symd.value).substr(0,6));
+				strArg += " eyymm="+nexacro.wrapQuote((this.ed_work_eymd.value).substr(0,6));
+				this.gfn_TransactionP("ds_6","JSP/sd/SD8120F_DS6_SELECT.jsp", strDs, strDs, strArg, "fnDSCallback", true, "P", false, this);
+			}
+			else if(obj.name == "btn_print")
+			{
+				rdfile = gv_urlMrd+"/sd/SD8125R.mrd";
+				this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "sd::SDRDF.xfdl", "", this, 0, 0, 1400, 760);
+			}
+			break;
+	}
+};
+
+this.fnCallback = function(Trid, ErroCode, ErrorMsg)
+{
+	if(ErroCode != 0)
+		return;
+		
+	if(Trid == "select")
+	{
+		var objDate = new nexacro.Date();
+		var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+		if(ErroCode != 0)
+			trace("[PD160_SearchF.fnCallBack(" + f_date + ")] " + svcid +"::"+ errMsg );
+		else
+		{
+			trace('succ');
+		}
+	}
+}
+
+this.fnDSCallback = function(Trid, ErroCode, ErrorMsg)
+{
+	if(ErroCode != 0)
+		return;
+	
+	if(Trid.substr(0,3) == "ds_" && this.all[Trid].rowcount <= 0)
+	{
+		alert('조회된 데이터가 없습니다.');
+		return;
+	}
+	
+	if(Trid == "ds_5")
+	{
+		this.Div00.set_url();
+		this.Div00.set_url("sd::SD8120F_GRID5.xfdl");
+	}
+	else if(Trid == "ds_6")
+	{
+		this.Div00.set_url();
+		this.Div00.set_url("sd::SD8120F_GRID6.xfdl");
+	}
+}
+
+this.btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// Excell Export시 ds row가 많으면 시간이 좀 걸리지만 화면은 멈춤상태이기에, Export중임을 알리기 위해 setWaitCursor 사용.
+	// 그러나 바로 사용하게 되면 setWaitCursor가 실행되기 전에 exportData() 로 넘어가버려 WaitCursor가 나오지않음.
+	// setWaitCursor가 실행되기동안 아주 잠깐 기다리기 위한 setTimer사용
+	this.setWaitCursor(true);
+	this.setTimer(0, 10);
+};
+
+this.SD8120F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	if(e.timerid==0)
+	{
+		this.fnExcellExport();
+		this.killTimer(e.timerid);
+	}
+};
+
+this.fnExcellExport = function()
+{
+	var filename;
+	
+	this.exportObj = new ExcelExportObject();
+	if ( this.Div00.url == "sd::SD8120F_GRID1.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8120F_GRID1, "Sheet1!A1");
+		filename = "Excel_1"; } //"일자별 출고현황"
+	else if ( this.Div00.url == "sd::SD8120F_GRID2.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8120F_GRID2, "Sheet1!A1");
+		filename = "Excel_2"; } //"업체별 수금현황"
+	else if ( this.Div00.url == "sd::SD8120F_GRID3.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8120F_GRID3, "Sheet1!A1");
+		filename = "Excel_3"; } //"적요별 수금현황"
+	else if ( this.Div00.url == "sd::SD8120F_GRID4.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8120F_GRID4, "Sheet1!A1");
+		filename = "Excel_4"; } //"만기일별 수금현황"
+	else if ( this.Div00.url == "sd::SD8120F_GRID5.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8120F_GRID5, "Sheet1!A1");
+		filename = "Excel_5"; } //"영업사원별 수금현황(월별)"
+	else if ( this.Div00.url == "sd::SD8120F_GRID6.xfdl" ) {
+		var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.Div00.form.SD8120F_GRID6, "Sheet1!A1");
+		filename = "Excel_6"; } //"영업사원별 수금현황(월별)업체구분"
+	
+	this.exportObj.set_exporturl(gv_urlXeni); 
+	this.exportObj.set_exportfilename(filename);
+    this.exportObj.exportData();
+	this.setWaitCursor(false);
+}
+
+this.common_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		if(obj.name == 'ed_scode')
+			this.btn_Hscust.click();
+		else if(obj.name == 'ed_ecode')
+			this.btn_Hecust.click();
+		else if(obj.name == 'ed_name')
+			this.btn_search.click();
+		else if(obj.name == 'cmb_print_select')
+			this.cmb_print_select.dropdown();
+	}
+};
+
+this.check_onkeydown = function(obj:nexacro.CheckBox,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13)
+	{
+		if(obj.value == 0) obj.set_value(1);
+		else obj.set_value(0)
+	}
+};
+
+this.common_set_focus = function(obj:nexacro.CheckBox,e:nexacro.SetFocusEventInfo)
+{
+	obj.set_border("2px solid #10aea9");
+};
+
+
+this.common_kill_focus = function(obj:nexacro.CheckBox,e:nexacro.KillFocusEventInfo)
+{
+	obj.set_border("");
+};
+]]></Script>
+  </Form>
+</FDL>

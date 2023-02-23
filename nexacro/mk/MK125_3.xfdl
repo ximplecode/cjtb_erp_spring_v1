@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkDtlMain" width="1285" height="600" scrolltype="none" onload="MkMain_onload" ontimer="MkMain_ontimer" onsize="MkMain_onsize" titletext="용지입고현황_용지별">
+    <Layouts>
+      <Layout height="600" width="1285">
+        <ImageViewer id="ImgClose01" taborder="0" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Grid id="grdList" taborder="1" left="0" top="0" binddataset="dsPprInList" autofittype="none" width="100.00%" height="100.00%">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="91"/>
+                <Column size="51"/>
+                <Column size="143"/>
+                <Column size="59"/>
+                <Column size="49"/>
+                <Column size="226"/>
+                <Column size="35"/>
+                <Column size="83"/>
+                <Column size="85"/>
+                <Column size="78"/>
+                <Column size="85"/>
+                <Column size="85"/>
+                <Column size="102"/>
+                <Column size="144"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="24"/>
+                <Row size="32" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="2" text="입고번호" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="매입처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="구분" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" colspan="3" text="용지명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="8" text="중량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="9" text="단가" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="10" text="금액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="11" text="부가세" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="12" text="합계" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="13" text="출고처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PPRINMST_DATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="9999-99-99" editinputtype="normal" maskedittype="string" displaytype="expr:dataset.getRowLevel(currow)!=1?&quot;date&quot;:&quot;text&quot;" calendardateformat="yyyy-MM-dd" suppress="3" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="1" text="bind:PPRINMST_NO" displaytype="normal" combodataset="ds_mk_UseType" combocodecol="USE_TYPE_CODE" combodatacol="USE_TYPE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" suppress="2" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="2" text="bind:NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" suppress="4" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="3" text="bind:TYPE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" expr="dataset.getRowLevel(currow)==2?'일계':dataset.getRowLevel(currow)==1?'소계':TYPE_NAME"/>
+                <Cell col="4" text="bind:PPR_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" suppress="1" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" suppressalign="first"/>
+                <Cell col="5" text="bind:PPR_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="1" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" suppressalign="first"/>
+                <Cell col="6" text="bind:PPR_UNIT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="7" text="bind:PPRINDTL_QTY" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,##0.000" maskedittype="number" maskeditmaskchar="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="8" text="bind:PPRINDTL_WEIGHT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#.###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="9" text="bind:PPRINDTL_UNITCOST" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" expr="dataset.getRowLevel(currow)==1?'':dataset.getRowLevel(currow)==2?'':PPRINDTL_UNITCOST"/>
+                <Cell col="10" text="bind:PPRINDTL_AMOUNT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="currency" maskeditformat="#.###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="11" text="bind:PPRINDTL_VAT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="currency" maskeditformat="#.###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+                <Cell col="12" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="currency" maskeditformat="#.###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''" text="bind:PPRINDTL_TOTALAMT"/>
+                <Cell col="13" text="bind:CNAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" displaytype="normal" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':dataset.getRowLevel(currow)==2?'mk_daytotal':TYPE_CODE=='03'?'mk_return':''"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="7" text="총계" font="bold 14px/normal &quot;함초롬돋움&quot;" background="#fbce78"/>
+                <Cell col="7" textAlign="right" font="bold 12px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('PPRINDTL_QTY');" displaytype="mask" background="#fbce78" maskeditformat="#,##0.000"/>
+                <Cell col="8" textAlign="right" font="bold 12px/normal &quot;함초롬돋움&quot;" background="#fbce78" maskeditformat="#.###" expr="dataset.getSum('PPRINDTL_WEIGHT');" displaytype="mask"/>
+                <Cell col="9" textAlign="right" font="bold 12px/normal &quot;함초롬돋움&quot;" background="#fbce78" maskeditformat="#.###"/>
+                <Cell col="10" textAlign="right" font="bold 12px/normal &quot;함초롬돋움&quot;" background="#fbce78" maskeditformat="#.###" expr="dataset.getSum('PPRINDTL_AMOUNT');" displaytype="currency"/>
+                <Cell col="11" textAlign="right" font="bold 12px/normal &quot;함초롬돋움&quot;" background="#fbce78" maskeditformat="#.###" expr="dataset.getSum('PPRINDTL_VAT');" displaytype="currency"/>
+                <Cell col="12" textAlign="right" font="bold 12px/normal &quot;함초롬돋움&quot;" background="#fbce78" maskeditformat="#.###" displaytype="currency" expr="dataset.getSum('PPRINDTL_TOTALAMT');"/>
+                <Cell col="13" background="#fbce78"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+}
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+};]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

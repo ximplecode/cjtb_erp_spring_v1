@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6200P" width="384" height="130" titletext="New Form" onload="SD6200P_onload">
+    <Layouts>
+      <Layout height="130" width="384">
+        <Static id="Static00" taborder="0" text="속성코드 출력" left="10" top="5" color="#7fb39d" font="bold 24px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="190" height="30"/>
+        <Button id="btn_close" taborder="1" text="닫기" top="10" width="45" height="22" right="12" font="8pt/normal &quot;Arial&quot;" onclick="btn_close_onclick"/>
+        <Static id="Static01_06" taborder="2" text="리스트 검색" left="12" top="53" height="30" background="#3cbcb8" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="297" color="white"/>
+        <Static id="Static01_01" taborder="3" text="코드구간" left="12" top="81" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="97"/>
+        <Static id="Static00_01_00" taborder="4" left="107" top="81" height="30" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="202"/>
+        <Static id="Static01_00_00" taborder="5" text="~" left="199" top="87" height="18" textAlign="center" width="14"/>
+        <MaskEdit id="ed_scode" taborder="6" left="114" top="86" width="80" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" type="string" textAlign="center" onkillfocus="ed_jukyocd_onkillfocus" onkeydown="common_onkeydown" format="#########"/>
+        <MaskEdit id="ed_ecode" taborder="7" left="221" top="86" width="80" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="#########" type="string" textAlign="center" onkillfocus="ed_jukyocd_onkillfocus" onkeydown="common_onkeydown"/>
+        <Button id="btn_print" taborder="8" text="출력" top="85" width="55" height="22" font="bold 9pt/normal &quot;Arial&quot;" onclick="btn_print_onclick" onkeydown="btn_print_onkeydown" left="Static00_01_00:8"/>
+        <Button id="btn_printview" taborder="9" text="미리보기" top="57" width="55" height="22" font="bold 9pt/normal &quot;Arial&quot;" left="Static01_06:8" onclick="btn_printview_onclick"/>
+        <Grid id="grd_view" taborder="10" left="0" top="120" visible="false" right="0" bottom="0" binddataset="ds_data" autofittype="col" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="84"/>
+                <Column size="84"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="280"/>
+                <Column size="64"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="속성코드"/>
+                <Cell col="1" text="사업부"/>
+                <Cell col="2" text="판매형태"/>
+                <Cell col="3" text="학교등급"/>
+                <Cell col="4" text="학기"/>
+                <Cell col="5" text="속성코드명"/>
+                <Cell col="6" text="출판년도"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE" textAlign="center"/>
+                <Cell col="1" text="bind:MCODE_NM" textAlign="left"/>
+                <Cell col="2" text="bind:DCODE_NM"/>
+                <Cell col="3" text="bind:JCODE" expr="JCODE==1?'유치':JCODE==2?'초등':JCODE==3?'중등':JCODE==4?'고등':&quot;&quot;"/>
+                <Cell col="4" text="bind:HCODE_NM"/>
+                <Cell col="5" text="bind:TCODENM"/>
+                <Cell col="6" text="bind:SYY"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.btn_printview_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if ( ((this.ed_scode.value).length < 9) || ((this.ed_ecode.value).length < 9) ) 
+	{
+	    alert("도서코드 구간을 정확하게 입력하여주세요!");
+	    return;
+	}
+
+	if(this.grd_view.visible == false)
+	{
+		if(system.navigatorname == 'nexacro')
+		{
+			this.getOwnerFrame().set_width(780);
+			this.getOwnerFrame().set_height(600);
+		}
+		else
+			window.resizeTo(805,650);
+		this.grd_view.set_visible(true);
+		this.btn_printview.set_text("미리보기 닫기");
+		this.btn_printview.set_width(80);
+		this.fnPreview();
+	}
+	else
+	{
+		this.grd_view.set_visible(false);
+		this.btn_printview.set_text("미리보기");
+		this.btn_printview.set_width(55);
+		if(system.navigatorname == 'nexacro')
+		{
+			this.getOwnerFrame().set_width(390);
+			this.getOwnerFrame().set_height(150);
+		}
+		else
+			window.resizeTo(410,190);
+	}
+};
+
+this.fnPreview = function()
+{
+	var strUrl = "JSP/sd/SD6200P_SELECT.jsp";
+	var strDs = "ds_data=ds_data";
+	var strArg = " scode="+nexacro.wrapQuote(nexacro.trim(this.ed_scode.value))+
+				 " ecode="+nexacro.wrapQuote(nexacro.trim(this.ed_ecode.value));
+	this.gfn_TransactionP("search", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+}
+
+this.fnCallback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if(nErrorCode != 0)
+	{
+		alert(strErrorMag);
+		return;
+	}
+}
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if ( ((this.ed_scode.value).length < 9) || ((this.ed_ecode.value).length < 9) ) 
+	{
+	    alert("도서코드 구간을 정확하게 입력하여주세요!");
+	    return;
+	}
+	
+	var rdUrl = gv_urlMrd+"/sd/sd6200r.mrd";
+	var rdParam  = "/rp ["+this.ed_scode.value+"]"+
+					   "["+this.ed_ecode.value+"]";
+					 
+	var rect;
+	if(system.navigatorname = 'nexacro')
+	{
+		if(system.monitorcount > 1)
+		{
+			var monitor_index = system.getMonitorIndex(system.clientToScreenX(this,0), system.clientToScreenY(this,0));
+			rect = system.getScreenRect(monitor_index);
+		}
+		else
+			rect = system.getScreenRect(1);
+	}
+	else
+		rect = system.getScreenRect(1);
+
+	var objParam = {rdUrl:rdUrl, rdParam:rdParam};
+	var sOpenStyle = "topmost=true autosize=false dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false resizable=true";
+	
+	nexacro.open("search", "sd::SDRDF.xfdl", this.getOwnerFrame(), objParam, sOpenStyle, rect.left, rect.top, rect.width, rect.height, this);
+};
+
+this.SD6200P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ed_scode.set_value("000000000");
+	this.ed_ecode.set_value("999999999");
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_data">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="MCODE" type="STRING" size="256"/>
+          <Column id="MCODE_NM" type="STRING" size="256"/>
+          <Column id="DCODE" type="STRING" size="256"/>
+          <Column id="DCODE_NM" type="STRING" size="256"/>
+          <Column id="JCODE" type="STRING" size="256"/>
+          <Column id="SCODE" type="STRING" size="256"/>
+          <Column id="SCODE_NM" type="STRING" size="256"/>
+          <Column id="KCODE" type="STRING" size="256"/>
+          <Column id="KCODE_NM" type="STRING" size="256"/>
+          <Column id="HCODE" type="STRING" size="256"/>
+          <Column id="HCODE_NM" type="STRING" size="256"/>
+          <Column id="TCODE" type="STRING" size="256"/>
+          <Column id="TCODENM" type="STRING" size="256"/>
+          <Column id="SYY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

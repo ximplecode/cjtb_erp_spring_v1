@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SW102F" width="950" height="770" titletext="New Form" onload="SW102F_onload">
+    <Layouts>
+      <Layout height="770" width="950"/>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+var gv_svraddr = nexacro.getApplication().gfn_getUrl("svcUrl");
+this.SW102F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var rdopt, rdfile; 
+	
+	rdfile = gv_urlMrd + "/hr/SW100P_03.mrd";
+	rdopt  = "";
+	
+	var rect;
+	if(system.navigatorname = 'nexacro')
+	{
+		if(system.monitorcount > 1)
+		{
+			var monitor_index = system.getMonitorIndex(system.clientToScreenX(this,0), system.clientToScreenY(this,0));
+			rect = system.getScreenRect(monitor_index);
+		}
+		else
+			rect = system.getScreenRect(1);
+	}
+	else
+		rect = system.getScreenRect(1);
+
+	var sOpenStyle = "autosize=false dragmovetype=all titletext=조회화면 showtitlebar=true showstatusbar=false resizable=true";
+
+	nexacro.open("print", "hr::HR_PRT_L.xfdl", this.getOwnerFrame(), {rdfile:rdfile, rdopt:rdopt}, sOpenStyle, rect.left, rect.top, rect.width, rect.height, this);
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,289 @@
+﻿
+        
+.nexainput.nexaleftalign
+{
+  text-align:left;
+}
+.nexainput.nexarightalign
+{
+  text-align:right;
+}
+.nexainput.nexacenteralign
+{
+  text-align:center;
+}
+
+.nexacontentsbox.nexaleftalign
+{
+  text-align:left;
+}
+.nexacontentsbox.nexarightalign
+{
+  text-align:right;
+}
+.nexacontentsbox.nexacenteralign
+{
+  text-align:center;
+}
+.celltreeline
+{
+  border : 1px dotted #999999;
+}
+.Edit, .MaskEdit, .TextArea, .EditControl, .MaskEditControl, .TextAreaControl
+{
+  cursor:text;
+}
+.Button .nexacontentsbox, .ButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.FileDownload  .nexacontentsbox, .FileDownloadControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.IconTextControl .nexacontentsbox, .IconControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.DatePickerDayItemControl .nexacontentsbox, .DatePickerWeekItemControl .nexacontentsbox, .TitleBarButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.MainFrame, .VScrollBarControl, .HScrollBarControl
+{
+  cursor:default;
+}
+
+.Sketch .nexacontentsbox
+{
+   text-align:center;
+}
+
+.nexainput
+{
+  cursor:inherit;
+}
+
+.Button
+{
+	background : #3cbcb8;
+	color : white;
+}
+.Calendar .datepicker .head
+{
+	background : #3cbcb8;
+	color : white;
+	font : normal 900 10pt/normal "Arial";
+}
+.DatePickerControl.popupCalendardatepicker .head
+{
+	background : #3cbcb8;
+	color : white;
+	font : normal 900 10pt/normal "Arial";
+}
+.Calendar .datepicker .head .yearspin .spinedit
+{
+	background : #3cbcb8;
+}
+.DatePickerControl.popupCalendardatepicker .head .yearspin .spinedit
+{
+	background : #3cbcb8;
+}
+.Calendar .datepicker .head .monthspin .spinedit
+{
+	background : #3cbcb8;
+}
+.DatePickerControl.popupCalendardatepicker .head .monthspin .spinedit
+{
+	background : #3cbcb8;
+}
+.Calendar .datepicker .body .weekband
+{
+	background : #3cbcb8;
+	color : white;
+	font : normal 900 10pt/normal "Arial";
+}
+.DatePickerControl.popupCalendardatepicker .body .weekband
+{
+	background : #3cbcb8;
+	color : white;
+	font : normal 900 10pt/normal "Arial";
+}
+.Calendar .datepicker .body
+{
+	border : 0px none;
+}
+.DatePickerControl.popupCalendardatepicker .body
+{
+	border : 0px none;
+}
+.Calendar .datepicker .body .dayitem
+{
+	border-radius : 50px;
+}
+.DatePickerControl.popupCalendardatepicker .body .dayitem
+{
+	border-radius : 50px;
+}
+.Grid .vscrollbar .trackbar
+{
+	background : #3cbcb8;
+	border : 0px none;
+}
+.Grid
+{
+	border : 1px solid #b7b1b2,1px solid #b7b1b2,1px solid #b7b1b2;
+}
+.Grid .head .row .cell
+{
+	background : #10aea9;
+	color : white;
+}
+.Combo .dropbutton
+{
+	color : white;
+	background : white;
+}
+.ListBoxControl.popupCombocombolist.dummy
+{
+	border : 1px solid #10aea9;
+}
+.ListBoxControl.popupCombocombolist.dummy .vscrollbar
+{
+	background : #10aea9;
+}
+.Button[status=mouseover]
+{
+	background : #10aea9;
+	color : white;
+}
+.Button[status=focused]
+{
+	background : #3cbcb8;
+	color : white;
+}
+.Calendar[status=mouseover]
+{
+	border : 1px solid #d5d5d5;
+}
+.CalendarControl[status=mouseover]
+{
+	border : 1px solid #d5d5d5;
+}
+.Calendar[status=focused]
+{
+	border : 1px solid #d5d5d5;
+}
+.CalendarControl[status=focused]
+{
+	border : 1px solid #d5d5d5;
+}
+.Calendar .datepicker .body .dayitem[status=mouseover]
+{
+	background : #3cbcb8;
+}
+.DatePickerControl.popupCalendardatepicker .body .dayitem[status=mouseover]
+{
+	background : #3cbcb8;
+}
+.Combo[status=mouseover]
+{
+	border : 1px solid #10aea9;
+}
+.Combo[status=focused]
+{
+	border : 1px solid #10aea9;
+}
+.ListBoxControl.popupCombocombolist.dummy .listboxitem[status=mouseover]
+{
+	background : #10aea9;
+	color : white;
+}
+.ListBoxControl.popupCombocombolist.dummy .listboxitem[status=focused]
+{
+	background : #10aea9;
+	color : white;
+}
+.MaskEdit[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+.MaskEdit[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+.TextArea[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+.TextArea[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+.ListBox[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+.ListBox[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+.ListBox .listboxitem[status=focused]
+{
+	background : #10aea9;
+}
+.ListBox .listboxitem[status=mouseover]
+{
+	background : #10aea9;
+}
+.Spin[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+.Spin[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+.Edit[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+.Edit[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+.Button[userstatus=selected]
+{
+	background : #3cbcb8;
+	color : white;
+}
+.Button[userstatus=pushed]
+{
+	background : #3cbcb8;
+	color : white;
+}
+.Calendar .datepicker .body .dayitem[userstatus=selected]
+{
+	background : #3cbcb8;
+}
+.DatePickerControl.popupCalendardatepicker .body .dayitem[userstatus=selected]
+{
+	background : #3cbcb8;
+}
+.ListBoxControl.popupCombocombolist.dummy .listboxitem[userstatus=selected]
+{
+	background : #3cbcb8;
+	color : white;
+}
+.ListBox .listboxitem[userstatus=selected]
+{
+	background : #3cbcb8;
+}
+.Combo .dropbutton[status=disabled]
+{
+	background : #efefef;
+}

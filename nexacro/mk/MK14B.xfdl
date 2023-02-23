@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="필름 입/출고(이동) 현황" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Div id="DivFilmInOut" taborder="4" text="Div00" left="452" top="52" width="850" height="183" visible="false">
+          <Layouts>
+            <Layout>
+              <Radio id="rdDate" taborder="0" height="35" innerdataset="dsDate" codecolumn="CODE" datacolumn="NAME" direction="horizontal" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" background="lightsteelblue" color="white" index="0" text="단가 '0'인 건  " value="1" right="425" width="323" fittocontents="none" padding="0px 0px 0px 30px" rowcount="2" columncount="2" top="25"/>
+              <Combo id="cbCustNm" taborder="1" top="99" height="35" right="425" width="232" innerdataset="ds_mk_Cust" datacolumn="CUST_NAME" codecolumn="CUST" autoselect="true" font="12px/normal &quot;함초롬바탕 확장&quot;" onitemchanged="cbCustNm_onitemchanged"/>
+              <Edit id="edSCustCd" taborder="9" top="99" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="660" width="88" maxlength="4" autoselect="true" onchanged="edSCustCd_onchanged"/>
+              <Static id="stCust" taborder="13" text="외주처" top="99" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="751" width="85"/>
+              <Calendar id="calEDate" taborder="3" top="62" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="425" width="160" autoselect="true" onkeydown="LocalFctn_OnKeyDown"/>
+              <Calendar id="calSDate" taborder="2" top="62" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="588" width="160" autoselect="true" onkeydown="LocalFctn_OnKeyDown"/>
+              <Static id="stDate" taborder="14" text="조회일자" top="62" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="751" width="85"/>
+              <Static id="stKind" taborder="15" text="조회방법" top="25" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="751" width="85"/>
+              <Button id="btnBook_Search" taborder="4" text="도서번호" left="430" top="25" width="85" height="35" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" onclick="btnBook_Search_onclick"/>
+              <Edit id="edt_bookCode" taborder="5" top="25" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="10" textAlign="center" autoselect="true" left="518" onkeydown="LocalFctn_OnKeyDown"/>
+              <Edit id="edEBookCd" taborder="6" top="25" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="10" textAlign="center" autoselect="true" left="681" onkeydown="LocalFctn_OnKeyDown"/>
+              <Static id="stCust1_00" taborder="16" text="도서년판" top="62" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="430"/>
+              <Edit id="edt_bookYear" taborder="7" top="62" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="88" maxlength="4" textAlign="center" autoselect="true" left="518" onkeydown="LocalFctn_OnKeyDown"/>
+              <Static id="stCust1_00_00" taborder="17" text="도서명" top="99" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="430"/>
+              <Edit id="edBookNm" taborder="8" top="99" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="323" textAlign="center" autoselect="true" left="518" onkeydown="LocalFctn_OnKeyDown"/>
+              <Static id="stCondition" taborder="18" text="필터조건" top="136" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="751" width="85"/>
+              <Static id="stSort" taborder="19" text="정렬방법" top="136" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="335" width="85"/>
+              <Radio id="rdSort" taborder="12" height="35" innerdataset="dsSort" codecolumn="CODE" datacolumn="NAME" direction="horizontal" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" background="lightsteelblue" color="white" index="0" text="단가 '0'인 건  " value="1" right="9" width="323" fittocontents="none" padding="0px 0px 0px 30px" rowcount="2" columncount="2" top="136"/>
+              <Static id="stCondition2" taborder="20" top="137" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="425" width="323"/>
+              <CheckBox id="cbExPrinpia" taborder="10" text="프린피아 제외" left="119" top="145" width="150" height="20" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" value="true"/>
+              <CheckBox id="cbExCTP" taborder="11" text="CTP 제외" left="259" top="145" width="150" height="20" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" value="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Radio id="rdGubun" taborder="5" left="470" top="28" height="45" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" innerdataset="dsGubun" codecolumn="CODE" datacolumn="NAME" index="0" text="필름 입/출고 현황" value="1" columncount="2" padding="0px 0px 0px 20px" onitemchanged="rdGubun_onitemchanged" width="412"/>
+        <Static id="Static02" taborder="0" text="필름 입/출고(이동)현황" left="12" top="10" width="448" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Div id="DivFilmMove" taborder="6" left="452" top="52" width="850" height="183" text="">
+          <Layouts>
+            <Layout>
+              <Calendar id="calEDate" taborder="2" top="25" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="425" width="160" autoselect="true" onkeydown="LocalFctn_OnKeyDown2"/>
+              <Calendar id="calSDate" taborder="0" top="25" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="588" width="160" autoselect="true" onkeydown="LocalFctn_OnKeyDown2"/>
+              <Static id="stDate" taborder="1" text="조회일자" top="25" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="751" width="85"/>
+              <Button id="btnBook_Search" taborder="3" text="도서번호" left="14" top="62" width="85" height="35" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" onclick="btnBook_Search_onclick"/>
+              <Edit id="edt_bookCode" taborder="4" top="62" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="10" textAlign="center" autoselect="true" left="102" onkeydown="LocalFctn_OnKeyDown2"/>
+              <Edit id="edEBookCd" taborder="5" top="62" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" maxlength="10" textAlign="center" autoselect="true" left="265" onkeydown="LocalFctn_OnKeyDown2"/>
+              <Static id="stCust1_00" taborder="8" text="도서년판" top="99" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" width="85" left="14"/>
+              <Edit id="edt_bookYear" taborder="6" top="99" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" width="88" maxlength="4" textAlign="center" autoselect="true" left="102" onkeydown="LocalFctn_OnKeyDown2"/>
+              <CheckBox id="cbExCTP" taborder="7" text="CTP 제외" left="259" top="109" width="150" height="20" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" value="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnSearch" taborder="1" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="34" onclick="btnSearch_onclick" width="80" left="rdGubun:193"/>
+        <Button id="btnPrt" taborder="2" text="출력" top="34" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" onclick="btnPrt_onclick" left="btnSearch:7"/>
+        <Button id="btnExcel" taborder="3" top="34" width="43" height="39" icon="url('Img::ico_excel_O.png')" onclick="btnExcel_onclick" left="btnPrt:7"/>
+        <Div id="DivGrd" taborder="7" left="11" top="227" width="98.85%" bottom="3" text="" async="false">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerPrt;
+var vStr;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var sCust_Gubn = "41";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+var urlExcel = nexacro.getApplication().gv_urlXeni;
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer;
+
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerPrt = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_PRINT");
+	
+	//권한 체크 및 컴포넌트 ENABLE처리
+	if(vPerSel != "1" || vPerPrt != "1")
+		this.fctn_User_Enabled(this, false);
+	
+	if(vPerSel = "1"){
+		
+		//외주처 정보 가져오기
+		this.gfn_TransactionP("select", "JSP/mk/Cust_Select.jsp", "ds_mk_Cust=ds_mk_Cust", "ds_mk_Cust=ds_mk_Cust", "", "", false, "S", false, this);
+		this.ds_mk_Cust.filter("CUST_GUBN=='00' || CUST_GUBN=='" + sCust_Gubn + "'");
+		
+		if(this.rdGubun.value == 1){
+			this.DivFilmInOut.set_visible(true);
+			this.DivFilmMove.set_visible(false);
+			this.DivGrd.set_url("mk::MK14B_1.xfdl");
+			this.DivFilmInOut.form.calSDate.setFocus();
+		}else{
+			this.DivFilmInOut.set_visible(false);
+			this.DivFilmMove.set_visible(true);
+			this.DivGrd.set_url("mk::MK14B_2.xfdl");
+			this.DivFilmMove.form.calSDate.setFocus();
+		}
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.rdGubun.value == 1)
+	{
+		
+		if((this.DivFilmInOut.form.calSDate.value == "" || Eco.isUndefined(this.DivFilmInOut.form.calSDate.value) == true) &&
+		   (this.DivFilmInOut.form.calEDate.value == "" || Eco.isUndefined(this.DivFilmInOut.form.calEDate.value) == true) &&
+		   (this.DivFilmInOut.form.edt_bookCode.value == "" || Eco.isUndefined(this.DivFilmInOut.form.edt_bookCode.value) == true) &&
+		   (this.DivFilmInOut.form.edEBookCd.value == "" || Eco.isUndefined(this.DivFilmInOut.form.edEBookCd.value) == true) &&
+		   (this.DivFilmInOut.form.edt_bookYear.value == "" || Eco.isUndefined(this.DivFilmInOut.form.edt_bookYear.value) == true) &&
+		   (this.DivFilmInOut.form.edBookNm.value == "" || Eco.isUndefined(this.DivFilmInOut.form.edBookNm.value) == true))
+		{
+			this.DivFilmInOut.form.calSDate.setFocus();
+			alert("조회할 조건을 입력해 주십시요.");
+			return false;
+		}
+
+		//조회방법 ""처리
+		var vDateGubun1, vDateGubun2;
+		if(this.DivFilmInOut.form.rdDate.value == 1)
+			vDateGubun1 = "1";
+		else
+			vDateGubun1 = "";
+			
+		if(this.DivFilmInOut.form.rdDate.value == 2)
+			vDateGubun2 = "1";
+		else
+			vDateGubun2 = "";
+		
+		//조회일자 ""처리
+		var vSDate, vEDate;
+		if(Eco.isUndefined(this.DivFilmInOut.form.calSDate.value) == true)
+			vSDate = "";
+		else
+			vSDate = this.DivFilmInOut.form.calSDate.value;
+		if(Eco.isUndefined(this.DivFilmInOut.form.calEDate.value) == true )
+			vEDate = "";
+		else	
+			vEDate = this.DivFilmInOut.form.calEDate.value;
+		
+		//도서코드 ""처리
+		var vBookSCd, vBookECd, vBookYear, vBookName;
+		if(Eco.isUndefined(this.DivFilmInOut.form.edt_bookCode.value) == true)
+			vBookSCd = "";
+		else
+			vBookSCd = this.DivFilmInOut.form.edt_bookCode.value;
+		
+		if(Eco.isUndefined(this.DivFilmInOut.form.edEBookCd.value) == true)
+			vBookECd = "";
+		else
+			vBookECd = this.DivFilmInOut.form.edEBookCd.value;
+		
+		if(Eco.isUndefined(this.DivFilmInOut.form.edt_bookYear.value) == true)
+			vBookYear = "";
+		else
+			vBookYear = this.DivFilmInOut.form.edt_bookYear.value;
+		
+		if(Eco.isUndefined(this.DivFilmInOut.form.edBookNm.value) == true)
+			vBookName = "";
+		else
+			vBookName = this.DivFilmInOut.form.edBookNm.value;
+		
+		//거래처코드 ""처리
+		var vCustCd;
+		if(Eco.isUndefined(this.DivFilmInOut.form.edSCustCd.value) == true){
+			vCustCd = "";
+			sCust_Gubn = "";
+		}else if(this.DivFilmInOut.form.edSCustCd.value == "0000"){
+			vCustCd = "";
+			sCust_Gubn = "";
+		}else {
+			vCustCd = this.DivFilmInOut.form.edSCustCd.value;
+			sCust_Gubn = "41";
+		}
+		
+		var vExPrinpia, vExCTP;
+		if(this.DivFilmInOut.form.cbExPrinpia.value == true)
+			vExPrinpia = 1;
+		else
+			vExPrinpia = 0;
+			
+		if(this.DivFilmInOut.form.cbExCTP.value == true)
+			vExCTP = 1;
+		else
+			vExCTP = 0;
+		
+		var vSort1, vSort2;
+		if(this.DivFilmInOut.form.rdSort.value == 1)
+			vSort1 = "1";
+		else
+			vSort1 = "";
+			
+		if(this.DivFilmInOut.form.rdSort.value == 2)
+			vSort2 = "1";
+		else
+			vSort2 = "";
+		
+		str_url = "JSP/mk/mk14B_Select1.jsp";
+		in_ds 	= "dsList1=dsList1";
+		out_ds 	= "dsList1=dsList1";
+		str_arg = "DATEGUBUN1=" + nexacro.wrapQuote(vDateGubun1) +
+	          " DATEGUBUN2=" + nexacro.wrapQuote(vDateGubun2) +
+			  " SDATE=" + nexacro.wrapQuote(vSDate) +
+	          " EDATE=" + nexacro.wrapQuote(vEDate) +
+			  " SBOOKCODE=" + nexacro.wrapQuote( vBookSCd ) +
+	          " EBOOKCODE=" + nexacro.wrapQuote( vBookECd ) +
+			  " BOOKYEAR=" + nexacro.wrapQuote( vBookYear ) +
+	          " BOOKNAME=" + nexacro.wrapQuote( vBookName ) + 
+	          " CUST_GUBN=" +nexacro.wrapQuote( sCust_Gubn) +
+			  " CUST_CODE=" +nexacro.wrapQuote( vCustCd ) +
+			  " PRINPIA_CHK=" +nexacro.wrapQuote( vExPrinpia) +
+			  " CTP_CHK=" +nexacro.wrapQuote( vExCTP ) +
+			  " SORT1=" +nexacro.wrapQuote( vSort1 ) +
+			  " SORT2=" +nexacro.wrapQuote(vSort2);
+	}else if(this.rdGubun.value == 2)
+	{
+		if((this.DivFilmMove.form.calSDate.value == "" || Eco.isUndefined(this.DivFilmMove.form.calSDate.value) == true) &&
+		   (this.DivFilmMove.form.calEDate.value == "" || Eco.isUndefined(this.DivFilmMove.form.calEDate.value) == true) &&
+		   (this.DivFilmMove.form.edt_bookCode.value == "" || Eco.isUndefined(this.DivFilmMove.form.edt_bookCode.value) == true) &&
+		   (this.DivFilmMove.form.edEBookCd.value == "" || Eco.isUndefined(this.DivFilmMove.form.edEBookCd.value) == true) &&
+		   (this.DivFilmMove.form.edt_bookYear.value == "" || Eco.isUndefined(this.DivFilmMove.form.edt_bookYear.value) == true))
+		{
+			this.DivFilmMove.form.calSDate.setFocus();
+			alert("조회할 조건을 입력해 주십시요.");
+			return false;
+		}
+		
+		//조회일자 ""처리
+		var vSDate, vEDate;
+		if(Eco.isUndefined(this.DivFilmMove.form.calSDate.value) == true)
+			vSDate = "";
+		else
+			vSDate = this.DivFilmMove.form.calSDate.value;
+		if(Eco.isUndefined(this.DivFilmMove.form.calEDate.value) == true )
+			vEDate = "";
+		else	
+			vEDate = this.DivFilmMove.form.calEDate.value;
+		
+		
+		//도서코드 ""처리
+		var vBookSCd, vBookECd, vBookYear, vBookName;
+		if(Eco.isUndefined(this.DivFilmMove.form.edt_bookCode.value) == true)
+			vBookSCd = "";
+		else
+			vBookSCd = this.DivFilmMove.form.edt_bookCode.value;
+		
+		if(Eco.isUndefined(this.DivFilmMove.form.edEBookCd.value) == true)
+			vBookECd = "";
+		else
+			vBookECd = this.DivFilmMove.form.edEBookCd.value;
+		
+		if(Eco.isUndefined(this.DivFilmMove.form.edt_bookYear.value) == true)
+			vBookYear = "";
+		else
+			vBookYear = this.DivFilmMove.form.edt_bookYear.value;
+		
+		str_url = "JSP/mk/mk14B_Select2.jsp";
+		in_ds 	= "dsList2=dsList2";
+		out_ds 	= "dsList2=dsList2";
+		str_arg = " SBOOKCODE=" + nexacro.wrapQuote( vBookSCd ) +
+				  " EBOOKCODE=" + nexacro.wrapQuote( vBookECd ) +
+			      " BOOKYEAR=" + nexacro.wrapQuote( vBookYear ) +
+			      " SDATE=" + nexacro.wrapQuote(vSDate) +
+	              " EDATE=" + nexacro.wrapQuote(vEDate);
+	}
+	
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+};
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		if(this.rdGubun.value == 1){
+			if(this.dsList1.rowcount == 0){
+				alert("조회된 자료가 없습니다.");
+				return false;
+			}
+		}else{
+			if(this.dsList2.rowcount == 0){
+				alert("조회된 자료가 없습니다.");
+				return false;
+			}
+		}
+	}
+};
+
+//레포트 출력 이벤트
+this.btnPrt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.rdGubun.value == 1)
+	{
+		if((this.DivFilmInOut.form.calSDate.value == "" || Eco.isUndefined(this.DivFilmInOut.form.calSDate.value) == true) &&
+		   (this.DivFilmInOut.form.calEDate.value == "" || Eco.isUndefined(this.DivFilmInOut.form.calEDate.value) == true) &&
+		   (this.DivFilmInOut.form.edt_bookCode.value == "" || Eco.isUndefined(this.DivFilmInOut.form.edt_bookCode.value) == true) &&
+		   (this.DivFilmInOut.form.edEBookCd.value == "" || Eco.isUndefined(this.DivFilmInOut.form.edEBookCd.value) == true) &&
+		   (this.DivFilmInOut.form.edt_bookYear.value == "" || Eco.isUndefined(this.DivFilmInOut.form.edt_bookYear.value) == true) &&
+		   (this.DivFilmInOut.form.edBookNm.value == "" || Eco.isUndefined(this.DivFilmInOut.form.edBookNm.value) == true))
+		{
+			this.DivFilmInOut.form.calSDate.setFocus();
+			alert("조회할 조건을 입력해 주십시요.");
+			return false;
+		}
+
+		//조회방법 ""처리
+		var vDateGubun1, vDateGubun2;
+		if(this.DivFilmInOut.form.rdDate.value == 1)
+			vDateGubun1 = "1";
+		else
+			vDateGubun1 = "";
+			
+		if(this.DivFilmInOut.form.rdDate.value == 2)
+			vDateGubun2 = "1";
+		else
+			vDateGubun2 = "";
+		
+		//조회일자 ""처리
+		var vSDate, vEDate;
+		if(Eco.isUndefined(this.DivFilmInOut.form.calSDate.value) == true)
+			vSDate = "";
+		else
+			vSDate = this.DivFilmInOut.form.calSDate.value;
+		if(Eco.isUndefined(this.DivFilmInOut.form.calEDate.value) == true )
+			vEDate = "";
+		else	
+			vEDate = this.DivFilmInOut.form.calEDate.value;
+		
+		//도서코드 ""처리
+		var vBookSCd, vBookECd, vBookYear, vBookName;
+		if(Eco.isUndefined(this.DivFilmInOut.form.edt_bookCode.value) == true)
+			vBookSCd = "";
+		else
+			vBookSCd = this.DivFilmInOut.form.edt_bookCode.value;
+		
+		if(Eco.isUndefined(this.DivFilmInOut.form.edEBookCd.value) == true)
+			vBookECd = "";
+		else
+			vBookECd = this.DivFilmInOut.form.edEBookCd.value;
+		
+		if(Eco.isUndefined(this.DivFilmInOut.form.edt_bookYear.value) == true)
+			vBookYear = "";
+		else
+			vBookYear = this.DivFilmInOut.form.edt_bookYear.value;
+		
+		if(Eco.isUndefined(this.DivFilmInOut.form.edBookNm.value) == true)
+			vBookName = "";
+		else
+			vBookName = this.DivFilmInOut.form.edBookNm.value;
+		
+		//거래처코드 ""처리
+		var vCustCd;
+		if(Eco.isUndefined(this.DivFilmInOut.form.edSCustCd.value) == true){
+			vCustCd = "";
+			sCust_Gubn = "";
+		}else if(this.DivFilmInOut.form.edSCustCd.value == "0000"){
+			vCustCd = "";
+			sCust_Gubn = "";
+		}else {
+			vCustCd = this.DivFilmInOut.form.edSCustCd.value;
+			sCust_Gubn = "41";
+		}
+		
+		var vExPrinpia, vExCTP;
+		if(this.DivFilmInOut.form.cbExPrinpia.value == true)
+			vExPrinpia = 1;
+		else
+			vExPrinpia = 0;
+			
+		if(this.DivFilmInOut.form.cbExCTP.value == true)
+			vExCTP = 1;
+		else
+			vExCTP = 0;
+		
+		var vSort1, vSort2;
+		if(this.DivFilmInOut.form.rdSort.value == 1)
+			vSort1 = "1";
+		else
+			vSort1 = "";
+			
+		if(this.DivFilmInOut.form.rdSort.value == 2)
+			vSort2 = "1";
+		else
+			vSort2 = "";
+		
+		rdParam = "/ragentpath ["+ gv_urlRdDataServer +"]"+ " /rp [" + vDateGubun1 + "] [" +  vDateGubun2 + "] [" +  vSDate + "] [" +  vEDate + "] " +
+							                                     "[" +  vBookSCd + "] [" +  vBookECd + "] [" +  vBookYear + "] [" +  vBookName + "] " +
+																 "[" +  sCust_Gubn + "] [" +  vCustCd + "] [" +  vExPrinpia + "] [" +  vExCTP + "] " +
+																 "[" +  vSort1 + "] [" +  vSort2 + "]"; 
+	}else if(this.rdGubun.value == 2)
+	{
+		if((this.DivFilmMove.form.calSDate.value == "" || Eco.isUndefined(this.DivFilmMove.form.calSDate.value) == true) &&
+		   (this.DivFilmMove.form.calEDate.value == "" || Eco.isUndefined(this.DivFilmMove.form.calEDate.value) == true) &&
+		   (this.DivFilmMove.form.edt_bookCode.value == "" || Eco.isUndefined(this.DivFilmMove.form.edt_bookCode.value) == true) &&
+		   (this.DivFilmMove.form.edEBookCd.value == "" || Eco.isUndefined(this.DivFilmMove.form.edEBookCd.value) == true) &&
+		   (this.DivFilmMove.form.edt_bookYear.value == "" || Eco.isUndefined(this.DivFilmMove.form.edt_bookYear.value) == true))
+		{
+			this.DivFilmMove.form.calSDate.setFocus();
+			
+			alert("조회할 조건을 입력해 주십시요.");
+			return false;
+		}
+		
+		//조회일자 ""처리
+		var vSDate, vEDate;
+		if(Eco.isUndefined(this.DivFilmMove.form.calSDate.value) == true)
+			vSDate = "";
+		else
+			vSDate = this.DivFilmMove.form.calSDate.value;
+		if(Eco.isUndefined(this.DivFilmMove.form.calEDate.value) == true )
+			vEDate = "";
+		else	
+			vEDate = this.DivFilmMove.form.calEDate.value;
+		
+		
+		//도서코드 ""처리
+		var vBookSCd, vBookECd, vBookYear, vBookName;
+		if(Eco.isUndefined(this.DivFilmMove.form.edt_bookCode.value) == true)
+			vBookSCd = "";
+		else
+			vBookSCd = this.DivFilmMove.form.edt_bookCode.value;
+		
+		if(Eco.isUndefined(this.DivFilmMove.form.edEBookCd.value) == true)
+			vBookECd = "";
+		else
+			vBookECd = this.DivFilmMove.form.edEBookCd.value;
+		
+		if(Eco.isUndefined(this.DivFilmMove.form.edt_bookYear.value) == true)
+			vBookYear = "";
+		else
+			vBookYear = this.DivFilmMove.form.edt_bookYear.value;
+		
+		rdParam = "/ragentpath ["+ gv_urlRdDataServer +"]"+ " /rp [" + vBookSCd + "] [" +  vBookECd + "] [" +  vBookYear + "] [" +  vSDate + "] [" +  vEDate + "]"; 
+	}
+	
+	var rdUrl = "";
+	
+	if(this.rdGubun.value == 1){
+		rdUrl = gv_svcUrl + "rpt/mk/MK14B_1.mrd";
+	}else{
+		rdUrl = gv_svcUrl + "rpt/mk/MK14B_2.mrd";
+	}
+	
+	var vScreenWidth = system.getScreenWidth();
+	
+	if(vScreenWidth >= 1920)
+		vScreenWidth = vScreenWidth/2
+	
+	nexacro.open("popupPrt", "mk::MKRDF.xfdl", this.getOwnerFrame(), {rdUrl:rdUrl, rdParam:rdParam}, "autosize=false", 0, 0, vScreenWidth, system.getScreenHeight(), this);
+
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.DivFilmInOut.form.getFocus();
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.DivFilmInOut.form.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+this.LocalFctn_OnKeyDown2 = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.DivFilmMove.form.getFocus();
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.DivFilmMove.form.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+this.edSCustCd_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	
+	sCust_Gubn = "41";
+	if(this.DivFilmInOut.form.edSCustCd.text.length == 1){
+		var vCustCd = this.lfn_CustName(sCust_Gubn, this.DivFilmInOut.form.edSCustCd.text);
+		this.DivFilmInOut.form.edSCustCd.set_value(vCustCd);
+	}
+	
+	if(this.DivFilmInOut.form.edSCustCd.getLength() == this.DivFilmInOut.form.edSCustCd.text.length){
+		this.DivFilmInOut.form.cbCustNm.set_index(this.ds_mk_Cust.findRow("CUST", sCust_Gubn+this.DivFilmInOut.form.edSCustCd.text));
+		
+		if(this.DivFilmInOut.form.cbCustNm.index == -1){
+			this.DivFilmInOut.form.cbCustNm.setFocus();
+			this.DivFilmInOut.form.cbCustNm.dropdown();
+		}
+	}
+};
+
+this.cbCustNm_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var iCustIdx = this.ds_mk_Cust.findRow("CUST_NAME", this.DivFilmInOut.form.cbCustNm.text);
+	this.DivFilmInOut.form.edSCustCd.set_value(this.ds_mk_Cust.getColumn(iCustIdx, "CUST_CODE"));
+	
+};
+
+//#######################################################
+// 사용권한에 따른 컴포넌트 Enable 여부
+// formObj : 폼 ID 변수
+// _set : Enable 변수 (True, False)
+//#######################################################
+this.fctn_User_Enabled = function(formObj, _set)
+{
+	var comObj;
+	// 마스터 폼 컴포넌트 Enabled 여부
+	for(var i = 0; i < formObj.components.length;  i++)
+	{
+		comObj = formObj.components[i];
+		
+		if (comObj == "[object Edit]" || comObj == "[object Combo]"
+		   || comObj == "[object Calendar]" || comObj == "[object MaskEdit]" 
+		   || comObj == "[object TextArea]")
+		{
+			comObj.set_enable(_set);
+		}
+	}
+	
+	if(vPerSel != 1)
+		this.btnSearch.set_enable(_set);
+		
+	if(vPerPrt != 1){
+		this.btnPrt.set_enable(_set);
+		this.btnExcel.set_enable(_set);
+	}
+}
+this.btnExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, 
+        this.DivGrd.form.grdList, "Sheet1!A1");
+    
+	this.exportObj.set_exporturl(urlExcel);
+	this.exportObj.exportData(); 
+};
+
+this.rdGubun_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	if(this.rdGubun.value == 1)
+	{
+		this.DivFilmInOut.set_visible(true);
+		this.DivFilmMove.set_visible(false);
+		this.DivFilmInOut.form.calSDate.setFocus();
+		this.DivGrd.set_url("mk::MK14B_1.xfdl");
+	}
+	else{
+		this.DivFilmInOut.set_visible(false);
+		this.DivFilmMove.set_visible(true);
+		this.DivFilmMove.form.calSDate.setFocus();
+		this.DivGrd.set_url("mk::MK14B_2.xfdl");
+	}
+};
+
+this.btnBook_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var vBookCd, vBookYear;
+	if(this.rdGubun.value == 1)
+	{
+		vBookCd = this.DivFilmInOut.form.edt_bookCode.value;
+		vBookYear = this.DivFilmInOut.form.edt_bookYear.value;
+	}else{
+		vBookCd = this.DivFilmMove.form.edt_bookCode.value;
+		vBookYear = this.DivFilmMove.form.edt_bookYear.value;
+	}
+	
+	var objParam = {dsParam1:this.dsBookMst
+				   ,dsParam2:"MK14B"
+				   ,dsParam3:vBookCd
+				   ,dsParam4:vBookYear}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBook", objParam, "mk::MKBook_SearchF.xfdl", "popupCallback", this, 10, 58, 450, 400);
+};
+
+this.popupCallback = function(){
+	
+	if(this.dsBookMst.rowcount > 0)
+	{
+		if(this.rdGubun.value == 1){
+			this.DivFilmInOut.form.edt_bookCode.set_value(this.dsBookMst.getColumn(0, "BOOKMST_CODE"));
+			this.DivFilmInOut.form.edt_bookYear.set_value(this.dsBookMst.getColumn(0, "BOOKMST_YEAR"));
+		}else
+		{
+			this.DivFilmMove.form.edt_bookCode.set_value(this.dsBookMst.getColumn(0, "BOOKMST_CODE"));
+			this.DivFilmMove.form.edt_bookYear.set_value(this.dsBookMst.getColumn(0, "BOOKMST_YEAR"));
+		}
+	}
+}
+]]></Script>
+    <Objects>
+      <Dataset id="dsList1">
+        <ColumnInfo>
+          <Column id="ORDMST_DATE" type="STRING" size="256"/>
+          <Column id="ORDMST_NO" type="STRING" size="256"/>
+          <Column id="ORDDTL_SEQ" type="STRING" size="256"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="CUST_GUBN" type="STRING" size="256"/>
+          <Column id="CUST_CODE" type="STRING" size="256"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="256"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="256"/>
+          <Column id="ORDMST_QTY" type="STRING" size="256"/>
+          <Column id="USE_NAME" type="STRING" size="256"/>
+          <Column id="DTL_PAGE" type="STRING" size="256"/>
+          <Column id="ORDDTL_TONE" type="STRING" size="256"/>
+          <Column id="CTP" type="STRING" size="256"/>
+          <Column id="BOOKMSTTYPE" type="STRING" size="256"/>
+          <Column id="BOOK_CODEYEAR" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="256"/>
+          <Column id="PLT_NAME" type="STRING" size="256"/>
+          <Column id="ORDDTL_FILMOUTDATE" type="STRING" size="256"/>
+          <Column id="ORDDTL_FILMINDATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_Cust" oncolumnchanged="ds_mk_Paper_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="REPRESENTATIVE" type="STRING" size="256"/>
+          <Column id="BUSINESSNO" type="STRING" size="256"/>
+          <Column id="BUSINESS_STARTDATE" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="OFFICE_TEL" type="STRING" size="256"/>
+          <Column id="OFFICE_FAX" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+          <Column id="CUST_STOPPAGE" type="STRING" size="256"/>
+          <Column id="BANK_CODE" type="STRING" size="256"/>
+          <Column id="CUST_ACNTNO" type="STRING" size="256"/>
+          <Column id="CUSTDTL_SALEAMOUNT" type="STRING" size="256"/>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSort">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">발주번호별</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">도서코드별</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsList2">
+        <ColumnInfo>
+          <Column id="BOOKMST_NAME" type="STRING" size="256"/>
+          <Column id="USE_NAME" type="STRING" size="256"/>
+          <Column id="ORDDTL_PAGE" type="STRING" size="256"/>
+          <Column id="ROOT1" type="STRING" size="256" prop=""/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGubun">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">필름 입/출고 현황</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">필름 이동현황</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsDate">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">출고일자</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">입고일자</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item1" compid="rdGubun" propid="codecolumn" datasetid="dsGubun0" columnid="CODE"/>
+      <BindItem id="item2" compid="rdGubun" propid="datacolumn" datasetid="dsGubun0" columnid="NAME"/>
+      <BindItem id="item0" compid="rdGubun" propid="value" datasetid="dsGubun0" columnid="CODE"/>
+      <BindItem id="item3" compid="rdGubun" propid="innerdataset" datasetid="dsGubun0" columnid="CODE"/>
+    </Bind>
+  </Form>
+</FDL>

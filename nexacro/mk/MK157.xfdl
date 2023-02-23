@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="470" height="280" titletext="용지마감" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="280" width="470">
+        <Static id="Static02" taborder="0" text="용지마감" left="12" top="10" width="398" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnSearch" taborder="1" text="마감" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="80" top="77" width="80" left="373" onclick="btnSearch_onclick"/>
+        <ImageViewer id="ImgClose01" taborder="2" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <ImageViewer id="ImgClose" taborder="3" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" text="" onclick="ImgClose_onclick" top="16" left="418"/>
+        <Static id="stYyyyMm" taborder="5" text="마감연월" top="175" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="16"/>
+        <Calendar id="calYyMm" taborder="4" top="175" height="35" dateformat="yyyy-MM" font="12px/normal &quot;함초롬바탕 확장&quot;" editformat="yyyy-MM" width="136" left="stYyyyMm:3" autoselect="true"/>
+        <Button id="btnUp" taborder="6" text="▲" left="240" top="175" width="21" height="17" background="lightsteelblue" font="bold 12px/normal &quot;함초롬바탕 확장&quot;" onclick="btnUp_onclick"/>
+        <Button id="btnDown" taborder="7" text="▼" left="240" top="193" width="21" height="17" background="lightsteelblue" font="bold 12px/normal &quot;함초롬바탕 확장&quot;" onclick="btnDown_onclick"/>
+        <Radio id="rdGubun" taborder="8" top="74" height="86" innerdataset="dsGubun" codecolumn="CODE" datacolumn="NAME" direction="horizontal" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" background="lightsteelblue" color="white" index="0" text="비용별 업체 리스트" value="1" width="345" fittocontents="none" padding="0px 0px 0px 10px" rowcount="3" columncount="1" left="16"/>
+        <Static id="stDate" taborder="9" text="마감일자" top="213" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="16"/>
+        <Calendar id="calSDate" taborder="10" top="213" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" width="161" autoselect="true" left="stDate:3"/>
+        <Calendar id="calEDate" taborder="11" top="213" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" autoselect="true" left="calSDate:3"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerDML;
+var vStr;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerDML = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_DML");
+	
+	if(vPerSel != "1" || vPerDML != "1")
+		this.fctn_User_Enabled(this, false);
+	
+	if(vPerSel = "1"){
+		var d = new Date(); 
+		var strToDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");						//오늘날짜 
+		var strToDay  = strToDay.substr(0,6);
+		this.calYyMm.set_value(strToDay);
+		this.fctn_MakeClose_Search();
+	}
+};
+
+//#######################################################
+//	마감일자 조회
+//#######################################################
+this.fctn_MakeClose_Search = function()
+{
+	if(this.calYyMm.value == "" || Eco.isUndefined(this.calYyMm.value) == true || this.calYyMm.value.substr(0,6).length != 6) 
+	{
+		this.calYyMm.setFocus();
+		alert("마감년월을 입력하여 주십시요.");
+		return false;
+	}
+
+	str_arg = "MKCLS_YM=" + nexacro.wrapQuote()+ " MKCLS_STARTDATE=" +nexacro.wrapQuote(this.calYyMm.value);
+	this.gfn_TransactionP("select", "JSP/mk/make_closing.jsp", "dsMakeClose=dsMakeClose", "dsMakeClose=dsMakeClose", str_arg, "", false, "S", false, this); 	
+	
+	this.calSDate.set_value(this.dsMakeClose.getColumn(0, "MKCLS_STARTDATE"));
+	this.calEDate.set_value(this.dsMakeClose.getColumn(0, "MKCLS_ENDDATE"));
+}
+
+//마감하기 버튼
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" || Eco.isUndefined(this.calSDate.value) == true || this.calSDate.value.length != 8)
+	{
+		alert("마감일자를 정확히 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value == "" || Eco.isUndefined(this.calEDate.value) == true || this.calEDate.value.length != 8 )
+	{
+		alert("마감일자를 정확히 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	if(this.calSDate.value.substr(0, 4) != this.calEDate.value.substr(0, 4)){
+		alert("검색연도가 다릅니다. 수정후 다시 입력 하시길 바랍니다.");
+		return false;
+	}
+	
+	var sMON_00		= "";
+	var sMONTH		= "";
+	var sPREMONTH	= "";
+	var sMON_TDATE	= "";
+	var pMON_SDATE	= "";
+	var pMON_EDATE	= "";
+	
+	//addmonth + 1 처리
+	var dFrom = new Date(this.calYyMm.value.substring(0,4), this.calYyMm.value.substring(4,6)-1, this.calYyMm.value.substring(6,8));
+	dFrom.addMonth(1);
+	var dMonth = dFrom.getMonth()+1;
+	
+	if(dMonth.toString().length == 1)
+	{
+		dMonth = "0"+dMonth;
+	}
+	var dTo = dFrom.getYear() + ""+ dMonth;
+	
+	var vEDate;
+	if(this.calEDate.value.substr(4, 4) == "1231")
+		vEDate = this.calEDate.value.substr(0,4)+"1299";
+	else
+		vEDate = this.calEDate.value;
+	
+	switch(this.rdGubun.index) {
+	case 0 :	//거래처 월마감
+		sMON_00		= dTo;
+		sMONTH		= this.calYyMm.value.substr(0, 6);
+	    pMON_SDATE	= this.calSDate.value;
+	    pMON_EDATE	= this.calEDate.value;
+		break;
+	case 1 :	//용지수불 월마감
+		sMON_00 	= dTo;
+	    sMON_TDATE	= this.calSDate.value.substr(0, 6)+"01";
+	    pMON_SDATE	= this.calSDate.value.substr(0, 4)+"0100";
+	    pMON_EDATE	= vEDate;
+		break;
+	case 2 :	//거래처 용지수불 연마감
+		sMON_00 = dTo.substr(0, 4)+ "0100"; 
+	    pMON_SDATE	= this.calSDate.value.substr(0, 4)+"0100";
+	    pMON_EDATE	= this.calEDate.value.substr(0,4)+"1299";
+		break;
+	}
+	
+	str_url = "JSP/mk/mk157f_paper_close_dml.jsp";
+	str_arg = "pMON_00=" + nexacro.wrapQuote(sMON_00) +
+			 " pMONTH=" + nexacro.wrapQuote(sMONTH) +
+			 " pPREMONTH=" + nexacro.wrapQuote(sPREMONTH) +
+			 " pMON_TDATE=" + nexacro.wrapQuote(sMON_TDATE) +
+			 " pMON_SDATE=" + nexacro.wrapQuote(pMON_SDATE) +
+			 " pMON_EDATE=" + nexacro.wrapQuote(pMON_EDATE) +
+			 " pPROC_SET=" + nexacro.wrapQuote(this.rdGubun.index);
+	
+	this.gfn_TransactionP("update", str_url, "", "", str_arg, "fnCallbackTotalUpdate", false, vPerDML, false, this);
+	
+};
+
+this.fnCallbackTotalUpdate = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+//#######################################################
+// 사용권한에 따른 컴포넌트 Enable 여부
+// formObj : 폼 ID 변수
+// _set : Enable 변수 (True, False)
+//#######################################################
+this.fctn_User_Enabled = function(formObj, _set)
+{
+	var comObj;
+	// 마스터 폼 컴포넌트 Enabled 여부
+	for(var i = 0; i < formObj.components.length;  i++)
+	{
+		comObj = formObj.components[i];
+		
+		if (comObj == "[object Edit]" || comObj == "[object Combo]"
+		   || comObj == "[object Calendar]" || comObj == "[object MaskEdit]" 
+		   || comObj == "[object TextArea]")
+		{
+			comObj.set_enable(_set);
+		}
+	}
+	
+	if(vPerSel != 1){
+		this.btnUp.set_enable(_set);
+		this.btnDown.set_enable(_set);
+	}
+		
+	if(vPerDML != 1)
+		this.btnSearch.set_enable(_set);
+}
+
+this.btnUp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUpDate = Eco.date.addMonth(this.calYyMm.value, +1);
+	strUpDate = strUpDate.substr(0, 6);
+	this.calYyMm.set_value(strUpDate);
+	
+	this.fctn_MakeClose_Search();
+};
+
+this.btnDown_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strDownDate = Eco.date.addMonth(this.calYyMm.value, -1);
+	strDownDate = strDownDate.substr(0, 6);
+	this.calYyMm.set_value(strDownDate);
+	
+	this.fctn_MakeClose_Search();
+};
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsGubun">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">거래처 월마감</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">용지수불 마감</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">3</Col>
+            <Col id="NAME">거래처 용지수불 연마감</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsMakeClose">
+        <ColumnInfo>
+          <Column id="MKCLS_YM" type="STRING" size="6"/>
+          <Column id="MKCLS_STARTDATE" type="STRING" size="8"/>
+          <Column id="MKCLS_ENDDATE" type="STRING" size="8"/>
+          <Column id="MKCLS_CLOSE" type="STRING" size="1"/>
+          <Column id="MKCLS_MODIFY" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

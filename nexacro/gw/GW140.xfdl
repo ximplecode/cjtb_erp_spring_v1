@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GW140" width="530" height="570" titletext="New Form" onload="GW140_onload">
+    <Layouts>
+      <Layout height="570" width="530">
+        <Static id="Static02" taborder="0" text="참조문서 선택" left="30" top="12" width="170" height="40" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Combo id="cb_list" taborder="1" text="완결문서함" left="350" top="58" width="160" height="25" innerdataset="DS_COLIST" codecolumn="CB_ID" datacolumn="CB_NAME" value="C" index="0" onitemchanged="cb_list_onitemchanged"/>
+        <Grid id="Grid_LIST" taborder="2" left="20" top="93" width="492" height="450" binddataset="DS_CHAMJO_LIST" oncelldblclick="Grid_LIST_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="89"/>
+                <Column size="297"/>
+                <Column size="92"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="문서번호"/>
+                <Cell col="1" text="문서제목"/>
+                <Cell col="2" text="기안자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CO_SEQ"/>
+                <Cell col="1" text="bind:TITLE"/>
+                <Cell col="2" text="bind:F_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_close" taborder="3" text="닫기" top="20" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_close_onclick" width="63" right="17"/>
+        <Static id="i_Empty" taborder="4" text="검색된 문서가 없습니다" left="106" top="308" width="321" height="32" textAlign="center" font="12px/normal &quot;Gulim&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+this.Div00_btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+//combo box list seleect 
+this.GW140_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var strArg;
+	
+	strArg = "gubun='01'";
+	strArg += " sabun='C20141'"; //gv_sabun 가져와야함
+	
+	var str_url = "JSP/gw/SQL_GW140_02S.jsp";
+	var in_ds = "DS_COADDLIST=DS_COADDLIST";
+	var out_ds = "DS_COADDLIST=DS_COADDLIST";
+	
+	this.gfn_TransactionP("Select", str_url, in_ds, out_ds, strArg, "Cb_List_Add", true, "P", false, this);
+};
+
+this.Cb_List_Add = function()
+{
+	if(this.DS_COADDLIST.rowcount > 0)
+	{
+		var iRow = 2;;
+		
+		for(var i=0; i< this.DS_COADDLIST.rowcount; i++)
+		{
+			iRow += 1;
+			
+			this.DS_COADDLIST.addRow();
+			
+			this.DS_COLIST.setColumn(iRow, "CB_ID", this.DS_COADDLIST.getColumn(i, "CB_ID"));
+			this.DS_COLIST.setColumn(iRow, "CB_NAME", this.DS_COADDLIST.getColumn(i, "CB_NAME"));
+		}
+	}
+	
+	this.cb_list.set_value("C");
+	
+	this.Grid_cbList();
+}
+
+//참조문서 리스트 보여주기
+this.Grid_cbList = function()
+{
+	var strArg;
+	
+	strArg = "gubun='01'"
+	strArg += " sabun='C20141'"	//gv_sabun 가져와야 함
+	strArg += " listclass=" + this.cb_list.value;
+	
+	var str_url = "JSP/gw/SQL_GW140_01S.jsp";
+	var in_ds = "DS_CHAMJO_LIST=DS_CHAMJO_LIST";
+	var out_ds = "DS_CHAMJO_LIST=DS_CHAMJO_LIST";
+	
+	this.gfn_TransactionP("Select", str_url, in_ds, out_ds, strArg, "Select_CbList", true, "P", false, this);	
+}
+
+//참조문서 select callbsck function
+this.Select_CbList = function()
+{
+	if(this.DS_CHAMJO_LIST.rowcount == 0)
+		this.i_Empty.set_visible(true);
+	else
+		this.i_Empty.set_visible(false);
+}
+
+//combo box 변경 시 
+this.cb_list_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if(this.cb_list.value != "-")
+		this.Grid_cbList();
+};
+
+//그리드 더블 클릭 시 추가 
+this.Grid_LIST_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(this.DS_CHAMJO_LIST.rowcount > 0 )
+	{
+		if(this.opener.DS_CHAMJO.rowcount > 0)
+		{
+			for(var i=0; i<this.opener.DS_CHAMJO.rowcount; i++)
+			{
+				if(nexacro.trim( this.opener.DS_CHAMJO.getColumn(i, "I_FLOW_ID" )) == nexacro.trim(this.DS_CHAMJO_LIST.getColumn(e.row, "I_FLOW_ID")) &&
+				 nexacro.trim(this.opener.DS_CHAMJO.getColumn(i, "CO_SEQ" )) == nexacro.trim(this.DS_CHAMJO_LIST.getColumn(e.row, "CO_SEQ") ))
+				{
+					alert("이미 추가한 참조문서 입니다.");
+					return;
+				}
+			}
+		
+		}
+		
+		if( this.opener.DS_CHAMJO.getColumn(e.row, "I_FLOW_ID" ) != this.DS_CHAMJO_LIST.getColumn(e.row, "I_FLOW_ID") ) 
+		{
+			this.opener.DS_CHAMJO.addRow();
+			this.opener.DS_CHAMJO.setColumn(this.opener.DS_CHAMJO.rowposition, "I_FLOW_ID",  nexacro.trim(this.DS_CHAMJO_LIST.getColumn(e.row, "I_FLOW_ID")));
+			this.opener.DS_CHAMJO.setColumn(this.opener.DS_CHAMJO.rowposition, "CO_SEQ",  nexacro.trim(this.DS_CHAMJO_LIST.getColumn(e.row, "CO_SEQ")));
+			this.opener.DS_CHAMJO.setColumn(this.opener.DS_CHAMJO.rowposition, "TITLE",   nexacro.trim(this.DS_CHAMJO_LIST.getColumn(e.row, "TITLE")));
+			this.opener.DS_CHAMJO.setColumn(this.opener.DS_CHAMJO.rowposition, "F_FNUM",  nexacro.trim(this.DS_CHAMJO_LIST.getColumn(e.row, "F_FNUM")));
+			
+			alert("추가되었습니다");
+		}
+	}
+};
+]]></Script>
+    <Objects>
+      <Dataset id="DS_COLIST">
+        <ColumnInfo>
+          <Column id="CB_ID" type="STRING" size="256"/>
+          <Column id="CB_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CB_ID">C</Col>
+            <Col id="CB_NAME">완결문서함</Col>
+          </Row>
+          <Row>
+            <Col id="CB_ID">R</Col>
+            <Col id="CB_NAME">수신문서함</Col>
+          </Row>
+          <Row>
+            <Col id="CB_ID">-</Col>
+            <Col id="CB_NAME">--------------------</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="DS_CHAMJO_LIST">
+        <ColumnInfo>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="CO_SEQ" type="STRING" size="256"/>
+          <Column id="TITLE" type="STRING" size="256"/>
+          <Column id="F_NAME" type="STRING" size="256"/>
+          <Column id="F_FNUM" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_COADDLIST">
+        <ColumnInfo>
+          <Column id="CB_ID" type="STRING" size="256"/>
+          <Column id="CB_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CB_ID">C</Col>
+            <Col id="CB_NAME">완결문서함</Col>
+          </Row>
+          <Row>
+            <Col id="CB_ID">R</Col>
+            <Col id="CB_NAME">수신문서함</Col>
+          </Row>
+          <Row>
+            <Col id="CB_ID">-</Col>
+            <Col id="CB_NAME">--------------------</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

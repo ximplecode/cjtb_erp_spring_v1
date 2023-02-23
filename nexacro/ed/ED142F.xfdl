@@ -1,0 +1,1742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED142F" width="1280" height="720" titletext="New Form" onload="ED142F_onload" onsize="ED142F_onsize" ontimer="ED142F_ontimer">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Div id="Div00" taborder="0" left="15" top="10" height="40" border="1px solid lightgray" text="" width="97%">
+          <Layouts>
+            <Layout>
+              <Button id="btn_search" taborder="0" text="조회" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="231" onclick="Div00_btn_search_onclick"/>
+              <Button id="btn_delete" taborder="1" text="삭제" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="63" right="92" onclick="Div00_btn_delete_onclick"/>
+              <Button id="btn_save" taborder="2" text="발송" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_save_onclick" width="63" right="162"/>
+              <Button id="btn_print" taborder="3" text="출력" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="Div00_btn_print_onclick" width="63" right="25"/>
+              <Button id="btn_add" taborder="4" text="내용추가" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="606" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_add_onclick"/>
+              <Button id="btn_new" taborder="5" text="신규카드" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="686" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_new_onclick"/>
+              <Button id="btn_tempchk" taborder="6" text="결재라인설정" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="90" right="767" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_tempchk_onclick"/>
+              <Button id="btn_tempSave" taborder="7" text="임시저장" top="7" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" width="75" right="864" background="#ffffff" border="2px solid #7fb39d" color="#7fb39d" onclick="Div00_btn_tempSave_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00_02" taborder="1" text="관리카드번호" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="40" width="100"/>
+        <Edit id="edt_outOrderNo" taborder="2" left="Static00_02:2" top="60" width="14.06%" height="40" enable="false"/>
+        <Static id="Static00_01" taborder="3" text="작성일자" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="edt_outOrderNo:3" height="40" width="7.73%"/>
+        <Calendar id="cal_mstDate" taborder="4" left="Static00_01:4" top="60" width="14.06%" height="40" enable="false"/>
+        <Static id="Static00" taborder="5" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cal_mstDate:3" height="40" width="7.73%" text="관련부서"/>
+        <Static id="Static00_00" taborder="6" text="제품명" top="102" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="40" width="100"/>
+        <Static id="Static00_06" taborder="7" text="총쪽수" top="145" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="40" width="100"/>
+        <MaskEdit id="medt_totQty" taborder="8" left="Static00_06:3" top="144" width="14.06%" height="40" format="#,#.#" onkeydown="fn_localKeyDown" enable="false"/>
+        <Static id="Static00_04" taborder="9" text="총금액" top="144" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="medt_totQty:3" height="40" width="7.73%"/>
+        <MaskEdit id="medt_totAmount" taborder="10" left="Static00_04:4" top="145" width="14.06%" height="40" format="#,#" onkeydown="fn_localKeyDown" enable="false"/>
+        <Static id="st_SCMst_availableTerm" taborder="11" text="탈고일자" top="145" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="medt_totAmount:4" height="40" width="7.73%" visible="true"/>
+        <Edit id="edt_mstName" taborder="12" left="Static00_00:3" top="102" width="66.88%" height="40" onkeydown="fn_localKeyDown"/>
+        <Static id="Static00_07" taborder="13" text="접수일자" top="102" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="edt_mstName:4" height="40" width="7.73%"/>
+        <Button id="btn_name" taborder="14" text="성명" left="15" top="187" width="100" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_name_onclick"/>
+        <Edit id="edt_name" taborder="15" left="btn_name:2" top="187" width="14.06%" height="40" enable="false"/>
+        <Button id="btn_jumin" taborder="16" left="edt_name:3" top="187" width="7.73%" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_name_onclick" text="주민번호"/>
+        <MaskEdit id="medt_juminNo" taborder="17" left="btn_jumin:5" top="187" width="14.06%" height="40" format="###### - #@@@@@#" type="string" trimtype="both" enable="false"/>
+        <Static id="Static00_08" taborder="18" text="작업구분" top="187" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="medt_juminNo:4" height="40" width="7.73%"/>
+        <Button id="btn_book" taborder="19" text="도서코드" left="15" top="228" width="100" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_book_onclick"/>
+        <Edit id="edt_bookCode" taborder="20" left="btn_book:2" top="229" width="10.47%" height="40" maxlength="10" onkeydown="fn_localKeyDown"/>
+        <Edit id="edt_bookYear" taborder="21" left="edt_bookCode:4" top="229" width="3.44%" height="40" onkeydown="edt_bookYear_onkeydown" maxlength="4"/>
+        <Edit id="edt_bookName" taborder="22" left="edt_bookYear:3" top="229" width="30.31%" height="40" enable="false"/>
+        <Static id="Static00_06_00" taborder="61" text="규격/색도" top="270" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="40" width="100"/>
+        <Edit id="edt_standard" taborder="59" left="Static00_06_00:1" top="271" width="14.14%" height="40" onkeydown="fn_localKeyDown"/>
+        <Static id="st_SCDtl_contractAmount" taborder="23" text="수량" top="270" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="edt_standard:3" height="40" width="7.66%"/>
+        <MaskEdit id="medt_qty" taborder="24" left="st_SCDtl_contractAmount:2" top="270" width="7.97%" height="40" format="#,#.#" onchanged="fn_amountCalculate" onkeydown="fn_localKeyDown"/>
+        <Static id="Static00_10" taborder="25" text="단가" top="270" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="medt_qty:1" height="40" width="7.66%"/>
+        <MaskEdit id="medt_unitCost" taborder="38" left="Static00_10:2" top="270" width="13.91%" height="40" format="#,#" onkeydown="fn_localKeyDown" onchanged="fn_amountCalculate"/>
+        <Static id="Static00_11" taborder="26" text="지급액" top="270" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="medt_unitCost:3" height="40" width="7.66%" visible="true"/>
+        <MaskEdit id="medt_amount" taborder="27" left="Static00_11:2" top="270" width="13.91%" height="40" format="#,#" onkeydown="fn_localKeyDown"/>
+        <Static id="Static00_12" taborder="28" text="세율" top="270" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="medt_amount:2" height="40" width="7.66%" visible="true"/>
+        <Combo id="cb_section" taborder="29" text="Combo00" left="Static00:3" top="60" width="14.06%" height="40" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME" onitemchanged="cb_section_onitemchanged"/>
+        <Static id="Static00_13" taborder="30" text="승인여부" top="60" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cb_section:4" height="40" width="7.73%"/>
+        <Grid id="grd_dtl" taborder="31" left="15" top="470" width="97%" height="240" binddataset="dsWithHoldDtl" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="150"/>
+                <Column size="250"/>
+                <Column size="200"/>
+                <Column size="150"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="작업구분"/>
+                <Cell col="1" text="저자명"/>
+                <Cell col="2" text="도서코드"/>
+                <Cell col="3" text="도서명"/>
+                <Cell col="4" text="작업내용"/>
+                <Cell col="5" text="규격/색도"/>
+                <Cell col="6" text="수량"/>
+                <Cell col="7" text="단가"/>
+                <Cell col="8" text="지급액"/>
+                <Cell col="9" text="지급일자"/>
+              </Band>
+              <Band id="body">
+                <Cell edittype="combo" combodataset="dsMnscript" combodatacol="MNSCRIPT_NAME" combocodecol="MNSCRIPT_CODE" text="bind:MNSCRIPT_CODE" displaytype="combotext"/>
+                <Cell col="1" text="bind:ATHR_NAME"/>
+                <Cell col="2" text="bind:BOOKCODEYEAR"/>
+                <Cell col="3" text="bind:WITHHOLDDTL_BOOKNAME"/>
+                <Cell col="4" text="bind:WITHHOLDDTL_WORKCONTENT"/>
+                <Cell col="5" text="bind:WITHHOLDDTL_STANDARD"/>
+                <Cell col="6" text="bind:WITHHOLDDTL_QTY"/>
+                <Cell col="7" text="bind:WITHHOLDDTL_UNITCOST"/>
+                <Cell col="8" text="bind:WITHHOLDDTL_AMOUNT"/>
+                <Cell col="9" text="bind:WITHHOLDDTL_PAYDATE" displaytype="date" edittype="date"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="cb_mnScript" taborder="32" text="Combo00" left="Static00_08:3" top="187" width="14.06%" height="40" innerdataset="dsMnscript" codecolumn="MNSCRIPT_CODE" datacolumn="MNSCRIPT_NAME" onkeydown="fn_localKeyDown"/>
+        <CheckBox id="chk_permite" taborder="33" text="재경부승인" left="Static00_13:19" top="60" width="6.72%" height="40" value="true" enable="false" onclick="chk_permite_onclick"/>
+        <Calendar id="cal_receipDate" taborder="34" left="Static00_07:4" top="102" width="14.06%" height="40" enable="false"/>
+        <Calendar id="cal_contractDate" taborder="35" left="st_SCMst_availableTerm:3" top="144" width="14.06%" height="40" onkeydown="fn_localKeyDown"/>
+        <CheckBox id="chk_fixAthr" taborder="36" text="저자 고정하기" left="cal_contractDate:55" top="144" width="8.98%" height="40" onclick="chk_fixAthr_onclick"/>
+        <CheckBox id="chk_fixBook" taborder="37" text="도서코드 고정하기" left="chk_fixAthr:26" top="145" width="10.94%" height="40" onclick="chk_fixBook_onclick"/>
+        <MaskEdit id="medt_taxRate" taborder="39" left="Static00_12:2" top="270" width="7.66%" height="40" format="#.###" onchanged="fn_amountCalculate" onkeydown="fn_localKeyDown"/>
+        <Static id="Static00_14" taborder="40" text="작업내용" top="187" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="cb_mnScript:3" height="40" width="7.66%" visible="true"/>
+        <Edit id="edt_workContent" taborder="41" left="Static00_14:2" top="187" width="22.97%" height="40" enable="false"/>
+        <TextArea id="txa_remark" taborder="62" left="117" top="312" width="45.47%" height="80" onkeydown="fn_localKeyDown"/>
+        <Button id="btn_payDate" taborder="42" text="지급일자" left="txa_remark:2" top="311" width="7.81%" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_payDate_onclick"/>
+        <Calendar id="cal_payDate" taborder="43" left="btn_payDate:2" top="311" width="13.91%" height="40" enable="false"/>
+        <Button id="btn_finishDate" taborder="44" text="원가산업일" left="txa_remark:2" top="352" width="7.66%" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" visible="true" onclick="btn_finishDate_onclick"/>
+        <Calendar id="cal_finishDate" taborder="45" left="btn_finishDate:3" top="354" width="13.91%" height="40" visible="true"/>
+        <Button id="btn_withholeDate" taborder="46" text="원천징수일자" left="cal_finishDate:2" top="353" width="7.66%" height="40" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_withholeDate_onclick"/>
+        <Calendar id="cal_withholeDate" taborder="47" left="btn_withholeDate:1" top="353" width="13.91%" height="40" enable="false"/>
+        <CheckBox id="CheckBox02" taborder="48" text="수가결재진행" left="cal_payDate:27" top="314" width="7.97%" height="33" onclick="CheckBox02_onclick"/>
+        <CheckBox id="ck_open" taborder="49" text="부서공유" left="156" top="22" width="78" height="22" value="true" visible="false"/>
+        <Static id="Static00_09" taborder="50" text="참조" top="229" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="edt_bookName:4" height="40" width="7.66%" visible="true"/>
+        <Edit id="edt_ref" taborder="51" left="Static00_09:3" top="229" width="36.56%" height="40" onkeydown="fn_localKeyDown"/>
+        <Static id="Static00_15" taborder="52" text="첨부파일" top="394" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="70" width="100"/>
+        <Grid id="grd_file" taborder="53" left="Static00_15:2" top="394" width="39.38%" height="70" binddataset="ds_file" oncellclick="Grid00_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48" band="left"/>
+                <Column size="495"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:GB"/>
+                <Cell col="1" text="bind:F_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_file" taborder="54" top="402" width="2.66%" height="25" background="url('Img::loupe.png') no-repeat center center #ffffff" border="0px none" text="" left="grd_file:2" onclick="btn_file_onclick"/>
+        <Button id="btn_Fdelete" taborder="55" left="grd_file:0" top="436" width="2.66%" height="24" background="url('Img::btn_TF_Close_O.png') no-repeat center center #ffffff" border="0px none" onclick="btn_Fdelete_onclick"/>
+        <Button id="btn_cham" taborder="56" text="참조문서" left="btn_file:3" top="395" width="7.66%" height="70" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_cham_onclick"/>
+        <Grid id="grd_cham" taborder="57" left="btn_cham:5" top="395" width="38.75%" height="70" binddataset="DS_CHAMJO" oncelldblclick="grd_cham_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="111"/>
+                <Column size="356"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:CO_SEQ"/>
+                <Cell col="1" text="bind:TITLE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_pay" taborder="58" text="정기지급" left="chk_permite:21" top="60" width="6.25%" height="36" font="normal bold 10pt/normal &quot;Arial&quot;" visible="false" onclick="btn_pay_onclick"/>
+        <PopupDiv id="PopupDiv00" visible="false" left="321" top="536" width="760" height="129" text="PopupDiv00" border="1px solid" formscrollbartype="none">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="0" top="1" width="759" height="125" binddataset="dsAcntDoc">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="200"/>
+                      <Column size="250"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="계정과목"/>
+                      <Cell col="1" text="차변금액"/>
+                      <Cell col="2" text="대변금액"/>
+                      <Cell col="3" text="증빙관리"/>
+                      <Cell col="4" text="관리항목"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:ACNT_NAME"/>
+                      <Cell col="1" text="bind:AD_DEBTOR_AMOUNT"/>
+                      <Cell col="2" text="bind:AD_CREDIT_AMOUNT"/>
+                      <Cell col="3" text="bind:AD_VOUCHERS"/>
+                      <Cell col="4" text="bind:AD_MANAGEMENT_ITEM"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+        <Static id="Static00_15_00" taborder="61" text="비고" top="312" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="15" height="80" width="100"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="edt_outOrderNo" propid="value" datasetid="dsWithHoldMst" columnid="WITHHOLD_NO"/>
+      <BindItem id="item1" compid="cal_mstDate" propid="value" datasetid="dsWithHoldMst" columnid="WITHHOLDMST_DATE"/>
+      <BindItem id="item2" compid="edt_mstName" propid="value" datasetid="dsWithHoldMst" columnid="WITHHOLDMST_BOOKNAME"/>
+      <BindItem id="item3" compid="edt_name" propid="value" datasetid="dsWithHoldDtl" columnid="ATHR_NAME"/>
+      <BindItem id="item4" compid="medt_juminNo" propid="value" datasetid="dsWithHoldDtl" columnid="ATHR_JUMINNO2"/>
+      <BindItem id="item5" compid="edt_bookCode" propid="value" datasetid="dsWithHoldDtl" columnid="BOOKMST_CODE"/>
+      <BindItem id="item6" compid="edt_bookYear" propid="value" datasetid="dsWithHoldDtl" columnid="BOOKMST_YEAR"/>
+      <BindItem id="item7" compid="edt_bookName" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_BOOKNAME"/>
+      <BindItem id="item8" compid="medt_qty" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_QTY"/>
+      <BindItem id="item9" compid="medt_amount" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_AMOUNT"/>
+      <BindItem id="item10" compid="cb_section" propid="value" datasetid="dsWithHoldMst" columnid="SECTION_CODE"/>
+      <BindItem id="item11" compid="cb_mnScript" propid="value" datasetid="dsWithHoldDtl" columnid="MNSCRIPT_CODE"/>
+      <BindItem id="item12" compid="chk_permite" propid="value" datasetid="dsWithHoldMst" columnid="WITHHOLDMST_PERMITE"/>
+      <BindItem id="item13" compid="cal_receipDate" propid="value" datasetid="dsWithHoldMst" columnid="WITHHOLDMST_RECEIPTDATE"/>
+      <BindItem id="item14" compid="cal_contractDate" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_WRITEDATE"/>
+      <BindItem id="item15" compid="medt_unitCost" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_UNITCOST"/>
+      <BindItem id="item16" compid="medt_taxRate" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_TAXRATE"/>
+      <BindItem id="item17" compid="edt_workContent" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_WORKCONTENT"/>
+      <BindItem id="item18" compid="cal_payDate" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_PAYDATE"/>
+      <BindItem id="item20" compid="cal_finishDate" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_FINISHDATE"/>
+      <BindItem id="item21" compid="cal_withholeDate" propid="value" datasetid="dsWithHoldDtl" columnid="WITHHOLDDTL_WITHHOLDDATE"/>
+      <BindItem id="item22" compid="CheckBox02" propid="value" datasetid="dsWithHoldMst" columnid="WITHHOLDMST_NOTEAPRV"/>
+      <BindItem id="item23" compid="ck_open" propid="value" datasetid="dsWithHoldMst" columnid="OPEN_CHECK"/>
+      <BindItem id="item24" compid="edt_ref" propid="value" datasetid="dsWithHoldMst" columnid="REF_USER"/>
+    </Bind>
+    <Objects>
+      <Dataset id="dsMnscript">
+        <ColumnInfo>
+          <Column id="MNSCRIPT_CODE" type="STRING" size="256"/>
+          <Column id="MNSCRIPT_CLASS" type="STRING" size="256"/>
+          <Column id="CG_CODE" type="STRING" size="256"/>
+          <Column id="PERSON_CG_CODE" type="STRING" size="256"/>
+          <Column id="MNSCRIPT_NAME" type="STRING" size="256"/>
+          <Column id="MNSCRIPT_PERSON_CODE" type="STRING" size="256"/>
+          <Column id="MNSCRIPT_COMPANY_CODE" type="STRING" size="256"/>
+          <Column id="MNSCRIPT_ENABLE" type="STRING" size="256"/>
+          <Column id="MNSCRIPT_PCODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="SECTION_NAME" type="STRING" size="256"/>
+          <Column id="LVL" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="SECTION_SHORTNAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsWithHoldDtl" onrowsetchanged="dsWithHoldDtl_onrowsetchanged" oncolumnchanged="dsWithHoldDtl_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="WITHHOLDMST_ID" type="INT" size="20"/>
+          <Column id="WITHHOLDDTL_SEQ" type="STRING" size="2"/>
+          <Column id="MNSCRIPT_CODE" type="STRING" size="2"/>
+          <Column id="ATHR_IDENTITY" type="INT" size="20"/>
+          <Column id="ATHR_JUMINNO2" type="STRING" size="13"/>
+          <Column id="ATHR_NAME" type="STRING" size="30"/>
+          <Column id="ATHR_ABODEGB" type="STRING" size="1"/>
+          <Column id="BOOKCODEYEAR" type="STRING" size="2"/>
+          <Column id="MNSCRIPT_NAME" type="STRING" size="20"/>
+          <Column id="ACNT_CODE" type="STRING" size="5"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="WITHHOLDDTL_BOOKNAME" type="STRING" size="60"/>
+          <Column id="WITHHOLDDTL_WORKCONTENT" type="STRING" size="60"/>
+          <Column id="WITHHOLDDTL_STANDARD" type="STRING" size="20"/>
+          <Column id="WITHHOLDDTL_WRITEDATE" type="STRING" size="8"/>
+          <Column id="WITHHOLDDTL_PAYDATE" type="STRING" size="8"/>
+          <Column id="WITHHOLDDTL_TRANSFERDATE" type="STRING" size="8"/>
+          <Column id="WITHHOLDDTL_QTY" type="BIGDECIMAL" size="6"/>
+          <Column id="WITHHOLDDTL_UNITCOST" type="INT" size="9"/>
+          <Column id="WITHHOLDDTL_AMOUNT" type="INT" size="10"/>
+          <Column id="WITHHOLDDTL_PREAMOUNT" type="INT" size="10"/>
+          <Column id="WITHHOLDDTL_INCOMETAX" type="INT" size="8"/>
+          <Column id="WITHHOLDDTL_RESIDENTTAX" type="INT" size="7"/>
+          <Column id="WITHHOLDDTL_TAXRATE" type="BIGDECIMAL" size="4"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="WITHHOLDDTL_DELETE" type="STRING" size="1"/>
+          <Column id="WITHHOLDDTL_FINISHDATE" type="STRING" size="8"/>
+          <Column id="WITHHOLDDTL_WITHHOLDDATE" type="STRING" size="8"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsWithHoldMst" onrowsetchanged="dsWithHoldMst_onrowsetchanged" onrowposchanged="dsWithHoldMst_onrowposchanged">
+        <ColumnInfo>
+          <Column id="WITHHOLDMST_KIND" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_DATE" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_NO" type="STRING" size="256"/>
+          <Column id="WITHHOLD_NO" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_ID" type="INT" size="256"/>
+          <Column id="WITHHOLDMST_BOOKNAME" type="STRING" size="256"/>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+          <Column id="SECTION_NAME" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_RECEIPTDATE" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_PERMITE0" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_PERMITEDATE0" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_PERMITEUSER0" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_PERMITE" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_PERMITEDATE" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_PERMITEUSER" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_DELETE" type="STRING" size="256"/>
+          <Column id="BU_DECISIONECODE" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="INT" size="256"/>
+          <Column id="WITHHOLDMST_PAYKIND" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_NOTEAPRV" type="STRING" size="256"/>
+          <Column id="OPEN_CHECK" type="STRING" size="256"/>
+          <Column id="WITHHOLDMST_REMARK" type="STRING" size="256"/>
+          <Column id="REF_USER" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsApproval">
+        <ColumnInfo>
+          <Column id="KIND" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="F_NEXT" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="F_DATE" type="STRING" size="256"/>
+          <Column id="JIKCHAK" type="STRING" size="256"/>
+          <Column id="BUSOR" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="F_NAME" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="KS_SIGN" type="STRING" size="256"/>
+          <Column id="POSITION_CODE" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="256"/>
+          <Column id="SECTION_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAuthor">
+        <ColumnInfo>
+          <Column id="ATHR_IDENTITY" type="INT" size="20"/>
+          <Column id="ATHR_NAME" type="STRING" size="30"/>
+          <Column id="ATHR_JUMINNO" type="STRING" size="13"/>
+          <Column id="ATHR_ABODEGB" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntDoc">
+        <ColumnInfo>
+          <Column id="ACNT_NAME" type="STRING" size="35"/>
+          <Column id="AD_KIND" type="STRING" size="2"/>
+          <Column id="AD_ACNT_KIND" type="STRING" size="1"/>
+          <Column id="AD_SEQ" type="STRING" size="3"/>
+          <Column id="AD_NO" type="STRING" size="1"/>
+          <Column id="AD_ACNT_CODE" type="STRING" size="5"/>
+          <Column id="AD_USEDATE" type="STRING" size="8"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="AD_CUST_NAME" type="STRING" size="35"/>
+          <Column id="AD_ID" type="INT" size="20"/>
+          <Column id="AD_DEBTOR_AMOUNT" type="INT" size="20"/>
+          <Column id="AD_CREDIT_AMOUNT" type="INT" size="20"/>
+          <Column id="AD_VOUCHERS" type="STRING" size="50"/>
+          <Column id="AD_MANAGEMENT_ITEM" type="STRING" size="200"/>
+          <Column id="AD_REMARK" type="STRING" size="200"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntDocMst">
+        <ColumnInfo>
+          <Column id="AD_DATENO" type="STRING" size="12"/>
+          <Column id="AD_TYPE" type="STRING" size="30"/>
+          <Column id="AD_WRITEDATE" type="STRING" size="8"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAcntDocDtl">
+        <ColumnInfo>
+          <Column id="ACNT_NAME" type="STRING" size="35"/>
+          <Column id="AD_DEBTOR_AMOUNT" type="INT" size="20"/>
+          <Column id="AD_CREDIT_AMOUNT" type="INT" size="20"/>
+          <Column id="AD_REMARK" type="STRING" size="200"/>
+          <Column id="AD_CUST_NAME" type="STRING" size="35"/>
+          <Column id="AD_VOUCHERS" type="STRING" size="50"/>
+          <Column id="AD_USEDATE" type="STRING" size="8"/>
+          <Column id="AD_MANAGEMENT_ITEM" type="STRING" size="200"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsComp">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="1"/>
+          <Column id="NAME" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_file">
+        <ColumnInfo>
+          <Column id="GB" type="STRING" size="256"/>
+          <Column id="F_NAME" type="STRING" size="256"/>
+          <Column id="F_SIZE" type="STRING" size="256"/>
+          <Column id="F_NO" type="STRING" size="256"/>
+          <Column id="R_NAME" type="STRING" size="256"/>
+          <Column id="F_PATH" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_CHAMJO">
+        <ColumnInfo>
+          <Column id="F_FNUM" type="STRING" size="256"/>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="CO_SEQ" type="STRING" size="256"/>
+          <Column id="TITLE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_K">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_H">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_C">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_D">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DS_GW_U">
+        <ColumnInfo>
+          <Column id="NO" type="STRING" size="256"/>
+          <Column id="GUBUN" type="STRING" size="256"/>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_flow_order">
+        <ColumnInfo>
+          <Column id="I_FLOW_ID" type="STRING" size="256"/>
+          <Column id="KIND" type="STRING" size="256"/>
+          <Column id="SEQ" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="F_COMMENT" type="STRING" size="256"/>
+          <Column id="F_NEXT" type="STRING" size="256"/>
+          <Column id="STATUS" type="STRING" size="256"/>
+          <Column id="STORE" type="STRING" size="256"/>
+          <Column id="F_DATE" type="STRING" size="256"/>
+          <Column id="JIKCHAK" type="STRING" size="256"/>
+          <Column id="BUSOR" type="STRING" size="256"/>
+          <Column id="F_NAME" type="STRING" size="256"/>
+          <Column id="DAMDANG" type="STRING" size="256"/>
+          <Column id="POSITION_CODE2" type="STRING" size="2"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsFormpath">
+        <ColumnInfo>
+          <Column id="GUBUN" type="STRING" size="2"/>
+          <Column id="F_NUM" type="INT" size="3"/>
+          <Column id="F_SEQ" type="INT" size="2"/>
+          <Column id="SABUN" type="STRING" size="6"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="POSITION_CODE" type="STRING" size="2"/>
+          <Column id="POSITION_NAME" type="STRING" size="20"/>
+          <Column id="APPROVAL_EMP" type="STRING" size="6"/>
+          <Column id="POSITION_CODE2" type="STRING" size="2"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileDialog id="fileD"/>
+      <FileUpTransfer id="fileUpTrans"/>
+      <FileDownTransfer id="fileDownTrans"/>
+      <Dataset id="ds_flow_order2">
+        <ColumnInfo>
+          <Column id="I_FLOW_ID" type="STRING" size="20"/>
+          <Column id="F_SEQ" type="STRING" size="2"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="POSITION_CODE" type="STRING" size="2"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="10"/>
+          <Column id="POSITION_CODE2" type="STRING" size="2"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var gv_urlFile = nexacro.getApplication().gv_urlNext;
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+var gds_userinfo = nexacro.getApplication().gds_userinfo;
+var sSection_Code = nexacro.getApplication().gds_userinfo.getColumn(0, "BUSECD");
+var sSection_Name = nexacro.getApplication().gds_userinfo.getColumn(0, "BUSENM");
+var sSection_ShortCode = nexacro.getApplication().gds_userinfo.getColumn(0, "SHORTCODE");
+var sSection_ShortName = nexacro.getApplication().gds_userinfo.getColumn(0, "SHORTNAME");
+var sSabun = nexacro.getApplication().gds_userinfo.getColumn(0, "SABUN");
+var sName = nexacro.getApplication().gds_userinfo.getColumn(0, "NAME");
+
+var sSelect, iI_Flow_id, section_value, temp_chk, setAmountCode;
+
+// 고정자료 정보 임지저장 변수
+var sFixBookCode, sFixBookYear, sFixBookName, sFixAthrName, sFixAthrJuminNo, sFixBookSeq, sFixBookId;
+var sFixAthrName, sFixOuterName, sFixAthrIdentity, sFixAthrJuminno2, sFixAthrAbodegb, sFixCustGubn, sFixCustCode;
+
+this.ED142F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", "ed_03_101");
+	sSelect = nexacro.getApplication().gds_menu.getColumn(nRow, "UM_SELECT");
+	sSelect = Eco.decode(sSelect, null, "1", sSelect);
+		
+	/*팀장님 권한 설정 추가  직위 코드 50 */ 
+	
+	var strArg = "ORDER=0";
+	this.gfn_TransactionP("search","JSP/ed/mnscript_select.jsp", "dsMnscript=dsMnscript", "dsMnscript=dsMnscript", strArg, "fnMnscriptCallback", false, "P", false, this);	//작업구분
+	
+	strArg = "SECTION_CODE=" + sSection_Code 
+		   + " COMPETENCE=" + Eco.decode(sSelect, "1", "P", "2", "P", "A");
+	this.gfn_TransactionP("search","JSP/ed/section_select2.jsp", "dsSection=dsSection", "dsSection=dsSection", strArg, "fnSectionCallback", false, "P", false, this);	//부서
+	
+	strArg = "Section_Code=" + sSection_Code;
+	this.gfn_TransactionP("search","JSP/ed/paykind_select.jsp", "", "", strArg, "fnSectionPayCallback", true, "P", false, this);	//부서별 지급방법
+};
+
+this.fnMnscriptCallback = function(scvid, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(svcid + "::" + errMsg);
+	else
+		this.dsMnscript.filter("MNSCRIPT_CODE='01'||MNSCRIPT_CODE='02'||MNSCRIPT_CODE='29'||MNSCRIPT_PCODE='29'||MNSCRIPT_CODE='36'");
+}
+
+this.fnSectionCallback = function(svcid, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(svcid + "::" + errMsg);
+	else
+		this.dsSection.rowposition = this.dsSection.findRow("SECTION_CODE", sSection_Code);
+};
+
+this.fnSectionPayCallback = function(svcId, errCode, errMsg, gv_rt_value)
+{
+	section_value =nexacro.getApplication().gv_rt_value;
+	
+	if(section_value > 0)	//정기지급
+	{
+		this.btn_pay.set_visible(true);
+		this.btn_pay.text = "정기지급";
+		this.dsWithHoldMst.addRow();
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND", "0");
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV", "0");
+	}
+	else	//수시지급
+	{	
+		this.dsWithHoldMst.addRow();
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND", "1");
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV", "0");
+	}
+}
+
+//MST 초기화
+this.dsWithHoldMst_onrowsetchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowsetChangeEventInfo)
+{
+	var d = new Date(); 
+	var today = Eco.date.getMaskFormatString(d, "yyyyMMdd");
+	
+	if(e.reason == 12 ) //dataset이 추가되었을 때
+	{
+		obj.setColumn(e.row, "WITHHOLDMST_DATE", today);
+		obj.setColumn(e.row, "WITHHOLDMST_KIND", "2");
+		obj.setColumn(e.row, "SECTION_CODE", sSection_Code);
+		obj.setColumn(e.row, "SECTION_NAME", sSection_Name);
+		obj.setColumn(e.row, "WITHHOLDMST_RECEIPTDATE", null);
+		obj.setColumn(e.row, "WITHHOLDMST_PERMITEUSER0", null);
+		obj.setColumn(e.row, "WITHHOLDMST_PERMITEDATE0", null);
+		obj.setColumn(e.row, "WITHHOLDMST_PERMITE0", "0");
+		obj.setColumn(e.row, "WITHHOLDMST_PERMITEUSER", null);
+		obj.setColumn(e.row, "WITHHOLDMST_PERMITEUSER", null);
+		obj.setColumn(e.row, "WITHHOLDMST_PERMITE", "0");
+		obj.setColumn(e.row, "EMPLOYEE_ID", sSabun);
+		obj.setColumn(e.row, "EMPLOYEE_NAME", sName);
+		obj.setColumn(e.row, "I_FLOW_ID", null);
+		obj.setColumn(e.row, "WITHHOLDMST_PAYKIND", "0");
+		obj.setColumn(e.row, "WITHHOLDMST_NOTEAPRV", "0");
+		obj.setColumn(e.row, "OPEN_CHECK", "1");
+		obj.setColumn(e.row, "REF_USER", null);
+		
+		if(obj.getColumn(e.row, "WITHHOLDMST_DATE") >= "20180820")
+			this.ck_open.set_visible(true);
+		
+		this.edt_outOrderNo.text = obj.getColumn(e.row, "WITHHOLDMST_DATE") + "-" + obj.getColumn(e.row, "WITHHOLDMST_NO");
+		
+		this.lfn_I_FLOW_FOMPAHT2_LOAD(sSabun, this.dsFormpath);	//결재라인 가져오기
+		
+		this.dsWithHoldDtl.clearData();
+		this.dsWithHoldDtl.addRow();
+	}
+};
+
+//DTL 초기화
+this.dsWithHoldDtl_onrowsetchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowsetChangeEventInfo)
+{
+	obj.setColumn(e.row, "WITHHOLDDTL_SEQ", (this.dsWithHoldDtl.rowcount + 1).toString().padLeft(2,"0"));
+	
+	obj.setColumn(e.row, "MNSCRIPT_CODE", "01");
+	obj.setColumn(e.row, "BOOKMST_CODE", sFixBookCode);
+	obj.setColumn(e.row, "BOOKMST_YEAR", sFixBookYear);
+	obj.setColumn(e.row, "BOOKMST_SEQ", sFixBookSeq);
+	obj.setColumn(e.row, "BOOKMST_ID", sFixBookId);
+	obj.setColumn(e.row, "WITHHOLDDTL_BOOKNAME", sFixBookName);
+	obj.setColumn(e.row, "WITHHOLDDTL_WORKCONTENT", "원고");
+	obj.setColumn(e.row, "WITHHOLDDTL_STANDARD", null);
+	
+	if(this.dsWithHoldDtl.rowcount == 0)
+		var wrDate = null;
+	else
+		wrDate = this.dsWithHoldDtl.getColumn(e.row-1, "WITHHOLDDTL_WRITEDATE");
+		
+	this.dsWithHoldDtl.setColumn(e.row, "WITHHOLDDTL_WRITEDATE", wrDate);
+	
+	obj.setColumn(e.row, "WITHHOLDDTL_PAYDATE", null);
+	obj.setColumn(e.row, "WITHHOLDDTL_TRANSFERDATE", null);
+	obj.setColumn(e.row, "WITHHOLDDTL_FINISHDATE", null);
+	
+	obj.setColumn(e.row, "ATHR_NAME", sFixAthrName);
+	obj.setColumn(e.row, "OUTER_NAME", sFixOuterName);
+	obj.setColumn(e.row, "ATHR_IDENTITY", sFixAthrIdentity);
+	obj.setColumn(e.row, "ATHR_JUMINNO2", sFixAthrJuminno2);
+	obj.setColumn(e.row, "ATHR_ABODEGB", sFixAthrAbodegb);
+	obj.setColumn(e.row, "CUST_GUBN", sFixCustGubn);
+	obj.setColumn(e.row, "CUST_CODE", sFixCustCode);
+	
+	obj.setColumn(e.row, "EMPLOYEE_ID", sSabun);
+	obj.setColumn(e.row, "WITHHOLDDTL_QTY", 0);
+	obj.setColumn(e.row, "ACNT_CODE", "11505");
+	obj.setColumn(e.row, "WITHHOLDDTL_UNITCOST", 0);
+	obj.setColumn(e.row, "WITHHOLDDTL_AMOUNT", 0);
+	obj.setColumn(e.row, "WITHHOLDDTL_PREAMOUNT", 0);
+	obj.setColumn(e.row, "WITHHOLDDTL_INCOMETAX", 0);
+	obj.setColumn(e.row, "WITHHOLDDTL_RESIDENTTAX", 0);
+	obj.setColumn(e.row, "WITHHOLDDTL_TAXRATE", 3);
+	obj.setColumn(e.row, "WITHHOLDDTL_DELETE", " ");
+	
+	//this.ds_file.clearData();
+	//this.DS_CHAMJO.clearData();
+	
+	this.edt_bookName.setFocus();
+};
+
+//결재라인확인
+this.fn_approval_chk = function()
+{
+	var chkRow = this.dsApproval.findRow("SABUN", sSabun); //자신의 결재라인 체크
+		
+	//결재라인이 설정 되어 있는데 작성자와 사용자가 다르거나 결재라인에 없거나 다음 결재자가 승인한 경우
+	if( (this.dsApproval.rowcount >0 ) && ( (this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "EMPLOYEE_ID") != sSabun) || (chkRow == -1) || (this.dsApproval.getColumn(chkRow+1, "STATUS") == 1) ) )
+	{
+		alert("본인이 작성하지 않았거나 결재진행 중인 문서는 수정 및 삭제 할 수 없습니다.");
+		return false;
+	}
+	else
+		return true;
+}
+
+//결재라인설정
+this.Div00_btn_tempchk_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "EMPLOYEE_ID") != sSabun)
+	{
+		alert("본인이 올린 서류만 결재라인을 설정할 수 있습니다.");
+		return false;
+	}
+	
+	var objParam = {p_fnum : 61,
+					p_ffnum : 7,
+					p_EMPLOYEE_ID : this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "EMPLOYEE_ID"),
+					P_SECTION_CODE : sSection_Code }; 
+					
+	this.lfn_showModal("popupTemp", objParam, "gw::GW121.xfdl", "fnFormpathCallback", this, '', '', 670, 750); //GW121_2
+};
+
+this.fnFormpathCallback = function(svcId)
+{
+	if(this.fn_approval_chk())
+	{
+		if(section_value > 0)
+		{
+			if(this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND") == "1")
+			{	//편집부 + 수시지급
+				setAmountCode = this.lfn_Set_Approval( this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "I_FLOW_ID")
+												, this.dsWithHoldDtl.getSum("WITHHOLDDTL_AMOUNT")
+												, setAmountCode
+												, sSabun == gds_userinfo.getColumn(0, "DEPARTMENT_MANAGER")
+												, this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV")
+												, ""
+												, sSection_Code
+												, this.dsFormpath, this.ds_flow_order, this.ds_flow_order2);
+				
+			}else
+			{	//편집부 + 정기지급
+				setAmountCode = this.lfn_Set_Approval_Edit(this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "I_FLOW_ID")
+												, this.dsWithHoldDtl.getSum("WITHHOLDDTL_AMOUNT")
+												, setAmountCode
+												, sSabun == gds_userinfo.getColumn(0, "DEPARTMENT_MANAGER")
+												, this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV")
+												, ""
+												, sSection_Code
+												, this.dsFormpath, this.ds_flow_order, this.ds_flow_order2);
+			}
+		}
+		else
+		{	
+			//편집부소외 + 수시지급
+			setAmountCode = this.lfn_Set_Approval( this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "I_FLOW_ID")
+												, this.dsWithHoldDtl.getSum("WITHHOLDDTL_AMOUNT")
+												, setAmountCode
+												, sSabun == gds_userinfo.getColumn(0, "DEPARTMENT_MANAGER")
+												, this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV")
+												, ""
+												, sSection_Code
+												, this.dsFormpath, this.ds_flow_order, this.ds_flow_order2);
+			
+		}
+	}
+};
+//신규카드
+this.Div00_btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//if(this.dsWithHoldMst.rowcount > 0)
+		//저장
+	
+	this.dsWithHoldMst.clearData();
+	this.dsWithHoldDtl.clearData();
+	this.dsFormpath.clearData();
+	this.ds_file.clearData();
+	this.DS_CHAMJO.clearData();
+	this.dsBookMst.clearData();
+	
+	this.dsWithHoldMst.addRow();
+	this.dsWithHoldDtl.addRow();
+	
+	if(section_value > 0)	//정기지급
+	{
+		this.btn_pay.set_visible(true);
+		this.dsWithHoldMst.addRow();
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND", "0");
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV", "0");
+	}
+	else	//수시지급
+	{	
+		this.dsWithHoldMst.addRow();
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND", "1");
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV", "0");
+	}
+	
+	this.cal_contractDate.setFocus();
+};
+
+//내용추가
+this.Div00_btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsWithHoldDtl.rowposition;
+	
+	if(this.chk_fixBook.value == true)
+	{
+		sFixBookCode = this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_CODE");
+		sFixBookYear = this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_YEAR");
+		sFixBookSeq  = this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_SEQ");
+		sFixBookId   = this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_ID");
+		sFixBookName = this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_BOOKNAME");	
+	}
+	
+	if(this.chk_fixAthr.value == true)
+	{
+		sFixAthrName     = this.dsWithHoldDtl.getColumn(nRow, "ATHR_NAME");		
+	    sFixOuterName    = this.dsWithHoldDtl.getColumn(nRow, "OUTER_NAME");
+	    sFixAthrIdentity = this.dsWithHoldDtl.getColumn(nRow, "ATHR_IDENTITY");
+	    sFixAthrJuminno2 = this.dsWithHoldDtl.getColumn(nRow, "ATHR_JUMINNO2");
+	    sFixAthrAbodegb  = this.dsWithHoldDtl.getColumn(nRow, "ATHR_ABODEGB");	
+	    sFixCustGubn     = this.dsWithHoldDtl.getColumn(nRow, "CUST_GUBN");
+ 	    sFixCustCode     = this.dsWithHoldDtl.getColumn(nRow, "CUST_CODE");
+	}
+	
+	this.dsWithHoldDtl.addRow();
+};
+
+//조회
+this.Div00_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.dsWithHoldMst,
+					dsParam2:this.dsWithHoldDtl,
+					dsParam3:this.dsSection,
+					dsParam4:this.dsFormpath,
+					pSabun:sSabun,
+					pSelect:sSelect,
+					pMstKind:"2"}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupSearch", objParam, "ed::ED140_SearchF.xfdl", "popupCallback", this, 10, 58, 400, 390);
+};
+
+this.popupCallback = function(svcId, rt_value)
+{
+	this.dsWithHoldDtl.filter("WITHHOLDDTL_DELETE !='D'");
+	
+	if(this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND") == 0)
+		this.btn_pay.set_text("정기지급");
+	else
+		this.btn_pay.set_text("수시지급");
+		
+	this.fn_getFiles(rt_value); 
+	this.fn_getChamjo(rt_value);
+	this.lfn_Approval_Select(rt_value, this.dsApproval, this.DS_GW_U, this.DS_GW_K, this.DS_GW_H, this.DS_GW_C, this.DS_GW_D);	//전자결재 승인 내역 
+}
+
+//첨부파일 가져오기
+this.fn_getFiles = function (iI_Flow_id)
+{
+	if(iI_Flow_id != null)
+	{
+		var strUrl = "JSP/gw/SQL_GW130_FList_v3.jsp";
+		var inds = "ds_file=ds_file";
+		var outds = "ds_file=ds_file";
+		var strArg = "i_flow_id=" + iI_Flow_id;
+		
+		this.gfn_TransactionP("select", strUrl, inds, outds, strArg, "", false, "P", false, this);	
+	}	
+};
+
+//첨부파일 다운로드
+this.Grid00_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 1)
+		this.lfn_FileDownload(this.fileDownTrans ,this.ds_file, gv_urlFile, e.row);
+};
+
+//참조문서 가져오기
+this.fn_getChamjo = function (iI_Flow_id)
+{
+	if(iI_Flow_id != null)
+	{
+		var strUrl = "JSP/gw/SQL_GW110_Cham.jsp";
+		var inds = "DS_CHAMJO=DS_CHAMJO";
+		var outds = "DS_CHAMJO=DS_CHAMJO";
+		
+		var strArg = "i_flow_id=" + iI_Flow_id;
+			strArg += " gubun='01'";
+			
+		this.gfn_TransactionP("select", strUrl, inds, outds, strArg, "", false, "P", false, this);
+	}	
+};
+
+//mst 선택 시 관리자 모드 체크
+this.dsWithHoldMst_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	this.fn_compEnable(e.row);	//컴포넌트 활성화 
+	this.fn_compView(sSelect >= 5);	//관리자 컴포넌트 (5 = 1차 승인자)
+	
+	this.chk_permite.set_enable(sSelect >= 5);
+};
+
+//컴포넌트 활성화
+this.fn_compEnable = function(nRow)
+{
+	var setValue = true;
+	
+	if(sSelect < 6) //2차승인자가 아닐때
+		setValue = (this.dsWithHoldMst.getColumn(nRow, "WITHHOLDMST_PERMITE") != "1");
+		
+	this.Div00.form.btn_tempchk.set_enable(setValue);
+	this.Div00.form.btn_add.set_enable(setValue);
+	this.Div00.form.btn_save.set_enable(setValue);
+	this.Div00.form.btn_delete.set_enable(setValue);
+	
+	this.btn_name.set_enable(setValue);
+	this.btn_jumin.set_enable(setValue);
+	this.cb_mnScript.set_enable(setValue);
+	this.btn_book.set_enable(setValue);
+	this.edt_bookCode.set_enable(setValue);
+	this.edt_bookYear.set_enable(setValue);
+	this.edt_workContent.set_enable(setValue);
+	this.edt_standard.set_enable(setValue)
+	this.medt_qty.set_enable(setValue);
+	this.medt_unitCost.set_enable(setValue);
+	this.edt_ref.set_enable(setValue);
+	this.txa_remark.set_enable(setValue);
+	
+	//재경부 2차 승인자 도서코드, 작업구분, 작업내용 수정 가능
+	if(sSelect >= 5)
+	{
+		this.cb_mnScript.set_enable(setValue);
+		this.btn_book.set_enable(setValue);
+		this.edt_bookCode.set_enable(setValue);
+		this.edt_bookYear.set_enable(setValue);
+		this.edt_workContent.set_enable(setValue);
+		this.txa_remark.set_enable(setValue);
+	}
+}
+
+//관리자 컴포넌트
+this.fn_compView = function(setValue)
+{
+	this.chk_permite.set_enable(setValue);
+	this.cal_receipDate.set_enable(setValue);
+	this.btn_payDate.set_enable(setValue);
+	this.cal_payDate.set_enable(setValue);
+	
+	this.btn_finishDate.set_enable(setValue);
+	this.cal_finishDate.set_enable(setValue);
+	this.btn_finishDate.set_visible(setValue);
+	this.cal_finishDate.set_visible(setValue);
+	
+	this.btn_withholeDate.set_enable(setValue);
+	this.cal_withholeDate.set_enable(setValue);
+	this.btn_withholeDate.set_visible(setValue);
+	this.cal_withholeDate.set_visible(setValue);
+	
+	this.medt_taxRate.set_enable(setValue);
+}
+
+//발송
+this.Div00_btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsFormpath.getColumn(0, "APPROVAL_EMP") != sSabun)
+	{
+		alert("결재라인 설정이 정상적이지 않습니다. 확인 후 발송해 주시기 바랍니다.");
+		return false;
+	}
+	temp_chk = "N";
+	this.fn_save();
+};
+
+//임시저장
+this.Div00_btn_tempSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	temp_chk="Y";
+	this.fn_save();
+};
+
+//저장
+this.fn_save = function()
+{
+	if(temp_chk != "N" && sSection_Code != "2F000")
+		alert("임시저장 기능은 단지 내용에 대한 저장 기능입니다.\n 첨부파일도 최종 발송시 첨부됩니다. \n모두 작성 후 꼭 발송해 주셔야 정상 처리가 됩니다.");
+		
+	if((temp_chk == "N") && (this.ds_file.rowcount + this.DS_CHAMJO.rowcount <= 0))
+	{
+		alert("첨부파일 또는 참조문서를 선택해 주세요.");
+		return false;
+	}
+	
+	var rowType = this.dsWithHoldMst.getRowType(this.dsWithHoldMst.rowposition);
+	
+	if(rowType == 2 || rowType == 4)
+	{
+		if(this.fn_mst_save(rowType))
+			this.fn_dtl_save();
+	}else
+		this.fn_dtl_save();
+}
+
+//mst 저장
+this.fn_mst_save = function(rowType)
+{
+	var nRow = this.dsWithHoldMst.rowposition;
+	var setSave = true;
+	
+	if((rowType != "delete") && (this.fn_mst_rowCheck(nRow) == false))
+	{
+		setSave = false;
+		return false;
+	}
+	
+	if(setSave)
+	{
+		var str_url = "JSP/ed/ed140f_withhold_mst_dml.jsp";
+		var inds = "dsWithHoldMst=dsWithHoldMst:U";
+		this.gfn_TransactionP(rowType ,str_url, inds, "", "", "fnMStSaveCallback", false, "P", false, this);
+		
+		return true;
+	}
+};
+
+this.fnMStSaveCallback = function(svcId, errCode, errMsg, gv_rt_mst_id, gv_rt_mst_no, gv_rt_i_flow_id)
+{
+	var open_i_flow_id, rt_WITHHOLDMST_ID, rt_WITHHOLDMST_NO;
+	var nRow = this.dsWithHoldMst.rowposition;
+	
+	if(errCode != 0)
+		alert(errMsg);
+	else if(svcId != "delete")
+	{
+		if(svcId == 2)
+		{		
+			rt_WITHHOLDMST_ID =nexacro.getApplication().gv_rt_mst_id;
+			rt_WITHHOLDMST_NO = nexacro.getApplication().gv_rt_mst_no;
+			open_i_flow_id = nexacro.getApplication().gv_rt_i_flow_id;
+			
+			this.dsWithHoldMst.setColumn(nRow, "WITHHOLDMST_ID", rt_WITHHOLDMST_ID);
+			this.dsWithHoldMst.setColumn(nRow, "WITHHOLDMST_NO", rt_WITHHOLDMST_NO);
+			this.dsWithHoldMst.setColumn(nRow, "I_FLOW_ID", open_i_flow_id);
+			
+			this.dsWithHoldMst.setColumn(nRow, "WITHHOLD_NO", 
+										this.dsWithHoldMst.getColumn(nRow, "WITHHOLDMST_DATE") + "-" + rt_WITHHOLDMST_NO);
+			
+			this.dsWithHoldMst.setRowType(nRow, 1);
+			
+		}else
+		{
+			open_i_flow_id = this.dsWithHoldMst.getColumn(nRow, "I_FLOW_ID");
+			rt_WITHHOLDMST_ID = this.dsWithHoldMst.getColumn(nRow, "WITHHOLDMST_ID");
+		}
+		
+		if(this.ck_open.visible == true)
+		{
+			if(this.ck_open.value == true)
+				strArg = "i_flow_id=" + open_i_flow_id  + " open_check=1";
+			else
+				strArg = "i_flow_id=" + open_i_flow_id  + " open_check=0";
+			
+			this.gfn_TransactionP("open_chk", "JSP/gw/SQL_GW110_OPEN_CHECK.jsp", "", "", strArg, "", false, "P", false, this);	
+		}
+		
+		if(this.ds_file.rowcount > 0)				//첨부파일 저장
+			this.fn_upload_file(open_i_flow_id);
+
+		if(this.DS_CHAMJO.rowcount > 0)				//참조문서 저장
+			this.fn_upload_chamjo(open_i_flow_id);
+	
+		this.fn_mstPay_save(svcId, rt_WITHHOLDMST_ID);	//지급방식 저장
+	}
+};
+
+//mst checkRow
+this.fn_mst_rowCheck = function (nRow)
+{
+	if (nRow == -1)
+		return true;
+
+	if (this.dsWithHoldMst.getColumn(nRow, "WITHHOLDMST_DATE") == null)
+	{
+		alert("작성일자를 선택해 주십시요.");
+		this.cal_mstDate.setFocus();
+		return false;
+	}
+
+	// 도서코드가 미등록 이고 제품명이 없을 경우는 메시지
+	// 가칭 도서를 넣을 경우에 해당함.
+	if ((this.dsWithHoldMst.getColumn(nRow, "WITHHOLDMST_BOOKNAME") == null) &&
+		(this.dsWithHoldMst.getColumn(nRow, "BOOKMST_CODE") == "0000000000"))
+	{
+		alert("제품명을 입력해 주십시요.");
+		this.edt_bookName.SetFocus();
+		return false;
+	}
+	
+	if (sSection_Code == "99000" || gds_userinfo.getColumn(0,"BIRTH_DT") == "")
+	{
+		if(this.dsWithHoldMst.getColumn(nRow, "REF_USER") == null|| this.dsWithHoldMst.getColumn(nRow, "REF_USER") == "")
+		{
+			alert("공용아이디일 경우 참조항목에 실재 등록자를 입력해 주십시요.");
+			this.edt_ref.SetFocus();
+			return false;
+		}
+	}
+	
+	if ((this.dsWithHoldMst.getRowType(nRow) == 2) && (this.dsFormpath.rowcount <= 0))
+	{
+		alert("결재라인을 선택해주세요.");
+		this.Div00_btn_tempchk_onclick();
+		return false;
+	}	
+	
+	return true;
+};
+
+//첨부파일선택
+this.btn_file_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var dt = new Date();
+	var vFileSubUrl = "attachedfile/"+Eco.date.getMaskFormatString(dt, "yyyy")+"/"+Eco.date.getMaskFormatString(dt, "MM");
+	this.lfn_FileUpload(this.fileD, this.fileUpTrans, this.ds_file, vFileSubUrl);
+};
+
+//첨부파일 저장
+this.fn_upload_file = function(i_flow_id)
+{
+	var dt = new Date();
+	var vFileSubUrl = "attachedfile/"+Eco.date.getMaskFormatString(dt, "yyyy")+"/"+Eco.date.getMaskFormatString(dt, "MM");
+	this.lfn_FileUpload_Save(gv_urlFile + "/JSP", i_flow_id, vFileSubUrl);
+};
+
+//참조문서
+this.btn_cham_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("popupChamjo", "", "gw::GW140.xfdl", "popupCallBack", this, '', '', 530, 570);
+};
+
+//참조문서 저장
+this.fn_upload_chamjo = function(i_flow_id)
+{	
+	if(i_flow_id != "" || i_flow_id != null)
+	{
+		var inds = "DS_CHAMJO=DS_CHAMJO:A";
+		var strArg = "I_FLOW_ID=" + i_flow_id;
+		
+		this.gfn_TransactionP("search","JSP/ed/ed150f_uploaddoc_dml.jsp", inds, "", strArg, "", false, "P", false, this);
+	}
+}
+
+//지급방법 저장
+this.fn_mstPay_save = function(rowType, mstId)
+{
+	var nRow = this.dsWithHoldMst.rowposition;
+	var payKind = this.dsWithHoldMst.getColumn(nRow, "WITHHOLDMST_PAYKIND");
+	var noteAprv = this.dsWithHoldMst.getColumn(nRow, "WITHHOLDMST_NOTEAPRV" );
+	
+	var strArg = "WITHHOLDMST_ID=" + mstId
+				+" WITHHOLDMST_PAYKIND=" + payKind
+				+" WITHHOLDMST_NOTEAPRV=" + noteAprv
+				+" WITHHOLDMST_STATUS="+ rowType;
+				
+	this.gfn_TransactionP("search","JSP/ed/ed140f_withhold_mst_pay_dml.jsp", "", "", strArg, "fnMstPaySaveCallback", true, "P", false, this);
+}
+
+//dtl save
+this.fn_dtl_save = function ()
+{
+	var nRow = this.dsWithHoldDtl.rowposition;
+	var setSave = true;
+	
+	for(var i=0; i<this.dsWithHoldDtl.rowcount; i++)
+	{
+		this.dsWithHoldDtl.setColumn(i, "WITHHOLDMST_ID", this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_ID"));
+		
+		if(this.fn_dtl_rowCheck(i) == false)
+		{
+			setSave = false;
+			return false;
+			break;
+		}
+	}
+	
+	if(setSave)
+	{
+		var str_url = "JSP/ed/ed140f_withhold_dtl_dml.jsp";
+		var inds = "dsWithHoldDtl=dsWithHoldDtl:U";
+		var strArg = "AD_KIND=05";
+		this.gfn_TransactionP(this.dsWithHoldMst.getRowType(nRow),str_url, inds, "", strArg, "fnDtlSaveCallback", false, "P", false, this);
+		
+		return true;
+	}
+};
+
+this.fnDtlSaveCallback = function (svcId, errCod, errMsg)
+{
+	if(svcId != 0)
+		alert(errMsg);
+	else
+	{
+		if(this.ds_file.rowcount > 0)				//첨부파일 저장
+			this.fn_upload_file(this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "I_FLOW_ID"));
+
+		if(this.DS_CHAMJO.rowcount > 0)				//참조문서 저장
+			this.fn_upload_chamjo(this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "I_FLOW_ID"));
+			
+		if(this.fn_approval_chk())
+		{
+			if(section_value > 0)
+			{
+				if(this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND") == "1")
+				{	//편집부 + 수시지급
+					setAmountCode = this.lfn_Set_Approval( this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "I_FLOW_ID")
+													, this.dsWithHoldDtl.getSum("WITHHOLDDTL_AMOUNT")
+													, setAmountCode
+													, sSabun == gds_userinfo.getColumn(0, "DEPARTMENT_MANAGER")
+													, this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV")
+													, ""
+													, sSection_Code
+													, this.dsFormpath, this.ds_flow_order, this.ds_flow_order2);
+					
+				}else
+				{	//편집부 + 정기지급
+					setAmountCode = this.lfn_I_FLOW_ORDER2_SAVE_AMOUNT_Edit(this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "I_FLOW_ID")
+													, this.dsWithHoldDtl.getSum("WITHHOLDDTL_AMOUNT")
+													, setAmountCode
+													, sSabun == gds_userinfo.getColumn(0, "DEPARTMENT_MANAGER")
+													, this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV")
+													, ""
+													, sSection_Code
+													, this.dsFormpath, this.ds_flow_order, this.ds_flow_order2);
+				}
+			}
+			else
+			{	
+				//편집부소외 + 수시지급
+				setAmountCode = this.lfn_Set_Approval( this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "I_FLOW_ID")
+													, this.dsWithHoldDtl.getSum("WITHHOLDDTL_AMOUNT")
+													, setAmountCode
+													, sSabun == gds_userinfo.getColumn(0, "DEPARTMENT_MANAGER")
+													, this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_NOTEAPRV")
+													, ""
+													, sSection_Code
+													, this.dsFormpath, this.ds_flow_order, this.ds_flow_order2);
+				
+			}
+		}
+	}
+};
+
+//dtl CheckRow
+this.fn_dtl_rowCheck = function (nRow)
+{
+	if(nRow == -1)
+		return true;
+		
+	if ((this.dsWithHoldMst.getColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_DATE") > "20121121") &&
+	    ((this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_WRITEDATE") == null) ||
+	     (this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_WRITEDATE") == "")) )
+	{
+		alert("계약일자를 입력해 주십시요.");
+		this.cal_contractDate.setFocus();
+		return false;
+	}
+	
+	if (this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_WRITEDATE") == null)
+	{
+		alert("탈고일자를 선택해 주십시요.");
+		this.cal_contractDate.setFocus();
+		return false;
+	}	
+	
+	if (this.dsWithHoldDtl.getColumn(nRow, "ATHR_IDENTITY") == null)
+	{
+		alert("저자를 선택해 주십시요.");
+		this.btn_name_onclick();
+		return false;
+	}	
+	
+	if (this.dsWithHoldDtl.getColumn(nRow, "MNSCRIPT_CODE") == null)
+	{
+		alert("작업구분을 선택해 주십시요.");
+		this.cb_mnScript.dropdown();
+		return false;
+	}
+
+	if ((this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_CODE") == null) 
+		|| (this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_YEAR") == null))
+	{
+		alert("도서를 선택해 주십시요.");
+		this.edt_bookName.setFocus()  ;
+		return false;
+	}	
+	
+	if ((this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_QTY") == null) 
+		|| (this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_QTY") == 0))
+	{
+		alert("발주수량을 입력해 주십시요.");
+		this.medt_qty.setFocus();
+		return false;
+	}	
+
+	if ((this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_UNITCOST") == null) 
+		|| (this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_UNITCOST") == 0))
+	{
+		alert("발주단가를 입력해 주십시요.");
+		this.medt_unitCost.setFocus();
+		return false;
+	}	
+
+	return true;
+};
+
+//삭제
+this.Div00_btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.fn_approval_chk())
+	{
+		alert("전체삭제를 할 경우 복원할 수 없습니다.\n\n" +
+			  "새로운 내용을 추가하실 경우는 삭제하지 마시고 신규버튼을 눌러 작업해 주십시요.");
+		this.lfn_showModal("popupDelete", "", "ed::EDMstDtlCancel_ConformF.xfdl", "popupDeleteCallBack", this, 10, 58, 280, 100);
+	}
+};
+
+this.popupDeleteCallBack = function(svcId, rt_value)
+{
+	if(rt_value == "전체")
+	{
+		this.dsWithHoldMst.deleteRow(this.dsWithHoldMst.rowposition);
+		this.fn_mst_save("delete");
+		this.dsWithHoldDtl.clearData();
+		this.ds_file.clearData();
+		this.DS_CHAMJO.clearData();
+	}
+	else if(rt_value == "내용")
+	{
+		this.dsWithHoldDtl.setColumn(this.dsWithHoldDtl.rowposition, "WITHHOLDDTL_DELETE", "D");
+		this.dsWithHoldDtl.filter("WITHHOLDDTL_DELETE!='D'");
+		this.fn_dtl_save();
+	}
+}
+
+//출력
+this.Div00_btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsWithHoldMst.rowposition;
+	var I_FLOW_ID = this.dsWithHoldMst.getColumn(nRow, "I_FLOW_ID");
+	var rdUrl, rdParam;
+	
+	if(I_FLOW_ID != "")
+	{
+		rdUrl = gv_urlMrd + "/ed/ED142.mrd";
+		rdParam  = "/rp [1]["+ I_FLOW_ID + "]";
+			
+		this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1024, 770);
+	}
+	else
+		alert("조회된 자료가 없습니다.");
+};
+
+//저자찾기
+this.btn_name_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("popuppAuthor", "", "ed::EDAuthor_SearchF.xfdl", "", this, 10, 58, 500, 550);
+};
+
+//찾은 저자 데이터 넣어주기
+this.fn_setAuthorValue = function(rtArray)
+{
+	nRow = this.dsWithHoldDtl.rowposition;
+		
+	this.dsWithHoldDtl.setColumn(nRow, "ATHR_NAME", rtArray[0]);
+	this.dsWithHoldDtl.setColumn(nRow, "OUTER_NAME", rtArray[0]);
+	this.dsWithHoldDtl.setColumn(nRow, "ATHR_IDENTITY", rtArray[10]);
+	this.dsWithHoldDtl.setColumn(nRow, "ATHR_JUMINNO2", rtArray[6]);
+	this.dsWithHoldDtl.setColumn(nRow, "ATHR_ABODEGB", rtArray[9]);
+	this.dsWithHoldDtl.setColumn(nRow, "CUST_GUBN", null);
+	this.dsWithHoldDtl.setColumn(nRow, "CUST_CODE", null);
+}
+
+//도서코드
+this.btn_book_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.dsBookMst}; 
+	this.lfn_showModal("popupAddress", objParam, "mk::MKBook_SearchF.xfdl", "popupBookCallBack", this, 10, 58, 450, 400);
+};
+
+this.popupBookCallBack = function(svcId)
+{
+	var nRow = this.dsWithHoldDtl.rowposition;
+	var bRow = this.dsBookMst.rowposition;
+	
+	this.dsWithHoldDtl.setColumn(nRow, "BOOKMST_CODE", this.dsBookMst.getColumn(bRow, "BOOKMST_CODE"));
+	this.dsWithHoldDtl.setColumn(nRow, "BOOKMST_YEAR", this.dsBookMst.getColumn(bRow, "BOOKMST_YEAR"));
+	this.dsWithHoldDtl.setColumn(nRow, "WITHHOLDDTL_BOOKNAME", this.dsBookMst.getColumn(bRow, "BOOKMST_NAME"));
+	this.dsWithHoldDtl.setColumn(nRow, "BOOKMST_SEQ", this.dsBookMst.getColumn(bRow, "BOOKMST_SEQ"));
+	this.dsWithHoldDtl.setColumn(nRow, "BOOKMST_ID", this.dsBookMst.getColumn(bRow, "BOOKMST_ID"));
+	this.dsWithHoldDtl.setColumn(nRow, "BOOKCODEYEAR", this.dsBookMst.getColumn(bRow, "BOOKMST_CODE") + " [" + this.dsBookMst.getColumn(bRow, "BOOKMST_YEAR") + "]" );
+	
+};
+
+this.edt_bookYear_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		if((this.edt_bookCode.maxlength == this.edt_bookCode.getLength()) &&
+			(this.edt_bookYear.maxlength == this.edt_bookYear.getLength()) )
+		{
+			var strUrl = "JSP/ed/book_select.jsp";
+			var inds = "dsBookMst=dsBookMst";
+			var outds = "dsBookMst=dsBookMst";
+			var strArg = "BOOKMST_CODE=" + this.edt_bookCode.value
+					   + " BOOKMST_YEAR=" + this.edt_bookYear.value;
+			
+			this.gfn_TransactionP("select" ,strUrl, inds, outds, strArg, "fnBookMstCallback", false, "P", false, this);
+		}
+		else
+		{
+			alert("도서코드를 정확히 입력해 주세요.");
+			this.edt_bookCode.setFocus();
+			return false;
+		}	
+			
+		if(this.chk_fixBook.value == 1)
+		{
+			sFixBookCode = this.edt_bookCode.value;
+			sFixBookYear = this.edt_bookYear.value;
+			sFixBookName = this.edt_bookName.value;
+			sFixBookSeq  = this.dsWithHoldDtl.getColumn(this.dsWithHoldDtl.rowposition, "BOOKMST_SEQ");
+			sFixBookId	 = this.dsWithHoldDtl.getColumn(this.dsWithHoldDtl.rowposition, "BOOKMST_ID");
+		}
+	}
+};
+
+this.fnBookMstCallback = function (svcId, errCode, errMsg)
+{	
+	if(errCode != 0)
+		alert(errMsg);
+	else
+	{
+		if(this.dsBookMst.rowcount == 0)
+		{
+			alert("도서를 찾을 수 없습니다");
+			this.edt_bookCode.set_value("9000000002");
+			this.edt_bookYear.set_value("0000");
+			this.edt_bookName.set_value(null);
+			this.dsWithHoldDtl.setColumn(this.dsWithHoldDtl.rowposition, "BOOKCODEYEAR", this.edt_bookCode.value + " [" + this.edt_bookYear.value + "]");
+			return false;
+		}
+		else if(this.dsBookMst.rowcount == 1)
+		{
+			this.edt_bookName.set_value(this.dsBookMst.getColumn(this.dsBookMst.rowposition, "BOOKMST_NAME"));
+			
+			this.dsWithHoldDtl.setColumn(this.dsWithHoldDtl.rowposition, "BOOKMST_ID", this.dsBookMst.getColumn(this.dsBookMst.rowposition, "BOOKMST_ID"));
+			this.dsWithHoldDtl.setColumn(this.dsWithHoldDtl.rowposition, "WITHHOLDDTL_BOOKNAME", this.edt_bookName.value);
+			this.dsWithHoldDtl.setColumn(this.dsWithHoldDtl.rowposition, "BOOKCODEYEAR", this.edt_bookCode.value + " [" + this.edt_bookYear.value + "]");
+		}
+		else
+		{
+			alert("2건 이상의 도서가 조회되었습니다.");
+			
+			var objParam = {dsParam1:this.dsBookMst}; 
+			this.lfn_showModal("popupAddress", objParam, "mk::MKBook_SearchF.xfdl", "popupBookCallBack", this, 10, 58, 450, 400);
+		}
+	}
+	
+};
+
+//첨부파일 삭제
+this.btn_Fdelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.ds_file.getColumn(this.ds_file.rowposition, "F_NO") == ""){
+		this.ds_file.deleteRow(this.ds_file.rowposition);
+	}else{
+		var vFpath = this.ds_file.getColumn(this.ds_file.rowposition, "F_PATH");
+		var vFileSubUrl = nexacro.replaceAll(vFpath, "/gw/attachedfile", "attattachedfile");
+		this.lfn_FileDelete(this.ds_file, this.dsWithHoldMst.getColumn(0, "I_FLOW_ID"), vFileSubUrl);
+	}
+};
+
+//참조문서삭제
+this.grd_cham_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(this.DS_CHAMJO.rowcount > 0)
+	{
+		for(var i = 0; i <= this.DS_CHAMJO.rowcount -1; i++)
+		{
+			if(this.DS_CHAMJO.getColumn(i, "CO_SEQ") == this.grd_cham.getCellValue(e.row, 0))
+				this.DS_CHAMJO.deleteRow(i);
+		}
+	}
+};
+
+//저자 고정하기
+this.chk_fixAthr_onclick = function(obj:nexacro.CheckBox,e:nexacro.ClickEventInfo)
+{
+	var nRow =  this.dsWithHoldDtl.rowposition;
+	if(obj.value == true)
+	{
+		sFixAthrName     = this.dsWithHoldDtl.getColumn(nRow, "ATHR_NAME");		
+	    sFixOuterName    = this.dsWithHoldDtl.getColumn(nRow, "OUTER_NAME");
+	    sFixAthrIdentity = this.dsWithHoldDtl.getColumn(nRow, "ATHR_IDENTITY");
+	    sFixAthrJuminno2 = this.dsWithHoldDtl.getColumn(nRow, "ATHR_JUMINNO2");
+	    sFixAthrAbodegb  = this.dsWithHoldDtl.getColumn(nRow, "ATHR_ABODEGB");	
+	    sFixCustGubn     = this.dsWithHoldDtl.getColumn(nRow, "CUST_GUBN");
+ 	    sFixCustCode     = this.dsWithHoldDtl.getColumn(nRow, "CUST_CODE");
+	
+		if(this.dsWithHoldDtl.rowcount <= 1)
+			this.btn_name.setFocus();
+		else
+			this.cb_mnScript.setFocus();
+	}else
+	{
+		sFixAthrName     = "";
+	    sFixOuterName    = "";
+	    sFixAthrIdentity = "";
+	    sFixAthrJuminno2 = "";
+	    sFixAthrAbodegb  = "";
+	    sFixCustGubn     = "";
+ 	    sFixCustCode     = "";
+		
+		this.btn_name.setFocus();
+	}
+};
+
+//도서코드 고정하기
+this.chk_fixBook_onclick = function(obj:nexacro.CheckBox,e:nexacro.ClickEventInfo)
+{
+	var nRow =  this.dsWithHoldDtl.rowposition;
+	
+	if(obj.value == true)
+	{
+		sFixBookCode = this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_CODE");
+		sFixBookYear = this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_YEAR");
+		sFixBookSeq  = this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_SEQ");
+		sFixBookId   = this.dsWithHoldDtl.getColumn(nRow, "BOOKMST_ID");		
+		sFixBookName = this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_BOOKNAME");
+		
+		if(this.dsWithHoldDtl.rowcount <= 1)
+			this.edt_bookCode.setFocus();
+		else
+			this.medt_qty.setFocus();
+	}else
+	{
+		sFixBookCode = "";
+		sFixBookYear = "";
+		sFixBookSeq  = "";
+		sFixBookid   = "";			
+		sFixBookName = "";
+		
+		this.edt_bookCode.setFocus();
+	}
+};
+
+//총수량, 총금액 구하기
+this.dsWithHoldDtl_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if((e.columnid == "WITHHOLDDTL_AMOUNT") || (e.columnid == "WITHHOLDDTL_QTY"))
+	{
+		this.medt_totAmount.set_value(obj.getSum("WITHHOLDDTL_AMOUNT"));
+		this.medt_totQty.set_value(obj.getSum("WITHHOLDDTL_QTY"));
+	}
+	
+	//완료일자 동일여부 체크
+	if((e.columnid == "WITHHOLDDTL_FINISHDATE") && (obj.getColumn(e.row, e.columnid) != null))
+	{
+		if(this.dsWithHoldDtl.getMax(e.columnid) != obj.getColumn(e.row, e.columnid))
+		{
+			obj.setColumn(e.row, e.columnid, null);
+			alert("하나의 지결서에는 계약일자 년월이 다른 자료는 입력할 수 없습니다.");
+			return false;
+		}
+	}
+};
+
+//지급액 및 세금계산
+this.fn_amountCalculate = function(obj:nexacro.MaskEdit,e:nexacro.ChangeEventInfo)
+{
+	var nRow = this.dsWithHoldDtl.rowposition;
+	
+	var amount = new nexacro.Decimal(this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_QTY") * this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_UNITCOST"));
+	var incometax = new nexacro.Decimal(this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_AMOUNT") * (this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_TAXRATE") / 100));
+	var residenttax = new nexacro.Decimal(this.dsWithHoldDtl.getColumn(nRow, "WITHHOLDDTL_INCOMETAX") / 10 );
+	
+	this.dsWithHoldDtl.setColumn(nRow, "WITHHOLDDTL_AMOUNT", amount.trunc());
+	this.dsWithHoldDtl.setColumn(nRow, "WITHHOLDDTL_INCOMETAX", incometax.trunc());
+	this.dsWithHoldDtl.setColumn(nRow, "WITHHOLDDTL_RESIDENTTAX", residenttax.trunc());
+};
+//#######################################################################################################################################
+
+//지급일자 일괄등록
+this.btn_payDate_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDate = this.dsWithHoldDtl.getColumn(this.dsWithHoldDtl.rowposition, "WITHHOLDDTL_PAYDATE");
+	
+	for(var i=0; i<this.dsWithHoldDtl.rowcount; i++)
+	{
+		this.dsWithHoldDtl.setColumn(i, "WITHHOLDDTL_PAYDATE", sDate);
+	}
+};
+
+//대체일자 일괄등록
+this.btn_transferDate_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDate = this.dsWithHoldDtl.getColumn(this.dsWithHoldDtl.rowposition, "WITHHOLDDTL_TRANSFERDATE");
+	
+	for(var i=0; i<this.dsWithHoldDtl.rowcount; i++)
+	{
+		this.dsWithHoldDtl.setColumn(i, "WITHHOLDDTL_TRANSFERDATE", sDate);
+	}
+};
+
+//원가산업일 일괄등록
+this.btn_finishDate_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDate = this.dsWithHoldDtl.getColumn(this.dsWithHoldDtl.rowposition, "WITHHOLDDTL_FINISHDATE");
+	
+	for(var i=0; i<this.dsWithHoldDtl.rowcount; i++)
+	{
+		this.dsWithHoldDtl.setColumn(i, "WITHHOLDDTL_FINISHDATE", sDate);
+	}
+};
+
+//원천징수일자 일괄등록
+this.btn_withholeDate_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sDate = this.dsWithHoldDtl.getColumn(this.dsWithHoldDtl.rowposition, "WITHHOLDDTL_WITHHOLDDATE");
+	
+	for(var i=0; i<this.dsWithHoldDtl.rowcount; i++)
+	{
+		this.dsWithHoldDtl.setColumn(i, "WITHHOLDDTL_WITHHOLDDATE", sDate);
+	}
+};
+
+//지급방법 선택
+this.btn_pay_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("popupPayKind", "", "ed::EDMstApproval_KindF.xfdl", "popupPayKindCallback", this, 10, 58, 300, 200);
+};
+
+this.popupPayKindCallback = function (svcId, rtValue)
+{
+	if(rtValue == 0) //정기지급
+	{
+		this.btn_pay.set_text("정기지급");
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND", "0");
+	}
+	else	//수시지급
+	{
+		this.btn_pay.set_text("수시지급");
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PAYKIND", "1");
+	}
+	
+};
+
+//전표 grid 보이기
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var strUrl = "JSP/pd/pd_acnt_doc.jsp";
+	var inds = "dsAcntDoc=dsAcntDoc"; 
+	var outds = "dsAcntDoc=dsAcntDoc"; 
+	var strArg = "AD_KIND=05"
+			   + " AD_ID=" + this.dsWithHoldDtl.getColumn(e.row, "WITHHOLDMST_ID")
+			   + " AD_SEQ=" + this.dsWithHoldDtl.getColumn(e.row, "WITHHOLDDTL_SEQ");
+			  
+	this.gfn_TransactionP("select" ,strUrl, inds, outds, strArg, "fnAcntCallback", true, "P", false, this);
+};
+
+this.fnAcntCallback = function (svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else
+	{
+		var objRect = this.grd_dtl.getCellRect(this.dsWithHoldDtl.rowposition, 2);
+		
+		var x = objRect.left;
+		var y = objRect.top;
+	
+		this.PopupDiv00.trackPopupByComponent(this.grd_dtl, x, y);
+	}
+};
+
+//재경부 승인
+this.chk_permite_onclick = function(obj:nexacro.CheckBox,e:nexacro.ClickEventInfo)
+{
+	if(obj.value == 0)
+	{
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PERMITEDATE", null);
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PERMITEUSER", null);
+	}
+	else if(sSelect > 5)
+	{
+		var d = new Date(); 
+		var today = Eco.date.getMaskFormatString(d, "yyyyMMdd");
+		
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PERMITEDATE", today);
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "WITHHOLDMST_PERMITEUSER", sSabun);
+	}
+};
+
+//수기결재
+this.CheckBox02_onclick = function(obj:nexacro.CheckBox,e:nexacro.ClickEventInfo)
+{
+	if(obj.value == 1)
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "OUTORDERMST_NOTEAPRV", "1");
+	else
+		this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "OUTORDERMST_NOTEAPRV", "0");
+};
+
+//부서지정
+this.cb_section_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	sSection_Code = obj.value;
+	sSection_Name = obj.text;
+	this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "SECTION_CODE", sSection_Code);
+	this.dsWithHoldMst.setColumn(this.dsWithHoldMst.rowposition, "SECTION_NAME", sSection_Name.trim());
+};
+
+//키처리
+this.fn_localKeyDown = function(obj,e:nexacro.KeyEventInfo)
+{
+	var comobj;
+	
+	if(e.keycode == 13)
+	{
+		comobj = this.getNextComponent(obj, true);
+		comobj.setFocus();
+	}
+}
+
+this.ED142F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.ED142F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grd_dtl);
+};
+
+
+]]></Script>
+  </Form>
+</FDL>

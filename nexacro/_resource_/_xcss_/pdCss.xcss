@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[.Grid .body .row .cell.pdColorChange
+{
+	color : #ff0000;
+}.Grid .summary .row .cell.pdColorChange
+{
+	font : bold 12px/normal "Gulim";
+	color : #ff0000;
+}
+.Grid .body .row .cell.pdFontColorChange
+{
+	color : red;
+}
+
+
+]]></XCSS>

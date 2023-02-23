@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR608F_99" width="255" height="310" titletext="New Form" onload="HR608F_99_onload">
+    <Layouts>
+      <Layout height="310" width="255">
+        <Static id="Static02" taborder="0" text="종합 근태정보 오픈" left="4" top="5" width="246" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="sta_ymd" taborder="1" text="일자" left="4" top="55" width="96" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01" taborder="2" left="sta_ymd:0" top="55" height="30" border="1px solid #10aea9" background="#9ee0de" width="150"/>
+        <Calendar id="cald_s_ymd" taborder="3" left="104" top="60" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="136"/>
+        <Grid id="Grid00" taborder="4" left="4" top="88" width="246" height="185" binddataset="ds_list" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="마감 일자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CARDDATE" displaytype="date" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_save" taborder="5" text="적용" top="278" width="120" height="22" onclick="btn_save_onclick" left="4"/>
+        <Button id="btn_close" taborder="6" text="닫기" top="278" width="120" height="22" left="130" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.HR608F_99_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var dt = new Date();
+	this.cald_s_ymd.set_value(Eco.date.addDate(dt, -1));
+	this.fn_getData();
+	
+};
+
+this.fn_getData = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr608_99.jsp";
+	in_ds = "ds_list=ds_list";
+	out_ds = "ds_list=ds_list";
+	str_arg = "";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "P", false,this);
+}
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_hr608_99.jsp";
+	in_ds = "ds_list=ds_list";
+	out_ds = "ds_list=ds_list";
+	str_arg = "CARDDATE='" + this.cald_s_ymd.value + "'";
+			  
+	this.gfn_TransactionP("dml", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "P", false,this);
+};
+
+this.Callback_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.alert("처리되었습니다.");
+	this.fn_getData();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="CARDDATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

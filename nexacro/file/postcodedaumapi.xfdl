@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="postcodedaumapi" width="1280" height="720" titletext="New Form" onload="postcodedaumapi_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Button id="btnPostcode" taborder="0" text="우편번호 찾기" left="174" top="17" width="126" height="39" onclick="btnPostcode_onclick" cssclass="btn_WF_add01"/>
+        <Edit id="edtPostcode" taborder="1" left="10" top="18" width="152" height="38"/>
+        <Edit id="edtAddress1" taborder="2" left="10" top="66" width="290" height="38"/>
+        <Edit id="edtAddress2" taborder="3" left="10" top="113" width="290" height="38"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.postcode = "";
+this.address1 = "";
+this.address2 = "";
+
+//우편번호 찾기 버튼 클릭
+this.btnPostcode_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//popup 화면으로 전달할 값
+	var oArg = {
+				};
+	
+	//modal popup open call
+	this.gfn_showModal("popupPostcode", oArg, "Base::postcodedaumapi_popup.xfdl", "popupCallBack", this, 10, 58, 340, 310);
+
+};
+
+//popup call back
+this.popupCallBack = function(sFormId, sArg)
+{
+	if(sFormId=="popupPostcode")
+	{
+		if(this.gfn_isNull(sArg))
+		{
+			this.edtPostcode.set_value(this.postcode);
+			this.edtAddress1.set_value(this.address1);
+			this.edtAddress2.set_value(this.address2)
+		}
+		
+		//sArg == 'x' : 닫기버튼 클릭
+	}
+}
+
+/**
+* @description null value check
+* @param  pvVal - object (input value)
+* @return true/false (Null is true)
+*/
+this.gfn_isNull = function (pvVal)
+{
+	if (new String(pvVal).valueOf() == "undefined") 
+	{
+		return true;
+	}
+	if (pvVal == null) 
+	{
+		return true;
+	}
+	if (("x" + pvVal == "xNaN") && (new String(pvVal.length).valueOf() == "undefined")) 
+	{
+		return true;
+	}
+	if (pvVal.length == 0) 
+	{
+		return true;
+	}
+
+	return false;
+}
+/**
+* @description Modal Dialog open
+* @param 	sPopupId = showmodal popup id,
+			arrArguments = null, 
+			sPopupUrl = popup form url, 
+			popupCallback = call back funtion, 
+			obj = this,
+			nPopupLeft = popup position left,
+			nPopupTop = popup position top,
+			nPopupWidth = popup position width, 
+			nPopupHeight = popup position height
+* @return	
+*/
+
+//옵션 간소화 팝업
+this.gfn_showModal = function (sPopupId, arrArguments, sPopupUrl, popupCallback, obj, nPopupLeft, nPopupTop, nPopupWidth, nPopupHeight)
+{
+	// child frame 생성
+	var childFrame = new ChildFrame();
+	
+	// parent frame 정의
+	var parentFrame = obj.getOwnerFrame();
+	
+	//child frame 초기화
+	childFrame.init(sPopupId, nPopupLeft, nPopupTop, nPopupWidth, nPopupHeight, null, null, sPopupUrl);
+	
+	// Modal Dialog 추가 옵션
+	//autosize default true
+	childFrame.set_autosize(false);	
+	//statusbar default true
+	childFrame.set_showtitlebar(false);
+	
+	// 동적으로 생성한 ChildFrame을 Modal Dialog로 보여줌.
+	childFrame.showModal(parentFrame, arrArguments, obj, popupCallback, true);
+};
+
+]]></Script>
+  </Form>
+</FDL>

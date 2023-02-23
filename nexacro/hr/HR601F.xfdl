@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR601F" width="1250" height="625" titletext="New Form" onload="HR601F_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <GroupBox id="GroupBox00_00" taborder="2" text="자료 검색" left="2" top="142" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;" width="328" bottom="2"/>
+        <Static id="Static01_00_00_00_00_00_00" taborder="40" left="85" top="325" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <Static id="Static01_00_00_00_00_00" taborder="38" left="85" top="295" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <Static id="Static01_00_00_00_00" taborder="37" left="85" top="265" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <Static id="Static01_00_00_00" taborder="36" left="85" top="235" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <Static id="Static02" taborder="0" text="근태 사용자 관리" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <GroupBox id="GroupBox00" taborder="1" text="자료 등록/수정" left="2" top="Static02:2" right="2" height="90" color="#10aea9" font="normal bold 15pt/normal &quot;normal/normal&quot;"/>
+        <Grid id="Grid00" taborder="3" left="GroupBox00_00:2" top="153" right="2" bottom="2" binddataset="ds_list" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="151"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="112"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="130"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="카드번호"/>
+                <Cell col="1" text="사번"/>
+                <Cell col="2" text="부서"/>
+                <Cell col="3" text="직위"/>
+                <Cell col="4" text="이름"/>
+                <Cell col="5" text="업무구분"/>
+                <Cell col="6" text="입사일"/>
+                <Cell col="7" text="퇴사일"/>
+                <Cell col="8" text="등록일"/>
+                <Cell col="9" text="대상구분"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CARDNO" textAlign="center"/>
+                <Cell col="1" text="bind:SABUN" textAlign="center"/>
+                <Cell col="2" text="bind:BUSE" textAlign="center"/>
+                <Cell col="3" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="4" text="bind:NAME" textAlign="center"/>
+                <Cell col="5" text="bind:CODE" displaytype="combotext" combodataset="ds_gb" combocodecol="CODE" combodatacol="NAME" textAlign="center"/>
+                <Cell col="6" text="bind:IPSADT" textAlign="center"/>
+                <Cell col="7" text="bind:TOISADT" textAlign="center"/>
+                <Cell col="8" text="bind:CREDATE" textAlign="center"/>
+                <Cell col="9" text="bind:BIGO" displaytype="combotext" combodataset="ds_paygb" combocodecol="CODE" combodatacol="NAME" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="sta00_01" taborder="4" text="카드번호" left="4" top="100" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00" taborder="5" left="sta00_01:0" top="100" height="30" border="1px solid #10aea9" background="#9ee0de" right="4"/>
+        <MaskEdit id="medt_cardno" taborder="6" left="sta00_01:1" top="100" height="30" background="transparent" border="0px none transparent,0px none,0px none" type="string" color="black" format="@@@@@@@@" width="5.2%" textAlign="center"/>
+        <Static id="sta00_01_00" taborder="7" text="성명" left="medt_cardno:10" top="100" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_sabun" taborder="8" left="sta00_01_00:2" top="105" height="20" border="0px none transparent" background="transparent" width="4.64%" text="C17011" textAlign="center" readonly="true"/>
+        <Edit id="edt_name" taborder="9" left="edt_sabun:2" top="105" height="20" border="0px none transparent" background="transparent" textAlign="center" width="7.04%" readonly="true"/>
+        <Button id="btn_Search_nm" taborder="10" top="105" height="20" icon="url('Img::loupe.png')" width="21" left="edt_name:2" onclick="btn_Search_nm_onclick"/>
+        <Static id="sta00_01_00_00" taborder="11" text="부서" left="btn_Search_nm:5" top="100" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_busenm" taborder="12" left="sta00_01_00_00:2" top="105" height="20" border="0px none transparent" background="transparent" width="11.2%" text="010-9118-8920" textAlign="center" readonly="true"/>
+        <Static id="sta00_01_00_00_00" taborder="13" text="업무구분" left="edt_busenm:2" top="100" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_gb" taborder="14" text="Combo00" left="sta00_01_00_00_00:2" top="105" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" width="9.92%"/>
+        <Static id="sta00_01_00_00_00_00" taborder="15" text="등록일" left="cb_gb:2" top="100" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Calendar id="cald_ymd" taborder="16" left="sta00_01_00_00_00_00:2" top="105" height="20" background="transparent" border="0px none transparent,0px none,0px none" width="8.4%" dateformat="yyyy-MM-dd"/>
+        <Static id="sta00_01_00_00_00_00_00" taborder="17" text="야근/교통비" left="cald_ymd:0" top="100" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_paygb" taborder="18" text="Combo00" left="sta00_01_00_00_00_00_00:0" top="105" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_paygb" codecolumn="CODE" datacolumn="NAME" width="9.92%"/>
+        <Button id="btn_new" taborder="19" text="신규" top="69" width="120" height="22" right="264" onclick="btn_new_onclick"/>
+        <Button id="btn_save" taborder="20" text="저장" top="69" width="120" height="22" right="134" onclick="btn_save_onclick"/>
+        <Button id="btn_delete" taborder="21" text="삭제" top="69" width="120" height="22" right="4" onclick="btn_delete_onclick"/>
+        <Static id="sta00_01_01" taborder="22" text="카드번호" left="5" top="GroupBox00:63" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Static id="Static01_00_00" taborder="23" left="85" top="GroupBox00:63" height="30" border="1px solid #10aea9" background="#9ee0de" width="240"/>
+        <MaskEdit id="medt_s_cardno" taborder="24" left="85" top="206" height="30" background="transparent" border="0px none transparent,0px none,0px none" type="string" color="black" format="@@@@@@@@" width="65" textAlign="center" onkeydown="edt_s_name_onkeydown"/>
+        <Static id="sta00_01_01_00" taborder="25" text="성명" left="5" top="sta00_01_01:0" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_s_name" taborder="26" left="87" top="240" height="20" border="0px none transparent" background="transparent" textAlign="center" onkeydown="edt_s_name_onkeydown" width="232"/>
+        <Static id="sta00_01_00_00_01" taborder="27" text="부서" left="5" top="265" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Edit id="edt_s_busecd" taborder="28" left="88" top="270" height="20" border="0px none transparent" background="transparent" onchanged="Edit00_00_onchanged" width="72"/>
+        <Edit id="edt_s_busenm" taborder="29" left="edt_s_busecd:1" top="270" height="20" border="0px none transparent" background="transparent" readonly="true" width="135"/>
+        <Button id="btn_Search_buse" taborder="30" top="270" height="20" icon="url('Img::loupe.png')" width="21" onclick="btn_Search_buse_onclick" left="edt_s_busenm:2"/>
+        <Static id="sta00_01_00_00_01_00" taborder="31" text="업무구분" left="5" top="295" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+        <Combo id="cb_s_gb" taborder="32" text="Combo00" left="88" top="300" height="20" border="0px none transparent,0px none,0px none" background="transparent" innerdataset="ds_gb" codecolumn="CODE" datacolumn="NAME" width="231"/>
+        <CheckBox id="ckb_s_toisadt" taborder="33" text="퇴사자 포함" left="90" top="330" width="150" height="20" visible="true" value="false"/>
+        <Button id="btn_clear" taborder="34" text="초기화" top="178" width="120" height="22" onclick="btn_clear_onclick" left="83"/>
+        <Button id="btn_search" taborder="35" text="조회" top="178" width="120" height="22" onclick="btn_search_onclick" left="205"/>
+        <Static id="sta00_01_00_00_01_00_00" taborder="39" text="퇴사자" left="5" top="325" width="80" height="30" background="#3cbcb8" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="center" border="1px solid #10aea9"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_paygb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">Y</Col>
+            <Col id="NAME">야근비대상자</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">K</Col>
+            <Col id="NAME">교통비대상자</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_gb">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0001</Col>
+            <Col id="NAME">편집부</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">0002</Col>
+            <Col id="NAME">업무국</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">0003</Col>
+            <Col id="NAME">관리부</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">0004</Col>
+            <Col id="NAME">영업부</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">4001</Col>
+            <Col id="NAME">천재미디어</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">5001</Col>
+            <Col id="NAME">해법에듀</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">9990</Col>
+            <Col id="NAME">외부상주직원</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">9999</Col>
+            <Col id="NAME">임시_접대용</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_list" canrowposchange="ds_list_canrowposchange">
+        <ColumnInfo>
+          <Column id="CARDNO" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="CREDATE" type="STRING" size="256"/>
+          <Column id="IPSADT" type="STRING" size="256"/>
+          <Column id="TOISADT" type="STRING" size="256"/>
+          <Column id="BIGO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_cardno">
+        <ColumnInfo>
+          <Column id="CARDNO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var arr_rt;
+
+
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.getData_list();
+};
+
+this.getData_list = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr601.jsp";
+	in_ds = "ds_list=ds_list";
+	out_ds = "ds_list=ds_list";
+	str_arg = " CARDNO='" + this.medt_s_cardno.value + "'" +
+			  " NAME='" + this.edt_s_name.value + "'" +
+			  " GB='" + this.cb_s_gb.value + "'" +
+			  " BUSECD='" + this.edt_s_busecd.value + "'" +
+			  " TOISAGB='" + this.lfn_CheckBox_Return_var(this.ckb_s_toisadt,"Y","N")  + "'";
+			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+}
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+};
+
+this.HR601F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+};
+
+this.btn_Search_nm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.ds_list.getRowCount() == 0)
+	{
+		return false;
+	}
+	
+	var objNew = new ChildFrame();
+	objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+	this.addChild("sInsa",objNew);
+	objNew.set_openalign("center middle");		
+	objNew.set_showtitlebar(false);
+	objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_insa);
+};
+
+this.fn_Callback_insa = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_sabun.set_value(arr_rt[0]);
+		this.edt_name.set_value(arr_rt[1]);
+		this.edt_busenm.set_value(arr_rt[3]);
+	}
+	
+	this.removeChild("sInsa");
+	
+};
+
+this.btn_Search_buse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objNew = new ChildFrame();
+		objNew.init("sBuse",0,0,237,440,null,null,"common::Buse.xfdl");
+		this.addChild("sBuse",objNew);
+		objNew.set_openalign("center middle");		
+		objNew.set_showtitlebar(false);
+		objNew.showModal("sBuse",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_buse);
+};
+
+this.fn_Callback_buse = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		this.edt_s_busecd.set_value(arr_rt[0]);
+		this.edt_s_busenm.set_value(arr_rt[1]);
+	}
+	
+	this.removeChild("sBuse");
+};
+
+this.btn_clear_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.medt_s_cardno.set_value("");
+	this.edt_s_name.set_value("");
+	this.edt_s_busecd.set_value("");
+	this.edt_s_busenm.set_value("");
+	this.cb_s_gb.set_value("");
+	
+};
+
+this.btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.ds_list.getRowCount() != 0)
+	{
+	
+		if ( Eco.isEmpty(this.ds_list.getColumn(this.ds_list.rowposition,"CARDNO")) == true )
+		{
+			this.alert("현재 작업을 완료 후 신규 추가 해주시기 바랍니다.");
+			return false;
+		}
+	}
+	this.ds_list.addRow();
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if ( Eco.isEmpty(this.medt_cardno.value) == true)
+	{
+		this.alert("카드번호를 입력하세요");
+		//return false;
+	}
+	
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr601_chk.jsp";
+	in_ds = "ds_cardno=ds_cardno:U";
+	out_ds = "ds_cardno=ds_cardno";
+	str_arg = "";			  
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_chk", true, "U", false,this);
+};
+
+this.Callback_chk = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	if (this.ds_cardno.getRowCount() > 0)
+	{
+		this.alert("사용중인 카드번호입니다.");
+		return false;
+	}
+	
+	this.setData_dml();
+}
+
+this.setData_dml = function()
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/setData_hr601.jsp";
+	in_ds = "ds_list=ds_list";
+	out_ds = "ds_list=ds_list";
+	str_arg = "";			  
+	this.gfn_TransactionP("dml", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "P", false,this);
+}
+
+this.Callback_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+	
+	this.alert("처리되었습니다.");
+}
+
+
+this.ds_list_canrowposchange = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{	
+	if (e.oldrow > 0)
+	{
+		if ( Eco.isEmpty( this.ds_list.getColumn(e.oldrow,"CARDNO") ) == true)
+		{
+			this.alert("현재 작업을 완료 후 신규 추가 해주시기 바랍니다.");
+			return false;
+		}
+	}
+};
+
+this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objApp = nexacro.getApplication();
+	
+	var confirm_result = objApp.confirm("삭제된 데이터는 복원하실수 없습니다.\n" + this.edt_name.value + "님의 자료를 정말 삭제하게요..?","삭제","warning");
+	
+	if (confirm_result == true)
+	{
+		this.ds_list.deleteRow(this.ds_list.rowposition);
+		var str_url, in_ds, out_ds, str_arg;
+	    str_url = "JSP/hr/setData_hr601.jsp";
+	    in_ds = "ds_list=ds_list:U";
+	    out_ds = "ds_list=ds_list";
+	    str_arg = "";			  
+	    this.gfn_TransactionP("dml", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "D", false,this);
+	}
+};
+
+this.edt_s_name_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13)
+	{
+		this.getData_list();
+	}
+};
+
+
+this.btnTest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) {
+	this.WebBrowser.set_url("http://naver.com");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="medt_cardno" propid="value" datasetid="ds_list" columnid="CARDNO"/>
+      <BindItem id="item1" compid="edt_sabun" propid="value" datasetid="ds_list" columnid="SABUN"/>
+      <BindItem id="item2" compid="edt_name" propid="value" datasetid="ds_list" columnid="NAME"/>
+      <BindItem id="item3" compid="edt_busenm" propid="value" datasetid="ds_list" columnid="BUSE"/>
+      <BindItem id="item4" compid="cb_gb" propid="value" datasetid="ds_list" columnid="CODE"/>
+      <BindItem id="item5" compid="cald_ymd" propid="value" datasetid="ds_list" columnid="CREDATE"/>
+      <BindItem id="item6" compid="cb_paygb" propid="value" datasetid="ds_list" columnid="BIGO"/>
+    </Bind>
+  </Form>
+</FDL>

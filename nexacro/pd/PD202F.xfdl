@@ -1,0 +1,1108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD202F" width="1630" height="760" titletext="New Form" onload="PD202F_onload" onsize="PD202F_onsize">
+    <Layouts>
+      <Layout height="760" width="1630">
+        <Static id="Static00" taborder="0" text="법인카드 수불관리" left="2.7%" top="1.45%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="35%" height="8.95%"/>
+        <Static id="Static01_02" taborder="10" text="CVC번호" top="11.85%" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="1px" padding="0px 0px 0px 2px" left="49.33%"/>
+        <MaskEdit id="mdt_cardnum" taborder="7" left="29.21%" top="11.85%" height="4.22%" border="1px solid #10aea9" type="string" format="####-####-####-####" textAlign="center" enable="false" font="13px/normal &quot;Gulim&quot;" padding="0px" right="Static01_02:-1"/>
+        <Static id="Static01_04" taborder="8" text="결제한도" left="29.21%" top="mdt_cardnum:-1" width="8.289%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static01_05" taborder="11" text="유효기간" top="Static01_02:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px" left="49.33%"/>
+        <Static id="Static02_03" taborder="35" text="사용구분" left="49.33%" top="Static01_05:4" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static02_06" taborder="36" text="결제예정일" left="49.33%" top="Static02_03:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static02_09" taborder="37" text="분실일시" left="49.33%" top="Static02_06:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static02_12" taborder="38" text="최근수정일" left="49.33%" top="Static02_09:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static02_14" taborder="39" text="실사용자" left="49.33%" top="Static02_12:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 30px 0px 00px" letterSpacing="2px"/>
+        <Static id="Static_SP1_00" taborder="47" left="1.78%" background="#368b65" top="Static02_14:1" height="2" right="1.85%"/>
+        <Static id="Static03_03" taborder="56" text="결제계좌" left="49.33%" top="Static_SP1_00:1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static03_08" taborder="62" text="일자조회" left="49.33%" top="Static03_03:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static_SP1_00_00" taborder="69" left="1.78%" top="Static03_08:1" height="2" background="#368b65" right="1.85%"/>
+        <Static id="Static03_00" taborder="48" left="1.78%" top="Static_SP1_00:1" border="1px solid #10aea9" text="조 회 조 건" textAlign="center" color="#01656f" font="bold 11pt/normal &quot;Arial&quot;" width="7.37%" bottom="Static_SP1_00_00:1" background="#e0f6ff"/>
+        <Grid id="grd_count" taborder="46" top="11.85%" width="26.2%" border="1px solid #10aea9" binddataset="dsCardCount" autofittype="col" right="1.85%" bottom="Static_SP1_00:1" font="normal 12px/normal &quot;Gulim&quot;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="45"/>
+                <Column size="45"/>
+                <Column size="45"/>
+                <Column size="45"/>
+                <Column size="45"/>
+                <Column size="45"/>
+                <Column size="45"/>
+              </Columns>
+              <Rows>
+                <Row size="23" band="head"/>
+                <Row size="22"/>
+                <Row size="22" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+                <Cell col="1" text="유효"/>
+                <Cell col="2" text="대여"/>
+                <Cell col="3" text="장기"/>
+                <Cell col="4" text="가능"/>
+                <Cell col="5" text="분실"/>
+                <Cell col="6" text="만료"/>
+                <Cell col="7" text="전체"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CI_NAME" textAlign="center"/>
+                <Cell col="1" text="bind:USE_CO" textAlign="right"/>
+                <Cell col="2" text="bind:RENT_CO" textAlign="right"/>
+                <Cell col="3" text="bind:LONG_RENT_CO" textAlign="right"/>
+                <Cell col="4" text="bind:RENT_USE_CO" textAlign="right"/>
+                <Cell col="5" text="bind:LOST_CO" textAlign="right"/>
+                <Cell col="6" text="bind:END_CO" textAlign="right"/>
+                <Cell col="7" text="bind:CO" textAlign="right"/>
+              </Band>
+              <Band id="summary">
+                <Cell text="합계" background="#0d908c" color="white"/>
+                <Cell col="1" background="#0d908c" color="white" textAlign="right" expr="dataset.getSum(&quot;nexacro.toNumber(USE_CO)&quot;)" padding="0px 2px 0px 0px"/>
+                <Cell col="2" background="#0d908c" color="white" textAlign="right" padding="0px 2px 0px 0px" expr="dataset.getSum(&quot;nexacro.toNumber(RENT_CO)&quot;)"/>
+                <Cell col="3" background="#0d908c" color="white" textAlign="right" padding="0px 2px 0px 0px" expr="dataset.getSum(&quot;nexacro.toNumber(LONG_RENT_CO)&quot;)"/>
+                <Cell col="4" background="#0d908c" color="white" textAlign="right" padding="0px 2px 0px 0px" expr="dataset.getSum(&quot;nexacro.toNumber(RENT_USE_CO)&quot;)"/>
+                <Cell col="5" background="#0d908c" color="white" textAlign="right" padding="0px 2px 0px 0px" expr="dataset.getSum(&quot;nexacro.toNumber(LOST_CO)&quot;)"/>
+                <Cell col="6" background="#0d908c" color="white" textAlign="right" padding="0px 2px 0px 0px" expr="dataset.getSum(&quot;nexacro.toNumber(END_CO)&quot;)"/>
+                <Cell col="7" background="#0d908c" color="white" textAlign="right" padding="0px 2px 0px 0px" expr="dataset.getSum(&quot;nexacro.toNumber(CO)&quot;)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01_01_00_00_00_01" taborder="45" text="카&#13;&#10;드&#13;&#10;현&#13;&#10;황" top="11.85%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px" right="grd_count:-1" width="2.58%" bottom="Static_SP1_00:1" background="#ebfef3"/>
+        <Static id="Static_SP1" taborder="15" left="1.78%" top="Static01_04:1" height="2" background="#368b65" right="Static01_01_00_00_00_01:-1"/>
+        <Static id="Static02_00" taborder="14" left="1.78%" top="Static_SP1:1" border="1px solid #10aea9" text="수  불&#13;&#10;&#13;&#10;정  보" textAlign="center" color="#01656f" font="bold 11pt/normal &quot;Arial&quot;" width="7.37%" bottom="Static_SP1_00:1" background="#ebfef3"/>
+        <Static id="Static02_01" taborder="16" text="관리번호" left="Static02_00:-1" top="Static_SP1:1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static02_04" taborder="17" text="사 용 자" left="Static02_00:-1" top="Static02_01:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" padding="0px 30px 0px 0px"/>
+        <Static id="Static02_07" taborder="18" text="대여일시" left="Static02_00:-1" top="Static02_04:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static02_10" taborder="19" text="등  록  일" left="Static02_00:-1" top="Static02_07:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="1px" padding="0px 0px 0px 1px"/>
+        <Static id="Static02_13" taborder="20" text="비      고" left="Static02_00:-1" top="Static02_10:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static01_00" taborder="1" left="1.78%" top="11.85%" border="1px solid #10aea9" text="카 드 정 보" textAlign="center" color="#01656f" font="bold 11pt/normal &quot;Arial&quot;" width="7.37%" bottom="Static_SP1:1" background="#ebfef3"/>
+        <Static id="Static01_01" taborder="2" text="카드번호" left="Static01_00:-1" top="11.85%" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static01_03" taborder="3" text="결제계좌" left="Static01_00:-1" top="Static01_01:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Button id="btn_card_search" taborder="4" text="검색" left="Static01_01:0" top="Static01_01:-90.63%" width="2.46%" height="3.43%" borderRadius="6px" font="bold 8pt/normal &quot;Arial&quot;" onclick="btn_card_search_onclick"/>
+        <Combo id="cbo_banktype" taborder="5" top="11.85%" height="4.22%" border="1px solid #10aea9" value="" innerdataset="dsBankType" codecolumn="BANK_CODE" datacolumn="BANK_NAME" font="13px/normal &quot;Gulim&quot;" text="" left="btn_card_search:0" enable="false" right="mdt_cardnum:-1"/>
+        <MaskEdit id="mdt_bankacc" taborder="6" left="Static01_03:-1" top="cbo_banktype:-1" height="4.22%" border="1px solid #10aea9" type="string" format="################" textAlign="center" font="13px/normal &quot;Gulim&quot;" enable="false" right="Static01_04:-1"/>
+        <MaskEdit id="mdt_amtlimit" taborder="9" left="Static01_04:-1" top="mdt_cardnum:-1" height="4.22%" border="1px solid #10aea9" type="number" textAlign="right" visible="true" displaynulltext="0" font="13px/normal &quot;Gulim&quot;" format="###," enable="false" right="Static01_05:-1"/>
+        <Edit id="edt_cvc" taborder="12" left="Static01_02:-1" top="11.85%" height="4.22%" border="1px solid #10aea9" enable="false" textAlign="center" font="13px/normal &quot;Gulim&quot;" right="Static01_01_00_00_00_01:-1"/>
+        <Edit id="edt_expdate" taborder="13" left="Static01_05:-1" top="edt_cvc:-1" height="4.22%" border="1px solid #10aea9" enable="false" textAlign="center" font="13px/normal &quot;Gulim&quot;" right="Static01_01_00_00_00_01:-1"/>
+        <Static id="Static02_02" taborder="27" text="카드상태" left="29.21%" top="Static_SP1:1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <MaskEdit id="mdt_sbnum" taborder="21" left="Static02_01:-1" top="Static_SP1:1" height="4.22%" border="1px solid #10aea9" type="string" format="############" textAlign="center" font="13px/normal &quot;Gulim&quot;" enable="false" right="Static02_02:-1"/>
+        <Edit id="edt_emp_sabun" taborder="22" left="Static02_04:-1" top="mdt_sbnum:-1" width="6.02%" height="4.22%" border="1px solid #10aea9" enable="false" textAlign="center" font="13px/normal &quot;Gulim&quot;"/>
+        <Static id="Static02_05" taborder="29" text="사용부서" left="29.21%" top="Static02_02:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Edit id="edt_emp_name" taborder="23" left="edt_emp_sabun:-1" top="mdt_sbnum:-1" height="4.22%" border="1px solid #10aea9" enable="false" textAlign="center" font="13px/normal &quot;Gulim&quot;" right="Static02_05:-1"/>
+        <Static id="Static02_08" taborder="30" text="반납일시" left="29.21%" top="Static02_05:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <MaskEdit id="mdt_rent" taborder="24" left="Static02_07:-1" top="edt_emp_sabun:-1" height="4.22%" border="1px solid #10aea9" type="string" format="####/##/## ##:##:##" textAlign="center" font="13px/normal &quot;Gulim&quot;" padding="0px" right="Static02_08:-1"/>
+        <Static id="Static02_11" taborder="31" text="등  록  자" left="29.21%" top="Static02_08:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="1px" padding="0px 0px 0px 1px"/>
+        <MaskEdit id="mdt_indate" taborder="25" left="Static02_10:-1" top="mdt_rent:-1" height="4.22%" border="1px solid #10aea9" type="string" format="####/##/## ##:##:##" textAlign="center" enable="false" font="13px/normal &quot;Gulim&quot;" padding="0px" right="Static02_11:-1"/>
+        <Edit id="edt_bigo" taborder="26" left="Static02_13:-1" top="mdt_indate:-1" height="4.22%" border="1px solid #10aea9" enable="true" textAlign="left" font="13px/normal &quot;Gulim&quot;" right="Static02_14:-1"/>
+        <Combo id="cbo_state" taborder="28" top="Static_SP1:1" height="4.22%" border="1px solid #10aea9" value="" innerdataset="dsCardState" codecolumn="STATE_CODE" datacolumn="STATE_NAME" font="13px/normal &quot;Gulim&quot;" text="" left="Static02_02:-1" right="Static02_03:-1"/>
+        <Edit id="edt_section" taborder="32" left="Static02_05:-1" top="cbo_state:-1" height="4.22%" border="1px solid #10aea9" enable="false" textAlign="center" font="13px/normal &quot;Gulim&quot;" right="Static02_06:-1"/>
+        <MaskEdit id="mdt_return" taborder="33" left="Static02_08:-1" top="edt_section:-1" height="4.22%" border="1px solid #10aea9" type="string" format="####/##/## ##:##:##" textAlign="center" font="13px/normal &quot;Gulim&quot;" padding="0px" right="Static02_09:-1"/>
+        <Edit id="edt_inuser" taborder="34" left="Static02_11:-1" top="mdt_return:-1" height="4.22%" border="1px solid #10aea9" enable="false" textAlign="center" font="13px/normal &quot;Gulim&quot;" right="Static02_12:-1"/>
+        <Combo id="cbo_gubn" taborder="40" top="Static_SP1:1" height="4.22%" border="1px solid #10aea9" value="" innerdataset="dsCardGUBN" codecolumn="GUBN_CODE" datacolumn="GUBN_NAME" font="13px/normal &quot;Gulim&quot;" text="" left="Static02_03:-1" right="Static01_01_00_00_00_01:-1"/>
+        <Calendar id="cald_usedate" taborder="70" left="Static02_06:-1" top="cbo_gubn:-1" height="4.22%" font="13px/normal &quot;Gulim&quot;" border="1px solid #10aea9" right="Static01_01_00_00_00_01:-1"/>
+        <MaskEdit id="mdt_lost" taborder="41" left="Static02_09:-1" top="cald_usedate:-1" height="4.22%" border="1px solid #10aea9" type="string" format="####/##/## ##:##:##" textAlign="center" font="13px/normal &quot;Gulim&quot;" padding="0px" right="Static01_01_00_00_00_01:-1"/>
+        <MaskEdit id="mdt_update" taborder="42" left="Static02_12:-1" top="mdt_lost:-1" height="4.22%" border="1px solid #10aea9" type="string" format="####/##/## ##:##:##" textAlign="center" enable="false" font="13px/normal &quot;Gulim&quot;" padding="0px" right="Static01_01_00_00_00_01:-1"/>
+        <Edit id="edt_use_sabun" taborder="43" left="Static02_14:-1" top="mdt_update:-1" height="4.22%" border="1px solid #10aea9" enable="false" textAlign="center" font="13px/normal &quot;Gulim&quot;" width="6.01%"/>
+        <Edit id="edt_use_name" taborder="44" left="edt_use_sabun:-1" top="mdt_update:-1" height="4.22%" border="1px solid #10aea9" enable="false" textAlign="center" font="13px/normal &quot;Gulim&quot;" right="Static01_01_00_00_00_01:-1"/>
+        <Button id="btn_hr_search" taborder="49" text="검색" left="Static02_04:-32.00%" top="Static02_04:-93.00%" width="Static02_04:29%" height="Static02_04:81.25%" borderRadius="6px" font="bold 8pt/normal &quot;Arial&quot;" onclick="btn_hr_search_onclick"/>
+        <Button id="btn_hr_search2" taborder="50" text="검색" left="Static02_14:-32.00%" top="Static02_14:-93.00%" width="Static02_14:29.00%" height="Static02_14:81.25%" borderRadius="6px" font="bold 8pt/normal &quot;Arial&quot;" onclick="btn_hr_search2_onclick"/>
+        <Static id="Static03_01" taborder="51" text="카드종류" left="Static03_00:-1" top="Static_SP1_00:1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static03_06" taborder="52" text="카드상태" left="Static03_00:-1" top="Static03_01:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Static id="Static03_02" taborder="54" text="카드번호" top="Static_SP1_00:1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px" left="26.69%"/>
+        <Combo id="cbo_sch_type" taborder="71" left="Static03_01:-1" top="Static_SP1_00:1" height="4.22%" font="11px/normal &quot;Gulim&quot;" border="1px solid #10aea9" index="0" innerdataset="dsBankType" codecolumn="BANK_CODE" datacolumn="BANK_NAME" text="선택" value="0" right="Static03_02:-1"/>
+        <Static id="Static03_07" taborder="53" text="사용구분" left="26.69%" top="Static03_02:-1" width="8.29%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Combo id="cbo_sch_state" taborder="72" left="Static03_06:-1" top="cbo_sch_type:-1" height="4.22%" font="13px/normal &quot;Gulim&quot;" border="1px solid #10aea9" innerdataset="dsCardState" codecolumn="STATE_CODE" datacolumn="STATE_NAME" index="0" text="선택" value="0" right="Static03_07:-1"/>
+        <MaskEdit id="mdt_sch_cardnum" taborder="55" left="Static03_02:-1" top="Static_SP1_00:1" height="4.22%" border="1px solid #10aea9" type="string" format="####-####-####-####" textAlign="center" font="13px/normal &quot;Gulim&quot;" padding="0px" right="Static03_03:-1"/>
+        <Static id="Static03_04" taborder="60" text="사용부서" left="Static01_01_00_00_00_01:-100.00%" top="Static_SP1_00:1" width="7.67%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <MaskEdit id="mdt_sch_bankacc" taborder="57" left="Static03_03:-1" top="Static_SP1_00:1" height="4.22%" border="1px solid #10aea9" type="string" format="################" textAlign="center" font="13px/normal &quot;Gulim&quot;" right="Static03_04:-1"/>
+        <Static id="Static03_05" taborder="58" text="사용자" left="83.81%" top="Static_SP1_00:1" width="7.67%" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f" letterSpacing="2px" padding="0px 0px 0px 2px"/>
+        <Edit id="edt_nm" taborder="59" left="Static03_05:-1" top="Static_SP1_00:1" height="4.22%" border="1px solid #10aea9" enable="true" textAlign="left" font="13px/normal &quot;Gulim&quot;" text=" " right="1.85%"/>
+        <Edit id="edt_usedep" taborder="61" left="Static03_04:-1" top="Static_SP1_00:1" height="4.22%" border="1px solid #10aea9" enable="true" textAlign="left" font="13px/normal &quot;Gulim&quot;" text=" " right="Static03_05:-1"/>
+        <Combo id="cbo_sch_gubn" taborder="73" left="Static03_07:-1" top="mdt_sch_cardnum:-1" height="4.22%" border="1px solid #10aea9" font="13px/normal &quot;Gulim&quot;" innerdataset="dsCardGUBN" codecolumn="GUBN_CODE" datacolumn="GUBN_NAME" index="0" text="선택" value="0" right="Static03_08:-1"/>
+        <Static id="Static03_09" taborder="63" left="Static03_08:-1" top="Static03_04:-1" height="4.22%" border="1px solid #10aea9" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" letterSpacing="2px" padding="0px 0px 0px 2px" right="1.85%"/>
+        <Combo id="cbo_ord_mstsort" taborder="74" left="Static03_09:-97.73%" top="Static03_09:-93.75%" width="8.22%" height="Static03_09:87.5%" innerdataset="dsOrdMstSort" codecolumn="Ord_NO" datacolumn="Ord_NAME" index="0" text="선택" value="0"/>
+        <Static id="Static01_01_00_00_00_02" taborder="66" text="~" left="Static03_09:-48.34%" top="Static03_09:-93.75%" width="1.78%" height="Static03_09:87.50%" font="bold 11pt/normal &quot;Arial&quot;" textAlign="center" color="#01656f"/>
+        <Calendar id="cald_sch_date_s" taborder="64" left="cbo_ord_mstsort:15.04%" top="Static03_09:-93.75%" height="Static03_09:87.50%" font="13px/normal &quot;Gulim&quot;" right="Static01_01_00_00_00_02:17.25%"/>
+        <Button id="btn_search" taborder="67" text="조회" top="Static03_09:-90.63%" height="Static03_09:81.25%" font="bold 10pt/normal &quot;Arial&quot;" onclick="btn_search_onclick" right="Static03_09:-98.9%" width="4.42%"/>
+        <Calendar id="cald_sch_date_e" taborder="65" left="Static01_01_00_00_00_02:5" top="Static03_09:-93.75%" height="Static03_09:87.50%" font="13px/normal &quot;Gulim&quot;" right="btn_search:48.62%"/>
+        <Grid id="grd_cardlist" taborder="68" left="1.78%" top="Static_SP1_00_00:1" border="1px solid #10aea9" binddataset="dsSubulList" oncellclick="grd_cardlist_oncellclick" right="1.84%" bottom="2.63%" autofittype="col" cellsizingtype="col" font="normal 12px/normal &quot;Gulim&quot;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30"/>
+                <Column size="80"/>
+                <Column size="64"/>
+                <Column size="136"/>
+                <Column size="64"/>
+                <Column size="64"/>
+                <Column size="64"/>
+                <Column size="144"/>
+                <Column size="76"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="64"/>
+                <Column size="166"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="0" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="관리번호"/>
+                <Cell col="2" text="카드종류"/>
+                <Cell col="3" text="카드번호"/>
+                <Cell col="4" text="카드상태"/>
+                <Cell col="5" text="사용구분"/>
+                <Cell col="6" text="사용자"/>
+                <Cell col="7" text="사용부서"/>
+                <Cell col="8" text="결제예정일"/>
+                <Cell col="9" text="대여일시"/>
+                <Cell col="10" text="반납일시" maskedittype="string" maskeditformat="####/##/## ##:##:##"/>
+                <Cell col="11" text="분실일시"/>
+                <Cell col="12" text="최근수정일"/>
+                <Cell col="13" text="등록일"/>
+                <Cell col="14" text="등록자"/>
+                <Cell col="15" text="비고"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CHK" edittype="checkbox" displaytype="checkboxcontrol"/>
+                <Cell col="1" text="bind:SU_CODE" textAlign="center"/>
+                <Cell col="2" text="bind:SU_CARD" textAlign="center" displaytype="combotext" combodataset="dsBankType" combodatacol="BANK_NAME" combocodecol="BANK_CODE"/>
+                <Cell col="3" text="bind:SU_CARDNUM" textAlign="center" maskeditformat="####-####-####-####" maskedittype="string" displaytype="mask"/>
+                <Cell col="4" text="bind:SU_STATE" textAlign="center" combodataset="dsCardState" combodatacol="STATE_NAME" combocodecol="STATE_CODE" displaytype="combotext"/>
+                <Cell col="5" text="bind:SU_GUBN" combodataset="dsCardGUBN" combodatacol="GUBN_NAME" combocodecol="GUBN_CODE" textAlign="center" displaytype="combotext"/>
+                <Cell col="6" text="bind:SU_CAREUSER" textAlign="center"/>
+                <Cell col="7" text="bind:SU_USEDEP"/>
+                <Cell col="8" text="bind:SU_USEDATE" textAlign="center" maskeditformat="####-##" maskedittype="string" displaytype="mask"/>
+                <Cell col="9" text="bind:SU_RENT" textAlign="center" displaytype="mask" maskeditformat="####/##/## ##:##:##" maskedittype="string"/>
+                <Cell col="10" text="bind:SU_RETURN" textAlign="center" displaytype="mask" maskeditformat="####/##/## ##:##:##" maskedittype="string"/>
+                <Cell col="11" text="bind:SU_LOST" textAlign="center" maskeditformat="####/##/## ##:##:##" maskedittype="string" displaytype="mask"/>
+                <Cell col="12" text="bind:SU_UPDATE" textAlign="center" maskeditformat="####/##/## ##:##:##" maskedittype="string" displaytype="mask"/>
+                <Cell col="13" text="bind:SU_INDATE" textAlign="center" maskeditformat="####/##/## ##:##:##" maskedittype="string" displaytype="mask"/>
+                <Cell col="14" text="bind:SU_INUSER" textAlign="center"/>
+                <Cell col="15" text="bind:SU_BIGO"/>
+              </Band>
+              <Band id="summary">
+                <Cell background="#0d908c" color="white"/>
+                <Cell col="1" background="#0d908c" color="white"/>
+                <Cell col="2" background="#0d908c" color="white"/>
+                <Cell col="3" background="#0d908c" color="white"/>
+                <Cell col="4" background="#0d908c" color="white"/>
+                <Cell col="5" background="#0d908c" color="white"/>
+                <Cell col="6" background="#0d908c" color="white"/>
+                <Cell col="7" background="#0d908c" color="white"/>
+                <Cell col="8" background="#0d908c" color="white"/>
+                <Cell col="9" background="#0d908c" color="white"/>
+                <Cell col="10" background="#0d908c" color="white"/>
+                <Cell col="11" background="#0d908c" color="white"/>
+                <Cell col="12" background="#0d908c" color="white"/>
+                <Cell col="13" background="#0d908c" color="white"/>
+                <Cell col="14" background="#0d908c" color="white"/>
+                <Cell col="15" background="#0d908c" color="white"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_del" taborder="75" text="삭제" top="5%" width="4.68%" height="4.23%" font="bold 10pt/normal &quot;Arial&quot;" right="1.85%" onclick="btn_del_onclick"/>
+        <Button id="btn_print" taborder="76" text="출력" top="5%" width="4.68%" height="4.23%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_del:7.82%" onclick="btn_print_onclick"/>
+        <Button id="btn_save" taborder="77" text="저장" top="5%" width="4.68%" height="4.23%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_print:7.82%" onclick="btn_save_onclick"/>
+        <Button id="btn_edt" taborder="78" text="수정" top="5%" width="4.68%" height="4.23%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_save:7.82" onclick="btn_edt_onclick"/>
+        <Button id="btn_cancel" taborder="79" text="취소" top="5%" width="4.68%" height="4.23%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_edt:7.82%" onclick="div_main_btn_print_onclick"/>
+        <Button id="btn_new" taborder="80" text="신규카드" top="5%" width="5.64%" height="4.23%" font="bold 10pt/normal &quot;Arial&quot;" right="btn_cancel:7.82%" onclick="btn_new_onclick"/>
+        <Edit id="edt_use_buse" taborder="81" left="898" top="57" width="195" height="32" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsCCUL">
+        <ColumnInfo>
+          <Column id="CCUL_ID" type="INT" size="20"/>
+          <Column id="CCUL_DATE" type="STRING" size="8"/>
+          <Column id="CCUL_USEDATE" type="STRING" size="8"/>
+          <Column id="CREDITCARD_CODE" type="STRING" size="2"/>
+          <Column id="CREDITCARD_NAME" type="STRING" size="20"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CCUL_AMOUNT" type="INT" size="10"/>
+          <Column id="CCUL_CUST_NAME" type="STRING" size="35"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="CCUL_GETBACK_DATE" type="STRING" size="8"/>
+          <Column id="CCUL_GETBACK_USER" type="STRING" size="6"/>
+          <Column id="CCUL_GETBACK" type="STRING" size="1"/>
+          <Column id="CCUL_REMARK" type="STRING" size="200"/>
+          <Column id="CCUL_BUSINESSTRIP" type="STRING" size="1"/>
+          <Column id="CCUL_BUSINESSTRIP_NAME" type="STRING" size="4"/>
+          <Column id="CCUL_SECTIONMANAGECOST" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="LVL" type="INT" size="1"/>
+          <Column id="SHORTCODE" type="STRING" size="3"/>
+          <Column id="SECTION_SHORTNAME" type="STRING" size="10"/>
+          <Column id="BU_UPCODE" type="STRING" size="5"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCorpCard">
+        <ColumnInfo>
+          <Column id="CREDITCARD_CODE" type="STRING" size="2"/>
+          <Column id="CREDITCARD_NAME" type="STRING" size="20"/>
+          <Column id="CREDITCARD_ENABLED" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBankType">
+        <ColumnInfo>
+          <Column id="BANK_CODE" type="STRING" size="5"/>
+          <Column id="BANK_NAME" type="STRING" size="15"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="BANK_CODE">0</Col>
+            <Col id="BANK_NAME">선택</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">1</Col>
+            <Col id="BANK_NAME">국민</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">2</Col>
+            <Col id="BANK_NAME">신한</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">3</Col>
+            <Col id="BANK_NAME">우리</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">4</Col>
+            <Col id="BANK_NAME">현대</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">5</Col>
+            <Col id="BANK_NAME">삼성</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">6</Col>
+            <Col id="BANK_NAME">기업</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">7</Col>
+            <Col id="BANK_NAME">(개인)법인</Col>
+          </Row>
+          <Row>
+            <Col id="BANK_CODE">8</Col>
+            <Col id="BANK_NAME">하나</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsOrdMstSort">
+        <ColumnInfo>
+          <Column id="Ord_NO" type="STRING" size="1"/>
+          <Column id="Ord_NAME" type="STRING" size="10"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Ord_NO">0</Col>
+            <Col id="Ord_NAME">선택</Col>
+          </Row>
+          <Row>
+            <Col id="Ord_NO">1</Col>
+            <Col id="Ord_NAME">대여일</Col>
+          </Row>
+          <Row>
+            <Col id="Ord_NO">2</Col>
+            <Col id="Ord_NAME">반납일</Col>
+          </Row>
+          <Row>
+            <Col id="Ord_NO">3</Col>
+            <Col id="Ord_NAME">분실일</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCardState">
+        <ColumnInfo>
+          <Column id="STATE_CODE" type="STRING" size="5"/>
+          <Column id="STATE_NAME" type="STRING" size="15"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="STATE_CODE">0</Col>
+            <Col id="STATE_NAME">선택</Col>
+          </Row>
+          <Row>
+            <Col id="STATE_CODE">1</Col>
+            <Col id="STATE_NAME">대여</Col>
+          </Row>
+          <Row>
+            <Col id="STATE_CODE">2</Col>
+            <Col id="STATE_NAME">반납</Col>
+          </Row>
+          <Row>
+            <Col id="STATE_CODE">3</Col>
+            <Col id="STATE_NAME">분실</Col>
+          </Row>
+          <Row>
+            <Col id="STATE_CODE">4</Col>
+            <Col id="STATE_NAME">장기대여</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCardGUBN">
+        <ColumnInfo>
+          <Column id="GUBN_CODE" type="STRING" size="5"/>
+          <Column id="GUBN_NAME" type="STRING" size="15"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="GUBN_CODE">0</Col>
+            <Col id="GUBN_NAME">선택</Col>
+          </Row>
+          <Row>
+            <Col id="GUBN_CODE">1</Col>
+            <Col id="GUBN_NAME">편집공용</Col>
+          </Row>
+          <Row>
+            <Col id="GUBN_CODE">2</Col>
+            <Col id="GUBN_NAME">업무공용</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCardList">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="2"/>
+          <Column id="CI_IDEX" type="STRING" size="10"/>
+          <Column id="CI_CARD" type="STRING" size="30"/>
+          <Column id="CI_CARDNUM" type="STRING" size="30"/>
+          <Column id="CI_CARDNAME" type="STRING" size="25"/>
+          <Column id="CI_ACCOUNT" type="STRING" size="30"/>
+          <Column id="CI_AMTLIMIT" type="STRING" size="30"/>
+          <Column id="CI_CARDDATE" type="STRING" size="20"/>
+          <Column id="CI_CVCNUM" type="STRING" size="10"/>
+          <Column id="CI_USEFLG" type="STRING" size="10"/>
+          <Column id="CI_INUSER" type="STRING" size="20"/>
+          <Column id="CI_INDATE" type="STRING" size="20"/>
+          <Column id="CI_UPDATE" type="STRING" size="20"/>
+          <Column id="CI_BIGO" type="STRING" size="100"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSubulList">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="SU_CODE" type="STRING" size="12"/>
+          <Column id="SU_CARD" type="STRING" size="2"/>
+          <Column id="SU_CARDNUM" type="STRING" size="20"/>
+          <Column id="CI_CARDNAME" type="STRING" size="25"/>
+          <Column id="CI_ACCOUNT" type="STRING" size="20"/>
+          <Column id="CI_AMTLIMIT" type="STRING" size="15"/>
+          <Column id="CI_CARDDATE" type="STRING" size="6"/>
+          <Column id="CI_CVCNUM" type="STRING" size="3"/>
+          <Column id="SU_STATE" type="STRING" size="5"/>
+          <Column id="SU_GUBN" type="STRING" size="5"/>
+          <Column id="SU_CAREUSER" type="STRING" size="6"/>
+          <Column id="SU_USEDEP" type="STRING" size="10"/>
+          <Column id="SU_USEDATE" type="STRING" size="14"/>
+          <Column id="SU_RENT" type="STRING" size="14"/>
+          <Column id="SU_RETURN" type="STRING" size="14"/>
+          <Column id="SU_LOST" type="STRING" size="14"/>
+          <Column id="SU_UPDATE" type="STRING" size="14"/>
+          <Column id="SU_INDATE" type="STRING" size="14"/>
+          <Column id="SU_INUSER" type="STRING" size="6"/>
+          <Column id="SU_BIGO" type="STRING" size="100"/>
+          <Column id="SU_CARESABUN" type="STRING" size="10"/>
+          <Column id="SU_USE_SABUN" type="STRING" size="256"/>
+          <Column id="SU_USE_NAME" type="STRING" size="256"/>
+          <Column id="SU_USE_BUSE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCardCount">
+        <ColumnInfo>
+          <Column id="CI_NAME" type="STRING" size="256"/>
+          <Column id="CI_CARD" type="STRING" size="256"/>
+          <Column id="USE_CO" type="STRING" size="256"/>
+          <Column id="RENT_CO" type="STRING" size="256"/>
+          <Column id="LONG_RENT_CO" type="STRING" size="256"/>
+          <Column id="RENT_USE_CO" type="STRING" size="256"/>
+          <Column id="LOST_CO" type="STRING" size="256"/>
+          <Column id="END_CO" type="STRING" size="256"/>
+          <Column id="CO" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="cbo_banktype" propid="value" datasetid="dsSubulList" columnid="SU_CARD"/>
+      <BindItem id="item1" compid="mdt_cardnum" propid="value" datasetid="dsSubulList" columnid="SU_CARDNUM"/>
+      <BindItem id="item2" compid="mdt_amtlimit" propid="value" datasetid="dsSubulList" columnid="CI_AMTLIMIT"/>
+      <BindItem id="item3" compid="edt_cvc" propid="value" datasetid="dsSubulList" columnid="CI_CVCNUM"/>
+      <BindItem id="item4" compid="edt_expdate" propid="value" datasetid="dsSubulList" columnid="CI_CARDDATE"/>
+      <BindItem id="item15" compid="mdt_bankacc" propid="value" datasetid="dsSubulList" columnid="CI_ACCOUNT"/>
+      <BindItem id="item5" compid="mdt_sbnum" propid="value" datasetid="dsSubulList" columnid="SU_CODE"/>
+      <BindItem id="item6" compid="cbo_state" propid="index" datasetid="dsSubulList" columnid="SU_STATE"/>
+      <BindItem id="item7" compid="cbo_gubn" propid="index" datasetid="dsSubulList" columnid="SU_GUBN"/>
+      <BindItem id="item8" compid="edt_emp_name" propid="value" datasetid="dsSubulList" columnid="SU_CAREUSER"/>
+      <BindItem id="item9" compid="edt_emp_sabun" propid="value" datasetid="dsSubulList" columnid="SU_CARESABUN"/>
+      <BindItem id="item10" compid="edt_section" propid="value" datasetid="dsSubulList" columnid="SU_USEDEP"/>
+      <BindItem id="item11" compid="cald_usedate" propid="value" datasetid="dsSubulList" columnid="SU_USEDATE"/>
+      <BindItem id="item12" compid="mdt_rent" propid="value" datasetid="dsSubulList" columnid="SU_RENT"/>
+      <BindItem id="item13" compid="mdt_return" propid="value" datasetid="dsSubulList" columnid="SU_RETURN"/>
+      <BindItem id="item14" compid="mdt_lost" propid="value" datasetid="dsSubulList" columnid="SU_LOST"/>
+      <BindItem id="item16" compid="mdt_indate" propid="value" datasetid="dsSubulList" columnid="SU_INDATE"/>
+      <BindItem id="item17" compid="edt_inuser" propid="value" datasetid="dsSubulList" columnid="SU_INUSER"/>
+      <BindItem id="item18" compid="mdt_update" propid="value" datasetid="dsSubulList" columnid="SU_UPDATE"/>
+      <BindItem id="item19" compid="edt_bigo" propid="value" datasetid="dsSubulList" columnid="SU_BIGO"/>
+      <BindItem id="item20" compid="edt_use_sabun" propid="value" datasetid="dsSubulList" columnid="SU_USE_SABUN"/>
+      <BindItem id="item21" compid="edt_use_name" propid="value" datasetid="dsSubulList" columnid="SU_USE_NAME"/>
+      <BindItem id="item23" compid="edt_use_buse" propid="value" datasetid="dsSubulList" columnid="SU_USE_BUSE"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+//테스트
+
+this.PD202F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+	this.cald_sch_date_s.set_value(f_date);
+	this.cald_sch_date_e.set_value(f_date);
+	this.btn_search.click();
+	this.fnCardCount();
+	this.edt_inuser.set_value(gv_sabun); //등록자 사번
+};
+
+// 카드 카운터 가져오기
+this.fnCardCount = function()
+{
+	var strUrl = "JSP/pd/pd202f_count_Search.jsp";
+	var	strArg = "";   //변수
+	var strDs = "dsCardCount=dsCardCount";
+	 	 	
+	this.dsCardCount.clearData(); //데이터 초기화
+	
+	//Trace(strArg);
+	this.gfn_TransactionP("Search_cardcount", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+}
+// 수불 조회
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/pd/pd202f_corpcard_Search.jsp";
+	var	strArg;   //변수
+	var strDs = "dsSubulList=dsSubulList";
+	strArg  = " cboSchType="+ nexacro.wrapQuote(this.cbo_sch_type.value); //카드종류
+	strArg += " mdtSchCardNum="+ nexacro.wrapQuote(this.fnNullChk(this.mdt_sch_cardnum.value)); //카드번호
+	strArg += " mdtSchBankAcc="+ nexacro.wrapQuote(this.fnNullChk(this.mdt_sch_bankacc.value)); //결제계좌
+	strArg += " cboSchState="+ nexacro.wrapQuote(this.cbo_sch_state.value); //카드상태
+	strArg += " cboSchGubn="+ nexacro.wrapQuote(this.cbo_sch_gubn.value); //사용구분
+	strArg += " edtUsedep="+ nexacro.wrapQuote(this.fnNullChk(this.edt_usedep.value)); //사용부서
+	strArg += " rdo_OrdMst=" + nexacro.wrapQuote(this.cbo_ord_mstsort.value ); //날짜검색선택
+	strArg += " mdtSchdateS=" + nexacro.wrapQuote(this.fnNullChk(this.cald_sch_date_s.value) ); //날짜시작일
+	strArg += " mdtSchdateE=" + nexacro.wrapQuote(this.fnNullChk(this.cald_sch_date_e.value) ); //날짜종료일
+	strArg += " nm=" + nexacro.wrapQuote(this.fnNullChk(this.edt_nm.value));
+	
+	this.dsSubulList.clearData(); //데이터 초기화
+	
+	this.gfn_TransactionP("Search_cardList", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+};
+// 카드조회 가져오기
+this.btn_card_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//매핑된 데이터 초기화
+	//카드정보 초기화
+	this.cbo_banktype.set_index(0); //카드종류
+	this.mdt_cardnum.set_value(''); //카드번호
+	this.edt_cvc.set_value(''); //cvc번호
+	this.mdt_bankacc.set_value('');//결제계좌
+	this.mdt_amtlimit.set_value(''); //결제한도
+	this.edt_expdate.set_value(''); //유효기간
+	
+	this.lfn_showModal("card_search", "", "pd::PD202_SearchF.xfdl", "", this, 0, 0, 610, 500);
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.mdt_sbnum.value != null && (this.mdt_sbnum.value).length > 0)
+    {
+		alert("중복으로 등록할 수 없습니다, 신규카드 또는 수정을 이용하세요.");
+		return;
+	}
+	if (this.cbo_banktype.index == 0)
+	{
+		alert("카드종류를 선택하세요.");
+		this.cbo_banktype.setFocus();
+		return;
+	}
+	if (this.mdt_cardnum.value == null || (this.mdt_cardnum.value).length == 0)
+	{
+		alert("카드번호를 확인하세요.");
+		mdtCardNum.SetFocus();
+		return;
+	}
+	if (this.edt_emp_name.value == null || (this.edt_emp_name.value).length == 0)
+	{
+		alert("사용자를 선택하세요.");
+		this.btn_hr_search.setFocus();
+		return;
+	}
+	
+	if (this.cbo_state.index == 0)
+	{
+		alert("카드상태를 선택하세요.");
+		this.cbo_state.setFocus();
+		return;
+	}
+	if (this.cbo_gubn.index == 0)
+	{
+		alert("사용구분을 선택하세요.");
+		this.cbo_gubn.setFocus();
+		return;
+	}
+	var objApp = nexacro.getApplication();
+	if(msg_result = objApp.confirm( "저장하시겠습니까?" , "저장확인", "warning" ))
+	{	
+		//http.Sync = true;
+		var objDate = new nexacro.Date();
+		var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+		this.fnDaySet(); //대여처리 일자 자동 픽스  
+		
+		this.mdt_indate = f_date;//등록일
+		this.mdt_update = f_date;//최근수정일
+		this.fnBtnSave(); //저장 함수 호출
+		
+		//http.Sync = false;
+	}
+};
+
+this.fnDaySet = function()
+{
+	var state; //카드상태
+	state =	this.cbo_state.value;
+	
+	var objDate = new nexacro.Date();  // getDate();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+
+	if(state == 1) //대여처리
+	{
+		if (this.mdt_rent.value == null || (this.mdt_rent.value).length == 0)
+		{
+			this.mdt_rent.value = f_date;
+		}	
+	}
+	if(state == 4) //장기대여처리
+	{
+		this.mdt_return.value = '99999999999999';
+		if (this.mdt_rent.value == null || (this.mdt_rent.value).length == 0)
+		{
+			this.mdt_rent.value = f_date;
+		}	
+	}
+	if(state == 2) //반납처리
+	{
+		trace(this.mdt_return.value);
+
+		if (this.mdt_return.value == null || (this.mdt_return.value).length == 0)
+		{
+			this.mdt_return.value = f_date;
+		}
+		if (this.mdt_return.value = '99999999999999')
+		{
+			this.mdt_return.value = f_date;
+		}
+	}
+	if(state == 3) //분실처리
+	{
+		if (this.mdt_lost.value == null || (this.mdt_lost.value).length == 0)
+		{
+			this.mdt_lost.value = f_date;
+		}	
+	}      
+}
+
+this.fnBtnSave = function() //저장함수 동작
+{
+	var objDate = new nexacro.Date();  // getDate();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+	
+	var JPNO;
+	JPNO = f_date.substr(0,8);
+	
+	var strUrl = "JSP/pd/pd202f_corpcard_save.jsp";
+	var	strArg;   //변수
+		
+	//--생성	
+	strArg    = " JPNO="      			+ nexacro.wrapQuote(JPNO); //수불관리번호
+	strArg   += " cboBankType="      	+ nexacro.wrapQuote(this.cbo_banktype.value); //카드종류
+	strArg   += " mdtCardNum="    		+ nexacro.wrapQuote(this.mdt_cardnum.value); //카드번호
+	strArg   += " cboState="    		+ nexacro.wrapQuote(this.cbo_state.value); //카드상태
+	strArg   += " cboGubn="   			+ nexacro.wrapQuote(this.cbo_gubn.value);  //사용구분
+	strArg   += " Edt_EmployeeName="  	+ nexacro.wrapQuote(this.fnNullChk(this.edt_emp_name.value)); //사용자
+	strArg   += " Edt_EmployeeSABUN="	+ nexacro.wrapQuote(this.fnNullChk(this.edt_emp_sabun.value)); //사용자사번
+	strArg   += " Cb_Section="      	+ nexacro.wrapQuote(this.fnNullChk(this.edt_section.value)); //사용부서
+	strArg   += " mdtUsedate="      	+ nexacro.wrapQuote(this.fnNullChk(this.cald_usedate.value)); //사용일시
+	strArg   += " mdtRent="      		+ nexacro.wrapQuote(this.fnNullChk(this.mdt_rent.value)); //대여일시
+	strArg   += " mdtReturn="      	+ nexacro.wrapQuote(this.fnNullChk(this.mdt_return.value)); //반납일시
+	strArg   += " mdtLost="      		+ nexacro.wrapQuote(this.fnNullChk(this.mdt_lost.value)); //분실일시
+	strArg   += " mdtUpDate="      	+ nexacro.wrapQuote(this.fnNullChk(this.mdt_update.value)); //최근수정일
+	strArg   += " mdtInDate="      	+ nexacro.wrapQuote(this.fnNullChk(this.mdt_indate.value)); //등록일
+	strArg   += " edtInUser="      	+ nexacro.wrapQuote(this.fnNullChk(this.edt_inuser.value)); //등록자
+	strArg   += " edtBigo="      		+ nexacro.wrapQuote(this.fnNullChk(this.edt_bigo.value)); //비고
+	strArg   += " edt_use_sabun="  	+ nexacro.wrapQuote(this.fnNullChk(this.edt_use_sabun.value)); //실사용자 사번
+	strArg   += " edt_use_name="		+ nexacro.wrapQuote(this.fnNullChk(this.edt_use_name.value)); //실사용자 이름
+	strArg   += " use_buse="			+ nexacro.wrapQuote(this.fnNullChk(this.edt_use_buse.value)); // 실사용자 부서
+	
+	//trace(strArg);
+	this.gfn_TransactionP("Save_card", strUrl, "", "", strArg, "fnCallback", false, "P", false, this);
+}
+
+this.btn_edt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if ((this.mdt_sbnum.value).length == 0)
+	{
+		alert("수불 정보가 선택되지 않았습니다.");
+		return;
+	}
+	
+	if (this.cbo_banktype.index == 0)
+	{
+		alert("카드종류를 선택하세요.");
+		this.cbo_banktype.setFocus();
+		return;
+	}
+	
+	if ((this.mdt_cardnum.value).length == 0)
+	{
+		alert("카드번호를 확인하세요.");
+		this.mdt_cardnum.setFocus();
+		return;
+	}
+	
+	if (this.cbo_state.index == 0)
+	{
+		alert("카드상태를 확인하세요.");
+		this.cbo_state.setFocus();
+		return;
+	}
+	if (this.cbo_gubn.index == 0)
+	{
+		alert("사용구분을 확인하세요.");
+		this.cbo_gubn.setFocus();
+		return;
+	}
+	
+	if (this.cbo_state.index == 3)
+	{
+		alert("분실로 처리할 경우 카드 정보가 '사용불가'로 변경됩니다.");
+	}
+	
+	var objApp = nexacro.getApplication();
+	if(msg_result = objApp.confirm( "수정하시겠습니까?" , "수정확인", "warning" ))
+	{	
+		var objDate = new nexacro.Date();  // getDate();
+		var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+		this.fnDaySet(); //일자 자동 픽스 
+		this.mdt_update = f_date;//최근수정일
+		this.fnBtnUpdate(); //수정 함수 호출
+	}
+};
+
+this.fnBtnUpdate = function()
+{
+	var strUrl = "JSP/pd/pd202f_corpcard_update.jsp";
+	var	strArg;   //변수
+		
+	//조건	
+	strArg    = " mdtSbNum="      	+ nexacro.wrapQuote(this.fnNullChk(this.mdt_sbnum.value)); //관리번호
+	strArg   += " cboBankType="    + nexacro.wrapQuote(this.fnNullChk(this.cbo_banktype.value)); //카드종류
+	strArg   += " mdtCardNum="    	+ nexacro.wrapQuote(this.fnNullChk(this.mdt_cardnum.value)); //카드번호	
+	
+	//변경
+	strArg   += " cboState="    	+ nexacro.wrapQuote(this.fnNullChk(this.cbo_state.value)); //카드상태
+	strArg   += " cboGubn="    	+ nexacro.wrapQuote(this.cbo_gubn.value); //사용구분
+	strArg   += " EmployeeName="   + nexacro.wrapQuote(this.fnNullChk(this.edt_emp_name.value));  //사용자
+	strArg   += " EmployeeSABUN="  + nexacro.wrapQuote(this.fnNullChk(this.edt_emp_sabun.value));  //사용자
+	strArg   += " Section="      	+ nexacro.wrapQuote(this.fnNullChk(this.edt_section.value)); //사용부서
+	strArg   += " mdtUsedate="     + nexacro.wrapQuote(this.fnNullChk(this.cald_usedate.value)); //결제예정일
+	strArg   += " mdtRent="      	+ nexacro.wrapQuote(this.fnNullChk(this.mdt_rent.value)); //대여일시
+	strArg   += " mdtReturn="      + nexacro.wrapQuote(this.fnNullChk(this.mdt_return.value)); //반납일시
+	strArg   += " mdtLost="      	+ nexacro.wrapQuote(this.fnNullChk(this.mdt_lost.value)); //분실일시
+	strArg   += " mdtUpDate="      + nexacro.wrapQuote(this.fnNullChk(this.mdt_update.value)); //최근수정일
+	strArg   += " edtBigo="      	+ nexacro.wrapQuote(this.fnNullChk(this.edt_bigo.value)); //비고
+	strArg   += " TEXTlost="      	+ nexacro.wrapQuote("-분실처리됨"); //비고
+	strArg   += " edt_use_sabun="  + nexacro.wrapQuote(this.fnNullChk(this.edt_use_sabun.value));
+	strArg   += " edt_use_name="   + nexacro.wrapQuote(this.fnNullChk(this.edt_use_name.value));
+	strArg   += " use_buse="		+ nexacro.wrapQuote(this.fnNullChk(this.edt_use_buse.value));
+	//trace(strArg);
+	
+	this.gfn_TransactionP("Update_card", strUrl, "", "", strArg, "fnCallback", false, "P", false, this);
+}
+
+this.fnCallback = function(trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0){
+		alert(ErrorMsg);
+		return;
+	}
+	else if (trid != null)
+	{
+		trid = trid.split("|");
+		trid = trid[0] 
+	}
+	if(trid == "Save_card")
+	{
+		trace("저장 완료");
+		this.btn_search.click(); //저장 후 조회 처리
+		this.fnCardCount();
+	}
+	if(trid == "Search_cardList")
+	{
+		trace("조회 완료");
+		this.fnCardCount();
+		this.btn_card_search.set_enable(false);
+	}
+	if(trid == "Update_card")
+	{
+		trace("수정 완료");
+		this.btn_search.click(); //저장 후 조회 처리
+		this.fnCardCount();
+	}
+	if(trid == "Search_cardcount")
+	{
+		trace("카운터조회 완료");
+	}
+	if(trid == "Del_cardList")
+	{
+		trace("삭제 완료");
+		this.btn_search.click(); //저장 후 조회 처리
+	}
+}
+
+this.fnInit = function()
+{	
+	var objDate = new nexacro.Date();  // getDate();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+	
+	//카드정보 초기화
+	this.cbo_banktype.set_index(0); //카드종류
+	this.mdt_cardnum.set_value(''); //카드번호
+	this.edt_cvc.set_value(''); //cvc번호
+	this.mdt_bankacc.set_value('');//결제계좌
+	this.mdt_amtlimit.set_value(''); //결제한도
+	this.edt_expdate.set_value(''); //유효기간
+	
+	//수불초기화
+	this.mdt_sbnum.set_value(''); //관리번호
+	this.cbo_state.set_index(0); //카드상태
+	this.cbo_gubn.set_index(0); //사용구분
+	this.edt_emp_name.set_value(''); //사용자
+	this.edt_emp_sabun.set_value(''); //사용자사번
+	this.edt_section.set_value(''); //사용부서
+	this.cald_usedate.set_value(''); //결제예정일
+	this.mdt_rent.set_value(''); //대여일
+	this.mdt_return.set_value(''); //반납일
+	this.mdt_lost.set_value(''); //분실일
+	this.mdt_indate.set_value(f_date); //등록일
+	this.edt_inuser.set_value(gv_sabun); //등록자 사번
+	this.mdt_update.set_value(''); //최근수정일
+	this.edt_bigo.set_value('');
+	
+	this.edt_use_buse.set_value('');
+	this.edt_use_name.set_value('');
+	this.edt_use_sabun.set_value('');
+}
+this.btn_new_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnInit();
+	this.btn_card_search.set_enable(true);
+	this.dsSubulList.clearData();
+	this.dsSubulList.addRow();
+};
+
+this.grd_cardlist_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.fnCloseEdit();
+	this.edt_use_buse.set_value(this.dsSubulList.getColumn(e.row, "SU_USE_BUSE"));
+};
+
+this.fnOpenEdit = function()
+{
+	this.cbo_banktype.set_enable(true);
+	this.mdt_cardnum.set_enable(true);
+}
+this.fnCloseEdit = function()
+{
+	this.cbo_banktype.set_enable(false);
+	this.mdt_cardnum.set_enable(false);
+	this.btn_card_search.set_enable(false);
+}
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var chk = false;
+	for(var i=0; i < this.dsSubulList.rowcount; i++)
+	{
+		if(this.dsSubulList.getColumn(i,"CHK")  == '1')
+			chk = true
+	}
+	if(chk == false)
+	{
+		alert('선택된 데이터가 없습니다');
+		return;
+	}
+	var objApp = nexacro.getApplication();
+	if(msg_result = objApp.confirm( "삭제하시겠습니까?" , "삭제확인", "warning" ))
+	{
+		this.fnBtnDel(); //삭제 함수 호출
+	}
+};
+
+this.fnBtnDel = function()
+{
+	var strUrl = "JSP/pd/pd202f_corpcard_Delete.jsp";
+	var inDs 	= "input=dsSubulList:u";	//보내는 데이터셋
+	
+	this.gfn_TransactionP("Del_cardList", strUrl, inDs, "", "", "fnCallback", false, "P", false, this);
+}
+
+this.btn_hr_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("hr_search", {gubn:"emp"}, "pd::PD202_HRSearchF.xfdl", "fnHrSearchCallBack", this, 0, 0, 350, 360);
+};
+
+this.btn_hr_search2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.lfn_showModal("hr_search2", {gubn:"use"}, "pd::PD202_HRSearchF.xfdl", "fnHrSearchCallBack", this, 0, 0, 350, 360);
+};
+
+this.fnHrSearchCallBack = function(strID, ret)
+{
+	if(ret == 1) // 1 = 실사용자 / 0 = 사용자
+	{
+		this.edt_use_sabun.set_value(this.dsSearch.getColumn(0,"SABUN"));
+		this.edt_use_name.set_value(this.dsSearch.getColumn(0,"NAME"));
+		this.edt_use_buse.set_value(this.dsSearch.getColumn(0,"BUSE"));
+	}
+	else
+	{
+		this.edt_emp_name.set_value(this.dsSearch.getColumn(0,"NAME"));
+		this.edt_emp_sabun.set_value(this.dsSearch.getColumn(0,"SABUN"));
+		this.edt_section.set_value(this.dsSearch.getColumn(0,"BUSE"));
+	}
+}
+
+this.fnNullChk = function(value)
+{
+	if(value != null)
+		return nexacro.trim(value);
+	else
+		return '';
+}
+
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.grd_cardlist, "Sheet1!A1");
+	this.exportObj.set_exportfilename( "CorpCardList" );
+	this.exportObj.set_exporturl(gv_urlXeni);
+    this.exportObj.exportData();
+};
+
+this.PD202F_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if(this.height < 480 || this.width < 1330)
+	{
+		this.Static00.set_font('bold 34px/normal "함초롬바탕 확장B"');
+		
+		this.Static01_00.set_font('bold 9pt/normal "Arial"');
+		this.Static01_01.set_font('bold 9pt/normal "Arial"');
+		this.Static01_02.set_font('bold 9pt/normal "Arial"');
+		this.Static01_03.set_font('bold 9pt/normal "Arial"');
+		this.Static01_04.set_font('bold 9pt/normal "Arial"');
+		this.Static01_05.set_font('bold 9pt/normal "Arial"');
+
+		this.Static02_00.set_font('bold 9pt/normal "Arial"');
+		this.Static02_01.set_font('bold 9pt/normal "Arial"');
+		this.Static02_02.set_font('bold 9pt/normal "Arial"');
+		this.Static02_03.set_font('bold 9pt/normal "Arial"');
+		this.Static02_04.set_font('bold 9pt/normal "Arial"');
+		this.Static02_05.set_font('bold 9pt/normal "Arial"');
+		this.Static02_06.set_font('bold 9pt/normal "Arial"');
+		this.Static02_07.set_font('bold 9pt/normal "Arial"');
+		this.Static02_08.set_font('bold 9pt/normal "Arial"');
+		this.Static02_09.set_font('bold 9pt/normal "Arial"');
+		this.Static02_10.set_font('bold 9pt/normal "Arial"');
+		this.Static02_11.set_font('bold 9pt/normal "Arial"');
+		this.Static02_12.set_font('bold 9pt/normal "Arial"');
+		this.Static02_13.set_font('bold 9pt/normal "Arial"');
+		this.Static02_14.set_font('bold 9pt/normal "Arial"');
+		
+		this.Static01_01_00_00_00_01.set_font('bold 9pt/normal "Arial"');
+		this.Static01_01_00_00_00_02.set_font('bold 9pt/normal "Arial"');
+		
+		this.Static03_00.set_font('bold 9pt/normal "Arial"');
+		this.Static03_01.set_font('bold 9pt/normal "Arial"');
+		this.Static03_02.set_font('bold 9pt/normal "Arial"');
+		this.Static03_03.set_font('bold 9pt/normal "Arial"');
+		this.Static03_04.set_font('bold 9pt/normal "Arial"');
+		this.Static03_05.set_font('bold 9pt/normal "Arial"');
+		this.Static03_06.set_font('bold 9pt/normal "Arial"');
+		this.Static03_07.set_font('bold 9pt/normal "Arial"');
+		this.Static03_08.set_font('bold 9pt/normal "Arial"');
+		
+		this.cbo_banktype.set_font('11px/normal "Gulim"');
+		this.mdt_cardnum.set_font('11px/normal "Gulim"');
+		this.edt_cvc.set_font('11px/normal "Gulim"');
+		this.mdt_bankacc.set_font('11px/normal "Gulim"');
+		this.mdt_amtlimit.set_font('11px/normal "Gulim"');
+		this.edt_expdate.set_font('11px/normal "Gulim"');
+		this.mdt_sbnum.set_font('11px/normal "Gulim"');
+		this.cbo_state.set_font('11px/normal "Gulim"');
+		this.cbo_gubn.set_font('11px/normal "Gulim"');
+		this.edt_emp_sabun.set_font('11px/normal "Gulim"');
+		this.edt_emp_name.set_font('11px/normal "Gulim"');
+		this.edt_section.set_font('11px/normal "Gulim"');
+		this.cald_usedate.set_font('11px/normal "Gulim"');
+		this.mdt_rent.set_font('11px/normal "Gulim"');
+		this.mdt_return.set_font('11px/normal "Gulim"');
+		this.mdt_lost.set_font('11px/normal "Gulim"');
+		this.mdt_indate.set_font('11px/normal "Gulim"');
+		this.edt_inuser.set_font('11px/normal "Gulim"');
+		this.mdt_update.set_font('11px/normal "Gulim"');
+		this.edt_bigo.set_font('11px/normal "Gulim"');
+		this.edt_use_sabun.set_font('11px/normal "Gulim"');
+		this.edt_use_name.set_font('11px/normal "Gulim"');
+		this.cbo_sch_type.set_font('11px/normal "Gulim"');
+		this.mdt_sch_cardnum.set_font('11px/normal "Gulim"');
+		this.mdt_sch_bankacc.set_font('11px/normal "Gulim"');
+		this.edt_usedep.set_font('11px/normal "Gulim"');
+		this.edt_nm.set_font('11px/normal "Gulim"');
+		this.cbo_sch_state.set_font('11px/normal "Gulim"');
+		this.cbo_sch_gubn.set_font('11px/normal "Gulim"');
+		this.cbo_ord_mstsort.set_font('11px/normal "Gulim"');
+		this.cald_sch_date_s.set_font('11px/normal "Gulim"');
+		this.cald_sch_date_e.set_font('11px/normal "Gulim"');
+		
+		this.btn_new.set_font('bold 8pt/normal "Arial"');
+		this.btn_cancel.set_font('bold 8pt/normal "Arial"');
+		this.btn_edt.set_font('bold 8pt/normal "Arial"');
+		this.btn_save.set_font('bold 8pt/normal "Arial"');
+		this.btn_print.set_font('bold 8pt/normal "Arial"');
+		this.btn_del.set_font('bold 8pt/normal "Arial"');
+		this.btn_search.set_font('bold 8pt/normal "Arial"');
+		
+		this.btn_card_search.set_font('bold 7pt/normal "Arial"');
+		this.btn_hr_search.set_font('bold 7pt/normal "Arial"');
+		this.btn_hr_search2.set_font('bold 7pt/normal "Arial"');
+		
+		this.grd_cardlist.set_font('normal 11px/normal "Gulim"');
+		this.grd_count.set_font('normal 11px/normal "Gulim"');
+	}
+	else
+	{
+		this.Static00.set_font('bold 40px/normal "함초롬바탕 확장B"');
+		
+		this.Static01_00.set_font('bold 11pt/normal "Arial"');
+		this.Static01_01.set_font('bold 11pt/normal "Arial"');
+		this.Static01_02.set_font('bold 11pt/normal "Arial"');
+		this.Static01_03.set_font('bold 11pt/normal "Arial"');
+		this.Static01_04.set_font('bold 11pt/normal "Arial"');
+		this.Static01_05.set_font('bold 11pt/normal "Arial"');
+
+		this.Static02_00.set_font('bold 11pt/normal "Arial"');
+		this.Static02_01.set_font('bold 11pt/normal "Arial"');
+		this.Static02_02.set_font('bold 11pt/normal "Arial"');
+		this.Static02_03.set_font('bold 11pt/normal "Arial"');
+		this.Static02_04.set_font('bold 11pt/normal "Arial"');
+		this.Static02_05.set_font('bold 11pt/normal "Arial"');
+		this.Static02_06.set_font('bold 11pt/normal "Arial"');
+		this.Static02_07.set_font('bold 11pt/normal "Arial"');
+		this.Static02_08.set_font('bold 11pt/normal "Arial"');
+		this.Static02_09.set_font('bold 11pt/normal "Arial"');
+		this.Static02_10.set_font('bold 11pt/normal "Arial"');
+		this.Static02_11.set_font('bold 11pt/normal "Arial"');
+		this.Static02_12.set_font('bold 11pt/normal "Arial"');
+		this.Static02_13.set_font('bold 11pt/normal "Arial"');
+		this.Static02_14.set_font('bold 11pt/normal "Arial"');
+		
+		this.Static01_01_00_00_00_01.set_font('bold 11pt/normal "Arial"');
+		this.Static01_01_00_00_00_02.set_font('bold 11pt/normal "Arial"');
+		
+		this.Static03_00.set_font('bold 11pt/normal "Arial"');
+		this.Static03_01.set_font('bold 11pt/normal "Arial"');
+		this.Static03_02.set_font('bold 11pt/normal "Arial"');
+		this.Static03_03.set_font('bold 11pt/normal "Arial"');
+		this.Static03_04.set_font('bold 11pt/normal "Arial"');
+		this.Static03_05.set_font('bold 11pt/normal "Arial"');
+		this.Static03_06.set_font('bold 11pt/normal "Arial"');
+		this.Static03_07.set_font('bold 11pt/normal "Arial"');
+		this.Static03_08.set_font('bold 11pt/normal "Arial"');
+		
+		this.cbo_banktype.set_font('13px/normal "Gulim"');
+		this.mdt_cardnum.set_font('13px/normal "Gulim"');
+		this.edt_cvc.set_font('13px/normal "Gulim"');
+		this.mdt_bankacc.set_font('13px/normal "Gulim"');
+		this.mdt_amtlimit.set_font('13px/normal "Gulim"');
+		this.edt_expdate.set_font('13px/normal "Gulim"');
+		this.mdt_sbnum.set_font('13px/normal "Gulim"');
+		this.cbo_state.set_font('13px/normal "Gulim"');
+		this.cbo_gubn.set_font('13px/normal "Gulim"');
+		this.edt_emp_sabun.set_font('13px/normal "Gulim"');
+		this.edt_emp_name.set_font('13px/normal "Gulim"');
+		this.edt_section.set_font('13px/normal "Gulim"');
+		this.cald_usedate.set_font('13px/normal "Gulim"');
+		this.mdt_rent.set_font('13px/normal "Gulim"');
+		this.mdt_return.set_font('13px/normal "Gulim"');
+		this.mdt_lost.set_font('13px/normal "Gulim"');
+		this.mdt_indate.set_font('13px/normal "Gulim"');
+		this.edt_inuser.set_font('13px/normal "Gulim"');
+		this.mdt_update.set_font('13px/normal "Gulim"');
+		this.edt_bigo.set_font('13px/normal "Gulim"');
+		this.edt_use_sabun.set_font('13px/normal "Gulim"');
+		this.edt_use_name.set_font('13px/normal "Gulim"');
+		this.cbo_sch_type.set_font('13px/normal "Gulim"');
+		this.mdt_sch_cardnum.set_font('13px/normal "Gulim"');
+		this.mdt_sch_bankacc.set_font('13px/normal "Gulim"');
+		this.edt_usedep.set_font('13px/normal "Gulim"');
+		this.edt_nm.set_font('13px/normal "Gulim"');
+		this.cbo_sch_state.set_font('13px/normal "Gulim"');
+		this.cbo_sch_gubn.set_font('13px/normal "Gulim"');
+		this.cbo_ord_mstsort.set_font('13px/normal "Gulim"');
+		this.cald_sch_date_s.set_font('13px/normal "Gulim"');
+		this.cald_sch_date_e.set_font('13px/normal "Gulim"');
+		
+		
+		this.btn_new.set_font('bold 10pt/normal "Arial"');
+		this.btn_cancel.set_font('bold 10pt/normal "Arial"');
+		this.btn_edt.set_font('bold 10pt/normal "Arial"');
+		this.btn_save.set_font('bold 10pt/normal "Arial"');
+		this.btn_print.set_font('bold 10pt/normal "Arial"');
+		this.btn_del.set_font('bold 10pt/normal "Arial"');
+		this.btn_search.set_font('bold 10pt/normal "Arial"');
+		
+		this.btn_card_search.set_font('bold 8pt/normal "Arial"');
+		this.btn_hr_search.set_font('bold 8pt/normal "Arial"');
+		this.btn_hr_search2.set_font('bold 8pt/normal "Arial"');
+		
+		this.grd_cardlist.set_font('normal 12px/normal "Gulim"');
+		this.grd_count.set_font('normal 12px/normal "Gulim"');
+	}
+};]]></Script>
+    <InitValue/>
+  </Form>
+</FDL>

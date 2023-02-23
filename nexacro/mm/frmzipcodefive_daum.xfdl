@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frmzipcodefive_daum" width="640" height="750" titletext="New Form" onload="frmzipcodefive_daum_onload">
+    <Layouts>
+      <Layout height="750" width="640">
+        <Button id="Button00" taborder="0" text="닫기" left="565" top="65" width="55" height="25" onclick="Button00_onclick"/>
+        <WebBrowser id="WebBrowser00" taborder="1" left="20" top="190" width="600" height="550" onusernotify="WebBrowser00_onusernotify"/>
+        <Static id="Static02" taborder="2" text="우편코드 검색" left="68" top="10" width="272" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="Static00" taborder="3" left="20" top="100" width="600" height="80" font="bold 14px/normal &quot;Gulim&quot;" border="1px solid #bfcddb" color="#006400" text="&lt;주의사항&gt;&#13;&#10;- 도로명 주소검색시 최대한 자세하게 입력하셔야 합니다.&#13;&#10;  잘못된 예) 서부로 &#13;&#10;  잘된예) 서부로1058번길"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.frmzipcodefive_daum_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.WebBrowser00.set_url("https://cj-erp.chunjae.co.kr/erp-next/jsp/mm/zipcodefive_daum.html");
+	this.WebBrowser00.show();
+	this.parentForm = this.opener;
+
+};
+
+this.WebBrowser00_onusernotify = function(obj:nexacro.WebBrowser,e:nexacro.WebUserNotifyEventInfo)
+{	
+	var p_objnumber = this.parent.p_objnum;
+	
+	if(	(e.userdata != "about:blank") &&
+		(e.userdata != "https://cj-erp.chunjae.co.kr/erp-next/jsp/mm/zipcodefive_daum.html") &&
+		(e.userdata != "500 Internal Server Error") && 
+		(e.userdata != "다음 주소록 API") )
+	{
+		var strArgZipcd = e.userdata.substr(0,5);
+		var strArgAddr = e.userdata.substr(5, e.userdata.length);		
+		
+		if (p_objnumber == "btn_zip_cerAddr") //주소 등본
+		{	
+			this.parentForm.edt_cerAddr.set_value(strArgAddr);
+			this.parentForm.MaskEdit_cerAddr.set_value(strArgZipcd);			
+		}
+		else//주소 실거주		
+		{
+			this.parentForm.edt_realAddr.set_value(strArgAddr);
+			this.parentForm.MaskEdit_realAddr.set_value(strArgZipcd);
+		}
+
+		this.close();		
+	}		
+	
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.close();	
+};
+]]></Script>
+  </Form>
+</FDL>

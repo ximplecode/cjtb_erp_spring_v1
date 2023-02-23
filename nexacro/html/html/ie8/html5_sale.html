@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html style="margin:0; height: 100%" xmlns:v="urn:schemas-microsoft-com:vml">
+	<head>
+		<meta charset="utf-8">		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, minimum-scale=1.0 user-scalable=yes" />
+		<title>Crownix HTML5 Viewer</title>
+		<script src="http://erpdev.chunjae.co.kr:8283/ReportingServer/html5/js/jquery-1.11.0.min.js"></script>
+		<script src="http://erpdev.chunjae.co.kr:8283/ReportingServer/html5/js/crownix-viewer.min.js"></script>		
+		<script>src="http://erpdev.chunjae.co.kr:8283/ReportingServer/html5/js/crownix-formfield.min.js"</script>
+		<link rel="stylesheet" type="text/css" href="http://erpdev.chunjae.co.kr:8283/ReportingServer/html5/css/crownix-viewer.min.css">		
+		<script type="text/javascript">
+			var crownixViewer;
+			var check;
+
+			//넥사크로 확인
+			if (! window.NEXACROHTML) {
+        		window.NEXACROHTML = {};
+    		}
+
+    		var eventHandler = function(event){
+			 	if(event.status){
+			 		//alert('success');
+			 		window.NEXACROHTML.FireUserNotify("01::::success");
+			 	}
+			 	else
+			 	{
+			 		alert('fail : ' + event.message);
+			 	}
+			};
+
+			function _crownix_createViewer(sUrl,sId,mrd,sparam)
+			{
+				crownixViewer = new m2soft.crownix.Viewer(sUrl, sId );
+				//crownixViewer.hideToolbarItem(["move","zoomin","zoomout","save","ratio","inquery","cancel","print_pdf","first","prev","next","last","sharing"]);
+				//crownixViewer.showToolbarItem([]);
+				//crownixViewer.hideToolbar();
+				//crownixViewer.hideToolbar();
+				
+				
+				//crownixViewer.useAdjustLetterSpace(true);
+				//crownixViewer.useAdjustCharacterScale(true); // 장평조정 허용 여부
+				crownixViewer.openFile(mrd,sparam,{showPageNum:2});
+				crownixViewer.useWebFont(true); // 서버폰트 사용 영부
+				crownixViewer.hideToolbar();			
+			 	crownixViewer.bind('submit-finished',eventHandler);		
+				//return crownixViewer;
+			}
+			
+
+			function fn_setContents(strData)
+	    	{
+	    		document.getElementById('contents').innerHTML = strData;
+	    	}
+
+	    	// 다믐 페이지 이동
+	    	function _crownix_nextpage()
+			{
+				crownixViewer.nextPage();
+			}
+
+			// 전페이지 이동
+			function _crownix_prevpage()
+			{
+				crownixViewer.prevPage();
+			}
+
+			//제출 이벤트 
+			function _crownix_submit()
+			{
+				// 크로닉스 필요값이 NULL값일 경우 스페이스 값을 집어 넣어주는 방법
+				var form1 = crownixViewer.getForm("form1");
+				var text1 = form1.get("text1");
+				var text2 = form1.get("text2");
+				var text3 = form1.get("text3");
+				var text4 = form1.get("text4");
+				var text5 = form1.get("text5");
+				var sabun = form1.get("Sabun");
+				if (text1.getValue.length = 0) text1.setValues(" ");
+				if (text2.getValue.length = 0) text2.setValues(" ");
+				if (text3.getValue.length = 0) text3.setValues(" ");
+				if (text4.getValue.length = 0) text4.setValues(" ");
+				if (text5.getValue.length = 0) text5.setValues(" ");
+				if (sabun.getValue.length = 0) sabun.setValues(" ");
+
+				crownixViewer.submit('http://erpdev.chunjae.co.kr:8288/InfoTalkServer/service','ds','6006','');
+			}
+
+			//넥사크로 webbrowser 메세지 전달을 위한 함수 
+			window.NEXACROHTML.FireUserNotify = function(userdata) {
+        		//alert(window.parent.NEXACROWEBBROWSER);
+        		//alert(window.NEXACROWEBBROWSER);
+        		//넥사크로 호출 유형에 맞게 분기해서 처리한다.
+        		/*if(window.NEXACROWEBBROWSER){
+            		//넥사크로 html5 버전 
+            		window.NEXACROWEBBROWSER.on_fire_onusernotify(window.NEXACROWEBBROWSER, userdata);
+        		}else{
+            		//런타임 버전
+            		window.document.title = userdata;
+        		}*/
+
+
+        		var wn = window.NEXACROWEBBROWSER;
+
+        		if (wn) // 넥사크로 html5 버전
+        		{
+            		wn.on_fire_onusernotify(wn, userdata);
+        		}
+        		else if (typeof nexacro == "undefined") // 런타임 버전
+        		{
+            		window.document.title = userdata;
+        		}
+        		else if (nexacro) //모바일 버전
+        		{
+            		nexacro.fireUserNotify(userdata);
+        		}
+
+    		}		 
+
+		</script>
+	</head>
+	<body style="margin:0; height: 100% ">
+
+		<div id="crownix-viewer" class="center" style="position:absolute; width: 100%; height: 100%"></div>
+		
+		<script>
+			//absolute relative
+			//window.onload = function(){
+			//var viewer = new m2soft.crownix.Viewer('http://erperun.chunjae.co.kr/ReportingServer/service', 'crownix-viewer');				
+        	//viewer.openFile('http://erperun.chunjae.co.kr/elearning/hr/rpt/hr2400_01.mrd', '/rp [201607] []');
+			//};
+
+		</script>
+	</body>
+</html>

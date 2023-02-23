@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frmJukyo" width="590" height="550" titletext="New Form" onload="frmJukyo_onload">
+    <Layouts>
+      <Layout height="550" mobileorientation="landscape" width="590">
+        <Grid id="grd_list" taborder="0" left="16" top="105" width="560" height="430" binddataset="dsJukyo" oncelldblclick="grd_list_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="300"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="코드"/>
+                <Cell col="1" text="적요명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <MaskEdit id="ed_code" taborder="1" left="95" top="66" width="45" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="###" type="string" onkeydown="ed_code_onkeydown"/>
+        <Static id="Static00_00" taborder="6" text="코드" left="16" top="66" width="77" height="30" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_01" taborder="7" text="상호" left="146" top="66" width="77" height="30" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Edit id="ed_name" taborder="2" left="225" top="66" width="218" height="30" onkeydown="ed_code_onkeydown"/>
+        <Button id="btn_search" taborder="3" text="조회" top="69" height="24" font="normal bold 10pt/normal &quot;Arial&quot;" width="57" visible="true" left="447" onclick="btn_search_onclick"/>
+        <Static id="Static02" taborder="8" text="적요코드 리스트" left="22" top="20" width="248" height="41" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btn_search_all" taborder="4" text="전체목록" top="28" height="24" font="normal bold 10pt/normal &quot;Arial&quot;" width="60" visible="true" left="446" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="5" text="닫기" top="28" height="24" font="normal bold 10pt/normal &quot;Arial&quot;" width="60" visible="true" left="516" onclick="btn_close_onclick" tabstop="false"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsJukyo">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.frmJukyo_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ed_name.setFocus();
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strArg;
+	var strDs 	= "dsJukyo=dsJukyo";
+	var code    = this.fnNullChk(this.ed_code.value);
+	var nameis  = this.fnNullChk(this.ed_name.value);	
+
+	if (obj.name =="btn_search_all") strArg = "values1=NULL values2=NULL";
+	else strArg = "values1="+nexacro.wrapQuote(code)+" values2="+nexacro.wrapQuote(nameis);
+	this.gfn_TransactionP("select","JSP/sd/select_jukyo.jsp", strDs, strDs, strArg, "fnCallback", true, "P", false, this);
+};
+
+this.fnNullChk = function(value)
+{
+	var str_ret = value;
+	if(value == null)
+		str_ret = "NULL";
+	return str_ret;
+}
+
+this.grd_list_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var code, name;
+	code  = this.dsJukyo.getColumn(this.dsJukyo.rowposition,"CODE");
+	name  = this.dsJukyo.getColumn(this.dsJukyo.rowposition,"NAME");
+	this.close(code+"/"+name);	
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

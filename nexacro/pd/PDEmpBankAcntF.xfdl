@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PDEmpBankAcntF" width="408" height="270" titletext="New Form" onload="PDEmpBankAcntF_onload">
+    <Layouts>
+      <Layout height="270" mobileorientation="landscape" width="408">
+        <Static id="Static00" taborder="0" text="직원계좌정보" left="4" top="6" width="400" height="39" border="1px solid lightgray"/>
+        <Button id="btnNew" taborder="1" text="신규" left="179" top="15" width="50" height="23" onclick="btnNew_OnClick"/>
+        <Button id="btnSave" taborder="2" text="저장" left="234" top="15" width="50" height="23" onclick="btnSave_OnClick"/>
+        <Button id="btnDel" taborder="3" text="삭제" left="289" top="15" width="50" height="23" onclick="btnDel_OnClick"/>
+        <Button id="btnClose" taborder="4" text="닫기" left="344" top="15" width="50" height="23" onclick="btnClose_OnClick"/>
+        <Grid id="Grd_EBA" taborder="5" left="4" top="47" width="401" height="221">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="92"/>
+                <Column size="114"/>
+                <Column size="76"/>
+                <Column size="119"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="은행"/>
+                <Cell col="1" text="계좌번호"/>
+                <Cell col="2" text="예금주"/>
+                <Cell col="3" text="계좌메모"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BANK_CODE" displaytype="combotext" edittype="combo" combodisplaynulltype="none" combocodecol="BANK_CODE" combodatacol="BANK_NAME" combodataset="dsBank"/>
+                <Cell col="1" text="bind:EBA_BANK_ACCOUNT" edittype="normal" displaytype="text"/>
+                <Cell col="2" text="bind:EBA_ACCOUNT_HOLDER" edittype="normal" displaytype="text"/>
+                <Cell col="3" text="bind:EBA_REMARK" edittype="normal" displaytype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var nDate = new Date(); 
+var today = Eco.date.getMaskFormatString(nDate, "yyyyMMdd");
+this.parentForm = this.opener;
+var rtnEBA_ID;
+
+this.PDEmpBankAcntF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.Grd_EBA.set_binddataset(this.opener.dsEBA)	
+	this.dsBank.copyData(this.opener.dsBank);	
+};
+
+this.btnClose_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+// 신규
+this.btnNew_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.opener.dsEBA.addRow();
+};
+
+// 저장
+this.btnSave_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//this.fctn_EBA_save(this.opener.dsEBA.getRowType(this.opener.dsEBA.row));
+	
+	//var tRow = this.dsEBA.rowposition;	
+	var rowType = this.opener.dsEBA.getRowType(this.opener.dsEBA.rowposition);
+	
+	this.fctn_EBA_save(rowType);
+	
+	trace("setSave 22222 :" + rowType );
+	
+};
+
+this.fctn_EBA_save = function(_dsSet)
+{
+	var nRow = this.opener.dsEBA.rowposition;
+	var inds 	= "dsEBA=dsEBA:U";
+	var setSave = true;
+	trace(" nRow : + " + nRow );
+	if (this.opener.dsEBA.getColumn(nRow, "BANK_CODE") == null)
+	{
+		alert("은행을 선택해 주십시요.");
+		return false;
+	}	
+	
+	if (this.opener.dsEBA.getColumn(nRow, "EBA_BANK_ACCOUNT") == null)
+	{
+		alert("계좌번호를 선택해 주십시요.");
+		return false;
+	}	
+	
+	if (setSave)
+	{
+		trace("setSave 111111 :" + this.opener.dsEBA.getRowType(0) );
+		trace("2222222 : "  + _dsSet);
+		this.gfn_TransactionP(_dsSet, "JSP/pd/pd_emp_bank_acnt_dml.jsp", inds, "", "", "fctn_EBASaveCallback", false, "P", false, this);			
+	}	
+}
+
+// 삭제
+this.btnDel_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.opener.dsEBA.rowposition;
+	this.opener.dsEBA.deleteRow(nRow);
+	this.fctn_EBA_save("delete");
+};
+
+//  계좌정보 저장 콜백함수
+//#######################################################
+this.fctn_EBASaveCallback = function(Trid, ErrorCode, ErrorMsg)
+{	
+	if (Trid == "insert")
+	{
+	    if(ErrorCode != 0 )
+			trace("[PDEmpBankAcntF.fctn_EBASaveCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+	    else
+	    {	
+			this.dsEBA.setColumn(this.dsEBA.row, "EBA_ID", trim(rtnEBA_ID));	
+			this.dsEBA.setRowType(this.dsEBA.row, "normal");	
+		}
+	} 
+	else if(ErrorCode != 0 )
+		trace("[PDEmpBankAcntF.fctn_EBASaveCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+}
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsBank">
+        <ColumnInfo>
+          <Column id="BANK_CODE" type="STRING" size="2"/>
+          <Column id="BANK_NAME" type="STRING" size="30"/>
+          <Column id="BANK_DISABLED" type="STRING" size="1"/>
+          <Column id="BANK_REMARK" type="STRING" size="30"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

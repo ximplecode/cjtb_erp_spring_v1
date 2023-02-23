@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD604F" width="456" height="432" titletext="New Form" onload="PD604F_OnLoad">
+    <Layouts>
+      <Layout height="432" mobileorientation="landscape" width="456">
+        <Static id="Static00" taborder="0" text="업무추진 예산 확인" left="10" top="1" width="290" height="45" color="#7fb39d" font="bold 30px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnClose" taborder="1" text="닫기" left="375" top="7" width="70" height="35" onclick="btnClose_onclick"/>
+        <Static id="Static01" taborder="2" text="년도" left="10" top="52" width="90" height="30" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" background="#7fb39d" color="white"/>
+        <Spin id="sp_yy" taborder="3" left="100" top="52" width="97" height="30" onchanged="sp_yy_OnChanged" onspin="sy_yy_onspin"/>
+        <Grid id="Grid00" taborder="4" left="9" top="92" width="439" height="334" binddataset="DS_DATA" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="성명"/>
+                <Cell col="1" text="월"/>
+                <Cell col="2" text="예산"/>
+                <Cell col="3" text="사용금액"/>
+                <Cell col="4" text="합계"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:NAME" displaytype="normal" textAlign="center"/>
+                <Cell col="1" text="bind:MM" displaytype="number" textAlign="center"/>
+                <Cell col="2" text="bind:BUDGET_AMOUNT" displaytype="number" textAlign="center"/>
+                <Cell col="3" text="bind:USE_AMOUNT" displaytype="number" textAlign="center"/>
+                <Cell col="4" text="bind:TOTAL_AMOUNT" cssclass="expr:nexacro.toNumber(TOTAL_AMOUNT) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;" displaytype="number" textAlign="center"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" text="합계"/>
+                <Cell col="2" displaytype="number" cssclass="expr:nexacro.toNumber(TOTAL_AMOUNT) - nexacro.toNumber(TOTAL_AMOUNT) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;" expr="dataset.getSum(&quot;nexacro.toNumber(BUDGET_AMOUNT)&quot;)"/>
+                <Cell col="3" displaytype="number" cssclass="expr:nexacro.toNumber(TOTAL_AMOUNT) - nexacro.toNumber(TOTAL_AMOUNT) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;" expr="dataset.getSum(&quot;nexacro.toNumber(USE_AMOUNT)&quot;)"/>
+                <Cell col="4" displaytype="number" cssclass="expr:nexacro.toNumber(TOTAL_AMOUNT) - nexacro.toNumber(TOTAL_AMOUNT) &lt; &quot;0&quot;?&quot;pdFontColorChange&quot;:&quot;&quot;" expr="dataset.getSum(&quot;nexacro.toNumber(TOTAL_AMOUNT)&quot;)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="DS_DATA">
+        <ColumnInfo>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="MM" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BUDGET_AMOUNT" type="STRING" size="256"/>
+          <Column id="USE_AMOUNT" type="STRING" size="256"/>
+          <Column id="TOTAL_AMOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var yy;
+var nDate = new Date(); 
+var today = Eco.date.getMaskFormatString(nDate, "yyyyMMdd");
+this.parentForm = this.opener;
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.PD604F_OnLoad = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+   var yy = this.parent.yy;	
+
+   if (yy == "")
+   {
+		yy = substr(today,0,4);
+   }
+   
+	this.sp_yy.set_value(yy);
+
+	this.getdata_budget();
+};
+
+this.getdata_budget = function()
+{
+   var str_url, str_arg;   
+   var sabun = this.parent.sabun;	     
+    
+   str_url = "JSP/pd/PD604_select.jsp";
+   str_arg = "yy="+nexacro.wrapQuote(this.sp_yy.value) +
+             " sabun="+nexacro.wrapQuote(sabun);
+			 
+   this.gfn_TransactionP("select", str_url, "DS_DATA=DS_DATA", "DS_DATA=DS_DATA", str_arg, "Callback_select", false, "P", false, this);	
+}
+
+this.Callback_select = function(Trid, ErrorCode, ErrorMsg)
+{
+    if (ErrorCode != 0)
+    {
+       alert(ErrorMsg);
+       return false;
+    }   
+}
+
+
+this.sy_yy_onspin = function(obj:nexacro.Spin,e:nexacro.SpinEventInfo)
+{
+	var nPostval = e.postvalue 
+	
+    this.sp_yy.set_value(nPostval);
+	this.getdata_budget();
+};
+]]></Script>
+  </Form>
+</FDL>

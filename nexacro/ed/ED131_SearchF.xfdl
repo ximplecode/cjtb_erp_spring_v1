@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED131_SearchF" width="400" height="390" titletext="New Form" onload="ED131_SearchF_onload">
+    <Layouts>
+      <Layout height="390" width="400">
+        <Button id="btn_close" taborder="0" text="닫기" left="155" top="351" height="29" right="175" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Static id="Static00" taborder="1" text="계약서 종류" left="13" top="26" width="87" height="29" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00" taborder="2" text="조회일자" left="13" top="57" width="87" height="29" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_01" taborder="3" text="관련부서" left="13" top="88" width="87" height="29" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Radio id="rdo_kind" taborder="4" left="124" top="26" width="186" height="30" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" value="A" text="매절" index="0">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">A</Col>
+                <Col id="datacolumn">매절</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">B</Col>
+                <Col id="datacolumn">인세</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Calendar id="cal_Sdate" taborder="5" left="104" top="57" width="110" height="29"/>
+        <Calendar id="cal_Edate" taborder="6" left="222" top="57" width="110" height="29"/>
+        <Combo id="cb_section" taborder="7" text="Combo00" left="104" top="88" width="229" height="29" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME"/>
+        <Button id="btn_search" taborder="8" top="50" width="40" height="38" right="18" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Grid id="Grid00" taborder="9" left="17" top="125" width="369" height="208" binddataset="dsSCMst" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="130"/>
+                <Column size="186"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="관리카드 번호"/>
+                <Cell col="1" text="제품명"/>
+                <Cell col="2"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:SCMST_CONTRACTNO"/>
+                <Cell col="1" text="bind:SCMST_BOOKNAME"/>
+                <Cell col="2" text="bind:SCMST_ID"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSCMst" onrowsetchanged="dsSCMst_onrowsetchanged"/>
+      <Dataset id="dsSection"/>
+      <Dataset id="dsSCDtl" onrowsetchanged="dsSCDtl_onrowsetchanged"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0, "SABUN");
+var sSelect,iI_Flow_id;
+
+this.ED131_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{		
+	this.dsSCMst.copyData(this.parent.dsParam1);
+	this.dsSCDtl.copyData(this.parent.dsParam2);
+	this.dsSection.copyData(this.parent.dsParam3); 
+	iI_Flow_id = this.parent.piI_Flow_id;
+	sSelect = this.parent.pSelect;
+};
+
+//찾기
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var inds = "dsSCMst=dsSCMst";
+	var outds = "dsSCMst=dsSCMst";
+	var strArg = "SCMST_SDATE=" + this.cal_Sdate.value
+				+ " SCMST_EDATE=" + this.cal_Edate.value
+				+ " SCMST_CLASS=" + this.rdo_kind.value
+				+ " SECTION_CODE=" + this.cb_section.value
+				+ " EMPLOYEE_ID=" +gv_sabun
+				+ " SET_OPTION=1"
+				+ " I_FLOW_ID=" + iI_Flow_id
+				+ " COMPETENCE=" + sSelect;
+				
+	this.gfn_TransactionP("search","JSP/ed/ed131f_standardcontract_mst.jsp", inds, outds, strArg, "fnSearchCallback", true, "P", false, this);			
+};
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//this.parent.dsParam1.copyData(this.dsSCMst);
+	iI_Flow_id = this.dsSCMst.getColumn(e.row, "I_FLOW_ID");
+	var mstId = this.dsSCMst.getColumn(e.row, "SCMST_ID");
+	
+	this.dsSCMst.filter("SCMST_ID ==" + mstId);
+	this.parent.dsParam1.copyData(this.dsSCMst, true);	//filter 된 데이터만 copy
+	
+	//dsSCDtl (세부내역 가져오기)
+	if(this.dsSCMst.rowcount != 0)
+	{		
+		var inds = "dsSCDtl=dsSCDtl";
+		var outds 	= "dsSCDtl=dsSCDtl";
+		var strArg	= "SCMST_ID=" + mstId;
+		
+		this.gfn_TransactionP("search","JSP/ed/ed131f_standardcontract_dtl.jsp", outds, inds, strArg, "fnDtlCallBack", true, "P", false, this);	
+	}
+	else
+		this.dsSCDtl.clearData();
+};
+
+this.fnDtlCallBack = function(svcid, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(svcid + "::" + errMsg);
+	else
+	{
+		this.dsSCDtl.filter("SCDTL_DELETE!='D'");
+		this.parent.dsParam2.copyData(this.dsSCDtl);
+		this.opener.rdo_contractKind_canitemchange(this.opener.rdo_contractKind, this.rdo_kind.value);
+		this.close(iI_Flow_id);
+	}
+}
+
+//닫기
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+
+]]></Script>
+  </Form>
+</FDL>

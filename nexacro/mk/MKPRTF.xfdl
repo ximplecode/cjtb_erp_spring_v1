@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MKRDF" width="1500" height="850" titletext="New Form" onload="MKRDF_onload">
+    <Layouts>
+      <Layout height="850" width="1500">
+        <WebBrowser id="WebBrowser00" taborder="0" top="0" width="100.00%" height="100.00%" onloadcompleted="WebBrowser00_onloadcompleted" right="0"/>
+        <ImageViewer id="ImgClose" taborder="1" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" onclick="ImgClose_onclick" bottom="95.18%" right="1.33%" text=""/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+var urlMrdHtml = nexacro.getApplication().gv_urlMrdHtml;
+var urlMrdService = nexacro.getApplication().gv_urlMrdService;
+
+this.MKRDF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//this.WebBrowser00.set_url(urlMrdHtml);
+	this.WebBrowser00.set_url("https://cj-erp.chunjae.co.kr/erp-next/html/html/ie8/sample_print.html");
+};
+
+
+this.ImgClose_onclick = function(obj:nexacro.ImageViewer,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.WebBrowser00_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{	
+	var rdUrl = this.parent.rdUrl;
+	var rdParam = this.parent.rdParam;
+	
+	var sUrl = urlMrdService;
+	var sId = "crownix-viewer";
+	
+	this.WebBrowser00.callMethod("_crownix_createViewer", sUrl, sId, rdUrl, rdParam);
+};
+]]></Script>
+  </Form>
+</FDL>

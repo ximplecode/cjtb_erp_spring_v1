@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SW103F" width="848" height="608" titletext="New Form">
+    <Layouts>
+      <Layout height="608" mobileorientation="landscape" width="848">
+        <Static id="Static00" taborder="0" left="30" top="110" width="790" height="470" text="* 부서, 직위, 성명, 입사일, 근속년수는 인사관리에 등록된 내용으로 자동 등록됩니다.&#13;&#10;&#13;&#10;1. 신청자의 내선번호를 입력합니다.&#13;&#10;&#13;&#10;2. 사유발생일을 입력합니다.(자녀돌일경우 돌일자, 부모회갑일 경우는 부모님 생년일을 입력합니다)&#13;&#10;&#13;&#10;&#13;&#10;3. 발생사유를 선택합니다. 발생사유를 선택하시면 근속년수에 따라 해당 경조금이 자동 표기됩니다.&#13;&#10;&#13;&#10;4. 사유발생자성명을 입력합니다.(자녀 돌 일 경우 자녀 이름을, 부모회갑인 해당 부모님 성명을 입력합니다.)&#13;&#10;&#13;&#10;5. 본인과 사유발생자와의 관계를 선택합니다. 선택하신 발생사유에 따라 선택 하실 수 있는 관계 코드가 제한 &#13;&#10;&#13;&#10;    됩니다.&#13;&#10;&#13;&#10;6. 총무에게 특별히 전달하고자 하는 내용을 참고사항에 입력합니다.&#13;&#10;&#13;&#10;7. 수령계좌번호는 급여계좌로 자동 셋팅되며, 다른 계좌로 변경을 원하는 경우 직접 변경 등록하시면 됩니다.&#13;&#10;&#13;&#10;8. 내용을 모두 입력하신 후 저장 버튼을 눌러 입력 하신 내용을 저장 합니다.&#13;&#10;&#13;&#10;9. 출력 버튼을 눌러 신청서를 출력 한 후 첨부서류와 같이 총무(전산팀 심임주 내선-8566)에게 제출합니다.&#13;&#10;&#13;&#10;* 총무 결재전의 등록건은 수정 가능하나, 결재가 진행된 건은 수정 하실수 없으니 참고하시기 바랍니다.&#13;&#10;&#13;&#10;수정 방법은 아래 리스트 중 수정하고저 하는 건을 더블 클릭하여, 내용 수정후 저장 버튼을 누르시면 됩니다.&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10; " font="12px/normal &quot;굴림체&quot;" border="1px solid black" padding="0px 0px 0px 20px"/>
+        <Button id="btn_close" taborder="1" text="닫기" left="760" top="70" width="60" height="30" onclick="btn_close_onclick"/>
+        <Static id="Static02" taborder="2" text="경조비 신청절차" left="68" top="10" width="312" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

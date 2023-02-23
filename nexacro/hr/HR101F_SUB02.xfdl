@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR101F_SUB02" width="1244" height="242" titletext="New Form" onload="HR101F_SUB02_onload">
+    <Layouts>
+      <Layout height="242" width="1244">
+        <Grid id="grd_family" taborder="0" left="2" top="2" right="100" bottom="2" binddataset="ds_family" autofittype="col" autoenter="select" onenterdown="grd_family_onenterdown">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="130"/>
+                <Column size="152"/>
+                <Column size="187"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="성명"/>
+                <Cell col="1" text="관계"/>
+                <Cell col="2" text="생년월일"/>
+                <Cell col="3" text="학력"/>
+                <Cell col="4" text="직업"/>
+                <Cell col="5" text="비고"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:NAME" edittype="text"/>
+                <Cell col="1" text="bind:GUAN" combodataset="ds_fam_relation" combocodecol="CODE" combodatacol="NAME" combotype="dropdown" displaytype="combotext" edittype="combo"/>
+                <Cell col="2" text="bind:YMD" displaytype="date" edittype="date" textAlign="center"/>
+                <Cell col="3" text="bind:SCH_GB" displaytype="combotext" edittype="combo" combotype="dropdown" combodataset="ds_schGB" combocodecol="CODE" combodatacol="NAME"/>
+                <Cell col="4" text="bind:JIKUP" edittype="text"/>
+                <Cell col="5" text="bind:BIGO" edittype="text"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_add" taborder="1" text="추가" top="8" width="90" height="22" right="4" onclick="btn_add_onclick"/>
+        <Button id="btn_del" taborder="2" text="삭제" top="38" width="90" height="22" right="4" onclick="btn_del_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_fam_relation">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+this.HR101F_SUB02_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_fam_relation.jsp";
+	in_ds = "ds_fam_relation=ds_fam_relation";
+	out_ds = "ds_fam_relation=ds_fam_relation";
+	str_arg = "";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_select", true, "P", false, this);
+};
+
+this.Callback_select = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+}
+
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.ds_family.addRow();
+};
+
+this.btn_del_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.parent.parent.ds_family.rowposition;
+	var seq;
+	if (this.confirm("선택한 정보를 삭제하시겠습니까?","가족사항 삭제","warning") )
+	{
+		this.parent.parent.ds_family.deleteRow(nRow);
+	}
+};
+
+this.grd_family_onenterdown = function(obj:nexacro.Grid,e:nexacro.GridEditEventInfo)
+{
+	if (e.col == this.grd_family.getCellCount("head") - 1)
+	{
+		if (e.row == this.grd_family.rowcount - 1 )
+		{
+			this.btn_add_onclick(null, null);
+		}
+		this.grd_family.moveToNextCell();
+		this.grd_family.setCellPos(0);
+	}
+	else
+	{
+		this.grd_family.moveToNextCell();
+	}
+	
+};
+]]></Script>
+  </Form>
+</FDL>

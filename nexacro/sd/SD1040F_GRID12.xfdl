@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD1040F_GRID12" width="1370" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1370">
+        <Grid id="SD1040F_GRID12" taborder="0" binddataset="ds_12" height="100.00%" top="0" formatid="default" cellmovingtype="col" cellsizebandtype="allband" cellsizingtype="both" left="0.00%" right="0.00%" autofittype="none">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="81"/>
+                <Column size="178"/>
+                <Column size="83"/>
+                <Column size="55"/>
+                <Column size="228"/>
+                <Column size="84"/>
+                <Column size="143"/>
+                <Column size="84"/>
+                <Column size="143"/>
+                <Column size="84"/>
+                <Column size="143"/>
+                <Column size="84"/>
+                <Column size="143"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" text="거래처" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="1" rowspan="2" text="거래처명" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="2" rowspan="2" text="도서코드" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="3" rowspan="2" text="년판" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="4" rowspan="2" text="도서명" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="5" colspan="2" text="본사이체" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="7" colspan="2" text="서점수인정" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="9" colspan="2" text="실본사이체" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="11" colspan="2" text="차이" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="5" text="수량" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="6" text="금액" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="7" text="수량" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="8" text="금액" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="9" text="수량" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="10" text="금액" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="11" text="수량" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell row="1" col="12" text="금액" font="11px/normal &quot;Gulim&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" suppress="1" suppressalign="first" font="11px/normal &quot;Gulim&quot;" textAlign="center" expr="dataset.getRowLevel(currow)==0? CUST_GB + &quot;-&quot; + CUST_CD : &quot;소계&quot;"/>
+                <Cell col="1" text="bind:CUST_NM" suppress="1" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" textAlign="center" suppressalign="first" font="11px/normal &quot;Gulim&quot;"/>
+                <Cell col="2" text="bind:BOOK_CD" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" textAlign="center" suppressalign="first" font="11px/normal &quot;Gulim&quot;" expr="dataset.getRowLevel(currow)==0? BOOK_CD : &quot;&quot;"/>
+                <Cell col="3" text="bind:BYY" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="center" suppress="0" expr="dataset.getRowLevel(currow)==0? BYY : &quot;&quot;"/>
+                <Cell col="4" text="bind:BOOK_NM" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" textAlign="center" font="11px/normal &quot;Gulim&quot;" suppress="0"/>
+                <Cell col="5" text="bind:BQTY" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right"/>
+                <Cell col="6" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right" text="bind:BAMT"/>
+                <Cell col="7" text="bind:SIN_QTY" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right"/>
+                <Cell col="8" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right" text="bind:SIN_AMT"/>
+                <Cell col="9" text="bind:SC_QTY" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right"/>
+                <Cell col="10" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right" text="bind:SC_AMT"/>
+                <Cell col="11" displaytype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right" expr="SIN_QTY-SC_QTY"/>
+                <Cell col="12" displaytype="currency" cssclass="expr:dataset.getRowLevel(currow)==1?'sdcss_jp_total': dataset.getRowLevel(currow)==2? 'sdcss_daily_total' : ''" font="11px/normal &quot;Gulim&quot;" textAlign="right" expr="SIN_AMT-SC_AMT"/>
+              </Band>
+              <Band id="summary">
+                <Cell font="bold 11px/normal &quot;Gulim&quot;" text="총계"/>
+                <Cell col="1" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="2" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="3" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="4" textAlign="right" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="5" expr="dataset.getSum('QTY');" textAlign="right" displaytype="mask" maskeditformat="###,###,###,###,##0" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="6" textAlign="right" displaytype="currency" font="bold 11px/normal &quot;Gulim&quot;" expr="dataset.getSum('AVG_PCOST');"/>
+                <Cell col="7" expr="dataset.getSum('QTY');" textAlign="right" displaytype="mask" maskeditformat="###,###,###,###,##0" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="8" textAlign="right" displaytype="currency" font="bold 11px/normal &quot;Gulim&quot;" expr="dataset.getSum('AVG_PCOST');"/>
+                <Cell col="9" expr="dataset.getSum('QTY');" textAlign="right" displaytype="mask" maskeditformat="###,###,###,###,##0" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="10" textAlign="right" displaytype="currency" font="bold 11px/normal &quot;Gulim&quot;" expr="dataset.getSum('AVG_PCOST');"/>
+                <Cell col="11" expr="dataset.getSum('SIN_QTY-SC_QTY');" textAlign="right" displaytype="mask" maskeditformat="###,###,###,###,##0" font="bold 11px/normal &quot;Gulim&quot;"/>
+                <Cell col="12" textAlign="right" displaytype="currency" font="bold 11px/normal &quot;Gulim&quot;" expr="dataset.getSum('SIN_AMT-SC_AMT');"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_etc.xjs";
+
+/*
+this.SD1040F_GRID1_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.SD1040F_GRID1);
+};
+
+this.SD1040F_GRID1_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+*/
+]]></Script>
+  </Form>
+</FDL>

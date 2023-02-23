@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD202_HRSearchF" width="350" height="360" titletext="New Form" onload="PD202_HRSearchF_onload">
+    <Layouts>
+      <Layout height="360" width="350">
+        <Static id="Static01" taborder="4" text="성 명" left="20" top="32" width="70" height="26" textAlign="center" font="bold 13px/normal &quot;Gulim&quot;" background="#c3e4cd"/>
+        <Button id="btn_search" taborder="1" text="조회" top="34" height="22" right="76" width="52" font="12px/normal &quot;Gulim&quot;" onclick="btn_search_onclick"/>
+        <Button id="btn_close" taborder="2" text="닫기" top="34" height="22" width="51" right="20" font="12px/normal &quot;Gulim&quot;" onclick="btn_close_onclick"/>
+        <Grid id="grd_search" taborder="3" left="20" top="70" width="310" height="230" binddataset="Ds_Sawon2" autofittype="col" oncelldblclick="grd_search_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="115"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="부서"/>
+                <Cell col="1" text="직위"/>
+                <Cell col="2" text="사번"/>
+                <Cell col="3" text="성명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSE" textAlign="center"/>
+                <Cell col="1" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="2" text="bind:SABUN" textAlign="center"/>
+                <Cell col="3" text="bind:NAME" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="5" text="직원을 조회한 후 리스트에서 &#13;&#10;해당 직원을 더블클릭 하시면 추가 할 수 있습니다" left="20" top="310" width="310" height="31"/>
+        <Edit id="edt_search" taborder="0" left="90" top="32" width="120" height="26" onkeydown="edt_search_onkeydown"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Ds_Sawon2">
+        <ColumnInfo>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="TOISADT" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	  var strBuse = "",strName = "",strEndDate = "";
+	  if(this.edt_search.value != null)
+		strName = nexacro.trim(this.edt_search.value);
+      if(strName != "") {
+		var strUrl, strDs, strArg;
+		strUrl   = "JSP/hr/sql_SawonList5.jsp";	
+		strDs = "Ds_Sawon2=Ds_Sawon2";  
+		strArg = "strBuse=" + nexacro.wrapQuote(strBuse);
+	    strArg += " strName=" + nexacro.wrapQuote(strName);	
+	    strArg += " strEndDate=" + nexacro.wrapQuote(strEndDate);
+		this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "fnCallback", true, "P", false, this);   
+	}		
+};
+
+this.grd_search_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if (this.opener.name == "PD603F")
+    {
+		this.opener.dsSearch.clearData();
+		this.opener.dsSearch.addRow();
+		this.opener.dsSearch.setColumn(0, "JIKWI",  nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"JIKWI")));
+		this.opener.dsSearch.setColumn(0, "SECTION_NAME",  nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"BUSE")));
+		this.opener.dsSearch.setColumn(0, "NAME",  nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"NAME")));
+		this.opener.dsSearch.setColumn(0, "SABUN",  nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"SABUN")));
+    }
+    else if (this.opener.name == "GONGSU_TOTAL")
+    {
+		this.Parent.sabun = nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"SABUN"));
+		this.parent.name = nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"NAME"));
+    }
+    else if (this.opener.name == "PD202F" || this.opener.name == "PD203F")
+    {
+		this.opener.dsSearch.clearData();
+		this.opener.dsSearch.addRow();
+		this.opener.dsSearch.setColumn(0, "BUSE",  nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"BUSE")));
+		this.opener.dsSearch.setColumn(0, "NAME",  nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"NAME")));
+		this.opener.dsSearch.setColumn(0, "SABUN",  nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"SABUN")));
+		if(this.parent.gubn == "use") // use = 실사용자 -> 1 / emp = 사용자 -> 0
+			this.close(1);
+		else
+			this.close(0);
+		return;
+    }
+	else if(this.opener.name == "GW551")
+	{
+		this.opener.edt_name.set_value(nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"NAME")));
+		this.opener.edt_buse.set_value(nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"BUSE")));
+		this.opener.edt_sabun.set_value(nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"SABUN")));
+	}
+    else
+    {    
+      // this.parent.Edt_EmployeeName.VALUE  = Ds_Sawon2.getColumn(nRow,"sabun"); 
+	  this.parent.Edt_EmployeeName.value  = nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"NAME")); 
+      this.parent.Edt_EmployeeSABUN.value  = nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"SABUN")); 
+      this.parent.Cb_Section.value  = nexacro.trim(this.Ds_Sawon2.getColumn(e.row,"BUSE")); 
+    }
+	
+    this.close(1);
+};
+
+this.PD202_HRSearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	trace('');
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+this.edt_search_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+		this.btn_search.click();
+};
+]]></Script>
+  </Form>
+</FDL>

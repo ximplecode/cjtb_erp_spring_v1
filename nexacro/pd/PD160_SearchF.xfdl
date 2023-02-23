@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PD160_SearchF" width="410" height="150" titletext="New Form" onload="PD160_SearchF_onload" onmouseleave="PD160_SearchF_onmouseleave">
+    <Layouts>
+      <Layout height="150" width="410">
+        <Button id="btn_close" taborder="0" text="닫기" left="345" top="18" width="55" height="22" onclick="btn_close_onclick"/>
+        <Button id="btn_search" taborder="1" text="조회하기" left="320" top="73" width="80" height="48" onclick="btn_search_onclick"/>
+        <Static id="Static00" taborder="2" text="일반경비/정기지불 조회" left="20" top="5" color="#7fb39d" font="bold 28px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="320" height="40"/>
+        <Static id="Static01" taborder="3" text="조회일자" left="10" top="54" width="80" height="26" textAlign="center" font="bold 13px/normal &quot;Gulim&quot;" background="#c3e4cd"/>
+        <Static id="Static02" taborder="4" text="담당부서" left="10" top="84" width="80" height="26" textAlign="center" font="bold 13px/normal &quot;Gulim&quot;" background="#c3e4cd"/>
+        <Static id="Static03" taborder="5" text="승인여부" left="10" top="114" width="80" height="26" textAlign="center" font="bold 13px/normal &quot;Gulim&quot;" background="#c3e4cd"/>
+        <Calendar id="cal_sdate" taborder="6" left="Static01:-1" top="54" width="105" height="26" dateformat="yyyy-MM-dd " border="1px solid #c3e4cd"/>
+        <Calendar id="cal_edate" taborder="7" left="cal_sdate:2" top="54" width="105" height="26" dateformat="yyyy-MM-dd" border="1px solid #c3e4cd"/>
+        <Combo id="cbo_section" taborder="8" text="Combo00" left="Static02:-1" top="84" width="212" height="26" border="1px solid #c3e4cd" innerdataset="dsSection" codecolumn="SECTION_CODE" datacolumn="SECTION_NAME" displaynulltext="선택해주세요" onitemchanged="cbo_section_onitemchanged" onkeydown="cbo_section_onkeydown"/>
+        <Radio id="rdo_permite" taborder="9" left="Static03:-1" top="114" width="212" height="26" border="1px solid #c3e4cd" direction="horizontal" rowcount="1" columncount="2" onitemchanged="Radio00_onitemchanged" innerdataset="dsPermite" codecolumn="CODE" datacolumn="NAME" padding="0px 0px 0px 40px" index="0" text="미승인" value="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var sSection = "";
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strClose = this.cal_sdate.value + "^";
+	strClose += this.cal_edate.value + "^";
+	strClose += sSection + "^";
+	strClose += this.rdo_permite.index;
+	this.close(strClose);
+};
+
+this.PD160_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.cbo_section.set_innerdataset(this.opener.dsSection);
+	this.cbo_section.set_index(-1);
+	this.cal_sdate.setFocus();
+	this.dsAccountMst_copy.copyData(this.opener.dsAccountMst);
+};
+
+this.cbo_section_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	sSection = e.postvalue;
+};
+
+this.cbo_section_onkeydown = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 27)
+	{
+		this.cbo_section.set_index(-1);
+		sSection = "";
+	}
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.cal_sdate.value == null)
+	{
+		alert("조회일자를 선택해 주십시오.");
+		this.cal_sdate.setFocus();
+		return;
+	}
+	if(this.cal_edate.value == null)
+	{
+		alert("조회일자를 선택해 주십시오.");
+		this.cal_edate.setFocus();
+		return;
+	}
+	var strUrl = this.parent.JSPFileName;
+	var strDs = "dsAccountMst_copy=dsAccountMst_copy";
+	strArg 	= "ACNTMST_SDATE=" + nexacro.wrapQuote( this.cal_sdate.value ) +
+	          " ACNTMST_EDATE=" + nexacro.wrapQuote( this.cal_edate.value ) +
+	          " ACNTMST_PERMITE=" + nexacro.wrapQuote( this.rdo_permite.index ) +
+	          " SECTION_CODE=" + nexacro.wrapQuote( sSection ) +
+	          " COMPETENCE=" + nexacro.wrapQuote( this.parent.PDCompetence ) +
+	          " SET_OPTION=" + nexacro.wrapQuote( "1" ) + 
+	          " I_FLOW_ID=" + nexacro.wrapQuote( ) ;
+	
+	this.gfn_TransactionP("search", strUrl, strDs, strDs, strArg, "fnCallback", false, "P", false, this);
+};
+
+this.fnCallback = function(svcid, errCode, errMsg)
+{
+	if(svcid == "search")
+	{
+		var objDate = new nexacro.Date();
+		var f_date = Eco.date.getMaskFormatString(objDate, "yyyyMMddhhmmss");
+		if(errCode != 0)
+			trace("[PD160_SearchF.fnCallBack(" + f_date + ")] " + svcid +"::"+ errMsg );
+		else if (this.dsAccountMst_copy.rowcount == 0)
+		{
+			this.dsAccountMst_copy.clearData();
+			alert("조회된 자료가 없습니다.");
+		}
+		else
+		{
+			this.opener.dsAccountMst.copyData(this.dsAccountMst_copy);
+		}
+	}
+}
+this.Static00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsPermite">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">미승인</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">승인</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAccountMst_copy">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="1"/>
+          <Column id="ACNTMST_CLASS" type="STRING" size="1"/>
+          <Column id="ACNTMST_DATE" type="STRING" size="8"/>
+          <Column id="ACNTMST_NO" type="STRING" size="3"/>
+          <Column id="ACNTMST_ID" type="INT" size="20"/>
+          <Column id="ACCOUNT_NO" type="STRING" size="12"/>
+          <Column id="ACNTMST_YM" type="STRING" size="6"/>
+          <Column id="SECTION_CODE" type="STRING" size="5"/>
+          <Column id="SECTION_NAME" type="STRING" size="30"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="DK_CODE" type="INT" size="2"/>
+          <Column id="ACNTMST_DELETE" type="STRING" size="1"/>
+          <Column id="ACNTMST_PERMITEDATE1" type="STRING" size="8"/>
+          <Column id="ACNTMST_PERMITEUSER1" type="STRING" size="6"/>
+          <Column id="ACNTMST_PERMITENAME1" type="STRING" size="10"/>
+          <Column id="ACNTMST_PERMITE1" type="STRING" size="1"/>
+          <Column id="ACNTMST_PERMITEDATE2" type="STRING" size="8"/>
+          <Column id="ACNTMST_PERMITEUSER2" type="STRING" size="6"/>
+          <Column id="ACNTMST_PERMITENAME2" type="STRING" size="10"/>
+          <Column id="ACNTMST_PERMITE2" type="STRING" size="1"/>
+          <Column id="ACNTMST_REMARK" type="STRING" size="1000"/>
+          <Column id="COMPETENCE" type="STRING" size="1"/>
+          <Column id="I_FLOW_ID" type="INT" size="20"/>
+          <Column id="ACNTMST_PERMITEDATE0" type="STRING" size="8"/>
+          <Column id="ACNTMST_PERMITEUSER0" type="STRING" size="6"/>
+          <Column id="ACNTMST_PERMITE0" type="STRING" size="1"/>
+          <Column id="ACNTMST_TITLE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

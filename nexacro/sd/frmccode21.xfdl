@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frmccode21" width="510" height="540" titletext="New Form" onload="frmccode21_onload">
+    <Layouts>
+      <Layout height="540" width="510">
+        <Grid id="grd_list" taborder="0" left="16" top="51" width="484" height="479" binddataset="ds_ccode24" oncelldblclick="grd_list_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="22"/>
+                <Column size="50"/>
+                <Column size="85"/>
+                <Column size="22"/>
+                <Column size="50"/>
+                <Column size="85"/>
+                <Column size="22"/>
+                <Column size="50"/>
+                <Column size="85"/>
+                <Column size="0"/>
+                <Column size="0"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" background="gold"/>
+                <Cell col="1" text="코드" background="gold" color="black"/>
+                <Cell col="2" text="대분류명" background="gold" color="black"/>
+                <Cell col="3" displaytype="checkboxcontrol" edittype="checkbox" background="aquamarine" color="black"/>
+                <Cell col="4" text="코드" background="aquamarine" color="black"/>
+                <Cell col="5" text="중분류명" background="aquamarine" color="black"/>
+                <Cell col="6" displaytype="checkboxcontrol" edittype="checkbox" background="cornflowerblue" color="black"/>
+                <Cell col="7" text="코드" background="cornflowerblue" color="black"/>
+                <Cell col="8" text="소분류명" background="cornflowerblue" color="black"/>
+                <Cell col="9"/>
+                <Cell col="10"/>
+              </Band>
+              <Band id="body">
+                <Cell edittype="checkbox" displaytype="checkboxcontrol" text="bind:chk"/>
+                <Cell col="1" text="bind:dcd"/>
+                <Cell col="2" text="bind:dnm"/>
+                <Cell col="3" edittype="checkbox" displaytype="checkboxcontrol" text="bind:chk1"/>
+                <Cell col="4" text="bind:jcd"/>
+                <Cell col="5" text="bind:jnm"/>
+                <Cell col="6" edittype="checkbox" displaytype="checkboxcontrol" text="bind:chk2"/>
+                <Cell col="7" text="bind:scd"/>
+                <Cell col="8" text="bind:snm"/>
+                <Cell col="9" text="bind:dcd"/>
+                <Cell col="10" text="bind:jcd"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02" taborder="1" text="사업구분 열람" left="22" top="10" width="208" height="41" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btn_close" taborder="2" text="닫기" top="19" height="24" font="normal bold 10pt/normal &quot;Arial&quot;" width="60" visible="true" left="436" onclick="btn_close_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_sd.xjs";
+
+var R_sw1  = "N";
+var R_sw2  = "N";
+var R_sw3  = "N";
+var Fv_HeadChk1 = 0;                         //체크박스2. 
+var Fv_HeadChk2 = 0;                         //체크박스2. 
+var Fv_HeadChk3 = 0;                         //체크박스2. 
+
+this.frmccode21_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_ccode24.copyData(this.opener.ds_ccode24);
+	
+	if ( this.parent.PY_GB == "N")
+	{	
+		strArg = "";
+		outds = "ds_ccode24=ds_ccode24";
+		inds = "ds_ccode24=ds_ccode24";
+		
+		this.gfn_TransactionP("code_select","JSP/sd/help_ccode24.jsp", inds, outds, strArg, "fnCallback", false, "P", false, this);	
+	}
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	R_sw1     = "N";
+	R_sw2     = "N";
+	R_sw3     = "N";
+	this.parent.S_CUSTGB = this.Gridcheck("dsCcode21");
+	this.parent.S_CUSTCD = this.Gridcheck("dsCcode22");
+	this.parent.E_CUSTGB = this.Gridcheck("dsCcode23");
+	if (( R_sw1 == "N" ) && ( R_sw2 == "N" ) && ( R_sw3 == "N" )) 
+	{
+		this.parent.S_CUSTGB = "";
+		this.parent.S_CUSTCD = "";
+		this.parent.E_CUSTGB = "";
+	}	
+	this.opener.ds_ccode24.copyData(this.ds_ccode24); // 부모창 데이터셋에 자식창 데이터 복사
+	this.close(this.parent.S_CUSTGB+":"+this.parent.S_CUSTCD+":"+this.parent.E_CUSTGB);
+};
+
+this.Gridcheck = function(strdsname)
+{
+	// 그리드 데이터 중에 체크된 데이터를 선별하여 리턴.
+	var strReturn="";
+	var loop = 0;
+	
+	if (strdsname=="dsCcode21")
+	{
+		for (loop=0; loop < this.ds_ccode24.rowcount; loop++)
+		{
+			if (this.ds_ccode24.getColumn(loop,"chk")==1)
+			{
+			    R_sw1  = "Y";
+				strReturn = strReturn +"'"+this.ds_ccode24.getColumn(loop,"dcd")+"',";
+			}
+		}
+	}
+	if (strdsname=="dsCcode22")
+	{
+		for (loop=0; loop < this.ds_ccode24.rowcount; loop++)
+		{
+			if (this.ds_ccode24.getColumn(loop,"chk1")==1)
+			{
+			    R_sw2  = "Y";
+				strReturn = strReturn +"'"+this.ds_ccode24.getColumn(loop,"jcd")+"',";
+			}
+		}
+	}
+	
+	if (strdsname=="dsCcode23")
+	{
+		for (loop=0; loop < this.ds_ccode24.rowcount; loop++)
+		{
+			if (this.ds_ccode24.getColumn(loop,"chk2")==1)
+			{
+			    R_sw3  = "Y";
+				strReturn = strReturn +"'"+this.ds_ccode24.getColumn(loop,"scd")+"',";
+			}
+		}
+	}
+	
+	//마지막 쉼표 삭제.
+	return strReturn.substr(0,strReturn.length-1);
+}
+]]></Script>
+    <Objects>
+      <Dataset id="ds_ccode24"/>
+    </Objects>
+  </Form>
+</FDL>

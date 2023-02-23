@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.0"><![CDATA[.Grid .body .row .cell.CssMenu_level_1
+{
+	color : #000000;
+	-nexa-border : 1px solid #eaeaea,0px none;
+	font : 13px/normal "NotoSansKR";
+	background : #ffffff;
+}
+
+.Grid .body .row .cell.CssBackground_red
+{
+	background : #f3c3cb;
+}
+
+.Grid .body .row .cell.CssBackground_red[status=mouseover]
+{
+	background : #f3c3cb;
+}
+
+.Grid .body .row .cell.CssBackground_red[userstatus=selected]
+{
+	background : #f3c3cb;
+}
+
+
+.Grid .body .row .cell.CssMenu_level_1[userstatus=selected]
+{
+	background : #ffffff;
+	color : #4364ed;
+}
+
+.Grid .body .row .cell.CssMenu_level_1[status=mouseover]
+{
+	background : #ffffff;
+	color : #4364ed;
+}
+.Grid .body .row .cell.CssMenu_level_1 .celltreeitem .treeitemtext
+{
+	color : #000000;
+	font : 13px/normal "NotoSansKR";
+}
+
+.Grid .body .row .cell.CssMenu_level_2
+{
+	color : #444444;
+	-nexa-border : 0px none;
+	background : #ffffff;
+	font : 12px/normal "NotoSansKR";
+}
+
+.Grid .body .row .cell.CssMenu_level_2[status=mouseover]
+{
+	background : #ffffff;
+}
+
+.Grid .body .row .cell.CssMenu_level_2[userstatus=selected]
+{
+	background : #ffffff;
+}
+.Grid .body .row .cell.CssMenu_level_3
+{
+	color : #444444;
+	-nexa-border : 0px none;
+	/*background : #f3f4f5;*/
+	font : 11px/normal "NotoSansKR";
+}
+
+.Grid .body .row .cell.CssMenu_level_3[status=mouseover]
+{
+	/*background : #f3f4f5;*/
+}
+
+.Grid .body .row .cell.CssMenu_level_3[userstatus=selected]
+{	
+	/*background : #f3f4f5;*/
+}
+
+.Grid .body .row .cell.CssMenu_level_3_select
+{
+	color : #4364ed;
+	-nexa-border : 0px none;
+	/*background : #f3f4f5;*/
+	font : 11px/normal "NotoSansKR";
+}
+
+.Grid .body .row .cell.CssMenu_level_3_select[status=mouseover]
+{
+	background : #ffffff;
+}
+
+.Grid .body .row .cell.CssMenu_level_3_select[userstatus=selected]
+{	
+	background : #ffffff;
+}
+
+
+.Grid .body .row .cell.CssMenu_level_3_select .celltreeitem .treeitemtext
+{
+	font : 11px/normal "NotoSansKR";
+	/*color :  #3cbcb8;*/
+	color : #4364ed;
+}
+
+.Grid .body .row .cell.CssBuse_tree .celltreeitem .treeitemimage
+{
+	-nexa-icon : url('Img::businessman2.png');
+	
+}
+
+.Grid .body .row .cell.CssBuse_tree .celltreeitem .treeitemimage[userstatus=collapse],.Grid .body .row .cell.CssBuse_tree .celltreeitem .treeitemimage[userstatus=expand]
+{
+	-nexa-icon : url('Img::enterprise2.png');	
+}
+.Grid .body .row .cell.CssMenu_level_2 .celltreeitem .treeitemtext
+{
+	font : 12px/normal "NotoSansKR";
+	color : #444444;
+}
+
+.Grid .body .row .cell.CssMenu_level_3 .celltreeitem .treeitemtext
+{
+	font : 11px/normal "NotoSansKR";
+	color :  #444444;
+}
+
+.Button.btn_line
+{
+	font : 14px/normal "NotoSansKR";
+	-nexa-text-decoration : underline;
+}
+
+.Button.btn_noSelect
+{
+	background : #f4f4f4;
+	color : #666666;
+	font : 13px "NotoSansKR";	
+}
+
+.Button.btn_noSelect[status=focused],.Button.btn_noSelect[userstatus=selected]
+{
+	background : #f4f4f4;
+	color : #666666;
+	font : 13px "NotoSansKR";	
+}
+
+.Button.btn_noSelect[status=mouseover]
+{
+	background : #4364ed;
+	color : #ffffff;
+	font : 13px "NotoSansKR";
+}
+
+.Button.btn_normal
+{
+	font : 14px/normal "NotoSansKR"
+	background : #4364ed;
+	color : #ffffff;
+}
+
+.Button.btn_Select
+{
+	background : #4364ed;
+	color : #ffffff;
+	font : 13px/normal "NotoSansKR";
+}
+
+.Button.btn_Select[status=focused],.Button.btn_Select[userstatus=selected],.Button.btn_Select[status=mouseover]
+{
+	background : #4364ed;
+	color : #ffffff;
+	font : 13px "NotoSansKR";
+}
+]]></XCSS>

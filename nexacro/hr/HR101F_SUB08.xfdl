@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR101F_SUB08" width="1244" height="242" titletext="New Form">
+    <Layouts>
+      <Layout height="242" width="1244">
+        <Grid id="grd_foreign" taborder="0" left="2" top="2" right="100" bottom="2" binddataset="ds_foreign" autoenter="select" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="109"/>
+                <Column size="185"/>
+                <Column size="137"/>
+                <Column size="362"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="취득일자"/>
+                <Cell col="1" text="시험명"/>
+                <Cell col="2" text="점수/등급"/>
+                <Cell col="3" text="비고"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:YMD" displaytype="date" edittype="date" textAlign="center"/>
+                <Cell col="1" text="bind:EXNM" edittype="normal"/>
+                <Cell col="2" text="bind:EXRE" edittype="normal" textAlign="center"/>
+                <Cell col="3" text="bind:BIGO" edittype="normal"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_add" taborder="1" text="추가" top="8" width="90" height="22" right="4" onclick="btn_add_onclick"/>
+        <Button id="btn_del" taborder="2" text="삭제" top="38" width="90" height="22" right="4" onclick="btn_del_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.btn_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.ds_foreign.addRow();
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="제본비 관리" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Static id="Static02" taborder="0" text="제본비 관리" left="8" top="10" width="346" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnExcel" taborder="10" top="29" width="43" height="39" icon="url('Img::ico_excel_O.png')" onclick="btnExcel_onclick" right="1.31%"/>
+        <Button id="btnCopy" taborder="11" text="복사" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="29" right="btnExcel:5" width="80" onclick="btnCopy_onclick"/>
+        <Button id="btnSearch" taborder="3" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="29" onclick="btnSearch_onclick" right="btnCopy:5" width="80"/>
+        <Calendar id="calEDate" taborder="2" top="33" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="btnSearch:10" width="140" onkeydown="LocalFctn_OnKeyDown" autoselect="true" onchanged="calEDate_onchanged"/>
+        <Calendar id="calSDate" taborder="1" top="33" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="calEDate:3" width="140" autoselect="true" onchanged="calSDate_onchanged" onkeydown="LocalFctn_OnKeyDown"/>
+        <Static id="stDate" taborder="4" text="진행일자" top="33" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="calSDate:3" width="85"/>
+        <ImageViewer id="ImgClose01" taborder="5" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Grid id="grdList" taborder="6" left="8" top="78" width="98.85%" binddataset="dsBindUnitcost" bottom="10" autofittype="none" onenterdown="grdList_onenterdown" autoenter="none">
+          <Formats>
+            <Format id="grdList">
+              <Columns>
+                <Column size="90"/>
+                <Column size="102"/>
+                <Column size="270"/>
+                <Column size="90"/>
+                <Column size="76"/>
+                <Column size="96"/>
+                <Column size="94"/>
+                <Column size="95"/>
+                <Column size="94"/>
+                <Column size="97"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell font="bold 12px/normal &quot;함초롬돋움&quot;" text="진행일자"/>
+                <Cell col="1" text="도서코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="도서명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" font="bold 12px/normal &quot;함초롬돋움&quot;" text="발주일자"/>
+                <Cell col="4" text="쪽수" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="5" text="발주수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="제본수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="표준단가" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="8" text="단가" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="9" text="공급가액" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:ORDDTL_RUNDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="1" text="bind:BOOKMST_CODEYEAR" displaytype="normal" combodataset="ds_mk_UseType" combocodecol="USE_TYPE_CODE" combodatacol="USE_TYPE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none"/>
+                <Cell col="2" text="bind:BOOKMST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal"/>
+                <Cell col="3" text="bind:ORDMST_DATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="4" text="bind:ORDDTL_PAGE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,###"/>
+                <Cell col="5" text="bind:ORDMST_QTY" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#,##0"/>
+                <Cell col="6" text="bind:ORDDTL_REALWORKQTY" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="mask" editinputtype="normal" maskeditformat="#,##0" displaytype="mask" maskeditautoselect="true"/>
+                <Cell col="7" text="bind:CAL_UNITCOST" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="mask" editinputtype="normal" maskeditformat="#,##0.00" displaytype="mask" maskeditautoselect="true"/>
+                <Cell col="8" text="bind:ORDDTL_UNITCOST" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="mask" editinputtype="normal" displaytype="mask" maskeditformat="#,##0.00" maskeditautoselect="true"/>
+                <Cell col="9" text="bind:ORDDTL_AMOUNT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="normal" editinputtype="number" maskeditformat="#,##0" displaytype="mask" editautoselect="true"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="cbCustNm" taborder="9" top="33" height="35" innerdataset="ds_mk_Cust" codecolumn="CUST" datacolumn="CUST_NAME" font="12px/normal &quot;함초롬바탕 확장&quot;" right="stDate:13" width="230" onitemchanged="cbCustNm_onitemchanged" autoselect="true"/>
+        <Edit id="edCustCd" taborder="8" top="33" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="4" textAlign="center" autoselect="true" right="cbCustNm:3" width="80" onchanged="edCustCd_onchanged" onkeydown="edCustCd_onkeydown"/>
+        <Button id="btnCust_Search" taborder="7" text="외주처" top="33" height="35" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" right="edCustCd:3" width="85" onclick="btnCust_Search_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerDML, vPerDel;
+var vStr;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var urlExcel = nexacro.getApplication().gv_urlXeni;
+var sCust_Gubn = "41";
+var iREALWORKQTY, iUNITCOST, iAMOUNT;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerDML = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_DML");
+	vPerDel = "D";
+	
+	var d = new Date();
+	
+	var strPreMonth = Eco.date.getMaskFormatString(Eco.date.addMonth(d, -1), "yyyyMMdd");
+	strPreMonth = strPreMonth.substr(0, 6);					
+	var strPreLastDay = Eco.date.getLastDayOfMonth(Eco.date.getMaskFormatString(Eco.date.addMonth(d, -1), "yyyyMMdd"));	//오늘 기준 한달 전 마지막날 setting
+	var strLastDay = strPreMonth+strPreLastDay;
+	var strPreDay = Eco.date.getMaskFormatString(Eco.date.getFirstDate(Eco.date.addMonth(d, -1)), "yyyyMMdd"); 			//오늘 기준 한달 전 1일 setting
+	
+	this.calSDate.set_value(strPreDay);
+	this.calEDate.set_value(strLastDay);
+	
+	//DML권한 체크 및 컴포넌트 ENABLE처리
+	if(vPerDML != "1")
+		this.fctn_User_Enabled(this, false);
+	
+	if(vPerSel = "1"){
+		this.gfn_TransactionP("select", "JSP/mk/Cust_Select.jsp", "ds_mk_Cust=ds_mk_Cust", "ds_mk_Cust=ds_mk_Cust", "", "", false, "S", false, this);   				 //업체코드
+		this.fctn_MakeClose_Search();
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+};
+
+//#######################################################
+//	마감일자 조회
+//#######################################################
+this.fctn_MakeClose_Search = function()
+{
+	
+	in_ds 	= "dsMakeClose=dsMakeClose";
+	out_ds 	= "dsMakeClose=dsMakeClose";
+	str_url = "JSP/mk/make_closing.jsp";
+    str_arg = "MKCLS_YM=" + nexacro.wrapQuote( ) + " MKCLS_STARTDATE=" + nexacro.wrapQuote( );
+
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, "", "fnCallbackClosingSelect", false, "S", false, this);
+}
+
+this.fnCallbackClosingSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		this.edCustCd.setFocus();
+	}
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.edCustCd.value == "" || Eco.isUndefined(this.edCustCd.value) == true)
+	{
+		alert("외주처를 선택해 주세요.");
+		this.edCustCd.setFocus();
+		return false;
+	}
+	
+	if(this.calSDate.value == ""  || Eco.isUndefined(this.calSDate.value) == true)
+	{
+		alert("조회 시작일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if(this.calSDate.value != "" && (this.calEDate.value == "" || Eco.isUndefined(this.calEDate.value) == true))
+		this.calEDate.set_value(this.calSDate.value);
+	
+	in_ds 	= "dsBindUnitcost=dsBindUnitcost";
+	out_ds 	= "dsBindUnitcost=dsBindUnitcost";
+	str_url = "JSP/mk/mk134f_binding_unitcost.jsp";
+	str_arg = "ORDMST_SDATE=" + nexacro.wrapQuote(this.calSDate.value) +
+	          " ORDMST_EDATE=" + nexacro.wrapQuote(this.calEDate.value) + 
+	          " CUST_CODE=" + nexacro.wrapQuote(this.edCustCd.value);
+	 
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+
+};
+
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		if(this.dsBindUnitcost.rowcount == 0)
+			alert("조회된 자료가 없습니다.");
+		else{
+			this.dsBindUnitcost.set_rowposition(0);
+			this.grdList.setCellPos(6); // 작업수량 FOCUS
+			this.grdList.showEditor();
+		}
+	}
+};
+
+//저장이벤트
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	in_ds = "input=dsBindUnitcost:U";
+	this.gfn_TransactionP("save", "JSP/mk/mk134f_binding_unitcost_dml.jsp", in_ds, "", "", "fnSaveCallback", false, "U", false, this);
+};
+
+this.fnSaveCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+};
+
+this.grdList_onenterdown = function(obj:nexacro.Grid,e:nexacro.GridEditEventInfo)
+{
+	var nAmount = 0;
+	var nRow = this.dsBindUnitcost.rowposition;
+	
+	if(this.grdList.getCellPos() == 8)		// 공급가액
+	{
+		nAmount = nexacro.floor(this.dsBindUnitcost.getColumn(nRow, "ORDDTL_REALWORKQTY")*
+								this.dsBindUnitcost.getColumn(nRow, "ORDDTL_UNITCOST"));
+		
+		this.dsBindUnitcost.setColumn(nRow, "ORDDTL_AMOUNT", nAmount);
+		this.dsBindUnitcost.setColumn(nRow, "EMPLOYEE_ID", gv_sabun);
+		
+		var sRunDate = this.dsBindUnitcost.getColumn(nRow, "ORDDTL_RUNDATE");
+		this.dsMakeClose.filter("MKCLS_STARTDATE<='" + sRunDate + "'&&MKCLS_ENDDATE>='" + sRunDate + "'");
+		
+		if ((this.dsMakeClose.getColumn(0, "MKCLS_CLOSE") == "0") && 
+			(this.dsMakeClose.getColumn(0, "MKCLS_MODIFY") == "1"))
+		{
+			this.btnSave_onclick();
+			
+			if(this.dsBindUnitcost.rowposition == this.dsBindUnitcost.getRowCount()-1){
+				this.dsBindUnitcost.set_rowposition(0);
+				this.grdList.set_binddataset("");
+				alert("작업이 완료됐습니다.");
+				this.edCustCd.setFocus();
+			}else{
+				this.dsBindUnitcost.set_rowposition(this.dsBindUnitcost.rowposition+1);
+				this.grdList.setCellPos(6);			// 제본수량 컬럼 인덱스 위치
+				this.grdList.showEditor();
+			}
+		}else{
+			alert(sRunDate + "일은 마감되어 수정할 수 없습니다.");
+			
+			if(Eco.isUndefined(iREALWORKQTY) == false){
+				this.dsBindUnitcost.setColumn(nRow, "ORDDTL_REALWORKQTY", iREALWORKQTY);
+			}
+			if(Eco.isUndefined(iUNITCOST) == false){
+				this.dsBindUnitcost.setColumn(nRow, "ORDDTL_UNITCOST", iUNITCOST);
+			}
+			if(Eco.isUndefined(iAMOUNT) == false){
+				this.dsBindUnitcost.setColumn(nRow, "ORDDTL_AMOUNT", iAMOUNT);
+			}
+			
+			this.grdList.showEditor();
+		
+		}
+	}else{
+		this.grdList.moveToNextCell();
+		this.grdList.showEditor();
+	}
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+//#######################################################
+// 사용권한에 따른 컴포넌트 Enable 여부
+// formObj : 폼 ID 변수
+// _set : Enable 변수 (True, False)
+//#######################################################
+this.fctn_User_Enabled = function(formObj, _set)
+{
+	var comObj;
+	// 마스터 폼 컴포넌트 Enabled 여부
+	for(var i = 0; i < formObj.components.length;  i++)
+	{
+		comObj = formObj.components[i];
+		
+		if (comObj == "[object Edit]" || comObj == "[object Combo]"
+		   || comObj == "[object Calendar]" || comObj == "[object MaskEdit]" 
+		   || comObj == "[object TextArea]")
+		{
+			comObj.set_enable(_set);
+		}
+	}
+	
+	if(vPerSel != 1)
+		this.btnSearch.set_enable(_set);
+		
+	if(vPerDML != 1)
+		this.btnCopy.set_enable(_set);
+}
+
+this.btnCust_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {dsParam1:this.ds_mk_Cust
+				   ,dsParam2:this.edCustCd.text
+				   ,dsParam3:this.cbCustNm.text
+				   ,dsParam4:sCust_Gubn
+				   ,dsParam5:"MK134"}; //popup 화면으로 전달할 값
+	
+	this.lfn_showModal("popupCust",objParam, "mk::MKCust_SearchF.xfdl", "popupCust", this, 10, 58, 450, 400);
+};
+
+this.edCustCd_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	
+	if(this.edCustCd.text.length == 1){
+	
+		var vCustCd = this.lfn_CustName(sCust_Gubn, this.edCustCd.text);
+		this.edCustCd.set_value(vCustCd);
+	}
+	
+	var nRow = this.ds_mk_Cust.findRow("CUST_CODE", this.edCustCd.text);
+	
+	if(nRow >= 0)
+	{
+		this.cbCustNm.set_index(nRow);
+		
+		if(this.cbCustNm.index == -1){
+			this.cbCustNm.setFocus();
+			this.cbCustNm.dropdown();
+		}else{
+			this.calSDate.setFocus();
+		}
+	}
+};
+
+this.edCustCd_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+		this.edCustCd_onchanged();
+};
+
+this.cbCustNm_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var iCustIdx = this.ds_mk_Cust.findRow("CUST_NAME", this.cbCustNm.text);
+	this.edCustCd.set_value(this.ds_mk_Cust.getColumn(iCustIdx, "CUST_CODE"));
+	
+	if(iCustIdx != -1)
+		this.calSDate.setFocus();
+	else
+		this.cbCustNm.dropdown();
+};
+
+this.btnExcel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, 
+        this.grdList, "Sheet1!A1");
+    
+	this.exportObj.set_exporturl(urlExcel);
+	this.exportObj.exportData(); 
+};
+
+this.calSDate_onchanged = function(obj:nexacro.Calendar,e:nexacro.ChangeEventInfo)
+{
+	in_ds 	= "dsBindBasicAmount=dsBindBasicAmount";
+	out_ds 	= "dsBindBasicAmount=dsBindBasicAmount";
+	str_url = "JSP/mk/mk134f_binding_basic_amount.jsp";
+	str_arg = "ORDDTL_RUNDATE=" + nexacro.wrapQuote(e.postvalue);
+	 
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackBasicAmtSelect", false, "S", false, this);
+
+};
+
+
+this.fnCallbackBasicAmtSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}
+};
+
+this.calEDate_onchanged = function(obj:nexacro.Calendar,e:nexacro.ChangeEventInfo)
+{
+	if(e.postvalue.length == 8)
+	{
+		this.btnSearch_onclick();
+	}
+};
+
+//#######################################################
+//표준단가->단가일괄적용 2017.12.13  // 복사버튼 이벤트
+//#######################################################
+this.btnCopy_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(Eco.isUndefined(this.edCustCd.value) == true || this.edCustCd.value == ""){
+		alert("외주처 코드를 정확히 입력해 주십시요.");
+		this.edCustCd.setFocus();
+		return false;
+	}
+	
+	if(Eco.isUndefined(this.calSDate.value) == true || this.calSDate.value == ""){
+		alert("조회 시작일자를 정확히 입력해 주십시요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+	
+	if(this.dsBindUnitcost.rowcount == 0){
+		alert("데이터가 존재하지 않습니다.");
+		return false;
+	}
+	
+	var errorchk = 0;
+	this.dsMakeClose.filter("MKCLS_STARTDATE<='" + this.calSDate.value + "'&&MKCLS_ENDDATE>='" + this.calEDate.value + "'");
+	if ((this.dsMakeClose.getColumn(0, "MKCLS_CLOSE") == "1") && 
+			(this.dsMakeClose.getColumn(0, "MKCLS_MODIFY") == "0"))
+	{
+		alert("마감된 자료는 일괄복사가 불가능합니다.");
+		return false;
+	}
+	
+	for(var i=0; i < this.dsBindUnitcost.rowcount; i++ )
+	{
+		var nRow = i;
+		var nAmount = 0;
+		
+		iREALWORKQTY	= this.dsBindUnitcost.getColumn(nRow, "ORDDTL_REALWORKQTY");
+		iUNITCOST		= this.dsBindUnitcost.getColumn(nRow, "ORDDTL_UNITCOST");		
+		iAMOUNT			= this.dsBindUnitcost.getColumn(nRow, "ORDDTL_AMOUNT");
+		
+		//표준단가->단가에 적용
+		this.dsBindUnitcost.setColumn(nRow, "ORDDTL_UNITCOST", this.dsBindUnitcost.getColumn(nRow, "CAL_UNITCOST"));
+		
+		//공급가액 재계산
+		nAmount = nexacro.floor(this.dsBindUnitcost.getColumn(nRow, "ORDDTL_REALWORKQTY")*
+								this.dsBindUnitcost.getColumn(nRow, "ORDDTL_UNITCOST"));
+								
+		this.dsBindUnitcost.setColumn(nRow, "ORDDTL_AMOUNT", nAmount);
+		this.dsBindUnitcost.setColumn(nRow, "EMPLOYEE_ID", gv_sabun);
+		
+		var sRunDate = this.dsBindUnitcost.getColumn(nRow, "ORDDTL_RUNDATE");
+		this.dsMakeClose.filter("MKCLS_STARTDATE<='" + sRunDate + "'&&MKCLS_ENDDATE>='" + sRunDate + "'");
+		
+		if ((this.dsMakeClose.getColumn(0, "MKCLS_CLOSE") == "0") && 
+			(this.dsMakeClose.getColumn(0, "MKCLS_MODIFY") == "1"))
+		{
+			if(this.dsBindUnitcost.rowposition == this.dsBindUnitcost.getRowCount()-1){
+				this.dsBindUnitcost.set_rowposition(0);
+			}
+		}else{
+			
+			if(Eco.isUndefined(iREALWORKQTY) == false){
+				this.dsBindUnitcost.setColumn(nRow, "ORDDTL_REALWORKQTY", iREALWORKQTY);
+			}
+			if(Eco.isUndefined(iUNITCOST) == false){
+				this.dsBindUnitcost.setColumn(nRow, "ORDDTL_UNITCOST", iUNITCOST);
+			}
+			if(Eco.isUndefined(iAMOUNT) == false){
+				this.dsBindUnitcost.setColumn(nRow, "ORDDTL_AMOUNT", iAMOUNT);
+			}
+			
+			errorchk++;
+		}
+	}
+	
+	if(errorchk == 0)
+	{
+	    if(Confirm("일괄복사된 정보를 저장하시겠습니까??"))
+		{
+			this.btnSave_onclick();
+			alert("복사작업이 완료되었습니다.");	
+		}
+		else
+		{
+			this.btnSearch_OnClick();
+		}
+	}
+	else
+	{
+		alert("마감된 자료는 일괄복사가 불가능합니다.");
+	}
+	
+	this.edCustCd.setFocus();
+};
+
+
+//#######################################################
+//  이전자료 임시 저장
+//#######################################################
+this.dsBindUnitcost_cancolumnchange = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if(e.columnid == "ORDDTL_REALWORKQTY")
+		iREALWORKQTY 	= e.oldvalue;
+	
+	if(e.columnid == "ORDDTL_UNITCOST")
+		iUNITCOST 	= e.oldvalue;
+		
+	if(e.columnid == "ORDDTL_AMOUNT")
+		iAMOUNT 	= e.oldvalue;
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsBindUnitcost" cancolumnchange="dsBindUnitcost_cancolumnchange">
+        <ColumnInfo>
+          <Column id="ORDMST_DATE" type="STRING" size="8"/>
+          <Column id="ORDMST_NO" type="STRING" size="3"/>
+          <Column id="ORDMST_ID" type="INT" size="20"/>
+          <Column id="ORDDTL_SEQ" type="STRING" size="3"/>
+          <Column id="ORDDTL_RUNDATE" type="STRING" size="8"/>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST_NAME" type="STRING" size="35"/>
+          <Column id="BOOKMST_CODEYEAR" type="STRING" size="17"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+          <Column id="ORDDTL_PAGE" type="INT" size="3"/>
+          <Column id="ORDMST_QTY" type="INT" size="6"/>
+          <Column id="ORDDTL_REALWORKQTY" type="INT" size="6"/>
+          <Column id="CAL_UNITCOST" type="DECIMAL" size="10"/>
+          <Column id="ORDDTL_UNITCOST" type="DECIMAL" size="10"/>
+          <Column id="ORDDTL_AMOUNT" type="INT" size="9"/>
+          <Column id="ORDDTL_VAT" type="INT" size="256"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="BND_TYPE" type="STRING" size="1"/>
+          <Column id="BND_COMBINE" type="STRING" size="1"/>
+          <Column id="BND_QTY" type="INT" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBindBasicAmount">
+        <ColumnInfo>
+          <Column id="BND_TYPE" type="STRING" size="1"/>
+          <Column id="BNDBAMNT_AMOUNT" type="INT" size="6"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMakeClose">
+        <ColumnInfo>
+          <Column id="MKCLS_YM" type="STRING" size="6"/>
+          <Column id="MKCLS_STARTDATE" type="STRING" size="8"/>
+          <Column id="MKCLS_ENDDATE" type="STRING" size="8"/>
+          <Column id="MKCLS_CLOSE" type="STRING" size="1"/>
+          <Column id="MKCLS_MODIFY" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_Cust">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="REPRESENTATIVE" type="STRING" size="256"/>
+          <Column id="BUSINESSNO" type="STRING" size="256"/>
+          <Column id="BUSINESS_STARTDATE" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="OFFICE_TEL" type="STRING" size="256"/>
+          <Column id="OFFICE_FAX" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+          <Column id="CUST_STOPPAGE" type="STRING" size="256"/>
+          <Column id="BANK_CODE" type="STRING" size="256"/>
+          <Column id="CUST_ACNTNO" type="STRING" size="256"/>
+          <Column id="CUSTDTL_SALEAMOUNT" type="STRING" size="256"/>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

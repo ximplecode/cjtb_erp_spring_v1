@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MK111_SearchF" width="440" height="170" titletext="제작관리 도서조회 POPUP" onload="MK111_SearchF_onload" onclose="MK111_SearchF_onclose" onkeydown="MK111_SearchF_onkeydown">
+    <Layouts>
+      <Layout height="170" width="440">
+        <Div id="DivBookSearch" taborder="6" left="0" top="49" width="440" height="121" background="#e8e7e3">
+          <Layouts>
+            <Layout>
+              <Edit id="edBookSCode" taborder="0" left="82" top="8" width="173" height="33" font="12px/normal &quot;함초롬바탕 확장&quot;" enable="true" maxlength="10" textAlign="center"/>
+              <Edit id="edBookECode" taborder="1" left="262" top="8" width="173" height="33" font="12px/normal &quot;함초롬바탕 확장&quot;" enable="true" maxlength="10" textAlign="center"/>
+              <Edit id="edBookSYear" taborder="2" left="82" top="43" width="173" height="33" font="12px/normal &quot;함초롬바탕 확장&quot;" enable="true" maxlength="4" inputtype="number" textAlign="center"/>
+              <Edit id="edBookEYear" taborder="3" left="262" top="43" width="173" height="33" font="12px/normal &quot;함초롬바탕 확장&quot;" enable="true" maxlength="4" inputtype="number" textAlign="center"/>
+              <Edit id="edBookName" taborder="4" left="82" top="78" width="353" height="33" font="12px/normal &quot;함초롬바탕 확장&quot;" enable="true" accessibilityrole="edit"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static02" taborder="0" text="도서조회" left="42" top="10" width="167" height="41" color="#7fb39d" font="bold 25px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <ImageViewer id="ImageViewer00" taborder="1" left="6" top="12" width="30" height="32" image="url('theme://images/loupe.png')" stretch="fixaspectratio" border="0px none"/>
+        <Button id="btn_close" taborder="2" text="닫기" top="10" height="32" font="normal bold 10pt/normal &quot;Arial&quot;" right="10" onclick="btn_close_onclick" width="55"/>
+        <Static id="StDocNo" taborder="3" text="도서코드" left="3" top="57" width="77" height="33" background="#7fb39d" textAlign="center" color="white" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Static id="StDocTitle" taborder="4" text="도서연판" left="3" top="92" width="77" height="33" background="#7fb39d" textAlign="center" color="white" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Static id="StCancel" taborder="5" text="도서명" left="3" top="127" width="77" height="33" background="#7fb39d" textAlign="center" color="white" font="bold 14px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Button id="btn_Search" taborder="7" text="조회" top="10" height="32" font="normal bold 10pt/normal &quot;Arial&quot;" right="70" width="55" onclick="btn_Search_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="STRING" size="256"/>
+          <Column id="BOOKMST_PID" type="STRING" size="256"/>
+          <Column id="BOOKMST_ORDID" type="STRING" size="256"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="256"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="256"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_TYPE" type="STRING" size="256"/>
+          <Column id="BOOKMST_SALE" type="STRING" size="256"/>
+          <Column id="PLT_CODE" type="STRING" size="256"/>
+          <Column id="BND_CODE" type="STRING" size="256"/>
+          <Column id="BOOKMST_BASIC_FOLD" type="STRING" size="256"/>
+          <Column id="BOOKMST_SIGNATURE" type="STRING" size="256"/>
+          <Column id="BOOKMST_BODYPAGE" type="STRING" size="256"/>
+          <Column id="BOOKMST_REMARK" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="256"/>
+          <Column id="BOOKMST_REGDATE" type="STRING" size="256"/>
+          <Column id="BOOKMST_MODIDATE" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+this.MK111_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.dsBookMst.copyData(this.parent.dsParam1);
+	this.DivBookSearch.form.edBookSCode.setFocus();
+};
+
+this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+		str_url = "JSP/mk/mk111f_bookmst.jsp";
+		str_arg = "sBOOKMST_CODE=" +nexacro.wrapQuote( this.DivBookSearch.form.edBookSCode.text);
+		str_arg +=" eBOOKMST_CODE=" +nexacro.wrapQuote( this.DivBookSearch.form.edBookECode.text);
+		str_arg +=" sBOOKMST_YEAR=" +nexacro.wrapQuote( this.DivBookSearch.form.edBookSYear.text);
+		str_arg +=" eBOOKMST_YEAR=" +nexacro.wrapQuote(this.DivBookSearch.form.edBookEYear.text);
+		str_arg +=" sBOOKMST_NAME=" +nexacro.wrapQuote( this.DivBookSearch.form.edBookName.text);
+	
+		this.gfn_TransactionP("select", str_url, "dsBookMst=dsBookMst", "dsBookMst=dsBookMst", str_arg, "Callback_Search", true, "P", false, this);
+};
+
+this.Callback_Search = function(Trid, ErrorCode, ErrorMsg, gv_rt_value)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}else{
+		this.MK111_SearchF_onclose();
+	}
+};
+
+//조회하자마자 parent화면으로 데이터 복사/팝업 닫기
+this.MK111_SearchF_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	this.parent.dsParam1.copyData(this.dsBookMst);
+	this.close(-1);
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close(-1);
+};
+
+this.MK111_SearchF_onkeydown = function(obj:nexacro.Form,e:nexacro.KeyEventInfo)
+{
+	var comObj = obj.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		comObj = this.DivBookSearch.form.getNextComponent(comObj, true);
+		comObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(comObj.toString() == "[object Combo]")
+		  comObj.dropdown();
+	}
+			
+};
+]]></Script>
+  </Form>
+</FDL>

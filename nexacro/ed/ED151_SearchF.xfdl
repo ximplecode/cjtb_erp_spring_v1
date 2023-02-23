@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED151_SearchF" width="400" height="350" titletext="New Form" onload="ED151_SearchF_onload">
+    <Layouts>
+      <Layout height="350" width="400">
+        <Static id="Static00_00" taborder="0" text="조회일자" left="13" top="27" width="87" height="29" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Calendar id="cal_Sdate" taborder="1" left="104" top="27" width="110" height="29"/>
+        <Calendar id="cal_Edate" taborder="2" left="222" top="27" width="110" height="29"/>
+        <Button id="btn_search00" taborder="3" top="22" width="40" height="38" right="17" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Grid id="Grid00" taborder="4" left="13" top="64" width="369" height="246" binddataset="dsOutReqMst" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="150"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="의뢰서 번호"/>
+                <Cell col="1" text="외주처"/>
+                <Cell col="2" text="담당자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:OUTREQ_NO"/>
+                <Cell col="1" text="bind:CUST_NAME"/>
+                <Cell col="2" text="bind:EMPLOYEE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_close00" taborder="5" text="닫기" left="151" top="315" height="29" right="179" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var iI_flow_id, sSabun, sSection_Code, sSelect;
+
+this.ED151_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.dsOutReqMst.copyData(this.parent.dsParam1);
+	this.dsOutReqDtl.copyData(this.parent.dsParam2);
+	this.dsFormPath.copyData(this.parent.dsParam3);
+	
+	sSabun = this.parent.pSabun;				//사번
+	sSelect = this.parent.pSelect;				//권한
+	sSection_Code = this.parent.psectionCode;	//부서코드
+	
+	this.cal_Sdate.setFocus();
+};
+
+//조회
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var inds = "dsOutReqMst=dsOutReqMst";
+	var outds = "dsOutReqMst=dsOutReqMst";
+	var strArg = "OUTREQMST_SDATE=" + this.cal_Sdate.value
+				+ " OUTREQMST_EDATE=" + this.cal_Edate.value
+				+ " SECTION_CODE=" + sSection_Code
+				+ " EMPLOYEE_ID=" + sSabun
+				+ " COMPETENCE=S" //+ sSelect;
+				
+	this.gfn_TransactionP("search","JSP/ed/ed151f_outrequest_mst.jsp", inds, outds, strArg, "fnMstCallback", false, "P", false, this);	
+};
+
+this.fnMstCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else if(this.dsOutReqMst.rowcount == 0)
+		alert("조회된 자료가 없습니다");
+}
+
+//세부내역찾기
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//this.opener.dsOutReqMst.copyRow(0, this.dsOutReqMst, e.row);
+	var mstId = this.dsOutReqMst.getColumn(e.row, "OUTREQMST_ID");
+	this.dsOutReqMst.filter("OUTREQMST_ID ==" + mstId);
+	this.parent.dsParam1.copyData(this.dsOutReqMst, true);	//filter 된 데이터만 copy
+	
+	if(this.dsOutReqMst.rowcount != 0)
+	{	
+		iI_flow_id = this.dsOutReqMst.getColumn(0, "I_FLOW_ID");
+		this.lfn_I_FLOW_FOMPAHT2_LOAD(this.dsOutReqMst.getColumn(0, "EMPLOYEE_ID"), this.dsFormpath);	//저장된 결재라인 가져오기
+		
+		var inds = "dsOutReqDtl=dsOutReqDtl";
+		var outds = "dsOutReqDtl=dsOutReqDtl";
+		var strArg = "OUTREQMST_ID=" + this.dsOutReqMst.getColumn(0, "OUTREQMST_ID");
+
+		this.gfn_TransactionP("search","JSP/ed/ed151f_outrequest_dtl.jsp", inds, outds, strArg, "fnDtlCallback", false, "P", false, this);	
+	}else
+		this.dsWithHoldDtl.clearData();
+};
+
+this.fnDtlCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else 
+	{	
+		this.parent.dsParam2.copyData(this.dsOutReqDtl);
+		this.parent.dsParam3.copyData(this.dsFormPath);
+		
+		this.opener.btn_athrCust.set_enable(this.dsOutReqDtl.getMax("OUTORDMST_EXIST") != "1");
+	}
+	this.close(iI_flow_id);
+}
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsOutReqDtl"/>
+      <Dataset id="dsFormPath"/>
+      <Dataset id="dsOutReqMst"/>
+    </Objects>
+  </Form>
+</FDL>

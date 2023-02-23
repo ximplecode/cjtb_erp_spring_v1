@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD6251P" width="690" height="160" titletext="New Form" onload="SD6251P_onload">
+    <Layouts>
+      <Layout height="160" width="690">
+        <Static id="Static00" taborder="10" text="출고율 년판복사" left="10" top="5" color="#7fb39d" font="bold 24px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="190" height="30"/>
+        <Static id="Static01_06" taborder="11" text="리스트 검색" left="12" top="53" height="30" background="#3cbcb8" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="604" color="white"/>
+        <Static id="Static01_01" taborder="12" left="152" top="81" height="58" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="202"/>
+        <Static id="Static01_00_00" taborder="13" text="~" left="245" top="115" height="18" textAlign="center" width="14"/>
+        <MaskEdit id="ed_values3" taborder="2" left="159" top="114" width="80" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" type="string" textAlign="center" onkeydown="common_onkeydown" format="@@@@@@@@@@"/>
+        <MaskEdit id="ed_values4" taborder="3" left="265" top="114" width="81" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@@@@@@@" type="string" textAlign="center" onkeydown="common_onkeydown"/>
+        <Button id="btn_copy" taborder="8" text="복사하기" top="95" width="55" height="22" font="8pt/normal &quot;Arial&quot;" onclick="btn_copy_onclick" right="10"/>
+        <Static id="Static01" taborder="14" text="코드구간" left="152" top="81" width="202" height="30" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9"/>
+        <Static id="Static01_01_00" taborder="15" left="352" top="81" height="58" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="62"/>
+        <Static id="Static01_00" taborder="16" text="년판" left="352" top="81" width="62" height="30" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9"/>
+        <MaskEdit id="ed_values5" taborder="4" left="358" top="114" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@" type="string" textAlign="center" onkeydown="common_onkeydown"/>
+        <Static id="Static01_00_01" taborder="17" text="복사년판" left="544" top="81" width="72" height="30" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9" background="#dffff8"/>
+        <Static id="Static01_01_00_01" taborder="18" left="12" top="81" height="58" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="82"/>
+        <Static id="Static01_00_02" taborder="19" text="총판구분" left="12" top="81" width="82" height="30" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9"/>
+        <Static id="Static01_01_00_02" taborder="20" left="92" top="81" height="58" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="62"/>
+        <Static id="Static01_00_03" taborder="21" text="총판코드" left="92" top="81" width="62" height="30" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9"/>
+        <MaskEdit id="ed_values2" taborder="1" left="98" top="114" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@" type="string" textAlign="center" onkeydown="common_onkeydown"/>
+        <Static id="Static01_00_02_00" taborder="22" text="복사총판" left="412" top="81" width="134" height="30" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" color="#10aea9" background="#dffff8"/>
+        <Combo id="ed_values1" taborder="0" text="Combo00" left="18" top="114" width="70" height="20" innerdataset="ds_code" codecolumn="CODE" datacolumn="NAME" onkeydown="common_onkeydown"/>
+        <Static id="Static01_01_00_00" taborder="23" left="544" top="81" height="58" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="72"/>
+        <Static id="Static01_01_00_01_00" taborder="24" left="412" top="81" height="58" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="134"/>
+        <Button id="btn_close" taborder="9" text="닫기" top="10" width="45" height="22" right="10" font="8pt/normal &quot;Arial&quot;" onclick="btn_close_onclick"/>
+        <Combo id="ed_values6" taborder="5" left="418" top="114" width="70" height="20" innerdataset="ds_code" datacolumn="NAME" codecolumn="CODE" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_values7" taborder="6" left="489" top="114" width="50" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@" type="string" textAlign="center" onkeydown="common_onkeydown"/>
+        <MaskEdit id="ed_values8" taborder="7" left="550" top="114" width="60" height="20" maskchar="_" enableevent="true" accessibilityrole="edit" format="@@@@" type="string" textAlign="center" onkeydown="common_onkeydown"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var Rcount    = "";
+
+this.SD6251P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ed_values1.setFocus();
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.common_onkeydown = function(obj:nexacro.MaskEdit,e:nexacro.KeyEventInfo)
+{
+	//Enter Key 처리
+    if (e.keycode == 13) 
+    {
+        if (obj.name == "ed_values1") this.ed_values2.setFocus();
+        else if (obj.name == "ed_values2") this.ed_values3.setFocus();
+        else if (obj.name == "ed_values3") this.ed_values4.setFocus();
+        else if (obj.name == "ed_values4") this.ed_values5.setFocus();
+        else if (obj.name == "ed_values5") this.ed_values6.setFocus();
+        else if (obj.name == "ed_values6") this.ed_values7.setFocus();
+        else if (obj.name == "ed_values7") this.ed_values8.setFocus();
+    }//ESC key 처리	
+    else if (e.keycode == 27)
+    {
+        if (obj.name == "ed_values2") this.ed_values1.setFocus();
+        else if (obj.name == "ed_values3") this.ed_values2.setFocus();
+        else if (obj.name == "ed_values4") this.ed_values3.setFocus();
+        else if (obj.name == "ed_values5") this.ed_values4.setFocus();
+        else if (obj.name == "ed_values6") this.ed_values5.setFocus();
+        else if (obj.name == "ed_values7") this.ed_values6.setFocus();
+        else if (obj.name == "ed_values8") this.ed_values7.setFocus();
+    }  
+};
+
+this.btn_copy_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl = "JSP/sd/copy_bookcust.jsp";
+	var strArg = "";
+
+	if (this.NullCheck() == "False") 
+	{
+		alert("데이터를 정확하게 넣어주세요!");
+		return;
+	}
+
+	strArg = " Values1="+nexacro.wrapQuote(this.ed_values1.value)+
+			 " Values2="+nexacro.wrapQuote(this.ed_values2.value)+
+			 " Values3="+nexacro.wrapQuote(this.ed_values3.value)+
+			 " Values4="+nexacro.wrapQuote(this.ed_values4.value)+
+			 " Values5="+nexacro.wrapQuote(this.ed_values5.value)+
+			 " Values6="+nexacro.wrapQuote(this.ed_values6.value)+
+			 " Values7="+nexacro.wrapQuote(this.ed_values7.value)+
+			 " Values8="+nexacro.wrapQuote(this.ed_values8.value)+
+			 " user_id=test";
+	this.gfn_TransactionP("codesearch", strUrl, "", "", strArg, "fnTr_Callback", false, "P", false, this);
+};
+
+this.fnTr_Callback = function(strSvcID, nErrorCode, strErrorMag)
+{
+	if ( strSvcID == "codesearch" )
+	{
+		alert(strErrorMag+"건의 데이터를 신규 추가하였습니다.");
+	}
+}	
+
+
+this.NullCheck = function()
+{
+	if (this.ed_values1.value=="") 
+	{
+		return "False";
+	}
+	if (this.ed_values2.value=="") 
+	{
+		return "False";		
+	}
+	if (this.ed_values3.value=="") 
+	{
+		return "False";		
+	}
+	if (this.ed_values4.value=="") 
+	{
+		return "False";		
+	}
+	if (this.ed_values5.value=="") 
+	{
+		return "False";
+	}
+	if (this.ed_values6.value=="") 
+	{
+		return "False";		
+	}
+	if (this.ed_values7.value=="") 
+	{
+		return "False";		
+	}
+	if (this.ed_values8.value=="") 
+	{
+		return "False";		
+	}	
+	return "True";
+}
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_code">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">20</Col>
+            <Col id="NAME">개인</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">21</Col>
+            <Col id="NAME">교판</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">22</Col>
+            <Col id="NAME">속셈</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">23</Col>
+            <Col id="NAME">학원</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">24</Col>
+            <Col id="NAME">서점</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">25</Col>
+            <Col id="NAME">유치</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">26</Col>
+            <Col id="NAME">스쿨</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">27</Col>
+            <Col id="NAME">외주</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">28</Col>
+            <Col id="NAME">기타</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">29</Col>
+            <Col id="NAME">NET</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

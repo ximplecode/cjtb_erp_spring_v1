@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="EDCust_SearchF" width="500" height="550" titletext="New Form" onload="EDCust_SearchF_onload" onbeforeclose="EDCust_SearchF_onbeforeclose">
+    <Layouts>
+      <Layout height="550" width="500">
+        <Static id="Static00" taborder="0" text="업체명" left="16" top="26" width="77" height="29" background="#ffffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Edit id="edt_name" taborder="1" left="97" top="26" width="393" height="29" text="홍길동" onkeyup="edt_name_onkeyup"/>
+        <Static id="Static01" taborder="2" text="찾고자 하는 업체명을 입력하세요.  업체 확인 후 더블클릭하여 적용하세요." left="36" top="46" width="444" height="60" onclick="Static01_onclick"/>
+        <Button id="btn_close" taborder="3" text="닫기" left="183" top="510" height="29" right="193" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Grid id="Grid00" taborder="4" left="13" top="100" width="477" height="400" oncelldblclick="Grid00_oncelldblclick" onenterdown="Grid00_oncelldblclick" binddataset="dsCust">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="180"/>
+                <Column size="130"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="거래처코드"/>
+                <Cell col="1" text="거래처명"/>
+                <Cell col="2" text="사업자번호"/>
+                <Cell col="3" text="대표자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CUST_CODE"/>
+                <Cell col="1" text="bind:CUST_NAME"/>
+                <Cell col="2" text="bind:BUSINESSNO"/>
+                <Cell col="3" text="bind:REPRESENTATIVE"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsCust">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="256"/>
+          <Column id="CUST_CODE" type="STRING" size="256"/>
+          <Column id="REPRESENTATIVE" type="STRING" size="256"/>
+          <Column id="BUSINESSNO" type="STRING" size="256"/>
+          <Column id="BUSINESS_STARTDATE" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="OFFICE_TEL" type="STRING" size="256"/>
+          <Column id="OFFICE_FAX" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+          <Column id="CUST_STOPPAGE" type="STRING" size="256"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="CUST" type="STRING" size="256"/>
+          <Column id="BANK_CODE" type="STRING" size="256"/>
+          <Column id="CUST_ACNTNO" type="STRING" size="256"/>
+          <Column id="CUSTDTL_SALEAMOUNT" type="STRING" size="256"/>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var aReturn = new Array();
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.EDCust_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var outds = "dsCust=dsCust";
+	var inds = "dsCust=dsCust";
+	
+	this.gfn_TransactionP("select","JSP/mk/Cust_Select.jsp", inds, outds, "", "fnCallback", true, "P", false, this);	
+};
+
+this.fnCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode != 0)
+		alert(errMsg);
+	else
+	{
+		this.dsCust.filter("CUST_GUBN=='00' || CUST_GUBN=='41'");
+		this.dsCust.set_keystring("S:+CUST_NAME");
+		this.edt_name.setFocus();
+	}
+}
+
+this.edt_name_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	this.fnSetFilterExcute(obj.value);
+};
+
+this.fnSetFilterExcute = function (strValue)
+{
+	
+	var sFilterstr = "CUST_NAME.indexOf('"+strValue+"') > -1";
+	
+	this.dsCust.set_enableevent(false);
+	this.dsCust.set_filterstr(sFilterstr);	
+	this.dsCust.set_enableevent(true);
+}
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{	
+	aReturn.push(this.dsCust.getColumn(e.row, "CUST_NAME"));
+	aReturn.push(this.dsCust.getColumn(e.row, "CUST_GUBN"));
+	aReturn.push(this.dsCust.getColumn(e.row, "CUST_CODE"));
+	aReturn.push(this.dsCust.getColumn(e.row, "CUST"));
+	aReturn.push(this.dsCust.getColumn(e.row, "BUSINESSNO"));
+	aReturn.push(this.dsCust.getColumn(e.row, "REPRESENTATIVE"));
+	
+	this.dsCust.set_keystring()
+	this.close();
+};
+
+this.EDCust_SearchF_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	this.opener.fn_setCustValue(aReturn);
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="1300" height="720" titletext="용지발주현황" scrolltype="none" onload="MkMain_onload" onsize="MkMain_onsize" ontimer="MkMain_ontimer">
+    <Layouts>
+      <Layout height="720" width="1300">
+        <Static id="Static02" taborder="0" text="용지발주현황" left="8" top="10" width="346" height="65" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Button id="btnPrt" taborder="6" text="출력" top="29" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" right="0.77%" onclick="btnPrt_onclick"/>
+        <Button id="btnSearch" taborder="5" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="40" top="29" onclick="btnSearch_onclick" right="btnPrt:7" width="80"/>
+        <Combo id="cbCustNm" taborder="4" top="33" height="35" right="btnSearch:15" width="233" innerdataset="ds_mk_Cust" datacolumn="CUST_NAME" codecolumn="CUST" onitemchanged="cbCustNm_onitemchanged"/>
+        <Edit id="edSCustCd" taborder="3" top="33" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="cbCustNm:3" width="88" onchanged="edSCustCd_onchanged" maxlength="4"/>
+        <Static id="stInCust" taborder="10" text="매입처" top="33" height="35" background="lightsteelblue" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="edSCustCd:3" width="85"/>
+        <Calendar id="calEDate" taborder="2" top="33" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="stInCust:3" width="140" onkeydown="LocalFctn_OnKeyDown"/>
+        <Calendar id="calSDate" taborder="1" top="33" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" right="calEDate:3" width="140" onkeyup="LocalFctn_OnKeyDown"/>
+        <Static id="stOrdDate" taborder="7" text="발주일자" top="33" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" right="calSDate:3" width="85"/>
+        <ImageViewer id="ImgClose01" taborder="8" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Grid id="grdList" taborder="9" left="8" top="78" width="98.85%" binddataset="dsPprOrdList" bottom="10" autofittype="none" onenterdown="grdList_onenterdown" onheadclick="grdList_onheadclick">
+          <Formats>
+            <Format id="grdUse">
+              <Columns>
+                <Column size="91"/>
+                <Column size="51"/>
+                <Column size="143"/>
+                <Column size="145"/>
+                <Column size="35"/>
+                <Column size="226"/>
+                <Column size="97"/>
+                <Column size="83"/>
+                <Column size="85"/>
+                <Column size="419"/>
+              </Columns>
+              <Rows>
+                <Row size="38" band="head"/>
+                <Row size="24"/>
+                <Row size="32" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="2" text="발주번호" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="2" text="발주처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="3" text="입고처" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="4" colspan="2" text="용지명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="6" text="요청일" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="7" text="수량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="8" text="중량" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="9" text="비고" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:PPRORDMST_DATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" maskeditformat="@@" editinputtype="normal" maskedittype="string" displaytype="date" calendardateformat="yyyy-MM-dd" suppress="2" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+                <Cell col="1" text="bind:PPRORDMST_NO" displaytype="normal" combodataset="ds_mk_UseType" combocodecol="USE_TYPE_CODE" combodatacol="USE_TYPE_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" suppress="1" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+                <Cell col="2" text="bind:ORDER_CUST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" suppress="3" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+                <Cell col="3" text="bind:IN_CUST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" suppress="3" suppressalign="middle" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+                <Cell col="4" text="bind:PPR_UNIT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" suppress="0" expr="dataset.getRowLevel(currow)==1?'소계':PPR_UNIT" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+                <Cell col="5" text="bind:PPR_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" calendardateformat="yyyy-MM-dd" suppress="0" expr="dataset.getRowLevel(currow)==1?'소계':PPR_NAME" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+                <Cell col="6" text="bind:PPRORDDTL_REQUESTDATE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center" edittype="none" editinputtype="normal" displaytype="date" calendardateformat="yyyy-MM-dd" suppress="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+                <Cell col="7" text="bind:PPRORDDTL_QTY" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="0.000" maskedittype="number" maskeditmaskchar="0" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+                <Cell col="8" text="bind:PPRORDDTL_WEIGHT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right" edittype="none" editinputtype="normal" displaytype="mask" maskeditformat="#.###" maskeditmaskchar="0" maskedittype="number" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+                <Cell col="9" text="bind:PPRORDDTL_CONTENT" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="left" edittype="none" editinputtype="normal" displaytype="normal" cssclass="expr:dataset.getRowLevel(currow)==1?'mk_subtotal':''"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="7" text="총계" font="bold 14px/normal &quot;함초롬돋움&quot;" background="#fbce78"/>
+                <Cell col="7" textAlign="right" font="bold 12px/normal &quot;함초롬돋움&quot;" expr="dataset.getSum('PPRORDDTL_QTY');" displaytype="mask" background="#fbce78" maskeditformat="0.000"/>
+                <Cell col="8" textAlign="right" font="bold 12px/normal &quot;함초롬돋움&quot;" background="#fbce78" maskeditformat="#.###" expr="dataset.getSum('PPRORDDTL_WEIGHT');" displaytype="mask"/>
+                <Cell col="9" background="#fbce78"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_mk.xjs";
+
+var nRow;
+var str_url, in_ds, out_ds, str_arg;
+var vPerSel, vPerDML, vPerDel;
+var vStr;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var sCust_Gubn = "40";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	
+	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+	
+	vPerSel = nexacro.getApplication().gds_menu.getColumn(nRow,"UM_PER_SELECT");
+	vPerDML = "U";
+	vPerDel = "D";
+	
+	if(vPerSel = "1"){
+		var d = new Date(); 
+		var strtoDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");							//오늘날짜 setting
+		var strPreDay = Eco.date.getMaskFormatString(Eco.date.getFirstDate(d), "yyyyMMdd"); //이번달 1일 setting
+		
+		this.calSDate.set_value(strPreDay);
+		this.calEDate.set_value(strtoDay);
+		
+		//매입처 정보 가져오기
+		this.gfn_TransactionP("select", "JSP/mk/Cust_Select.jsp", "ds_mk_Cust=ds_mk_Cust", "ds_mk_Cust=ds_mk_Cust", "", "", false, "S", false, this);
+		this.ds_mk_Cust.filter("CUST_GUBN=='00' || CUST_GUBN=='" + sCust_Gubn + "'");
+		
+		this.calSDate.setFocus();
+	}
+};
+
+this.MkMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+this.MkMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+	this.lfn_grdAutofit(this.grdList);
+};
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" )
+	{
+		alert("발주일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value == "" )
+	{
+		alert("발주일자를 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	in_ds 	= "dsPprOrdList=dsPprOrdList";
+	out_ds 	= "dsPprOrdList=dsPprOrdList";
+	str_url = "JSP/mk/mk124_Select.jsp";
+	str_arg = "SDATE=" + nexacro.wrapQuote(this.calSDate.value) +
+	          " EDATE=" + nexacro.wrapQuote(this.calEDate.value) + 
+	          " CUST_GUBN=" +nexacro.wrapQuote( sCust_Gubn) +
+			  " CUST_CODE=" +nexacro.wrapQuote(this.edSCustCd.value);
+	 
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "fnCallbackSelect", false, "S", false, this);
+
+};
+
+
+this.fnCallbackSelect = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		
+		if(this.dsPprOrdList.rowcount == 0){
+			alert("조회된 자료가 없습니다.");
+			return false;
+		}
+		
+		for(var i = 0; i<=this.dsPprOrdList.getRowCount()-1; i++){
+			
+			if(this.dsPprOrdList.getRowLevel(i) == 1){
+				this.grdList.mergeCell(4,6,i,i);
+			}
+		}
+	}
+};
+
+//레포트 출력 이벤트
+this.btnPrt_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.calSDate.value == "" )
+	{
+		alert("발주일자를 입력해 주세요.");
+		this.calSDate.setFocus();
+		return false;
+	}
+
+	if (this.calEDate.value == "" )
+	{
+		alert("발주일자를 입력해 주세요.");
+		this.calEDate.setFocus();
+		return false;
+	}
+	
+	var vCustCd;
+	
+	if(Eco.isUndefined(this.edSCustCd.value) == true)
+		vCustCd = "";
+	else if(this.edSCustCd.value == "0000")
+		vCustCd = "";
+	else 
+		vCustCd = this.edSCustCd.value;
+	
+	var rdUrl = gv_svcUrl + "rpt/mk/MK124.mrd";
+    var rdParam = "/rp [" + this.calSDate.value + "] [" + this.calEDate.value + "] [" + sCust_Gubn + "] [" +  vCustCd + "] ";  
+	this.lfn_showModal("print", {rdUrl:rdUrl, rdParam:rdParam}, "mk::MKRDF.xfdl", "", this, 0, 0, 1024, 770);
+
+};
+
+this.LocalFctn_OnKeyDown = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	var curObj = this.getFocus();
+	
+	//ENTER입력시 TAB처럼 이동
+	if(e.keycode == "13"){
+		
+		curObj = this.getNextComponent(curObj, true);
+		curObj.setFocus();
+		
+		//콤보타입일 경우 목록보이게 자동설정
+		if(curObj == "[object Combo]")
+		{	
+			if(curObj.index == -1)
+				curObj.dropdown();
+		}
+	}
+};
+
+this.edSCustCd_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	if(this.edSCustCd.text.length == 1){
+	
+		var vCustCd = this.lfn_CustName(sCust_Gubn, this.edSCustCd.text);
+		this.edSCustCd.set_value(vCustCd);
+	}
+	
+	if(this.edSCustCd.getLength() == this.edSCustCd.text.length){
+	
+		this.cbCustNm.set_index(this.ds_mk_Cust.findRow("CUST", sCust_Gubn+this.edSCustCd.text));
+		
+		if(this.cbCustNm.index == -1){
+			this.cbCustNm.setFocus();
+			this.cbCustNm.dropdown();
+		}
+	}
+};
+
+this.cbCustNm_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var iCustIdx = this.ds_mk_Cust.findRow("CUST_NAME", this.cbCustNm.text);
+	this.edSCustCd.set_value(this.ds_mk_Cust.getColumn(iCustIdx, "CUST_CODE"));
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="dsPprOrdList" keystring="PPRORDMST_DATE+PPRORDMST_NO">
+        <ColumnInfo>
+          <Column id="PPRORDMST_DATE" type="STRING" size="256"/>
+          <Column id="PPRORDMST_NO" type="STRING" size="256"/>
+          <Column id="PPRORDDTL_SEQ" type="STRING" size="256"/>
+          <Column id="ORDER_CUST_NAME" type="STRING" size="256"/>
+          <Column id="PPR_NAME" type="STRING" size="256"/>
+          <Column id="PPR_UNIT" type="STRING" size="256"/>
+          <Column id="PPRORDDTL_PPRSTND" type="STRING" size="256"/>
+          <Column id="IN_CUST_NAME" type="STRING" size="256"/>
+          <Column id="PPRORDDTL_REQUESTDATE" type="STRING" size="256"/>
+          <Column id="PPRORDDTL_QTY" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="PPRORDDTL_WEIGHT" type="FLOAT" size="256" prop="SUM"/>
+          <Column id="PPRORDDTL_CONTENT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_Cust" oncolumnchanged="ds_mk_Paper_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="REPRESENTATIVE" type="STRING" size="256"/>
+          <Column id="BUSINESSNO" type="STRING" size="256"/>
+          <Column id="BUSINESS_STARTDATE" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="OFFICE_TEL" type="STRING" size="256"/>
+          <Column id="OFFICE_FAX" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+          <Column id="CUST_STOPPAGE" type="STRING" size="256"/>
+          <Column id="BANK_CODE" type="STRING" size="256"/>
+          <Column id="CUST_ACNTNO" type="STRING" size="256"/>
+          <Column id="CUSTDTL_SALEAMOUNT" type="STRING" size="256"/>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

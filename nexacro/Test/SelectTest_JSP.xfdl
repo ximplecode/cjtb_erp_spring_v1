@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SelectTest" width="960" height="720" titletext="New Form" onload="SelectTest_onload" onkeydown="SelectTest_onkeydown">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="960" stepcount="0">
+        <Tab id="Tab00" taborder="0" tabindex="0" left="30" top="90" width="300" height="586" background="white">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="조직도">
+              <Layouts>
+                <Layout>
+                  <Grid id="Grid00" taborder="0" left="1" top="3" width="298" height="553" binddataset="ds_dept_tree" autofittype="col" treeusecheckbox="false" treeinitstatus="expand,all" oncellclick="Grid00_oncellclick" border="1px solid">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="24" band="head"/>
+                          <Row size="24"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:BU_NAME" edittype="tree" displaytype="treeitemcontrol" treecheck="bind:BU_GRCODE" treelevel="bind:BU_LEVEL"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="검색">
+              <Layouts>
+                <Layout>
+                  <Edit id="Edit00" taborder="0" left="50" top="51" width="102" height="20"/>
+                  <Edit id="Edit00_00" taborder="1" left="50" top="80" width="102" height="20"/>
+                  <Static id="Static00" taborder="2" text="성명" left="16" top="50" width="39" height="19"/>
+                  <Static id="Static00_00" taborder="3" text="사번" left="16" top="79" width="39" height="19"/>
+                  <Button id="Button00" taborder="4" text="조회하기" left="168" top="50" width="104" height="50" onclick="Tab00_Tabpage2_Button00_onclick"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Static id="Static00" taborder="1" text="개인자료조회" left="24" top="21" width="906" height="49" background="lightgray" textAlign="center" font="26px/normal &quot;Gulim&quot;"/>
+        <Grid id="Grid01" taborder="2" left="345" top="120" width="315" height="480" binddataset="ds_hr121_01" autofittype="col" border="1px solid" oncellclick="Grid01_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="BUSE"/>
+                <Cell col="1" text="JIKWI"/>
+                <Cell col="2" text="NAME"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSE"/>
+                <Cell col="1" text="bind:JIKWI"/>
+                <Cell col="2" text="bind:NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="3" left="343" top="95" width="80" height="26" text="[ 0 명 ]"/>
+        <Static id="Static02" taborder="4" text="최종학력" left="343" top="614" width="124" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00" taborder="5" text="주소" left="343" top="647" width="124" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00" taborder="6" text="사번" left="675" top="367" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00_00" taborder="7" text="사원구분" left="675" top="396" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00_00_00" taborder="8" text="성별" left="675" top="425" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00_00_00_00" taborder="9" text="나이" left="675" top="454" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00_00_00_00_00" taborder="10" text="전화" left="675" top="483" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00_00_00_00_00_00" taborder="11" text="핸드폰" left="675" top="512" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00_00_00_00_00_00_00" taborder="12" text="입사일" left="675" top="541" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00_00_00_00_00_00_00_00" taborder="13" text="성명" left="675" top="338" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00_00_00_00_00_00_00_00_00" taborder="14" text="직책" left="675" top="309" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Static id="Static02_00_00_00_00_00_00_00_00_00_00_00" taborder="15" text="퇴사일" left="675" top="570" width="64" height="28" background="lightblue" font="14px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <ImageViewer id="ImageViewer00" taborder="16" left="682" top="121" width="245" height="179" stretch="fit"/>
+        <Edit id="Edit00" taborder="17" left="745" top="309" width="182" height="28"/>
+        <Edit id="Edit00_00" taborder="18" left="745" top="338" width="182" height="28"/>
+        <Edit id="Edit00_00_00" taborder="19" left="745" top="366" width="182" height="28"/>
+        <Edit id="Edit00_00_00_00" taborder="20" left="745" top="394" width="182" height="28"/>
+        <Edit id="Edit00_00_00_00_00" taborder="21" left="745" top="424" width="182" height="28"/>
+        <Edit id="Edit00_00_00_00_00_00" taborder="22" left="745" top="454" width="182" height="28"/>
+        <Edit id="Edit00_00_00_00_00_00_00" taborder="23" left="745" top="483" width="182" height="28"/>
+        <Edit id="Edit00_00_00_00_00_00_00_00" taborder="24" left="745" top="513" width="182" height="28"/>
+        <Edit id="Edit00_00_00_00_00_00_00_00_00" taborder="25" left="745" top="542" width="182" height="28"/>
+        <Edit id="Edit00_00_00_00_00_00_00_00_00_00" taborder="26" left="745" top="572" width="182" height="28"/>
+        <Edit id="Edit00_00_00_00_00_00_00_00_00_00_00" taborder="27" left="478" top="613" width="449" height="28"/>
+        <Edit id="Edit00_00_00_00_00_00_00_00_00_00_00_00" taborder="28" left="478" top="647" width="449" height="28"/>
+        <Button id="testBtn" taborder="29" text="Button00" left="655" top="77" width="66" height="27" onclick="testBtn_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_dept_tree">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="BU_LEVEL" type="STRING" size="256"/>
+          <Column id="BU_GRCODE" type="STRING" size="256"/>
+          <Column id="BU_SEQ" type="STRING" size="256"/>
+          <Column id="BU_NAME" type="STRING" size="256"/>
+          <Column id="BU_FNAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_hr121_01">
+        <ColumnInfo>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="SA_GB1" type="STRING" size="256"/>
+          <Column id="SA_GB2" type="STRING" size="256"/>
+          <Column id="SEX" type="STRING" size="256"/>
+          <Column id="AGE" type="STRING" size="256"/>
+          <Column id="IPSADT" type="STRING" size="256"/>
+          <Column id="TOISADT" type="STRING" size="256"/>
+          <Column id="TEL1" type="STRING" size="256"/>
+          <Column id="TEL2" type="STRING" size="256"/>
+          <Column id="ADDR1" type="STRING" size="256"/>
+          <Column id="JUMIN" type="STRING" size="256"/>
+          <Column id="IMG_NAME" type="STRING" size="256"/>
+          <Column id="SCHOOL" type="STRING" size="256"/>
+          <Column id="LEVEL_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/***********************************************************/
+/* 작성&수정일자 : 2022/10/06
+/* 설명 : 넥사 컨버전 대비 테스트 공수체크
+/***********************************************************/
+
+var str_svcId, str_url, str_inDs, str_outDs, str_arg, str_callback;
+
+/** 부서 트리 조회 */
+this.SelectTest_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	str_svcId = "select_tree";
+	str_url = "jsptestURL::JSPTEST/selectTree.jsp";
+	str_inDs = "";
+	str_outDs = "ds_dept_tree=ds_dept_tree";
+	str_arg = "";
+	str_callback = "fn_callback";
+	
+	this.transaction(str_svcId, str_url, str_inDs, str_outDs, str_arg, str_callback, 1);
+};
+
+/** 개인자료 조회 */
+this.Grid00_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var strBuse = "";
+	strBuse = this.ds_dept_tree.getColumn(obj.currentrow, "CODE");
+
+	if(strBuse != "") {
+		str_svcId = "select_list";
+		str_url = "jsptestURL::JSPTEST/SQL_HR121_01S.jsp";
+		str_inDs = "";
+		str_outDs = "ds_hr121_01=ds_hr121_01";
+		str_arg  = "strBuse="+nexacro.wrapQuote(strBuse);
+ 		str_arg += " strSabun="+nexacro.wrapQuote("null");
+ 		str_arg += " strName="+nexacro.wrapQuote("null");
+		str_callback = "fn_callback";
+		
+		this.transaction(str_svcId, str_url, str_inDs, str_outDs, str_arg, str_callback, 1);
+	}
+};
+
+this.Tab00_Tabpage2_Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	alert("Test");
+	var strName = this.Tab00.Tabpage2.form.Edit00.text;
+	var strSabun = this.Tab00.Tabpage2.form.Edit00_00.text;
+	
+	if(strName == "") strName = "null";
+	if(strSabun == "") strSabun = "null";
+
+	str_svcId = "select_list";
+	str_url = "testURL::jsp/Test.jsp";
+	str_inDs = "";
+	str_outDs = "ds_hr121_01=ds_hr121_01";
+	str_arg  = "strBuse="+nexacro.wrapQuote("null");
+	str_arg += " strSabun="+nexacro.wrapQuote(strSabun);
+	str_arg += " strName="+nexacro.wrapQuote(strName);
+	str_callback = "fn_callback";
+	
+	this.transaction(str_svcId, str_url, str_inDs, str_outDs, str_arg, str_callback, 1);
+};
+
+this.Grid01_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.ImageViewer00.set_image("http://cjtb-erp.chunjae.co.kr/erptextbook/hr/img/"+this.ds_hr121_01.getColumn(obj.currentrow, "IMG_NAME"));
+};
+
+this.fn_callback = function(svcId, eCode, eMsg)
+{
+	if(eCode != 0) this.alert(eCode + " : " + eMsg);
+	
+	switch (svcId)
+	{
+		case "select_list":
+			this.ImageViewer00.set_image("http://cjtb-erp.chunjae.co.kr/erptextbook/hr/img/"+this.ds_hr121_01.getColumn(obj.currentrow, "IMG_NAME"));
+			
+			this.Static01.set_text("[ " + this.ds_hr121_01.rowcount + " 명 ]");
+			break;
+	}
+}
+
+this.testBtn_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	alert("Test");
+	var strName = this.Tab00.Tabpage2.form.Edit00.text;
+	var strSabun = this.Tab00.Tabpage2.form.Edit00_00.text;
+	
+	if(strName == "") strName = "null";
+	if(strSabun == "") strSabun = "null";
+
+	str_svcId = "select_list";
+	str_url = "testURL::jsp/Test.jsp";
+	str_inDs = "";
+	str_outDs = "ds_hr121_01=ds_hr121_01";
+	str_arg  = "strBuse="+nexacro.wrapQuote("null");
+	str_arg += " strSabun="+nexacro.wrapQuote(strSabun);
+	str_arg += " strName="+nexacro.wrapQuote(strName);
+	str_callback = "fn_callback";
+	
+	this.transaction(str_svcId, str_url, str_inDs, str_outDs, str_arg, str_callback, 1);	
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Edit00" propid="value" datasetid="ds_hr121_01" columnid="JIKWI"/>
+      <BindItem id="item1" compid="Edit00_00" propid="value" datasetid="ds_hr121_01" columnid="NAME"/>
+      <BindItem id="item2" compid="Edit00_00_00" propid="value" datasetid="ds_hr121_01" columnid="SABUN"/>
+      <BindItem id="item3" compid="Edit00_00_00_00" propid="value" datasetid="ds_hr121_01" columnid="SA_GB1"/>
+      <BindItem id="item4" compid="Edit00_00_00_00_00" propid="value" datasetid="ds_hr121_01" columnid="SEX"/>
+      <BindItem id="item5" compid="Edit00_00_00_00_00_00" propid="value" datasetid="ds_hr121_01" columnid="AGE"/>
+      <BindItem id="item6" compid="Edit00_00_00_00_00_00_00" propid="value" datasetid="ds_hr121_01" columnid="TEL1"/>
+      <BindItem id="item7" compid="Edit00_00_00_00_00_00_00_00" propid="value" datasetid="ds_hr121_01" columnid="TEL2"/>
+      <BindItem id="item8" compid="Edit00_00_00_00_00_00_00_00_00" propid="value" datasetid="ds_hr121_01" columnid="IPSADT"/>
+      <BindItem id="item9" compid="Edit00_00_00_00_00_00_00_00_00_00" propid="value" datasetid="ds_hr121_01" columnid="TOISADT"/>
+      <BindItem id="item10" compid="Edit00_00_00_00_00_00_00_00_00_00_00" propid="value" datasetid="ds_hr121_01" columnid="SCHOOL"/>
+      <BindItem id="item11" compid="Edit00_00_00_00_00_00_00_00_00_00_00_00" propid="value" datasetid="ds_hr121_01" columnid="ADDR1"/>
+      <BindItem id="item12" compid="this" propid="width" datasetid="50" columnid="%"/>
+    </Bind>
+  </Form>
+</FDL>

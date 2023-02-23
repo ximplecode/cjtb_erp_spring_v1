@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD8150F" width="1620" height="760" titletext="New Form" onload="SD8150F_onload" ontimer="SD8150F_ontimer">
+    <Layouts>
+      <Layout height="760" width="1620">
+        <Grid id="grid_view" taborder="10" left="25" top="130" height="615" binddataset="ds_data" border="2px solid #10aea9" width="1534" font="11px/normal &quot;Gulim&quot;" oncelldblclick="grid_view_oncelldblclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="300"/>
+                <Column size="60"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="60"/>
+                <Column size="0"/>
+                <Column size="0"/>
+                <Column size="0"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="구분"/>
+                <Cell col="1" text="코드"/>
+                <Cell col="2" text="총판명"/>
+                <Cell col="3" text="년"/>
+                <Cell col="4" text="월"/>
+                <Cell col="5" text="일"/>
+                <Cell col="6" text="이월금액"/>
+                <Cell col="7" text="전월통보액"/>
+                <Cell col="8" text="추가수금기준"/>
+                <Cell col="9" text="담당자조정"/>
+                <Cell col="10" text="CHK"/>
+                <Cell col="11" text="OLD_YY"/>
+                <Cell col="12" text="OLD_MM"/>
+                <Cell col="13" text="OLD_DD"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CUST_GB"/>
+                <Cell col="1" text="bind:CUST_CD"/>
+                <Cell col="2" text="bind:CUST_NM"/>
+                <Cell col="3" text="bind:YY" textAlign="center"/>
+                <Cell col="4" text="bind:MM" textAlign="center"/>
+                <Cell col="5" text="bind:DD" textAlign="center"/>
+                <Cell col="6" text="bind:AMT_MT" displaytype="number" edittype="mask"/>
+                <Cell col="7" text="bind:AMT_AMT1" displaytype="number" edittype="mask"/>
+                <Cell col="8" text="bind:AMT_AMT2" displaytype="number" edittype="mask"/>
+                <Cell col="9" text="bind:AMT_AMT3" displaytype="number" edittype="mask"/>
+                <Cell col="10" text="bind:AMT_1" edittype="mask" displaytype="number"/>
+                <Cell col="11" text="bind:OLD_YY"/>
+                <Cell col="12" text="bind:OLD_MM"/>
+                <Cell col="13" text="bind:OLD_DD"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="11" text="추가수금기준안등록" left="3.46%" top="1.45%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="40.49%" height="9.08%"/>
+        <Static id="Static01" taborder="12" text="작업구간" left="25" top="82" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127"/>
+        <Static id="Static00_01" taborder="13" left="150" top="82" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="310"/>
+        <Static id="Static02" taborder="14" text="업체구간" top="82" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" left="458" width="127"/>
+        <Static id="Static10" taborder="15" text="~" left="294" top="87" width="20" height="30" textAlign="center"/>
+        <Static id="Static00_01_00_00" taborder="16" left="583" top="82" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9" width="230" text=""/>
+        <MaskEdit id="ed_sgb" taborder="2" left="590" top="87" width="50" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="##" type="string" textAlign="center" onkillfocus="common_kill_focus" onsetfocus="common_set_focus"/>
+        <CheckBox id="chk_e" taborder="3" text="거래종료총판제외" left="669" top="92" width="130" height="20"/>
+        <Static id="Static01_00" taborder="17" text="복사일자" left="811" top="82" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" width="127"/>
+        <Static id="Static00_01_00" taborder="18" left="936" top="82" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="2px solid #10aea9" text="" width="145"/>
+        <Button id="btn_copy" taborder="9" text="복사" top="36" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="62" onclick="btn_copy_onclick"/>
+        <Button id="btn_search" taborder="7" text="조회" top="36" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="236" onclick="btn_search_onclick"/>
+        <Button id="btn_save" taborder="8" text="저장" top="36" width="75" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="149" onclick="btn_save_onclick"/>
+        <Button id="btn_upload" taborder="6" text="데이터 업로드" top="36" width="115" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="326" onclick="btn_upload_onclick"/>
+        <Button id="btn_excel" taborder="5" text="엑셀변환" top="36" width="95" height="31" font="bold 10pt/normal &quot;Arial&quot;" right="456" onclick="btn_excel_onclick"/>
+        <MaskEdit id="cald_symd" taborder="0" left="157" top="87" width="130" height="30" format="####-##-##" type="string"/>
+        <MaskEdit id="cald_eymd" taborder="1" left="321" top="87" width="130" height="30" format="####-##-##" type="string"/>
+        <MaskEdit id="cald_cymd" taborder="4" left="943" top="87" width="130" height="30" type="string" format="####-##-##"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_data">
+        <ColumnInfo>
+          <Column id="CUST_GB" type="STRING" size="256"/>
+          <Column id="CUST_CD" type="STRING" size="256"/>
+          <Column id="CUST_NM" type="STRING" size="256"/>
+          <Column id="YY" type="STRING" size="256"/>
+          <Column id="MM" type="STRING" size="256"/>
+          <Column id="DD" type="STRING" size="256"/>
+          <Column id="AMT_MT" type="STRING" size="256"/>
+          <Column id="AMT_AMT1" type="STRING" size="256"/>
+          <Column id="AMT_AMT2" type="STRING" size="256"/>
+          <Column id="AMT_AMT3" type="STRING" size="256"/>
+          <Column id="AMT_1" type="STRING" size="256"/>
+          <Column id="OLD_YY" type="STRING" size="256"/>
+          <Column id="OLD_MM" type="STRING" size="256"/>
+          <Column id="OLD_DD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsXlsSheetName">
+        <ColumnInfo>
+          <Column id="IDX" type="INT" size="2"/>
+          <Column id="SHEETNAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsExcelLoad"/>
+      <FileDialog id="FileDialog00"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_name = nexacro.getApplication().gds_userinfo.getColumn(0,"NAME");
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+
+this.SD8150F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var U_yy = Eco.date.getMaskFormatString(objDate, "yyyyMMdd");
+	this.cald_symd.set_value(U_yy.substr(0,6) + "00");
+	this.cald_eymd.set_value(U_yy);
+	U_yy = Eco.date.addMonth(U_yy, 1);
+	this.cald_cymd.set_value(U_yy.substr(0,6) + "00");	
+    this.ed_sgb.set_value("21");
+    this.chk_e.set_value(true);
+    this.cald_symd.setFocus();
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl, strDs, strArg, eChk;
+	
+	strUrl = "JSP/sd/SD8150_select.jsp";
+	strDs = "ds_data=ds_data";
+    if (this.chk_e.value == true )  eChk = "1";
+	else eChk = "0";
+
+	strArg = "sdate="+nexacro.wrapQuote(this.cald_symd.value) +
+			 " edate="+nexacro.wrapQuote(this.cald_eymd.value) + 
+			 " cust_gb="+nexacro.wrapQuote(this.ed_sgb.value) + 
+			 " e_chk="+nexacro.wrapQuote(eChk);
+	
+	this.gfn_TransactionP("select", strUrl, strDs, strDs, strArg, "fnCallback_select", false, "P", false, this);
+};
+
+this.fnCallback_select = function(Trid, ErroCode, ErrorMsg)
+{
+	if(ErroCode != 0)
+	return;
+}
+
+this.btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.setWaitCursor(true);
+	this.setTimer(0, 10);
+};
+
+this.SD8150F_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	if(e.timerid==0)
+	{
+		this.fnExcellExport();
+		this.killTimer(e.timerid);
+	}
+};
+
+this.fnExcellExport = function()
+{
+	var filename;
+	
+	this.exportObj = new ExcelExportObject();
+
+	var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.grid_view, "Sheet1!A1");
+	filename = "Excel_1";  
+
+	this.exportObj.set_exporturl(gv_urlXeni); 
+	this.exportObj.set_exportfilename(filename);
+    this.exportObj.exportData();
+	this.setWaitCursor(false);
+}
+
+this.btn_upload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.importObj = new ExcelImportObject("Import00",this); 
+    this.importObj.addEventHandler("onsuccess", this.Import_onsuccess, this);
+    this.importObj.set_importurl(gv_urlXeni);
+    var ret = this.importObj.importData("","output=ds","dsExcelLoad=ds");
+	if(!ret){
+		this.alert("업로드에 실패하셨습니다.");
+		return;
+	}
+};
+
+this.Import_onsuccess = function(obj,e) 
+{
+	if(e.id == "onsuccess")
+	{
+		this.dsExcelLoad.deleteRow(0);
+	
+		for(var i=this.dsExcelLoad.rowcount;i>=1; i--) // 비어있는 행들 삭제
+		{
+			if(this.dsExcelLoad.getColumn(i, "Column0") == null &&
+			   this.dsExcelLoad.getColumn(i, "Column1") == null)
+			{
+				this.dsExcelLoad.deleteRow(i);
+			}
+		}
+		this.ds_data.clearData();
+		for(var i=0; i < this.dsExcelLoad.rowcount; i++)
+		{
+			this.ds_data.addRow();
+			this.ds_data.setColumn(i, "CUST_GB", this.dsExcelLoad.getColumn(i,"Column0"));
+			this.ds_data.setColumn(i, "CUST_CD", this.dsExcelLoad.getColumn(i,"Column1"));
+			this.ds_data.setColumn(i, "CUST_NM", this.dsExcelLoad.getColumn(i,"Column2"));
+			this.ds_data.setColumn(i, "YY", this.dsExcelLoad.getColumn(i,"Column3"));
+			this.ds_data.setColumn(i, "MM", this.dsExcelLoad.getColumn(i,"Column4"));
+			this.ds_data.setColumn(i, "DD", this.dsExcelLoad.getColumn(i,"Column5"));
+			this.ds_data.setColumn(i, "AMT_MT", this.dsExcelLoad.getColumn(i,"Column6"));
+			this.ds_data.setColumn(i, "AMT_AMT1", this.dsExcelLoad.getColumn(i,"Column7"));
+			this.ds_data.setColumn(i, "AMT_AMT2", this.dsExcelLoad.getColumn(i,"Column8"));
+			this.ds_data.setColumn(i, "AMT_AMT3", this.dsExcelLoad.getColumn(i,"Column9"));
+			this.ds_data.setColumn(i, "AMT_1", this.dsExcelLoad.getColumn(i,"Column10"));
+			this.ds_data.setColumn(i, "OLD_YY", this.dsExcelLoad.getColumn(i,"Column11"));
+			this.ds_data.setColumn(i, "OLD_MM", this.dsExcelLoad.getColumn(i,"Column12"));
+			this.ds_data.setColumn(i, "OLD_DD", this.dsExcelLoad.getColumn(i,"Column13"));
+		}
+	}
+}
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strUrl, inDs;
+	
+	strUrl = "JSP/sd/SD8150_dml.jsp";
+	inDs = "ds_data=ds_data:U";
+	
+	this.gfn_TransactionP("sdmlelect", strUrl, inDs, "", "", "fnCallback_dml", false, "P", false, this);
+};]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PDTeam_DivideF" width="840" height="640" titletext="New Form" onload="PDProduct_SearchF_OnLoad" onbeforeclose="PDTeam_divideF_onbeforeclose">
+    <Layouts>
+      <Layout height="640" mobileorientation="landscape" width="840">
+        <Static id="Static07" taborder="17" text="Static07" left="3" top="44" width="443" height="596" border="1px solid lightgray"/>
+        <Static id="Static06" taborder="16" text="Static06" left="528" top="42" width="307" height="597" border="1px solid lightgray"/>
+        <Static id="Static00" taborder="0" text="팀/항목 추가" left="10" top="1" width="640" height="43" font="bold 16pt/normal &quot;Arial&quot;"/>
+        <Static id="Static01" taborder="1" text="부서/팀 선택" left="2" top="44" width="443" height="26" border="1px solid lightgray" background="#D3D3Dr" textAlign="center" font="bold 12pt/normal &quot;Arial&quot;"/>
+        <Static id="Static02" taborder="2" text="귀속 비용 등록" left="528" top="42" width="307" height="26" background="#D3D3Dr" border="1px solid lightgray" textAlign="center" font="bold 12pt/normal &quot;Arial&quot;"/>
+        <Button id="btnClose" taborder="3" text="확인" left="781" top="8" width="54" height="26" onclick="btnClose_OnClick"/>
+        <Grid id="grdOrgTree" taborder="4" left="2" top="111" width="188" height="527" binddataset="DS_DEPT_TREE" oncellclick="grdOrgTree_oncellclick" treeusecheckbox="false" treeinitstatus="expand,all">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="187"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="treeitemcontrol" edittype="tree" text="bind:bu_name" treelevel="bind:bu_level"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static03" taborder="5" text="관 리 대 장" left="5" top="76" width="192" height="36" textAlign="center" font="bold 10pt/normal &quot;Arial&quot;"/>
+        <Grid id="Grd_Dtl" taborder="6" left="189" top="111" width="256" height="264" binddataset="DSTEAMCODE" autofittype="col" oncellclick="Grd_Dtl_OnCellClick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="팀코드"/>
+                <Cell col="1" text="팀        명"/>
+                <Cell col="2" text="제조/판관"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:TEAMCODE"/>
+                <Cell col="1" text="bind:TEAMNAME"/>
+                <Cell col="2" text="bind:BU_ACTNCLASS" displaytype="combotext" combodataset="DSKIND_0" combocodecol="CODE" combodatacol="NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Radio id="Rd_Kind" taborder="7" left="208" top="78" width="232" height="28" direction="vertical" innerdataset="DSKIND" codecolumn="CODE" datacolumn="NAME" index="0" text="조직" value="0" onitemchanged="Rd_Kind_OnChanged"/>
+        <Grid id="Grid01" taborder="8" left="189" top="374" width="256" height="264" binddataset="DSWORKTEAM" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="81"/>
+                <Column size="176"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="코드"/>
+                <Cell col="1" text="업무 항목"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:WORKCODE"/>
+                <Cell col="1" text="bind:WORKNAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Btn_Book_Reg" taborder="9" text="추가" left="461" top="333" width="52" height="23" onclick="Btn_Book_Reg_OnClick"/>
+        <Button id="btn_BookDelete" taborder="10" text="삭제" left="461" top="364" width="52" height="23" onclick="btn_BookDelete_OnClick"/>
+        <Grid id="Grd_TEAM_DIVIDE" taborder="11" left="528" top="140" width="307" height="498" binddataset="dsAccountDtlTeam" autofittype="col" onenterdown="Grd_TEAM_DIVIDE_OnEnterDown" onkeydown="Grd_TEAM_DIVIDE_OnKeyDown">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="팀    명"/>
+                <Cell col="1" text="업무 구분"/>
+                <Cell col="2" text="금    액"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:TEAMNAME"/>
+                <Cell col="1" text="bind:WORKNAME"/>
+                <Cell col="2" text="bind:ACNTDTL_AMOUNT" displaytype="number" edittype="mask"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="12" text="대상비용" left="546" top="73" width="52" height="22" font="bold 10pt/normal &quot;Arial&quot;"/>
+        <Static id="Static05" taborder="13" text="귀속비용합계" left="539" top="108" width="76" height="22" font="bold 10pt/normal &quot;Arial&quot;"/>
+        <MaskEdit id="MEdt_Cost" taborder="14" left="629" top="71" width="120" height="30" enable="false"/>
+        <MaskEdit id="Mkedt_divid_cost" taborder="15" left="629" top="105" width="120" height="30" enable="false"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_gw.xjs";
+
+var pACNTDTL_AMOUNT;
+var pACNTMST_ID;
+var pACNTDTL_SEQ;
+var sSection_Code = nexacro.wrapQuote(nexacro.getApplication().gds_userinfo.getColumn(0,"BUSECD"));	
+
+this.parentForm = this.opener;
+var nDate = new Date(); 
+var today = Eco.date.getMaskFormatString(nDate, "yyyyMMdd");
+
+this.PDProduct_SearchF_OnLoad = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	pACNTDTL_AMOUNT = this.parent.ACNTDTL_AMOUNT;
+	pACNTMST_ID = this.parent.ACNTMST_ID;
+	pACNTDTL_SEQ = this.parent.ACNTDTL_SEQ;
+	var pPRF_CODE = this.parent.PRF_CODE;
+	
+	this.gfn_TransactionP("search", "JSP/hr/sql_dept_Tree_payd.jsp", "DS_DEPT_TREE=DS_DEPT_TREE", "DS_DEPT_TREE=DS_DEPT_TREE", "", "", false, "P", false, this);	
+	
+	// 작성부서로 기본 SELECT	
+	var str_Arg = "BUSECODE=" + sSection_Code;
+		str_Arg += " AD_KIND=" + nexacro.wrapQuote("0");
+	
+	this.gfn_TransactionP("search", "JSP/pd/divid_team_select1.jsp", "DSTEAMCODE=DSTEAMCODE", "DSTEAMCODE=DSTEAMCODE", str_Arg, "fnCallback", false, "P", false, this);	
+	
+	if ( this.Rd_Kind.value == "0" )  //조직
+	{		
+		var str_Arg = "BUSECODE=" + sSection_Code;
+
+		this.gfn_TransactionP("search", "JSP/pd/WorkList_Select.jsp", "DSWORKTEAM=DSWORKTEAM", "DSWORKTEAM=DSWORKTEAM", str_Arg, "fnCallback", false, "P", false, this);	
+	}
+   
+	if(pACNTMST_ID != null && pACNTDTL_SEQ != null) 
+	{
+		var str_Arg = "ACNTMST_ID =" + pACNTMST_ID;
+			str_Arg += " ACNTDTL_SEQ =" + pACNTDTL_SEQ; 
+		
+		this.gfn_TransactionP("search", "JSP/pd/pd110f_account_dtl_team_divid.jsp", "dsAccountDtlTeam=dsAccountDtlTeam", "dsAccountDtlTeam=dsAccountDtlTeam", str_Arg, "fnCallback", false, "P", false, this);
+		
+		this.Mkedt_divid_cost.set_value(this.dsAccountDtlTeam.getSum("ACNTDTL_AMOUNT"));
+	}
+
+	this.MEdt_Cost.set_value(pACNTDTL_AMOUNT);
+};
+
+this.btnClose_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.item_check())
+		this.close();
+};
+
+
+// fnCallBack
+this.fnCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(Trid == "search")
+	{
+		if(ErrorCode != 0 )
+			trace("[PD110F.fnCallback(" + today + ")] " + Trid +"::"+ ErrorMsg );
+	}
+}
+
+this.grdOrgTree_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.DSWORKTEAM.clearData();
+	
+	var strBuse = "", strname = "";
+	
+	strBuse = nexacro.trim(this.DS_DEPT_TREE.getColumn(e.row, "code"));  
+
+	var str_Arg = "BUSECODE=" + nexacro.wrapQuote(strBuse);
+		str_Arg += " AD_KIND=" + nexacro.wrapQuote("0");
+	
+	this.gfn_TransactionP("search", "JSP/pd/divid_team_select1.jsp", "DSTEAMCODE=DSTEAMCODE", "DSTEAMCODE=DSTEAMCODE", str_Arg, "fnCallback", false, "P", false, this);
+	
+	if ( this.Rd_Kind.value == "0" )  //조직
+	{
+		var nRow = this.DSTEAMCODE.rowposition;		
+		strBuse = this.DSTEAMCODE.getColumn(this.DSTEAMCODE.nRow, "BUSECODE");
+		var str_Arg = "BUSECODE=" + nexacro.wrapQuote(strBuse);
+		
+
+		this.gfn_TransactionP("search", "JSP/pd/WorkList_Select.jsp", "DSWORKTEAM=DSWORKTEAM", "DSWORKTEAM=DSWORKTEAM", str_Arg, "fnCallback", false, "P", false, this);
+	}
+};
+
+this.Grd_Dtl_OnCellClick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.DSWORKTEAM	.clearData();
+	
+	if ( this.Rd_Kind.value == "0" )  //조직
+	{
+		var strBuse = "";
+		strBuse = nexacro.trim(this.DSTEAMCODE.getColumn(e.row, "TEAMCODE"));  
+		
+		if ( strBuse == "91300" || strBuse == "91400" )   //경영관리부_에듀테크, 고객센터
+		{
+			var str_Arg = "BUSECODE=" + nexacro.wrapQuote(strBuse);
+			
+			this.gfn_TransactionP("search", "JSP/pd/WorkList_Team_Select.jsp", "DSWORKTEAM=DSWORKTEAM", "DSWORKTEAM=DSWORKTEAM", str_Arg, "fnCallback", false, "P", false, this);
+		}
+		else if ( strBuse.substr(0,2) == "3H" )   //경영관리부_에듀테크, 고객센터
+		{
+			var str_Arg = "BUSECODE=" + nexacro.wrapQuote("3H000");
+			
+			this.gfn_TransactionP("search", "JSP/pd/WorkList_Team_Select.jsp", "DSWORKTEAM=DSWORKTEAM", "DSWORKTEAM=DSWORKTEAM", str_Arg, "fnCallback", false, "P", false, this);
+		}
+	}
+};
+
+this.Btn_Book_Reg_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.DSTEAMCODE.rowposition;		
+	var aRow = this.DSWORKTEAM.rowposition;		
+	var i = this.dsAccountDtlTeam.findRow("TEAMCODE", this.DSTEAMCODE.getColumn(nRow, "TEAMCODE"));	
+
+	if (i == -1)
+	{
+		if (this.DSTEAMCODE.getColumn(nRow, "TEAMCODE") != "99000") //중등교과서
+		{
+			var iRow = this.dsAccountDtlTeam.addRow();
+			var sACNTTEAM_SEQ = "";
+
+			if (this.dsAccountDtlTeam.getCountNF() == 1)
+			{
+				sACNTTEAM_SEQ = ((sACNTTEAM_SEQ)+1).padLeft(3, "0");			
+			}
+			else
+			{
+				var sACNTTEAM_SEQ1 = nexacro.toNumber(this.dsAccountDtlTeam.getMaxNF("ACNTTEAM_SEQ")) + 1;
+				sACNTTEAM_SEQ = sACNTTEAM_SEQ1.toString().padLeft(3, "0");				
+			}
+			
+			if(pACNTMST_ID != null || "undefined")
+			{
+				
+				this.dsAccountDtlTeam.setColumn(iRow, "ACNTMST_ID",  pACNTMST_ID.replace(pACNTMST_ID));	
+				this.dsAccountDtlTeam.setColumn(iRow, "ACNTDTL_SEQ",  pACNTDTL_SEQ);
+			}
+		
+			this.dsAccountDtlTeam.setColumn(iRow, "ACNTTEAM_SEQ", sACNTTEAM_SEQ);
+			this.dsAccountDtlTeam.setColumn(iRow, "TEAMCODE",     this.DSTEAMCODE.getColumn(nRow, "TEAMCODE"));
+			this.dsAccountDtlTeam.setColumn(iRow, "TEAMNAME",     this.DSTEAMCODE.getColumn(nRow, "TEAMNAME"));
+			this.dsAccountDtlTeam.setColumn(iRow, "WORKCODE",     this.DSWORKTEAM.getColumn(aRow, "WORKCODE"));
+			this.dsAccountDtlTeam.setColumn(iRow, "WORKNAME",     this.DSWORKTEAM.getColumn(aRow, "WORKNAME"));
+			this.dsAccountDtlTeam.setColumn(iRow, "BU_ACTNCLASS", this.DSTEAMCODE.getColumn(nRow, "BU_ACTNCLASS"));
+		
+			if ( nRow == 0 )
+				this.dsAccountDtlTeam.setColumn(iRow, "ACNTDTL_AMOUNT", nexacro.trim(this.MEdt_Cost.value));
+
+			this.Grd_TEAM_DIVIDE.setCellPos(2);
+			this.Grd_TEAM_DIVIDE.showEditor(); 		
+		}
+		else
+		{
+			alert("중등교과서는 귀속대상이 될수 없습니다. 다른 부서를 선택해 주세요");
+		}
+		
+		
+	} else
+		alert("선택 하신 부서(팀)이 이미 등록되어 있습니다.");
+};
+
+this.Grd_TEAM_DIVIDE_OnEnterDown = function(obj:nexacro.Grid,e:nexacro.GridEditEventInfo)
+{
+	var pPRF_CODE = this.parent.PRF_CODE;
+	var nRow = this.dsAccountDtlTeam.rowposition;		
+	
+	if( pPRF_CODE == 3)
+	{
+		this.dsAccountDtlTeam.setColumn(nRow, "ACNTDTL_VAT", nexacro.Decimal(nexacro.toNumber(this.dsAccountDtlTeam.getColumn(nRow, "ACNTDTL_AMOUNT"))).trunc() /10 );
+	}
+	else if( pPRF_CODE != 3)
+	{
+		this.dsAccountDtlTeam.setColumn(nRow, "ACNTDTL_VAT", "0");
+	}
+};
+
+this.Grd_TEAM_DIVIDE_OnKeyDown = function(obj:nexacro.Grid,e:nexacro.KeyEventInfo)
+{
+	var nChar = e.keycode;
+
+	if (nChar == 13) 
+	{
+		this.Grd_TEAM_DIVIDE.moveToNextCell();
+		this.Grd_TEAM_DIVIDE.showEditor();   
+		
+		this.Mkedt_divid_cost.set_value(this.dsAccountDtlTeam.getSum("ACNTDTL_AMOUNT"));
+	}		
+};
+
+this.Rd_Kind_OnChanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	if (this.Rd_Kind.value == "0" )
+	{
+		this.DSTEAMCODE.clearData();
+		this.DSWORKTEAM.clearData();
+		this.grdOrgTree.set_enable(true);
+	}
+	else
+	{
+		this.grdOrgTree.set_enable(false);
+		this.DSWORKTEAM.clearData();
+		
+		var str_arg = "BUSECODE=" + nexacro.wrapQuote("00000");
+			str_arg += " AD_KIND=" + "1";
+			
+		this.gfn_TransactionP("search", "JSP/pd/divid_team_select1.jsp", "DSTEAMCODE=DSTEAMCODE", "DSTEAMCODE=DSTEAMCODE", str_arg, "fnCallback", false, "P", false, this);
+	}
+};
+
+// 삭제
+this.btn_BookDelete_OnClick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsAccountDtlTeam.deleteRow(this.dsAccountDtlTeam.row);
+};
+
+this.item_check = function()
+{
+	var ret_value = true;
+	var pPRF_CODE = this.parent.PRF_CODE;
+
+    if (this.dsAccountDtlTeam.rowcount == 0)
+     {
+       alert("입력된 비용 귀속팀이 없습니다! 비용 귀속팀을 입력하세요!");
+       ret_value = false;
+       return false;
+     }
+     
+    var cost_tot = this.dsAccountDtlTeam.getSum("ACNTDTL_AMOUNT");
+
+    if ( this.MEdt_Cost.value != cost_tot)
+     {
+       alert("등록하신 귀속비용의 합이 귀속대상 금액과 일치 하지 않습니다!\r\n금액을 확인하세요!");
+       ret_value = false;
+       return false;
+     }
+  
+    for( var i=0; i <= this.dsAccountDtlTeam.rowcount-1; i++)
+	{
+		if( this.dsAccountDtlTeam.getColumn(i,"ACNTDTL_AMOUNT") == null || this.dsAccountDtlTeam.getColumn(i,"ACNTDTL_AMOUNT") == 0 )
+		{
+		  alert("금액이 입력되지 않은 항목이 있습니다!\r\n금액을 확인해 주세요!");
+		  ret_value = false;
+		  break;
+		}
+		
+		if( pPRF_CODE == "3")
+		{
+			this.dsAccountDtlTeam.setColumn(i, "ACNTDTL_VAT", nexacro.Decimal(nexacro.toNumber(this.dsAccountDtlTeam.getColumn(i, "ACNTDTL_AMOUNT"))).trunc() /10 );
+		}
+		
+	}
+
+   return ret_value;
+};
+
+this.PDTeam_divideF_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	this.opener.dsAccountDtlTeam.copyData(this.dsAccountDtlTeam);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="DSDIVIDTEAM">
+        <ColumnInfo>
+          <Column id="BUSECODE" type="STRING" size="5"/>
+          <Column id="BUSENAME" type="STRING" size="30"/>
+          <Column id="TEAMCODE" type="STRING" size="4"/>
+          <Column id="TEAMNAME" type="STRING" size="50"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DSTEAMCODE">
+        <ColumnInfo>
+          <Column id="BUSECODE" type="STRING" size="5"/>
+          <Column id="BUSENAME" type="STRING" size="30"/>
+          <Column id="TEAMCODE" type="STRING" size="4"/>
+          <Column id="TEAMNAME" type="STRING" size="50"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DSKIND">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="1"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">0</Col>
+            <Col id="NAME">조직</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">프로젝트</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="DS_DEPT_TREE">
+        <ColumnInfo>
+          <Column id="code" type="CHAR" size="5"/>
+          <Column id="bu_level" type="CHAR" size="1"/>
+          <Column id="bu_grcode" type="CHAR" size="5"/>
+          <Column id="bu_seq" type="CHAR" size="2"/>
+          <Column id="bu_name" type="STRING" size="50"/>
+          <Column id="bu_actnclass" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DSWORKTEAM">
+        <ColumnInfo>
+          <Column id="BUSECODE" type="STRING" size="5"/>
+          <Column id="BUSENAME" type="STRING" size="30"/>
+          <Column id="WORKCODE" type="STRING" size="4"/>
+          <Column id="WORKNAME" type="STRING" size="50"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="DSKIND_0">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="1"/>
+          <Column id="NAME" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">제조/원가</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">판관</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAccountDtlTeam">
+        <ColumnInfo>
+          <Column id="ACNTMST_ID" type="STRING" size="20"/>
+          <Column id="ACNTDTL_SEQ" type="STRING" size="3"/>
+          <Column id="ACNTTEAM_SEQ" type="STRING" size="3"/>
+          <Column id="TEAMCODE" type="STRING" size="5"/>
+          <Column id="TEAMNAME" type="STRING" size="50"/>
+          <Column id="ACNTDTL_AMOUNT" type="INT" size="13"/>
+          <Column id="ACNTDTL_VAT" type="STRING" size="12"/>
+          <Column id="WORKCODE" type="STRING" size="256"/>
+          <Column id="WORKNAME" type="STRING" size="256"/>
+          <Column id="ACNTTIT_NO" type="STRING" size="256"/>
+          <Column id="ORDMST_TITNO" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

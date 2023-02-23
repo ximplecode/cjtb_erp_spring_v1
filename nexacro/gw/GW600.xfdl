@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="GW600" width="1630" height="760" titletext="New Form" onload="GW600_onload" background="linear-gradient(to bottom,#ffffff,#ffffff)" onsize="GW600_onsize">
+    <Layouts>
+      <Layout height="760" width="1630">
+        <Div id="div_main" taborder="8" text="Div00" left="0" top="0" width="1260" height="750" minwidth="860" maxwidth="" minheight="380" maxheight="">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="정보보호 서약서 내역 확인" left="3.49%" top="1.33%" color="#7fb39d" font="bold 40px/normal &quot;함초롬바탕 확장B&quot;" verticalAlign="top" width="65%" height="9.07%"/>
+              <Static id="Static01" taborder="2" text="조직도" left="30" top="Static00:5" width="70" height="25" background="linear-gradient(#ebfef3,#ffffff)" textAlign="center" color="#01656f" borderRadius="8px 8px 0px 0px" border="1px solid #c3e4cd"/>
+              <Grid id="grd_section" taborder="1" left="30" top="Static01:-1" binddataset="dsSection" treeusebutton="use" treeusecheckbox="false" treeinitstatus="collapse,all" width="19.50%" oncelldblclick="div_main_grd_section_oncelldblclick" border="1px solid #c3e4cd" oncellclick="grd_section_oncellclick" bottom="10" maxwidth="">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="222"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:NAME" edittype="tree" displaytype="treeitemcontrol" treelevel="bind:BU_LEVEL" border="0px none #dbdee2" cssclass="CssBuse_tree"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static01_00" taborder="3" text="년도" left="grd_section:10" top="Static00:29" width="7.72%" height="4.08%" textAlign="center" background="#c3e4cd" font="bold 13px/normal &quot;Gulim&quot;"/>
+              <Spin id="sp_yy" taborder="4" left="Static01_00:0" top="Static00:29" width="11.02%" height="4.08%" textAlign="center" border="1px groove #c3e4cd" font="bold 14px/normal &quot;Gulim&quot;" max="9999" min="0" onspin="sp_yy_onspin"/>
+              <Grid id="Grid00" taborder="5" left="grd_section:10" top="Static01_00:8" border="1px solid #c3e4cd" binddataset="dsInfoSecurity" bottom="10" right="10" maxwidth="">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="200"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="120"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="부서명"/>
+                      <Cell col="1" text="직책"/>
+                      <Cell col="2" text="사번"/>
+                      <Cell col="3" text="성명"/>
+                      <Cell col="4" text="승인일자"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:BUSE" cssclass="expr:YMD==null?'BgChange':''"/>
+                      <Cell col="1" text="bind:JIKWI" cssclass="expr:YMD==null?'BgChange':''"/>
+                      <Cell col="2" text="bind:SABUN" cssclass="expr:YMD==null?'BgChange':''"/>
+                      <Cell col="3" text="bind:NAME" cssclass="expr:YMD==null?'BgChange':''"/>
+                      <Cell col="4" text="bind:YMD" displaytype="date" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nulltext" cssclass="expr:YMD==null?'BgChange':''"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btn_all" taborder="6" text="미승인 전체 인원" width="15.87%" font="bold 11pt/normal &quot;Arial&quot;" color="red" letterSpacing="1px" background="#efefef" onclick="btn_all_onclick" bottom="Grid00:5" right="10" height="4.53%"/>
+              <Button id="btn_excel" taborder="7" text="엑셀변환" top="3.6%" width="7.62%" height="4.27%" onclick="div_main_btn_excel_onclick" right="10"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var section_code;
+var gv_urlXeni = nexacro.getApplication().gv_urlXeni;
+var gv_urlMrd = nexacro.getApplication().gv_urlMrd;
+
+this.GW600_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var objDate = new nexacro.Date();
+	var f_date = Eco.date.getMaskFormatString(objDate, "yyyy");
+	this.div_main.form.sp_yy.set_value(f_date);
+	var strUrl1, strDs1, strArg1;
+	strUrl = "JSP/common/getdata_buse.jsp";
+	strDs = "dsSection=dsSection";
+	strArg = "buse_nm=''" ;
+	this.gfn_TransactionP("search", strUrl, strDs, strDs, strArg, "fnCallbackSection", false, "P", false, this);
+};
+
+this.grd_section_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.getDataList(this.dsSection.getColumn(e.row, "CODE"),"0");
+};
+
+this.getDataList = function(busecd, gb)
+{
+	var strUrl, strDs, strArg, 
+	strUrl = "JSP/gw/SQL_INFO_SECURITY_LIST.jsp";
+	strDs = "dsInfoSecurity=dsInfoSecurity";
+	strArg = "busecd="+nexacro.wrapQuote(busecd) + " yy="+nexacro.wrapQuote(this.div_main.form.sp_yy.value) + " gb="+nexacro.wrapQuote(gb);
+	this.gfn_TransactionP("list", strUrl, strDs, strDs, strArg, "fnCallbackList", false, "P", false, this);
+}
+
+this.fnCallbackList = function(Trid,ErrorCode,ErrorMsg)
+{
+   if (ErrorCode != 0)
+   {
+      alert(ErrorMsg);
+      return;
+   }	
+}
+
+this.btn_all_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.getDataList("","1");
+};
+
+this.div_main_btn_excel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.exportObj = new ExcelExportObject();
+    var ret = this.exportObj.addExportItem(nexacro.ExportItemTypes.GRID, this.div_main.form.Grid00, this.div_main.form.sp_yy.value+"!A1");
+	this.exportObj.set_exportfilename( "Security_pledge" );
+	this.exportObj.set_exporturl(gv_urlXeni);
+    this.exportObj.exportData();
+};
+
+this.GW600_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	if(this.width < 1260 || this.width > 1630)
+		this.div_main.set_width(this.width - 10)
+	else
+		this.div_main.set_width(1260);
+	
+	if(this.height < 750 || this.height > 760)
+		this.div_main.set_height(this.height - 20)
+	else
+		this.div_main.set_height(750);
+		
+	if(this.height < 480 || this.width < 730)
+		this.div_main.form.Static00.set_font('bold 32px/normal "함초롬바탕 확장B"');
+	else
+		this.div_main.form.Static00.set_font('bold 40px/normal "함초롬바탕 확장B"');
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSection">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="BU_UPCODE" type="STRING" size="256"/>
+          <Column id="BU_LEVEL" type="STRING" size="256"/>
+          <Column id="BU_NAME" type="STRING" size="256"/>
+          <Column id="SHORTCODE" type="STRING" size="256"/>
+          <Column id="BU_ACTNCLASS" type="STRING" size="256"/>
+          <Column id="DECISIONLINE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsInfoSecurity">
+        <ColumnInfo>
+          <Column id="BUSECD" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWICD" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="SABUN" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="YMD" type="STRING" size="256"/>
+          <Column id="SIGN_GB" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MKCust_SearchF" width="450" height="400" titletext="거래처코드 조회(제작) POPUP" onload="MKCust_SearchF_onload">
+    <Layouts>
+      <Layout height="400" width="450">
+        <Button id="btn_close" taborder="0" text="닫기" left="155" top="351" height="29" right="1055" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Static id="Static00" taborder="1" text="거래처명" left="14" top="54" width="87" height="29" background="#fffff" color="#10aea9" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00" taborder="2" text="거래처코드" left="15" top="20" width="87" height="29" background="#fffff" color="#10aea9" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Button id="btn_search" taborder="3" top="50" width="40" height="38" right="898" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Grid id="Grid00" taborder="4" left="14" top="100" width="420" height="240" binddataset="ds_mk_Cust" oncelldblclick="Grid00_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="102"/>
+                <Column size="298"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="거래처코드" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                <Cell col="1" text="거래처명" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CUST_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                <Cell col="1" text="bind:CUST_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search00" taborder="5" top="28" width="46" height="44" right="27" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Button id="btn_close00" taborder="6" text="닫기" left="174" top="353" height="29" right="190" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+        <Edit id="edCustNm" taborder="7" left="105" top="54" width="255" height="29" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Edit id="edCustCd" taborder="8" left="155" top="20" width="70" height="29" maxlength="10" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center"/>
+        <Edit id="edCustGubn" taborder="9" left="106" top="20" width="45" height="29" maxlength="4" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_mk_Cust">
+        <ColumnInfo>
+          <Column id="CUST_GUBN" type="STRING" size="2"/>
+          <Column id="CUST_CODE" type="STRING" size="4"/>
+          <Column id="CUST" type="STRING" size="6"/>
+          <Column id="CUST_NAME" type="STRING" size="256"/>
+          <Column id="REPRESENTATIVE" type="STRING" size="256"/>
+          <Column id="BUSINESSNO" type="STRING" size="256"/>
+          <Column id="BUSINESS_STARTDATE" type="STRING" size="256"/>
+          <Column id="ADDRESS" type="STRING" size="256"/>
+          <Column id="OFFICE_TEL" type="STRING" size="256"/>
+          <Column id="OFFICE_FAX" type="STRING" size="256"/>
+          <Column id="PRODUCT_FAX" type="STRING" size="256"/>
+          <Column id="CUST_STOPPAGE" type="STRING" size="256"/>
+          <Column id="BANK_CODE" type="STRING" size="256"/>
+          <Column id="CUST_ACNTNO" type="STRING" size="256"/>
+          <Column id="CUSTDTL_SALEAMOUNT" type="STRING" size="256"/>
+          <Column id="PWT_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+var vFormId;
+
+this.MKCust_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+	this.ds_mk_Cust.copyData(this.parent.dsParam1);
+	//this.edCustCd.set_value(this.parent.dsParam2);
+	//this.edCustNm.set_value(this.parent.dsParam3);
+	this.edCustGubn.set_value(this.parent.dsParam4);
+	this.edCustCd.setFocus();
+	vFormId = this.parent.dsParam5;
+	if(this.edCustGubn.text.length != 0)
+	{
+		this.edCustGubn.set_readonly(true);
+		this.ds_mk_Cust.filter("CUST_GUBN=='00' || CUST_GUBN=='" + this.edCustGubn.text + "'");
+		this.btn_search_onclick();
+	}else
+		this.edCustGubn.set_readonly(false);
+	
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.ds_mk_Cust.set_rowposition(this.fctn_CustChangeSet(this.edCustCd.text, this.edCustNm.text));
+};
+
+
+//#######################################################
+// 거래처 변경시 변경값 설정
+//#######################################################
+this.fctn_CustChangeSet = function(Cust_Code, Cust_Name)
+{
+	var icust_idx;
+	var sCmpExpr;
+
+	// 거래처 코드 인덱스 찾기
+	if((Cust_Code.length == 4) && (Cust_Name.length != 0))
+	{
+		sCmpExpr = "CUST=='" + this.edCustGubn.text + Cust_Code + "'&&CUST_NAME='" + Cust_Name + "'";
+		
+	    icust_idx  = this.ds_mk_Cust.findRowExpr(sCmpExpr);
+	    return icust_idx;
+	}
+	else if(Cust_Code.length == 4)
+	{
+		sCmpExpr = "CUST=='" + this.edCustGubn.text + Cust_Code + "'";
+		icust_idx  = this.ds_mk_Cust.findRowExpr(sCmpExpr);
+	    return icust_idx;	
+	}
+	else if(Cust_Name.length != 0)
+	{
+	    icust_idx  = this.ds_mk_Cust.findRow("CUST_NAME", Cust_Name);
+	    return icust_idx;	
+	} 
+	else
+	    return -1;
+}
+
+
+this.Grid00_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(vFormId == "MK133" || vFormId == "MK134")
+	{
+		this.opener.edCustCd.set_value(this.ds_mk_Cust.getColumn(this.ds_mk_Cust.rowposition, "CUST_CODE"));
+		this.opener.cbCustNm.set_value(this.edCustGubn.text+this.ds_mk_Cust.getColumn(this.ds_mk_Cust.rowposition, "CUST_CODE"));
+	}else if(vFormId == "MK131_DTL")
+	{
+		this.opener.dsOrdDtl.setColumn(this.opener.dsOrdDtl.rowposition, "CUST_CODE", this.ds_mk_Cust.getColumn(this.ds_mk_Cust.rowposition, "CUST_CODE"));
+		this.opener.dsOrdDtl.setColumn(this.opener.dsOrdDtl.rowposition, "CUST", this.edCustGubn.text+this.ds_mk_Cust.getColumn(this.ds_mk_Cust.rowposition, "CUST_CODE"));
+	}
+	
+	this.close();
+};
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

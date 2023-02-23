@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="grid_css_expr_test" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Grid id="Grid00" taborder="0" left="206" top="97" width="375" height="270" binddataset="Dataset00">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="Column1"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0" cssclass="expr:Column1==1?'Bg_Menu_Yellow':''"/>
+                <Cell col="1" text="bind:Column1" edittype="checkbox" displaytype="checkboxcontrol"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[// this.fn_doDatagrid2Color = function(currow, col){
+// 	alert("진입");
+// 	if(this.ds_fg1.rowcount > 0){
+// 		if(this.gfn_getColumn(currow, this.ds_fg1, "isChecked") == "true"){
+// 			return "cellBlue";
+// 		}
+// 	}
+// }]]></Script>
+  </Form>
+</FDL>

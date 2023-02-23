@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="LeftMenuTest" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Button id="Button01" taborder="0" text="Spring Mvc Call" left="10" top="60" width="152" height="38" onclick="Button01_onclick" background="#4364ed"/>
+        <Button id="Button05" taborder="1" text="Servlet Call" left="600" top="60" width="152" height="38" onclick="Button05_onclick" background="#4364ed"/>
+        <Grid id="Grid00" taborder="2" left="10" top="110" width="410" height="490" binddataset="ds_Multi" formatid="default">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CODE"/>
+                <Cell col="1" text="MLEVEL"/>
+                <Cell col="2" text="NAME"/>
+                <Cell col="3" text="PREFIX"/>
+                <Cell col="4" text="URL"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:MLEVEL"/>
+                <Cell col="2" text="bind:NAME"/>
+                <Cell col="3" text="bind:PREFIX"/>
+                <Cell col="4" text="bind:URL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00_00" taborder="3" left="600" top="110" width="410" height="490" binddataset="ds_Multi2" formatid="default">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="CODE"/>
+                <Cell col="1" text="MLEVEL"/>
+                <Cell col="2" text="NAME"/>
+                <Cell col="3" text="PREFIX"/>
+                <Cell col="4" text="URL"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:CODE"/>
+                <Cell col="1" text="bind:MLEVEL"/>
+                <Cell col="2" text="bind:NAME"/>
+                <Cell col="3" text="bind:PREFIX"/>
+                <Cell col="4" text="bind:URL"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_Multi">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="MLEVEL" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="PREFIX" type="STRING" size="256"/>
+          <Column id="URL" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_Multi2">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="MLEVEL" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="PREFIX" type="STRING" size="256"/>
+          <Column id="URL" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_svcId = "SpringVer";
+	var str_url = "testURL::LeftMenuList.do";
+	var str_inDs = "";
+	var str_outDs = "ds_Multi=ds_Multi";
+	var str_arg = "";
+	var str_callback = "fn_Callback";
+	this.transaction(str_svcId, str_url, str_inDs, str_outDs, str_arg, str_callback, 2);
+};
+
+this.Button05_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_svcId = "ServletVer";
+	var str_url = "jspTestURL::LeftMenuList.jsp";
+	var str_inDs = "";
+	var str_outDs = "ds_Multi2=ds_Multi";
+	var str_arg = "";
+	var str_callback = "fn_Callback";
+	
+	this.transaction(str_svcId, str_url, str_inDs, str_outDs, str_arg, str_callback);
+};
+
+
+this.fn_Callback = function(svcId, eCode, eMsg)
+{
+	if(eCode != 0) this.alert(eCode + " : " + eMsg);
+	switch (svcId)
+	{
+		case "SpringVer" :
+			trace(this.ds_Multi.saveXML());
+		break;
+		case "ServletVer" :
+			trace(this.ds_Multi2.saveXML());
+		break;
+	}
+}]]></Script>
+  </Form>
+</FDL>

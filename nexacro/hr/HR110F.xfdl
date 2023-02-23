@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR110F" width="1250" height="625" titletext="New Form" onload="HR110F_onload">
+    <Layouts>
+      <Layout height="625" width="1250">
+        <Static id="Static02" taborder="0" text="부서별 본부장/부문장/부서장 등록" left="4" top="5" width="356" height="45" color="#7fb39d" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Grid id="grd_list" taborder="1" left="2" top="Static02:5" right="2" bottom="2" binddataset="ds_list" autofittype="col" oncellclick="grd_list_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="155"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="48"/>
+                <Column size="48"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="48"/>
+                <Column size="48"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="2" text="부서명"/>
+                <Cell col="2" colspan="4" text="본부장"/>
+                <Cell col="6" colspan="4" text="부서장"/>
+                <Cell col="10" colspan="4" text="팀장"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:BUSEO_CODE"/>
+                <Cell col="1" text="bind:BUSEO_NAME"/>
+                <Cell col="2" text="bind:GENERAL_JIKWI"/>
+                <Cell col="3" text="bind:GENERAL_NAME"/>
+                <Cell col="4" edittype="button" displaytype="buttoncontrol" text="변경"/>
+                <Cell col="5" displaytype="buttoncontrol" edittype="button" text="삭제"/>
+                <Cell col="6" text="bind:DIRECTOR_JIKWI"/>
+                <Cell col="7" text="bind:DIRECTOR_NAME"/>
+                <Cell col="8" displaytype="buttoncontrol" edittype="button" text="변경"/>
+                <Cell col="9" displaytype="buttoncontrol" edittype="button" text="삭제"/>
+                <Cell col="10" text="bind:DEPARTMENT_JIKWI"/>
+                <Cell col="11" text="bind:DEPARTMENT_NAME"/>
+                <Cell col="12" displaytype="buttoncontrol" edittype="button" text="변경"/>
+                <Cell col="13" displaytype="buttoncontrol" edittype="button" text="삭제"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" taborder="2" text="조회" top="16" width="120" height="22" right="140" onclick="btn_search_onclick"/>
+        <Button id="btn_save" taborder="3" text="저장" top="16" width="120" height="22" left="btn_search:10" onclick="btn_save_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="BUSEO_CODE" type="STRING" size="256"/>
+          <Column id="BUSEO_NAME" type="STRING" size="256"/>
+          <Column id="GENERAL_BUSEO" type="STRING" size="256"/>
+          <Column id="GENERAL_JIKWI" type="STRING" size="256"/>
+          <Column id="GENERAL_NAME" type="STRING" size="256"/>
+          <Column id="GENERAL_MANAGER" type="STRING" size="256"/>
+          <Column id="DIRECTOR_BUSEO" type="STRING" size="256"/>
+          <Column id="DIRECTOR_JIKWI" type="STRING" size="256"/>
+          <Column id="DIRECTOR_NAME" type="STRING" size="256"/>
+          <Column id="PART_DIRECTOR" type="STRING" size="256"/>
+          <Column id="DEPARTMENT_BUSEO" type="STRING" size="256"/>
+          <Column id="DEPARTMENT_JIKWI" type="STRING" size="256"/>
+          <Column id="DEPARTMENT_NAME" type="STRING" size="256"/>
+          <Column id="DEPARTMENT_MANAGER" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+
+var sCol, sRow;
+var arr_rt;
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/hr/getData_HR110.jsp";
+	in_ds = "ds_list=ds_list";
+	out_ds = "ds_list=ds_list";
+	str_arg = "";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "P", false, this);
+};
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)	
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+}
+
+this.grd_list_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	switch (e.col)
+	{
+		case 4 :
+			this.setData_list(e.col, e.row);
+			break;
+		case 8 :
+			this.setData_list(e.col, e.row);
+			break;
+		case 12 :
+			this.setData_list(e.col, e.row);
+			break;
+		case 5 :
+			this.setData_delete(e.col, e.row);
+			break;
+		case 9 :
+			this.setData_delete(e.col, e.row);
+			break;
+		case 13 :
+			this.setData_delete(e.col, e.row);
+			break;
+	}
+	
+};
+
+this.setData_list = function(nCol, nRow)
+{
+	sRow = nRow;
+	sCol = nCol;
+	
+	var objNew = new ChildFrame();
+	objNew.init("sInsa",0,0,237,440,null,null,"common::Insa.xfdl");
+	this.addChild("sInsa",objNew);
+	objNew.set_openalign("center middle");		
+	objNew.set_showtitlebar(false);
+	objNew.showModal("sInsa",this.getOwnerFrame(),{arr_s:arr_rt},this,this.fn_Callback_insa);
+	
+}
+
+this.fn_Callback_insa = function(strID, vArgu)
+{
+	if (vArgu == 1)
+	{
+		//this.setData_clearData();	
+		//this.getData_insa101(arr_rt[0]);	
+		switch (sCol)
+		{
+			case 4 : 
+				this.ds_list.setColumn(sRow,"GENERAL_JIKWI",arr_rt[2]);
+				this.ds_list.setColumn(sRow,"GENERAL_NAME",arr_rt[1]);
+				this.ds_list.setColumn(sRow,"GENERAL_MANAGER",arr_rt[0]);
+				break;
+			case 8 :
+				this.ds_list.setColumn(sRow,"DIRECTOR_JIKWI",arr_rt[2]);
+				this.ds_list.setColumn(sRow,"DIRECTOR_NAME",arr_rt[1]);
+				this.ds_list.setColumn(sRow,"PART_DIRECTOR",arr_rt[0]);
+				break;
+			case 12 :
+				this.ds_list.setColumn(sRow,"DEPARTMENT_JIKWI",arr_rt[2]);
+				this.ds_list.setColumn(sRow,"DEPARTMENT_NAME",arr_rt[1]);
+				this.ds_list.setColumn(sRow,"DEPARTMENT_MANAGER",arr_rt[0]);
+				break;
+				
+			
+		}
+	}	
+	this.removeChild("sInsa");
+	
+};
+
+this.setData_delete = function(nCol, nRow)
+{
+	switch (nCol)
+	{
+		case 5 : 
+			this.ds_list.setColumn(nRow,"GENERAL_JIKWI","");
+			this.ds_list.setColumn(nRow,"GENERAL_NAME","");
+			this.ds_list.setColumn(nRow,"GENERAL_MANAGER","");
+			break;
+		case 9 :
+			this.ds_list.setColumn(nRow,"DIRECTOR_JIKWI","");
+			this.ds_list.setColumn(nRow,"DIRECTOR_NAME","");
+			this.ds_list.setColumn(nRow,"PART_DIRECTOR","");
+			break;
+		case 13 :
+			this.ds_list.setColumn(nRow,"DEPARTMENT_JIKWI","");
+			this.ds_list.setColumn(nRow,"DEPARTMENT_NAME","");
+			this.ds_list.setColumn(nRow,"DEPARTMENT_MANAGER","");
+			break;
+	}
+
+	
+};
+
+this.HR110F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	arr_rt = new Array();
+};
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	str_url = "JSP/hr/setData_HR110.jsp";
+	in_ds = "ds_list=ds_list:U";
+	out_ds = "ds_list=ds_list";
+	str_arg = "insert_user='" + nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN") + "'";
+	this.gfn_TransactionP("setData", str_url, in_ds, out_ds, str_arg, "Callback_dml", true, "U", false, this);
+};
+
+this.Callback_dml = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+			return false;
+		}
+	}
+	
+	this.alert("완료");
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ED161_SearchF" width="400" height="390" titletext="New Form" onload="ED161_SearchF_onload">
+    <Layouts>
+      <Layout height="390" width="400">
+        <Static id="Static00_00" taborder="0" text="도서명" left="17" top="17" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00_00" taborder="1" text="도서코드" left="17" top="49" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Static id="Static00_00_01" taborder="2" text="관련부서" left="17" top="80" width="80" height="30" background="#fffff" color="#10aea9" font="normal bold 10pt/normal &quot;Arial&quot;" textAlign="center" border="2px solid #10aea9"/>
+        <Edit id="edt_bookName" taborder="3" left="98" top="17" width="245" height="30"/>
+        <Edit id="edt_code" taborder="4" left="98" top="48" width="150" height="31"/>
+        <Edit id="edt_year" taborder="5" left="249" top="48" width="94" height="31"/>
+        <Combo id="Combo00" taborder="6" text="Combo00" left="98" top="80" width="245" height="30" innerdataset="dsSection" codecolumn="SECTIONCODE" datacolumn="SECTIONNAME"/>
+        <Grid id="Grid00" taborder="7" left="14" top="118" width="372" height="232"/>
+        <Button id="btn_search" taborder="8" top="45" width="40" height="38" right="10" background="url('Img::loupe.png') no-repeat center center #3cbcb8" onclick="btn_search_onclick" defaultbutton="true"/>
+        <Button id="btn_close" taborder="9" text="닫기" left="165" top="355" height="29" right="165" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="btn_close_onclick" escapebutton="true"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSection"/>
+      <Dataset id="dsRoyalty_Mst"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var sSelect, sSection_Code;
+
+this.ED161_SearchF_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.dsSection.copyData(this.parent.p_dsSection);
+	this.dsRoyalty_Mst.copyData(this.parent.p_dsRoyaltyacnt_Mst);
+	
+	sSelect = this.parent.p_sSelect;
+	sSection_Code = this.parent.p_sectionCode;
+	
+	if(sSelect < "3")
+		this.cb_section.set_index(this.dsSection.findRow("SECTION_CODE", sSection_Code));
+	else 
+		this.cb_section.set_index(-1);
+};
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.edt_bookName.text.length == 0)
+	{
+		alert("도서명을 입력해 주세요.");
+		this.edt_bookName.setFocus();
+		return false;
+	}
+	
+	var inds = "dsRoyalty_Mst=dsRoyalty_Mst";
+	var outds = "dsRoyalty_Mst=dsRoyalty_Mst";
+	var strArg = "BOOKMST_CODE=" + nexacro.wrapQuote(this.edt_bookName.text)
+				+ " BOOKMST_YEAR=" + nexacro.wrapQuote(this.cb_section.value)
+				+ " RCMST_BOOKNAME=" + nexacro.wrapQuote(this.cb_section.value);
+				
+	this.gfn_TransactionP("search","JSP/ed/ed161f_contract_mst.jsp", inds, outds, strArg, "fnMstCallback", false, "P", false, this);
+};
+
+this.fnMstCallback = function(svcId, errCode, errMsg)
+{
+	if(errCode !=0)
+		alert(errMsg);
+	else if(this.dsRoyalty_Mst.rowcount == 0)
+		alert("조회된 자료가 없습니다.");
+}
+]]></Script>
+  </Form>
+</FDL>

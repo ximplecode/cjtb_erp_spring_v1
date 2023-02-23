@@ -1,0 +1,981 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SD2110F" height="1200" titletext="수불일보" onload="SD2110F_onload" width="1400">
+    <Layouts>
+      <Layout height="1200" mobileorientation="landscape" width="1400">
+        <Static id="Static00_00_00_01_00_00" taborder="53" text="도서구분" top="90" height="21" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" right="13.71%" left="63.07%"/>
+        <Static id="Static00_01_01_00_00_00_00" taborder="54" top="109" height="246" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" left="63.00%" right="140%"/>
+        <Static id="Static00_01_01_00_00_00" taborder="51" top="109" height="246" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" left="39.29%" right="36.88%"/>
+        <Static id="Static00_00_00_01_00_00_00_00" taborder="59" text="구분" top="109" height="246" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" right="0.57%" left="86.29%"/>
+        <Static id="Static00_01_01_00_00" taborder="49" top="109" height="246" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" left="0.00%" right="60.65%"/>
+        <Static id="Static00_01" taborder="1" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" right="69.71%" left="7.93%"/>
+        <Static id="Static00_01_00" taborder="4" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" right="45.21%" left="39.36%"/>
+        <Edit id="E_gubn" taborder="5" left="8.36%" top="21" height="25" text="0" maxlength="1" enable="true" textAlign="center" inputmode="normal" canchange="E_gubn_canchange" width="25"/>
+        <Combo id="cmb_select" taborder="7" text="전체" left="10.71%" top="21" height="25" innerdataset="ds_cmd_combo" datacolumn="data" codecolumn="code" index="3" value="3" onitemchanged="cmb_select_onitemchanged" width="120"/>
+        <Static id="Static00_01_00_00" taborder="8" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" width="36.50%" right="0.57%"/>
+        <Static id="Static00_01_01" taborder="10" top="51" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" right="69.71%" left="7.93%"/>
+        <MaskEdit id="ed_sbook" taborder="11" left="8.36%" top="59" height="25" maskchar="_" enableevent="true" accessibilityrole="edit" format="##########" type="string" value="0000000000" right="85.07%"/>
+        <Button id="btn_sbookcode" taborder="12" left="15.36%" top="63" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" height="19" width="19" onclick="btn_sbookcode_onclick" cursor="pointer"/>
+        <Static id="Static01_00" taborder="13" text="~" left="17.36%" top="57" height="30" width="20"/>
+        <MaskEdit id="ed_ebook" taborder="14" left="19.57%" top="60" height="25" maskchar="_" enableevent="true" accessibilityrole="edit" format="##########" type="string" value="9999999999" right="73.57%"/>
+        <Button id="btn_ebookcode" taborder="15" left="26.86%" top="63" height="19" edge="url('Img::ico_grdSrc.png') 0px 0px" background="" width="19" onclick="btn_ebookcode_onclick" cursor="pointer"/>
+        <Calendar id="ed_sdate" taborder="16" left="39.93%" top="20" height="25" right="51.07%"/>
+        <MaskEdit id="ed_esgrp" taborder="17" left="72.50%" top="17" height="30" maskchar="_" enableevent="true" accessibilityrole="edit" format="##########" type="string" value="9999999999" right="21.29%"/>
+        <MaskEdit id="ed_ssgrp" taborder="18" left="64.00%" top="19" height="25" enableevent="true" accessibilityrole="edit" format="##########" type="string" value="0000000000" right="30.00%"/>
+        <Static id="Static01_00_01" taborder="19" text="~" left="70.93%" top="17" height="30" width="20"/>
+        <Static id="Static00_01_00_01" taborder="21" top="51" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" right="45.21%" left="39.36%"/>
+        <Static id="Static00_01_00_01_00" taborder="23" top="51" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" width="15.50%" right="21.50%"/>
+        <Spin id="ed_syy" taborder="24" left="39.86%" top="60" height="25" max="9999" min="2009" circulation="true" width="66"/>
+        <Static id="Static01_01_00" taborder="25" text="~" left="45.57%" top="59" height="25" width="20"/>
+        <Spin id="ed_eyy" taborder="26" left="47.07%" top="60" height="25" max="9999" min="2009" circulation="true" width="61"/>
+        <CheckBox id="C_hak" taborder="27" text="학년용" left="64.21%" top="57" height="25" right="28.86%"/>
+        <CheckBox id="C_hak1" taborder="28" text="1학기" left="69.29%" top="57" height="25" right="24.86%"/>
+        <CheckBox id="C_hak2" taborder="29" text="2학기" left="74.43%" top="57" height="25" right="19.57%"/>
+        <Static id="Static00_01_01_00" taborder="31" top="51" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" right="0.57%" left="86.29%"/>
+        <CheckBox id="C_sun1" taborder="32" text="재고" left="87.29%" top="60" height="20" right="9.07%" value="true"/>
+        <CheckBox id="C_sun2" taborder="33" text="거래내역" left="91.79%" top="60" height="20" right="0.29%"/>
+        <Static id="Static00_01_00_01_01" taborder="35" top="353" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" text="" right="0.57%" left="7.93%"/>
+        <Radio id="rd_chk" taborder="36" left="11.50%" top="361" height="25" innerdataset="ds_sort" direction="vertical" index="0" text="수불일보" value="수불일보" canitemchange="Div00_Radio00_canitemchange" datacolumn="data" columncount="3" codecolumn="code" right="771"/>
+        <Static id="Static03" taborder="37" text="코드 :" left="10.57%" top="117" height="20" textAlign="right" right="83.21%"/>
+        <MaskEdit id="ed_subbookcode" taborder="38" left="17.00%" top="115" height="25" maskchar="_" enableevent="true" accessibilityrole="edit" format="##########" type="string" right="76.00%"/>
+        <CheckBox id="ck_select" taborder="39" text="도서" left="24.50%" top="119" height="20" right="71.50%"/>
+        <CheckBox id="ck_use" taborder="40" text="사용x" left="28.57%" top="120" height="20" right="67.86%" value="true"/>
+        <Static id="Static03_00" taborder="41" text="도서명 :" left="10.50%" top="148" height="20" textAlign="right" right="83.14%"/>
+        <Spin id="ed_year" taborder="42" left="28.00%" top="144" height="25" max="9999" min="2009" right="67.00%"/>
+        <Button id="btn_bookatt_search" taborder="43" text="조회" top="114" height="57" font="normal bold 10pt/normal &quot;Arial&quot;" visible="true" left="33.50%" right="61.43%" onclick="btn_bookatt_search_onclick" cursor="pointer"/>
+        <Grid id="grd_1" taborder="44" left="0.50%" top="173" height="175" binddataset="dsSubbook" autofittype="col" autosizingtype="col" right="61.36%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="27"/>
+                <Column size="94"/>
+                <Column size="50"/>
+                <Column size="246"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="none" edittype="checkbox"/>
+                <Cell col="1" text="속성코드"/>
+                <Cell col="2" text="출판"/>
+                <Cell col="3" text="도서명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:chk" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:code_key" textAlign="center"/>
+                <Cell col="2" text="bind:book_year" textAlign="center"/>
+                <Cell col="3" text="bind:book_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_4" taborder="45" left="86.93%" top="119" height="229" binddataset="ds_bjgb" autofittype="col" autosizingtype="col" right="1.00%" onheadclick="grd_4_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="35"/>
+                <Column size="43"/>
+                <Column size="78"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="코드"/>
+                <Cell col="2" text="코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:chk" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" textAlign="center" text="bind:cd"/>
+                <Cell col="2" text="bind:cd_nm"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_3" taborder="46" left="63.36%" top="118" height="230" binddataset="ds_bgbr" autofittype="col" autosizingtype="col" right="14.07%" onheadclick="grd_3_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="41"/>
+                <Column size="53"/>
+                <Column size="143"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol"/>
+                <Cell col="1" text="코드"/>
+                <Cell col="2" text="코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:chk" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:code"/>
+                <Cell col="2" text="bind:name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_2" taborder="47" left="39.86%" top="136" height="212" binddataset="ds_mdcode" autofittype="col" autosizingtype="col" right="37.43%">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="33"/>
+                <Column size="49"/>
+                <Column size="122"/>
+                <Column size="112"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell/>
+                <Cell col="1" text="코드"/>
+                <Cell col="2" text="대분류"/>
+                <Cell col="3" text="소분류"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:chk" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="bind:mdcode"/>
+                <Cell col="2" text="bind:mnm"/>
+                <Cell col="3" text="bind:dnm"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00_02_00_00" taborder="48" text="도서속성" top="90" height="21" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" right="60.60%" left="0.00%"/>
+        <Static id="Static03_01" taborder="52" text="자동선택 :" left="47.79%" top="112" height="20" textAlign="right" right="47.00%" cursor="none"/>
+        <Static id="Static00_00_00_01_00_00_00" taborder="55" text="도서유형" top="90" height="21" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" right="0.57%" left="86.29%"/>
+        <Div id="Div_PreView" taborder="56" left="0.00%" top="396" height="434" formscrolltype="horizontal" text="" width="99.79%">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Button id="btn_printview" taborder="57" text="조회" top="360" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" visible="true" left="84.00%" right="8.50%" onclick="btn_printview_onclick" cursor="pointer"/>
+        <Button id="btn_print" taborder="58" text="출력" top="360" height="25" font="normal bold 10pt/normal &quot;Arial&quot;" visible="true" left="92.43%" right="0.93%" cursor="pointer" onclick="btn_print_onclick"/>
+        <Static id="Static00" taborder="0" text="선 택    " top="12" height="40" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="right" onclick="Static00_onclick" border="1px solid #10aea9" left="0.00%" right="92%"/>
+        <Static id="Static00_02" taborder="9" text="도서코드    " top="51" height="40" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="right" onclick="Static00_onclick" border="1px solid #10aea9" left="0.00%" right="92%"/>
+        <Static id="Static00_02_00" taborder="30" text="선택사항    " top="51" height="40" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="right" onclick="Static00_onclick" border="1px solid #10aea9" left="78.36%" right="13.71%"/>
+        <Static id="Static00_00" taborder="3" text="작업일자    " top="12" height="40" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="right" onclick="Static00_onclick" border="1px solid #10aea9" right="60.64%" left="30.29%"/>
+        <Static id="Static00_00_00" taborder="20" text="도서년판    " top="51" height="40" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="right" onclick="Static00_onclick" border="1px solid #10aea9" right="60.64%" left="30.29%"/>
+        <Static id="Static00_00_00_01" taborder="34" text="출력조건     " top="353" height="40" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="right" onclick="Static00_onclick" border="1px solid #10aea9" right="92%" left="0.00%"/>
+        <Static id="Static00_00_01" taborder="2" text="속성구간    " left="54.79%" top="12" height="40" background="#ffffff" color="#10aea9" font="bold 10pt/normal &quot;Arial&quot;" textAlign="right" onclick="Static00_onclick" border="1px solid #10aea9" right="36.86%"/>
+        <Static id="Static00_00_00_00" taborder="22" text="학기구분    " top="51" height="40" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="right" onclick="Static00_onclick" border="1px solid #10aea9" right="36.86%" left="54.79%"/>
+        <CheckBox id="C_Jjego" taborder="60" text="적정포함" left="17.00%" top="361" height="25" right="77.79%" visible="true"/>
+        <Edit id="ed_bookname" taborder="61" left="17.00%" top="144" height="25" right="72.50%"/>
+        <Static id="Static00_00_00_01_00" taborder="50" text="판매형태" top="90" height="21" background="#ffffff" color="#10aea9" font="bold 9pt/normal &quot;Arial&quot;" textAlign="center" onclick="Static00_onclick" border="1px solid #10aea9" right="36.87%" left="39.36%"/>
+        <Radio id="R_select" taborder="6" left="53.50%" top="114" width="8.86%" height="18" innerdataset="ds_radio" direction="vertical" text="속셈" value="속셈" datacolumn="data" codecolumn="code" onitemchanged="R_select_onitemchanged"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_cmd_combo">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">판매용</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">교사용</Col>
+          </Row>
+          <Row>
+            <Col id="code">2</Col>
+            <Col id="data">타계정</Col>
+          </Row>
+          <Row>
+            <Col id="code">3</Col>
+            <Col id="data">전체</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_radio">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">교판</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">속셈</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_sort">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">수불일보           </Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">수불일보(합산)</Col>
+          </Row>
+          <Row>
+            <Col id="code">2</Col>
+            <Col id="data">속성코드별 수불일보</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_bjgb">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="1"/>
+          <Column id="cd" type="STRING" size="1"/>
+          <Column id="cd_nm" type="STRING" size="20"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="chk">0</Col>
+            <Col id="cd">1</Col>
+            <Col id="cd_nm">주력</Col>
+          </Row>
+          <Row>
+            <Col id="chk">0</Col>
+            <Col id="cd">2</Col>
+            <Col id="cd_nm">재택</Col>
+          </Row>
+          <Row>
+            <Col id="chk">0</Col>
+            <Col id="cd">3</Col>
+            <Col id="cd_nm">신간</Col>
+          </Row>
+          <Row>
+            <Col id="chk">0</Col>
+            <Col id="cd">4</Col>
+            <Col id="cd_nm">기타</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSubbook">
+        <ColumnInfo>
+          <Column id="code_key" type="STRING" size="10"/>
+          <Column id="book_year" type="STRING" size="4"/>
+          <Column id="book_name" type="STRING" size="256"/>
+          <Column id="chk" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mdcode">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="1"/>
+          <Column id="mdcode" type="STRING" size="2"/>
+          <Column id="mnm" type="STRING" size="25"/>
+          <Column id="dnm" type="STRING" size="25"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="chk">0</Col>
+            <Col id="mnm">미등록</Col>
+            <Col id="dnm"/>
+            <Col id="mdcode">00</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_bgbr">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="chk">0</Col>
+            <Col id="code">00</Col>
+            <Col id="name">미등록</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_preview1" keystring="SGRP_CODE">
+        <ColumnInfo>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="MDCODE" type="STRING" size="256"/>
+          <Column id="BOOK_CD" type="STRING" size="256"/>
+          <Column id="BYY" type="STRING" size="256"/>
+          <Column id="BOOK_NM" type="STRING" size="256"/>
+          <Column id="book_jgb" type="STRING" size="256"/>
+          <Column id="panh_nm" type="STRING" size="256"/>
+          <Column id="J_JEGO" type="INT" size="256"/>
+          <Column id="ISU1" type="INT" size="256"/>
+          <Column id="ISU2" type="INT" size="256"/>
+          <Column id="ISU5" type="INT" size="256"/>
+          <Column id="ISU3" type="INT" size="256"/>
+          <Column id="ISU4" type="INT" size="256"/>
+          <Column id="IHAB" type="INT" size="256"/>
+          <Column id="CSU1" type="INT" size="256"/>
+          <Column id="CSU3" type="INT" size="256"/>
+          <Column id="CSU5" type="INT" size="256"/>
+          <Column id="CSU6" type="INT" size="256"/>
+          <Column id="CSU7" type="INT" size="256"/>
+          <Column id="CHAB" type="INT" size="256"/>
+          <Column id="PG_JEGO" type="INT" size="256"/>
+          <Column id="PB_JEGO" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_preview2" keystring="SGRP_CODE">
+        <ColumnInfo>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="MDCODE" type="STRING" size="256"/>
+          <Column id="BOOK_CD" type="STRING" size="256"/>
+          <Column id="BYY" type="STRING" size="256"/>
+          <Column id="BOOK_NM" type="STRING" size="256"/>
+          <Column id="book_jgb" type="STRING" size="256"/>
+          <Column id="panh_nm" type="STRING" size="256"/>
+          <Column id="J_JEGO" type="INT" size="256"/>
+          <Column id="ISU1" type="INT" size="256"/>
+          <Column id="ISU2" type="INT" size="256"/>
+          <Column id="ISU5" type="INT" size="256"/>
+          <Column id="ISU3" type="INT" size="256"/>
+          <Column id="ISU4" type="INT" size="256"/>
+          <Column id="IHAB" type="INT" size="256"/>
+          <Column id="CSU1" type="INT" size="256"/>
+          <Column id="CSU3" type="INT" size="256"/>
+          <Column id="CSU5" type="INT" size="256"/>
+          <Column id="CSU6" type="INT" size="256"/>
+          <Column id="CSU7" type="INT" size="256"/>
+          <Column id="CHAB" type="INT" size="256"/>
+          <Column id="PG_JEGO" type="INT" size="256"/>
+          <Column id="PB_JEGO" type="INT" size="256"/>
+          <Column id="JQTY" type="INT" size="256"/>
+          <Column id="CGSU" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_preview4" keystring="MDCODE">
+        <ColumnInfo>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="MDCODE" type="STRING" size="256"/>
+          <Column id="J_JEGO" type="INT" size="256"/>
+          <Column id="ISU1" type="INT" size="256"/>
+          <Column id="ISU2" type="INT" size="256"/>
+          <Column id="ISU5" type="INT" size="256"/>
+          <Column id="ISU3" type="INT" size="256"/>
+          <Column id="ISU4" type="INT" size="256"/>
+          <Column id="IHAB" type="INT" size="256"/>
+          <Column id="CSU1" type="INT" size="256"/>
+          <Column id="CSU2" type="INT" size="256"/>
+          <Column id="CSU3" type="INT" size="256"/>
+          <Column id="CSU4" type="INT" size="256"/>
+          <Column id="CSU5" type="INT" size="256"/>
+          <Column id="CSU6" type="INT" size="256"/>
+          <Column id="CSU7" type="INT" size="256"/>
+          <Column id="CHAB" type="INT" size="256"/>
+          <Column id="JEGO" type="INT" size="256"/>
+          <Column id="CAMT" type="INT" size="256"/>
+          <Column id="BAMT" type="INT" size="256"/>
+          <Column id="SAMT" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_preview3" keystring="SGRP_CODE">
+        <ColumnInfo>
+          <Column id="SGRP_CODE" type="STRING" size="256"/>
+          <Column id="SGRP_NM" type="STRING" size="256"/>
+          <Column id="MDCODE" type="STRING" size="256"/>
+          <Column id="BOOK_CD" type="STRING" size="256"/>
+          <Column id="BYY" type="STRING" size="256"/>
+          <Column id="BOOK_NM" type="STRING" size="256"/>
+          <Column id="J_JEGO" type="INT" size="256"/>
+          <Column id="ISU1" type="INT" size="256"/>
+          <Column id="ISU2" type="INT" size="256"/>
+          <Column id="ISU5" type="INT" size="256"/>
+          <Column id="ISU3" type="INT" size="256"/>
+          <Column id="ISU4" type="INT" size="256"/>
+          <Column id="IHAB" type="INT" size="256"/>
+          <Column id="CSU1" type="INT" size="256"/>
+          <Column id="CSU3" type="INT" size="256"/>
+          <Column id="CSU5" type="INT" size="256"/>
+          <Column id="CSU6" type="INT" size="256"/>
+          <Column id="CSU7" type="INT" size="256"/>
+          <Column id="CHAB" type="INT" size="256"/>
+          <Column id="PG_JEGO" type="INT" size="256"/>
+          <Column id="PB_JEGO" type="INT" size="256"/>
+          <Column id="JEGO" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+include "Lib::Lib_sd.xjs";
+
+//------------------------------------------------------------------------------
+// 폼에서 사용되는 전역 번수.
+//------------------------------------------------------------------------------
+var gv_urlRdDataServer = nexacro.getApplication().gv_urlRdDataServer; //크로닉스주소
+var F_ScreenName    = "";					                          // 화면명
+var	lovflag = true;
+var qryStr ="";														  //쿼리
+var Fv_HeadChk1 = 0;                        						  //체크박스1. 
+var Fv_HeadChk2 = 0;                        						  //체크박스2. 
+var Find1_sw  = "N";
+var Find2_sw  = "N";
+var Find3_sw  = "N";
+var Find4_sw  = "N";
+var Find5_sw  = "N";
+var bgbrnm;
+
+//페이지로드
+this.SD2110F_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{		
+    //디폴트 오늘날자.
+	var today = new Date(); 
+	var strtoDay = Eco.date.getMaskFormatString(today, "yyyyMMdd");
+	this.ed_sdate.set_value(strtoDay);						//작업일자
+    this.ed_syy.set_value("2011");                          //도서년판-시작	
+	this.ed_eyy.set_value(this.lfn_sd_getBookYear("year")); //도서년판-끝
+    this.ed_year.set_value(this.lfn_sd_getBookYear("year"));//도서속성검색-년판
+	this.E_gubn.set_value("3");  						    //선택                           
+	this.cmb_select.set_index(3);							//선택
+	this.C_sun1.set_value(true);							//선택사항-재고
+	this.rd_chk.set_index(0);								//정렬조건
+	this.C_Jjego.set_value(false);							//적정포함
+	this.ck_use.set_value(true);							//속성검색-사용유무
+ 	
+	//도서구분 데이터 가져오기
+	var strArg = "";
+	var outds = "ds_bgbr=ds_bgbr";
+	var inds = "ds_bgbr=ds_bgbr";
+	this.gfn_TransactionP("bgbr_select","JSP/sd/sel_bgbr.jsp", inds, outds, strArg, "fnCallback", false, "P", false, this);	
+
+	//판매형태 데이터 가져오기
+	strArg = "";
+	outds = "ds_mdcode=ds_mdcode";
+	inds = "ds_mdcode=ds_mdcode";
+	this.gfn_TransactionP("mdcode_select","JSP/sd/sel_mdcode.jsp", inds, outds, strArg, "fnCallback", false, "P", false, this);	
+	
+    this.E_gubn.setFocus();	
+	this.Div_PreView.set_url("sd::SD2110F_PREVIEW1.xfdl");
+};
+
+
+//도서구분전체선택클릭
+this.grd_3_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		if(Fv_HeadChk1 == 0){Fv_HeadChk1 = 1;}else{Fv_HeadChk1 = 0;}
+		this.grd_3.setCellProperty("head", 0, "text", Fv_HeadChk1);
+		for(var i = 0; i < this.ds_bgbr.rowcount; i++)
+		{
+			this.ds_bgbr.setColumn(i, "chk", Fv_HeadChk1);
+		}
+	}		
+};
+
+//구분전체선택클릭
+this.grd_4_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	if(e.cell == 0)
+	{
+		if(Fv_HeadChk2 == 0){Fv_HeadChk2 = 1;}else{Fv_HeadChk2 = 0;}
+		this.grd_4.setCellProperty("head", 0, "text", Fv_HeadChk2);
+		for(var i = 0; i < this.ds_bjgb.rowcount; i++)
+		{
+			this.ds_bjgb.setColumn(i, "chk", Fv_HeadChk2);
+		}
+	}	
+};
+
+//선택콤보변경시
+this.cmb_select_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if( this.cmb_select.value == "0" )     {this.E_gubn.set_value("0");}
+	else if( this.cmb_select.value == "1" ){this.E_gubn.set_value("1");}
+	else if( this.cmb_select.value == "2" ){this.E_gubn.set_value("2");}
+	else if( this.cmb_select.value == "3" ){this.E_gubn.set_value("3");}	
+};
+
+//선택텍스트변경시
+this.E_gubn_canchange = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	if( this.E_gubn.value == "0" )     {this.cmb_select.set_index(0)}
+	else if( this.E_gubn.value == "1" ){this.cmb_select.set_index(1);}
+	else if( this.E_gubn.value == "2" ){this.cmb_select.set_index(2);}
+	else if( this.E_gubn.value == "3" ){this.cmb_select.set_index(3);}		
+};
+
+//도서검색시작-클릭
+this.btn_sbookcode_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {Param1:""}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBookCode_sbook", objParam, "common::BookCode.xfdl", "popupCallBack", this, 10, 58, 450, 550);	
+};
+
+//도서검색끝-클릭
+this.btn_ebookcode_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objParam = {Param1:""}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBookCode_ebook", objParam, "common::BookCode.xfdl", "popupCallBack", this, 10, 58, 450, 550);	
+};
+
+//팝업리턴값
+this.popupCallBack = function(sFormId, sArg)
+{
+	if(!this.lfn_sd_fnisNull(sArg)) // 리턴값이 존재한다면
+	{
+		if(sFormId=="popupBookCode_sbook") // 도서시작 코드
+		{
+			var arry = sArg.split(":");
+			this.ed_sbook.set_value(arry[0]);
+		}
+		else if(sFormId=="popupBookCode_ebook") // 도서 끝 코드
+		{
+			var arry = sArg.split(":");
+			this.ed_ebook.set_value(arry[0]);
+		}
+	}
+};
+
+//도서속성검색
+this.btn_bookatt_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.search_bookcode();
+};
+
+//도서속성
+this.search_bookcode = function()
+{
+	var strArg;
+	var inds 	= "dsSubbook=dsSubbook";
+	var outds 	= "dsSubbook=dsSubbook";
+	var subbookcode = this.ed_subbookcode.value;
+	var bookname = this.ed_bookname.value;	
+	var chk      = this.ck_select.value;
+	var pyear    = this.ed_year.value;
+	var c_use    = this.ck_use.value;
+	
+	if (pyear == ""){
+		pyear = "NULL";
+	}
+	
+	if (subbookcode == "          "){
+		subbookcode = "NULL";
+	}
+	
+	if (this.ck_select.value == true) 
+	{ 
+		this.grd_1.setCellProperty("head",1,"text","도서코드");
+		this.grd_1.setCellProperty("head",2,"text","년판");
+	}
+	else 
+	{
+		this.grd_1.setCellProperty("head",1,"text","속성코드");
+		this.grd_1.setCellProperty("head",2,"text","출판");
+	}
+	
+	strArg = "values1="+nexacro.wrapQuote(subbookcode)
+	                   +"values2="+nexacro.wrapQuote(bookname)
+					   +"values3="+nexacro.wrapQuote(chk)
+					   +"values4="+nexacro.wrapQuote(pyear)
+					   +"values5="+nexacro.wrapQuote(c_use);
+	//trace(strArg);
+	this.gfn_TransactionP("subbook_select","JSP/sd/select_subbookcode.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+};
+
+//데이터검색리턴값
+this.fnCallback = function(svcId, ErrorCode, ErrorMsg)
+{
+	if(ErrorCode != 0){this.alert(ErrorMsg);}
+};
+
+//판매형태-교판,학판선택시
+this.R_select_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+  //체크박스초기화
+  for(var i = 0; i < this.ds_mdcode.rowcount; i++)
+  {
+     this.ds_mdcode.setColumn(i, "chk", 0);	
+  }
+  //교판
+  if (obj.value == "0") 
+  {
+		for(var i = 0; i < this.ds_mdcode.rowcount; i++)
+		{
+		    if(this.ds_mdcode.getColumn(i,"mdcode").substr(0,1) == "1" || this.ds_mdcode.getColumn(i,"mdcode").substr(0,1) == "2") 
+		    {
+			  this.ds_mdcode.setColumn(i, "chk", 1);	
+			}
+		}
+  //속셈		
+  }else if(obj.value == "1" ){
+		for(var i = 0; i < this.ds_mdcode.rowcount; i++)
+		{
+		    if(this.ds_mdcode.getColumn(i,"mdcode").substr(0,1) == "3"  || this.ds_mdcode.getColumn(i,"mdcode").substring(0,2) == "50" ||
+		       this.ds_mdcode.getColumn(i,"mdcode").substr(0,2) == "51" || this.ds_mdcode.getColumn(i,"mdcode").substring(0,2) == "52" || 
+			   this.ds_mdcode.getColumn(i,"mdcode").substr(0,2) == "55")
+			{
+			   this.ds_mdcode.setColumn(i, "chk", 1);	
+			}
+		}
+  }		
+};
+
+//미리보기클릭
+this.btn_printview_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.sqlCreate(obj.id);	
+};
+
+//출력버튼클릭
+this.btn_print_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.sqlCreate(obj.id);		
+};
+
+//조회-출력 조건별 검색
+this.sqlCreate = function(event_id)
+{
+	var s_jpno, e_jpno, p_yh;   
+	var s_sql1, s_sql2, s_sql3, s_sql4,  s_sql5, Hak_g;   
+    var Line_sw;
+	bgbrnm    = "";
+    Find1_sw  = "N";   
+    Find2_sw  = "N";   
+    Find3_sw  = "N";   
+    Find4_sw  = "N";   
+    Find5_sw  = "N";   
+	var grid_chk2, gb, r_sel, sel_dsjgb, bookcode, rdfile;
+	//사용자함수
+	grid_chk2 = this.Gridcheck("ds_Bgbr");                     //도서구분
+	gb        = this.optionGb();                               //선택
+	r_sel     = this.Gridcheck("ds_mdcode");                   //판매형태
+	sel_dsjgb = this.Gridcheck("ds_bjgb");                     //도서유형
+	bookcode  = this.Gridcheck("dsSubbook");                   //도서속성
+	rdfile =    this.selectfile(this.rd_chk.index);	           //리포트파일
+	var pSbookcode, pEbookcode;
+	pSbookcode = this.ed_sbook.value + ")" + this.ed_syy.value;//도서코드-시작
+	pEbookcode = this.ed_ebook.value + ")" + this.ed_eyy.value;//도서코드-끝
+    s_jpno         = this.ed_sdate.value + "0000";             //작업일자-시작
+    e_jpno         = this.ed_sdate.value + "zzzz";             //작업일자-끝
+    p_yh           = this.cmb_select.text;                     //도서형태
+    s_sql1         = "";
+    s_sql2         = "";
+    s_sql3         = "";
+    s_sql4         = "";
+    s_sql5         = "";
+	bgbrnm  = bgbrnm.substr(0,bgbrnm.length-1);
+
+	if( Find2_sw  == "N" ){
+    	bgbrnm  = "전체"; //도서구분
+	}
+	
+	//정렬조건
+    if (( this.rd_chk.index == 0 ) || ( this.rd_chk.index == 1 ) || ( this.rd_chk.index == 2 )){
+		
+		//======s_sql1
+		s_sql1 =        " WHERE  a.BOOK_CD >=  '" + this.ed_sbook.value + "'";
+        s_sql1 = s_sql1 + " AND  a.BOOK_CD <=  '" + this.ed_ebook.value + "'";
+        s_sql1 = s_sql1 + " AND  a.Byy >=  '" + this.ed_syy.value + "'";
+        s_sql1 = s_sql1 + " AND  a.Byy <=  '" + this.ed_eyy.value + "'";
+
+		//도서속성선택시
+		if ( Find4_sw == "Y" ){
+			s_sql1 = s_sql1 + "  AND (a.BOOK_CD || a.BYY) in ( " + bookcode +" ) ";
+        }
+		
+		s_sql1 = s_sql1 + " AND  a.yy =  '" + this.ed_sdate.value.substr(0,4) +"'";
+		s_sql1 = s_sql1 + " AND  a.mm =  '" + this.ed_sdate.value.substr(4,2) +"'";
+		s_sql1 = s_sql1 + " AND  a.dd <=  '" + this.ed_sdate.value.substr(6,4) +"'";
+
+	    //======s_sql2
+        s_sql2 = "    where  a.BOOK_CD >=  '" + this.ed_sbook.value +"'";
+        s_sql2 = s_sql2 + "    AND  a.BOOK_CD <=  '" + this.ed_ebook.value +"'";
+        s_sql2 = s_sql2 + "    AND  a.Byy >=  '" + this.ed_syy.value +"'";
+        s_sql2 = s_sql2 + "    AND  a.Byy <=  '" + this.ed_eyy.value +"'";
+        
+		//도서속성선택시
+		if ( Find4_sw == "Y" ){
+			s_sql2 = s_sql2 + "   and (a.BOOK_CD || a.BYY) in ( " + bookcode +" ) ";
+        }
+		s_sql2 = s_sql2 + "    AND  a.yy =  '" + this.ed_sdate.value.substr(0,4) +"'";
+		s_sql2 = s_sql2 + "    AND  a.mm =  '" + this.ed_sdate.value.substr(4,2) +"'";
+		s_sql2 = s_sql2 + "    AND  a.dd =  '" + this.ed_sdate.value.substr(6,4) +"'";
+
+	    //======s_sql3
+		if ( this.E_gubn.text == "0" ){
+			s_sql3 =  s_sql3 + "  and  b.meip_c = '0'  "; //판매용
+        }else if ( this.E_gubn.text == "1" ){
+			s_sql3 =  s_sql3 + " and   b.meip_c = '1'  "; //교사용
+        }else if ( this.E_gubn.text == "2" ){
+			s_sql3 =  s_sql3 + " and   b.meip_c = '2'  "; //타계정
+		} 
+         
+		//도서유형
+		if ( Find5_sw == "Y" ){
+			s_sql3 = s_sql3 + "   and  b.book_jgb  in ( " + sel_dsjgb +" ) ";
+		}
+
+		//학기구분 조건문
+		Line_sw = "N";
+		if (( this.C_hak.value == "1" ) || ( this.C_hak1.value == "1" ) || ( this.C_hak2.value == "1" )){
+			s_sql3 = s_sql3 + "    and  b.book_hcode in (  ";
+			if ( this.C_hak.value == "1" ){
+				Hak_g   = "학년용";
+				s_sql3  = s_sql3 + " '00' ";
+				Line_sw = "Y";
+			}
+          
+			if (( Line_sw == "Y"  ) && ( this.C_hak1.value == "1"  )){
+				Hak_g   = Hak_g + "/1학기";
+				s_sql3  = s_sql3 + ", '01' ";
+				Line_sw = "Y";
+			}else if (( Line_sw == "N"  ) && ( this.C_hak1.value == "1"  )){
+				Hak_g   = "1학기";
+				s_sql3  = s_sql3 + " '01' ";
+				Line_sw = "Y";
+			}
+          
+			if (( Line_sw == "Y"  ) && ( this.C_hak2.value == "1"  )){
+				Hak_g   = Hak_g + "/2학기";
+				s_sql3  = s_sql3 + ", '02' ";
+				Line_sw = "Y";
+			}else if (( Line_sw == "N"  ) && ( this.C_hak2.value == "1"  )){
+				Hak_g   = "2학기";
+				s_sql3  = s_sql3 + " '02' ";
+				Line_sw = "Y";
+			}  
+				s_sql3  = s_sql3 + "    )  ";
+		}else{
+			Hak_g = "전체";
+		}        
+
+		//도서구분선택시
+		if ( Find2_sw == "Y" ){
+			s_sql3 = s_sql3 + "    and  b.bgbr_cd in ( " + grid_chk2 +" ) ";
+        }
+		//도서속성입력시
+		if (( this.ed_ssgrp.value  != "000000000" ) || ( this.ed_esgrp.value  != "999999999" )){                                                               
+			s_sql3 = s_sql3 + "    AND  b.sgrp_code >=  '" + this.ed_ssgrp.value +"'";
+			s_sql3 = s_sql3 + "    AND  b.sgrp_code <=  '" + this.ed_esgrp.value +"'";
+		} 
+		//도서판매형태선택시
+		if ( Find1_sw == "Y" ){
+			s_sql3 = s_sql3 + "   and substr(b.sgrp_code,1,2) in ( " + r_sel +" ) ";
+		}
+		//도서속성선택시
+		if ( Find3_sw == "Y" ){
+			s_sql3 = s_sql3 + "   and b.sgrp_code  in ( " + bookcode +" ) ";
+		} 
+
+		//======s_sql4
+		//선택사항-재고선택시
+		if ( this.C_sun1.value == true ){
+			s_sql4 =          " WHERE JEGO <> 0  ";
+			s_sql4 =  s_sql4 + "   OR ( JEGO = 0  ";
+			s_sql4 =  s_sql4 + "   AND (   ISU1 <> 0   ";
+			s_sql4 =  s_sql4 + "   OR  ISU2 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  ISU3 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  ISU4 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU1 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU3 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU5 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU6 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU7 <> 0 ) ) ";
+		}
+	    //선택사항-거래내역선택시
+		if ( this.C_sun2.value == true ){
+			s_sql4 =          " WHERE (ISU1 <> 0   ";
+			s_sql4 =  s_sql4 + "   OR  ISU2 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  ISU3 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  ISU4 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU1 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU3 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU5 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU6 <> 0  ";
+			s_sql4 =  s_sql4 + "   OR  CSU7 <> 0)  ";
+       } 
+
+	   //======s_sql5
+	   //정렬조건-속성코드별별수불일보
+       if ( this.rd_chk.index == 2 ){
+         s_sql5 = "    where  a.BOOK_CD >=  '" + this.ed_sbook.value +"'";
+         s_sql5 = s_sql5 + "    AND  a.BOOK_CD <=  '" + this.ed_ebook.value +"'";
+         s_sql5 = s_sql5 + "    AND  a.Byy >=  '" + this.ed_syy.value +"'";
+         s_sql5 = s_sql5 + "    AND  a.Byy <=  '" + this.ed_eyy.value +"'";
+         //도서속성선택시
+		 if ( Find4_sw == "Y" ){
+			s_sql5 = s_sql5 + "   and (a.BOOK_CD || a.BYY) in ( " + bookcode +" ) ";
+         }
+         s_sql5 = s_sql5 + "    AND  A.jpno >=  '" + s_jpno +"'";
+         s_sql5 = s_sql5 + "    AND  A.jpno <=  '" + e_jpno +"'";
+       }
+     }
+
+    //리포트호출
+	var rdopt  = "/ragentpath ["+ gv_urlRdDataServer +"]" + " /rp ["+p_yh+"]"+                  //선택 (1
+					 "["+this.ed_sdate.value+"]"+   //작업일자	(2			 
+					 "["+pSbookcode+"]"+            //도서코드년판-시작 (3
+					 "["+pEbookcode+"]"+            //도서코드년판-끝  (4
+					 "["+bgbrnm+"]"+                //도서구분 (5
+					 "["+Hak_g+"]"+			        //학기구분	(6	 
+					 "["+s_sql1+"]"+                //(7
+					 "["+s_sql2+"]"+                //(8
+					 "["+s_sql3+"]"+                //(9          
+					 "["+s_sql4+"]"+                //(10
+					 "["+s_sql5+"]";                //(11
+
+	// 조회 OR 출력 버튼이벤트 시작
+	if(event_id == "btn_printview" ) // 미리보기 일때
+	{
+		//this.alert(this.rd_chk.index);
+		switch(this.rd_chk.index)
+		{
+			case 0 : // 수불일보
+				var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+ 
+				" s_sql2="+nexacro.wrapQuote(s_sql2)+
+				" s_sql3="+nexacro.wrapQuote(s_sql3)+
+				" s_sql4="+nexacro.wrapQuote(s_sql4);
+				//적정포함 미선택
+				if(this.C_Jjego.value == false){
+					var outds = "ds_preview1=ds_preview1";
+					var inds = "ds_preview1=ds_preview1";
+					this.gfn_TransactionP("ds1_select","JSP/sd/SD2110F_PV1_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+					this.Div_PreView.set_url("sd::SD2110F_PREVIEW1.xfdl");
+					break;
+				}else{			
+					var outds = "ds_preview2=ds_preview2";
+					var inds = "ds_preview2=ds_preview2";
+					this.gfn_TransactionP("ds2_select","JSP/sd/SD2110F_PV2_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+					this.Div_PreView.set_url("sd::SD2110F_PREVIEW2.xfdl");
+					break;
+				}
+		
+			case 1 : // 수불일보(합산)
+				var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+ 
+				" s_sql2="+nexacro.wrapQuote(s_sql2)+
+				" s_sql3="+nexacro.wrapQuote(s_sql3)+
+				" s_sql4="+nexacro.wrapQuote(s_sql4);
+
+				var outds = "ds_preview3=ds_preview3";
+				var inds  = "ds_preview3=ds_preview3";
+				this.gfn_TransactionP("ds3_select","JSP/sd/SD2110F_PV3_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+				this.Div_PreView.set_url("sd::SD2110F_PREVIEW3.xfdl");
+				break;	
+				
+			case 2 : // 속성코드별 수불일보
+				var strArg = "s_sql1="+nexacro.wrapQuote(s_sql1)+ 
+				" s_sql2="+nexacro.wrapQuote(s_sql2)+
+				" s_sql3="+nexacro.wrapQuote(s_sql3)+
+				" s_sql4="+nexacro.wrapQuote(s_sql4)+
+				" s_sql5="+nexacro.wrapQuote(s_sql5);
+				//this.alert(strArg);
+				var outds = "ds_preview4=ds_preview4";
+				var inds  = "ds_preview4=ds_preview4";
+				this.gfn_TransactionP("ds4_select","JSP/sd/SD2110F_PV4_SELECT.jsp", inds, outds, strArg, "fnCallback", true, "P", false, this);	
+				this.Div_PreView.set_url("sd::SD2110F_PREVIEW4.xfdl");
+				break;							
+		}
+	}
+	else if ( event_id  == "btn_print" ) // 출력일때
+	{
+		this.lfn_showModal("print", {rdUrl:rdfile, rdParam:rdopt}, "mk::MKRDF.xfdl", "", this, 0, 0, 1024, 770);
+	}
+};
+
+//리포터파일
+this.selectfile = function(num)
+{
+	if ((num == 0) && ( this.C_Jjego.value == false )){  
+	  return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD2110r.mrd"; //수불일보-적정포함X
+	}else if ((num == 0) && ( this.C_Jjego.value == true )){  
+	  return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD2113r.mrd"; //수불일보-적정포함
+	}else if (num == 1){ 
+	  return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD2112r.mrd"; //수불일보(합산)
+	}else if (num == 2){ 
+	  return nexacro.getApplication().gv_urlNext+"/rpt/sd/SD2111r.mrd"; //속성코드별 수불일보
+	}
+};
+
+// 그리드에 따른 체크된 데이터 값 리턴.
+this.Gridcheck = function(strdsname)
+{
+	// 그리드 데이터 중에 체크된 데이터를 선별하여 리턴.
+	var strReturn="";
+	
+	if (strdsname == "dsmdcode")
+	{
+		for (loop=0; loop<this.ds_mdcode.rowcount(); loop++)
+			if (this.ds_mdcode.GetColumn(loop,"chk")=1)
+			{
+			    Find1_sw  = "Y";
+				strReturn = strReturn +"'"+this.ds_mdcode.GetColumn(loop,"mdcode")+"',";
+			}
+	}
+	
+	if (strdsname="dsBgbr")
+	{
+		for (loop=0; loop<dt_bgbr.rowcount(); loop++)
+			if (dt_bgbr.GetColumn(loop,"chk")=1)
+			{
+			    Find2_sw  = "Y";
+			    bgbrnm    = bgbrnm + "'"+trim(dt_bgbr.GetColumn(loop,"name"))+"',";
+				strReturn = strReturn +"'"+dt_bgbr.GetColumn(loop,"code")+"',";
+			}
+	}
+	
+	if ((strdsname="dsSubbook") && (ck_select.value=False))
+	{
+		for (loop=0; loop<dsSubbook.rowcount(); loop++)
+			if (dsSubbook.GetColumn(loop,"chk")=1)
+			{
+			    Find3_sw  = "Y";
+				strReturn = strReturn +"'"+this.left(dsSubbook.GetColumn(loop,"code_key"),9)+"',";
+			}		
+	}
+	
+	if ((strdsname="dsSubbook") && (ck_select.value=True))
+	{
+		for (loop=0; loop<dsSubbook.rowcount(); loop++)
+			if (dsSubbook.GetColumn(loop,"chk")=1)
+			{
+			    Find4_sw  = "Y";
+				strReturn = strReturn +"'"+this.left(dsSubbook.GetColumn(loop,"code_key"),10)+ this.left(dsSubbook.GetColumn(loop,"book_year"),4)+"',";
+			}		
+	}
+
+	if (strdsname="dsjgb")
+	{
+		for (loop=0; loop<ds_bjgb.rowcount(); loop++)
+			if (ds_bjgb.GetColumn(loop,"chk")=1)
+			{
+			    Find5_sw  = "Y";
+				strReturn = strReturn +"'"+ds_bjgb.GetColumn(loop,"cd")+"',";
+			}
+	}
+	
+	//마지막 쉼표 삭제.
+	return strReturn.substr(0,strReturn.length()-1);
+};
+
+//선택데이터값 리턴
+this.optionGb = function()
+{
+	//전체
+	if (this.cmb_select.index == 3){ 
+		return "";
+	}else{
+		return this.cmb_select.value;
+	}
+};
+
+
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html style="margin:0; height: 100%" xmlns:v="urn:schemas-microsoft-com:vml">
+	<head>
+		<meta charset="utf-8">		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, minimum-scale=1.0 user-scalable=yes" />
+		<title>Crownix HTML5 Viewer</title>
+		<script src="../../js/jquery-1.11.0.min.js"></script>
+		<script src="../../js/crownix-viewer.min.js"></script>		
+		<script>src="../../js/crownix-formfield.min.js"</script>
+		<link rel="stylesheet" type="text/css" href="../../css/crownix-viewer.min.css">		
+		<script type="text/javascript">
+			var crownixViewer;
+			function _crownix_createViewer(sUrl,sId,mrd,sparam)
+			{
+				crownixViewer = new m2soft.crownix.Viewer(sUrl, sId );
+				//crownixViewer.hideToolbarItem(["move","zoomin","zoomout","save","ratio","inquery","cancel","print_pdf","first","prev","next","last","sharing"]);
+				//crownixViewer.showToolbarItem([]);
+				//crownixViewer.hideToolbar();
+				//crownixViewer.hideToolbar();
+				
+				
+				//crownixViewer.useAdjustLetterSpace(true);
+				//crownixViewer.useAdjustCharacterScale(true); // 장평조정 허용 여부
+				crownixViewer.openFile(mrd,sparam,{showPageNum:2});
+				crownixViewer.useWebFont(true); // 서버폰트 사용 영부
+				crownixViewer.hideToolbar();
+
+
+				
+				//return crownixViewer;
+			}
+			
+			function fn_setContents(strData)
+	    	{
+	    		document.getElementById('contents').innerHTML = strData;
+	    	}
+
+	    	function _crownix_nextpage()
+			{
+				crownixViewer.nextPage();
+			}
+
+			function _crownix_prevpage()
+			{
+				crownixViewer.prevPage();
+			}
+		</script>
+	</head>
+	<body style="margin:0; height: 100% ">
+
+		<div id="crownix-viewer" class="center" style="position:absolute; width: 100%; height: 100%"></div>
+		
+		<script>
+			//absolute relative
+			//window.onload = function(){
+			//var viewer = new m2soft.crownix.Viewer('http://erperun.chunjae.co.kr/ReportingServer/service', 'crownix-viewer');				
+        	//viewer.openFile('http://erperun.chunjae.co.kr/elearning/hr/rpt/hr2400_01.mrd', '/rp [201607] []');
+			//};
+		</script>
+	</body>
+</html>

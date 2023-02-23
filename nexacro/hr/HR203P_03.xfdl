@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HR203P_03" width="1250" height="543" titletext="New Form">
+    <Layouts>
+      <Layout height="543" width="1250">
+        <Static id="sta00" taborder="0" text="입사자" left="0" top="0" height="40" background="#9ee0de" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="left" border="1px solid #10aea9" width="50%"/>
+        <Static id="sta00_00" taborder="1" text="퇴사자" left="sta00:0" top="0" height="40" background="#9ee0de" font="normal bold 10pt/normal &quot;Arial&quot;" color="white" textAlign="left" border="1px solid #10aea9" right="0"/>
+        <Grid id="grd_ipsa" taborder="2" left="0" top="sta00:0" width="50%" bottom="0" binddataset="ds_ipsa" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="132"/>
+                <Column size="76"/>
+                <Column size="80"/>
+                <Column size="97"/>
+                <Column size="58"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="입사일자"/>
+                <Cell col="1" text="부서"/>
+                <Cell col="2" text="직위"/>
+                <Cell col="3" text="성명"/>
+                <Cell col="4" text="주민번호"/>
+                <Cell col="5" text="성별"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:IPSADT" displaytype="date" textAlign="center"/>
+                <Cell col="1" text="bind:BUSE" textAlign="center"/>
+                <Cell col="2" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="3" text="bind:NAME" textAlign="center"/>
+                <Cell col="4" text="bind:JUMIN" textAlign="center"/>
+                <Cell col="5" text="bind:SEX" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_toisa" taborder="3" left="grd_ipsa:0" top="sta00_00:0" right="0" bottom="0" binddataset="ds_toisa" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="132"/>
+                <Column size="76"/>
+                <Column size="80"/>
+                <Column size="97"/>
+                <Column size="58"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="퇴사일자"/>
+                <Cell col="1" text="부서"/>
+                <Cell col="2" text="직위" suppressalign="first"/>
+                <Cell col="3" text="성명"/>
+                <Cell col="4" text="주민번호"/>
+                <Cell col="5" text="성별"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:TOISADT" textAlign="center" displaytype="date"/>
+                <Cell col="1" text="bind:BUSE" textAlign="center"/>
+                <Cell col="2" text="bind:JIKWI" textAlign="center"/>
+                <Cell col="3" text="bind:NAME" textAlign="center"/>
+                <Cell col="4" text="bind:JUMIN" textAlign="center"/>
+                <Cell col="5" text="bind:SEX" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_ipsa">
+        <ColumnInfo>
+          <Column id="IPSADT" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="SEX" type="STRING" size="256"/>
+          <Column id="JUMIN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_toisa">
+        <ColumnInfo>
+          <Column id="TOISADT" type="STRING" size="256"/>
+          <Column id="BUSE" type="STRING" size="256"/>
+          <Column id="JIKWI" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+          <Column id="SEX" type="STRING" size="256"/>
+          <Column id="JUMIN" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+var gv_svcUrl = nexacro.getApplication().gfn_getUrl("svcUrl");
+
+this.fn_getData_list = function(ymd, gb)
+{
+	var str_url, in_ds, out_ds, str_arg;
+	str_url = "JSP/hr/getData_hr203_03.jsp";
+	in_ds = "ds_ipsa=ds_ipsa ds_toisa=ds_toisa";
+	out_ds = "ds_ipsa=ds_ipsa ds_toisa=ds_toisa";
+	str_arg = " ymd='" + ymd + "'";
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_none", true, "S", false,this);
+}
+
+this.Callback_none = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		if (ErrorCode != -99)
+		{
+			this.alert(ErrorMsg);
+		}
+		return false;
+	}
+}
+
+this.fn_print = function(ymd, gb)
+{
+	var rdUrl = gv_svcUrl + "rpt/hr/HR203P_03.mrd";	
+	
+    
+	var rdParam = "/rp [" + ymd + "]";  
+	var objNew = new ChildFrame();
+	objNew.init("common_print",0,0,null,null,0,0,"common::H_MRD.xfdl");
+	this.addChild("common_print",objNew);
+	//objNew.set_openalign("center middle");
+	objNew.set_autosize(false);
+	objNew.set_titletext("입/퇴사자 명단");
+	objNew.set_showtitlebar(true);
+	objNew.set_resizable(true);
+	objNew.showModal("common_print",this.getOwnerFrame(),{rdUrl:rdUrl, rdParam:rdParam},this,this.fn_common_print);
+}
+
+this.fn_common_print = function(strID, variant)
+{
+	this.removeChild("common_print");
+}]]></Script>
+  </Form>
+</FDL>

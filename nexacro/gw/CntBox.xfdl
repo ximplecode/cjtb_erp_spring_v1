@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CntBox" width="125" height="125" titletext="New Form" scrolltype="none" onclick="CntBox_onclick" onload="CntBox_onload" background="#cbd3bd">
+    <Layouts>
+      <Layout height="125" width="125" stepcount="0">
+        <Static id="StaMi" taborder="0" left="0" top="0" width="125" height="125" cssclass="gwCnt"/>
+        <Static id="StKind" taborder="1" text="미결문서" left="0" top="7" width="100.00%" height="57" font="bold 30px/normal &quot;한컴산뜻돋움&quot;" textAlign="center" onmousemove="CntBox_onmousemove" onmouseleave="CntBox_onmouseleave" onclick="CntBox_onclick"/>
+        <MaskEdit id="StCount" taborder="2" left="0.00%" top="66" width="100.00%" height="45" cssclass="gwCnt" displaynulltext="0" font="32px/normal &quot;한컴산뜻돋움&quot;" textAlign="center" readonly="true" color="#966c63" onmousemove="CntBox_onmousemove" onmouseleave="CntBox_onmouseleave" format="###,999" onlbuttondown="CntBox_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+/* Pasing 프로퍼티 */
+var f_num;
+
+this.set_Stcount = function( str1, str2 )
+{
+	this.StKind.set_text(str1);
+	this.StCount.set_value(str2);
+}
+
+this.CntBox_onmousemove = function(obj:nexacro.Static,e:nexacro.MouseEventInfo)
+{
+	this.StKind.set_background("#748c70");
+	this.StaMi.set_background("#748c70");
+	this.StCount.set_background("#748c70");
+	this.StKind.set_color("#e8e7e3");
+	this.StCount.set_color("#d2e7d6");
+};
+
+this.CntBox_onmouseleave = function(obj:nexacro.Static,e:nexacro.MouseEventInfo)
+{
+	this.StKind.set_background("#cbd3bd");
+	this.StaMi.set_background("#cbd3bd");
+	this.StCount.set_background("#cbd3bd");
+	this.StKind.set_color("#555555");
+	this.StCount.set_color("#966c63");
+};
+
+this.CntBox_onclick = function(obj:nexacro.Form,e:nexacro.ClickEventInfo)
+{
+   var strPgReset = 1;
+   if(this.StKind.text == "미결문서"){
+	 this.parent.parent.parent.parent.getData_mi(strPgReset);
+   }else if(this.StKind.text == "진행문서"){
+	this.parent.parent.parent.parent.getData_jin(strPgReset);
+   }else if(this.StKind.text == "공유문서"){
+    this.parent.parent.parent.parent.getData_gong(strPgReset);
+   }else if(this.StKind.text == "완결문서"){
+	this.parent.parent.parent.parent.getData_wan(strPgReset);
+   }else if(this.StKind.text == "저장문서"){
+	this.parent.parent.parent.parent.getData_save(strPgReset);
+   }else if(this.StKind.text == "수신문서"){
+	this.parent.parent.parent.parent.getData_receive(strPgReset);
+   }else if(this.StKind.text == "대결문서"){
+	this.parent.parent.parent.parent.getData_de(strPgReset);
+   }
+};
+]]></Script>
+  </Form>
+</FDL>

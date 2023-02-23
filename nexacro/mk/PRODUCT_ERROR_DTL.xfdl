@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkMain" width="700" height="410" titletext="제품 A/S접수" onload="MkMain_onload">
+    <Layouts>
+      <Layout height="410" width="700">
+        <Edit id="edt_bookYear" taborder="14" top="175" height="35" font="bold 12px/normal &quot;함초롬바탕 확장&quot;" width="48" maxlength="4" textAlign="center" autoselect="true" left="229" enable="false" border="1px solid crimson" color="crimson" background="blanchedalmond"/>
+        <Button id="btnBookSearch" taborder="0" top="175" width="35" height="35" background="url('Img::loupe.png') no-repeat center center #3cbcb8" defaultbutton="false" left="edt_bookYear:3" onclick="btnBookSearch_onclick"/>
+        <Static id="Static02" taborder="1" text="제품 A/S접수" left="8" top="7" width="352" height="65" color="#7fb39d" font="bold 30px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <Static id="stDate" taborder="2" text="접수일자" top="101" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="9"/>
+        <Calendar id="calSDate" taborder="3" top="101" height="35" dateformat="yyyy-MM-dd" font="12px/normal &quot;함초롬바탕 확장&quot;" width="160" autoselect="true" left="stDate:3" enable="false"/>
+        <Static id="stGubun" taborder="4" text="접수구분" top="138" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="9"/>
+        <Static id="stBook" taborder="5" text="도서코드" top="175" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="9"/>
+        <Static id="stBuseo" taborder="6" text="접수처" top="212" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="9"/>
+        <Static id="stErrorCont" taborder="7" text="오류내용" top="249" height="151" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="9"/>
+        <Static id="stWriter" taborder="8" text="작성자" top="101" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="319"/>
+        <Static id="stBookNm" taborder="9" text="도서명" top="175" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="319"/>
+        <Static id="stQty" taborder="10" text="수량" top="212" height="35" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" background="lightsteelblue" width="85" left="319"/>
+        <Radio id="rdGubun" taborder="11" top="138" height="35" innerdataset="dsGubun" codecolumn="CODE" datacolumn="NAME" direction="horizontal" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="lightslategray" index="0" text="단가 '0'인 건  " value="1" width="251" fittocontents="none" padding="0px 0px 0px 30px" rowcount="2" columncount="2" left="stGubun:2"/>
+        <Edit id="edBookSeq" taborder="13" top="175" height="35" font="bold 12px/normal &quot;함초롬바탕 확장&quot;" maxlength="3" textAlign="center" autoselect="true" right="edt_bookYear:1" width="40" enable="false" border="1px solid crimson" color="crimson" background="blanchedalmond"/>
+        <Edit id="edt_bookCode" taborder="12" top="175" height="35" font="bold 12px/normal &quot;함초롬바탕 확장&quot;" maxlength="10" textAlign="center" autoselect="true" right="edBookSeq:1" width="90" enable="false" border="1px solid crimson" color="crimson" background="blanchedalmond"/>
+        <Edit id="edBuseo" taborder="15" top="212" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="10" textAlign="center" autoselect="true" width="160" left="stBuseo:3"/>
+        <TextArea id="txaErrCont" taborder="16" left="stErrorCont:3" top="249" width="595" height="151" wordWrap="char" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+        <Edit id="edWriter" taborder="17" top="101" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="10" textAlign="center" autoselect="true" width="120" left="stWriter:3" enable="false"/>
+        <Edit id="edBookNm" taborder="18" top="174" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="left" autoselect="true" width="285" left="stBookNm:3" enable="true" border="1px solid crimson" color="crimson" background="blanchedalmond"/>
+        <Edit id="edQty" taborder="19" top="212" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" maxlength="10" textAlign="center" autoselect="true" width="160" left="stQty:3"/>
+        <Static id="Static02_00" taborder="20" text="◈ 제품 A/S접수" left="10" top="59" width="352" height="49" color="dimgray" font="bold 20px/normal &quot;함초롬바탕 확장B&quot;"/>
+        <ImageViewer id="ImgClose" taborder="21" width="31" height="30" image="url('Img::icons8-close.png')" border="0px none" tooltiptext="닫기" text="" top="17" left="657" onclick="ImgClose_onclick"/>
+        <Button id="btnDel" taborder="22" text="삭제" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="false" height="40" top="12" right="140" width="80" onclick="btnDel_onclick"/>
+        <Button id="btnSave" taborder="23" text="저장" top="12" width="80" height="40" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="false" right="53" onclick="btnSave_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsErrorDtl">
+        <ColumnInfo>
+          <Column id="ERROR_DATE" type="STRING" size="8"/>
+          <Column id="ERROR_NO" type="STRING" size="3"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="6"/>
+          <Column id="EMPLOYEE_NAME" type="STRING" size="10"/>
+          <Column id="BUSECD" type="STRING" size="6"/>
+          <Column id="BUSE_NAME" type="STRING" size="50"/>
+          <Column id="BOOKMST_ID" type="INT" size="256"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="3"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="100"/>
+          <Column id="ERROR_CONTENT" type="STRING" size="1000"/>
+          <Column id="ERROR_REASON" type="STRING" size="1000"/>
+          <Column id="IMPROVEMENT" type="STRING" size="1000"/>
+          <Column id="RESULT_TYPE" type="STRING" size="1"/>
+          <Column id="OK_ID" type="STRING" size="6"/>
+          <Column id="OK_DATE" type="STRING" size="8"/>
+          <Column id="OK_CHK" type="STRING" size="1"/>
+          <Column id="RECEIVE_DATE" type="STRING" size="8"/>
+          <Column id="ORDER_CNT" type="STRING" size="256"/>
+          <Column id="ORDER_QTY" type="STRING" size="256"/>
+          <Column id="GUBUN" type="STRING" size="1"/>
+          <Column id="RESULT_COMMENT" type="STRING" size="1000"/>
+          <Column id="RECEPT_NAME" type="STRING" size="50"/>
+          <Column id="BOOKNAME" type="STRING" size="256"/>
+          <Column id="QTY" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsGubun">
+        <ColumnInfo>
+          <Column id="CODE" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CODE">1</Col>
+            <Col id="NAME">A/S접수</Col>
+          </Row>
+          <Row>
+            <Col id="CODE">2</Col>
+            <Col id="NAME">사고접수</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsBookMst">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="INT" size="20"/>
+          <Column id="BOOKMST_CODE" type="STRING" size="10"/>
+          <Column id="BOOKMST_YEAR" type="STRING" size="4"/>
+          <Column id="BOOKMST_SEQ" type="STRING" size="256"/>
+          <Column id="BOOKMST_NAME" type="STRING" size="60"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var rWORK_TYPE;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var gv_buseCd = nexacro.getApplication().gds_userinfo.getColumn(0,"BUSECD");
+var gv_name = nexacro.getApplication().gds_userinfo.getColumn(0,"NAME");
+var str_url, in_ds, out_ds, str_arg;
+var vStr;
+
+this.MkMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	rWORK_TYPE = this.parent.dsParam1;
+	
+	if(rWORK_TYPE == "N")
+	{
+		this.Error_Dtl_New();
+	}
+	
+	this.SET_BTN_CONTROLL();
+	this.txaErrCont.setFocus();
+	
+};
+
+this.Error_Dtl_New = function()
+{
+	var d = new Date(); 
+	var strtoDay = Eco.date.getMaskFormatString(d, "yyyyMMdd");
+	this.dsErrorDtl.clearData();
+	this.dsErrorDtl.addRow();
+	this.dsErrorDtl.setColumn(0, "ERROR_DATE", strtoDay);
+	this.dsErrorDtl.setColumn(0, "EMPLOYEE_ID", gv_sabun);
+	this.dsErrorDtl.setColumn(0, "EMPLOYEE_NAME", gv_name);
+	this.dsErrorDtl.setColumn(0, "BUSECD", gv_buseCd);    
+	this.dsErrorDtl.setColumn(0, "RECEIVE_DATE", strtoDay);
+	this.dsErrorDtl.setColumn(0, "GUBUN", "1");
+	this.dsErrorDtl.setColumn(0, "ORDER_CNT", "0");
+    this.dsErrorDtl.setColumn(0, "RECEPT_NAME", "");
+};
+
+//버튼셋팅
+this.SET_BTN_CONTROLL = function()
+{
+    this.btnBookSearch.set_visible(true);
+	this.btnDel.set_visible(false);
+	this.btnSave.set_visible(true);
+		
+	//정현석,김정호은 날짜 수정 가능하게 풀어주기
+	if(gv_sabun == "C03076" || gv_sabun == "C12165" || gv_sabun == "C10161" || gv_sabun == "C02028")
+		this.calSDate.set_enable(true);
+	else
+		this.calSDate.set_enable(false);
+}
+
+//저장 버튼
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.edt_bookCode.text.length == 0)
+	{
+		alert("도서를 선택해주세요!!");
+		this.btnBookSearch.setFocus();
+		return false;
+	}
+	
+	if(this.txaErrCont.value == "" || Eco.isUndefined(this.txaErrCont.value) == true || this.txaErrCont.text.length == 0)
+	{
+		alert("오류내용을 입력해주세요!!");
+		this.txaErrCont.setFocus();
+		return false;
+	}
+	
+	var bRtn = this.confirm("정말 저장하시겠습니까??", "제품 A/S접수 저장");
+	
+	if(bRtn == true)
+	{
+		vStr = "U";
+		this.proc_save(vStr);
+	}
+};
+
+this.proc_save = function(vStr)
+{	
+	in_ds 	= "input=dsErrorDtl";	
+	str_url = "JSP/mk/product_new_error_dtl_insert.jsp";
+	this.gfn_TransactionP("insert", str_url, in_ds, "", "", "fctn_DtlSaveCallback", false, vStr, false, this);
+}
+
+
+this.fctn_DtlSaveCallback = function(sTrid, nErrorCode, sErrorMsg)
+{
+	if (nErrorCode != 0)
+	{
+		this.alert(sErrorMsg);
+		return false;
+	}else{
+		this.opener.rdGubun.set_value(this.rdGubun.value);
+		this.opener.btnSearch_onclick();
+		this.close();
+	}
+};
+
+this.btnBookSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var vBookCd, vBookYear;
+	vBookCd = this.edt_bookCode.value;
+	vBookYear = this.edt_bookYear.value;
+	this.dsBookMst.clearData();
+	var objParam = {dsParam1:this.dsBookMst
+				   ,dsParam2:"MK14B"
+				   ,dsParam3:vBookCd
+				   ,dsParam4:vBookYear}; //popup 화면으로 전달할 값
+	this.lfn_showModal("popupBook", objParam, "mk::MKBook_SearchF.xfdl", "popupCallback", this, 10, 58, 450, 400);
+};
+
+this.popupCallback = function(){
+	
+	if(this.dsBookMst.rowcount > 0)
+	{
+		this.dsErrorDtl.setColumn(0, "BOOKMST_CODE", this.dsBookMst.getColumn(0, "BOOKMST_CODE"));
+		this.dsErrorDtl.setColumn(0, "BOOKMST_YEAR", this.dsBookMst.getColumn(0, "BOOKMST_YEAR"));
+		this.dsErrorDtl.setColumn(0, "BOOKMST_NAME", this.dsBookMst.getColumn(0, "BOOKMST_NAME"));
+		this.dsErrorDtl.setColumn(0, "BOOKNAME", this.dsBookMst.getColumn(0, "BOOKMST_NAME"));
+		this.dsErrorDtl.setColumn(0, "BOOKMST_SEQ", this.dsBookMst.getColumn(0, "BOOKMST_SEQ"));
+		this.dsErrorDtl.setColumn(0, "BOOKMST_ID", this.dsBookMst.getColumn(0, "BOOKMST_ID"));
+	}
+}
+
+this.ImgClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="txaErrCont" propid="value" datasetid="dsErrorDtl" columnid="ERROR_CONTENT"/>
+      <BindItem id="item4" compid="calSDate" propid="value" datasetid="dsErrorDtl" columnid="RECEIVE_DATE"/>
+      <BindItem id="item5" compid="edWriter" propid="value" datasetid="dsErrorDtl" columnid="EMPLOYEE_NAME"/>
+      <BindItem id="item6" compid="rdGubun" propid="value" datasetid="dsErrorDtl" columnid="GUBUN"/>
+      <BindItem id="item7" compid="edt_bookCode" propid="value" datasetid="dsErrorDtl" columnid="BOOKMST_CODE"/>
+      <BindItem id="item8" compid="edBookSeq" propid="value" datasetid="dsErrorDtl" columnid="BOOKMST_SEQ"/>
+      <BindItem id="item9" compid="edt_bookYear" propid="value" datasetid="dsErrorDtl" columnid="BOOKMST_YEAR"/>
+      <BindItem id="item10" compid="edBookNm" propid="value" datasetid="dsErrorDtl" columnid="BOOKNAME"/>
+      <BindItem id="item12" compid="edBuseo" propid="value" datasetid="dsErrorDtl" columnid="RECEPT_NAME"/>
+      <BindItem id="item13" compid="edQty" propid="value" datasetid="dsErrorDtl" columnid="QTY"/>
+    </Bind>
+  </Form>
+</FDL>

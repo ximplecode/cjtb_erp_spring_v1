@@ -1,0 +1,1200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MkDtlMain" width="695" height="634" titletext="도서코드 세부사양" scrolltype="none" onload="MkDtlMain_onload" ontimer="MkDtlMain_ontimer" onsize="MkDtlMain_onsize">
+    <Layouts>
+      <Layout height="634" width="695">
+        <ImageViewer id="ImgClose01" taborder="0" width="40" height="40" image="url('theme://images/icons8-close.png')" border="0px none" tooltiptext="닫기" bottom="113.33%" right="-65.37%"/>
+        <Div id="DivDtl" taborder="1" top="0" background="#e8e7e3" left="0" visible="true" right="0%" bottom="0%">
+          <Layouts>
+            <Layout>
+              <Static id="StSearch01_00" taborder="0" text="용도" left="1.73%" top="44" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="86.04%"/>
+              <Edit id="edUseCode" taborder="1" left="14.24%" top="44" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="80.72%" textAlign="center" canchange="DivDtl_edUseCode_canchange"/>
+              <Combo id="cbUseCode" taborder="2" top="44" height="35" innerdataset="ds_mk_use" codecolumn="USE_CODE" datacolumn="USE_NAME" right="60.86%" left="19.42%" font="12px/normal &quot;함초롬바탕 확장&quot;" canitemchange="DivDtl_cbUseCode_canitemchange"/>
+              <Static id="StSearch01_00_00" taborder="3" text="코팅" left="1.73%" top="118" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="86.04%"/>
+              <Edit id="edCoatCd" taborder="4" left="14.24%" top="118" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="80.72%" textAlign="center"/>
+              <Combo id="cbCoatCd" taborder="5" left="19.42%" top="118" height="35" innerdataset="ds_mk_coating" codecolumn="COAT_CODE" datacolumn="COAT_NAME" right="60.86%" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+              <Static id="StSearch01_00_01" taborder="6" text="용지코드" left="1.73%" top="81" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="86.04%"/>
+              <Edit id="edPprCode" taborder="7" left="14.24%" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="79.57%" textAlign="center" onkeydown="DivDtl_edPprCode_onkeydown"/>
+              <Combo id="cbPprCode" taborder="8" left="20.43%" top="81" height="35" innerdataset="ds_mk_Paper" codecolumn="PPR_CODE" datacolumn="PPR_NAME" right="44.89%" font="12px/normal &quot;함초롬바탕 확장&quot;"/>
+              <Static id="StSearch01" taborder="9" text="제본순서" top="44" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="48.35%" left="39.42%"/>
+              <Edit id="edBndSeq" taborder="10" top="44" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" left="51.8%" right="1.01%"/>
+              <Static id="StSearch00_00" taborder="11" text="쪽수" left="55.4%" top="81" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="38.85%"/>
+              <Edit id="edPage" taborder="12" left="61.44%" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" right="30.65%"/>
+              <Static id="StSearch00_00_00" taborder="13" text="벌" left="69.64%" top="81" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="24.6%"/>
+              <Edit id="edBul" taborder="14" left="75.68%" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" right="16.4%"/>
+              <Static id="StSearch00_00_00_00" taborder="15" text="돈뎅" left="83.88%" top="82" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" right="10.36%"/>
+              <Edit id="edGanged" taborder="16" left="89.78%" top="81" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" textAlign="center" right="1.01%"/>
+              <Button id="btnTomson" taborder="17" text="톰슨/도무송" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="36" top="118" left="39.14%" right="48.35%" background="#FEDF76" color="darkblue" enable="true" onclick="DivBookDtl_btnTomson_onclick"/>
+              <Button id="btnPubble" taborder="18" text="퍼블코팅" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" height="36" top="118" left="51.94%" right="38.56%" background="#FEDF76" color="darkblue" enable="true" onclick="DivBookDtl_btnTomson_onclick"/>
+              <Static id="StSearch01_01" taborder="19" left="1.73%" top="155" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="CD/DVD&#13;&#10;알판 " right="86.04%"/>
+              <Edit id="edCdCnt" taborder="20" left="14.24%" top="154" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="77.84%" textAlign="center"/>
+              <Static id="StaJang" taborder="21" text="장" left="22.45%" top="152" height="38" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" right="72.81%"/>
+              <CheckBox id="cbCdCntBoth" taborder="22" text="양면" left="26.47%" top="154" height="36" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" right="64.17%"/>
+              <Static id="StSearch01_01_00" taborder="23" left="35.11%" top="155" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="CD/DVD&#13;&#10;포장형식 " right="52.66%"/>
+              <Combo id="cbPackCd" taborder="24" left="47.48%" top="155" height="35" innerdataset="ds_mk_CDPack" codecolumn="PACK_CODE" datacolumn="PACK_NAME" right="25.32%" font="12px/normal &quot;함초롬바탕 확장&quot;" canitemchange="DivDtl_cbPackCd_canitemchange"/>
+              <CheckBox id="ckDvdJacket" taborder="25" text="DVD자켓" left="75.83%" top="154" height="36" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" right="11.08%"/>
+              <Static id="StSearch01_01_01" taborder="26" top="118" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="none" left="62.01%" right="25.76%" text="CD/DVD&#13;&#10;인쇄형식"/>
+              <Static id="StSearch01_01_02" taborder="27" left="1.73%" top="192" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="색도" right="86.04%"/>
+              <Edit id="edTone1" taborder="28" left="14.24%" top="192" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="77.84%" textAlign="center"/>
+              <Static id="Static00_00" taborder="29" text="/" left="23.31%" top="187" height="38" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" right="71.94%"/>
+              <Edit id="edTone2" taborder="30" left="25.04%" top="192" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="67.05%" textAlign="center"/>
+              <Static id="StSearch01_01_02_00" taborder="31" left="33.38%" top="192" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="CTP" right="54.39%"/>
+              <CheckBox id="cbCtp" taborder="32" text="CTP" left="47.77%" top="192" height="36" font="bold 16px/normal &quot;함초롬바탕 확장&quot;" right="42.16%" truevalue="1" falsevalue="0"/>
+              <Static id="StSearch01_01_02_00_00" taborder="33" left="57.55%" top="192" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="후가공단가" right="30.22%"/>
+              <Static id="StSearch01_01_02_01" taborder="34" left="1.73%" top="229" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="특이사항" right="86.04%"/>
+              <Edit id="edCommt" taborder="35" left="14.24%" top="229" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="50.36%"/>
+              <Static id="StSearch01_01_02_01_00" taborder="36" left="49.93%" top="229" height="35" background="#7fb39d" textAlign="center" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" color="white" wordWrap="char" text="비고" right="37.84%"/>
+              <Edit id="edRemark" taborder="37" left="62.3%" top="229" height="35" font="12px/normal &quot;함초롬바탕 확장&quot;" right="1.01%" onkeydown="DivDtl_edRemark_onkeydown"/>
+              <Grid id="grdBookDtl" taborder="38" left="11" top="270" binddataset="dsBookDtl" right="0.86%" bottom="1.60%" onkeydown="DivDtl_grdBookDtl_onkeydown" oncellclick="DivDtl_grdBookDtl_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="71" band="left"/>
+                      <Column size="163" band="left"/>
+                      <Column size="109" band="left"/>
+                      <Column size="42"/>
+                      <Column size="33"/>
+                      <Column size="37"/>
+                      <Column size="24"/>
+                      <Column size="29"/>
+                      <Column size="35"/>
+                      <Column size="200"/>
+                      <Column size="250"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell rowspan="2" text="용도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="1" rowspan="2" text="용지" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="2" rowspan="2" text="코팅" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="3" rowspan="2" text="쪽수" font="bold 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell col="4" rowspan="2" text="벌" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="5" rowspan="2" text="돈뎅" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="6" colspan="2" text="색도" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="8" rowspan="2" text="CTP" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="9" rowspan="2" text="특이사항" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="10" rowspan="2" text="비고" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell row="1" col="6" text="1" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell row="1" col="7" text="2" font="bold 12px/normal &quot;함초롬돋움&quot;"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:USE_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="combotext" combodataset="ds_mk_use" combocodecol="USE_CODE" combodatacol="USE_NAME"/>
+                      <Cell col="1" text="bind:PPR_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="combotext" combodataset="ds_mk_Paper" combocodecol="PPR_CODE" combodatacol="PPR_NAME"/>
+                      <Cell col="2" text="bind:COAT_CODE" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="combotext" combodataset="ds_mk_coating" combodatacol="COAT_NAME" combocodecol="COAT_CODE"/>
+                      <Cell col="3" text="bind:BOOKDTL_PAGE" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right"/>
+                      <Cell col="4" text="bind:BOOKDTL_BUL" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right"/>
+                      <Cell col="5" text="bind:BOOKDTL_GANGED" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="right"/>
+                      <Cell col="6" text="bind:BOOKDTL_TONE1" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell col="7" text="bind:BOOKDTL_TONE2" font="normal 12px/normal &quot;함초롬돋움&quot;" textAlign="center"/>
+                      <Cell col="8" text="bind:BOOKDTL_CTP" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="checkboxcontrol"/>
+                      <Cell col="9" text="bind:BOOKDTL_COMMENT" font="normal 12px/normal &quot;함초롬돋움&quot;"/>
+                      <Cell col="10" text="bind:BOOKDTL_REMARK" font="normal 12px/normal &quot;함초롬돋움&quot;"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static01" taborder="39" text="▣도서코드 세부사항▣" left="12" top="0" width="185" height="46" font="bold 16px/normal &quot;함초롬바탕 확장&quot;"/>
+              <Edit id="edCdPrint" taborder="40" left="74.39%" top="118" height="35" right="5.76%" font="12px/normal &quot;함초롬바탕 확장&quot;" enable="false"/>
+              <Button id="btnCdPrint" taborder="41" top="119" height="35" text="▼" width="35" right="0.86%" onclick="DivBookDtl_btnCdPrint_onclick"/>
+              <MaskEdit id="medCost" taborder="42" left="69.93%" top="192" height="35" right="1.01%" font="12px/normal &quot;함초롬바탕 확장&quot;" visible="false"/>
+              <Div id="DivMultiCdPrt" taborder="43" top="152" width="173" height="225" background="#e8e7e3" visible="false" right="0.72%">
+                <Layouts>
+                  <Layout>
+                    <Grid id="Grid00" taborder="0" left="7" top="7" width="161" height="175" binddataset="ds_mk_CDPrint">
+                      <Formats>
+                        <Format id="default">
+                          <Columns>
+                            <Column size="25"/>
+                            <Column size="130"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="24"/>
+                          </Rows>
+                          <Band id="body">
+                            <Cell text="bind:CHK" font="normal 12px/normal &quot;함초롬돋움&quot;" displaytype="checkboxcontrol" textAlign="center" edittype="checkbox"/>
+                            <Cell col="1" text="bind:PRINT_NAME" font="normal 12px/normal &quot;함초롬돋움&quot;"/>
+                          </Band>
+                        </Format>
+                      </Formats>
+                    </Grid>
+                    <Button id="btnSel" taborder="1" text="선택적용" left="395" top="518" width="99" height="34" font="bold 12px/normal &quot;함초롬돋움&quot;" visible="false"/>
+                    <Button id="btnSel00" taborder="2" text="선택적용" left="375" top="458" width="99" height="34" font="bold 12px/normal &quot;함초롬돋움&quot;" visible="false"/>
+                    <Button id="btnSel2" taborder="3" text="선택적용" left="6" top="188" width="78" height="32" font="bold 12px/normal &quot;함초롬돋움&quot;" onclick="DivBookDtl_DivMultiCdPrt_btnSel2_onclick"/>
+                    <Button id="btnCcl2" taborder="4" text="선택해제" left="87" top="188" width="78" height="32" font="bold 12px/normal &quot;함초롬돋움&quot;" onclick="DivBookDtl_DivMultiCdPrt_btnCcl2_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="DivBtn" taborder="44" top="0" width="310" height="56" right="0.72%">
+                <Layouts>
+                  <Layout>
+                    <Button id="btnDSearch" taborder="0" text="조회" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="50" height="32" top="7" left="15" onclick="DivDtl_DivBtn_btnDSearch_onclick"/>
+                    <Button id="btnDAdd" taborder="1" text="추가" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="50" height="32" top="7" left="73" onclick="DivDtl_DivBtn_btnDAdd_onclick"/>
+                    <Button id="btnDSave" taborder="2" text="저장" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="50" height="32" top="7" left="131" onclick="DivDtl_DivBtn_btnDSave_onclick"/>
+                    <Button id="btnDDel" taborder="3" text="삭제" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="50" height="32" top="7" left="189" onclick="DivDtl_DivBtn_btnDDel_onclick"/>
+                    <Button id="btnDClose" taborder="4" text="닫기" font="bold 14px/normal &quot;함초롬바탕 확장&quot;" visible="true" width="50" height="32" top="7" left="246" onclick="DivDtl_DivBtn_btnDClose_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "Lib::Lib_service.xjs";
+include "Lib::Lib_etc.xjs";
+
+var nRow, nCurrentRow;
+var str_url, in_ds, out_ds, str_arg;
+var nBookMst_Id;
+var strCode, strVisibleD, ColumnNm;
+var gv_sabun = nexacro.getApplication().gds_userinfo.getColumn(0,"SABUN");
+var bBindChk = false;   //제본이 있는지 체크하는 변수
+
+var sUSE_CODE, sPSeq, sPPR_CODE, sCOAT_CODE, sBOOKDTL_BNDSEQ, nBOOKDTL_PAGE, nBOOKDTL_BUL;
+var nBOOKDTL_GANGED, nBOOKDTL_TONE1, nBOOKDTL_TONE2, sBOOKMST_ID;
+var sBOOKDTL_COMMENT, sBOOKDTL_REMARK, sBOOKDTL_CTP, sBOOKDTL_PSEQ;
+
+this.MkDtlMain_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.setTimer(0,1);
+	nBookMst_Id = this.parent.parent.dsBookMst.getColumn(this.parent.parent.dsBookMst.rowposition, "BOOKMST_ID");
+	
+	this.gfn_TransactionP("select", "JSP/mk/getData_use.jsp", "ds_mk_use=ds_mk_use", "ds_mk_use=ds_mk_use", "", "", false, "S", false, this); 						//용도코드
+	this.gfn_TransactionP("select", "JSP/mk/getData_coat.jsp", "ds_mk_coating=ds_mk_coating", "ds_mk_coating=ds_mk_coating", "", "", false, "S", false, this); 		//코팅코드
+	this.gfn_TransactionP("select", "JSP/mk/getData_paper.jsp", "ds_mk_Paper=ds_mk_Paper", "ds_mk_Paper=ds_mk_Paper", "", "", false, "S", false, this); 			//용지코드
+	this.gfn_TransactionP("select", "JSP/mk/getData_cdPack.jsp", "ds_mk_CDPack=ds_mk_CDPack", "ds_mk_CDPack=ds_mk_CDPack", "", "", false, "S", false, this); 		//CD PACK 코드
+	this.gfn_TransactionP("select", "JSP/mk/getData_cdPrint.jsp", "ds_mk_CDPrint=ds_mk_CDPrint", "ds_mk_CDPrint=ds_mk_CDPrint", "", "", false, "S", false, this); 	//CD PRINT 코드
+			
+	if(Eco.isUndefined(nBookMst_Id) == false){
+		this.getData_BookDtl(nBookMst_Id);
+	}else{
+		this.fctn_Dtl_New(nBookMst_Id);
+		this.set_CD_Visible_Status("");
+		this.set_USE_Processtype_Cost("");
+		this.DivDtl.form.edUseCode.setFocus();
+	}
+};
+
+//#######################################################
+//  신규로 등록하기
+//#######################################################
+this.fctn_Dtl_New = function(nBookMst_Id)
+{
+	var nRow          = "";
+
+	// CD/DVD 인쇄형식 작업구분 초기화
+	this.dsBookDtl_CD_PRINT.clearData();
+	for (var j = 0; j < this.ds_mk_CDPrint.rowcount; j++)
+	{
+		this.ds_mk_CDPrint.setColumn(j, "CHK", "0");
+	}
+
+	switch(this.dsBookDtl.rowposition)
+	{
+	  // -1 이면 레코드가 없는 상태
+	  case -1 : this.dsBookDtl.addRow();
+				break;
+				
+	  default : // 마지막 레코드 입력여부 확인
+	            nRow = this.dsBookDtl.getRowCount()-1;
+				
+	            // 레코드에 내용이 있으면
+	            if (this.fctn_Dtl_CheckRecord(nRow) == true)
+	            {
+					// ROW 추가
+					this.dsBookDtl.addRow();
+				}
+				else
+					// 마지막 레코드로 위치 이동
+					this.dsBookDtl.set_rowposition(this.dsBookDtl.getRowCount()-1);
+					
+				break;
+	}
+	
+	this.DivDtl.form.edUseCode.setFocus();
+}
+
+// 도서디테일 내역 가져오기
+this.getData_BookDtl = function(nBookMst_Id)
+{
+	str_url = "JSP/mk/mk111f_bookdtl.jsp";
+	in_ds ="dsBookDtl=dsBookDtl";
+	out_ds ="dsBookDtl=dsBookDtl";
+	str_arg = "BOOKMST_ID="+nBookMst_Id;
+	
+	this.gfn_TransactionP("selectDtl", str_url, in_ds, out_ds, str_arg, "Callback_Search", false, "S", false, this);
+};
+
+
+this.Callback_Search = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}else{
+		
+		this.fnBookDtl_BindChk(0);
+		
+		if(this.dsBookDtl.rowcount > 0){
+			
+			this.DivDtl.set_visible(true);
+			//CD/DVD 셋팅
+			this.set_CD_Visible_Status(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "USE_CODE"));		
+			//후가공 셋팅
+			this.set_USE_Processtype_Cost(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "USE_CODE"));
+		}
+		else{
+			
+			nBookMst_Id = this.parent.parent.dsBookMst.getColumn(this.parent.parent.dsBookMst.rowposition, "BOOKMST_ID");
+			
+			this.fctn_Dtl_New(nBookMst_Id);
+			this.set_CD_Visible_Status("");
+			this.set_USE_Processtype_Cost("");
+			this.DivDtl.form.edUseCode.setFocus();
+		}
+	}
+};
+
+/*상세내역 조회*/
+this.DivDtl_DivBtn_btnDSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nBookMst_Id = this.parent.parent.dsBookMst.getColumn(this.parent.parent.dsBookMst.rowposition, "BOOKMST_ID");
+	this.getData_BookDtl(nBookMst_Id);
+};
+
+/*상세내역 추가*/
+this.DivDtl_DivBtn_btnDAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsBookDtl.addRow();
+};
+
+/*상세내역 저장*/
+this.DivDtl_DivBtn_btnDSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var rtnCheck 	= true;
+	
+	for (var i=0; i <= this.dsBookDtl.rowcount-1; i ++)
+	{
+		if ((this.dsBookDtl.getRowType(i) != "normal") && (this.fctn_Dtl_CheckRecord(i) == false))
+		{
+			this.dsBookDtl.set_rowposition(i);
+			rtnCheck = false;
+			return false;
+			break;
+		}	
+	}
+	
+	if(rtnCheck == true){
+		
+		str_url = "JSP/mk/mk111f_bookdtl_dml.jsp";
+		in_ds = "input=dsBookDtl:U";
+		
+		this.gfn_TransactionP("insert", str_url, in_ds, "", "", "fnDtlSaveCallback", false, "P", false, this);
+	}
+};
+
+//#######################################################
+// 도서 상세내역 저장 콜백
+//#######################################################
+this.fnDtlSaveCallback = function(Trid, ErrorCode, ErrorMsg)
+{
+	if(ErrorCode != 0 )
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}
+	
+	this.dsBookDtl_onrowposchanged();
+}
+
+//#######################################################
+//  입력값 확인
+//#######################################################
+this.fctn_Dtl_CheckRecord = function(nRow)
+{
+	if (nRow = -1)
+	{
+		return true;
+	}
+	
+	if (this.dsBookDtl.getColumn(nRow, "USE_CODE") == null)
+	{
+		alert("용도를 입력해 주십시요.");
+		this.DivDtl.form.edUseCode.setFocus();
+		return false;
+	}
+
+	if (this.dsBookDtl.getColumn(nRow, "PPR_CODE") == null)
+	{
+		alert("용지를 입력해 주십시요.");
+		this.DivDtl.form.edPprCode.setFocus();
+		return false;
+	}
+
+	if (this.dsBookDtl.getColumn(nRow, "COAT_CODE") == null)
+	{
+		alert("코팅을 입력해 주십시요.");
+		this.DivDtl.form.edCoatCd.setFocus();
+		return false;
+	}
+	return true;
+}
+
+/*상세내역 삭제*/
+this.DivDtl_DivBtn_btnDDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var bRtn = "";
+	bRtn = this.confirm("도서 세부사항 삭제하시겠습니까?", "도서세부사항 삭제");
+	
+	if(bRtn == true)
+	{
+		if (this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "USE_PROCESSTYPE") == "B")
+			bBindChk = false;
+		
+		//row 삭제
+		this.dsBookDtl.deleteRow(this.dsBookDtl.rowposition);
+		
+		// 저장
+		this.DivDtl_DivBtn_btnDSave_onclick();
+		
+		this.DivDtl.form.grdBookDtl.setFocus();
+	}
+};
+
+this.dsBookDtl_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	//톰슨/도무송, 퍼블코팅 버튼 활성화
+	if(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "USE_PROCESSTYPE") == "P"){
+		this.DivDtl.form.btnTomson.set_enable(true);
+		this.DivDtl.form.btnTomson.set_background("#FEDF76");
+		this.DivDtl.form.btnTomson.set_color("darkblue");
+	}else{
+		this.DivDtl.form.btnTomson.set_enable(false);
+		this.DivDtl.form.btnTomson.set_background("#999999");
+		this.DivDtl.form.btnTomson.set_color("gray");
+	}
+	
+	if(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "USE_PROCESSTYPE") == "C"){
+		this.DivDtl.form.btnPubble.set_enable(true);
+		this.DivDtl.form.btnPubble.set_background("#FEDF76");
+		this.DivDtl.form.btnPubble.set_color("darkblue");
+	}
+	else{
+		this.DivDtl.form.btnPubble.set_enable(false);
+		this.DivDtl.form.btnPubble.set_background("#999999");
+		this.DivDtl.form.btnPubble.set_color("gray");
+	}
+	
+	//후가공 셋팅
+	this.set_USE_Processtype_Cost(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "USE_CODE"));
+	// CD/DVD 입력부분 VISIBLE
+	this.set_CD_Visible_Status(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "USE_CODE"));	
+};
+
+
+//도서세부사항 CD/DVD VISIBLE 처리
+this.set_CD_Visible_Status = function(strCode)     
+{
+	//용도가 CD, DVD 일 경우
+	if(strCode == "16" || strCode == "64")
+	{
+		this.DivDtl.form.edCdCnt.set_visible(true);
+		this.DivDtl.form.StaJang.set_visible(true);
+		this.DivDtl.form.cbCdCntBoth.set_visible(true);
+		this.DivDtl.form.cbPackCd.set_visible(true);
+		this.DivDtl.form.ckDvdJacket.set_visible(true);
+		this.DivDtl.form.edCdPrint.set_visible(true);
+		this.DivDtl.form.btnCdPrint.set_visible(true);
+		this.getData_CD_Print();
+	}else{
+		this.DivDtl.form.edCdCnt.set_visible(false);
+		this.DivDtl.form.StaJang.set_visible(false);
+		this.DivDtl.form.cbCdCntBoth.set_visible(false);
+		this.DivDtl.form.cbPackCd.set_visible(false);
+		this.DivDtl.form.ckDvdJacket.set_visible(false);
+		this.DivDtl.form.edCdPrint.set_visible(false);
+		this.DivDtl.form.btnCdPrint.set_visible(false);
+	}
+};
+
+//용도가 후가공일경우 후가공단가 입력 활성화
+this.set_USE_Processtype_Cost = function(strCode)     
+{
+	var nRow, vProcessType;
+	
+	nRow = this.ds_mk_use.findRow("USE_CODE", strCode);
+	
+	if(nRow >= 0)
+		vProcessType = this.ds_mk_use.getColumn(nRow, "USE_PROCESSTYPE");
+	else
+		vProcessType = "";
+		
+	if(vProcessType == "A")
+		this.DivDtl.form.medCost.set_visible(true);
+	else
+		this.DivDtl.form.medCost.set_visible(false);
+};
+
+this.getData_CD_Print = function()
+{
+	this.DivDtl.form.edCdPrint.set_value("");
+	
+	var str_url, in_ds, out_ds, str_arg;
+	
+	str_url = "JSP/mk/mk111f_bookdtl_CD_PRINT.jsp";
+	in_ds = "dsBookDtl_CD_PRINT=dsBookDtl_CD_PRINT";
+	out_ds = "dsBookDtl_CD_PRINT=dsBookDtl_CD_PRINT";
+	str_arg  = "BOOKMST_ID="+ nexacro.wrapQuote(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition,"BOOKMST_ID"));	
+	str_arg += " BOOKDTL_SEQ="+ nexacro.wrapQuote(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition,"BOOKDTL_SEQ"));	
+	
+	this.gfn_TransactionP("select", str_url, in_ds, out_ds, str_arg, "Callback_getData_CD_Print", false, "S", false, this);
+}
+
+this.Callback_getData_CD_Print = function(Trid, ErrorCode, ErrorMsg)
+{
+	if (ErrorCode != 0)
+	{
+		this.alert(ErrorMsg);
+		return false;
+	}else{
+		
+		//작업구분 초기화
+		for (var j = 0; j < this.ds_mk_CDPrint.rowcount ; j++)
+		{
+			this.ds_mk_CDPrint.setColumn(j, "CHK", "0");
+		}
+		
+		if(this.dsBookDtl_CD_PRINT.rowcount > 0){
+			
+			var str_txt = "";
+			
+			for (var i = 0; i < this.dsBookDtl_CD_PRINT.rowcount; i++)
+			{
+				for (var j = 0; j < this.ds_mk_CDPrint.rowcount; j++)
+				{
+					if (this.dsBookDtl_CD_PRINT.getColumn(i, "PRINT_CODE") == this.ds_mk_CDPrint.getColumn(j, "PRINT_CODE"))
+					{
+						this.ds_mk_CDPrint.setColumn(j, "CHK", "1");
+						
+						if(str_txt == ""){
+							str_txt = this.ds_mk_CDPrint.getColumn(j, "PRINT_NAME");
+						}else{
+							str_txt = str_txt+", "+this.ds_mk_CDPrint.getColumn(j, "PRINT_NAME");
+						}	
+					} 
+				}	
+			}
+			
+			this.DivDtl.form.edCdPrint.set_value(str_txt);
+		}
+	}
+};
+
+
+//CD/DVD 인쇄형식 다중선택 버튼
+this.DivBookDtl_btnCdPrint_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	strVisibleD = this.DivDtl.form.DivMultiCdPrt.visible;
+	
+	if(strVisibleD == false){
+		this.DivDtl.form.DivMultiCdPrt.set_visible(true);
+	}	
+	else{
+		this.DivDtl.form.DivMultiCdPrt.set_visible(false);
+	}
+};
+
+
+this.DivBookDtl_DivMultiCdPrt_btnSel2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var StrTxt = "";
+	
+	this.dsBookDtl_CD_PRINT.clearData();
+	
+	for(var irow = 0; irow <= this.ds_mk_CDPrint.rowcount; irow++){
+		
+		if (this.ds_mk_CDPrint.getColumn(irow, "CHK") == "1"){
+			this.dsBookDtl_CD_PRINT.addRow();
+			this.dsBookDtl_CD_PRINT.setColumn(this.dsBookDtl_CD_PRINT.rowposition, "PRINT_CODE", this.ds_mk_CDPrint.getColumn(irow, "PRINT_CODE"));
+			this.dsBookDtl_CD_PRINT.setColumn(this.dsBookDtl_CD_PRINT.rowposition, "PRINT_NAME", this.ds_mk_CDPrint.getColumn(irow, "PRINT_NAME"));
+			this.dsBookDtl_CD_PRINT.setColumn(this.dsBookDtl_CD_PRINT.rowposition, "EMPLOYEE_ID", gv_sabun);
+			
+			if(StrTxt == ""){
+				StrTxt = this.ds_mk_CDPrint.getColumn(irow, "PRINT_NAME");
+			}else{
+				StrTxt = StrTxt+", "+this.ds_mk_CDPrint.getColumn(irow, "PRINT_NAME");
+			}	
+		}
+	}
+	
+	this.DivDtl.form.edCdPrint.set_value(StrTxt);
+	this.fctn_CD_PRINT_save();
+	this.DivBookDtl_btnCdPrint_onclick("false");
+};
+
+//#######################################################
+// CD/DVD 인쇄형식내역저장
+//#######################################################
+this.fctn_CD_PRINT_save = function()
+{
+	var in_ds 	= "dsBookDtl_CD_PRINT=dsBookDtl_CD_PRINT:U";
+	var str_url = "JSP/mk/mk111f_bookdtl_CD_PRINT_dml.jsp";
+	
+	for (var i = 0; i <= this.dsBookDtl_CD_PRINT.rowcount-1 ; i++)
+	 {
+		this.dsBookDtl_CD_PRINT.setColumn(i, "BOOKMST_ID", this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "BOOKMST_ID"));
+		this.dsBookDtl_CD_PRINT.setColumn(i, "BOOKDTL_SEQ", this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "BOOKDTL_SEQ"));
+	 }	
+	
+	trace(this.dsBookDtl_CD_PRINT.saveXML());
+	
+	this.gfn_TransactionP("insert", str_url, in_ds, "", "", "", false, "P", false, this);
+}
+
+this.DivBookDtl_DivMultiCdPrt_btnCcl2_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	for(var irow = 0; irow <= this.ds_mk_CDPrint.rowcount; irow++){
+		this.ds_mk_CDPrint.setColumn(irow, "CHK", "0");
+	}
+	
+	this.dsBookDtl_CD_PRINT.clearData();
+	this.DivBookDtl_btnCdPrint_onclick("false");
+	this.DivDtl.form.edCdPrint.set_value("");
+};
+
+
+//톰슨/도무송, 퍼블코팅 버튼 클릭시
+this.DivBookDtl_btnTomson_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = -1;
+	var sRow = -1;
+	var sPSeq, sCmpExpr, sUSE_CODE;
+	var sPPR_CODE 			= "";
+	var sCOAT_CODE 			= "";
+	var sBOOKDTL_BNDSEQ 	= "";
+	var nBOOKDTL_PAGE 		= 0;
+	var nBOOKDTL_BUL 		= 0;
+	var nBOOKDTL_GANGED 	= 0;
+	var nBOOKDTL_TONE1 		= 0;
+	var nBOOKDTL_TONE2 		= 0;
+	var sBOOKMST_ID 		= "";
+	var sBOOKDTL_COMMENT 	= "";
+	var sBOOKDTL_REMARK 	= "";
+	var sBOOKDTL_CTP 		= "0";
+	
+	nRow 	= this.dsBookDtl.rowposition;
+	sPSeq 	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_SEQ");
+	
+	if(obj.name == "btnTomson"){
+		sUSE_CODE	= "68";
+		sCmpExpr 	= "USE_CODE=='" + sUSE_CODE + "'&&BOOKDTL_PSEQ=='" + sPSeq + "'";
+		sCOAT_CODE	= this.dsBookDtl.getColumn(nRow, "COAT_CODE");
+	
+	}else if(obj.name == "btnPubble"){
+		sUSE_CODE	= this.dsBookDtl.getColumn(nRow, "USE_CODE");
+		sCOAT_CODE	= "61";
+		sCmpExpr 	= "COAT_CODE=='" + sCOAT_CODE + "'&&BOOKDTL_PSEQ=='" + sPSeq + "'";
+	}
+	
+	sRow = this.dsBookDtl.findRowExpr(sCmpExpr);
+	
+	if(sRow == -1)
+	{
+		sPPR_CODE		= this.dsBookDtl.getColumn(nRow, "PPR_CODE");
+		sBOOKDTL_BNDSEQ	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_BNDSEQ");
+		nBOOKDTL_PAGE	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_PAGE");
+		nBOOKDTL_BUL	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_BUL");
+		nBOOKDTL_GANGED	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_GANGED");
+		nBOOKDTL_TONE1	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_TONE1");
+		nBOOKDTL_TONE2	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_TONE2");
+		sBOOKMST_ID		= this.dsBookDtl.getColumn(nRow, "BOOKMST_ID");
+		sBOOKDTL_COMMENT= this.dsBookDtl.getColumn(nRow, "BOOKDTL_COMMENT");
+		sBOOKDTL_REMARK	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_REMARK");
+		sBOOKDTL_CTP	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_CTP");
+	
+	
+	this.fnBoolDtl_SetColumns(sUSE_CODE, sPSeq, sPPR_CODE
+		, sCOAT_CODE, sBOOKDTL_BNDSEQ, nBOOKDTL_PAGE, nBOOKDTL_BUL
+		, nBOOKDTL_GANGED, nBOOKDTL_TONE1, nBOOKDTL_TONE2, sBOOKMST_ID
+		, sBOOKDTL_COMMENT, sBOOKDTL_REMARK, sBOOKDTL_CTP);
+	}
+	
+	//세부사양 저장
+	this.DivDtl_DivBtn_btnDSave_onclick();
+	
+};
+
+//세부사양 추가하기
+this.fnBoolDtl_SetColumns = function(sUSE_CODE, sBOOKDTL_PSEQ, sPPR_CODE
+									, sCOAT_CODE, sBOOKDTL_BNDSEQ, nBOOKDTL_PAGE, nBOOKDTL_BUL
+									, nBOOKDTL_GANGED, nBOOKDTL_TONE1, nBOOKDTL_TONE2, sBOOKMST_ID
+									, sBOOKDTL_COMMENT, sBOOKDTL_REMARK, sBOOKDTL_CTP)
+{
+	var nCurrentRow		= -1;
+	var sBOOKDTL_SEQ;
+	var nPageSum		= 0;
+	
+	// 레코드를 추가시킨후 마지막 레코드로 이동
+	nCurrentRow	= this.dsBookDtl.addRow();
+	
+	// 용도가 제본일 경우 용도별 페이지 합산 여부 확인 후 페이지 합산
+	if (sUSE_CODE != "72")
+		nPageSum	= nBOOKDTL_PAGE;
+	else
+		nPageSum	= this.fnBookDtl_BindPageCnt(nCurrentRow);
+		
+	sBOOKDTL_SEQ	= this.fnPID_BookDtlSeq_Count(this.dsBookDtl, "BOOKDTL_SEQ");
+	
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_SEQ", 		sBOOKDTL_SEQ);
+	this.dsBookDtl.setColumn(nCurrentRow, "USE_CODE", 			sUSE_CODE);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_PSEQ", 		sBOOKDTL_PSEQ);
+	this.dsBookDtl.setColumn(nCurrentRow, "PPR_CODE", 			sPPR_CODE);
+	this.dsBookDtl.setColumn(nCurrentRow, "COAT_CODE", 			sCOAT_CODE);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_BNDSEQ", 	sBOOKDTL_BNDSEQ);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_PAGE", 		nPageSum);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_BUL", 		nBOOKDTL_BUL);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_GANGED", 	nBOOKDTL_GANGED);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_TONE1", 		nBOOKDTL_TONE1);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_TONE2", 		nBOOKDTL_TONE2);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKMST_ID", 		sBOOKMST_ID);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_COMMENT", 	sBOOKDTL_COMMENT);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_REMARK", 	sBOOKDTL_REMARK);
+	this.dsBookDtl.setColumn(nCurrentRow, "BOOKDTL_CTP", 		sBOOKDTL_CTP);
+	this.dsBookDtl.setColumn(nCurrentRow, "USE_PROCESSTYPE", 	this.DivDtl.form.grdBookDtl.getCellText(nCurrentRow, 11));
+};
+
+
+
+//#######################################################
+// 제본 페이지 구하기
+//#######################################################
+this.fnBookDtl_BindPageCnt = function(nCurrentRow)
+{
+	var nSumPage	= 0;
+	var nUseCode = this.dsBookDtl.getColumn(nCurrentRow, "USE_CODE");
+	
+	if(nUseCode == null || nUseCode == "")
+		return false;
+	
+	for (var nRow = 0 ; nRow < this.dsBookDtl.rowcount(); nRow++)
+	{
+		if ( (this.DivDtl.form.grdBookDtl.GetCellText(nRow, 12) == "1") &&  // 페이지 카운트
+		     (this.dsBookDtl.getColumn( nRow, "BOOKDTL_BNDSEQ") != 0) )
+			nSumPage += nexacro.toNumber(this.dsBookDtl.getColumn(nRow, "BOOKDTL_PAGE"));
+	}
+	
+	if (nSumPage != this.dsBookDtl.getColumn(this.dsBookDtl.findRow("USE_CODE", "72"), "BOOKDTL_PAGE"))
+		this.dsBookDtl.setColumn(this.dsBookDtl.findRow("USE_CODE", "72"), "BOOKDTL_PAGE", nSumPage);
+	
+	this.dsBookDtl.rowposition = nCurrentRow;
+
+	return nSumPage;
+}
+
+//내부 DataSet에서 순번 최대값 구하기
+this.fnPID_BookDtlSeq_Count = function(dsF, ColumnNm)
+{
+	var sMaxSeq	= "";
+	
+	sMaxSeq = dsF.getMax(ColumnNm);
+	
+	if(sMaxSeq == "NaN" || Eco.isUndefined(sMaxSeq) == true )
+		sMaxSeq = 0;
+	
+	sMaxSeq = (nexacro.toNumber(sMaxSeq)+1).toString();
+	sMaxSeq = sMaxSeq.padLeft(2, "0"); 
+	
+	return sMaxSeq;
+}
+
+//제본(제책)이 들어 있는지 체크
+this.fnBookDtl_BindChk = function(nRow)     
+{
+	bBindChk = false;
+	
+	for (var i = 0 ; i < this.dsBookDtl.rowcount; i++)
+	{
+		if (this.dsBookDtl.getColumn(i, "USE_PROCESSTYPE") == "B")
+		{
+			bBindChk = true;
+			break;
+		}
+	}
+
+	this.dsBookDtl.set_rowposition(nRow);
+};
+
+//#######################################################
+// 페이지 수정시 총페이지 다시구하기
+//#######################################################
+this.dsBookDtl_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	if ((this.dsBookDtl.getColumn(e.row, "USE_CODE") == "") || (this.dsBookDtl.getColumn(e.row, "USE_CODE") == null))
+		return false;
+		
+	var iBodyPage = this.dsBookDtl.getCaseSum("USE_PROCESSTYPE=='P'&&((USE_CODE=='51'||USE_CODE=='52'||USE_CODE=='79')&&(BOOKDTL_BNDSEQ!='0'))","BOOKDTL_PAGE");
+	
+	//도서마스터 본문PAGE 수정
+	this.parent.parent.dsBookMst.setColumn(this.parent.parent.dsBookMst.rowposition, "BOOKMST_BODYPAGE", iBodyPage);
+	
+	//도서마스터 본문대수 재계산
+	this.parent.parent.edSignatue_onsetfocus(this.parent.parent.edSignatue);
+	
+	if((e.columnid == "BOOKDTL_PAGE") || (e.columnid == "BOOKDTL_BNDSEQ")){
+		
+		var iBodyPage = this.dsBookDtl.getCaseSum("USE_PROCESSTYPE=='P'&&((USE_CODE=='51'||USE_CODE=='52'||USE_CODE=='79')&&(BOOKDTL_BNDSEQ!='0'))","BOOKDTL_PAGE");
+		
+		if(iBodyPage != this.parent.parent.dsBookMst.getColumn(this.parent.parent.dsBookMst.rowposition, "BOOKMST_BODYPAGE"))
+			this.parent.parent.dsBookMst.setColumn(this.parent.parent.dsBookMst.rowposition, "BOOKMST_BODYPAGE", iBodyPage);
+			
+		this.parent.parent.edSignatue_onsetfocus(this.parent.parent.edSignatue);
+		
+		var iBindPage = this.dsBookDtl.getCaseSum("USE_PAGECNT=='1'&&BOOKDTL_BNDSEQ!='0'","BOOKDTL_PAGE");
+		
+		if(iBindPage != this.dsBookDtl.getColumn(this.dsBookDtl.findRow("USE_CODE", "72"), "BOOKDTL_PAGE"))
+			this.dsBookDtl.setColumn(this.dsBookDtl.findRow("USE_CODE", "72"), "BOOKDTL_PAGE", iBindPage);
+			
+	}
+	
+};
+
+//도서 세부내역 addRow시 타는 이벤트
+this.dsBookDtl_onrowsetchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowsetChangeEventInfo)
+{
+	var sBOOKDTL_SEQ;
+	
+	sBOOKDTL_SEQ = this.fnPID_BookDtlSeq_Count(this.dsBookDtl, "BOOKDTL_SEQ");
+	
+	//dsBookMst AddRow 할 경우 기본 setting
+	if(e.reason == Dataset.REASON_APPEND){
+		
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_SEQ", sBOOKDTL_SEQ);
+		this.dsBookDtl.setColumn(e.row, "USE_CODE", "");
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_PSEQ", sBOOKDTL_SEQ);
+		this.dsBookDtl.setColumn(e.row, "PPR_CODE", "0000");
+		this.dsBookDtl.setColumn(e.row, "COAT_CODE", "");
+		this.dsBookDtl.setColumn(e.row, "EMPLOYEE_ID", gv_sabun);	
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_REGDATE", "");	
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_BNDSEQ", e.row);	
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_PAGE", 0);
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_BUL", 0);
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_GANGED", 0);
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_TONE1", 0);
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_TONE2", 0);
+		this.dsBookDtl.setColumn(e.row, "BOOKMST_ID", nBookMst_Id);
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_COMMENT", "");
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_REMARK", "");
+		this.dsBookDtl.setColumn(e.row, "BOOKDTL_CTP", "0");
+	}
+};
+
+this.MkDtlMain_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.setTimer(0,1);
+};
+
+
+this.MkDtlMain_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	var l;
+	if (obj.getOffsetWidth() < 1300) 
+	{
+		l = 0;
+	}
+	else
+	{
+		l = (obj.getOffsetWidth() - 1300) / 2;
+	}
+	
+	trace(l);
+	this.killTimer(0);
+};
+
+//세부사항 그리드 변경이벤트
+this.DivDtl_grdBookDtl_onkeydown = function(obj:nexacro.Grid,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 27){
+		this.DivDtl_DivBtn_btnDClose_onclick();
+	}else if(e.keycode == 13){
+		this.DivDtl.form.edUseCode.setFocus();
+		this.DivDtl.form.edUseCode.setSelect(0, -1);
+	}else if(e.keycode == 46){
+		this.DivDtl_DivBtn_btnDDel_onclick();
+	}
+	
+	this.set_USE_Processtype_Cost(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "USE_CODE"));
+	this.set_CD_Visible_Status(this.dsBookDtl.getColumn(this.dsBookDtl.rowposition, "USE_CODE"));
+};
+
+//세부사항 그리드 클릭이벤트
+this.DivDtl_grdBookDtl_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.set_USE_Processtype_Cost(this.dsBookDtl.getColumn(e.row, "USE_CODE"));
+	this.set_CD_Visible_Status(this.dsBookDtl.getColumn(e.row, "USE_CODE"));
+};
+
+//용도 변경 이벤트
+this.DivDtl_edUseCode_canchange = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	this.dsBookDtl.setColumn(this.dsBookDtl.rowposition, "USE_PROCESSTYPE", this.ds_mk_use.getColumn(this.ds_mk_use.rowposition, "USE_PROCESSTYPE"));
+	this.set_CD_Visible_Status(e.postvalue);
+	this.set_USE_Processtype_Cost(e.postvalue);
+	this.set_usecode_onchange(e.postvalue);
+};
+
+
+this.DivDtl_cbUseCode_canitemchange = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.dsBookDtl.setColumn(this.dsBookDtl.rowposition, "USE_PROCESSTYPE", this.ds_mk_use.getColumn(this.ds_mk_use.rowposition, "USE_PROCESSTYPE"));
+	this.set_CD_Visible_Status(e.postvalue);
+	this.set_USE_Processtype_Cost(e.postvalue);
+	this.set_usecode_onchange(e.postvalue);
+};
+
+//용도변경시 알판 1장기본값, 선택된비고 없애기
+this.set_usecode_onchange = function(strCode)
+{
+    if(strCode == "16" || strCode == "64")//CD/DVD활성화
+	{
+		this.dsBookDtl.setColumn(this.dsBookDtl.rowposition, "CD_COUNT", 1);
+	}
+	else
+	{
+		this.dsBookDtl.setColumn(this.dsBookDtl.rowposition, "CD_COUNT", 0);
+	}
+};
+
+//도서 세부사항 비고 변경 이벤트
+this.DivDtl_edRemark_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13){
+		this.DivDtl.form.grdBookDtl.setFocus();
+		
+		var nRow = this.dsBookDtl.rowposition;
+		var arrRows;
+		// 같은 SEQ값을 찾아 배열로 저장
+		arrRows = this.dsBookDtl.extractRows("BOOKDTL_PSEQ =="+ this.dsBookDtl.getColumn(nRow, "BOOKDTL_SEQ"));
+		
+		//가공으로 추가된 자식Row가 없으면 추가 배열갯수로 자식Row 확인
+		if(arrRows.length == 1)
+		{ 
+			this.fnBookDtl_UseAddRow(nRow,  
+								  this.dsBookDtl.getColumn(nRow, "USE_CODE"),
+								  this.dsBookDtl.getColumn(nRow, "USE_PROCESSTYPE"),
+								  this.dsBookDtl.getColumn(nRow, "COAT_CODE"));
+								  
+		}
+		
+		if(this.dsBookDtl.getRowCount()-1 != this.dsBookDtl.rowposition){
+			// 세부사양 자식 코드 동시 수정
+			this.fctn_Dtl_PSeq_Save(this.dsBookDtl.rowposition);
+			// 다음 레코드로 이동
+			this.dsBookDtl.set_rowposition(this.dsBookDtl.rowposition+1); 
+		}
+		
+		this.DivDtl_DivBtn_btnDSave_onclick();
+		
+	}else if(e.keycode == 27){
+		this.DivDtl.setFocus();
+	}
+};
+
+//용지코드 변경 이벤트
+this.DivDtl_edPprCode_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if((this.DivDtl.form.edPprCode.maxlength == this.DivDtl.form.edPprCode.text.length) && e.keycode == 13){
+		
+		var i = this.ds_mk_Paper.findRow("PPR_CODE", this.DivDtl.form.edPprCode.value);
+		
+		if( i == -1){
+			alert("용지를 찾을 수 없습니다.");
+			this.DivDtl.form.edPprCode.set_value("");
+		}else{
+			this.DivDtl.form.cbPprCode.index = i;
+			this.fctn_Dtl_PSeq_Save(this.dsBookDtl.rowposition);
+			this.DivDtl.form.cbPprCode.setFocus();
+		}
+	
+	}else if(e.keycode == 27){
+	
+		this.DivDtl.form.grdBookDtl.setFocus();
+	}
+	
+};
+
+//#######################################################
+// 용도 작업시 코팅 추가 루틴
+//#######################################################
+this.fnBookDtl_UseAddRow = function(nRow, sUse_Code, sUse_ProcessType, sCoat_Code)
+{
+	var sUSE_PUSE_CODE 		= "";
+	var sBOOKDTL_SEQ 		= "";
+	var sUSE_PUSE_CODE 		= "";
+	var sBOOKDTL_PSEQ 		= "";
+	var sPPR_CODE 			= "";
+	var sBOOKDTL_BNDSEQ 	= "";
+	var nBOOKDTL_PAGE 		= 0;
+	var nBOOKDTL_BUL 		= 0;
+	var nBOOKDTL_GANGED 	= 0;
+	var nBOOKDTL_TONE1 		= 0;
+	var nBOOKDTL_TONE2 		= 0;
+	var sBOOKMST_ID 		= "";
+	var sBOOKDTL_COMMENT 	= "";
+	var sBOOKDTL_REMARK 	= "";
+	var sBOOKDTL_CTP 		= "0";
+
+	sBOOKDTL_PSEQ	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_SEQ");
+	sPPR_CODE		= this.dsBookDtl.getColumn(nRow, "PPR_CODE");
+	sCOAT_CODE		= this.dsBookDtl.getColumn(nRow, "COAT_CODE");
+	sBOOKDTL_BNDSEQ	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_BNDSEQ");
+	nBOOKDTL_PAGE	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_PAGE");
+	nBOOKDTL_BUL	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_BUL");
+	nBOOKDTL_GANGED	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_GANGED");
+	nBOOKDTL_TONE1	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_TONE1");
+	nBOOKDTL_TONE2	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_TONE2");
+	sBOOKMST_ID		= this.dsBookDtl.getColumn(nRow, "BOOKMST_ID");
+	sBOOKDTL_COMMENT= this.dsBookDtl.getColumn(nRow, "BOOKDTL_COMMENT");
+	sBOOKDTL_REMARK	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_REMARK");
+	sBOOKDTL_CTP	= this.dsBookDtl.getColumn(nRow, "BOOKDTL_CTP");
+	
+	// 스티커 가공추가로 가공코드가 들어가 있는 것을 가공용도로 추가한다. 2012.6.28
+	if ( sCoat_Code != "00" )
+	{	
+		//인쇄코드와 연관된 코팅코드 가져오기
+		sUSE_PUSE_CODE 	= this.ds_mk_use.lookup("USE_CODE", sUse_Code, "USE_PUSE_CODE");
+		
+		if (sUSE_PUSE_CODE != null)
+		{
+			// 코팅코드 변경
+			this.dsBookDtl.setColumn(nRow, "COAT_CODE", "00");
+	
+			// 레코드 추가하기
+			this.fnBoolDtl_SetColumns( sUSE_PUSE_CODE
+									, sBOOKDTL_PSEQ
+									, sPPR_CODE
+									, sCOAT_CODE
+									, sBOOKDTL_BNDSEQ
+									, nBOOKDTL_PAGE
+									, nBOOKDTL_BUL
+									, nBOOKDTL_GANGED
+									, nBOOKDTL_TONE1
+									, nBOOKDTL_TONE2
+									, sBOOKMST_ID
+									, sBOOKDTL_COMMENT
+									, sBOOKDTL_REMARK
+									, sBOOKDTL_CTP);
+		}
+	}
+
+	if ( sUse_ProcessType == "P" )
+	{
+		//사양에 제본이 없고, 표지일 경우 제본등록
+		if ((bBindChk == false) && (sUse_Code = "21"))
+		{
+			// 레코드 추가하기  sBOOKDTL_SEQ
+			this.fnBoolDtl_SetColumns( "72"
+			                    , sBOOKDTL_PSEQ
+			                    , "0000"
+			                    , "00"
+			                    , nexacro.toNumber(sBOOKDTL_PSEQ)
+			                    , 0
+								, 0
+								, 0
+								, 0
+								, 0
+								, sBOOKMST_ID
+								, ""
+								, ""
+								, "0");
+			bBindChk = true;
+		}
+	}
+}
+
+//#######################################################
+// 세부사양 동시 수정
+//#######################################################
+this.fctn_Dtl_PSeq_Save = function(nRow)
+{
+	var sSeq = this.dsBookDtl.getColumn(nRow, "BOOKDTL_SEQ");
+	var sPPR_CODE, nBOOKDTL_PAGE, nBOOKDTL_BUL, nBOOKDTL_GANGED, nBOOKDTL_TONE1, nBOOKDTL_TONE2;
+
+	if ((this.dsBookDtl.getColumn(nRow, "BOOKDTL_SEQ") == this.dsBookDtl.getColumn(nRow, "BOOKDTL_PSEQ")) &&
+	     this.ds_mk_use.lookup("USE_CODE", this.dsBookDtl.getColumn(nRow, "USE_CODE"), "USE_PUSE_CODE") != null)
+	{
+		/* 부모 코드에 의한 변경값 설정 (인쇄용도)*/
+		sPPR_CODE       = this.dsBookDtl.getColumn(nRow, "PPR_CODE");
+		nBOOKDTL_PAGE   = this.dsBookDtl.getColumn(nRow, "BOOKDTL_PAGE");
+		nBOOKDTL_BUL    = this.dsBookDtl.getColumn(nRow, "BOOKDTL_BUL");
+		nBOOKDTL_GANGED = this.dsBookDtl.getColumn(nRow, "BOOKDTL_GANGED");
+		nBOOKDTL_TONE1  = this.dsBookDtl.getColumn(nRow, "BOOKDTL_TONE1");
+		nBOOKDTL_TONE2  = this.dsBookDtl.getColumn(nRow, "BOOKDTL_TONE2");
+	
+		for (nRow = 0 ; nRow < this.dsBookDtl.rowcount; nRow++)
+		{
+			if ( this.dsBookDtl.getColumn(nRow, "BOOKDTL_PSEQ") == sSeq )
+			{
+				if ((this.dsBookDtl.getColumn(nRow, "USE_PROCESSTYPE") == "P") ||
+				    (this.dsBookDtl.getColumn(nRow, "USE_PROCESSTYPE") == "C") ||
+				    (this.dsBookDtl.getColumn(nRow, "USE_CODE") == "68"))
+				{
+					this.dsBookDtl.setColumn(nRow, "PPR_CODE"		, sPPR_CODE);
+					this.dsBookDtl.setColumn(nRow, "BOOKDTL_PAGE"	, nBOOKDTL_PAGE);
+					this.dsBookDtl.setColumn(nRow, "BOOKDTL_BUL"	, nBOOKDTL_BUL);
+					this.dsBookDtl.setColumn(nRow, "BOOKDTL_GANGED"	, nBOOKDTL_GANGED);
+					this.dsBookDtl.setColumn(nRow, "BOOKDTL_TONE1"	, nBOOKDTL_TONE1);
+					this.dsBookDtl.setColumn(nRow, "BOOKDTL_TONE2"	, nBOOKDTL_TONE2);
+				}
+			}
+		}
+	}
+}
+
+//CD/DVD 포장형식 변경이벤트
+this.DivDtl_cbPackCd_canitemchange = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	if(e.postvalue >= 15){
+		if(e.postvalue == 33 || e.postvalue == 34 || e.postvalue == 35)
+			this.DivDtl.form.ckDvdJacket.set_value(false);
+		else
+			this.DivDtl.form.ckDvdJacket.set_value(true);
+	}else{
+		this.DivDtl.form.ckDvdJacket.set_value(false);
+	}
+};
+
+//#######################################################
+// 도서관리 세부사항 창 닫기
+//#######################################################
+this.DivDtl_DivBtn_btnDClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.parent.parent.btnSave_onclick(); 
+	
+	// 세부사항 조회후 돌아갈때 다음 칸으로 자동 이동
+	if (this.parent.parent.dsBookMst.rowposition < this.parent.parent.dsBookMst.getRowCount()-1 )
+		this.parent.parent.dsBookMst.set_rowposition(this.parent.parent.dsBookMst.getRowCount());
+
+	this.parent.parent.grdBookMst.setFocus();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsBookDtl" onrowposchanged="dsBookDtl_onrowposchanged" onrowsetchanged="dsBookDtl_onrowsetchanged" oncolumnchanged="dsBookDtl_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="BOOKDTL_SEQ" type="STRING" size="256"/>
+          <Column id="USE_CODE" type="STRING" size="256"/>
+          <Column id="BOOKDTL_PSEQ" type="STRING" size="256"/>
+          <Column id="PPR_CODE" type="STRING" size="256"/>
+          <Column id="COAT_CODE" type="STRING" size="256"/>
+          <Column id="EMPLOYEE_ID" type="STRING" size="256"/>
+          <Column id="BOOKDTL_REGDATE" type="STRING" size="256"/>
+          <Column id="BOOKDTL_MODIDATE" type="STRING" size="256"/>
+          <Column id="BOOKDTL_BNDSEQ" type="STRING" size="256"/>
+          <Column id="BOOKDTL_PAGE" type="STRING" size="256"/>
+          <Column id="BOOKDTL_BUL" type="STRING" size="256"/>
+          <Column id="BOOKDTL_GANGED" type="STRING" size="256"/>
+          <Column id="BOOKDTL_TONE1" type="STRING" size="256"/>
+          <Column id="BOOKDTL_TONE2" type="STRING" size="256"/>
+          <Column id="BOOKMST_ID" type="STRING" size="256"/>
+          <Column id="BOOKDTL_COMMENT" type="STRING" size="256"/>
+          <Column id="BOOKDTL_REMARK" type="STRING" size="256"/>
+          <Column id="BOOKDTL_CTP" type="STRING" size="256"/>
+          <Column id="USE_PROCESSTYPE" type="STRING" size="256"/>
+          <Column id="USE_PAGECNT" type="STRING" size="256"/>
+          <Column id="CD_PACK_CODE" type="STRING" size="256"/>
+          <Column id="CD_PRINT_CODE" type="STRING" size="256"/>
+          <Column id="CD_DVD_JACKET" type="STRING" size="256"/>
+          <Column id="CD_COUNT" type="STRING" size="256"/>
+          <Column id="CD_COUNT_BOTH" type="STRING" size="256"/>
+          <Column id="COST" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_use">
+        <ColumnInfo>
+          <Column id="USE_CODE" type="STRING" size="256"/>
+          <Column id="USE_NAME" type="STRING" size="256"/>
+          <Column id="USE_PROCESSTYPE" type="STRING" size="256"/>
+          <Column id="USE_PUSE_CODE" type="STRING" size="256"/>
+          <Column id="USE_SHEETPRNCLASS" type="STRING" size="256"/>
+          <Column id="USE_PAGECNT" type="STRING" size="256"/>
+          <Column id="USE_DISABLED" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_coating">
+        <ColumnInfo>
+          <Column id="COAT_CODE" type="STRING" size="256"/>
+          <Column id="COAT_NAME" type="STRING" size="256"/>
+          <Column id="COAT_DISABLED" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_CDPack">
+        <ColumnInfo>
+          <Column id="PACK_CODE" type="STRING" size="256"/>
+          <Column id="PACK_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_Paper">
+        <ColumnInfo>
+          <Column id="PPR_CODE" type="STRING" size="256"/>
+          <Column id="PPR_UNIT" type="STRING" size="256"/>
+          <Column id="PPR_STND" type="STRING" size="256"/>
+          <Column id="PPR_REGDATE" type="STRING" size="256"/>
+          <Column id="PPR_WEIGHT" type="STRING" size="256"/>
+          <Column id="PPR_WIDTH" type="STRING" size="256"/>
+          <Column id="PPR_LENGTH" type="STRING" size="256"/>
+          <Column id="PPR_CONVERSION" type="STRING" size="256"/>
+          <Column id="PPR_DANGA" type="STRING" size="256"/>
+          <Column id="PPR_NAME" type="STRING" size="256"/>
+          <Column id="PPR_FEQUENT" type="STRING" size="256"/>
+          <Column id="PPR_DISABLED" type="STRING" size="256"/>
+          <Column id="PPR_STNDNAME" type="STRING" size="256"/>
+          <Column id="PPRKND_CLASS" type="STRING" size="256"/>
+          <Column id="PPRKND_KIND" type="STRING" size="256"/>
+          <Column id="PPRKND_NAME" type="STRING" size="256"/>
+          <Column id="PPRKND_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_mk_CDPrint">
+        <ColumnInfo>
+          <Column id="CHK" type="STRING" size="256"/>
+          <Column id="PRINT_CODE" type="STRING" size="256"/>
+          <Column id="PRINT_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBookDtl_CD_PRINT">
+        <ColumnInfo>
+          <Column id="BOOKMST_ID" type="STRING" size="256"/>
+          <Column id="BOOKDTL_SEQ" type="STRING" size="256"/>
+          <Column id="PRINT_CODE" type="STRING" size="256"/>
+          <Column id="PRINT_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item17" compid="DivDtl.form.edUseCode" propid="value" datasetid="dsBookDtl" columnid="USE_CODE"/>
+      <BindItem id="item18" compid="DivDtl.form.cbUseCode" propid="value" datasetid="dsBookDtl" columnid="USE_CODE"/>
+      <BindItem id="item19" compid="DivDtl.form.edCoatCd" propid="value" datasetid="dsBookDtl" columnid="COAT_CODE"/>
+      <BindItem id="item20" compid="DivDtl.form.cbCoatCd" propid="value" datasetid="dsBookDtl" columnid="COAT_CODE"/>
+      <BindItem id="item21" compid="DivDtl.form.edPprCode" propid="value" datasetid="dsBookDtl" columnid="PPR_CODE"/>
+      <BindItem id="item22" compid="DivDtl.form.cbPprCode" propid="value" datasetid="dsBookDtl" columnid="PPR_CODE"/>
+      <BindItem id="item23" compid="DivDtl.form.edBndSeq" propid="value" datasetid="dsBookDtl" columnid="BOOKDTL_BNDSEQ"/>
+      <BindItem id="item24" compid="DivDtl.form.edPage" propid="value" datasetid="dsBookDtl" columnid="BOOKDTL_PAGE"/>
+      <BindItem id="item25" compid="DivDtl.form.edBul" propid="value" datasetid="dsBookDtl" columnid="BOOKDTL_BUL"/>
+      <BindItem id="item26" compid="DivDtl.form.edGanged" propid="value" datasetid="dsBookDtl" columnid="BOOKDTL_GANGED"/>
+      <BindItem id="item27" compid="DivDtl.form.edCdCnt" propid="value" datasetid="dsBookDtl" columnid="CD_COUNT"/>
+      <BindItem id="item28" compid="DivDtl.form.cbPackCd" propid="value" datasetid="dsBookDtl" columnid="CD_PACK_CODE"/>
+      <BindItem id="item30" compid="DivDtl.form.edTone1" propid="value" datasetid="dsBookDtl" columnid="BOOKDTL_TONE1"/>
+      <BindItem id="item31" compid="DivDtl.form.edTone2" propid="value" datasetid="dsBookDtl" columnid="BOOKDTL_TONE2"/>
+      <BindItem id="item33" compid="DivDtl.form.edCommt" propid="value" datasetid="dsBookDtl" columnid="BOOKDTL_COMMENT"/>
+      <BindItem id="item34" compid="DivDtl.form.edRemark" propid="value" datasetid="dsBookDtl" columnid="BOOKDTL_REMARK"/>
+      <BindItem id="item44" compid="DivDtl.form.cbCdCntBoth" propid="value" datasetid="dsBookDtl" columnid="CD_COUNT_BOTH"/>
+      <BindItem id="item46" compid="DivDtl.form.ckDvdJacket" propid="value" datasetid="dsBookDtl" columnid="CD_DVD_JACKET"/>
+      <BindItem id="item47" compid="DivDtl.form.cbCtp" propid="value" datasetid="dsBookDtl" columnid="BOOKDTL_CTP"/>
+      <BindItem id="item48" compid="DivDtl.form.medCost" propid="value" datasetid="dsBookDtl" columnid="COST"/>
+    </Bind>
+  </Form>
+</FDL>
