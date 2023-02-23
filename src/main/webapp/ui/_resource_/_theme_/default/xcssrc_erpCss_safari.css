@@ -1,0 +1,469 @@
+﻿
+html, body
+{
+  position:absolute;
+  width:100%;
+  height:100%;
+  font:12pt Verdana;
+  -moz-user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
+}
+
+div
+{
+  position:absolute;
+  box-sizing:border-box;
+  overflow:hidden;
+  background-origin:padding-box;
+  background-repeat:no-repeat;
+  white-space : pre;
+  -moz-user-select:-moz-none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+  -webkit-appearance:none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  outline:none;
+}
+
+table
+{
+  position:absolute;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+input
+{
+  position:absolute;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+img
+{
+  position:absolute;
+  box-sizing:border-box;
+}
+
+textarea::-webkit-scrollbar { display: none; }
+
+
+.nexacontainer
+{
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:100%;
+  height:100%;
+}
+.nexacontainer.withvscroll
+{
+  right:14px;
+}
+.nexacontainer.withhscroll
+{
+  bottom:14px;
+}
+.nexacontainer.withbothscroll
+{
+  right:14px;
+  bottom:14px;
+}
+
+.nexalefttop
+{
+  left:0px;
+  top:0px;
+  background-repeat:no-repeat;
+  background-position:left top;
+  font-size:1px;
+}
+.nexaleftbottom
+{
+  left:0px;
+  bottom:0px;
+  background-repeat:no-repeat;
+  background-position:left bottom;
+  font-size:1px;
+}
+.nexarightbottom
+{
+  right:0px;
+  bottom:0px;
+  background-repeat:no-repeat;
+  background-position:right bottom;
+  font-size:1px;
+}
+.nexarighttop
+{
+  right:0px;
+  top:0px;
+  background-repeat:no-repeat;
+  background-position:right top;
+}
+.nexaedge
+{
+  width:100%;
+  height:100%;
+}
+.nexamodaloverlay
+{
+  width:100%;
+  height:100%;
+}
+.nexainnercontainer
+{
+  
+}
+
+.nexatransform
+{
+  
+}
+
+.nexacontentsbox
+{
+  position:relative;
+  display:table-cell;
+  background-position:left center;
+  background-repeat:no-repeat;
+  vertical-align:middle;
+}
+.nexatextitem
+{
+  position:relative;
+  vertical-align:middle;
+  white-space:inherit;
+  word-wrap:inherit;
+  word-break:inherit;
+  text-decoration:inherit;
+}
+.nexaiconitem
+{
+  position:relative;
+  vertical-align:middle;
+  background-position:center center;
+  background-repeat:no-repeat;
+}
+
+.nexainput
+{
+  font:inherit;
+  color:inherit;
+  cursor:inherit;
+  letter-spacing:inherit;
+  word-spacing:inherit;
+  border:none;
+  outline:none;
+  background:transparent;
+  padding : 0px;  
+}
+
+.nexatextarea
+{
+  font:inherit;
+  color:inherit;
+  cursor:inherit;
+  line-height : inherit;
+  letter-spacing:inherit;
+  word-spacing:inherit;
+  white-space:pre;
+  word-wrap:normal;
+  border:none;
+  outline:none;
+  resize:none;
+  background:transparent;
+  padding : 0px;
+}
+
+.nexaleftalign
+{
+  text-align:left;
+}
+
+.nexarightalign
+{
+  text-align:right;
+}
+
+.nexacenteralign
+{
+  text-align:center;
+}
+
+.nexamap div *
+{
+  overflow:visible;
+}
+
+.ProgressBar,.ProgressBarControl
+{
+
+}
+
+.celltreeline
+{
+  border : 1px dotted #999999;
+}
+
+.Edit, .MaskEdit, .TextArea, .EditControl, .MaskEditControl, .TextAreaControl
+{
+  cursor:text;
+}
+.Button .nexacontentsbox, .ButtonControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.FileDownload  .nexacontentsbox, .FileDownloadControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.IconTextControl .nexacontentsbox, .IconControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.DatePickerDayItemControl .nexacontentsbox, .DatePickerWeekItemControl .nexacontentsbox, .TitleBarButtonControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.Sketch .nexacontentsbox
+{
+   text-align:center;
+}
+
+.MainFrame, .VScrollBarControl, .HScrollBarControl
+{
+  cursor:default;
+}
+
+.Button
+{
+	background : #3cbcb8;
+	color : white;
+}
+.Calendar .datepicker .head
+{
+	background : #3cbcb8;
+	color : white;
+	font : normal 900 10pt/normal "Arial";
+}
+.DatePickerControl.popupCalendardatepicker .head
+{
+	background : #3cbcb8;
+	color : white;
+	font : normal 900 10pt/normal "Arial";
+}
+.Calendar .datepicker .head .yearspin .spinedit
+{
+	background : #3cbcb8;
+}
+.DatePickerControl.popupCalendardatepicker .head .yearspin .spinedit
+{
+	background : #3cbcb8;
+}
+.Calendar .datepicker .head .monthspin .spinedit
+{
+	background : #3cbcb8;
+}
+.DatePickerControl.popupCalendardatepicker .head .monthspin .spinedit
+{
+	background : #3cbcb8;
+}
+.Calendar .datepicker .body .weekband
+{
+	background : #3cbcb8;
+	color : white;
+	font : normal 900 10pt/normal "Arial";
+}
+.DatePickerControl.popupCalendardatepicker .body .weekband
+{
+	background : #3cbcb8;
+	color : white;
+	font : normal 900 10pt/normal "Arial";
+}
+.Calendar .datepicker .body
+{
+	border : 0px none;
+}
+.DatePickerControl.popupCalendardatepicker .body
+{
+	border : 0px none;
+}
+.Calendar .datepicker .body .dayitem
+{
+	border-radius : 50px;
+}
+.DatePickerControl.popupCalendardatepicker .body .dayitem
+{
+	border-radius : 50px;
+}
+.Grid .vscrollbar .trackbar
+{
+	background : #3cbcb8;
+	border : 0px none;
+}
+.Grid
+{
+	border-top : 1px solid #b7b1b2;
+	border-right : 1px solid #b7b1b2;
+	border-bottom : 1px solid #b7b1b2;
+	border-left : 1px solid #b7b1b2;
+}
+.Grid .head .row .cell
+{
+	background : #10aea9;
+	color : white;
+}
+.Combo .dropbutton
+{
+	color : white;
+	background : white;
+}
+.ListBoxControl.popupCombocombolist.dummy
+{
+	border : 1px solid #10aea9;
+}
+.ListBoxControl.popupCombocombolist.dummy .vscrollbar
+{
+	background : #10aea9;
+}
+#nexacontainer .Button[status=mouseover]
+{
+	background : #10aea9;
+	color : white;
+}
+#nexacontainer .Button[status=focused]
+{
+	background : #3cbcb8;
+	color : white;
+}
+#nexacontainer .Calendar[status=mouseover]
+{
+	border : 1px solid #d5d5d5;
+}
+#nexacontainer .CalendarControl[status=mouseover]
+{
+	border : 1px solid #d5d5d5;
+}
+#nexacontainer .Calendar[status=focused]
+{
+	border : 1px solid #d5d5d5;
+}
+#nexacontainer .CalendarControl[status=focused]
+{
+	border : 1px solid #d5d5d5;
+}
+#nexacontainer .Calendar .datepicker .body .dayitem[status=mouseover]
+{
+	background : #3cbcb8;
+}
+#nexacontainer .DatePickerControl.popupCalendardatepicker .body .dayitem[status=mouseover]
+{
+	background : #3cbcb8;
+}
+#nexacontainer .Combo[status=mouseover]
+{
+	border : 1px solid #10aea9;
+}
+#nexacontainer .Combo[status=focused]
+{
+	border : 1px solid #10aea9;
+}
+#nexacontainer .ListBoxControl.popupCombocombolist.dummy .listboxitem[status=mouseover]
+{
+	background : #10aea9;
+	color : white;
+}
+#nexacontainer .ListBoxControl.popupCombocombolist.dummy .listboxitem[status=focused]
+{
+	background : #10aea9;
+	color : white;
+}
+#nexacontainer .MaskEdit[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .MaskEdit[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .TextArea[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .TextArea[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .ListBox[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .ListBox[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .ListBox .listboxitem[status=focused]
+{
+	background : #10aea9;
+}
+#nexacontainer .ListBox .listboxitem[status=mouseover]
+{
+	background : #10aea9;
+}
+#nexacontainer .Spin[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .Spin[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .Edit[status=mouseover]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .Edit[status=focused]
+{
+	border : 1px solid  #10aea9;
+}
+#nexacontainer .Button[userstatus=selected]
+{
+	background : #3cbcb8;
+	color : white;
+}
+#nexacontainer .Button[userstatus=pushed]
+{
+	background : #3cbcb8;
+	color : white;
+}
+#nexacontainer .Calendar .datepicker .body .dayitem[userstatus=selected]
+{
+	background : #3cbcb8;
+}
+#nexacontainer .DatePickerControl.popupCalendardatepicker .body .dayitem[userstatus=selected]
+{
+	background : #3cbcb8;
+}
+#nexacontainer .ListBoxControl.popupCombocombolist.dummy .listboxitem[userstatus=selected]
+{
+	background : #3cbcb8;
+	color : white;
+}
+#nexacontainer .ListBox .listboxitem[userstatus=selected]
+{
+	background : #3cbcb8;
+}
+#nexacontainer .Combo .dropbutton[status=disabled]
+{
+	background : #efefef;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.tmax.tibero.jdbc.TbDriver"></property>
+		<property name="url" value="jdbc:tibero:thin:@116.121.230.104:8629:eruncjtb"></property>
+		<property name="username" value="cjtb_groupware"></property>
+		<property name="password" value="^rmfnqdl4432"></property>
+	</bean>
+
+	<!-- sqlSession -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/sqlmap/sql-mapper-config.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:/sqlmap/**/*Sql.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- mapperScan -->
+	<mybatis-spring:scan base-package="kr.co.chunjae.erp" />
+
+</beans>

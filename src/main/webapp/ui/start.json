@@ -1,0 +1,170 @@
+﻿{
+    "version" : "17.0.0.1",
+    "runtime" :
+    {
+        "target" :
+        {
+            "os" : "windows"
+        },
+        "framework" :
+        [    
+        "./nexacro17lib/framework/SystemBase.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/SystemBase_HTML5.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/SystemBase_Runtime.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/BasicObjs.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/ErrorDefine.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/Platform_HTML5.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/Platform_Runtime.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/Platform.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/CssObjs.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/Device.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/Device_Android.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/Device_Windows.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/framework/Device_iOS.js?nexaversion=17.1.3.900"
+        ],
+        "component" :
+        [    
+        "./nexacro17lib/component/CompBase/Element_HTML5.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/Element_Runtime.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/CompBase.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/CompEventBase.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/Data.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/EditBase.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/FormBase.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/TitleBar.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/StatusBar.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/FrameBase.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/ScrollBar.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/Step.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBase/Animation.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Dataset.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/DataObject.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/DomObject.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Static.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Button.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Edit.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/MaskEdit.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/TextArea.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/lang/ko/ime.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/lang/ja/ime.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/ImageViewer.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/CheckBox.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Radio.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/ListBox.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Combo.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Div.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/ProgressBar.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/PopupDiv.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Menu.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/PopupMenu.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Spin.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/DatePicker.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Calendar.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/GroupBox.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Tab.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/FileDialog.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/FileDownload.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/FileDownTransfer.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/FileUpload.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/FileUpTransfer.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/VideoPlayer.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/WebBrowser.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/GoogleMap.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Sketch.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/ExportObject.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/ImportObject.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Tray.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Plugin.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/VirtualFile.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Cell.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/View.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/Action.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ComComp/WebView.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/Grid/GridInfo.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/Grid/Grid.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBaseEx/SimpleComp.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/CompBaseEx/ComplexComp.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/ListView/ListView.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/DeviceAPI/SQLite.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/DeviceAPI/SQLite_Runtime.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/DeviceAPI/DeviceObjs.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/DeviceAPI/DeviceObjs_Runtime.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/DeviceAPI/Mobile.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/DeviceAPI/BluetoothLE.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/DeviceAPI/TCPClientSocket.js?nexaversion=17.1.3.900",
+        "./nexacro17lib/component/extPrototype/Auth.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Chart.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Code.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Dataset.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Date.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Excel.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/File.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Font.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Frame.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Global.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Grid.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Mask.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Message.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Popup.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Report.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/String.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Transaction.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Util.js?nexaversion=1.0.0.0",
+        "./nexacro17lib/component/extPrototype/Validation.js?nexaversion=1.0.0.0"
+        ],
+        "environment" :
+        [    
+        {
+        "file":"./environment.xml.js"
+        }
+        ],
+        "screen" :
+        [    
+        {"id":"Desktop_screen","type":"desktop","datatyperule":"1.0","filesecurelevel":"all","networksecurelevel":"all","httptimeout":"900","usehttpkeepalive":"true","themeid":"theme::default"}
+        ],
+        "xadl" :
+        [
+        {
+        	"screenid":"Desktop_screen",
+        	"launch":"./Application_Desktop.xadl.js",
+        	"quickview":"./Application_Desktop.xadl.quickview.js",
+        	"form":[]
+        }
+        ],  
+        "protocol" :
+        {
+            "adaptors" :
+            []
+        },
+        "resource" :
+        {
+            "windows" : {
+                "updateurl" : "./",
+                "timeout" : "30",
+                "retry" : "3",
+                "autoupdate" : "auto",
+                "updatetype" : "server",
+            "common" : {
+                "updateurl" : "",
+                    "resources" :
+                    [{"type" : "Module", "file" : "nexacro17lib.zip", "targetpath" : "", "version" : "0"}]
+                }
+            }
+        },
+		"deploy" :
+        {
+            "windows" : {
+                "updateurl" : "./",
+            "common" : {
+                "updateurl" : "",
+                    "resources" :
+                    [{"type" : "Module", "file" : "nexacro17lib.zip", "targetpath" : "", "version" : "0"}]
+                }
+            }
+        },
+        "userfont" :
+        [
+
+        ]
+    }
+}

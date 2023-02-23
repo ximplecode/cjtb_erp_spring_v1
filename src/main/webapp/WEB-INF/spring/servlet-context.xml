@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+
+    <!-- This tag registers the DefaultAnnotationHandlerMapping and
+         AnnotationMethodHandlerAdapter beans that are required for Spring MVC  -->
+    <mvc:annotation-driven />
+    <!-- This tag allows for mapping the DispatcherServlet to "/" -->
+    <mvc:default-servlet-handler />
+
+    <!-- Process annotations on registered beans like @Autowired... -->
+    <context:annotation-config/>
+    <!-- 컴포넌트 스캔 -->
+    <!-- src/main/java 폴더를 소스폴더로 지정해야지 컴포넌트 스켄 오류가 사라진다-->
+    <context:component-scan base-package="kr.co.chunjae.erp" />
+
+    <mvc:resources mapping="/**" location="/ui/" />
+    <mvc:resources mapping="/images" location="/ui/nexacro17lib/resources/images/" />
+    <mvc:resources mapping="/nexacro17lib/**" location="/ui/nexacro17lib/" />
+    <mvc:resources mapping="/jsp/**" location="/jsp/" />
+
+    <!-- /////////////////////////////////// nexcro 설정 시작 /////////////////////////////////// -->
+    <bean class="com.nexacro.uiadapter17.spring.core.resolve.NexacroRequestMappingHandlerAdapter" p:order="0">
+        <property name="customArgumentResolvers">
+            <list>
+                <ref bean="nexacroMethodArgumentResolver" /> <!-- regist Nexacro Argument Resolvers.. -->
+            </list>
+        </property>
+        <property name="customReturnValueHandlers">
+            <list>
+                <ref bean="nexacroMethodReturnValueHandler" /> <!-- regist Nexacro Return Value Handler.. -->
+            </list>
+        </property>
+    </bean>
+
+    <bean id="nexacroInterceptor" class="com.nexacro.uiadapter17.spring.core.servlet.NexacroInterceptor" />
+
+    <!-- nexacro method argument resolver -->
+    <bean id="nexacroMethodArgumentResolver"
+          class="com.nexacro.uiadapter17.spring.core.resolve.NexacroMethodArgumentResolver" />
+
+    <bean id="nexacroView" class="com.nexacro.uiadapter17.spring.core.view.NexacroView">
+        <property name="defaultContentType" value="application/PlatformXml" />
+        <property name="defaultCharset" value="UTF-8" />
+    </bean>
+
+    <bean id="nexacroFileView"
+          class="com.nexacro.uiadapter17.spring.core.view.NexacroFileView" />
+
+    <!-- nexacro method return value handler -->
+    <bean id="nexacroMethodReturnValueHandler"
+          class="com.nexacro.uiadapter17.spring.core.resolve.NexacroHandlerMethodReturnValueHandler">
+        <property name="view" ref="nexacroView" />
+        <property name="fileView" ref="nexacroFileView" />
+    </bean>
+
+    <!-- view -->
+    <bean id="beanNameResolver"
+          class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1" />
+    </bean>
+
+    <bean id="baseViewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="order" value="2" />
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView" />
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!-- /////////////////////////////////// jsp / json 설정 시작 /////////////////////////////////// -->
+
+    <!-- request adapter -->
+    <bean
+            class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+    <!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"
+        p:order="1"> <property name="messageConverters"> <list> <ref bean="jsonConverter"
+        /> <ref bean="htmlConverter" /> </list> </property> </bean> -->
+
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+          p:order="1" p:viewClass="org.springframework.web.servlet.view.JstlView"
+          p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+
+    <bean id="jsonView"
+          class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <property name="contentType" value="application/json;charset=UTF-8">
+        </property>
+    </bean>
+
+    <!-- json Converter -->
+    <bean id="jsonConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes" value="application/json" />
+    </bean>
+
+    <bean id="htmlConverter"
+          class="org.springframework.http.converter.StringHttpMessageConverter" />
+</beans>

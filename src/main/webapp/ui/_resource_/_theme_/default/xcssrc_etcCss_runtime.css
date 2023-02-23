@@ -1,0 +1,186 @@
+﻿
+        
+.nexainput.nexaleftalign
+{
+  text-align:left;
+}
+.nexainput.nexarightalign
+{
+  text-align:right;
+}
+.nexainput.nexacenteralign
+{
+  text-align:center;
+}
+
+.nexacontentsbox.nexaleftalign
+{
+  text-align:left;
+}
+.nexacontentsbox.nexarightalign
+{
+  text-align:right;
+}
+.nexacontentsbox.nexacenteralign
+{
+  text-align:center;
+}
+.celltreeline
+{
+  border : 1px dotted #999999;
+}
+.Edit, .MaskEdit, .TextArea, .EditControl, .MaskEditControl, .TextAreaControl
+{
+  cursor:text;
+}
+.Button .nexacontentsbox, .ButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.FileDownload  .nexacontentsbox, .FileDownloadControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.IconTextControl .nexacontentsbox, .IconControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.DatePickerDayItemControl .nexacontentsbox, .DatePickerWeekItemControl .nexacontentsbox, .TitleBarButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.MainFrame, .VScrollBarControl, .HScrollBarControl
+{
+  cursor:default;
+}
+
+.Sketch .nexacontentsbox
+{
+   text-align:center;
+}
+
+.nexainput
+{
+  cursor:inherit;
+}
+
+.Grid .body .row .cell.CssMenu_level_1
+{
+	color : #3cbcb8;
+	border : 0px none,0px none,1px solid #3cbcb8;
+	font : normal bold 14px/normal "Arial";
+	background : #ffffff;
+}
+.Grid .body .row .cell.CssBackground_red
+{
+	background : #f3c3cb;
+}
+.Grid .body .row .cell.CssMenu_level_1 .celltreeitem .treeitemtext
+{
+	color : #3cbcb8;
+	font : normal bold 14px/normal "Arial";
+}
+.Grid .body .row .cell.CssMenu_level_2
+{
+	color : #444444;
+	border : 0px none;
+	background : #ffffff;
+	font : normal bold 12px/normal "Arial";
+}
+.Grid .body .row .cell.CssMenu_level_3
+{
+	color : #444444;
+	border : 0px none;
+	background : #f3f4f5;
+	font : normal bold 11px/normal "Arial";
+}
+.Grid .body .row .cell.CssMenu_level_3_select
+{
+	color : #444444;
+	border : 0px none;
+	background : #f3f4f5;
+	font : normal bold 11px/normal "Arial";
+}
+.Grid .body .row .cell.CssMenu_level_3_select .celltreeitem .treeitemtext
+{
+	font : normal bold 12px/normal "Arial";
+	color : #3cbcb8;
+}
+.Grid .body .row .cell.CssMenu_level_2 .celltreeitem .treeitemtext
+{
+	font : normal bold 12px/normal "Arial";
+	color : #444444;
+}
+.Grid .body .row .cell.CssMenu_level_3 .celltreeitem .treeitemtext
+{
+	font : normal bold 11px/normal "Arial";
+	color : #444444;
+}
+.Button.btn_line
+{
+	font : normal 900 12pt/0px "Arial";
+}
+.Button.btn_line .nexacontentsbox
+{
+	text-decoration : underline;
+}
+.Button.btn_noSelect
+{
+	background : #c1c1c1;
+}
+.Button.btn_normal
+{
+	font : normal 700 11pt/normal "Arial";
+}
+.Grid .body .row .cell.CssBackground_red[status=mouseover]
+{
+	background : #f3c3cb;
+}
+.Grid .body .row .cell.CssMenu_level_1[status=mouseover]
+{
+	background : #ffffff;
+}
+.Grid .body .row .cell.CssMenu_level_2[status=mouseover]
+{
+	background : #ffffff;
+}
+.Grid .body .row .cell.CssMenu_level_3[status=mouseover]
+{
+	background : #f3f4f5;
+}
+.Grid .body .row .cell.CssMenu_level_3_select[status=mouseover]
+{
+	background : #f3f4f5;
+}
+.Button.btn_noSelect[status=focused]
+{
+	background : #c1c1c1;
+}
+.Grid .body .row .cell.CssBackground_red[userstatus=selected]
+{
+	background : #f3c3cb;
+}
+.Grid .body .row .cell.CssMenu_level_1[userstatus=selected]
+{
+	background : #ffffff;
+}
+.Grid .body .row .cell.CssMenu_level_2[userstatus=selected]
+{
+	background : #ffffff;
+}
+.Grid .body .row .cell.CssMenu_level_3[userstatus=selected]
+{
+	background : #f3f4f5;
+}
+.Grid .body .row .cell.CssMenu_level_3_select[userstatus=selected]
+{
+	background : #f3f4f5;
+}
+.Button.btn_noSelect[userstatus=selected]
+{
+	background : #c1c1c1;
+}

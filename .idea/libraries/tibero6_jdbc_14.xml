@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="tibero6-jdbc-14">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../티맥스_lib/tibero6-jdbc-14.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,28 @@
+{
+	"name": "extPrototype",
+	"version": "1.0.0.0",
+	"description": "Library for nexacro platform17",
+	"license": "",
+	"scripts": [
+        "extPrototype/Auth.js",
+        "extPrototype/Chart.js",
+		"extPrototype/Code.js",
+		"extPrototype/Dataset.js",
+		"extPrototype/Date.js",
+		"extPrototype/Excel.js",
+		"extPrototype/File.js",
+		"extPrototype/Font.js",
+		"extPrototype/Frame.js",
+		"extPrototype/Global.js",
+		"extPrototype/Grid.js",
+		"extPrototype/Mask.js",
+		"extPrototype/Message.js",
+		//"extPrototype/PivotGrid.js",
+		"extPrototype/Popup.js",
+		"extPrototype/Report.js",
+		"extPrototype/String.js",
+		"extPrototype/Transaction.js",
+		"extPrototype/Util.js",
+		"extPrototype/Validation.js"
+	]
+}

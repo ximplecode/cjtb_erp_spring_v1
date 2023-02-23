@@ -1,0 +1,130 @@
+﻿
+        
+.nexainput.nexaleftalign
+{
+  text-align:left;
+}
+.nexainput.nexarightalign
+{
+  text-align:right;
+}
+.nexainput.nexacenteralign
+{
+  text-align:center;
+}
+
+.nexacontentsbox.nexaleftalign
+{
+  text-align:left;
+}
+.nexacontentsbox.nexarightalign
+{
+  text-align:right;
+}
+.nexacontentsbox.nexacenteralign
+{
+  text-align:center;
+}
+.celltreeline
+{
+  border : 1px dotted #999999;
+}
+.Edit, .MaskEdit, .TextArea, .EditControl, .MaskEditControl, .TextAreaControl
+{
+  cursor:text;
+}
+.Button .nexacontentsbox, .ButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.FileDownload  .nexacontentsbox, .FileDownloadControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.IconTextControl .nexacontentsbox, .IconControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.DatePickerDayItemControl .nexacontentsbox, .DatePickerWeekItemControl .nexacontentsbox, .TitleBarButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.MainFrame, .VScrollBarControl, .HScrollBarControl
+{
+  cursor:default;
+}
+
+.Sketch .nexacontentsbox
+{
+   text-align:center;
+}
+
+.nexainput
+{
+  cursor:inherit;
+}
+
+.Grid .body .row .cell.sdcss_jp_total
+{
+	background : #d8efff;
+}
+.Grid .body .row .cell.sdcss_daily_total
+{
+	background : #d8efcf;
+}
+.Grid .body .row .cell.sdcss_error
+{
+	background : #EFC8C8;
+}
+.Grid .body .row .cell.sdcss_monthly_total
+{
+	background : #facda2;
+}
+.Grid .body .row .cell.cornsilk
+{
+	background : #fff8dc;
+}
+.Grid .body .row .cell.sdcss_jp_total[status=mouseover]
+{
+	background : #d8e8ff;
+}
+.Grid .body .row .cell.sdcss_daily_total[status=mouseover]
+{
+	background : #d8e8cf;
+}
+.Grid .body .row .cell.sdcss_error[status=mouseover]
+{
+	background : #EFC8C8;
+}
+.Grid .body .row .cell.sdcss_monthly_total[status=mouseover]
+{
+	background : #facda2;
+}
+.Grid .body .row .cell.cornsilk[status=mouseover]
+{
+	background : #fff8dc;
+}
+.Grid .body .row .cell.sdcss_jp_total[userstatus=selected]
+{
+	background : #d8d8ff;
+}
+.Grid .body .row .cell.sdcss_daily_total[userstatus=selected]
+{
+	background : #d8d8cf;
+}
+.Grid .body .row .cell.sdcss_error[userstatus=selected]
+{
+	background : #EFC8C8;
+}
+.Grid .body .row .cell.sdcss_monthly_total[userstatus=selected]
+{
+	background : #facda2;
+}
+.Grid .body .row .cell.cornsilk[userstatus=selected]
+{
+	background : #fff8dc;
+}

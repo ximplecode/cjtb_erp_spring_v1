@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
+
+	<bean id="dataSourceOrg" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.tmax.tibero.jdbc.TbDriver"></property>
+		<property name="url" value="jdbc:tibero:thin:@116.121.230.104:8629:eruncjtb"></property>
+		<property name="username" value="cjtb_groupware"></property>
+		<property name="password" value="^rmfnqdl4432"></property>
+	</bean>
+
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceOrg" />
+	</bean>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+    </bean>
+    <bean id="namedTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource" />
+    </bean>
+
+</beans>

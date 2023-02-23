@@ -1,0 +1,211 @@
+//XJS=Lib_service.xjs
+(function()
+{
+    return function(path)
+    {
+        var obj;
+    
+        // User Script
+        this.registerScript(path, function() {
+        /*
+         *	svcType : S:select권한 U:insert, update권한 D:삭제권한 P:권한체크 X
+         */
+
+        this.gfn_TransactionP = function (strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, svcType, bWait, obj)
+        {
+        	var per, per_value, nRow;
+        	var strMergeSvcID = strSvcId + "|" + callBackFnc + "|" + svcType;
+        	if (svcType != "P")
+        	{
+        		switch (svcType)
+        		{
+        			case "S" :
+        				per = "UM_PER_SELECT";
+        				break;
+        			case "U" :
+        				per = "UM_PER_DML";
+        				break;
+        			case "D" :
+        				per = "UM_PER_DELETE";
+        				break;
+        			case "M" :
+        				per = "UM_PER_DML_DELETE";
+        				break;
+        		}
+
+        		// Menu ID 조회
+        		nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+
+        		// 권한 체크 사항
+        		per_value = nexacro.getApplication().gds_menu.getColumn(nRow, per);
+
+        		if (nRow >= 0 && per_value != 0)
+        		{
+        			this.gfn_Transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, svcType, bWait);
+        		}
+        		else
+        		{
+        			this.gfn_noPermission(callBackFnc, obj);
+        		}
+        	}
+        	else
+        	{
+        		this.gfn_Transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, svcType, bWait);
+        	}
+        }
+
+        this.gfn_Transaction = function (strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, svcType, bWait)
+        {
+
+        	var strServiceUrl = nexacro.getApplication().gfn_getUrl("svcUrl") + strSvcUrl;
+
+
+        	var arguments = "";
+        	var checkArg = strArg.replace(/undefined/g,"");
+        	if (Eco.isEmpty(checkArg)) {
+        		arguments = "";
+        	} else {
+        		arguments = checkArg;
+        	}
+        	trace(strServiceUrl);
+        	trace(arguments);
+
+        	// coolmind : inData, outData를 'a b c'형태를 'a=a b=b c=c'형태로 변환
+        	var strInDS = "";
+        	var strOutDS = "";
+        	var nIdxEQ = -1;
+        	var strDS = "";
+
+
+        	if (!Eco.isEmpty(inData))
+        	{
+        		var arrInDS = inData.split(" ");
+
+        		for(var i = 0; i < arrInDS.length; i++)
+        		{
+        			if (arrInDS[i].indexOf("=") > 0)
+        			{ // 잘라는 파라메터에 = 이 있으면 a=a1형태의 문자열 그 문자열을 그대로 사용
+        				if (i == 0)
+        					strInDS = arrInDS[i];
+        				else
+        					strInDS += " "+arrInDS[i];
+        			}
+        			else
+        			{ // 잘라는 파라메터에 = 이 없으면 a형태의 문자열 a=a형태로 변환
+        				// strInDatasets에 각각의 Dataset id뒤에 ':U', ':A', ':N' 의 옵션이 붙었는지 확인
+        				strDS = arrInDS[i];
+        				nIdxEQ = strDS.indexOf(":");
+        				if ( nIdxEQ > 0)
+        				{
+        					strDS = strDS.substr(0, nIdxEQ);  // :앞에 까지 자름
+        				}
+
+        				if (i == 0)
+        					strInDS = strDS+"="+arrInDS[i];
+        				else
+        					strInDS += " "+strDS+"="+arrInDS[i];
+        			}
+        		}
+        	}
+
+        	if (!Eco.isEmpty(outData))
+        	{
+        		var arrOutDS = outData.split(" ");
+
+        		for(var i = 0; i < arrOutDS.length; i++)
+        		{
+        			if (arrOutDS[i].indexOf("=") > 0)
+        			{ // 잘라는 파라메터에 = 이 있으면 a=a1형태의 문자열 그 문자열을 그대로 사용
+        				if (i == 0)
+        					strOutDS = arrOutDS[i];
+        				else
+        					strOutDS += " "+arrOutDS[i];
+        			}
+        			else
+        			{ // 잘라는 파라메터에 = 이 없으면 a형태의 문자열 a=a형태로 변환
+        				if (i == 0)
+        					strOutDS = arrOutDS[i]+"="+arrOutDS[i];
+        				else
+        					strOutDS += " "+arrOutDS[i]+"="+arrOutDS[i];
+        			}
+        		}
+        	}
+
+        	// Async
+            if ((isAsync != true) && (isAsync != false)) isAsync = true;
+
+            // Service ID  And callBackFnc Merge
+            var strMergeSvcID = strSvcId + "|" + callBackFnc + "|" + svcType;
+        	//trace("gfn_Transaction strMergeSvcID["+strMergeSvcID+"]");
+
+        	// WaitCursor
+        	if (Eco.isEmpty(bWait))
+        		this.setWaitCursor();  // 기본값으로 동작 - userwaitcursor속성에 따라 wait상태로 설정함
+        	else
+        	{
+        		if (bWait) { // 무조건 사용
+        			this.setWaitCursor(true, true);
+        		} else {  // 무조건 미사용
+        			this.setWaitCursor(false, false);
+        		}
+        	}
+        	trace(strServiceUrl)				   ;
+        	this.transaction( strSvcId
+        					   , strServiceUrl
+        					   , strInDS                      	// inDataSet
+        					   , strOutDS                     	// outDataSet
+        					   , arguments
+        					   , callBackFnc   				 	// strCallbackFunc
+        					   , isAsync                     	// bAsync
+        					   , 0                      		// nDataType : 0(XML 타입), 2(SSV 타입) --> HTML5에서는 1(Binary 타입)은 지원안함
+        					   , false);
+
+
+
+        }
+
+        this.gfn_noPermission = function(strCallback, obj)
+        {
+        	this.alert("권한이 없습니다.");
+        	this.transaction( "noPermission"
+        					   , nexacro.getApplication().gfn_getUrl("svcUrl") + "JSP/common/noPermission.jsp"
+        					   , ""
+        					   , ""
+        					   , ""
+        					   , strCallback   				 	// strCallbackFunc
+        					   , true                     		// bAsync
+        					   , 0                      		// nDataType : 0(XML 타입), 2(SSV 타입) --> HTML5에서는 1(Binary 타입)은 지원안함
+        					   , false);
+        }
+
+        this.gfn_test = function(strCallback, obj)
+        {
+        	var rtnFunction = this.lookup(strCallback);
+        	rtnFunction("permission",-99,"권한이 없습니다.");
+        }
+
+        this.getPermission_print = function()
+        {
+        	var nRow = nexacro.getApplication().gds_menu.findRow("MN_ID", nexacro.getApplication().gv_selectMenu);
+
+        	var per_value = nexacro.getApplication().gds_menu.getColumn(nRow, "UM_PER_PRINT");
+
+        	if (nRow >= 0 && per_value != 0)
+        	{
+        		return true;
+        	}
+        	else
+        	{
+        		return false;
+        	}
+        }
+
+
+        });
+    
+        this.loadIncludeScript(path);
+        
+        obj = null;
+    };
+}
+)();

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyyMMdd HH:mm:ss.SSS} [%thread] %-5level \(%logger{20}.%method:%line\) - %msg %n</pattern>
+        </encoder>
+    </appender>
+    <logger name="jdbc" level="DEBUG"/>
+    <logger name="org.springframework" additivity="false">
+        <level value="WARN"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="kr.co.chunjae" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="jdbc.sqlonly" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="console" />
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="jdbc.sqltiming" additivity="false">
+        <level value="WARN"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="jdbc.audit" additivity="false">
+        <level value="OFF"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="jdbc.resultset" additivity="false">
+        <level value="WARN"/>
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="jdbc.resultsettable" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="console" />
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="jdbc.connection" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="console" />
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root>
+        <priority value="INFO" />
+        <appender-ref ref="console" />
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <!--  LOGGIN LEVEL
+        1. FATAL
+        2. ERROR
+        3. WARN
+        4. INFO
+        5. DEBUG
+        6. TRACE
+          -->
+</configuration>
